@@ -4,11 +4,13 @@ import 'dart:html';
 import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:angular/routing/module.dart';
+import 'package:angular/core_dom/module_internal.dart';
 
+import 'package:webclient/template_cache.dart';
 import 'package:webclient/logger_exception_handler.dart';
+
 import 'package:webclient/services/server_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
-
 import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/datetime_service.dart';
@@ -22,40 +24,41 @@ import 'package:webclient/services/payment_service.dart';
 import 'package:webclient/services/prizes_service.dart';
 import 'package:webclient/services/promos_service.dart';
 import 'package:webclient/services/catalog_service.dart';
+import 'package:webclient/services/tutorial_service.dart';
+import 'package:webclient/services/tooltip_service.dart';
 
-import 'package:webclient/components/landing_page_1_slide_comp.dart';
-
+import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/utils/form-autofill-fix.dart';
 import 'package:webclient/utils/element-autofocus.dart';
 import 'package:webclient/utils/translate_decorator.dart';
 import 'package:webclient/utils/translate_formatter.dart';
-
 import 'package:webclient/utils/limit_to_dot.dart';
+import 'package:webclient/utils/host_server.dart';
+import 'package:webclient/utils/js_utils.dart';
+import 'package:webclient/utils/noshim.dart';
 
-//import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
 import 'package:webclient/components/navigation/main_menu_f2p_comp.dart';
 import 'package:webclient/components/navigation/footer_comp.dart';
 import 'package:webclient/components/flash_messages_comp.dart';
 import 'package:webclient/components/modal_comp.dart';
-
 import 'package:webclient/components/paginator_comp.dart';
-import 'package:webclient/components/contest_filters_comp.dart';
-//import 'package:webclient/components/lobby_comp.dart';
 import 'package:webclient/components/lobby_f2p_comp.dart';
-import 'package:webclient/components/week_calendar_comp.dart';
+import 'package:webclient/components/home_comp.dart';
 import 'package:webclient/components/promos_comp.dart';
-//import 'package:webclient/components/simple_promo_viewer_comp.dart';
 import 'package:webclient/components/simple_promo_f2p_comp.dart';
-
-//import 'package:webclient/components/contests_list_comp.dart';
 import 'package:webclient/components/contests_list_f2p_comp.dart';
-
 import 'package:webclient/components/contest_info_comp.dart';
 import 'package:webclient/components/scoring_rules_comp.dart';
-import 'package:webclient/components/contest_header_comp.dart';
 import 'package:webclient/components/contest_header_f2p_comp.dart';
 import 'package:webclient/components/leaderboard_comp.dart';
 import 'package:webclient/components/leaderboard_table_comp.dart';
+import 'package:webclient/components/my_contests_comp.dart';
+import 'package:webclient/components/welcome_comp.dart';
+import 'package:webclient/components/week_calendar_comp.dart';
+import 'package:webclient/components/tutorial_list_comp.dart';
+import 'package:webclient/components/create_contest_comp.dart';
+import 'package:webclient/components/achievement_list_comp.dart';
+import 'package:webclient/components/achievement_comp.dart';
 
 import 'package:webclient/components/account/login_comp.dart';
 import 'package:webclient/components/account/join_comp.dart';
@@ -63,49 +66,48 @@ import 'package:webclient/components/account/user_profile_comp.dart';
 import 'package:webclient/components/account/edit_personal_data_comp.dart';
 import 'package:webclient/components/account/remember_password_comp.dart';
 import 'package:webclient/components/account/change_password_comp.dart';
-import 'package:webclient/components/account/payment_comp.dart';
-import 'package:webclient/components/account/payment_response_comp.dart';
 import 'package:webclient/components/account/add_funds_comp.dart';
-import 'package:webclient/components/account/withdraw_funds_comp.dart';
 import 'package:webclient/components/account/transaction_history_comp.dart';
 import 'package:webclient/components/account/shop_comp.dart';
-import 'package:webclient/components/account/gold_shop_comp.dart';
-import 'package:webclient/components/account/energy_shop_comp.dart';
-import 'package:webclient/components/account/trainer_points_shop_comp.dart';
 
-import 'package:webclient/components/my_contests_comp.dart';
+import 'package:webclient/components/account/notifications_comp.dart';
+
 import 'package:webclient/components/view_contest/view_contest_entry_comp.dart';
 import 'package:webclient/components/view_contest/view_contest_comp.dart';
 import 'package:webclient/components/view_contest/fantasy_team_comp.dart';
 import 'package:webclient/components/view_contest/users_list_comp.dart';
 import 'package:webclient/components/view_contest/teams_panel_comp.dart';
 
-import 'package:webclient/components/welcome_comp.dart';
-
 import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:webclient/components/enter_contest/lineup_selector_comp.dart';
 import 'package:webclient/components/enter_contest/soccer_players_list_comp.dart';
 import 'package:webclient/components/enter_contest/soccer_players_filter_comp.dart';
 import 'package:webclient/components/enter_contest/matches_filter_comp.dart';
-
 import 'package:webclient/components/enter_contest/soccer_player_stats_comp.dart';
 
 import 'package:webclient/components/legalese_and_help/help_info_comp.dart';
-import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
-import 'package:webclient/components/legalese_and_help/terminus_info_comp.dart';
-import 'package:webclient/components/legalese_and_help/policy_info_comp.dart';
-import 'package:webclient/components/legalese_and_help/beta_info_comp.dart';
-import 'package:webclient/components/legalese_and_help/restricted_comp.dart';
+import 'package:webclient/components/legalese_and_help/how_it_works_comp.dart';
 
-import 'package:webclient/utils/host_server.dart';
-import 'package:webclient/utils/js_utils.dart';
 
-import 'package:webclient/utils/noshim.dart';
-import 'package:angular/core_dom/module_internal.dart';
 
-import 'package:webclient/template_cache.dart';
-import 'package:webclient/utils/game_metrics.dart';
-
+//import 'package:webclient/components/landing_page_1_slide_comp.dart';
+//import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
+//import 'package:webclient/components/contest_filters_comp.dart';
+//import 'package:webclient/components/lobby_comp.dart';
+//import 'package:webclient/components/simple_promo_viewer_comp.dart';
+//import 'package:webclient/components/contests_list_comp.dart';
+//import 'package:webclient/components/contest_header_comp.dart';
+//import 'package:webclient/components/account/payment_comp.dart';
+//import 'package:webclient/components/account/payment_response_comp.dart';
+//import 'package:webclient/components/account/withdraw_funds_comp.dart';
+//import 'package:webclient/components/account/trainer_points_shop_comp.dart';
+//import 'package:webclient/components/account/gold_shop_comp.dart';
+//import 'package:webclient/components/account/energy_shop_comp.dart';
+//import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
+//import 'package:webclient/components/legalese_and_help/terminus_info_comp.dart';
+//import 'package:webclient/components/legalese_and_help/policy_info_comp.dart';
+//import 'package:webclient/components/legalese_and_help/beta_info_comp.dart';
+//import 'package:webclient/components/legalese_and_help/restricted_comp.dart';
 
 class WebClientApp extends Module {
 
@@ -120,23 +122,19 @@ class WebClientApp extends Module {
 
     // No usamos animacion -> podemos quitar esto
     bind(CompilerConfig, toValue:new CompilerConfig.withOptions(elementProbeEnabled: false));
-
+    
     // Disable CSS shim
     bind(PlatformJsBasedShim, toImplementation: PlatformJsBasedNoShim);
     bind(DefaultPlatformShim, toImplementation: DefaultPlatformNoShim);
-
     bind(ExceptionHandler, toImplementation: LoggerExceptionHandler);
     bind(ServerService, toImplementation: DailySoccerServer);
-
     bind(ScreenDetectorService);
-
     bind(LoadingService);
     bind(RefreshTimersService);
     bind(DateTimeService);
     bind(ProfileService);
     bind(FlashMessagesService);
     bind(PromosService);
-
     bind(ContestsService);
     bind(SoccerPlayerService);
     bind(ScoringRulesService);
@@ -144,100 +142,135 @@ class WebClientApp extends Module {
     bind(PaymentService);
     bind(PrizesService);
     bind(CatalogService);
+    bind(TutorialService);
+    bind(ToolTipService);
 
     bind(FormAutofillDecorator);
     bind(AutoFocusDecorator);
     bind(LimitToDot);
-
     bind(TranslateDecorator);
     bind(TranslateFormatter);
-
-    bind(LandingPage1SlideComp);
-
-    //bind(MainMenuSlideComp);
     bind(MainMenuF2PComp);
     bind(FooterComp);
     bind(FlashMessageComp);
     bind(ModalComp);
-
     bind(LoginComp);
     bind(JoinComp);
-
-    //bind(LobbyComp);
     bind(LobbyF2PComp);
-    bind(WeekCalendar);
-    //bind(ContestsListComp);
+    bind(HomeComp);
     bind(ContestsListF2PComp);
     bind(PromosComp);
-    //bind(SimplePromoViewerComp);
     bind(SimplePromoF2PComp);
     bind(PaginatorComp);
-    bind(ContestFiltersComp);
     bind(LeaderboardComp);
     bind(LeaderboardTableComp);
-
-    bind(ContestHeaderComp);
     bind(ContestHeaderF2PComp);
     bind(ContestInfoComp);
     bind(ScoringRulesComp);
-
+    bind(CreateContestComp);
     bind(MyContestsComp);
+    bind(TutorialListComp);
     bind(ViewContestComp);
     bind(ViewContestEntryComp);
     bind(FantasyTeamComp);
     bind(UsersListComp);
     bind(TeamsPanelComp);
     bind(WelcomeComp);
-
-    bind(HelpInfoComp);
-    bind(LegalInfoComp);
-    bind(TerminusInfoComp);
-    bind(PolicyInfoComp);
-    bind(BetaInfoComp);
-    bind(RestrictedComp);
-
+    bind(WeekCalendar);
     bind(EnterContestComp);
     bind(SoccerPlayersListComp);
     bind(SoccerPlayersFilterComp);
     bind(MatchesFilterComp);
     bind(LineupSelectorComp);
-
     bind(SoccerPlayerStatsComp);
-
     bind(ChangePasswordComp);
     bind(RememberPasswordComp);
     bind(UserProfileComp);
     bind(EditPersonalDataComp);
-    bind(PaymentComp);
-    bind(PaymentResponseComp);
     bind(AddFundsComp);
-    bind(WithdrawFundsComp);
     bind(TransactionHistoryComp);
     bind(ShopComp);
-    bind(GoldShopComp);
-    bind(EnergyShopComp);
-    bind(TrainerPointsShopComp);
-
+    bind(NotificationsComp);    
+    bind(HelpInfoComp);
+    bind(AchievementListComp);
+    bind(AchievementComp);
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
+    bind(HowItWoksComp);
 
+    //bind(LandingPage1SlideComp);
+    //bind(MainMenuSlideComp);
+    //bind(LobbyComp);
 
+    //bind(ContestsListComp);
+    //bind(SimplePromoViewerComp);
+    //bind(ContestFiltersComp);
+    //bind(ContestHeaderComp);
+    //bind(LegalInfoComp);
+    //bind(TerminusInfoComp);
+    //bind(PolicyInfoComp);
+    //bind(BetaInfoComp);
+    //bind(RestrictedComp);
+    //bind(PaymentComp);
+    //bind(PaymentResponseComp);
+    //bind(WithdrawFundsComp);
+    //bind(TrainerPointsShopComp);
+    //bind(GoldShopComp);
+    //bind(EnergyShopComp);
   }
 
   void webClientRouteInitializer(Router router, RouteViewFactory views) {
 
     views.configure({
+      /*
       'landing_page': ngRoute(
           path: '/landing_page',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
           viewHtml: '<landing-page-1-slide></landing-page-1-slide>'
       )
-      ,'beta_info': ngRoute(
+      ,
+      'beta_info': ngRoute(
           path: '/beta_info',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<beta-info></beta-info>'
       )
-      ,'login': ngRoute(
+      ,'legal_info': ngRoute(
+          path: '/legal_info',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+          viewHtml: '<legal-info></legal-info>'
+      )
+      ,'terminus_info': ngRoute(
+          path: '/terminus_info',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+          viewHtml: '<terminus-info></terminus-info>'
+      )
+      ,'policy_info': ngRoute(
+          path: '/policy_info',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+          viewHtml: '<policy-info></policy-info>'
+      )
+      ,'payment': ngRoute(
+          path: '/payment',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+          viewHtml: '<payment></payment>',
+          mount: {
+            'response': ngRoute(
+                path: '/response/:result',
+                viewHtml: '<payment-response></payment-response>')
+          }
+      )
+      ,'withdraw_funds': ngRoute(
+          path: '/withdraw_funds',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+          viewHtml: '<withdraw-funds></withdraw-funds>'
+      )
+      ,'restricted': ngRoute(
+        path: '/restricted',
+        preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+        viewHtml: '''<restricted-comp></restricted-comp>'''
+      )
+      */
+      'login': ngRoute(
           path: '/login',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
           viewHtml: '<login></login>'
@@ -257,26 +290,6 @@ class WebClientApp extends Module {
           },
           viewHtml: '<change-password></change-password>'
       )
-      ,'help_info': ngRoute(
-          path: '/help-info',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-          viewHtml: '<help-info></help-info>'
-      )
-      ,'legal_info': ngRoute(
-          path: '/legal_info',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-          viewHtml: '<legal-info></legal-info>'
-      )
-      ,'terminus_info': ngRoute(
-          path: '/terminus_info',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-          viewHtml: '<terminus-info></terminus-info>'
-      )
-      ,'policy_info': ngRoute(
-          path: '/policy_info',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-          viewHtml: '<policy-info></policy-info>'
-      )
       ,'remember_password': ngRoute(
           path: '/remember_password',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
@@ -292,16 +305,7 @@ class WebClientApp extends Module {
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<edit-personal-data></edit-personal-data>'
       )
-      ,'payment': ngRoute(
-          path: '/payment',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
-          viewHtml: '<payment></payment>',
-          mount: {
-            'response': ngRoute(
-                path: '/response/:result',
-                viewHtml: '<payment-response></payment-response>')
-          }
-      )
+
       ,'add_funds': ngRoute(
           path: '/add_funds',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
@@ -313,11 +317,6 @@ class WebClientApp extends Module {
                 viewHtml: '<payment-response></payment-response>')
           }
       )
-      ,'withdraw_funds': ngRoute(
-          path: '/withdraw_funds',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
-          viewHtml: '<withdraw-funds></withdraw-funds>'
-      )
       ,'transaction_history': ngRoute(
           path: '/transaction_history',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
@@ -326,8 +325,8 @@ class WebClientApp extends Module {
       ,'shop': ngRoute(
           path: '/shop',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
-          viewHtml: '<shop-comp></shop-comp>',
-          mount: {
+          viewHtml: '<shop-comp></shop-comp>'
+          /*,mount: {
             'gold': ngRoute(
               path: '/gold_shop',
               viewHtml: '<gold-shop-comp></gold-shop-comp>'
@@ -340,10 +339,20 @@ class WebClientApp extends Module {
               path: '/trainer_points_shop',
               viewHtml: '<trainer-points-shop-comp></trainer-points-shop-comp>'
             )
-          }
+          }*/
+      )
+      ,'notifications': ngRoute(
+          path: '/notifications',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+          viewHtml: '<notifications></notifications>'
+      )
+      ,'home': ngRoute(
+          defaultRoute: true,
+          path: '/home',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+          viewHtml: '<home></home>'
       )
       ,'lobby': ngRoute(
-          defaultRoute: true,
           path: '/lobby',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<lobbyf2p></lobbyf2p>',
@@ -351,19 +360,19 @@ class WebClientApp extends Module {
             'contest_info': ngRoute(
                 path: '/contest_info/:contestId',
                 viewHtml: '<contest-info></contest-info>')
-            ,'welcome': ngRoute(
-                path: '/welcome',
-                preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-                viewHtml: '''<modal window-size="'90percent'"><welcome></welcome></modal>'''
-            )
             ,'view_promo': ngRoute(
                 path: '/view_promo/:promoCodeName',
                 preEnter: (RoutePreEnterEvent e) {
                   PromosService.configurePromosService(e.parameters['promoCodeName']);
                   _preEnterPage(e, router, visibility: _ALWAYS);
-                  }
+                }
             )
           }
+      )
+      ,'tutorial_list': ngRoute(
+          path: '/tutorial_list',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+          viewHtml: '<tutorial-list></tutorial-list>'
       )
       ,'my_contests': ngRoute(
           path: '/my_contests/:section/',
@@ -398,34 +407,12 @@ class WebClientApp extends Module {
                 preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
                 viewHtml: '''<modal window-size="'md'"><join is-modal="true"></join></modal>'''
             )
-            ,'welcome': ngRoute(
-                path: '/welcome',
-                preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-                viewHtml: '''<modal window-size="'90percent'"><welcome></welcome></modal>'''
-            )
-            /*,'no_gold' : ngRoute(
-                path: '/no_gold',
-                preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
-                viewHtml: '''<modal window-size="'90percent'"><alert-no-gold></alert-no-gold></modal>'''
-            )*/
-
           }
       )
       ,'view_contest_entry': ngRoute(
           path: '/view_contest_entry/:parent/:viewContestEntryMode/:contestId',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
-          viewHtml: '<view-contest-entry></view-contest-entry>',
-          mount: {
-            'welcome': ngRoute(
-              path: '/welcome',
-              preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-              viewHtml: '''<modal window-size="'90percent'"><welcome></welcome></modal>''')
-          }
-      )
-      ,'restricted': ngRoute(
-        path: '/restricted',
-        preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-        viewHtml: '''<restricted-comp></restricted-comp>'''
+          viewHtml: '<view-contest-entry></view-contest-entry>'
       )
       ,'view_promo': ngRoute(
         path: '/view_promo/:promoId',
@@ -433,9 +420,19 @@ class WebClientApp extends Module {
         viewHtml: '''<simple-promo-viewer></simple-promo-viewer>'''
       )
       ,'leaderboard': ngRoute(
-        path: '/leaderboard',
+        path: '/leaderboard/:section/',
         preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
         viewHtml: '''<leaderboard></leaderboard>'''
+      )
+      ,'create_contest': ngRoute(
+        path: '/create_contest',
+        preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+        viewHtml: '''<create-contest></create-contest>'''
+      )
+      ,'help_info': ngRoute(
+          path: '/help-info',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+          viewHtml: '<help-info></help-info>'
       )
     });
   }

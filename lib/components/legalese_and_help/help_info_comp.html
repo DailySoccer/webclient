@@ -10,62 +10,7 @@
   </ul>
 
   <div class="tab-pane active" id="how-works-content">
-    <div class="block-light">
-      <div class="title">Choose a contest</div>
-      <div class="description"><p>In the Lobby you can find several contests in which to participate, either with your friends or with other players.</p>Play as many contests as you like: new contests will be available EVERY week!<br> Use as many different lineups as you want, or keep the same starting 11: it is totally up to you. <br> Daily contests, no season long-term commitment.</div>
-      <!--div class="description">
-      <p>
-      In the Lobby you can find several contests to participate, either with your friends or with other players.
-      </p>
-
-      <ul><li>Play as many contests as you like: new contests EVERY week!</li><li> Use as many lineups as you want, or always the same if possible: is totally up to you. </li><li> Daily contests, not season long-term commitment.</li></ul>
-
-      </div-->
-
-      <div class="img-wrapper">
-        <img src="images/help01.jpg" ng-if="!scrDet.isXsScreen">
-        <img src="images/help01-xs.jpg" ng-if="scrDet.isXsScreen">
-      </div>
-      <div class="description">You can filter contests by competition, salary cap, entry fee or contest type.</div>
-      <div class="img-wrapper">
-        <img src="images/help02.jpg" ng-if="!scrDet.isXsScreen">
-        <img src="images/help02-xs.jpg" ng-if="scrDet.isXsScreen">
-      </div>
-    </div>
-    <div class="block-dark">
-      <div class="title">PICK YOUR TEAM</div>
-      <div class="description"><p>Next, choose your lineup. Pick 11 players and remember:</p> You can spend all your salary cap.<br>You can pick up to 4 players from the same team.</div>
-      <div class="img-wrapper">
-        <img src="images/help03.jpg" ng-if="!scrDet.isXsScreen">
-        <img src="images/help03-xs.jpg" ng-if="scrDet.isXsScreen">
-      </div>
-      <!--div class="description">Do not forget you can view the statistics of the players you have chosen <br>in real time and compare the results of your alignment with other users.</div-->
-    </div>
-    <div class="block-light">
-      <div class="title">SCORE AND WIN</div>
-      <!--div class="description">In EPIC ELEVEN be a good football manager has a reward.<br>Make your lineup for each tournament you want to participate and observe the statistics of the players.<br>Prove you're the best, because soon you'll win fantastic prizes.</div-->
-      <div class="img-wrapper">
-        <img src="images/help04.jpg" ng-if="!scrDet.isXsScreen">
-        <img src="images/help04-xs.jpg" ng-if="scrDet.isXsScreen">
-      </div>
-      <!--div class="img-wrapper"-->
-        <!--img src="images/help05.jpg" ng-if="!scrDet.isXsScreen"-->
-        <!--p class="img-footer">Compare your lineup with other users live.</p-->
-      <!--/div-->
-    </div>
-    <div class="block-light">
-      <div class="title">PLAY EVERYWHERE</div>
-      <div class="block-last">
-        <div class="img-wrapper-left">
-          <img src="images/help06.jpg">
-        </div>
-        <div class="description-right">
-          <p>It is very easy to play EPIC ELEVEN from any device, any place. You can keep track of your lineup's live stats from your computer, tablet or smartphone, with an optimized interface for each one.</p>
-          <!--p>See how easy it is to participate in contests EPIC ELEVEN from wherever you want. You can follow live stats of your players from your computer, tablet or smartphone optimized for all devices,to improve usability.</p-->
-          <button type="button" class="button-play" ng-click="goTo('lobby')">PLAY NOW</button>
-        </div>
-      </div>
-    </div>
+    <how-it-works></how-it-works>
   </div>
   <div class="tab-pane" id="rules-scores-content">
     <div class="block-dark">

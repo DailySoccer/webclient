@@ -18,6 +18,8 @@ import 'package:webclient/components/modal_comp.dart';
     useShadowDom: false
 )
 class JoinComp implements ShadowRootAware {
+  static const String PATH_IF_SUCCESS = "home";
+  static const String PATH_IF_FAIL = "home";
 
   int MIN_PASSWORD_LENGTH = 8;
   int MIN_NICKNAME_LENGTH = 4;
@@ -85,7 +87,7 @@ class JoinComp implements ShadowRootAware {
 
 
   JoinComp(this._router, this._routeProvider, this._profileService, this.loadingService, this._rootElement, this._scrDet) {
-    _fbLogin = new FBLogin(_router, _profileService, () => isModal ? ModalComp.close() : _router.go('lobby', {}));
+    _fbLogin = new FBLogin(_router, _profileService, () => isModal ? ModalComp.close() : _router.go(PATH_IF_SUCCESS, {}));
   }
 
   void onShadowRoot(emulatedRoot) {
@@ -195,7 +197,7 @@ class JoinComp implements ShadowRootAware {
             loadingService.isLoading = false;
             if(_routeProvider.route.parent.name == null) {
               if (_routeProvider.route.name == 'join') {
-                _router.go("lobby", {});
+                _router.go(PATH_IF_SUCCESS, {});
               }
             } else {
               ModalComp.close();
@@ -251,7 +253,7 @@ class JoinComp implements ShadowRootAware {
         break;
 
       case "CANCEL":
-        isModal ? ModalComp.close() : _router.go('lobby', {});
+        isModal ? ModalComp.close() : _router.go(PATH_IF_FAIL, {});
         break;
 
       case "LOGIN":

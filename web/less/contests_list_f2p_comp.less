@@ -116,6 +116,7 @@
 				padding-right: 0px;
 				.opensans_bold(9pt, @greyDark);		
 				position: relative;
+				background-color: @white;
 				
 				@media (min-width: @screen-sm-min) {
 					.opensans_bold(14pt, @greyDark);
@@ -224,6 +225,7 @@
 			float: right;
 			height: 48px;
 			top: -15px;
+			cursor: pointer;
 			
 			@media (max-width: @screen-xs-max) {
 				text-align: right;
@@ -234,6 +236,7 @@
 			}
 			.action-button {
 				.btn-primary();
+				cursor: pointer;
 			}
 		}
 	}
@@ -248,13 +251,14 @@
 				@media (max-width: @screen-xs-max) {
 					position: absolute; top:2px; right: 0px;
 				}
-				.column-start-hour, 
+				.column-start-hour,
+				.column-start-hour.start-soon,
 				.column-start-date {
 					color: @white;
 				}
 			}
 			.fake-time-column { 
-				margin-top: 25px;
+				margin-top: 17px;
 				@media (max-width: @screen-xs-max) {
 					margin-top: 0px;
 				}
@@ -264,6 +268,14 @@
 			.contest-name, .contest-description {color: @white;}
 		}
 		.conditions-section {
+			margin-top: 8px;
+			margin-bottom: 5px;
+			.player-position,
+			.entry-fee-box,
+			.prize-box,
+			.points-box {
+				background-color: @greyUltraDark;
+			}
 			.player-position .condition-amount .current-position, 
 			.entry-fee-box span, 
 			.prize-box span {

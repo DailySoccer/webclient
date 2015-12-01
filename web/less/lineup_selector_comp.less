@@ -112,6 +112,85 @@ lineup-selector {
 	}
 	
 	.alert-max-players-same-team {
-    	.alert-red-numbers();
-  	}
+		.alert-red-numbers();
+	}
+	
+	.lineup-formation-selector-wrapper {
+		.container-fluid();
+		.user-select(none);
+		background-color: @white;
+		display: block;
+		position: relative;
+		border-bottom: 1px solid @greyMed;
+		cursor: pointer;
+		
+		.current-formation {
+			cursor: pointer;
+			.make-xs-column(6);
+			padding: 10px 0;
+			display: block;
+			.opensans_bold(10pt, @blueDark);
+		}
+		.formation-change-button {
+			cursor: pointer;
+			.make-xs-column(6);
+			padding: 10px 0;
+			display: block;
+			text-align: right;
+			.opensans_bold(10pt, @blueMed);
+			
+			&::after{
+				.create-glyph("\E113", 6pt, @blueMed);
+				padding-left: 5px;
+			}
+		}
+		&.collapsed .formation-change-button::after{
+			.create-glyph("\E114", 6pt, @blueMed);
+			padding-left: 5px;
+		}
+	}
+	
+	#formationsPanelRoot {
+		width: 100%;
+		background-color: @tramaBlue;
+		.user-select(none);
+		
+		.formations-container{
+			.container-fluid();
+			padding: 10px 15px;
+			.opensans_bold(10pt, @blueUltraDark);
+			border-bottom: 1px solid @greyMed;
+			
+			.formation-element {
+				.make-xs-column(2.4);
+				padding: 0 3px;
+				
+				input[type="radio"] {
+					display: none;
+				}
+				input[type="radio"] + label {
+					width: 100%;
+					padding: 10px 0px;
+					text-align: center;
+
+					background-color: @blueLight;
+					.opensans_bold(10pt, @white);
+
+					border-radius: 5px;
+					cursor: pointer;
+					border: 1px solid transparent;
+					margin-bottom: 0;
+				}
+				input[type="radio"]:checked + label {
+					background-color: @white;
+					color: @greyDark;
+
+					border: 1px solid @greyDark;
+				}
+			}
+			
+		}
+	}
+
+	
 }

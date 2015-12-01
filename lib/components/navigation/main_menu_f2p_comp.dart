@@ -142,7 +142,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     _hide();
 
     if (destination == "logout") {
-      _router.go('lobby', {});
+      _router.go('home', {});
       profileService.logout();
     } else {
       String paramString = event.currentTarget.attributes["params"];
@@ -257,7 +257,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     if (!profileService.isLoggedIn) {
       return "";
     }
-    return "${profileService.user.ManagerPoints.toString()}/${profileService.user.pointsToNextLevel}";
+    return "<span class='current-manager'>${profileService.user.ManagerPoints.toString()}</span><span class='max-manager'>/${profileService.user.pointsToNextLevel}</span>";
   }
 
   String get _userManagerLevel {
@@ -288,12 +288,30 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     return profileService.user.printableEnergyTimeLeft;
   }
 
+  String get _notificationsCountCode {
+    int numNotifications = profileService.isLoggedIn ? profileService.user.notifications.length : 0;
+
+    if (numNotifications > 0) {
+      return "<span class='count'>${numNotifications}</span>";
+    }
+    return "";
+  }
+
   String _getNotLoggedInHtml() {
     return '''
     <div id="menuNotLoggedIn">
-      <div id="brandLogoNotLogged" class="navbar-brand" destination="lobby"></div>
-      <div class="button-wrapper">
-        <div id="loginButton" type="button" class="button-login-flat" destination="login">${StringUtils.translate("login", "mainmenu")}</div>
+      <div id="brandLogoNotLogged" class="navbar-brand" destination="home"></div>
+      <div id ="desktopMenu" class="fixed-menu">        
+        <ul class="links-options">
+          <li highlights="home"          class="mainLink"> ${getMainMenuLink("home")}         </li>
+          <li highlights="lobby"         class="mainLink"> ${getMainMenuLink("lobby")}        </li>
+        </ul>
+        
+        <div class="button-wrapper">
+          <div id="helpButton" type="button" class="button-help-flat" destination="help_info" highlights="help_info">${StringUtils.translate("howitworks", "mainmenu")}</div>
+          <div id="signupButton" type="button" class="button-signup-flat" destination="join">${StringUtils.translate("signup", "mainmenu")}</div>
+          <div id="loginButton" type="button" class="button-login-flat" destination="login">${StringUtils.translate("login", "mainmenu")}</div>
+        </div>
       </div>
     </div>
     ''';
@@ -308,7 +326,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <div id="brandLogoLogged" class="navbar-brand" destination="lobby"></div>
+        <div id="brandLogoLogged" class="navbar-brand" destination="home"></div>
       </div>
 
       <div id="menuSlide" class="menu-elements">
@@ -329,7 +347,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
         </ul>
       
         <ul class="fixed-user-stats">
-          <li class="energy additive" destination="shop.energy">
+          <li class="energy additive" destination="shop">
             <img src="images/icon-lightning-lg.png"> 
             <div class="count">
               <div class="progress">
@@ -347,12 +365,12 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
             </div>            
           </li>
 
-          <li class="coins additive" destination="shop.gold">
+          <li class="coins additive" destination="shop">
             <img src="images/icon-coin-lg.png">      
-            <div class="count">${_userGold}<span class="plus">+</span></div>
+            <div class="count"><span class='amount'>${_userGold}</span><span class="plus">+</span></div>
           </li>
 
-          <li id="desktopMenuUser" class="profile">       
+          <li id="desktopMenuUser" class="profile">
             <img src="images/icon-userProfile.png" data-toggle="dropdown">
             <div class="count">${_userTrueSkill}</div>
             <ul id="desktopUserMenu" class="dropdown-menu">
@@ -371,7 +389,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
       return '''        
           <li><a id="menuUserMyAccount" destination="user_profile"> ${StringUtils.translate("myaccount",  "mainmenu")}</a></li>
           <li><a id="menuUserShop"      destination="shop">         ${StringUtils.translate("shop",       "mainmenu")}</a></li>
-          <!--li><a id="menuHowItWorks"    destination="help_info">    ${StringUtils.translate("howitworks", "mainmenu")}</a></li-->
+          <!--li><a id="menuHowItWorks" destination="help_info">    ${StringUtils.translate("howitworks", "mainmenu")}</a></li-->
           <li><a id="menuUserLogOut"    destination="logout">       ${StringUtils.translate("logout",     "mainmenu")}</a></li>
         </ul>
       ''';
@@ -381,9 +399,12 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
 
   String getMainOptions() {
     return '''
-      <li highlights="lobby"       class="mainLink"> ${getMainMenuLink("lobby")}       </li>
-      <li highlights="my_contests" class="mainLink"> ${getMainMenuLink("my_contests")} </li>
-      <li highlights="leaderboard" class="mainLink"> ${getMainMenuLink("leaderboard")} </li>
+      <li highlights="home"          class="mainLink"> ${getMainMenuLink("home")}         </li>
+      <li highlights="lobby"         class="mainLink"> ${getMainMenuLink("lobby")}        </li>
+      <li highlights="my_contests"   class="mainLink"> ${getMainMenuLink("my_contests")}  </li>
+      <li highlights="leaderboard"   class="mainLink"> ${getMainMenuLink("leaderboard")}  </li>
+      <li highlights="notifications" class="mainLink"> ${getMainMenuLink("notifications")}</li>
+      <li highlights="help_info"     class="mainLink"> ${getMainMenuLink("help")}         </li>
     ''';
   }
 
@@ -391,14 +412,23 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     String ret = "";
 
     switch (menuLink) {
+      case "home":
+        ret = '''<a id="menuHome"        destination="home">                             ${StringUtils.translate("home",          "mainmenu")}</a>''';
+        break;
       case "lobby":
-        ret = '''<a id="menuLobby"      destination="lobby">                            ${StringUtils.translate("lobby",        "mainmenu")}</a>''';
+        ret = '''<a id="menuLobby"       destination="lobby">                            ${StringUtils.translate("lobby",         "mainmenu")}</a>''';
         break;
       case "my_contests":
-        ret = '''<a id="menuMyContests" destination="my_contests" params="section:live">${StringUtils.translate("mycontest",    "mainmenu")}</a>''';
+        ret = '''<a id="menuMyContests"  destination="my_contests" params="section:live">${StringUtils.translate("mycontest",     "mainmenu")}</a>''';
         break;
       case "leaderboard":
-        ret = '''<a id="menuLeaderboard" destination="leaderboard">                     ${StringUtils.translate("leaderboard",  "mainmenu")}</a>''';
+        ret = '''<a id="menuLeaderboard" destination="leaderboard" params="section:points">                      ${StringUtils.translate("leaderboard",   "mainmenu")}</a>''';
+        break;
+      case "notifications":
+        ret = '''<a id="menuNotifications" destination="notifications">                  ${StringUtils.translate("notifications", "mainmenu")}${_notificationsCountCode}</a>''';
+        break;
+      case "help":
+        ret = '''<a id="menuHelp"        destination="help_info">                        ${StringUtils.translate("howitworks",    "mainmenu")}</a>''';
         break;
     }
 

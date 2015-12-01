@@ -23,6 +23,7 @@ import 'package:webclient/components/modal_comp.dart';
 import 'package:webclient/services/catalog_service.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/models/money.dart';
+import 'package:webclient/services/tutorial_service.dart';
 
 @Component(
     selector: 'enter-contest',
@@ -51,10 +52,17 @@ class EnterContestComp implements DetachAware {
 
   Contest contest;
   String contestId;
+  String _formationId = ContestEntry.FORMATION_442;
+  String get formationId => _formationId;
+  void set formationId(String id) {
+    _formationId = id;
+    onLineupFormationChange();
+  }
   String contestEntryId;
 
   List<dynamic> allSoccerPlayers;
   List<dynamic> lineupSlots;
+  List<String> get lineupFormation => FieldPos.FORMATIONS[formationId];
 
   FieldPos fieldPosFilter;
   String nameFilter;
@@ -98,6 +106,7 @@ class EnterContestComp implements DetachAware {
 
   bool get isInvalidFantasyTeam => lineupSlots.any((player) => player == null) || playersInSameTeamInvalid || isNegativeBalance;
   bool get editingContestEntry => contestEntryId != "none";
+  bool get isCreatingContest => _parent.contains("create_contest");
 
   bool contestInfoFirstTimeActivation = false;  // Optimizacion para no compilar el contest_info hasta que no sea visible la primera vez
 
@@ -118,7 +127,7 @@ class EnterContestComp implements DetachAware {
 
   EnterContestComp(this._routeProvider, this._router, this.scrDet,
                    this._contestsService, this.loadingService, this._profileService, this._catalogService,
-                   this._flashMessage, this._rootElement) {
+                   this._flashMessage, this._rootElement, this._tutorialService) {
     loadingService.isLoading = true;
 
     errorMap = {
@@ -147,12 +156,19 @@ class EnterContestComp implements DetachAware {
 
     resetLineup();
 
+    _parent = _routeProvider.parameters["parent"];
     contestId = _routeProvider.route.parameters['contestId'];
     contestEntryId = _routeProvider.route.parameters['contestEntryId'];
 
+    _tutorialService.triggerEnter("enter_contest", component: this);
+
     GameMetrics.logEvent(GameMetrics.ENTER_CONTEST);
 
-    Future refreshContest = editingContestEntry? _contestsService.refreshMyActiveContest(contestId) : _contestsService.refreshActiveContest(contestId);
+    Future refreshContest = isCreatingContest
+                              ? _contestsService.refreshMyCreateContest(contestId)
+                              : editingContestEntry
+                                ? _contestsService.refreshMyActiveContest(contestId)
+                                : _contestsService.refreshActiveContest(contestId);
     refreshContest
       .then((_) {
         loadingService.isLoading = false;
@@ -167,6 +183,7 @@ class EnterContestComp implements DetachAware {
         if (editingContestEntry) {
           ContestEntry contestEntry = contest.getContestEntry(contestEntryId);
           if (contestEntry != null) {
+            formationId = contestEntry.formation;
             // Insertamos en el lineup el jugador
             contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
               addSoccerPlayerToLineup(instanceSoccerPlayer.id);
@@ -208,7 +225,8 @@ class EnterContestComp implements DetachAware {
     bool isLineupEmpty = !lineupSlots.any((soccerPlayer) => soccerPlayer != null);
     // Si no hemos metido a nadie en nuestro equipo
     if(!isLineupEmpty && !_teamConfirmed && !editingContestEntry) {
-      _flashMessage.addGlobalMessage(StringUtils.translate("lineupsavedmsg", "entercontest"), 3);
+      // TODO: Quitamos el mensaje informativo...
+      // _flashMessage.addGlobalMessage(StringUtils.translate("lineupsavedmsg", "entercontest"), 3);
     }else {
       event.allowLeave(new Future<bool>.value(true));
       return;
@@ -216,12 +234,7 @@ class EnterContestComp implements DetachAware {
   }
 
   void resetLineup() {
-    lineupSlots = new List<dynamic>();
-
-    // Creamos los slots iniciales, todos vacios
-    FieldPos.LINEUP.forEach((pos) {
-      lineupSlots.add(null);
-    });
+    lineupSlots = new List.filled(lineupFormation.length, null);
   }
 
   void detach() {
@@ -267,7 +280,7 @@ class EnterContestComp implements DetachAware {
       // Cuando seleccionan un slot del lineup cambiamos siempre el filtro de la soccer-player-list, especialmente
       // en movil que cambiamos de vista a "solo ella".
       // El componente hijo se entera de que le hemos cambiado el filtro a traves del two-way binding.
-      fieldPosFilter = new FieldPos(FieldPos.LINEUP[slotIndex]);
+      fieldPosFilter = new FieldPos(lineupFormation[slotIndex]);
     }
 
     _verifyMaxPlayersInSameTeam();
@@ -280,6 +293,78 @@ class EnterContestComp implements DetachAware {
     }
   }
 
+  void onLineupFormationChange() {
+
+    int firstAvailablePosition(String soccerPosition) {
+      for (int c = 0; c < lineupSlots.length; ++c) {
+        if (lineupSlots[c] == null && lineupFormation[c] == soccerPosition)
+          return c;
+      }
+      return -1;
+    }
+
+    int cheapestByPosition(String soccerPosition) {
+      int cheapestIdx;
+      int cheapestValue = -1;
+      for (int c = 0; c < lineupSlots.length; ++c) {
+        if (lineupSlots[c] != null && lineupFormation[c] == soccerPosition) {
+          if (cheapestValue == -1 || lineupSlots[c]["salary"] < cheapestValue){
+            cheapestValue = lineupSlots[c]["salary"];
+            cheapestIdx = c;
+          }
+        }
+      }
+      return cheapestIdx;
+    }
+
+
+    for (int c = 0; c < lineupSlots.length; ++c) {
+      if (lineupSlots[c] != null && lineupFormation[c] != lineupSlots[c]["fieldPos"].value) {
+        // print(lineupSlots[c]["fieldPos"].value + " -ConflictoCon- " + lineupFormation[c]);
+        var soccerPlayer = lineupSlots[c];
+        int availablePosition = firstAvailablePosition(lineupSlots[c]["fieldPos"].value);
+        // print("Posicion disponible: $availablePosition");
+
+        if (availablePosition != -1) {
+          onLineupSlotSelected(c);
+          _tryToAddSoccerPlayerToLineup(soccerPlayer);
+        } else {
+          int cheapestIndex = cheapestByPosition(lineupSlots[c]["fieldPos"].value);
+          // print("Más barato: $cheapestIndex");
+          onLineupSlotSelected(c);
+          if (c != cheapestIndex) {
+            onLineupSlotSelected(cheapestIndex);
+            _tryToAddSoccerPlayerToLineup(soccerPlayer);
+          }
+        }
+      }
+    }
+
+    _tutorialService.triggerEnter("formation-" + _formationId.toString(), activateIfNeeded: false);
+
+    /*
+    for (int c = 0; c < lineupSlots.length; ++c) {
+      if (lineupSlots[c] == null && lineupFormation[c] == theFieldPos.value) {
+        // TODO:...
+        // _catalogService.buySoccerPlayer(contest.contestId, soccerPlayer["id"]);
+
+        lineupSlots[c] = soccerPlayer;
+        isSelectingSoccerPlayer = false;
+        availableSalary -= soccerPlayer["salary"];
+        // Comprobamos si estamos en salario negativo
+        isNegativeBalance = availableSalary < 0;
+
+        nameFilter = null;
+        // Actualizamos el contestEntry, independientemente que estemos editando o creando
+        if(!_isRestoringTeam) {
+          saveContestEntry();
+        }
+        break;
+      }
+    }*/
+
+  }
+
   void onSoccerPlayerActionButton(var soccerPlayer) {
 
     int indexOfPlayer = lineupSlots.indexOf(soccerPlayer);
@@ -289,16 +374,24 @@ class EnterContestComp implements DetachAware {
     else {
       _tryToAddSoccerPlayerToLineup(soccerPlayer);
     }
-
     _verifyMaxPlayersInSameTeam();
   }
 
   void _tryToAddSoccerPlayerToLineup(var soccerPlayer) {
+    if (contest.entryFee.isGold && !_isRestoringTeam) {
+      Money moneyToBuy = new Money.from(Money.CURRENCY_GOLD, soccerPlayer["instanceSoccerPlayer"].moneyToBuy(playerManagerLevel).amount);
+      bool hasMoney = _profileService.isLoggedIn && _profileService.user.hasMoney(moneyToBuy);
+      if (!hasMoney) {
+        alertNotBuy(moneyToBuy);
+        return;
+      }
+    }
+
     // Buscamos el primer slot libre para la posicion que ocupa el soccer player
     FieldPos theFieldPos = soccerPlayer["fieldPos"];
 
     for (int c = 0; c < lineupSlots.length; ++c) {
-      if (lineupSlots[c] == null && FieldPos.LINEUP[c] == theFieldPos.value) {
+      if (lineupSlots[c] == null && lineupFormation[c] == theFieldPos.value) {
         // TODO:...
         // _catalogService.buySoccerPlayer(contest.contestId, soccerPlayer["id"]);
 
@@ -324,6 +417,9 @@ class EnterContestComp implements DetachAware {
 
     if(!_isRestoringTeam) {
       _verifyMaxPlayersInSameTeam();
+
+      int playerInLineup = lineupSlots.where((player) => player != null).length;
+      _tutorialService.triggerEnter("lineup-" + playerInLineup.toString(), activateIfNeeded: false);
     }
   }
 
@@ -340,7 +436,7 @@ class EnterContestComp implements DetachAware {
       return false;
     }
     for ( ; c < lineupSlots.length; ++c) {
-      if (lineupSlots[c] == null && FieldPos.LINEUP[c] == theFieldPos.value)
+      if (lineupSlots[c] == null && lineupFormation[c] == theFieldPos.value)
         return true;
     }
     return false;
@@ -403,6 +499,9 @@ class EnterContestComp implements DetachAware {
     // Actualizamos el contestEntry, independientemente que estemos editando o creando
     saveContestEntry();
 
+    //TODO: Mostramos los IDs del fantasyTeam creado
+    //print ("FantasyTeam: " + window.localStorage[_getKeyForCurrentUserContest]);
+
     if (!_profileService.isLoggedIn) {
       _router.go("enter_contest.join", {});
       return;
@@ -420,7 +519,7 @@ class EnterContestComp implements DetachAware {
     }
 
     if (editingContestEntry) {
-      _contestsService.editContestEntry(contestEntryId, lineupSlots.map((player) => player["id"]).toList())
+      _contestsService.editContestEntry(contestEntryId, formationId, lineupSlots.map((player) => player["id"]).toList())
         .then((_) {
           _teamConfirmed = true;
           _router.go('view_contest_entry', { "contestId": contest.contestId,
@@ -430,7 +529,7 @@ class EnterContestComp implements DetachAware {
         .catchError((ServerError error) => _errorCreating(error));
     }
     else {
-        _contestsService.addContestEntry(contest.contestId, lineupSlots.map((player) => player["id"]).toList())
+        _contestsService.addContestEntry(contest.contestId, formationId, lineupSlots.map((player) => player["id"]).toList())
           .then((contestId) {
             GameMetrics.logEvent(GameMetrics.TEAM_CREATED);
             GameMetrics.identifyMixpanel(_profileService.user.email);
@@ -438,11 +537,22 @@ class EnterContestComp implements DetachAware {
             GameMetrics.peopleSet({"Last Team Created (${contest.competitionType})": new DateTime.now()});
             GameMetrics.logEvent(GameMetrics.ENTRY_FEE, {"value": contest.entryFee.toString()});
             _teamConfirmed = true;
-            _router.go( _profileService.isWelcoming ? 'view_contest_entry.welcome' : 'view_contest_entry', {
-                          "contestId": contestId,
-                          "parent": _routeProvider.parameters["parent"],
-                          "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"
-              });
+
+            if (isCreatingContest) {
+              _router.go( 'view_contest_entry', {
+                            "contestId": contestId,
+                            "parent": "my_contests",
+                            "section": "upcoming",
+                            "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"
+                });
+            }
+            else {
+              _router.go( 'view_contest_entry', {
+                            "contestId": contestId,
+                            "parent": _routeProvider.parameters["parent"],
+                            "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"
+                });
+            }
           })
           .catchError((ServerError error) => _errorCreating(error));
     }
@@ -528,23 +638,54 @@ class EnterContestComp implements DetachAware {
     });
   }
 
+  void saveContestEntryFromJson(String key, String json) {
+    window.localStorage[key] = json;
+  }
+
   void saveContestEntry() {
     // Lo almacenamos localStorage.
-    window.localStorage[_getKeyForCurrentUserContest] = JSON.encode(lineupSlots.where((player) => player != null).map((player) => player["id"]).toList());
+    Map data = { 'formation' :  formationId, 'lineupSlots' : lineupSlots.where((player) => player != null).map((player) => player["id"]).toList()};
+
+    saveContestEntryFromJson(_getKeyForCurrentUserContest, JSON.encode(data));
   }
 
   void restoreContestEntry() {
     if (window.localStorage.containsKey(_getKeyForCurrentUserContest)) {
-      List loadedData = JSON.decode(window.localStorage[_getKeyForCurrentUserContest]);
-      _isRestoringTeam = true;
-      loadedData.forEach((id) {
-        addSoccerPlayerToLineup(id);
-      });
-      _isRestoringTeam = false;
-      _verifyMaxPlayersInSameTeam();
+      // print ("localStorage: key: " + _getKeyForCurrentUserContest + ": " + window.localStorage[_getKeyForCurrentUserContest]);
+      Map loadedData = JSON.decode(window.localStorage[_getKeyForCurrentUserContest]);
+
+     _isRestoringTeam = true;
+     formationId = loadedData['formation'];
+     List loadedLineup = loadedData['lineupSlots'];
+     loadedLineup.forEach((id) {
+       addSoccerPlayerToLineup(id);
+     });
+     _isRestoringTeam = false;
+     _verifyMaxPlayersInSameTeam();
     }
   }
 
+  void alertNotBuy(Money coins) {
+    modalShow(
+      "",
+      '''
+      <div class="content-wrapper">
+        <img class="main-image" src="images/iconNoGold.png">
+        <span class="not-enough-resources-count">${coins}</span>
+        <p class="content-text">
+          <strong>${getLocalizedText("alert-no-gold-to-buy-message")}</strong>
+          <br>
+          ${getLocalizedText('alert-user-gold-message', substitutions:{'MONEY': _profileService.user.goldBalance})}
+          <img src="images/icon-coin-xs.png">
+        </p>
+      </div>
+      '''
+    , onBackdropClick: true
+    )
+    .then((_) {
+      _tutorialService.triggerEnter("alert-not-buy");
+    });
+  }
 
   void alertNotEnoughResources() {
     modalShow(
@@ -557,8 +698,10 @@ class EnterContestComp implements DetachAware {
       // Registramos dónde tendría que navegar al tener éxito en "add_funds"
       window.localStorage[contest.entryFee.isEnergy ? "add_energy_success" : "add_gold_success"] = window.location.href;
 
-      _router.go(contest.entryFee.isEnergy ? 'shop.energy' : 'shop.gold', {});
+      _router.go(contest.entryFee.isEnergy ? 'shop' : 'shop', {});
     });
+
+    _tutorialService.triggerEnter("alert-not-enough-resources");
   }
 
   String getNotEnoughGoldContent() {
@@ -575,6 +718,7 @@ class EnterContestComp implements DetachAware {
     </div>
     ''';
   }
+
   String getNotEnoughEnergyContent() {
     return '''
     <div class="content-wrapper">
@@ -590,7 +734,7 @@ class EnterContestComp implements DetachAware {
   }
 
   String getConfirmButtonText() {
-    if (contest == null) return getLocalizedText("buttoncontinue");
+    if (contest == null || (contest.entryFee.isEnergy && editingContestEntry)) return getLocalizedText("buttoncontinue");
 
     Money cost = contest.entryFee.isEnergy? contest.entryFee : coinsNeeded;
     return'${getLocalizedText("buttoncontinue")}: <span class="confirm-cost ${cost.isEnergy? "energy": "coins"}">${cost.amount.toInt()}</span>';
@@ -600,7 +744,9 @@ class EnterContestComp implements DetachAware {
 
   Router _router;
   RouteProvider _routeProvider;
+  String _parent;
 
+  TutorialService _tutorialService;
   ContestsService _contestsService;
   ProfileService _profileService;
   CatalogService _catalogService;

@@ -24,7 +24,7 @@ class WelcomeComp implements DetachAware {
     _screenWidthChangeDetector = _scrDet.mediaScreenWidth
         .listen((String msg) => onScreenWidthChange(msg));
     if (stage == 'view_contest_entry') {
-      _profileService.finishTutorial();
+      // _profileService.finishTutorial();
     }
   }
 
@@ -131,7 +131,7 @@ class WelcomeComp implements DetachAware {
   void buttonPressed(event) {
     _router.go(stage, stage_params);
     if (stage == 'enter_contest') {
-      _profileService.startTutorial();
+      // _profileService.startTutorial();
     }
   }
 

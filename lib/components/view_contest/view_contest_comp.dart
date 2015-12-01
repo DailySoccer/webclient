@@ -14,6 +14,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/server_error.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/services/tutorial_service.dart';
 
 @Component(
     selector: 'view-contest',
@@ -43,11 +44,14 @@ class ViewContestComp implements DetachAware {
     return StringUtils.translate(key, "viewcontest");
   }
 
-  ViewContestComp(this._routeProvider, this.scrDet, this._refreshTimersService, this._contestsService, this._profileService, this._flashMessage, this.loadingService) {
+  ViewContestComp(this._routeProvider, this.scrDet, this._refreshTimersService,
+      this._contestsService, this._profileService, this._flashMessage, this.loadingService, this._tutorialService) {
     loadingService.isLoading = true;
     lastOpponentSelected = getLocalizedText("opponent");
 
     contestId = _routeProvider.route.parameters['contestId'];
+
+    _tutorialService.triggerEnter("view_contest", component: this);
 
     _flashMessage.clearContext(FlashMessagesService.CONTEXT_VIEW);
 
@@ -69,7 +73,7 @@ class ViewContestComp implements DetachAware {
 
         // Únicamente actualizamos los contests que estén en "live"
         if (_contestsService.lastContest.isLive) {
-          _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE, _updateLive);
+          _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE, updateLive);
           GameMetrics.logEvent(GameMetrics.LIVE_CONTEST_VISITED);
         }
         else {
@@ -85,7 +89,7 @@ class ViewContestComp implements DetachAware {
     _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE);
   }
 
-  void _updateLive() {
+  void updateLive() {
     // Actualizamos únicamente la lista de live MatchEvents
     _contestsService.refreshLiveMatchEvents(_contestsService.lastContest.templateContestId)
         .then((_) {
@@ -118,6 +122,8 @@ class ViewContestComp implements DetachAware {
          }
         break;
       }
+
+      _tutorialService.triggerEnter("user_selected", component: this, activateIfNeeded: false);
     }
   }
 
@@ -146,5 +152,6 @@ class ViewContestComp implements DetachAware {
   ProfileService _profileService;
   RefreshTimersService _refreshTimersService;
   ContestsService _contestsService;
+  TutorialService _tutorialService;
 }
 

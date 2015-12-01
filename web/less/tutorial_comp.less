@@ -1,0 +1,242 @@
+.skip-tutorial-button {
+	.exo_bold(10pt, @white);
+	background-color: @blueUltraDark;
+	border-radius: 5px 5px 0px 0px;
+	border: 1px solid @white;
+	border-bottom: 0px none;
+	position: fixed;
+	display: block;
+	bottom: 0px;
+	padding: 7px 15px 5px 15px;
+	cursor: pointer;
+	left: 50%;
+	width: 150px;
+	margin-left: -75px;
+	text-align: center;
+	z-index: 1051;
+}
+/*
+.tutorial-tip-wrapper {
+	width: 300px;
+	margin-left: 305px;
+	right: 0px;
+	position: relative;
+	top: 0px;
+}
+
+.tutorial-tip-wrapper:before {
+	content: "";
+	width: 0px;
+	height: 0px;
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent;
+	border-right: 5px solid white;
+	border-left: 0px none transparent;
+}
+*/
+
+.epic-tooltip {
+	position: absolute;
+  margin-bottom: 5px;
+  margin-left: -160px;
+  padding: 10px 20px;
+  min-width: 320px;
+  border-radius: 5px;
+  background-color: @orange;
+  text-align: center;
+  line-height: 1.2;
+	.opensans_normal(14pt, @white);
+	pointer-events: all;
+	
+	@verticalArrowSize: 15px;
+	@horizontalArrowSize: 12px;
+	
+	&:after {
+		content: "";
+		border: @verticalArrowSize solid transparent;
+		max-width: 0;
+		max-height: 0;
+		display: block;
+		position: absolute;
+	}
+	
+	&.top {
+		top: -60px;
+		left: 50%;
+		box-shadow: 0px -2px 3px 0px rgba(0,0,0,0.7);
+		&:after {
+			border-top: @verticalArrowSize solid @orange;
+			border-bottom: 0px none transparent;
+			bottom: -@verticalArrowSize;
+			left: 50%;
+			margin-left: -@verticalArrowSize;
+		}
+	}
+	&.bottom {
+		bottom: -60px;
+		left: 50%;
+		box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.7);
+		&:after {
+			border-top: 0px none transparent;
+			border-bottom: @verticalArrowSize solid @orange;
+			top: -@verticalArrowSize;
+			left: 50%;
+			margin-left: -@verticalArrowSize;
+		}
+	}
+	
+	&.left {
+  	margin-top: -15px;
+		top: 50%;
+		left: -170px;
+		box-shadow: -2px 0px 3px 0px rgba(0,0,0,0.7);
+		&:after {
+			border: @horizontalArrowSize solid transparent;
+			border-left: @horizontalArrowSize solid @orange;
+			border-right: 0px none transparent;
+			right: -@horizontalArrowSize;
+			top: 50%;
+			margin-top: -@horizontalArrowSize;
+		}
+	}
+	&.right {
+  	margin-top: -15px;
+		top: 50%;
+		right: -170px;
+		box-shadow: 2px 0px 3px 0px rgba(0,0,0,0.7);
+		&:after {
+			border: @horizontalArrowSize solid transparent;
+			border-left: 0px none transparent;
+			border-right: @horizontalArrowSize solid @orange;
+			left: -@horizontalArrowSize;
+			top: 50%;
+			margin-top: -@horizontalArrowSize;
+		}
+	}
+	
+	&.rightArrow {
+		right: -10px;
+		left: auto;
+		&:after {
+			right: 15px;
+			left: auto;
+		}
+	}
+	
+}
+
+.tooltipped-element.highlighted-tip {
+	z-index: 1001;
+	position: relative;
+	pointer-events: all;
+}
+
+.disabled-pointer-events {
+	pointer-events: none !important;
+}
+
+#soccerManagerLevel.epic-tooltip.bottom {
+	bottom: -85px;
+	width: 410px;
+	
+	&.rightArrow {
+		right: -35px;
+		&:after {
+			right: 35px;
+		}
+	}
+}
+
+#continueButton.epic-tooltip {
+	&.top {
+		/* top: -70px; */
+		/* margin-left: -270px; */
+		font-size: 12pt;
+		white-space: normal;
+		width: 320px;
+		top: -85px;
+	}
+}
+
+#usersList .epic-tooltip.top {
+	margin-left: -160px;
+}
+
+.contestSlot .action-section .epic-tooltip.rightArrow {
+	right: 10px;
+}
+#enterContest .enter-contest-lineup-wrapper .epic-tooltip.top {
+	//margin-left: -180px;
+	width: 320px;
+	top: -95px;
+	&#formationsPanelTip,
+	&#playerAddedTip {
+		top: -75px;
+	}
+	&#formation443Tip {
+		top: -55px;
+	}
+}
+
+.enter-contest-soccer-players-wrapper > .epic-tooltip.top {
+	width: 320px;
+	top: -95px;
+}
+
+#soccerPlayerRedStyle.epic-tooltip.top {
+	top: -80px;
+}
+
+.tutorial.global-enter-contest .close-contest,
+.tutorial.global-live-contest .close-contest {
+	display: none;
+}
+
+.modal-dialog .panel-body .tut-title .modal-body-title {
+	//.opensans_normal(20pt, @blueDark);
+	.exo_light(20pt, @blueDark);
+	text-transform: none;
+	display: block;
+	max-width: 400px;
+	margin: 0px auto 20px auto;
+}
+
+.modal-dialog .panel-body .tut-title .modal-body-text {
+	.opensans_normal(12pt, @greyDark);
+	display: block;
+	max-width: 450px;
+	margin: 0px auto 20px auto;
+}
+
+.modal-dialog .modal-content .panel {
+	background-color: @tramaBlue;
+}
+
+fantasy-team#userFantasyTeam > .epic-tooltip {
+	top: -75px;
+}
+
+users-list#usersList > .epic-tooltip {
+	top: -95px;
+}
+
+#compareUserPoints {
+	bottom: -100px;
+}
+
+#energyTip {
+	bottom: -135px;
+}
+
+#alertBox .panel > .epic-tooltip {
+	bottom: -70px;
+	width: 320px;
+}
+
+.entry-fee-box > .epic-tooltip {
+	top: -85px;
+}
+.soccer-player-row[data-id='56260840c1f5fbc410f99549'] > .epic-tooltip {
+	top: -95px;
+	width: 320px;
+}

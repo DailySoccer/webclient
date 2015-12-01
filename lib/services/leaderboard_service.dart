@@ -23,8 +23,8 @@ class LeaderboardService {
 
     if (updated && _profileService.isLoggedIn) {
       // La tenemos correctamente actualizada? (puntos iguales a los del propio perfil de usuario)
-      User userInLeaderboard = users.firstWhere( (user) => user.userId == _profileService.user.userId);
-      if (userInLeaderboard.trueSkill != _profileService.user.trueSkill) {
+      User userInLeaderboard = users.firstWhere( (user) => user.userId == _profileService.user.userId, orElse: () => null);
+      if (userInLeaderboard != null && userInLeaderboard.trueSkill != _profileService.user.trueSkill) {
         updated = false;
       }
     }

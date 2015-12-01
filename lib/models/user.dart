@@ -5,6 +5,7 @@ import 'package:webclient/models/money.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:intl/intl.dart';
+import 'package:webclient/models/user_notification.dart';
 
 class User {
   static const int MINUTES_TO_RELOAD_ENERGY = 60;
@@ -22,7 +23,6 @@ class User {
   String nickName;
   String email;
   Money balance;
-  Money bonus;
   Money goldBalance;
   Money managerBalance;
   Money energyBalance;
@@ -39,6 +39,11 @@ class User {
   int wins;
   int trueSkill;
   Money earnedMoney;
+
+  Set<String> achievements = new Set<String>();
+  List<UserNotification> notifications = new List<UserNotification>();
+
+  bool hasAchievement(String achievement) => achievements.contains(achievement);
 
   //String get fullName => "$firstName $lastName";
   String toString() => "$userId - $email - $nickName";
@@ -129,7 +134,6 @@ class User {
     email = (jsonMap.containsKey("email")) ? jsonMap["email"] : "<email: null>";
     wins = (jsonMap.containsKey("wins")) ? jsonMap["wins"] : 0;
     balance = jsonMap.containsKey("cachedBalance") ? new Money.fromJsonObject(jsonMap["cachedBalance"]) : new Money.zero();
-    bonus = jsonMap.containsKey("cachedBonus") ? new Money.fromJsonObject(jsonMap["cachedBonus"]) : new Money.zero();
 
     trueSkill = (jsonMap.containsKey("trueSkill")) ? jsonMap["trueSkill"] : 0;
     earnedMoney = jsonMap.containsKey("earnedMoney") ? new Money.fromJsonObject(jsonMap["earnedMoney"]) : new Money.zero();
@@ -155,6 +159,21 @@ class User {
       lastUpdatedEnergy = new DateTime.now();
       energyBalance = new Money.from(Money.CURRENCY_ENERGY, MAX_ENERGY);
     }
+
+    if (jsonMap.containsKey("achievements")) {
+      achievements = new Set<String>();
+
+      List<String> achievementList = jsonMap["achievements"];
+      achievementList.forEach( (achievementId) => achievements.add(achievementId) );
+    }
+
+    if (jsonMap.containsKey("notifications")) {
+      notifications = jsonMap["notifications"].map((jsonMap) => new UserNotification.fromJsonObject(jsonMap) ).toList();
+
+      // Ordenarlos en orden decreciente (reciente -> antiguo)
+      notifications.sort((el1, el2) => el2.createdAt.compareTo(el1.createdAt));
+    }
+
     return this;
   }
 }

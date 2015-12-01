@@ -319,119 +319,6 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
 
   </form>
 </div>"""));
-tc.put("packages/webclient/components/account/energy_shop_comp.html", new HttpResponse(200, r"""<modal id="energyshopComp">
-
-  <!--<div class="header"></div> -->
-
-  <div class="content">
-
-    <div class="content-banner">
-      <img ng-src="{{getShopBanner()}}">
-    </div>
-
-    <div class="products-wrapper">
-
-      <div ng-repeat="item in products"  ng-click="buyEnergy(item.id)">
-
-
-        <div ng-class="{'no-purchasable': !item.purchasable}" class="product" ng-if="item.price != null || timeLeft != ''">
-
-
-
-          <div class="slot-base">
-            <div class="shop-item-left"></div>
-            <div class="shop-item-middle"></div>
-            <div class="shop-item-right"></div>
-          </div>
-          <div class="shop-item-pattern"></div>
-
-          <div class="slot-content">
-
-            <div class="image-column">
-              <img class="item-icon" ng-src="{{item.captionImage}}">
-            </div>
-
-            <div class="quantity-column">
-              <span class="product-description">{{item.description}}</span>
-              <div ng-switch="item.purchasable">
-                <span ng-switch-when="true"  class="product-count">{{item.price}}</span>
-                <span ng-switch-when="false" class="product-time-left">{{timeLeft}}</span>
-              </div>
-            </div>
-
-       	  </div>
-
-
-
-        </div>
-
-
-
-      </div>
-
-    </div>
-
-    <div class="buttons-wrapper">
-     <div class="button-box"><button id="btnClose" class="cancel-button" ng-click="CloseModal()">{{getLocalizedText('buttonback')}}</button></div>
-    </div>
-
-  </div>
-
-</modal>"""));
-tc.put("packages/webclient/components/account/gold_shop_comp.html", new HttpResponse(200, r"""<modal id="goldShopComp">
-
-  <!--<div class="header"></div> -->
-
-  <div class="content">
-
-    <div class="content-banner">
-      <img ng-src="{{getShopBanner()}}">
-    </div>
-
-    <div class="products-wrapper">
-
-      <div ng-repeat="item in products" class="product" ng-click="buyItem(item.id)">
-        <div class="slot-base">
-          <div class="shop-item-left"></div>
-          <div class="shop-item-middle"></div>
-          <div class="shop-item-right"></div>
-        </div>
-        <div class="shop-item-pattern" ng-if="!item.isMostPopular"></div>
-
-        <div class="slot-content">
-
-          <div class="image-column">
-            <img class="item-icon" ng-src="{{item.captionImage}}">
-          </div>
-
-          <div class="quantity-column">
-            <span class="product-description">{{item.description}}</span>
-            <span class="product-count">{{item.quantity}}</span>
-          </div>
-
-          <div class="price-column">
-            <div class="free-increment" ng-if="item.freeIncrement > 0">
-              <span class="free-increment-count">{{item.freeIncrement}}</span>
-              <span class="free-increment-desc">{{getLocalizedText('free')}}</span>
-            </div>
-            <span class="product-price" ng-class="{'no-frees' : !(item.freeIncrement > 0)}">{{item.price}}</span>
-          </div>
-          <div class="clearfix"></div>
-          <img ng-src="{{getLocalizedText('mostpopularimagesource')}}" class="shop-item-popular" ng-if="item.isMostPopular">
-
-        </div>
-      </div>
-
-    </div>
-
-    <div class="buttons-wrapper">
-       <div class="button-box"><button id="btnClose" class="cancel-button" ng-click="CloseModal()">{{getLocalizedText('buttonback')}}</button></div>
-    </div>
-
-
-  </div>
-
-</modal>"""));
 tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(200, r"""<div id="joinRoot" ng-show="!loadingService.isLoading" ng-class="{'air':!isModal}">
   <div id="signupbox" class="main-box" ng-class="{'air':!isModal}">
 
@@ -621,30 +508,37 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
    }
  </script>
 """));
-tc.put("packages/webclient/components/account/payment_comp.html", new HttpResponse(200, r"""<div>
-  <a ng-click="checkoutPaypal('PRODUCT_1')"><img src="https://www.paypal.com/es_ES/ES/i/btn/btn_xpressCheckout.gif" align="left" style="margin-right:7px;"></a>
-  <ng-view></ng-view>
-</div>
-"""));
-tc.put("packages/webclient/components/account/payment_response_comp.html", new HttpResponse(200, r"""<modal>
-  <div id="paymentResponse" class="main-box">
-    <div class="panel">
+tc.put("packages/webclient/components/account/notifications_comp.html", new HttpResponse(200, r"""<div id="notificationsComp">
 
-      <div class="panel-heading">
-        <div class="panel-title paypal-success">{{titleText}}</div>
-        <!--div class="panel-title paypal-cancel" login="">Pago cancelado</div-->
-        <button type="button" class="close">
-          <span class="glyphicon glyphicon-remove"></span>
-        </button>
+  <div class="default-section-header">{{getLocalizedText('name')}}</div>
+
+  <div class="notification-list-wrapper">
+
+    <!-- Notificaciones tipo logro -->
+    <div class="notification"  ng-repeat="notification in notificationList" ng-class="{'uncommon': notification.type == 'ACHIEVEMENT_EARNED'}">
+
+      <div class="main-info" ng-click="onAction(notification.id)">
+        <div class="wrapper">
+          <achievement ng-if="notification.type == 'ACHIEVEMENT_EARNED'" enabled="true" key="notification['info'].achievement"></achievement>
+          <span class="name">{{notification.name}}</span>
+          <span class="date">{{notification.date}}</span>
+        </div>
       </div>
-      <div class="panel-body">
-        {{descriptionText}}
+
+      <div class="additional-info">
+        <div class="wrapper">
+          <div class="description">{{notification.description}}</div>
+          <div class="button-wrapper" ng-if="notification.link.name != ''"><button class="btn-primary" ng-click="goToLink(notification.link.url)">{{notification.link.name}}</button></div>
+        </div>
       </div>
+
+      <span class="close-button" ng-click="closeNotification(notificationList[0].id)"><img src="images/alertCloseButton.png"></span>
+
     </div>
+
   </div>
-  <!--h1>Payment Response: {{result}}</h1-->
-</modal>
-"""));
+
+</div>"""));
 tc.put("packages/webclient/components/account/remember_password_comp.html", new HttpResponse(200, r"""<div id="rememberPasswordRoot" ng-show="!loadingService.isLoading">
   <div id="loginBox" class="main-box air">
 
@@ -718,37 +612,59 @@ tc.put("packages/webclient/components/account/remember_password_comp.html", new 
 </div>"""));
 tc.put("packages/webclient/components/account/shop_comp.html", new HttpResponse(200, r"""<div id="mainShopCompWrapper">
 
-  <div class="items-wrapper">  
-    <div ng-repeat="item in shops" class="shop-item" ng-click="openShop(item.name)">
-      <div class="slot-base">        
-        <div class="shop-item-left"></div>
-        <div class="shop-item-middle"></div>      
-        <div class="shop-item-right"></div>        
-      </div>
-      <div class="shop-item-pattern"></div>
-      <div class="slot-content">    
-        <img class="item-icon" ng-src="{{item.image}}">
-        <span class="shop-item-info" ng-bind-html="'<span>'+item.description+'</span>'"></span>
-      </div>   
-    </div>
-  
-    <!-- Punto de insercion de nuestra ruta hija contest-info (modal) -->
-    <ng-view ng-show="!loadingService.isLoading"></ng-view>
-  
-  </div>
-  
-</div>"""));
-tc.put("packages/webclient/components/account/trainer_points_shop_comp.html", new HttpResponse(200, r"""<modal id="trainerPointsShopComp">
-  
-  <div class="header">
-  
-  </div>
+  <div class="default-section-header">{{getLocalizedText('name')}}</div>
   
   <div class="content">
   
+    <div class="money-layout">        
+        <div class="money-tile-wrapper" ng-repeat="item in goldProducts">
+          <div class="tile">
+            <div class="header">
+              <span class="title">{{item.description}}</span>
+            </div>
+            <div class="content">
+              <img class="gold-icon" ng-src="{{item.captionImage}}">
+              <div class="content-info">
+                <span class="gold-quantity">{{item.quantity}}</span>
+                <div class="price-wrapper">
+                  <div class="free-increment" ng-if="item.freeIncrement > 0">
+                    <span class="free-increment-count">{{item.freeIncrement}}</span>
+                    <span class="free-increment-desc">{{getLocalizedText('free')}}</span>
+                  </div>
+                  <div class="button-wrapper">
+                    <button class="price" ng-click="buyGold(item.id)">{{item.price}}</button>
+                  </div>
+                </div>                
+              </div>
+              <img ng-src="{{getLocalizedText('mostpopularimagesource')}}" class="gold-item-popular" ng-if="item.isMostPopular">
+            </div>            
+          </div>
+        </div>
+    </div>
+    
+    <div class="energy-layout">
+      <div class="energy-tiles-wrapper">
+        <div class="tile">
+          <div class="energy-items" ng-repeat="energyItem in energyProducts">
+            <div class="energy-separator" ng-if="(energyItem.price != null || timeLeft != '') && $index > 0"></div>
+            <div ng-class="{'no-purchasable': !energyItem.purchasable}" class="product" ng-if="energyItem.price != null || timeLeft != ''">
+              <img class="energy-icon" ng-src="{{energyItem.captionImage}}">
+              <div class="energy-description">{{energyItem.description}}</div>
+              <div ng-switch="energyItem.purchasable">
+                <div class="button-wrapper" ng-switch-when="true">
+                  <button class="refill-button" ng-click="buyEnergy(energyItem.id)">
+                    <span class="quantity">{{energyItem.price}}</span>
+                  </button>
+                </div>
+                <span ng-switch-when="false" class="product-time-left">{{timeLeft}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  
-</modal>"""));
+</div> """));
 tc.put("packages/webclient/components/account/transaction_history_comp.html", new HttpResponse(200, r"""<div id="transactionHistoryRoot">
   <!-- header title -->
   <div class="default-section-header">{{getLocalizedText("title")}}</div>
@@ -827,180 +743,18 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
     </div>
   </div>
 </div>"""));
-tc.put("packages/webclient/components/account/withdraw_funds_comp.html", new HttpResponse(200, r"""<div id="withdrawFundsContent">
-  <!-- header title -->
-  <div class="default-section-header">{{getLocalizedText("title")}}</div>
-
-  <div class="top-separation">
-    <div class="withdraw-founds-box">
-      <div class="data-header">
-        <span class="data-header-title">{{getLocalizedText("balance")}}<span class="money"><span id="moneyAmount">{{userData.balance}}</span></span></span>
-      </div>
-
-      <p>{{getLocalizedText("withdrawdesc1")}}</p>
-      <div class="money-element">
-        <input type="number" id="customEurosAmount"><label for="customEuros">{{formatCurrency("")}}</label>
-      </div>
-      <p class="paypal-info">{{getLocalizedText("withdrawdesc2")}}{{formatCurrency("20")}}</p>
-      <div class="button-wrapper"><button class="withdraw-funds-button" id="withdrawFundsButton">{{getLocalizedText("withdrawfunds")}}</button></div>
-    </div>
+tc.put("packages/webclient/components/achievement_comp.html", new HttpResponse(200, r"""<div class="achievement {{achiev.style}}" ng-class="{'earned': earned}">
+  <div class="achievement-icon">
+    <img src="images/achievements/{{achiev.image}}" ng-if="achiev.image != ''">
+    <span class="achievement-level" ng-if="achiev.level != -1">{{achiev.level}}</span>
   </div>
-  <div class="need-help-box">
-    <p id="need-help-text">{{getLocalizedText("needhelp")}}</p>
-    <p id="need-help-email">support@epiceleven.com</p>
-  </div>
+  <div class="achievement-name">{{achiev.name}}</div>
+  <div class="achievement-description">{{achiev.description}}</div>
 </div>"""));
-tc.put("packages/webclient/components/contest_filters_comp.html", new HttpResponse(200, r"""<div id="contestSortsFilters">
-
-  <!-- Resumen y Botón de filtros XS -->
-  <div class="choosed-filters-container" ng-show="scrDet.isXsScreen">
-      <div class="competition-filter-name" ng-bind-html="filterResume"></div>
-      <div class="filterToggler">
-        <div id="filtersButtonMobile" type="button" class="filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">{{getLocalizedText("filters")}}</div>
-      </div>
-  </div>
-
-  <!-- Ordenación -->
-  <div id="contestFastSort">
-    <span class="filter-text">{{getLocalizedText("sortby")}}: </span>
-    <div class="btn-group" >
-      <div ng-repeat="button in sortingButtons" id="{{button['id']}}" type="button" class="btn sorting-button" ng-class="button['state']" ng-click="sortListByField(button['field-name'])">{{button["name"].toUpperCase()}}</div>
-    </div>
-  </div>
-
-  <!-- Filtro por nombre -->
-  <div id="contestFastSearch">
-      <input class="searcher" type="text" placeholder="{{getLocalizedText('search')}}" ng-model="filterContestName" ng-keyUp="filterByName()">
-  </div>
-
-  <div class="filterToggler" ng-show="!scrDet.isXsScreen">
-      <div id="filtersButtonDesktop" type="button" class="filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse">{{getLocalizedText("filters")}}</div>
-  </div>
-
-</div>
-
-<div id="filtersPanel" class="collapse">
-
-  <div class="filters-panel-row">
-
-    <!-- Filtro x tipos de concurso -->
-    <div class="filter-column-competition">
-      <p class="filter-title">{{getLocalizedText("competition")}}</p>
-      <div class="filter-content">
-        <div class="check-group-wrapper">
-
-          <!-- Botones -->
-          <div class="button-check-{{competitionType.flag}}" ng-repeat="competitionType in competitionFilterList">
-            <input id="{{competitionType['id']}}" type="checkbox" ng-disabled="competitionType['disabled']"
-                   ng-click="filterByCompetitionType(competitionType)">
-            <label for="{{competitionType['id']}}">{{competitionType["text"].toUpperCase()}}</label>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <!-- Filtro x tipos de concurso -->
-    <div class="filter-column-tournaments">
-      <p class="filter-title">{{getLocalizedText("contests")}}</p>
-      <div class="filter-content">
-          <div class="check-group-wrapper">
-
-            <!-- Botones -->
-            <div class="button-check" ng-repeat="contestType in contestTypeFilterList">
-              <input id="{{contestType['id']}}" type="checkbox" ng-disabled="contestType['disabled']"
-                     ng-click="filterByTournamentType(contestType)">
-              <label for="{{contestType['id']}}">{{contestType["text"].toUpperCase()}}</label>
-
-            </div>
-          </div>
-      </div>
-    </div>
-
-    <!-- Filtro x dificultad -->
-    <div class="filter-column-salary-limit">
-      <p class="filter-title">{{getLocalizedText("salarycap")}}</p>
-      <div class="filter-content">
-          <div class="check-group-wrapper">
-
-            <!-- Botones -->
-            <div class="button-check" ng-repeat="tier in salaryCapFilterList">
-              <input id="{{tier['id']}}" type="checkbox" ng-disabled="tier['disabled']"
-                     ng-click="filterByTier(tier)">
-              <label for="{{tier['id']}}">{{tier["text"].toUpperCase()}}</label>
-            </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="filter-column-entry-fee">
-      <p class="filter-title">{{getLocalizedText("entryfee")}}</p>
-      <div class="filter-content">
-         <div class="entry-fee-value-min">{{getLocalizedText("min")}}: {{formatCurrency((filterEntryFeeRangeMin | number:0).toString())}} </div>
-         <div class="entry-fee-value-max">{{getLocalizedText("max")}}: {{formatCurrency((filterEntryFeeRangeMax | number:0).toString())}} </div>
-          <div class="slider-wrapper">
-            <div id="slider-range"></div>
-          </div>
-      </div>
-    </div>
-
-  </div>
-  <div class="filters-panel-row">
-
-      <div class="reset-button-wrapper">
-        <button type="button" class="btn-reset" ng-click="resetAllFilters()">{{getLocalizedText("clearfilters")}}</button>
-      </div>
-      <div class="confirm-button-wrapper">
-        <button type="button" class="btn-confirm" ng-click="toggleFilterMenu()">{{getLocalizedText("buttonaccept")}}</button>
-      </div>
-
-  </div>
+tc.put("packages/webclient/components/achievement_list_comp.html", new HttpResponse(200, r"""<div id="achievement-list-wrapper">
+  <achievement ng-repeat="achiev in achievementList" enabled="achievementEarned(achiev.id)" key="achiev.id"></achievement>
+  <div class="clearfix"></div>
 </div>"""));
-tc.put("packages/webclient/components/contest_header_comp.html", new HttpResponse(200, r"""<div id="contestHeaderWrapper">
-  <div ng-if="isInsideModal" class="border-top"></div>
-  <div class="contest-relevant-data">
-    <div class="contest-name-description">
-      <div class="contest-name">{{info['description']}}</div>
-      <div class="contest-explanation">{{info['contestType']}} {{info['contestantCount']}}</div>
-   </div>
-    <div class="contest-price">
-      <div class="contest-coins-content"><span>{{info['entryPrice']}}</span></div>
-      <div class="contest-coins-header">{{getLocalizedText("entryfee")}}</div>
-    </div>
-
-    <div class="contest-prize">
-      <div class="contest-coins-content"><img ng-if="!scrDet.isXsScreen" class="iconPrize" src="images/iconPrize.png"><span>{{info['prize']}}</span></div>
-      <div class="contest-coins-header">
-        <div class="contest-coins-header-title">{{getLocalizedText("prizes")}}</div>
-        <!--<div class="contest-coins-header-prize-type">{{info['prizeType']}}</div>-->
-      </div>
-
-    </div>
-  </div>
-
-  <div class="date-time-data">
-    <div class="contest-start-date">
-      <span>{{info['startTime']}}&nbsp;</span>
-    </div>
-    <div class="contest-countdown-text">
-      <span class="text-countdown">{{info['textCountdownDate']}}&nbsp;</span>
-      <span class="time-countdown">{{info['countdownDate']}}&nbsp;</span>
-    </div>
-  </div>
-
-  <teams-panel id="teamsPanelComp" contest="contest" contest-id="contest.contestId"  ng-if="showMatches"></teams-panel>
-
-
-  <div class="close-contest" ng-switch="isInsideModal">
-    <button type="button" ng-switch-when="true"  class="close" data-dismiss="modal">   <span class="glyphicon glyphicon-remove"></span></button>
-    <button type="button" ng-switch-when="false" class="close" ng-click="goToParent()"><span class="glyphicon glyphicon-remove"></span></button>
-  </div>
-
-</div>
-
-<div class="clearfix"></div>
-"""));
 tc.put("packages/webclient/components/contest_header_f2p_comp.html", new HttpResponse(200, r"""
 <div class="contest-header-f2p-wrapper" ng-if="contest != null">
   
@@ -1243,6 +997,161 @@ tc.put("packages/webclient/components/contests_list_f2p_comp.html", new HttpResp
   </div>
 </div>
 """));
+tc.put("packages/webclient/components/create_contest_comp.html", new HttpResponse(200, r"""<div id="createContest">
+
+  <div class="default-section-header dark">{{getLocalizedText("create_contest")}}</div>
+
+  <div class="create-contest-section-wrapper">
+    <div class="create-contest-section">
+      <div class="title">{{getLocalizedText("name")}}</div>
+      <div class="data-input-wrapper contest-name">
+        <input id="contestNameInput" type="text" ng-model="contestName" placeholder="{{placeholderName}}" 
+               class="form-control ng-binding ng-pristine ng-touched" tabindex="1">
+      </div>
+    </div>
+  </div>
+
+  <div class="create-contest-section-wrapper">
+    <div class="create-contest-section">
+      <div class="title">{{getLocalizedText("contest_type")}}</div>
+      <div class="data-input-wrapper contest-type">
+        <span class="data-element">
+          <input id="contestOficial" type="radio" value="oficial" ng-value="TYPE_OFICIAL" ng-model="contestType" name="contestType" checked>
+          <label for="contestOficial"><span class="icon"></span>{{getLocalizedText("oficial")}}</label>
+        </span>
+        <span class="data-element">
+          <input id="contestTraining" type="radio" value="training" ng-value="TYPE_TRAINING" ng-model="contestType" name="contestType">
+          <label for="contestTraining"><span class="icon"></span>{{getLocalizedText("training")}}</label>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="create-contest-section-wrapper">
+    <div class="create-contest-section">
+      <div class="title">{{getLocalizedText("competition")}}</div>
+      <div class="data-input-wrapper competition">
+        <span class="data-element">
+          <input id="contestLeague" type="radio" value="LEAGUE_ES" name="competition"
+                 ng-class="{'disabled-radio': templatesFilteredList[leagueES_val].length == 0 }"
+                 ng-value="leagueES_val" ng-model="selectedCompetition"
+                 ng-disabled="templatesFilteredList[leagueES_val].length == 0">
+          <label for="contestLeague"><span class="icon"></span>{{getLocalizedText("spanish_league")}}</label>
+        </span>
+        <span class="data-element">
+          <input id="contestPremiere" type="radio" value="LEAGUE_UK" name="competition"
+                 ng-class="{'disabled-radio': templatesFilteredList[leagueUK_val].length == 0 }"
+                 ng-value="leagueUK_val" ng-model="selectedCompetition"
+                 ng-disabled="templatesFilteredList[leagueUK_val].length == 0">
+          <label for="contestPremiere"><span class="icon"></span>{{getLocalizedText("premiere_league")}}</label>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="create-contest-section-wrapper">
+    <div class="create-contest-section">
+      <div class="title">{{getLocalizedText("event")}}</div>
+      <div class="data-input-wrapper contest-template">
+        <select ng-disabled="printableTemplateList.length == 0" name="contestTemplateSelector" id="contestTemplateSelector"
+                class="form-control contest-template-selector dropdown-toggle" ng-model="selectedTemplate" >
+
+          <option id="option-contest-select-contest" value="" ng-value="null" ng-bind="comboDefaultText"></option>
+
+          <option ng-repeat="template in printableTemplateList" id="option-contest-template-{{template.templateContestId}}"
+                  value="{{$index + 1}}" ng-value="template">{{template.name}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <teams-panel id="teamsPanelComp" panel-open="true" template-contest="selectedTemplate" button-text="getLocalizedText('matches_title')"></teams-panel>
+
+  <div class="create-contest-section-wrapper">
+    <div class="create-contest-section">
+      <div class="title">{{getLocalizedText("rivals")}}</div>
+      <div class="data-input-wrapper contest-style">
+        <span class="data-element">
+          <input id="contestHeadToHead" type="radio" value="headToHead" ng-value="STYLE_HEAD_TO_HEAD" ng-model="contestStyle" name="contestStyle" checked>
+          <label for="contestHeadToHead"><span class="icon"></span>{{getLocalizedText("head_to_head")}}</label>
+        </span>
+        <span class="data-element">
+          <input id="contestOpen" type="radio" value="league" ng-value="STYLE_LEAGUE" ng-model="contestStyle" name="contestStyle">
+          <label for="contestOpen"><span class="icon"></span>{{getLocalizedText("league")}}
+            <select name="contestLeagueCountSelector" id="contestLeagueCountSelector"
+                    class="form-control contest-league-count-selector dropdown-toggle" ng-model="selectedLeaguePlayerCount">
+
+              <option ng-repeat="count in leaguePlayerCountList" id="option-contest-count-{{count}}"
+                      value="{{$index + 1}}" ng-value="count">{{count == -1? getLocalizedText("no_limit") : count}}</option>
+
+            </select>
+          </label>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="create-contest-section-wrapper">
+    <div class="create-contest-section">
+      <div class="title">{{getLocalizedText("date")}}<span class="annotation" ng-if="contestType == TYPE_OFICIAL">{{getLocalizedText("fixed_hour_warning")}}</span></div>
+      <div class="data-input-wrapper date">
+        <week-calendar id="createContestCalendar" disabled="contestType == TYPE_OFICIAL" selected-date="selectedDate" on-day-selected="onSelectedDayChange(day)" dates="dayList"></week-calendar>
+
+        <div class="contest-hour-selector-wrapper">
+          <select ng-disabled="contestType == TYPE_OFICIAL" name="contestHourSelector" id="contestHourSelector"
+                  class="form-control contest-hour-selector dropdown-toggle" ng-model="selectedHour">
+
+            <option ng-repeat="hour in hourList" id="option-contest-hour-{{hour}}"
+                    value="{{$index + 1}}" ng-value="hour">{{hour}}:{{selectedMinutesText}}</option>
+
+          </select>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="create-contest-section-wrapper large">
+    <div class="create-contest-section" ng-if="selectedTemplate != null">
+      <div class="title">Premios</div>
+      <div class="data-input-wrapper entry-fee">
+        <span class="data-element">
+          <div class="entry-fee-values-wrapper">
+          <span class="entry-fee-value" ng-class="{'gold' :contestType == TYPE_OFICIAL, 'energy': contestType != TYPE_OFICIAL}">{{entryFee.toInt()}}</span> 
+          por 
+          <span class="entry-fee-value" ng-class="{'gold' :contestType == TYPE_OFICIAL, 'manager-points': contestType != TYPE_OFICIAL}">{{computedPrize}}</span>
+          </div>
+        </span>
+        <div>
+          <span>Repartición de premios: </span>
+          <span>{{prizeType}}</span>
+        </div>
+        
+        <!--span class="data-element">
+          <input id="contestFee_1E_3MP" type="radio" value="1E_3MP" name="entry-fee">
+          <label for="contestFee_1E_3MP"><span class="entry-fee-value energy">1</span> por <span class="entry-fee-value manager-points">3</span></label>
+        </span>
+        
+        <span class="data-element">
+          <input id="contestFee_1G_3G" type="radio" value="1G_3G" name="entry-fee">
+          <label for="contestFee_1G_3G"><span class="entry-fee-value gold">1</span> por <span class="entry-fee-value gold">3</span></label>
+        </span-->
+      </div>
+    </div>
+  </div>
+
+
+  <div class="create-contest-section-wrapper large">
+    <div class="create-contest-section">
+      <div class="data-input-wrapper confirm-button-wrapper">
+        <button type="button" class="btn-confirm-contest"
+                ng-click="createContest()"
+                ng-disabled="!isComplete">{{getLocalizedText("create_contest_btt")}}</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+</div>"""));
 tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", new HttpResponse(200, r"""<div id="enter-contest-wrapper" >
 
   <contest-header-f2p id="contestHeader" contest="contest" contest-id="contestId" show-matches="false"></contest-header-f2p>
@@ -1279,13 +1188,17 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
                       <span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{formatCurrency(printableAvailableSalary)}}</span>
                     </div>
                 </div>
-
+                
                 <lineup-selector ng-show="!isSelectingSoccerPlayer || scrDet.isNotXsScreen"
                                  not-enough-resources="!enoughResourcesForEntryFee"
                                  resource="resourceName"
                                  has-max-players-same-team="playersInSameTeamInvalid"
                                  has-negative-balance="isNegativeBalance"
-                                 manager-level="playerManagerLevel"></lineup-selector>
+                                 manager-level="playerManagerLevel"
+                                 lineup-slots="lineupSlots"
+                                 on-lineup-slot-selected="onLineupSlotSelected(slotIndex)"
+                                 formation-id="formationId"
+                                 lineup-formation="lineupFormation"></lineup-selector>
               </div>
             </div>
 
@@ -1343,7 +1256,23 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
 
 <ng-view></ng-view>"""));
 tc.put("packages/webclient/components/enter_contest/lineup_selector_comp.html", new HttpResponse(200, r"""<div class="lineup-selector">
-  <div class="lineup-selector-slot" ng-repeat="slot in enterContestComp.lineupSlots" ng-click="enterContestComp.onLineupSlotSelected($index)" ng-class="getSlotClassColor($index)">
+  <div class="lineup-formation-selector-wrapper collapsed" data-toggle="collapse" data-target="#formationsPanel">
+    <span class="current-formation">{{getPrintableFormation()}}</span>
+    <span class="formation-change-button">{{getLocalizedText('change')}}</span>
+  </div>
+  <div id="formationsPanelRoot" class="animate">
+    <div class="formation-panel-wrapper" >
+       
+      <div id="formationsPanel" class="formations-container collapse">
+        <span class="formation-element" id="formationElement{{key}}" ng-repeat="key in formationList">
+          <input id="formation{{key}}" name="formation{{key}}" type="radio" value="{{key}}" ng-value="key" ng-model="formationId">
+          <label for="formation{{key}}">{{formationToString(key)}}</label>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="lineup-selector-slot" ng-repeat="slot in lineupSlots" ng-click="onLineupSlotSelected({'slotIndex': $index})" ng-class="getSlotClassColor($index)">
 
     <div ng-if="slot == null">
       <div class="column-fieldpos"></div>
@@ -1503,12 +1432,117 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_filter_comp.h
 
   <input type="text" class="name-player-input-filter" placeholder="{{getLocalizedText('search-player', group: 'soccerplayerlist')}}" ng-model="nameFilter" />
 </div>"""));
+tc.put("packages/webclient/components/home_comp.html", new HttpResponse(200, r"""<div id="homeRoot">
+  <!--
+  Torneos
+  Tutorial
+  Blog
+  Crear Torneos
+  Torneos en directo
+  Scouting??
+  -->
+  
+  <div id="contestTile" class="home-tile-wrapper enabled" ng-click="onContestsClick()">
+    <div class="home-tile-content">
+      <div class="tile">
+        <div ng-bind-html="contestTileHTML"></div>
+        <span class="tile-action"></span>
+      </div>
+    </div>
+  </div>
+  
+  <div id="manageTile" class="vertical-layout-tilling">
+    <div id="createContestTile" class="home-tile-wrapper" ng-click="onCreateContestClick()" ng-class="{'disabled': !isCreateContestTileEnabled}">
+      <div class="home-tile-content">
+        <div class="tile">
+          <span class="tile-title">{{getLocalizedText('create_contest_title')}}</span>
+          <span class="tile-info">{{CreateContestTileText}}</span>
+          <span class="tile-action"></span>
+        </div>
+      </div>
+    </div>
+    <div id="scoutingTile" class="home-tile-wrapper" ng-click="onScoutingClick()" ng-class="{'disabled': !isScoutingTileEnabled}">
+      <div class="home-tile-content">
+        <div class="tile">
+          <span class="tile-title">{{getLocalizedText('scouting_title')}}</span>
+          <span class="tile-info ">{{getLocalizedText('scouting_info')}}</span>
+          <span class="tile-action"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="myContestsTile" class="vertical-layout-tilling">
+    <div id="upcomingTile" class="home-tile-wrapper" ng-click="onUpcomingClick()" ng-class="{'disabled': !isUpcomingTileEnabled}">
+      <div class="home-tile-content">
+        <div class="tile">
+          <span class="tile-title">{{getLocalizedText('upcoming_title')}}</span>
+          <div class="tile-info">
+            <span ng-if="!isUpcomingTileEnabled">{{getLocalizedText('mycontest_disabled_info')}}</span>
+            <span ng-if="isUpcomingTileEnabled" class="num-contest-info">{{numUpcomingContests}}</span>
+          </div>
+          <span class="tile-action"></span>
+        </div>
+      </div>
+    </div>
+    <div id="liveTile" class="home-tile-wrapper" ng-click="onLiveClick()" ng-class="{'disabled': !isLiveTileEnabled}">
+      <div class="home-tile-content">
+        <div class="tile">
+          <span class="tile-title">{{getLocalizedText('live_title')}}</span>
+          <div class="tile-info">
+            <span ng-if="!isLiveTileEnabled">{{getLocalizedText('mycontest_disabled_info')}}</span>
+            <span ng-if="isLiveTileEnabled" class="num-contest-info">{{numLiveContests}}</span>
+          </div>
+          <span class="tile-action"></span>
+        </div>
+      </div>
+    </div>
+    <div id="historyTile" class="home-tile-wrapper" ng-click="onHistoryClick()" ng-class="{'disabled': !isHistoryTileEnabled}">
+      <div class="home-tile-content">
+        <div class="tile">
+          <span class="tile-title">{{getLocalizedText('history_title')}}</span>
+          <div class="tile-info">
+            <span ng-if="!isHistoryTileEnabled">{{getLocalizedText('mycontest_disabled_info')}}</span>
+            <span ng-if="isHistoryTileEnabled" class="num-contest-info virtual">{{numVirtualHistoryContests}}</span>
+            <span ng-if="isHistoryTileEnabled" class="num-contest-info real">{{numRealHistoryContests}}</span>
+          </div>
+          <span class="tile-action"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div id="helpTile" class="vertical-layout-tilling">
+    <div id="blogTile" class="home-tile-wrapper enabled" ng-click="onBlogClick()" ng-class="{'disabled': !isBlogTileEnabled}">
+      <div class="home-tile-content">
+        <div class="tile">
+          <span class="tile-title">{{getLocalizedText('blog_title')}}</span>
+          <span class="tile-info">{{getLocalizedText('blog_info')}}</span>
+          <span class="tile-blog-author">{{getLocalizedText('blog_author')}}</span>
+          <span class="tile-action"></span>
+        </div>
+      </div>
+    </div>
+    <div id="howitworksTile" class="home-tile-wrapper" ng-click="onHowItWorksClick()" ng-class="{'disabled': !isHowItWorksEnabled}">
+      <div class="home-tile-content">
+        <div class="tile">
+          <span class="tile-title">{{getLocalizedText('help_title')}}</span>
+          <span class="tile-info">{{getLocalizedText('help_info')}}</span>
+          <span class="tile-action"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="clearfix"></div>
+</div>"""));
 tc.put("packages/webclient/components/leaderboard_comp.html", new HttpResponse(200, r"""<div id="leaderboard-wrapper">
 
   <div id="leaderboard-header-wrapper">
 
     <h1>{{getLocalizedText("title")}}</h1>
-    <div class="rankings-wrapper">
+    <!--div class="rankings-wrapper">
       <div class="ranking ranking-by-points">
         <span class="ranking-position">{{playerPointsInfo['position']}}º</span>
         <div class="ranking-info">
@@ -1516,7 +1550,7 @@ tc.put("packages/webclient/components/leaderboard_comp.html", new HttpResponse(2
           <span class="ranking-value">{{playerPointsInfo['points']}} ptos</span>
         </div>
       </div>
-  
+
       <div class="ranking ranking-by-money">
         <span class="ranking-position">{{playerMoneyInfo['position']}}º</span>
         <div class="ranking-info">
@@ -1525,7 +1559,7 @@ tc.put("packages/webclient/components/leaderboard_comp.html", new HttpResponse(2
         </div>
       </div>
       <div class="clearfix"></div>
-    </div>
+    </div-->
 
   </div>
 
@@ -1533,25 +1567,30 @@ tc.put("packages/webclient/components/leaderboard_comp.html", new HttpResponse(2
 
 
   <ul class="leaderboard-tabs" role="tablist">
-    <li class="active"><a class="leaderboard-tab top-points-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-points')">{{getLocalizedText("trueskill")}}</a></li>
-    <li><a class="leaderboard-tab top-money-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-money')">{{getLocalizedText("gold")}}</a></li>
+    <li class="active"><a class="leaderboard-tab top-points-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-points')">{{trueskillTabTitle}}</a></li>
+    <li><a class="leaderboard-tab top-money-tab" role="tab" data-toggle="tab" ng-click="tabChange('top-money')">{{goldTabTitle}}</a></li>
+    <li><a class="leaderboard-tab achivements-tab" role="tab" data-toggle="tab" ng-click="tabChange('achivements-content')">{{achievementsTabTitle}}</a></li>
   </ul>
-  
+
   <div class="tabs">
     <div class="tab-content">
 
-      <!-- LIVE CONTESTS -->
-      <div class="tab-pane active" id="top-points">      
-        
+      <div class="tab-pane active" id="top-points">
+
         <leaderboard-table show-header="true" highlight-element="playerPointsInfo" table-elements="pointsUserList" rows="usersToShow" points-column-label="pointsColumnName" hint="playerPointsHint" ng-show="!loadingService.isLoading"></leaderboard-table>
-        
+
       </div>
 
-      <!-- WAITING CONTESTS -->
       <div class="tab-pane" id="top-money">
 
         <leaderboard-table show-header="true" highlight-element="playerMoneyInfo" table-elements="moneyUserList" rows="usersToShow" points-column-label="moneyColumnName" hint="playerMoneyHint" ng-show="!loadingService.isLoading"></leaderboard-table>
-      
+
+      </div>
+
+      <div class="tab-pane" id="achivements-content">
+
+        <achievement-list ng-show="!loadingService.isLoading"></achievement-list>
+
       </div>
     </div>
   </div>
@@ -1574,24 +1613,6 @@ tc.put("packages/webclient/components/leaderboard_table_comp.html", new HttpResp
       <span class="leaderboard-column leaderboard-table-hint">{{isThePlayer(element['id'])? playerHint : ''}} </span>
       <span class="leaderboard-column leaderboard-table-skillpoints">{{element['points']}} </span>
     </div>
-  </div>
-</div>"""));
-tc.put("packages/webclient/components/legalese_and_help/beta_info_comp.html", new HttpResponse(200, r"""<div id="betaComp">
-  <!-- header title -->
-  <div class="default-section-header">EPIC ELEVEN: BETA VERSION</div>
-
-  <div class="block-blue-header">
-    <div class="title_white">SECTION NOT AVAILABLE</div>
-  </div>
-  <div class="beta-info-wrapper">
-    <div class="texto">
-      Sorry, this is a beta version of Epic Eleven.<br>
-      We are working hard on all the features that Epic Eleven will include.
-      We will keep you updated.
-      <br><br>
-      <b>Thank you</b>
-    </div>
-
   </div>
 </div>"""));
 tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", new HttpResponse(200, r"""<div id="helpInfo">
@@ -1772,431 +1793,6 @@ tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", ne
 
 </div>
 """));
-tc.put("packages/webclient/components/legalese_and_help/legal_info_comp.html", new HttpResponse(200, r"""<div id="staticInfo">
-  <!-- header title -->
-  <div class="default-section-header">LEGALS</div>
-  <div class="blue-separator"></div>
-
-  <div class="info-wrapper">
-    <h1>IDENTIFICATION DATA</h1>
-  	<p>You are currently visiting <a href="http://www.epiceleven.com" target="_blank">www.epiceleven.com</a>, a webpage owned by FANTASY SPORTS GAMES S.L. (hereinafter EPIC ELEVEN). The same has for address Avenida de Brasil, 23, Oficina 5-A, 28020, Madrid, has for e-mail address <a href="mailto:info@epiceleven.com">info@epiceleven.com</a> and has for VAT B-87028445.</p>
-  	<h1>USER ACCEPTANCE</h1>
-  	<p>This Legal Notice governs the access and use of the website <a href="http://www.epiceleven.com" target="_blank">www.epiceleven.com</a> (hereinafter the "Web ") that EPIC ELEVEN makes available to Internet users . Access to it implies unreserved acceptance of this Legal Notice . Also, EPIC ELEVEN can offer through its Portal services that may be subject to some own conditions on which EPIC ELEVEN will inform the user in each case.</p>
-  	<h1>ACCESS TO THE PORTAL AND PASSWORDS</h1>
-  	<p>By accessing the website the User declares EPIC ELEVEN have enough capacity to navigate the website mentioned, ie be eighteen years old and not be incapacitated . Also, no subscription or registration as a User for access and use of the Web is generally asked to any User, without prejudice to the use of certain services or content thereof is required of such subscription or registration. The data obtained from Users through the subscription or registration on this website are protected by passwords chosen by Users themselves. The User agrees to keep his password secret and protect it from unauthorized use by third parties. The User shall immediately notify EPIC ELEVEN any non-consensual use of his account or any violation security-related of the Web service of which he has knowledge. EPIC ELEVEN adopts the technical and organizational measures to ensure the protection of personal data and prevent tampering, ida, treatment and/or unauthorized access, given the state of the art, the nature of the stored data and the risks they are exposed, all in accordance with the provisions of the Spanish legislation for Protection of Personal Data. ELEVEN EPIC is not liable to Users for the disclosure of personal data to third parties other than due to causes directly attributable to EPIC ELEVEN, nor for the use made ​​of such data to third parties EPIC ELEVEN.</p>
-  	<h1>CORRECT USE OF THE PORTAL</h1>
-  	<p>The User agrees to use the Portal, content and services in accordance with the law, this Legal Notice, morals and public order. Similarly, the User agrees not to use the Portal or the services provided through it for illegal purposes or contrary to the contents of this Legal Notice, detrimental to the interests or rights of others, or in any way that could damage, disable or impair the website or its services, or impede normal enjoyment of the website by other users. Without limiting the foregoing, EPIC ELEVEN can offer through the web additional services that have their own additional regulation. In these cases, Epic Eleven will properly inform the Users in each specific case. Also, the User expressly agrees not to destroy, alter, disable or otherwise damage data, programs or documents that are on the Portal. The User agrees not to hinder access of other users to the service through the mass consumption of computing resources through which EPIC ELEVEN serves, as well as actions that may damage, interrupt or generate errors in these systems. The User agrees not to introduce programs, viruses, macros, applets, ActiveX controls or any other logical device or character sequence that cause or may cause any type of alteration in the computer systems EPIC ELEVEN or third parties.</p>
-  	<h1>LINKS BELONGING TO THIRD PARTIES</h1>
-  	<p>This legal notice relates only to the Portal and content of EPIC ELEVEN, and does not apply to the links or the websites of third parties accessible through the Portal. The contents of these links are not under control of EPIC ELEVEN, and the same is not responsible for the content of any of the Web pages of any link, or any link contained in a Web page that is reached from the EPIC ELEVEN Portal, or any changes or updates to such sites. These links are provided solely to inform the user about the existence of other sources of information about a particular topic, and the inclusion of any link does not imply endorsement of the linked website by EPIC ELEVEN.</p>
-  	<h1>INTELLECTUAL PROPERTY</h1>
-  	<p>ELEVEN EPIC warns that intellectual property rights of the Portal, its source, design, navigation structure, databases and different elements contained in this code are exclusively owned by EPIC ELEVEN, who has the exclusive rights to exploit them in any way and, in particular, by way of example but not limited, rights of reproduction, copying, distribution, processing, marketing, and public communication. The reproduction, copying, distribution, processing, marketing, and partial or total public communication of the information contained in this website is strictly prohibited without the express written permission of EPIC ELEVEN, and constitutes an infringement of intellectual property and industrial rights.</p>
-  	<h1>FORUMS, BLOGS AND IMAGES</h1>
-  	<p>EPIC ELEVEN gives users the ability to enter comments and/or submit images for inclusion in the appropriate sections. The publication of comments and/or images is subject to this Legal Notice. The person identified in each case as it has made comments and/or sent images, is responsible for them. Comments and/or images do not reflect the opinions of EPIC ELEVEN, who also does not make any statement in this regard. EPIC ELEVEN will not be liable, unless in those extremes that would force the law, for any errors, inaccuracies or irregularities that may contain comments and/or images, as well as any damages that may result by inserting comments and/or images on the Forum or on other sections of the web that allow this kind of services. The Users that supplies text and/or images yields the rights to reproduce, use, distribution, public communication in electronic form as part of the activities for this website to EPIC ELEVEN. And, especially, the User grants such rights to the location of text and/or images on the Web, so that other users of the website can access them. The supplier User declares to be the owner of the rights to the texts or pictures or, where appropriate, ensure that has the necessary rights and authorizations of the author or owner of the text and/or images, for use by EPIC ELEVEN through the Portal. EPIC ELEVEN will not be liable, except in those extremes to which compels the Law of the damages that could be caused by the use, reproduction, distribution or public communication or any type of activity carried on texts and/or images are protected by intellectual property rights belonging to third parties without the User having previously obtained them from the owners, which is needed to carry out the intended use or release. Also ELEVEN EPIC reserves the right to withdraw unilaterally comments and/or images housed in any other section of the Portal, when EPIC ELEVEN deems appropriate. EPIC ELEVEN will not responsible for the information sent by the user when they have actual knowledge that the information stored is unlawful or harms property or rights of a third party liable for compensation. At the moment EPIC ELEVEN have actual knowledge about housing data as referred to above, you agree to act expeditiously to remove or block all access to them. In any case, any claim relating to or inserted in forum sections similar content, you can do so by going to the following email address: <a href="mailto:info@epiceleven.com">info@epiceleven.com</a>.</p>
-  	<h1>CHANGES TO THE TERMS OF USE</h1>
-  	<p>ELEVEN EPIC reserves the right to modify, develop or update at any time and without notice the terms of use of that website. The user will be automatically bound by the conditions of use that are in effect at the time they access the web, so you should periodically read the terms of use.</p>
-  	<h1>LIABILITY REGIME</h1>
-  	<p>The use of the website is the sole responsibility of each User, so it will be your responsibility if any breach or any harm results from the use of this page. EPIC ELEVEN, its partners, collaborators, employees and other representatives or third party are therefore exempt from any liability that may involve the actions of the user. EPIC ELEVEN, even when puts every effort into providing constantly updated information via their website, does not guarantee the absence of errors or inaccuracies in any of the contents, whenever for reasons not attributable directly to EPIC ELEVEN. Therefore, the User shall be solely liable against any claims or legal proceedings against EPIC ELEVEN based on the use of the website or its contents by the user, provided such use has been made illegally, violating rights of third parties or causing any damage, thereby assuming all costs, expenses or damages that may be incurred in EPIC ELEVEN.</p>
-  	<h1>APPLICABLE LAW AND JURISDICTION</h1>
-	  <p>This website is governed by Spanish law. ELEVEN EPIC and the User, expressly waiving their own jurisdiction, if they will have it, submit to the jurisdiction of the courts of the city of Madrid (Spain). This provided this is not an end user, being the forum that the law provides the defendant's domicile.</p>
-  </div>
-</div>"""));
-tc.put("packages/webclient/components/legalese_and_help/policy_info_comp.html", new HttpResponse(200, r"""<div id="staticInfo">
-
-  <!-- header title -->
-  <div class="default-section-header">PRIVACY POLICY</div>
-  <div class="blue-separator"></div>
-
-  <div class="info-wrapper">
-    <h1>WEB FORMS</h1>
-    <p>The User may refer to EPIC ELEVEN their personal data through different forms that for that purpose appear on the Website. These forms incorporate a legal text on the protection of personal data that complies with the requirements established in Law 15/1999, of December, 13rd for Protection of Personal Data, and its Implementing Regulations, approved by Royal Decree 1720/2007 of December, 21st. Therefore, please read carefully the legal texts before providing personal data.</p>
-    <h1>PRIVACY PROVISIONS</h1>
-    <p>This statement is to inform users of the general Privacy and Protection of Personal Data followed by EPIC ELEVEN. This Privacy Policy may vary depending on the business judgment either of those legislative changes, so Users are advised to visit this provisions regularly. We inform the User as well that EPIC ELEVEN performs data processing according to the purposes required for the content of the web <a href="http://www.epiceleven.com" target="_blank" alt="Epic Eleven">www.epiceleven.com</a>. To do this, EPIC ELEVEN will act in a balanced way, obtaining relevant data, sending commercial communications who only has so explicitly allowed in the above forms.</p>
-    <h1>SECRET AND DATA SECURITY</h1>
-    <p>EPIC ELEVEN agrees to comply with the duty of keeping in secrecy all personal data. In turn, this data will be saved by adopting the necessary technical and organizational measures to guarantee the security of personal data. All this, in order to prevent alteration, loss or unauthorized access, taking into account the state of technology, in accordance with the provisions of the RLOPD.</p>
-    <h1>SENDING OD ADVERTISING, INFORMATION AND DATA TRANSFER</h1>
-    <p>The user who wishes to receive the newsletter or any type of commercial business information will be able to check a box for that purpose on a form or in the dedicated space in the user account section. This will enable EPIC ELEVEN to perform commercial actions electronically, according to the provided data, and to check for a purpose consistent with the processing of data authorized by the User, as the User can oppose this treatment at any time. The User agrees that EPIC ELEVEN can yield data to third parties, provided that in the case of supplier partner companies, partners or having connection with the development of the business model. In any case, where the service will cede User data to a third party not previously referred it explicitly request the User's consent, ensuring no assignment to obtain it.</p>
-    <h1>RIGHTS OF ACCESS, CORRECTION, OPPOSITION AND CANCELLATION</h1>
-    <h1>DATA PROCESING FOR UNDERAGE</h1>
-    <p>The website is primarily aimed at adults. However, in order to comply with Royal Decree 1720/2007 of December, 21st, approving the Regulation implementing Law 15/1999 of December, 13rd on the protection of personal data, it is adopted by EPIC ELEVEN and reports that to proceed to data processing under 14, EPIC ELEVEN will require the consent of parents or guardians. It is a responsibility of EPIC ELEVEN to articulate the procedures to ensure that the child's age has been properly checked, as the authenticity of the consent given in his case as well, so parents, guardians or legal representatives, if suspect the User is under fourteen, can be notified.</p>
-    <h1>REGISTER AS USER</h1>
-    <p>At the time the user logs in any of the Websites of EPIC ELEVEN’s Portal, they will be asked for a series of personal data that will help personalize the service offered by EPIC ELEVEN (name, email, mailing address, etc.). In this line, EPIC ELEVEN may request some additional data that are intended to improve your user experience.</p>
-  </div>
-
-</div>
-
-"""));
-tc.put("packages/webclient/components/legalese_and_help/restricted_comp.html", new HttpResponse(200, r"""<div id="restrictedCompRoot">
-  <!-- header title -->
-  <div class="default-section-header">RESTRICTED LOCATION</div>
-
-  <div class="restricted-content-wrapper">
-
-    <div class="texto" ng-bind-html="getLocalizedText('desc')"></div>
-
-    <div class="button-wrapper">
-      <div class="button-box">
-        <button class="ok-button" ng-click="backToLobby()">{{getLocalizedText("gotolobby")}}</button>
-      </div>
-    </div>
-
-  </div>
-</div>"""));
-tc.put("packages/webclient/components/legalese_and_help/terminus_info_comp.html", new HttpResponse(200, r"""<div id="staticInfo">
-
-  <!-- header title -->
-  <div class="default-section-header">TERMS AND CONDITIONS</div>
-  <div class="blue-separator"></div>
-
-  <div class="info-wrapper">
-    <h1>
-        1. GENERAL Terms
-    </h1>
-    <p>
-        1.1 The present Terms and Conditions of Use (onwards “Terms and Conditions”) regulate the use and access to our Platform, being expressly and completely accepted by the mere fact of entering the Platform and/or by the visualization of its contents or use of the included content. In the case that this conditions are not accepted or any of the particular conditions, the user should refrain from enter our Platform as well as using its services and products.
-    </p>
-    <p>
-        1.2 Epic Eleven holds the right to modify this Terms and Conditions whenever considers its due, without assuming any responsibility for it, binding the user by the Terms and Conditions in force at that time, by the mere fact of accessing our Portal or signing up in that specific moment.
-    </p>
-    <p>
-        1.3 Our Portal is oriented to citizens of any nationality or residency, but always to legally adults according to local regulations, therefore denying the inscription to under-ages. Epic Eleven prohibits expressly the under-ages, according to local regulations, to sign up. Moreover, every user can only have one single account in Epic Eleven. Epic Eleven holds the right to cancel the account of users who commit fraud, like duplicates of a certain account or falsify personal data with the goal of gaining more points or contests. Users agree that there is a process to validate any data they introduce in the Portal, such as validation of the phone number or a request of documentation that allows Epic Eleven to check if a user is a legal adult.
-    </p>
-    <p>
-        1.4 The Portal is oriented to citizens of any nationality or residency, as long as the current regulations allows them to perform activity in the Portal, with a purely promotional, free-to-play end, which is the main end of the Portal. According to our Terms and Conditions, Epic Eleven expressly prohibits its use to individuals whose legislation, according to their nationality or residency, does not allow them to participate in our Portal. Also, to those who sign up and participate in it albeit being forbidden, Epic Eleven declines any responsibility.
-    </p>
-    <p>
-        1.5 Any person who signs up in our Portal acquires the condition of “User” (onwards known as “User” or “the User”), being able to access all the services offered within the Portal. The user must identify every time, in order to guarantee the security of the process, the fulfillment of this Terms and Conditions and moreover, the transaction of money to a certain user wherever it is fit. To sign up or log in (once a user has already sign up for the first time), the user must use a valid e-mail address. Accessing as a “visitor” (onwards known as “Visitor” of “the Visitor”) to Epic Eleven will not require any personal info until the visitor tries to introduce a line up in a contest, independently if that contest is free or requires an entry fee. In case the visitor wants to subscribe to any of Epic Eleven newsletter, an email would be required, being that a personal e-mail, not a public one.
-    </p>
-    <p>
-        1.6 Both the User and the Visitor are aware that the access and use of the Portal is being made under its own responsibility. In this regard, the User will be asked to choose a user name and a password. The User is responsible for keeping the password hidden from a third person, as well as to not allow a third person to access the account on its behalf or to let a third person manipulate the account in a way that presents a danger to the security of the account and its rightful owner.
-    </p>
-    <p>
-        1.7 The user must establish the necessary security measures in order to avoid unwanted actions on the personal systems and computers that the User uses to access Internet and, specially, our Portal.
-    </p>
-    <h1>
-        2. User’s Rights and obligations
-    </h1>
-    <p>
-        The user will be able to:
-    </p>
-    <p>
-        2.1 Access for free to our Portal’s available contents without previous authorization, without taking harm to any special technical conditions or the need of a previous sign up in services and specific contents of a third partner, as are specified in this conditions. Nonetheless, the User will be held responsible for the payment of any Internet service regarding the connection and navigation through the web, from its own computer to any device the User uses, that providers charge in those concepts, attending to its own deals with those providers.
-    </p>
-    <p>
-        2.2 Make use of the available services and contents for its particular use, without taking harm about what was explicitly disposed in the conditions that regulates the use of a specific service and/or content. The User commits to use the Portal for its rightful use, and not for commercial use without the specific written consent of Epic Eleven or without having agreed to specific terms and conditions for that commercial use with Epic Eleven.
-    </p>
-    <p>
-        2.3 Make a good and legal use of the Portal; in agree with this Terms and Conditions, the actual legislation, moral grounds and good faith.
-    </p>
-    <p>
-        2.4 Particularly, to what its due to CHEATING OR HACKING, the User makes a commitment by agreeing to this Terms and Conditions, to not perform any of the follow actions:
-    </p>
-    <ul>
-        <li>
-            To design, activate, sell or help to create any unauthorized software which end purpose interferes with the Portal, with any of its services or contents, or other users.
-        </li>
-        <li>
-            To modify any file or software that belongs to the Portal, without previous explicit and written consent from Epic Eleven.
-        </li>
-        <li>
-          To harm, overload or contribute in any way to interfere with the good performance of any piece of hardware related in some way to give assistance to the Portal or to help anyone to enjoy all services and contents that the Portal has to offer.
-        </li>
-        <li>
-            To impulse, contribute or take part in any kind of attack, including, e.g. distributing a virus via e-mail, unwanted e-mails, spam… or any other attempts to do harm to the Portal, its use or enjoyment of the Portal by a third party.
-        </li>
-        <li>
-            To try to access the Portal through an unauthorized way, through other user’s accounts or through any hardware related to the computers, servers or networks that belongs to Epic Eleven or any other third party.
-        </li>
-    </ul>
-    <p>
-        Also, regarding to OFFENSIVE CONTENTS, the User commits not to perform any of the following actions:
-    </p>
-    <ul>
-        <li>
-            To publish any information that can be abusive, threatening, obscene, defamatory or offensive from a racial, sexual or religious point of view.
-        </li>
-        <li>
-            To publish any information that contains sexual material, excessive violence or offensive topics, or that contains a link to any of this topics.
-        </li>
-        <li>
-            To bully, abuse, offend or, in short, to mistreat any other User, groups of people, or any of the employees and collaborators of Epic Eleven.
-        </li>
-        <li>
-            To use the Portal, including any use of links, to make accessible any material or information that infringes any copyright, commercial brand, patent, industrial or commercial secret, privacy right, commercial right or any right of any physical or legal person, or to impersonate anyone, e.g. any Epic Eleven’s employee or collaborator.
-        </li>
-        <li>
-            To use inappropriately Epic Eleven’s customer service, which includes sending false reports of any kind of abuse or the use of an inadequate, obscene or abusive language in any communication.
-        </li>
-    </ul>
-    <p>
-        Generally, the User will never be allowed to:
-    </p>
-    <ul>
-        <li>
-            To access or use the services and contents of the Portal with illicit, harmful ends that infringe rights and freedom of a third party, or that may harm or impede by any mean the access to those services and contents to Epic Eleven or a third party.
-        </li>
-        <li>
-            To use the services that Epic Eleven provides to, complete or partially, promote, sell, hire, market or divulge you own or third party’s information.
-        </li>
-        <li>
-            To include links in its own particular or commercial site to this Portal, breaking the Terms and Conditions provided for. Also, to use the services or contents offered through the Portal in a way that it Terms and Conditions does not allow, or inflicting harm on any of the rights that the rest of the users or Epic Eleven itself holds.
-        </li>
-        <li>
-            To perform any action that impedes or difficult the access to the Portal to other Users, as well as to the links to other services or contents offered by Epic Eleven or a third party via the Portal; To use the Portal as a medium to commit any felony or act against the actual legislation, moral grounds and good faith.
-        </li>
-        <li>
-            To use any kind of virus, code, software or hardware that might result in any harm or unauthorized alteration in the Portal, its contents or any system accessible via the Portal or the hardware and software of any User.
-        </li>
-        <li>
-            To erase or modify in any way any medium the Portal uses to protect and identify its Users, the contents stored in the Portal or any symbol that Epic Eleven or any other third party uploads into the Portal. Those contents will be protected by the inherent copyrights that those Users incorporate to their creations.
-        </li>
-        <li>
-            To include in any web site of its own responsibility or property “metatags” of any brand, commercial name o any distinctive symbol property of Epic Eleven or any other related third party.
-        </li>
-        <li>
-            To reproduce total or partially the Portal in any other web site without fulfilling the expected conditions for that matter.
-        </li>
-        <li>
-            To get frames of the Portal, or any web site accessible through the Portal, that hide or modify –with delimitative intention, but not restrictive- contents, commercial spaces and brands of Epic Eleven or any other related third party, independently of this action being one considered as unfair competition or to create confusion.
-        </li>
-        <li>
-            To create frames inside any web site of its own responsibility or property that reproduces the main page or the Portal or any of the accessible pages through it without the explicit consent of Epic Eleven.
-        </li>
-        <li>
-            To ask or try to obtain through any mean personal information about other Users of the Portal; collect, publish or obtain by any mean personal information of other Users of Epic Eleven, without the explicit consent of Epic Eleven.
-        </li>
-    </ul>
-
-    <h1>
-        3. epic eleven’s rights
-    </h1>
-    <p>
-        Epic Eleven holds the following rights:
-    </p>
-    <p>
-        3.1 To modify the present Terms and Conditions, as the conditions, technical or not, to access the Portal unilaterally and without previous notice to the Users, without detriment of anything set in the particular conditions that regulate the use of a certain service or content within this Portal.
-    </p>
-    <p>
-        3.2 To establish a certain condition or instead a price in order to access particular features or services within the Portal.
-    </p>
-    <p>
-        3.3 To limit, exclude, suspend, cancel, modify or influence the access to the Portal, without previous notice to the Users, when those Users do not respect the previous guarantees for a safety and correct use of the Portal. In those cases, Epic Eleven might cancel the username and passwords, any points, benefits, gifts or winnings associated to a certain user account, without being obliged to extend any compensation.
-    </p>
-    <p>
-        3.4 To terminate, suspend, modify or influence, without previous notification to the Users, the service provided or the supply of content without being obliged to compensate in any way, when the said service turns out to be used by the User in a way that attacks the legality or the present Terms and Conditions that regulates any service or content within the Portal. In those cases, Epic Eleven may cancel the username, passwords, any point, benefit or gift associated to a certain account, without being obliged to extend any compensation.
-    </p>
-    <p>
-        3.5 To modify unilaterally and without previous notice, anytime Epic Eleven sees fit, the structure and design of the Portal, as well as to update, modify or suppress all or part of the contents, services or access and use conditions of the Portal, and may even restrict or prohibit the access to that specific information.
-    </p>
-    <p>
-        3.6 To deny at any time and without previous notice the access to the Portal to those Users or Visitors that break this Terms and Conditions. In those cases, Epic Eleven may even cancel the username, passwords any point, benefits or gift associated to a certain account, without being obliged to extend any compensation to the User or Visitor.
-    </p>
-    <p>
-        3.7 To undertake any legal action that sees fit for the protection of Epic Eleven’s rights, and any third party that gives service or contents through the Portal, anytime.
-    </p>
-    <p>
-        3.8 To demand compensation that may sees fit from improper or illegal use of all or part of the services and contents provided through the Portal.
-    </p>
-    <h1>
-        4. Operations within the portal
-    </h1>
-    <p>
-        4.1 Any adult physical person, being an ‘adult’ what the law of this person’s nationality considers so, that signs up as User and provides the necessary truthful information would be considered as a “Player” (onwards “Player” or “the Player”).
-    </p>
-    <p>
-        4.2 By the mere fact of filling the sign up form, the Player accepts irrevocably this Terms and Conditions.
-    </p>
-    <p>
-        4.3 A User can only own one account and can only play on Epic Eleven with this very one account. Epic Eleven holds the right to impede this User to participate in the case that this rule is not met.
-    </p>
-    <p>
-        4.4 The Player will have a balance of Epic Eleven Points (or “Epic Points”), displayed within the Portal. Those Epic Points will vary according to the rules displayed in the Portal.
-    </p>
-    <p>
-        4.5 Epic Eleven might change the rules of the Epic Points unilaterally without previous notice to the Users and at any time if considered necessary.
-    </p>
-    <p>
-        4.6 Additionally, this balance might be increase by promotions, such as share-with-friends promotions, commercial promotions or special occasions that Epic Eleven sees fit. This additional means to increase Epic Points will be regulated by the conditions exposed by Epic Eleven at the Portal.
-    </p>
-    <p>
-        4.7 The balance will diminish naturally when the User uses Epic Points to enter any contests that allows this as a mean to participate.
-    </p>
-    <p>
-        4.8 The Epic Points in any account and the account itself could be cancelled by Epic Eleven at any point, unilaterally and without being obliged to extend any compensation, if there is no movement in the account for a consecutive period of twelve months.
-    </p>
-    <p>
-        4.9 Epic Points are personal and not transferable, and therefore can’t be loaned, transferred, sold or used in any other way than its primary purpose explained in the Rules. Also, Epic Points cannot be transferred between accounts even if the Player attests to be the owner of both accounts, which would be also a violation of this Terms and Conditions, as it was explained in section 4.3 of this Terms and Conditions.
-    </p>
-    <p>
-        4.10 Epic Eleven advises to act within the limits of the local law every time. Epic Eleven does not know the applicable local laws, and therefore will not assume any responsibility derived of the misuse of the Portal, which includes taxations. If any User requires information about taxation and/or any legal inquiry, Epic Eleven advises to appeal to the relevant consultant agents on its own jurisdiction.
-    </p>
-    <p>
-        4.11 Epic Eleven holds the right to terminate the condition of “Player” of any User and every derived right of that condition, at any time and without being obliged to extend any compensation, as a consequence of a Player breaking any of this obligations according to the Terms and Conditions, Force Majeure, suspension or cancellation of any service offered by Epic Eleven. This is valid as well for a situation where the Portal is about to stop, extinct or dissolve its activity. In the case of cessation of activity of the User in its condition as Player in the Portal, Epic Eleven won’t have any responsibility or obligation towards the User if cancels the account and revoke the points, although Epic Eleven will be able to take any action it considers necessary according to the Law in order to demand accountability in case the User does not meet the Terms and Conditions or the applicable law at any point.
-    </p>
-    <h1>
-        5. EXEMPTIONS and limitation of liability of epic eleven
-    </h1>
-    <p>
-        Epic Eleven is exempt from any liability for damages of any nature in the following cases:
-    </p>
-    <p>
-        5.1 Due to the impossibility or difficulties in connecting to the communications network through which this Portal is accessible regardless of the type of connection used by the user.
-    </p>
-    <p>
-        5.2 Due to the interruption, suspension or cancellation of the Portal, as well as the availability and continuity of the Website or the services and/or contents therein, when this one is due to causes beyond the control of Epic Eleven.
-    </p>
-    <p>
-        5.3 Epic Eleven assumes no responsibility for the services and contents, nor for the availability and conditions, technical or otherwise, to access to those services and contents, which are offered by third party service providers, especially regarding those providers specially dedicated to offer this access.
-    </p>
-    <p>
-        5.4 Epic Eleven, at any time, does not accept liability for damages that may cause the information, content, products and services, communicated, hosted, transmitted, displayed or offered by third parties outside Epic Eleven, including service providers. That includes anything that can be accessed through a link on this website posted by these third parties or any other User.
-    </p>
-    <p>
-        5.5 Treatment and subsequent use of personal data by third parties outside Epic Eleven, and the relevance of the information requested by them.
-    </p>
-    <p>
-        5.6 Quality and speed of access to the Portal and technical conditions to be met by the User to gain access to the Portal and its services and/or content.
-    </p>
-    <p>
-        5.7 Epic Eleven will not be responsible for delays or faults produced in access and/or operation of services and/or contents of the Portal, due to Force Majeure.
-    </p>
-    <p>
-        5.8 The User will be personally liable for damages of any kind caused to Epic Eleven, directly or indirectly, for breach of any of the obligations under these Terms and Conditions or other rules governing the use of the Portal.
-    </p>
-    <h1>
-        6. Intellectual and industrial property
-    </h1>
-    <p>
-        6.1 User acknowledges that the contents and services offered through the Site, -including text, graphics, images, animations, musical creations, videos, sounds, drawings, photographs, all comments, exhibitions, applications, databases and html code same without this list being limited- are protected by intellectual property laws. Copyright and economic exploitation of this Site is for Epic Eleven. As for the contents included in the Portal, copyright and economic exploitation are the property of Epic Eleven or where appropriate, from third parties, and where is applicable, intellectual property laws protects both cases: Epic Eleven and third parties.
-    </p>
-    <p>
-        6.2 The trademarks, trade names or logos appearing on the Site are owned by Epic Eleven, and are protected by applicable intellectual property laws.
-    </p>
-    <p>
-        6.3 The provision of services and publication of content through the Portal does not imply any assignment, surrender or transfer all or part of the ownership of the corresponding intellectual and industrial property.
-    </p>
-    <p>
-        6.4 No part of this Website may be reproduced, distributed, transmitted, copied, publicly communicated, transformed, in whole or in part by any system or manual, electronic or mechanical means (including photocopying, recording or any retrieval system and storage) through any media now known or invented in the future, without the consent of Epic Eleven. The use, in any form, all or part of the content of the Website is subject to the need for prior authorization of Epic Eleven, and acceptance of the license, if any, except for the provisions on the rights and granted to the User in these Terms and Conditions or what is thus determined by the particular conditions that Epic Eleven may establish to regulate the use of a particular service and/or content offered through the Portal.
-    </p>
-    <p>
-        6.5 Under no circumstances, the user may make an application or use of services and content on the page that is not exclusively personal, safe from the exceptions identified in the present conditions of use of this Portal or the particular conditions that Epic Eleven may establish to regulate the use of a particular service and/or content offered through the Portal.
-    </p>
-    <p>
-        6.6 If the act or omission fault or negligence directly or indirectly attributable to User Portal arising from the infringement of the rights of intellectual property of Epic Eleven or third parties, whether or not benefit to the same, fells into Epic Eleven damages, losses, joint obligations, expenses of any kind, sanctions, coercive measures, fines and other amounts arising or resulting from any claim, demand, action, suit or proceeding, whether civil, criminal or administrative, Epic Eleven is entitled to bring proceedings against the User by all legal means at its disposal and to claim any compensation, including, but not limited to, moral and image damages, consequential damages and loss of earnings, advertising costs or any other that might be for repair, sanction or convictions, that of the default interest, court costs and the total cost of the defense in any process that could arise due to the aforementioned causes for damages incurred by reason of his act or omission, without Subject to exercise any other remedies available to him accordingly to the law.
-    </p>
-    <h1>
-        7. Links and hyperlinks
-    </h1>
-    <p>
-        7.1 Individuals or entities who wish to create a hyperlink from a web page from another internet portal to any pages of Epic Eleven’s Portal must abide by the following conditions:
-    </p>
-
-    <ul class="latin-list">
-      <li>
-        The total or partial reproduction of any services or content offered is not allowed.
-      </li>
-      <li>
-        No deep-links, or frames with the pages of the Portal would be established without the express permission of Epic Eleven.
-      </li>
-      <li>
-        No false, inaccurate or incorrect demonstration will be included on the pages of the Portal or any of its services or contents.
-      </li>
-      <li>
-        Except for those signs that are part of the "hyperlink", the website where the links directs the User will not contain any trademark, trade name, label, name, logo, slogan or other distinctive signs belonging to Epic Eleven, unless previous authorization.
-      </li>
-      <li>
-        The establishment of "hyperlink" does not imply the existence of any relationship between Epic Eleven and the owner of the website or portal from which it is made.
-      </li>
-      <li>
-        Epic Eleven is not responsible for the contents or services made available to the public on the website or portal from which the "hyperlink" or the information and statements included therein.
-      </li>
-      <li>
-        Any "hyperlink" to Portal Epic Eleven will be to the homepage or main pages of the sections it contains.
-      </li>
-    </ul>
-
-    <p>
-        7.2 Eleven Epic disclaims any responsibility for information contained in third party websites connected by links to the Portal of Epic Eleven or to those links that are not directly managed by our website administrator. The function of the links on this website is for information and in no way a suggestion, invitation or recommendation to visit the places of destination. When a Player wishes to use some of the Portal services, it must provide first some certain personal data to Epic Eleven. Epic Eleven treat such data for the purposes and under the conditions defined in this Privacy Policy.
-    </p>
-    <h1>
-        8. FINALS
-    </h1>
-    <p>
-        8.1 Disputes. For the resolution of any disputes arising from the interpretation and/or enforcement of these Terms and Conditions, Users, both Players and Visitors, expressly waiving any other jurisdiction that may apply to the Courts, they consent to undergo to the courts of the city of Madrid.
-    </p>
-    <p>
-        8.2 Applicable law. These Terms and Conditions are governed by the common Spanish legislation and construed in accordance with the same.
-    </p>
-    <p>
-        8.3 Invalid clauses. If any provision of these Terms and Conditions shall be deemed or may be illegal, invalid or unenforceable, these Terms and Conditions shall be deemed severable and inoperative in relation to that clause and to where it is deemed unlawful, void or unenforceable; and, by making reference to any other aspect of these Terms and Conditions will remain in full force and full effect; provided, however, that any provision of these Terms and Conditions shall be deemed or may be illegal, invalid or unenforceable, Epic Eleven will automatically include a clause as close as possible to the illegal, invalid or unenforceable to make it legal, valid and enforceable provision.
-    </p>
-    <p>
-        8.4 Headings. The headings of the clauses of these Terms and Conditions are made only for reference purposes and in no way affect or limit the meaning and content thereof.
-    </p>
-    <p>
-        8.5 Claims. To make any claims about the services provided through the portal, the User can send an email to support@epiceleven.com indicating their data, exposing the facts underlying the claim or complaint and specifying his claim. If you prefer, we also have complaint forms available to those requesting it at the address stated in the Legal Notice.
-    </p>
-    <h1>
-        Identification data
-    </h1>
-    <p>
-        You are visiting the website <a href="http://www.epiceleven.com" target="_blank">www.epiceleven.com</a>, ownership of SPORTS FANTASY GAMES, SL (hereinafter EPIC ELEVEN). The same is domiciled in Avenida Brasil, 23, Officinal 5-A, 28020, Madrid, and its e- mail address: info@epiceleven.com identified with C.I.F. B-87028445.
-    </p>
-    <h1>
-        User Agreement
-    </h1>
-    <p>
-        This Legal Notice governs the access and use of the website <a href="http://www.epiceleven.com" target="_blank">www.epiceleven.com</a> (hereinafter the "Portal") that EPIC ELEVEN makes available to Internet users. Access to it implies unreserved acceptance of this Legal Notice. Also, EPIC ELEVEN can offer through the Portal services that may be subject to some own conditions on which the User will be informed in each case.
-    </p>
-    <h1>
-        ACCESs to the WEB and passwords
-    </h1>
-    <p>
-        By accessing the website, the User declares to have enough capacity to navigate EPIC ELEVEN, ie: be eighteen years old and not be incapacitated. In turn, generally no subscription or registration as a user is required to access and use of the Portal, without prejudice to the use of certain services or content of such where a subscription or registration is required. The obtained data from Users through the subscription or registration to this website are protected by passwords chosen by themselves. The User agrees to keep that password secret and protect it from unauthorized use by third parties. The User shall immediately notify EPIC ELEVEN any non-consensual use of the account or any violation security-related of any service within the Portal of which he was aware. EPIC ELEVEN adopts the technical and organizational measures to ensure the protection of personal data and avoid its alteration, loss, treatment and/or unauthorized access, given the state of the art, the nature of the stored data and the risks they are exposed, all in accordance with the provisions of the Spanish legislation Protection of Personal Data. EPIC ELEVEN is not made liable to the Users for the disclosure of personal data to third parties other than due to causes directly attributable to EPIC ELEVEN, nor for the use made of such data to third parties that are not part of EPIC ELEVEN.
-    </p>
-    <h1>
-        Correct use of the web
-    </h1>
-    <p>
-        The User agrees to use the Portal, content and services in accordance with the law, this Legal Notice, morals and public order. Similarly, the User agrees not to use the Portal or the services provided through it for illegal purposes or contrary to the contents of this Legal Notice, detrimental to the interests or rights of others, or in any way could damage, disable or impair the website or its services or impede normal enjoyment of the website by other users. Without limiting the foregoing, EPIC ELEVEN can offer through the web additional services that have their own additional regulation. In these cases, the Users will be properly informed in each specific case. Also, the User expressly agrees not to destroy, alter, disable or otherwise, damage data, programs or documents that are on the Portal. The User agrees not to hinder access of other users to access service through the mass consumption of computing resources through which EPIC ELEVEN serves, as well as actions that may damage, interrupt or generate errors in these systems. The User agrees not to introduce programs, viruses, macros, applets, ActiveX controls or any other logical device or character sequence that cause or may cause any type of alteration in EPIC ELEVEN or third parties computer systems.
-    </p>
-    <h1>
-        Links to third parties
-    </h1>
-    <p>
-        This legal notice relates only to the Portal and content of EPIC ELEVEN, and does not apply to the links or the websites of third parties accessible through the Portal. The webs of these links are not under the control of EPIC ELEVEN, and the same is not responsible for the content of any of the Web pages destination of a link, or any link contained in a Web page that is reached from the EPIC web ELEVEN, or any changes or updates to such sites. These links are provided solely to inform the user about the existence of other sources of information about a particular topic, and the inclusion of any link does not imply endorsement of the linked website by EPIC ELEVEN.
-    </p>
-    <h1>
-        Intellectual property
-    </h1>
-    <p>
-        ELEVEN EPIC warns that intellectual property rights of the Portal, its source, design, navigation structure, databases and different elements contained in this code are exclusively owned by EPIC ELEVEN, who has the exclusive rights to exploit them in any way desired according to the law, and in particular, by way of example but not limited to, rights of reproduction, copying, distribution, processing, marketing, and public communication. The reproduction, copying, distribution, processing, marketing, and partial or total public communication of the information contained in this website is strictly prohibited without the express written permission of EPIC ELEVEN, and constitutes an infringement of intellectual property rights and industrial.
-    </p>
-    <h1>
-        Forums, Blogs and Images
-    </h1>
-    <p>
-        EPIC ELEVEN gives Users the ability to enter comments and/or submit photographs for inclusion in the appropriate sections. The publication of comments and/or photographs is subject to this Legal Notice. The person identified in each case as the one who has made comments and/or sent photographs, is responsible for them. Comments and / or photographs do not reflect the opinions of EPIC ELEVEN, and EPIC ELEVEN will not made any statement in this regard. EPIC ELEVEN will not be liable, unless those extremes that would force the law, for any errors, inaccuracies or irregularities that may contain the comments and/or photographs, as well as any damages that may result by inserting those comments and/or photos on the Forum or on other sections of the Web that allow this kind of services. The User which supplies texts and/or photographs yields to EPIC ELEVEN his rights to reproduce, use, distribution, public communication in electronic form as part of the activities for this website. And, especially, the User grants such rights to the location of text and / or photos on the Web, so that other users of the website can access them. The supplier User declares to be the owner of the rights to the texts or pictures or, where appropriate, ensures to have the necessary rights and authorizations of the author or owner of the text and/or photographs, for use by EPIC ELEVEN to through the Web. EPIC ELEVEN will not be liable, except in those extremes to which compels the Law, of the damages that could be caused by the use, reproduction, distribution or public communication or any type of activity carried on texts and/or photographs are protected by intellectual property rights belonging to third parties without the User having previously obtained from the owners needed to carry out the use made or intended release. EPIC ELEVEN also reserves the right to withdraw unilaterally comments and/or photographs housed in any other section of the Web, when EPIC ELEVEN deems appropriate. EPIC ELEVEN will not responsible for the information sent by the user when they have actual knowledge that the information stored is unlawful or harms property or rights of a third party liable for compensation. At the moment EPIC ELEVEN realizes that is housing data as referred to above, the User agrees to act expeditiously to remove or block all access to them. In any case, any claim relating to or inserted in forum sections similar content, you can do so by going to the following email address: <a href="mailto:support@epiceleven.com">support@epiceleven.com</a>.
-    </p>
-    <h1>
-        CHANGES TO THE TERMS OF USE
-    </h1>
-    <p>
-        ELEVEN EPIC reserves the right to modify, develop or update at any time and without notice the Terms and Conditions of this Portal. The User will be automatically bound by the conditions of use that are in effect at the time they access the web, so you should periodically read the Terms and Conditions.
-    </p>
-    <h1>
-        LIABILITY REGIME
-    </h1>
-    <p>
-        The use of the website is the sole responsibility of each User, so it will be the User responsibility if any breach or any harm resulting from the use of this page gets into the Portal. EPIC ELEVEN, its partners, collaborators, employees and other representatives or third parties are therefore exempt from any liability that may involve the actions of the User. EPIC ELEVEN puts all its capacity into providing constantly updated information via their website, but that does not guarantee the absence of errors or inaccuracies in any of the contents, even whenever the reasons are not attributable directly to EPIC ELEVEN. Therefore, the User shall be solely liable against any claims or legal proceedings against EPIC ELEVEN based on the use of the website or its contents by the User, provided such use has been made illegally, violating rights of third parties or causing any damage, thereby assuming all costs, expenses or damages that may be incurred in EPIC ELEVEN.
-    </p>
-    <h1>
-        APPLICABLE LAW AND JURISDICTION
-    </h1>
-    <p>
-        This website is governed by Spanish law. EPIC ELEVEN and the user, expressly waiving their own jurisdiction, if they will have it, will submit to the jurisdiction of the courts of the city of Madrid (Spain). This provided this is not an end user, being the forum that the law provides the defendant's domicile.
-    </p>
-  </div>
-</div>"""));
 tc.put("packages/webclient/components/lobby_f2p_comp.html", new HttpResponse(200, r"""<div id="lobbyf2pRoot">
 
   <!-- Header de Promociones -->
@@ -2204,12 +1800,12 @@ tc.put("packages/webclient/components/lobby_f2p_comp.html", new HttpResponse(200
 
   <!-- Temporalmente pongo la imagen del calendario (maquetar mas adelante). -->
   <week-calendar on-day-selected="onSelectedDayChange(day)" dates="dayList"></week-calendar>
-  
+
   <!-- Lista de concursos -->
   <contests-list-f2p  id="activeContestList"
                       contests-list="currentContestList"
                       on-action-click='onActionClick(contest)'
-                      on-row-click="onRowClick(contest)" 
+                      on-row-click="onRowClick(contest)"
                       action-button-title="'>'">
   </contests-list-f2p>
 
@@ -2389,6 +1985,26 @@ tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse
     </div>
   </div>
 </div>"""));
+tc.put("packages/webclient/components/tutorial_list_comp.html", new HttpResponse(200, r"""<div id="tutorialListRoot">
+  
+  <div id="initiation" class="tutorial-tile-wrapper" ng-click="onTutorialClick('initiation')">
+    <div class="tile">
+      <span class="tile-info">Iniciación</span>
+    </div>
+  </div>
+  <div id="oficialContests" class="tutorial-tile-wrapper" ng-click="onTutorialClick('oficialContests')">
+    <div class="tile">
+      <span class="tile-info">Jugar Torneos Oficiales</span>
+    </div>
+  </div>
+  <div id="creatingContests" class="tutorial-tile-wrapper" ng-click="onTutorialClick('creatingContests')">
+    <div class="tile">
+      <span class="tile-info">Crear Torneos con tus amigos</span>
+    </div>
+  </div>
+  
+  <div class="clearfix"></div>
+</div>"""));
 tc.put("packages/webclient/components/view_contest/fantasy_team_comp.html", new HttpResponse(200, r"""<div id="fantasyTeamRoot" class="fantasy-team-wrapper" >
 
   <div class="fantasy-team-header" ng-class="{'opponent-team-gradient': isOpponent, 'header-view-contest-entry-mode': isViewContestEntryMode}">
@@ -2442,13 +2058,13 @@ tc.put("packages/webclient/components/view_contest/fantasy_team_comp.html", new 
 
 </div>"""));
 tc.put("packages/webclient/components/view_contest/teams_panel_comp.html", new HttpResponse(200, r"""<div class="teams-toggler-wrapper">
-  <div id="teamsToggler" type="button" class="teams-toggler toggleOff" ng-click="toggleTeamsPanel()"  data-toggle="collapse" data-target="#teamsPanel">{{getLocalizedText("showmatches")}}</div>
+  <div id="teamsToggler" type="button" class="teams-toggler"  ng-class="{'toggleOff': !isTeamsPanelOpen, 'toggleOn': isTeamsPanelOpen }" ng-click="toggleTeamsPanel()"  data-toggle="collapse" data-target="#teamsPanel">{{buttonText}}</div>
 </div>
-<div id="teamsPanelRoot" ng-show="contest != null" class="animate">
+<div id="teamsPanelRoot" ng-show="isShown" class="animate">
 
   <div class="teams-comp-bar" >
 
-    <div id="teamsPanel" class="teams-container collapse">
+    <div id="teamsPanel" class="teams-container collapse" ng-class="{'in': isTeamsPanelOpen }">
       <div class="top-border"></div>
       <div class="teams-box" ng-repeat="match in matchEventsSorted">
         <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index)"></div>
@@ -2457,13 +2073,13 @@ tc.put("packages/webclient/components/view_contest/teams_panel_comp.html", new H
     </div>
   </div>
 
-
 </div>"""));
 tc.put("packages/webclient/components/view_contest/users_list_comp.html", new HttpResponse(200, r"""<div id="usersListRoot" >
 
-  <div ng-class="{'users-header-next': isViewContestEntryMode, 'users-header' : !isViewContestEntryMode}">
+  <div ng-class="{'users-header-next': isViewContestEntryMode, 'users-header' : !isViewContestEntryMode, 'invite-friends-wrapper' : showInvite}">
     <h1>{{getLocalizedText("title")}}</h1>
     <h2 ng-if="!isViewContestEntryMode">{{getLocalizedText("desc")}}:</h2>
+    <h2 ng-if="showInvite" ng-click="onInviteFriends()" class="invite-friends">{{getLocalizedText("invite_text")}}</h2>
   </div>
 
   <div class="users-table-header">
@@ -2546,7 +2162,7 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
 
     <div ng-switch-when="false">
       <fantasy-team id="userFantasyTeam" contest-entry="mainPlayer" watch="updatedDate" is-opponent="false"></fantasy-team>
-      <users-list id="usersList" ng-show="selectedOpponent == null" contest-entries="contestEntries" watch="updatedDate"></users-list>
+      <users-list show-invite="showInviteButton" on-invite-friends="onInviteFriends()" id="usersList" ng-show="selectedOpponent == null" contest-entries="contestEntries" watch="updatedDate"></users-list>
     </div>
 
 
@@ -2580,8 +2196,9 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
 </section>"""));
 tc.put("packages/webclient/components/week_calendar_comp.html", new HttpResponse(200, r"""<div class="week-calendar">
   <ul class="week-days-wrapper">
-    <li class="week-day {{$index==0? ' today':''}} {{isCurrentSelected(day['date'], $index)? ' active':''}}{{(!day['enabled'])? ' disabled':''}}"  ng-click="selectDay($event, day)" ng-repeat="day in dayList">
-      <div class="day-info"> 
+    <li class="week-day {{$index==0? 'today':''}} {{isCurrentSelected(day['date'], $index)? 'active':''}}{{(!day['enabled'])? ' disabled':''}}"  
+        ng-click="selectDay($event, day)" ng-repeat="day in dayList">
+      <div class="day-info">
         <span class="week-day-name">{{getLocalizedText(day["weekday"])}}</span>
         <span class="day-number">   {{day["monthday"]}}</span>
       </div>

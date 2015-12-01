@@ -1,0 +1,133 @@
+@cell-height: 130px;
+
+.global-notifications #mainWrapper {
+	background-color: @white;
+}
+
+#notificationsComp {
+	.container-fluid();
+	padding: 0;
+
+	.notification-list-wrapper {
+		.container-fluid();
+		padding: 15px;
+
+		
+		.notification {
+			.make-row(0);
+			margin: 10px 0;
+			position: relative;			
+			min-height: 130px;
+			border-radius: 5px;
+			border: 2px solid @white;
+			background-color: @tramaMed;
+			.make-shadow(0px, 4px, 8px, 1px, @greyUltraDark, 0.2);
+			
+			&:hover {
+				.make-shadow(0px, 4px, 8px, 1px, @greyUltraDark, 0.5);
+			}
+
+			achievement {
+				position: relative;
+				display: block;
+			}
+
+			.achievement {
+				display: block;
+				margin: 0 auto;
+				max-with: 140px;
+
+				.achievement-name, .achievement-description {
+					.hidden();
+				}
+			}
+
+			.main-info {
+				.make-xs-column(4);
+				background-color: @blueDark;
+				text-align: center;
+				height: @cell-height;
+				display: table;
+
+				.wrapper {
+					display: table-cell;
+					vertical-align: middle;
+				}
+
+				.name {
+					.exo_light(15pt, @white);
+					display: block;					
+					padding: 5px 0;
+					margin-left:auto;
+					margin-right:auto;
+				}
+
+				.date {
+					.opensans_normal(11pt, @white);
+					display: block;
+					padding: 5px 0;
+					margin-left:auto;
+					margin-right:auto;
+				}
+			}
+
+			.additional-info {
+				.make-xs-column(8);
+				display: table;
+				height: @cell-height;
+
+				.wrapper {
+					display: table-cell;
+					vertical-align: middle;
+				}
+
+				.description {
+					.opensans_normal(11pt, @greyDark);
+					padding: 0 50px 0px 20px;
+				}
+
+				.button-wrapper {
+					display: inline-block;					
+					height: 34px;
+					margin-top:  20px;
+				}
+
+				button {
+					margin-left: 20px;
+				}
+			}
+		}
+
+		.close-button {
+			position: absolute;
+			top: 15px;
+			right: 15px;
+			cursor: pointer;
+		}
+
+		.uncommon {
+			background-image: url("@{images}/achievementNotificationBg.jpg");
+			background-repeat: no-repeat;
+			background-position: center top;
+			background-size: cover;
+			text-align: center;
+			cursor: pointer;
+
+			.main-info { 
+				.make-xs-column(12); 
+				background-color: transparent;
+				height: auto;
+				.name {
+					.exo_light(24pt, @blueDark);
+					padding: 0 0 15px 0;
+				}
+				.date {	
+					.opensans_normal(11pt, @greyUltraDark);	
+					padding: 0 0 15px 0;
+				}
+			}
+
+			.additional-info { .hidden(); }
+		}
+	}
+}

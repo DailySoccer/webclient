@@ -13,7 +13,10 @@ class DateTimeService {
   static DateTime get now => _instance._internalNow;
   static DateTime fromMillisecondsSinceEpoch(int millisecondsSinceEpoch) => new DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch, isUtc: _UTC);
   static String get today => formatDateWithDayOfTheMonth(now);
-  
+
+  // Se considera que está OK si estamos en Producción o se ha recibido una respuesta del servidor (sobre si está activo el simulador)
+  static bool get isReady => HostServer.isProd || (_instance != null && _instance._simulatorStateReceived);
+
   DateTimeService(this._server, this._refreshTimersService) {
     if (_instance != null)
       throw new Exception("WTF 1233");
@@ -79,6 +82,12 @@ class DateTimeService {
                      : hours + ":" + minutes + ":" + seconds;
   }
 
+  static void setFakeDateTime(DateTime fakeDateTime) {
+    _instance._simulatorActivated = true;
+    _instance._simulatorStateReceived = true;
+    _instance._fakeDateTime = fakeDateTime;
+  }
+
   void _updateSimulatorState() {
     _server.getSimulatorState()
       .then((jsonMap) {
@@ -99,6 +108,8 @@ class DateTimeService {
         if (_simulatorActivated) {
           _fakeDateTime = fromMillisecondsSinceEpoch(jsonMap["currentDate"]);
         }
+
+        _simulatorStateReceived = true;
       });
   }
 
@@ -112,6 +123,7 @@ class DateTimeService {
 
   DateTime _fakeDateTime;
   bool _simulatorActivated = false;
+  bool _simulatorStateReceived = false;
 
   ServerService _server;
   RefreshTimersService _refreshTimersService;

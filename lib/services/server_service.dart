@@ -7,6 +7,8 @@ import 'package:logging/logging.dart';
 import 'package:webclient/services/server_error.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'dart:html';
+import 'package:webclient/services/tutorial_service.dart';
+import 'package:webclient/models/contest.dart';
 
 
 abstract class ServerService {
@@ -24,6 +26,7 @@ abstract class ServerService {
   Future<Map> getUserProfile();
   Future<Map> changeUserProfile(String firstName, String lastName, String email, String nickName, String password);
   Future<Map> askForPasswordReset(String email);
+  Future<Map> removeNotification(String notificationId);
 
   // Conseguir la lista de Contests Active/Live/History en los que esté inscrito el User
   Future<Map> getMyContests();
@@ -36,11 +39,15 @@ abstract class ServerService {
   Future<Map> getMyContestEntry(String contestId);
   Future<Map> countMyLiveContests();
 
+  // Template Contests
+  Future<Map> getActiveTemplateContests();
+  Future<Map> createContest(Contest contest, List<String> soccerPlayers);
+
   // Active Contests
   Future<Map> getActiveContests();
   Future<Map> getActiveContest(String contestId);
-  Future<Map> addContestEntry(String contestId, List<String> soccerPlayers);
-  Future<Map> editContestEntry(String contestEntryId, List<String> soccerPlayers);
+  Future<Map> addContestEntry(String contestId, String formation, List<String> soccerPlayers);
+  Future<Map> editContestEntry(String contestEntryId, String formation, List<String> soccerPlayers);
   Future<Map> cancelContestEntry(String contestEntryId);
   Future<Map> getContestInfo(String contestId);
 
@@ -122,6 +129,10 @@ class DailySoccerServer implements ServerService {
     return _innerServerCall("${HostServer.url}/ask_for_password_reset", postData: {'email': email});
   }
 
+  Future<Map> removeNotification(String notificationId) {
+    return _innerServerCall("${HostServer.url}/remove_notification/$notificationId");
+  }
+
   Future<Map> getUserProfile() {
     return _innerServerCall("${HostServer.url}/get_user_profile", cancelIfChangeContext: false);
   }
@@ -166,6 +177,25 @@ class DailySoccerServer implements ServerService {
     return _innerServerCall("${HostServer.url}/count_my_live_contests");
   }
 
+  Future<Map> getActiveTemplateContests() {
+    return _innerServerCall("${HostServer.url}/get_active_templatecontests");
+  }
+
+  Future<Map> createContest(Contest contest, List<String> soccerPlayers) {
+    String jsonSoccerPlayers = JSON.encode(soccerPlayers);
+
+    Map postData = {
+      'templateContestId': contest.templateContestId,
+      'name': contest.name,
+      'millisecondsSinceEpoch': contest.startDate.millisecondsSinceEpoch,
+      'simulation': contest.isSimulation,
+      'maxEntries': contest.maxEntries,
+      'soccerTeam': jsonSoccerPlayers
+    };
+
+    return _innerServerCall("${HostServer.url}/create_contest", postData: postData);
+  }
+
   Future<Map> getActiveContests() {
     return _innerServerCall("${HostServer.url}/get_active_contests");
   }
@@ -174,14 +204,14 @@ class DailySoccerServer implements ServerService {
     return _innerServerCall("${HostServer.url}/get_active_contest/$contestId");
   }
 
-  Future<Map> addContestEntry(String contestId, List<String> soccerPlayers) {
+  Future<Map> addContestEntry(String contestId, String formation, List<String> soccerPlayers) {
     String jsonSoccerPlayers = JSON.encode(soccerPlayers);
-    return _innerServerCall("${HostServer.url}/add_contest_entry", postData: {'contestId': contestId, 'soccerTeam': jsonSoccerPlayers});
+    return _innerServerCall("${HostServer.url}/add_contest_entry", postData: {'contestId': contestId, 'formation': formation, 'soccerTeam': jsonSoccerPlayers});
   }
 
-  Future<Map> editContestEntry(String contestEntryId, List<String> soccerPlayers) {
+  Future<Map> editContestEntry(String contestEntryId, String formation, List<String> soccerPlayers) {
     String jsonSoccerPlayers = JSON.encode(soccerPlayers);
-    return _innerServerCall("${HostServer.url}/edit_contest_entry", postData: {'contestEntryId': contestEntryId, 'soccerTeam': jsonSoccerPlayers});
+    return _innerServerCall("${HostServer.url}/edit_contest_entry", postData: {'contestEntryId': contestEntryId, 'formation': formation, 'soccerTeam': jsonSoccerPlayers});
   }
 
   Future<Map> cancelContestEntry(String contestEntryId) {
@@ -273,6 +303,13 @@ class DailySoccerServer implements ServerService {
    * This is the only place where we call our server (except the LoggerExceptionHandler)
    */
   Future<Map> _innerServerCall(String url, {Map queryString:null, Map postData:null, int retryTimes: -1, bool cancelIfChangeContext: true}) {
+
+    if (TutorialService.isActivated && TutorialService.Instance.isServerCallLocked(url, postData: postData)) {
+      if (!url.contains("get_simulator_state")) {
+        print("Tutorial: $url");
+      }
+      return TutorialService.Instance.serverCall(url, postData: postData);
+    }
 
     // Cuando cambiamos de contexto no queremos reutilizar ningún completer "antiguo"
     if (_context != _pendingCallsContext) {
@@ -442,7 +479,6 @@ class DailySoccerServer implements ServerService {
   String _sessionToken;
   String _currentVersion;
   bool _allFuturesCancelled = false;
-
 
   int _pendingCallsContext = 0;
   Map<String, Completer> _pendingCalls = new Map<String, Completer>();

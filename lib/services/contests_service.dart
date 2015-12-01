@@ -8,6 +8,7 @@ import "package:webclient/services/profile_service.dart";
 import "package:webclient/services/prizes_service.dart";
 import "package:webclient/models/contest.dart";
 import 'package:logging/logging.dart';
+import 'package:webclient/models/template_contest.dart';
 
 
 @Injectable()
@@ -29,6 +30,37 @@ class ContestsService {
 
   ContestsService(this._server, this._profileService, this._prizesService);
 
+  Future createContest(Contest contest, List<String> soccerPlayers) {
+    // Al crear un contest se nos devuelve el contest recientemente creado
+    return _server.createContest(contest, soccerPlayers)
+      .then((jsonMap) {
+        _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
+        return lastContest;
+      });
+  }
+
+  Future refreshMyCreateContest(String contestId) {
+    Completer completer = new Completer();
+
+    // TODO: Actualmente un contest recién creado lo deberíamos haber recibido en la propia query de la creación
+    Contest contest = getContestById(contestId);
+    if (contest != null) {
+      completer.complete(true);
+    }
+    else {
+      completer.completeError(false);
+    }
+
+    return completer.future;
+  }
+
+  Future getActiveTemplateContests() {
+    return _server.getActiveTemplateContests()
+      .then((jsonMap) {
+        return TemplateContest.loadTemplateContestsFromJsonObject(jsonMap);
+      });
+  }
+
   Future refreshActiveContests() {
     return _server.getActiveContests()
       .then((jsonMap) {
@@ -43,8 +75,8 @@ class ContestsService {
       });
   }
 
-  Future addContestEntry(String contestId, List<String> soccerPlayerIds) {
-    return _server.addContestEntry(contestId, soccerPlayerIds)
+  Future addContestEntry(String contestId, String formation, List<String> soccerPlayerIds) {
+    return _server.addContestEntry(contestId, formation, soccerPlayerIds)
       .then((jsonMap) {
         String contestId = jsonMap["contestId"];
 
@@ -81,8 +113,8 @@ class ContestsService {
       });
   }
 
-  Future editContestEntry(String contestId, List<String> soccerPlayerIds) {
-    return _server.editContestEntry(contestId, soccerPlayerIds)
+  Future editContestEntry(String contestId, String formation, List<String> soccerPlayerIds) {
+    return _server.editContestEntry(contestId, formation, soccerPlayerIds)
       .then((jsonMap) {
         Logger.root.info("response: " + jsonMap.toString());
       });

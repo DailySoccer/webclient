@@ -9,6 +9,7 @@
 
 }
 #usersListRoot {
+	background-color: @white;	
 	.user-select(none);
 	.user-row {
 		.make-row(0);
@@ -84,6 +85,7 @@
 		overflow: hidden;
 
 		.users-header {
+			background-color: @white;
 			padding: 10px 50px 0px 15px;
 			height: 75px;				// +border del padre => 76
 			h1 { .exo_light(14pt, @greyDark); margin: 0px;}
@@ -105,6 +107,18 @@
 			// Para que la header quede centrada respecto a las rows, 
 			// puesto que en desktop las rows tienen la scrollbar a la derecha
 			padding-right: 15px;	
+		}
+	}
+	.invite-friends-wrapper {
+		h1 {
+			margin-top: 10px;
+			margin-bottom: 5px;
+		}
+		.invite-friends {
+			.exo_bold(12pt, @blueLight);
+			margin: 0;
+			text-align: center;
+			cursor: pointer;
 		}
 	}
 }

@@ -1,22 +1,55 @@
 <div id="mainShopCompWrapper">
 
-  <div class="items-wrapper">  
-    <div ng-repeat="item in shops" class="shop-item" ng-click="openShop(item.name)">
-      <div class="slot-base">        
-        <div class="shop-item-left"></div>
-        <div class="shop-item-middle"></div>      
-        <div class="shop-item-right"></div>        
-      </div>
-      <div class="shop-item-pattern"></div>
-      <div class="slot-content">    
-        <img class="item-icon" ng-src="{{item.image}}">
-        <span class="shop-item-info" ng-bind-html="'<span>'+item.description+'</span>'"></span>
-      </div>   
+  <div class="default-section-header">{{getLocalizedText('name')}}</div>
+  
+  <div class="content">
+  
+    <div class="money-layout">        
+        <div class="money-tile-wrapper" ng-repeat="item in goldProducts">
+          <div class="tile">
+            <div class="header">
+              <span class="title">{{item.description}}</span>
+            </div>
+            <div class="content">
+              <img class="gold-icon" ng-src="{{item.captionImage}}">
+              <div class="content-info">
+                <span class="gold-quantity">{{item.quantity}}</span>
+                <div class="price-wrapper">
+                  <div class="free-increment" ng-if="item.freeIncrement > 0">
+                    <span class="free-increment-count">{{item.freeIncrement}}</span>
+                    <span class="free-increment-desc">{{getLocalizedText('free')}}</span>
+                  </div>
+                  <div class="button-wrapper">
+                    <button class="price" ng-click="buyGold(item.id)">{{item.price}}</button>
+                  </div>
+                </div>                
+              </div>
+              <img ng-src="{{getLocalizedText('mostpopularimagesource')}}" class="gold-item-popular" ng-if="item.isMostPopular">
+            </div>            
+          </div>
+        </div>
     </div>
-  
-    <!-- Punto de insercion de nuestra ruta hija contest-info (modal) -->
-    <ng-view ng-show="!loadingService.isLoading"></ng-view>
-  
+    
+    <div class="energy-layout">
+      <div class="energy-tiles-wrapper">
+        <div class="tile">
+          <div class="energy-items" ng-repeat="energyItem in energyProducts">
+            <div class="energy-separator" ng-if="$index > 0"></div>
+            <div ng-class="{'no-purchasable': !energyItem.purchasable}" class="product" ng-if="energyItem.price != null || timeLeft != ''">
+              <img class="energy-icon" ng-src="{{energyItem.captionImage}}">
+              <div class="energy-description">{{energyItem.description}}</div>
+              <div ng-switch="energyItem.purchasable">
+                <div class="button-wrapper" ng-switch-when="true">
+                  <button class="refill-button" ng-click="buyEnergy(energyItem.id)">
+                    <span class="quantity">{{energyItem.price}}</span>
+                  </button>
+                </div>
+                <span ng-switch-when="false" class="product-time-left">{{timeLeft}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  
-</div>
+</div> 

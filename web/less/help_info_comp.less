@@ -1,24 +1,49 @@
 #helpInfo {
+	how-it-works {
+		display: block;
+	}
 
 	.block-dark {
 		background-color: @tramaBlue;
 		padding-bottom: 40px;
 	}
+
 	.block-light {
 		background-color: @white;
 		padding-bottom: 40px;
 	}
+
 	.title {
-		.exo_light(20pt, @blueDark);
+		.exo_light(30pt, @blueLight);
 		padding: 16px 10px 12px;
 		text-align: center;
+
+		.help-point { 
+			border: 1px solid @blueLight;
+			border-radius: 1000px;
+			margin-right: 5px;
+			width: 60px;
+			display: inline-block;
+		}
 	}
 
 	.description {
-		.opensans_normal(10pt, @greyDark);
+		.opensans_normal(10pt, @greyUltraDark);
 		text-align: center;
-		padding: 20px 10px; 
+		padding: 0 20px 10px 20px;
+		
+		.capital-icon {
+			margin-top: 15px;
+		}
+		ul {
+			display: inline-block;
+			li {
+				.opensans_normal(10pt, @greyUltraDark);
+				list-style-type: none;
+			}
+		}
 	}
+
 	.img-wrapper {
 		max-width: 829px;
 		margin: 0 auto;

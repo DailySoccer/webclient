@@ -19,6 +19,8 @@ import 'package:webclient/utils/translate_config.dart';
     useShadowDom: false
 )
 class LoginComp implements ShadowRootAware {
+  static const String PATH_IF_SUCCESS = "home";
+  static const String PATH_IF_FAIL = "home";
 
   String emailOrUsername = "";
   String password = "";
@@ -36,8 +38,8 @@ class LoginComp implements ShadowRootAware {
       return str;
     }
 
-  LoginComp(this._router, this._profileManager, this.loadingService, this._rootElement, this._scrDet) {
-    _fbLogin = new FBLogin(_router, _profileManager, () => isModal ? ModalComp.close() : _router.go('lobby', {}));
+  LoginComp(this._router, this._profileService, this.loadingService, this._rootElement, this._scrDet) {
+    _fbLogin = new FBLogin(_router, _profileService, () => isModal ? ModalComp.close() : _router.go(PATH_IF_SUCCESS, {}));
   }
 
   @override void onShadowRoot(emulatedRoot) {
@@ -54,13 +56,13 @@ class LoginComp implements ShadowRootAware {
     _loginErrorSection.style.display = "none";
     _enabledSubmit = false;
 
-    _profileManager.login(emailOrUsername, password)
+    _profileService.login(emailOrUsername, password)
         .then((_) {
           GameMetrics.logEvent(GameMetrics.LOGIN_SUCCESSFUL);
-          _profileManager.finishTutorial();
+          // _profileService.finishTutorial();
 
           loadingService.isLoading = false;
-          isModal ? ModalComp.close() : _router.go('lobby', {});
+          isModal ? ModalComp.close() : _router.go(PATH_IF_SUCCESS, {});
         })
         .catchError((ServerError error) {
           loadingService.isLoading = false;
@@ -85,7 +87,7 @@ class LoginComp implements ShadowRootAware {
         break;
 
       case "CANCEL":
-        isModal ? ModalComp.close() : _router.go('lobby', {});
+        isModal ? ModalComp.close() : _router.go(PATH_IF_FAIL, {});
         break;
 
       case "REMEMBER_PASSWORD":
@@ -115,7 +117,7 @@ class LoginComp implements ShadowRootAware {
   FBLogin _fbLogin;
 
   Router _router;
-  ProfileService _profileManager;
+  ProfileService _profileService;
   Element _rootElement;
   Element _loginErrorSection;
   Element _loginErrorLabel;

@@ -13,6 +13,7 @@ import 'dart:html';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/server_error.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/services/tutorial_service.dart';
 
 @Component(
    selector: 'view-contest-entry',
@@ -35,21 +36,26 @@ class ViewContestEntryComp {
 
   String get _getKeyForCurrentUserContest => (_profileService.isLoggedIn ? _profileService.user.userId : 'guest') + '#' + contest.contestId;
 
+  bool get showInviteButton => true;
+  
   // A esta pantalla entramos de varias maneras:
   bool get isModeViewing => _viewContestEntryMode == "viewing"; // Clickamos "my_contests->proximos->ver".
   bool get isModeCreated => _viewContestEntryMode == "created"; // Acabamos de crearla a traves de enter_contest
   bool get isModeEdited  => _viewContestEntryMode == "edited";  // Venimos de editarla a traves de enter_contest.
   bool get isModeSwapped => _viewContestEntryMode == "swapped"; // Acabamos de crearla pero el servidor nos cambio a otro concurso pq el nuestro estaba lleno.
-
+  
   String getLocalizedText(key, [Map substitutions]) {
     return StringUtils.translate(key, "viewcontestentry", substitutions);
   }
 
-  ViewContestEntryComp(this._routeProvider, this.scrDet, this._contestsService, this._profileService, this._router, this.loadingService) {
+  ViewContestEntryComp(this._routeProvider, this.scrDet, this._contestsService,
+                       this._profileService, this._router, this.loadingService, TutorialService tutorialService) {
     loadingService.isLoading = true;
 
     _viewContestEntryMode = _routeProvider.route.parameters['viewContestEntryMode'];
     contestId = _routeProvider.route.parameters['contestId'];
+
+    tutorialService.triggerEnter("view_contest_entry");
 
     _contestsService.refreshMyContestEntry(contestId)
       .then((_) {
@@ -102,6 +108,20 @@ class ViewContestEntryComp {
       });
   }
 
+  void onInviteFriends() {
+    String theBasicUrl = window.location.toString().split("#")[0];
+    String theUrl = "${theBasicUrl}#/enter_contest/lobby/${contest.contestId}/none";
+    
+    modalShow(      "Invita a tus amigos",
+                    theUrl,
+                    onOk: "Copiado",
+                    modalSize: "lg",
+                    type: 'welcome'
+                 )
+                 .then((resp){
+                  });
+  }
+  
   Router _router;
   RouteProvider _routeProvider;
 

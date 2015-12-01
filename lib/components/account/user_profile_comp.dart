@@ -56,8 +56,18 @@ class UserProfileComp {
         'points': u.earnedMoney
         }).toList();
 
-      playerSkillInfo = pointsUserList.firstWhere( (Map u1) => userData.userId == u1['id'] );
-      playerMoneyInfo = moneyUserList.firstWhere( (Map u1) => userData.userId == u1['id'] );
+      playerSkillInfo = pointsUserList.firstWhere( (Map u1) => userData.userId == u1['id'], orElse:  () => {
+        'position': pointsUserList.length,
+        'id': "<unknown>",
+        'name': "<unknown>",
+        'points': 0
+      });
+      playerMoneyInfo = moneyUserList.firstWhere( (Map u1) => userData.userId == u1['id'], orElse:  () => {
+        'position': moneyUserList.length,
+        'id': "<unknown>",
+        'name': "<unknown>",
+        'points': 0
+      });
 
       loadingService.isLoading = false;
     });

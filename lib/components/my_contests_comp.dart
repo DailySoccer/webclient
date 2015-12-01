@@ -11,6 +11,7 @@ import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/server_error.dart';
 import 'dart:async';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/services/tutorial_service.dart';
 
 @Component(
   selector: 'my-contests',
@@ -64,11 +65,14 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
     return StringUtils.translate(key, "mycontest");
   }
 
-  MyContestsComp(this.loadingService, this._profileService, this._refreshTimersService, this.contestsService, this._router, this._routeProvider, this._flashMessage, this._rootElement) {
+  MyContestsComp(this.loadingService, this._profileService, this._refreshTimersService, this.contestsService, this._router, this._routeProvider,
+                     this._flashMessage, this._rootElement, TutorialService tutorialService) {
 
     loadingService.isLoading = true;
 
     _tabSelected = TAB_LIVE;
+
+    tutorialService.triggerEnter("my-contests");
 
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
   }
@@ -125,6 +129,7 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
     //Cambiamos el activo del tab
     _rootElement.querySelectorAll("#myContestMenuTabs li").classes.remove('active');
     _rootElement.querySelector("#" + tab.replaceAll("content", "tab")).classes.add("active");
+    
     //Cambiamos el active del tab-pane
     querySelectorAll(".tab-pane").classes.remove("active");
     querySelector("#" + tab).classes.add("active");

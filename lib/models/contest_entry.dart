@@ -8,13 +8,20 @@ import 'package:webclient/models/money.dart';
 import 'package:webclient/services/contest_references.dart';
 
 class ContestEntry {
+  static const String FORMATION_442 = "442";
+  static const String FORMATION_352 = "352";
+  static const String FORMATION_433 = "433";
+  static const String FORMATION_343 = "343";
+  static const String FORMATION_451 = "451";
+
   String contestEntryId;
 
   User user;
   Contest contest;
 
-  List<InstanceSoccerPlayer> instanceSoccerPlayers;
-  List<InstanceSoccerPlayer> soccerPlayersPurchased;
+  String formation = FORMATION_442;
+  List<InstanceSoccerPlayer> instanceSoccerPlayers = [];
+  List<InstanceSoccerPlayer> soccerPlayersPurchased = [];
 
   int position;
   Money prize;
@@ -46,6 +53,8 @@ class ContestEntry {
   ContestEntry.initFromJsonObject(Map jsonMap, ContestReferences references, Contest theContest) {
     contestEntryId = jsonMap["_id"];
     user = references.getUserById(jsonMap["userId"]);
+
+    formation = (jsonMap.containsKey("formation")) ? jsonMap["formation"] : FORMATION_442;
 
     // Enviado únicamente cuando se envíe usando jsonView.FullContest
     if (jsonMap.containsKey("soccerIds")) {

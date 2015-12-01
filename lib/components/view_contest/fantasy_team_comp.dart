@@ -14,7 +14,7 @@ import 'package:webclient/models/field_pos.dart';
            useShadowDom: false)
 class FantasyTeamComp implements DetachAware {
 
-  List<dynamic> slots = null;
+    List<dynamic> slots = null;
 
     String get owner => isOpponent? "opponent" : "me";
 
@@ -78,10 +78,10 @@ class FantasyTeamComp implements DetachAware {
 
       slots = new List<dynamic>();
       /***** debug ***/
-      FieldPos.LINEUP.forEach((pos) {
+      /*FieldPos.LINEUP.forEach((pos) {
         slots.add(null);
-      });
-
+      });*/
+      
       _contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
 
         String shortNameTeamA = instanceSoccerPlayer.soccerTeam.matchEvent.soccerTeamA.shortName;
@@ -101,10 +101,24 @@ class FantasyTeamComp implements DetachAware {
             "stats": instanceSoccerPlayer.printableLivePointsPerOptaEvent
         };
 
-        addPlayerToFantasyTeam(player);
+        slots.add(player);
+        //addPlayerToFantasyTeam(player);
       });
     }
+    /*
+    void addPlayerToFantasyTeam(var soccerPlayer, ContestEntry entry) {
+      // Buscamos el primer slot libre para la posicion que ocupa el soccer player
+      FieldPos theFieldPos = soccerPlayer["fieldPos"];
 
+      for (int c = 0; c < slots.length; ++c) {
+        if (slots[c] == null && FieldPos.FORMATIONS[entry.formation][c] == theFieldPos.value) {
+          slots[c] = soccerPlayer;
+          break;
+        }
+      }
+    }
+    */
+    /* 
     void addPlayerToFantasyTeam(var soccerPlayer) {
       // Buscamos el primer slot libre para la posicion que ocupa el soccer player
       FieldPos theFieldPos = soccerPlayer["fieldPos"];
@@ -116,7 +130,7 @@ class FantasyTeamComp implements DetachAware {
         }
       }
     }
-
+    */
 
 
     void _refreshSlots() {

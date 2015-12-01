@@ -10,6 +10,8 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/utils/html_utils.dart';
+import 'package:webclient/services/tutorial_service.dart';
 
 @Component(
   selector: 'lobbyf2p',
@@ -27,7 +29,8 @@ class LobbyF2PComp implements DetachAware {
   List<Contest> currentContestList;
   List<Map> dayList = new List<Map>();
 
-  LobbyF2PComp(this._router, this._refreshTimersService, this._contestsService, this.scrDet, this.loadingService, this._profileService) {
+  LobbyF2PComp(RouteProvider routeProvider, this._router, this._refreshTimersService,
+      this._contestsService, this.scrDet, this.loadingService, this._profileService, TutorialService tutorialService) {
 
     GameMetrics.logEvent(GameMetrics.LOBBY);
 
@@ -35,8 +38,9 @@ class LobbyF2PComp implements DetachAware {
       loadingService.isLoading = true;
     }
 
-    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST, refreshActiveContest);
+    tutorialService.triggerEnter("lobby");
 
+    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST, refreshActiveContest);
   }
 
   // Rutina que refresca la lista de concursos
@@ -47,18 +51,18 @@ class LobbyF2PComp implements DetachAware {
         loadingService.isLoading = false;
       });
   }
-  
+
   void updateDayList() {
     dayList = new List<Map>();
     contestListByDay = new Map<String,List<Contest>>();
     DateTime current = DateTimeService.now;
     List<Contest> serverContestList = _contestsService.activeContests;
-    
+
     for(int i = 0; i < 7; i++) {
       List<Contest> contestListFiltered = new List<Contest>();
       contestListFiltered.addAll(serverContestList.where((c) => contestIsAtDate(c, current)));
       contestListByDay[_dayKey(current)] = contestListFiltered;
-      
+
       dayList.add({"weekday": current.weekday.toString(), "monthday": current.day, "date": current, "enabled": contestListFiltered.length > 0});
       current = current.add(new Duration(days: 1));
     }
@@ -68,29 +72,24 @@ class LobbyF2PComp implements DetachAware {
       Map firstEnabled = dayList.firstWhere((c) => c['enabled'], orElse: () => null);
       selectedDate = firstEnabled != null? firstEnabled['date'] : DateTimeService.now;
     }
-    
+
     if (contestListByDay != null) {
       currentContestList = contestListByDay[_dayKey(selectedDate)];
     }
   }
-  
+
   bool contestIsAtDate(Contest c, DateTime date) {
-    return (date.day == c.startDate.day && 
-            date.month == c.startDate.month && 
+    return (date.day == c.startDate.day &&
+            date.month == c.startDate.month &&
             date.year == c.startDate.year);
   }
-  
+
 
   // Handler para el evento de entrar en un concurso
   void onActionClick(Contest contest) {
-    if (_profileService.isLoggedIn) {
-      _router.go('enter_contest', { "contestId": contest.contestId, "parent": "lobby", "contestEntryId": "none" });
-    }
-    else {
-      _router.go('enter_contest.welcome', { "contestId": contest.contestId, "parent": "lobby", "contestEntryId": "none" });
-    }
+    _router.go('enter_contest', { "contestId": contest.contestId, "parent": "lobby", "contestEntryId": "none" });
   }
-  
+
   void onSelectedDayChange(DateTime day) {
     selectedDate = day;
     if (contestListByDay != null) {

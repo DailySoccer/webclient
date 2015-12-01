@@ -1,81 +1,215 @@
-#mainShopCompWrapper {
-	.container-fluid();
-	padding: 15px 0;
+.global-shop #mainWrapper {
+	background-color: @white;
+}
 
-	.items-wrapper {
-	 	.make-row(0);
-	 	.shop-item {
-	 		.make-xs-column(12);
-	 		.make-sm-column(6);
-	 		position: relative;
-	 		cursor: pointer;
-	 		height: 80px;
-			margin-top: 10px;
-			@media (max-width: @screen-xs-min) {
-				padding: 0 3px;
-			}
-			.slot-base {
-				height: 80px;
-				.make-shadow(-7px, 6px, 5px, -2px, @greyUltraDark, 0.5);
-				> * {
-					height: 100%;
-					display: inline-block;
-				}
-				.shop-item-left {					
-					width: 104px;
-					background: url("@{images}/shopItemBgLeft.png") no-repeat right;
-				}
-				.shop-item-middle {					
-					left: 119px;
-					right: 195px;
-					@media (max-width: @screen-xs-min) {
-						left: 107px;
-						right: 183px;
+#mainShopCompWrapper {
+	@item-height: 195;
+	@quantity-font-size: 20pt;
+
+	.container-fluid();
+	padding: 0;
+	
+	.gold {
+		.addIcon("icon-coin-lg.png", 27px, 27px);
+		vertical-align: baseline;
+		position: relative;
+		left: 4px;
+		top: 3px;
+	}
+	
+	.header {
+		.make-row(0);
+		.shop-banner {
+			.img-responsive();
+		}
+	}
+	.content {
+		.make-row(0);
+		padding: 15px;
+
+		.money-layout {
+			
+			.make-tile(9, 2, @item-height);
+			height: auto;
+			padding: 0;
+			//background-color: @greyLight;
+		}
+		
+		.money-tile-wrapper {
+			.make-tile(4,1, @item-height);
+			padding: 5px;
+
+			.tile {
+				padding: 0;
+				background-color: transparent;
+				cursor: default;
+				position: relative;
+				background-image: url("@{images}/shopItemBg.jpg");
+				background-repeat: no-repeat;
+				background-position: center top;
+				background-size: cover;
+				border-radius: 10px;
+				.header{
+					height: 35px;
+					text-align: center;
+					position: relative;
+
+					.title {
+						.opensans_bold(11pt, @blueUltraDark);
+						top: 8px;
+						position: relative;
 					}
-					position: absolute;
-					background: url("@{images}/shopItemBgMiddle.png") repeat;
-				}		
-				.shop-item-right {
-					width: 195px;
-					float: right;
-					background: url("@{images}/shopItemBgRight.png") no-repeat left;
 				}
-	 		}
-	 		.shop-item-pattern {
-				position: absolute;
-				right: 15px;
-				left: 15px;
-				@media (max-width: @screen-xs-min) {
-					right: 3px;
-					left: 3px;
+				.content{
+					position: relative;
+					height: 150px;
+
+					.gold-icon{
+						.img-responsive();
+						position: absolute;
+						top: 0;
+						left: 0;
+					}
+					@price-widht: 125px;
+					.content-info {
+						position: absolute;
+						right: 0;
+						top: 0;
+						width: @price-widht;
+						text-align: center;
+						height: 100%;
+
+						.gold-quantity{
+							.exo_light(@quantity-font-size, @blueUltraDark);
+							position: relative;
+							top: 15px;
+							&:after{
+								.gold();
+							}
+						}
+						
+						.price-wrapper{
+							.button-wrapper{
+								display: inline-block;
+								height: 30px;
+								position: absolute;
+								bottom: 15px;
+								width: @price-widht;
+								right: 15px;
+
+								.price {									
+									.btn-primary();
+									.opensans_normal(14pt, @white);
+									width: 100%;									
+								}
+							}
+							.free-increment {
+								.size(68px, 42px);
+								background: url("@{images}/BuyGoldFreeBase.png");
+								position: absolute;
+								bottom: 45px;
+								width: @price-widht;
+								background-position-x: center;
+								background-repeat: no-repeat;
+								right: 15px;
+
+								.free-increment-count {
+									display: block; 
+									padding-top: 1px;
+									.opensans_bold(15pt, @white);
+								}
+
+			              		.free-increment-desc {
+									display: block;
+									.opensans_bold(9pt, @white);
+									position: relative;
+									bottom: 4px;
+			              		}
+			              	}
+						}
+					}
+
+					.gold-item-popular {
+						position: absolute;
+						top: 0;
+						left: 0;
+					}
+
 				}
-				top: 0;
-				height: 80px;
-				background: url("../images/shopItemPattern.png") repeat;
+
 			}
-	 		.slot-content {
-				.item-icon {
-					position: absolute;
-					top: 0;
+		}
+
+		.energy-layout {
+			.make-tile(3, 2, @item-height);
+			padding: 5px;
+
+		}
+
+		.energy-tiles-wrapper {
+			cursor: default;
+			//background-color: @black;
+			//background-image: url("@{images}/energyBg.png");
+			background-color: @blueUltraDark;
+			background-repeat: no-repeat;
+			background-position: center top;
+			border-radius: 10px;
+			height: 380px;
+
+
+			.tile {
+				padding: 0;
+				background-color: transparent;
+				cursor: default;
+				position: relative;
+				min-height: 185px;
+
+				.products {
+					height: 187px;
 				}
-		 		.shop-item-info {
-		 			position: absolute;
-		 			top: 0;
-		 			right: 30px;
-		 			bottom: 0;
-		 			left: 119px;
-		 			@media (max-width: @screen-xs-min) {
-						left: 107px;
-		 			}
-		 			padding-left: 15px;
-		 			padding-right: 15px;
-		 			
-		 			.opensans_normal(10pt, @white);
-		 			display: flex;
-		 			justify-content:center;
-		 			align-items:center;
-		 		}
-		 	}
-	 	}
+				
+				.energy-separator {
+					margin: 30px 20px 18px 25px;
+					border-top: 1px solid @blueLight;
+				}
+
+				.energy-icon {
+					margin: 0 auto;
+					display: block;
+				}
+				.energy-description {
+					.opensans_normal(10pt, @white);
+					text-align: center;
+				}
+				.button-wrapper {
+					padding-top: 15px;
+					max-height: 65px;
+					.refill-button{
+						.btn-primary();
+						margin-right: auto;
+						margin-left: auto;
+						display: block;
+						.quantity {
+							.exo_light(@quantity-font-size, @white);
+							padding: 0 20px;
+							&:after{
+								.gold();
+							}
+						}
+					}
+				}
+				
+				.no-purchasable {
+					padding: 0 10px 18px;
+				}
+
+				.product-time-left {
+					display: block;
+					text-align: center;
+					.exo_light(28pt, @blueLight);
+				}
+				
+			}
+		}
 	}
 }

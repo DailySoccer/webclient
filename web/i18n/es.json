@@ -14,8 +14,8 @@
       "days"                            : " DÍAS ",
       "points"                          : " Puntos ",
       "abrevpoints"                     : " PTOS. "
-    },
-    "date"                              :
+    }
+    ,"date"                             :
     {
       "datewithdayofthemonth"           : "EEE, d MMM",
       "dateshort"                       : "dd/MM",
@@ -23,8 +23,8 @@
       "datetimeshort"                   : "E, HH:mm",
       "datetimelong"                    : "E, dd/MM/yy HH:mm",
       "datetimedayhour"                 : "dd/MM/yy HH:mm"
-    },
-    "weekcalendar"                      :
+    }
+    ,"weekcalendar"                     :
     {
       "1"                               : "L",
       "2"                               : "M",
@@ -33,48 +33,48 @@
       "5"                               : "V",
       "6"                               : "S",
       "7"                               : "D"
-    },
-    "landing"                           :
+    }
+    ,"landing"                          :
     {
       "title"                           : "LIGAS FANTÁSTICAS DIARIAS",
       "subtitle"                        : "Juega siempre que quieras, donde tú quieras y gana premios cada jornada.",
       "buttonplay"                      : "JUEGA AHORA",
       "info1"                           : "Compite contra tus amigos en la Liga, Premier y Champions.",
       "info2"                           : "Crea tu alineación desde tu ordenador, tablet o móvil en segundos.",
-      "info3"                           : "Pagos efectivos en el momento."
-    },
-    "join"                              :
+      "info3"                           : "Recoge tus recompensas al instante."
+    }
+    ,"join"                             :
     {
       "title"                           : "REGÍSTRATE",
       "description"                     : "¿No estás registrado aún? <br> Rellena el formulario.",
       "nickrequires"                    : "Tu nombre debe tener entre @MIN_NICKNAME_LENGTH y @MAX_NICKNAME_LENGTH caracteres.",
       "nick"                            : "Nombre de usuario",
       "invalidnick"                     : "Nombre inválido.",
-      "email"                           : "Correo Electrónico",
-      "invalidemail"                    : "Correo Electrónico Invalido.",
-      "passrequires"                    : "Contraseña: Debe tener al menos @MIN_PASSWORD_LENGTH caracteres. (Escríbela 2 veces).",
+      "email"                           : "Correo electrónico",
+      "invalidemail"                    : "Correo electrónico inválido.",
+      "passrequires"                    : "Contraseña: Debe tener al menos @MIN_PASSWORD_LENGTH caracteres (escríbela 2 veces).",
       "pass"                            : "Contraseña",
-      "repass"                          : "Repite la Contraseña",
-      "invalidpass"                     : "Contraseña Inválida.",
+      "repass"                          : "Repite la contraseña",
+      "invalidpass"                     : "Contraseña inválida.",
       "buttonsignup"                    : "REGÍSTRATE",
       "buttoncancel"                    : "CANCELAR",
-      "registered"                      : "¿Ya estas registrado?",
+      "registered"                      : "¿Ya estás registrado?",
       "loginhere"                       : "¡Accede desde aquí!"
-    },
-    "login"                             :
+    }
+    ,"login"                            :
     {
       "title"                           : "ENTRAR",
       "description"                     : "Introduce tu correo electrónico y contraseña",
-      "email"                           : "Correo Electrónico",
+      "email"                           : "Correo electrónico",
       "pass"                            : "Contraseña",
-      "loginerror"                      : "ERROR: El correo electrónico o la contraseña no son validos. Por favor, revisa los datos.",
+      "loginerror"                      : "ERROR: El correo electrónico o la contraseña no son válidos. Por favor, revisa los datos.",
       "forgotpass"                      : "¿Olvidaste tu contraseña?",
       "buttonlogin"                     : "CONTINUAR",
       "buttoncancel"                    : "CANCELAR",
-      "unregistered"                    : "¿Aún no estas resistrado?",
+      "unregistered"                    : "¿Aún no estás registrado?",
       "signuphere"                      : "¡Regístrate aquí!"
-    },
-    "changepass"                        :
+    }
+    ,"changepass"                       :
     {
       "error503"                        : "ERROR 503",
       "changepass"                      : "CAMBIO DE CONTRASEÑA",
@@ -83,69 +83,71 @@
       "createpass"                      : "Crea una nueva contraseña.",
       "passrequires"                    : "Contraseña: Debe tener al menos @MIN_PASSWORD_LENGTH caracteres. (Escríbela 2 veces).",
       "pass"                            : "Contraseña",
-      "repass"                          : "Repite Contraseña",
+      "repass"                          : "Repite contraseña",
       "buttoncontinue"                  : "CONTINUAR",
       "buttoncancel"                    : "CANCELAR"
-    },
-    "rememberpass"                      :
+    }
+    ,"rememberpass"                      :
     {
       "title"                           : "RECORDAR CONTRASEÑA",
       "confirm_part_1"                  : "Te hemos mandado un correo electrónico a",
       "confirm_part_2"                  : "Revisa la bandeja de entrada de tu correo electrónico y sigue las instrucciones del correo.",
-      "description"                     : "¿Olvidaste tu contraseña? Introduce tu email para recuperarla",
-      "emailrequires"                   : "Intruduce la direccion de correo electrónico con la que te registrarse en EPIC ELEVEN                  :",
-      "email"                           : "Correo Electrónico",
+      "description"                     : "¿Olvidaste tu contraseña? Introduce tu correo electrónico para recuperarla",
+      "emailrequires"                   : "Introduce la dirección de correo electrónico con la que te registraste en EPIC ELEVEN                  :",
+      "email"                           : "Correo electrónico",
       "buttoncontinue"                  : "CONTINUAR",
       "buttoncancel"                    : "CANCELAR",
       "unregistered"                    : "¿Aún no estás registrado?",
       "signuphere"                      : "¡Regístrate aquí!"
-    },
-    "addfunds"                          :
+    }
+    ,"addfunds"                         :
     {
+      "status"                          : "----DEPRECATED----",
       "title"                           : "AÑADIR FONDOS",
-      "description1"                    : "Para jugar a EPIC ELEVEN con dinero real, necesitas añadir fondos a tu cuenta.",
-      "description2"                    : "No te preocupes, podrás retirar los fondos cuando tu quieras de forma gratuita.",
+      "description1"                    : "Para jugar a EPIC ELEVEN con Oro, necesitas añadir fondos a tu cuenta.",
+      "description2"                    : "No te preocupes, podrás retirar los fondos cuando tú quieras de forma gratuita.",
       "minfunds"                        : "El mínimo permitido es de ",
       "addfunds"                        : "Añadir",
       "via"                             : "vía",
       "paypalinfo"                      : "Puedes añadir fondos utilizando tu cuenta de PayPal. El dinero será trasnferido a Fantasy Sports Games S.L.",
       "buttonaddfunds"                  : "Añadir fondos",
       "needhelp"                        : "¿Necesitas ayuda?"
-    },
-    "editprofile"                       :
+    }
+    ,"editprofile"                      :
     {
       "title"                           : "EDITAR PERFIL",
       "name"                            : "Nombre",
-      "lastname"                        : "Primer Apellido",
+      "lastname"                        : "Primer apellido",
       "username"                        : "Nombre de usuario",
-      "mail"                            : "Correo Electrónico",
+      "mail"                            : "Correo electrónico",
       "passrequires"                    : "Contraseña (Rellena ambos campos para actualizar tu contraseña)",
       "pass"                            : "Contraseña",
-      "repass"                          : "Repite la Contraseña",
+      "repass"                          : "Repite la contraseña",
       "notifications"                   : "NOTIFICACIONES",
       "newletternotifications"                        : "ÚLTIMAS NOTICIAS/OFERTAS ESPECIALES",
       "gamenotifications"                             : "NOTIFICACIONES DE JUEGO",
       "transfernotifications"                         : "TRANSFERENCIA DE JUGADORES PROPIAS",
       "buttonsave"                      : "GUARDAR",
       "buttoncancel"                    : "CANCELAR"
-    },
-    "paymentresponse"                   :
+    }
+    ,"paymentresponse"                  :
     {
       "resultok"                        : "Pago completado",
       "resultnook"                      : "Pago cancelado",
       "resultokdesc"                    : "¡Gracias! Tu petición se ha completado con éxito.",
       "resultnookdesc"                  : "La transacción no se ha podido completar. Por favor, revisa los datos introducidos e inténtalo de nuevo."
-    },
-    "transactionhistory"                :
+    }
+    ,"transactionhistory"               :
     {
+      "status"                          : "----DEPRECATED----",
       "title"                           : "HISTORIAL DE TRANSACCIONES",
       "date"                            : "FECHA",
       "id"                              : "ID",
       "subject"                         : "ASUNTO",
       "value"                           : "CANTIDAD",
       "balance"                         : "BALANCE"
-    },
-    "userprofile"                       :
+    }
+    ,"userprofile"                      :
     {
       "title"                           : "Mi cuenta",
       "buttonedit"                      : "EDITAR",
@@ -157,27 +159,88 @@
       "buttonbuy"                       : "Comprar",
       "ranking"                         : "Clasificación",
       "buttonrankingtable"              : "Ver en la tabla"
-    },
-    "leaderboard"                       :
+    }
+    ,"leaderboard"                      :
     {
-      "title"                           : "Clasificación",
+      "title"                           : "Game Center",
+      "trueskill_tab"                   : "Habilidad (@PLAYER_POSITIONº)",
+      "gold_tab"                        : "Monedas (@PLAYER_POSITIONº)",
+      "achievements_tab"                : "Logros (@PLAYER_ACHIEVEMENTS de @TOTAL_ACHIEVEMENTS)",
       "trueskill"                       : "Habilidad",
-      "gold"                            : "Oro",
-      "topgold"                         : "TOP ORO",
-      "topskill"                        : "TOP HABILIDAD",
+      "gold"                            : "Monedas",
+      "topgold"                         : "RÁNKING ORO",
+      "topskill"                        : "RÁNKING HABILIDAD",
       "abrevposition"                   : "Pos.",
       "name"                            : "Nombre"
-    },
-    "withdrawfunds"                     :
+    }
+    ,"achievements"                     :
     {
+      "name_won_virtual_contests_level_1"     : "El Principiante",
+      "desc_won_virtual_contests_level_1"     : "Ganar el primer torneo virtual",
+      "name_won_virtual_contests_level_2"     : "El Hacha",
+      "desc_won_virtual_contests_level_2"     : "Ganar 10 torneos virtuales",
+      "name_played_virtual_contests_level_1"  : "Superentreno",
+      "desc_played_virtual_contests_level_1"  : "Jugar 10 torneos virtuales",
+      "name_fp_virtual_contest_level_1"       : "El Resultón",
+      "desc_fp_virtual_contest_level_1"       : "Puntuar más de 1000 FP con un equipo en un torneo virtual",
+      "name_diff_fp_virtual_contest_level_1"  : "El Míster",
+      "desc_diff_fp_virtual_contest_level_1"  : "Ganar un torneo virtual por más de 200 FP de diferencia",
+      "name_won_official_contests_level_1"    : "El Debutante",
+      "desc_won_official_contests_level_1"    : "Ganar el primer torneo oficial",
+      "name_played_official_contests_level_1" : "La Reválida",
+      "desc_played_official_contests_level_1" : "Jugar 10 torneos oficiales",
+      "name_played_official_contests_level_2" : "La Consolidación",
+      "desc_played_official_contests_level_2" : "Ganar 10 torneos oficiales",
+      "name_fp_official_contest_level_1"      : "La Gloria",
+      "desc_fp_official_contest_level_1"      : "Puntuar más de 1000 FP con un equipo en un torneo oficial",
+      "name_diff_fp_official_contest_level_1" : "Máster",
+      "desc_diff_fp_official_contest_level_1" : "Ganar un torneo oficial por más de 200 FP de diferencia",
+      "name_soccer_player_won_fp_level_1"     : "El Crack",
+      "desc_soccer_player_won_fp_level_1"     : "Un jugador consigue más de 200 FP en un torneo oficial",
+      "name_goalkeeper_saves_shots_level_1"   : "El Santo",
+      "desc_goalkeeper_saves_shots_level_1"   : "Portero hace más de 20 paradas",
+      "name_goalkeeper_0_goal_received"       : "El Autobús",
+      "desc_goalkeeper_0_goal_received"       : "Portero recibe 0 goles",
+      "name_goalkeeper_red_card"              : "El Leñero",
+      "desc_goalkeeper_red_card"              : "Portero expulsado",
+      "name_goalkeeper_goal_scored"           : "Al Ataque",
+      "desc_goalkeeper_goal_scored"           : "Portero hace gol",
+      "name_defender_interceptions_level_1"   : "El Muro",
+      "desc_defender_interceptions_level_1"   : "Defensa hace más de 30 intercepciones",
+      "name_middle_pass_successful_level_1"   : "El Jugón",
+      "desc_middle_pass_successful_level_1"   : "Centrocampista hace más de 70 pases",
+      "name_forward_goal_level_1"             : "El Pistolero",
+      "desc_forward_goal_level_1"             : "Delantero hace más de 4 goles",
+      "name_all_soccer_players_with_fp"       : "El Equipo",
+      "desc_all_soccer_players_with_fp"       : "Todos los jugadores puntúan",
+      "name_true_skill_level_1"               : "Nivel de Skill 1",
+      "desc_true_skill_level_1"               : "Nivel de Skill 1",
+      "name_true_skill_level_2"               : "Nivel de Skill 2",
+      "desc_true_skill_level_2"               : "Nivel de Skill 2",
+      "name_true_skill_level_3"               : "Nivel de Skill 3",
+      "desc_true_skill_level_3"               : "Nivel de Skill 3",
+      "name_true_skill_level_4"               : "Nivel de Skill 4",
+      "desc_true_skill_level_4"               : "Nivel de Skill 4",
+      "name_true_skill_level_5"               : "Nivel de Skill 5",
+      "desc_true_skill_level_5"               : "Nivel de Skill 5",
+      "name_manager_level_3"                  : "Nivel de Manager 3",
+      "desc_manager_level_3"                  : "Nivel de Manager 3",
+      "name_manager_level_4"                  : "Nivel de Manager 4",
+      "desc_manager_level_4"                  : "Nivel de Manager 4",
+      "name_manager_level_5"                  : "Nivel de Manager 5",
+      "desc_manager_level_5"                  : "Nivel de Manager 5"
+    }
+    ,"withdrawfunds"                    :
+    {
+      "status"                          : "----DEPRECATED----",
       "title"                           : "RETIRAR FONDOS",
       "balance"                         : "TU BALANCE ES",
       "withdrawdesc1"                   : "¿Cuánto dinero quieres retirar?",
       "withdrawdesc2"                   : "Solo puedes retirar cantidades superiores a",
       "withdrawfunds"                   : "Retirar fondos",
       "needhelp"                        : "¿Necesitas ayuda?"
-    },
-    "entercontest"                      :
+    }
+    ,"entercontest"                     :
     {
       "tablineup"                       : "Tu alineación",
       "tabcontestinfo"                  : "Información del torneo",
@@ -193,36 +256,39 @@
       "errorcontestnotactiveediting"    : "No es posible modificar tu alineación cuando el torneo ya haya empezado",
       "errormaxplayerssameteamtitle"    : "Jugadores del mismo equipo",
       "errormaxplayerssameteamgeneric"  : "No es posible...",
-      "erroruserbalancenegativetitle"   : "No tienes ORO suficiente",
-      "erroruserbalancenegativegeneric" : "No tienes ORO suficiente para entrar a este concurso. Por favor, ingresa fondos para poder continuar",
+      "erroruserbalancenegativetitle"   : "No tienes Oro suficiente",
+      "erroruserbalancenegativegeneric" : "No tienes Oro suficiente para entrar a este concurso. Por favor, compra ORO para poder continuar",
       "errordefaulttitle"               : "Atención",
-      "errordefaultgeneric"             : "Ha ocurrido un error. No puedes acceder a este torneo en este momento. Inténtalo mas tarde.",
-      "errordefaultediting"             : "Ha ocurrido un error. No puedes modificar tu alineación en este momento. Inténtalo mas tarde.",
-      "alert-no-energy-title"           : "Sin ENERGIA suficiente",
-      "alert-no-gold-title"             : "Sin ORO suficiente",
-      "alert-no-energy-message"         : "No tienes ENERGIA para entrar en el torneo",
+      "errordefaultgeneric"             : "Ha ocurrido un error. No puedes acceder a este torneo en este momento. Inténtalo más tarde.",
+      "errordefaultediting"             : "Ha ocurrido un error. No puedes modificar tu alineación en este momento. Inténtalo más tarde.",
+      "alert-no-energy-title"           : "Sin ENERGÍA suficiente",
+      "alert-no-gold-title"             : "¡No hay Oro!",
+      "alert-no-energy-message"         : "No tienes ENERGÍA para entrar en el torneo",
       "alert-no-gold-message"           : "No tienes ORO para entrar en el torneo",
+      "alert-no-gold-to-buy-message"    : "No tienes ORO para seleccionar al jugador",
       "resource-gold"                   : "ORO",
       "resource-energy"                 : "ENERGÍA",
       "buy-gold-button"                 : "COMPRAR ORO",
       "buy-energy-button"               : "RECARGAR ENERGÍA",
       "alert-user-gold-message"         : "Tienes actualmente @MONEY",
       "alert-no-energy-message"         : "<strong>No tienes suficiente energía</strong><br>para entrar en este torneo."
-    },
-    "lineupselector"                    :
+    }
+    ,"lineupselector"                   :
     {
       "wastedsalarycap"                 : "<strong>Has gastado más presupuesto del permitido</strong><br> Por favor, cambia la alineación para no superar el límite.",
       "maxplayersteam"                  : "<strong>Tienes demasiados jugadores del mismo equipo.</strong><br>No superes el límite de @MAX_PLAYERS_SAME_TEAM jugadores.",
       "not-enough-resources"            : "<strong>¡ATENCIÓN! Algo está fallando...</strong><br> Te falta @RESOURCE para entrar en este torneo.",
-      "add"                             : "AÑADIR "
-    },
-    "matchesfilter"                     :
+      "add"                             : "AÑADIR ",
+      "formation"                       : "Formación",
+      "change"                          : "Cambiar"
+    }
+    ,"matchesfilter"                     :
     {
       "all-matches"                     : "Todos<br>los encuentros",
       "allmatches"                      : "Todos los encuentros",
       "all"                             : "todos"
-    },
-    "soccerplayerlist"                  :
+    }
+    ,"soccerplayerlist"                 :
     {
       "positionabrev"                   : "Pos.",
       "name"                            : "Nombre",
@@ -231,8 +297,8 @@
       "salary"                          : "Salario",
       "search-player"                   : "Buscar jugador...",
       "players"                         : "Jugadores"
-    },
-    "soccerplayerpositions"             :
+    }
+    ,"soccerplayerpositions"            :
     {
       "goalkeeper"                      : "PORTERO",
       "gk"                              : "POR",
@@ -243,8 +309,8 @@
       "forward"                         : "DELANTERO",
       "for"                             : "DEL",
       "all"                             : "TODOS"
-    },
-    "soccerplayerstats"                 :
+    }
+    ,"soccerplayerstats"                :
     {
       "buttoncancel"                    : "CANCELAR",
       "buttonadd"                       : "AÑADIR",
@@ -310,20 +376,22 @@
       "dailyfantasypoints"              : "Daily Fantasy Points",
       "minutes"                         : "Minutos",
       "posessionlost"                   : "Perdidas de balón"
-    },
-    "footer"                            :
+    }
+    ,"footer"                           :
     {
       "help"                            : "AYUDA",
       "legal"                           : "LEGAL",
       "terms"                           : "TÉRMINOS<span> DE USO</span>",
       "privacy"                         : "POLÍTICAS<span> DE PRIVACIDAD</span>",
       "data-provided-by"                : "Datos provistos por"
-    },
-    "mainmenu"                          :
+    }
+    ,"mainmenu"                         :
     {
-      "lobby"                           : "TORNEOS",
-      "mycontest"                       : "MIS TORNEOS",
-      "leaderboard"                     : "CLASIFICACIÓN",
+      "home"                            : "Inicio",
+      "lobby"                           : "Torneos",
+      "mycontest"                       : "Mis torneos",
+      "leaderboard"                     : "Clasificación",
+      "notifications"                   : "Notificaciones",
       "howitworks"                      : "Ayuda",
       "myaccount"                       : "Mi Cuenta",
       "shop"                            : "Tienda",
@@ -334,9 +402,10 @@
       "classification"                  : "Clasificación",
       "howitworks2"                     : "Cómo funciona",
       "logout"                          : "Salir",
-      "login"                           : "Entrar"
-    },
-    "contestlist"                       :
+      "login"                           : "Entrar",
+      "signup"                          : "Regístrate"
+    }
+    ,"contestlist"                      :
     {
       "entryfee"                        : "Precio:",
       "of"                              : "DE",
@@ -345,14 +414,14 @@
       "position"                        : "Puesto:",
       "today"                           : "Hoy",
       "soonHint"                        : "Faltan<br>@TIME min",
-      "verySoonHint"                    : "Falta<br>@TIME"
-    },
-    "contestfilters"                    :
+      "verySoonHint"                    : "Faltan<br>@TIME"
+    }
+    ,"contestfilters"                   :
     {
       "filters"                         : "FILTROS",
-      "competition"                     : "COMPETICIóN",
+      "competition"                     : "COMPETICIÓN",
       "contests"                        : "TORNEOS",
-      "salarycap"                       : "LIMITE DE SALARIO",
+      "salarycap"                       : "LÍMITE DE SALARIO",
       "entryfee"                        : "CUOTA DE ENTRADA",
       "min"                             : "MIN",
       "max"                             : "MAX",
@@ -361,9 +430,9 @@
       "sortby"                          : "Ordenar por",
       "search"                          : "Buscar torneo",
       "availabletip"                    : "Torneos disponibles ",
-      "competitionlaliga"               : "La Liga Española",
-      "competitionpremier"              : "Premier League",
-      "competitionchampions"            : "Champions League",
+      "competitionlaliga"               : "La Liga BBVA",
+      "competitionpremier"              : "Barclays Premier League",
+      "competitionchampions"            : "UEFA Champions League",
       "contestfree"                     : "Gratuito",
       "contestheadtohead"               : "1 contra 1",
       "contestleague"                   : "Liga",
@@ -374,8 +443,8 @@
       "sortbyname"                      : "Nombre",
       "sortbyentryfee"                  : "Cuota",
       "sortbystartdate"                 : "Fecha"
-    },
-    "fantasyteam"                       :
+    }
+    ,"fantasyteam"                      :
     {
       "editlineup"                      : "EDITAR ALINEACIÓN",
       "pos"                             : "POS",
@@ -383,53 +452,54 @@
       "remainingtime"                   : "TIEMPO RESTANTE",
       "close"                           : "CERRAR",
       "owned"                           : "SELECCIONADO"
-    },
-    "teamspanel"                        :
+    }
+    ,"teamspanel"                       :
     {
       "showmatches"                     : "VER PARTIDOS",
       "firsthalf"                       : "1ª Parte - ",
       "secondhalf"                      : "2ª Parte - ",
       "error"                           : "-Err-",
       "finished"                        : "Terminado"
-    },
-    "userlist"                          :
+    }
+    ,"userlist"                         :
     {
       "title"                           : "PARTICIPANTES DEL TORNEO",
+      "invite_text"                     : "Invitar amigos",
       "desc"                            : "Elige un participante para comparar su alineación",
       "pos"                             : "POS",
       "player"                          : "JUGADOR",
       "rt"                              : "T.R.",
       "points"                          : "PUNTOS",
       "prizes"                          : "PREMIOS"
-    },
-    "viewcontest"                       :
+    }
+    ,"viewcontest"                      :
     {
-      "yourlineup"                      : "Tu Alineación",
+      "yourlineup"                      : "Tu alineación",
       "users"                           : "Usuarios",
       "opponent"                        : "Adversario"
-    },
-    "viewcontestentry":
+    }
+    ,"viewcontestentry":
     {
       "created"                         : "¡ENHORABUENA! HAS COMPLETADO TU ALINEACIÓN.",
       "edited"                          : "¡ENHORABUENA! HAS EDITADO TU ALINEACIÓN.",
-      "swapped"                         : "EL TORNEO ESTÁ LLENO, ASI QUE TE HEMOS PUESTO EN OTRO EQUIVALENTE. COMPETIRÁS CON OTROS USUARIOS",
+      "swapped"                         : "EL TORNEO ESTÁ LLENO, ASÍ QUE TE HEMOS PUESTO EN OTRO EQUIVALENTE. COMPETIRÁS CON OTROS USUARIOS",
       "tip"                             : "Recuerda que puedes editar tu alineación tantas veces como quieras hasta que el torneo comience",
-      "yourlineup"                      : "Tu Alineación",
+      "yourlineup"                      : "Tu alineación",
       "users"                           : "Usuarios",
       "backtocontests"                  : "VUELVE A LOS TORNEOS",
       "cancel"                          : "SALIR DEL TORNEO",
-      "alertcanceltitle"                : "Caution!",
-      "alertcancelpaidcontest"          : "Estas a punto de cancelar tu participación en este concurso.<br><br>La entrada que abonaste de @PRICE será devuelta.<br><br>¿Estás seguro de querer abandonar este concurso?<br><br>",
-      "alertcancelcontest"              : "Estas a punto de cancelar tu participación en este concurso.<br><br>¿Estás seguro de querer abandonar este concurso?<br><br>",
+      "alertcanceltitle"                : "¡Atención!",
+      "alertcancelpaidcontest"          : "Estás a punto de cancelar tu participación en este concurso.<br><br>La entrada que abonaste de @PRICE será devuelta.<br><br>¿Estás seguro de querer abandonar este concurso?<br><br>",
+      "alertcancelcontest"              : "Estás a punto de cancelar tu participación en este concurso.<br><br>¿Estás seguro de querer abandonar este concurso?<br><br>",
       "alertbuttonno"                   : "No",
-      "alertbuttonyes"                  : "Si"
-    },
-    "contestheader"                     :
+      "alertbuttonyes"                  : "Sí"
+    }
+    ,"contestheader"                    :
     {
       "entryfee"                        : "CUOTA",
       "prizes"                          : "PREMIOS",
       "finished"                        : "TERMINADO",
-      "startedon"                       : "EMPEZó EL ",
+      "startedon"                       : "EMPEZÓ EL ",
       "startson"                        : "EMPIEZA EL ",
       "verysoon"                        : "EMPIEZA MUY PRONTO ",
       "startsin"                        : "EMPIEZA EN ",
@@ -437,8 +507,8 @@
       "entryfee"                        : "Precio:",
       "prize"                           : "Premio:",
       "position"                        : "Posición:"
-    },
-    "contest"                           :
+    }
+    ,"contest"                          :
     {
       "contestfree"                     : "Gratuito",
       "contestheadtohead"               : "1 contra 1",
@@ -447,8 +517,8 @@
       "salarycap"                       : "Cuota",
       "contenders"                      : "participantes",
       "of"                              : "de"
-    },
-    "contestinfo"                       :
+    }
+    ,"contestinfo"                      :
     {
       "matches"                         : "Partidos",
       "prizes"                          : "Premios",
@@ -461,29 +531,29 @@
       "contenders2"                     : "CONCURSANTES",
       "rulestip"                        : "Elige un equipo de 11 jugadores de los siguientes encuentros.",
       "winnertakesall"                  : "El ganador de lo lleva todo"
-    },
-    "prizes"                            :
+    }
+    ,"prizes"                           :
     {
       "free"                            : "Concurso gratuito. No hay premios",
-      "winnertakesall"                  : "El ganador de lo lleva todo",
+      "winnertakesall"                  : "El ganador se lo lleva todo",
       "first3"                          : "Los 3 primeros consiguen premio",
-      "firstthird"                      : "Los primeros # tienen premios",
-      "fifty"                           : "Los primeros # tienen premios"
-    },
-    "lobby"                             :
+      "firstthird"                      : "El tercio superior de participantes tiene premio",
+      "fifty"                           : "La primera mitad de participantes tiene premio"
+    }
+    ,"lobby"                            :
     {
-      "nextcontest"                     : "PRÓXIMO TORNEOS"
-    },
-    "mycontest"                         :
+      "nextcontest"                     : "PRÓXIMOS TORNEOS"
+    }
+    ,"mycontest"                        :
     {
       "title"                           : "MIS TORNEOS",
       "tablive"                         : "En Directo",
       "tabupcoming"                     : "Próximos",
       "tabhistory"                      : "Histórico",
-      "nolives"                         : "NO ESTÁS JUGANDO NINGúN TORNEO EN ESTE MOMENTO",
+      "nolives"                         : "NO ESTÁS JUGANDO NINGÚN TORNEO EN ESTE MOMENTO",
       "nolivestip1"                     : "ÉCHALE UN VISTAZO A LA LISTA DE TUS ",
       "nolivestip2"                     : "PRÓXIMOS TORNEOS",
-      "nolivestip3"                     : " PARA VER CUANDO EMPIEZAN",
+      "nolivestip3"                     : " PARA VER CUÁNDO EMPIEZAN",
       "tocontest"                       : "IR A LOS TORNEOS",
       "noupcomings"                     : "NO TIENES ALINEACIONES PARA NINGÚN TORNEO<br>EN ESTE MOMENTO",
       "noupcomingstip1"                 : "VE A LA LISTA DE TORNEOS, ELIGE UNO Y EMPIEZA A JUGAR",
@@ -497,22 +567,84 @@
       "hasHistoryContests1"             : "JUGADOS",
       "hasHistoryContests2"             : "GANADOS",
       "hasHistoryContests3"             : "AQUÍ PUEDES CONSULTAR LOS TORNEOS QUE JUGASTE: ALINEACIONES, PARTICIPANTES, PUNTUACIONES…"
-    },
-    "welcome"                           :
+    }
+    ,"tutorial"                         :
     {
-      "tutorialtittlelobby"             : "SELECCIONA UN TORNEO",
-      "tutorialtittleentercontest"      : "SELECCIONA TU ALINEACIÓN",
-      "tutorialtittleviewcontestentry"  : "BIENVENIDO A EPIC ELEVEN",
-      "tutorialtextlobby"               : "Puedes participar en todos los torneos que quieras de La Liga BBVA, Barclays Premier League y UEFA Champions League.",
-      "tutorialtextentercontest"        : "Elije 11 jugadores de la lista sin pasarte del presupuesto.",
-      "tutorialtextviewcontestentry"    : "Ve a “<b>Mis Concursos</b>” para editar tus alineaciones, ver a tu equipo puntuando en directo o para ver tu histórico de concursos. <br> <br> <p class=\"subtitle\">Recuerda: puedes jugar a todos los concursos que quieras y elegir tantas alineaciones como quieras.</p>"
-    },
-    "restricted"                        :
+      "skip-tutorial"                   : "Saltar tutorial",
+      "title-lobby"                     : "SELECCIONA UN TORNEO",
+      "title-entercontest"              : "SELECCIONA TU ALINEACIÓN",
+      "title-viewcontestentry"          : "BIENVENIDO A EPIC ELEVEN",
+      "text-lobby"                      : "Puedes participar en todos los torneos que quieras de La Liga BBVA, Barclays Premier League y UEFA Champions League.",
+      "text-entercontest"               : "Elije 11 jugadores de la lista sin pasarte del presupuesto.",
+      "text-viewcontestentry"           : "Ve a “<b>Mis Concursos</b>” para editar tus alineaciones, ver a tu equipo puntuando en directo o para ver tu histórico de concursos. <br> <br> <p class=\"subtitle\">Recuerda: puedes jugar a todos los concursos que quieras y elegir tantas alineaciones como quieras.</p>",
+      "next"                            : "Continuar"
+    }
+    ,"tutorial_iniciacion"              :
     {
-      "desc"                            : "Lo sentimos, está prohibido ingresar fondos a Epic Eleven desde el pais en el que estás.<br><br>Si piensas que esto se debe a un error y necesitas asistencia, por favor contacta con nosotros a través de <a href=\"mailto:support@epiceleven.com\">support@epiceleven.com</a>",
+      "msg-01"                          : "<span class='modal-body-title'>Bienvenido a Epic Eleven.</span><span class='modal-body-text'> Haz tu equipo ideal alineando jugadores reales de la Liga o Premier y enfréntate en torneos contra otros jugadores.</span>",
+      "msg-02"                          : "Comienza eligiendo un torneo oficial. Participar en los torneos oficiales cuesta oro, pero no te preocupes, esta vez invitamos nosotros.",
+      "msg-02a"                         : "Selecciona este torneo",
+      "msg-02b"                         : "Los torneos oficiales se basan en partidos de la vida real.",
+      "msg-02c"                         : "Elige tu alineación ideal entre todos los jugadores que participaran en esos partidos.",
+      "msg-02d"                         : "Esta es la lista de partidos de este torneo.",
+
+      "msg-02e"                         : "Aqui puedes desplegar la lista de formaciones",
+      "msg-02f"                         : "Estas son las formaciones disponibles, por defecto está seleccionada la 4-4-2",
+      "msg-02g"                         : "Selecciona una formación 4-3-3",
+      "msg-02h"                         : "Al cambiar de formación, cambia el número de jugadores por posición.",
+      "msg-02i"                         : "Por último tenemos la lista de jugadores disponibles para el torneo",
+
+      "msg-03"                          : "Añade este jugador a tu alineación",
+      "msg-03a"                         : "Bien, ya has añadido tu primer jugador",
+      "msg-03b"                         : "Cuando añades un jugador, su salario se descuenta de tu presupuesto",
+      "msg-03c"                         : "Cada jugador, además de su salario requiere un nivel de manager u oro",
+      "msg-03d"                         : "Los jugadores marcados en rojo requieren un nivel de manager superior a tu nivel actual",
+      "msg-03e"                         : "Intenta seleccionar un jugador marcado en rojo",
+      "msg-03f"                         : "Necesitas subir tu nivel de manager compitiendo en torneos de entrenamiento.",
+      "msg-04"                          : "Puedes participar en torneos de entrenamiento siempre que tengas energía.",
+      "msg-04a"                         : "Participa en los torneos de entrenamiento para ganar puntos de manager, que harán subir tu nivel de manager.",
+      "msg-05"                          : "Cada torneo de entrenamiento tiene un coste de energía.",
+      "msg-06"                          : "Selecciona este torneo",
+      "msg-07"                          : "A diferencia de los torneos oficiales, en los torneo de entrenamiento no existe limitación por nivel de manager. Tu única limitación será tu presupuesto.",
+      "msg-08"                          : "Esta vez hemos hecho la alineación por ti, sólo falta un delantero.",
+      "msg-09"                          : "Añade un delantero",
+      "msg-10"                          : "Una vez completada la alineación, si tienes energia, se activa el botón de continuar.",
+      "msg-10a"                         : "Si no tienes energía, siempre podrás comprarla en la tienda.",
+      "msg-10b"                         : "Compra una recarga de energía, esta vez es gratis.",
+      "msg-10c"                         : "Púlsalo para completar tu entrada en el torneo.",
+      "msg-11"                          : "<span class='modal-body-title'>Enhorabuena.</span><span class='modal-body-text'> Acabas de apuntarte a un torneo de entrenamiento.</span>",
+      "msg-12"                          : "Esta es la pantalla de simulación, donde podrás ver en tiempo real cómo se desarrolla el torneo, la puntuación de tus jugadores y tu clasificación frente a los rivales.",
+
+      "msg-13"                          : "Aquí podrás ver los puntos conseguidos por tus jugadores.",
+      "msg-14"                          : "Aquí puedes ver tu puntuación frente a los rivales. Haz clic en el nombre de un rival para ver su alineación.",
+      "msg-15"                          : "Fijate, uno de tus jugadores acaba de conseguir sus primeros puntos.",
+      "msg-16"                          : "<span class='modal-body-title'>¡Enhorabuena, has ganado tu primer torneo!</span><span class='modal-body-text'> Has conseguido puntos de manager y has subido tu nivel de manager.",
+      "msg-17"                          : "<span class='modal-body-title'>Ya estás preparado. </span><span class='modal-body-text'>Regístrate ahora y consigue tus primeras 30 monedas de oro para comenzar tu carrera como manager.</span>"
+    },
+    "tutorial_entrenamiento"            :
+    {
+      "title-lobby"                     : "[ENTRENAMIENTO] SELECCIONA UN TORNEO",
+      "title-entercontest"              : "[ENTRENAMIENTO] SELECCIONA TU ALINEACIÓN",
+      "title-viewcontestentry"          : "[ENTRENAMIENTO] BIENVENIDO A EPIC ELEVEN",
+      "text-lobby"                      : "Puedes participar en todos los torneos que quieras de La Liga BBVA, Barclays Premier League y UEFA Champions League.",
+      "text-entercontest"               : "Elije 11 jugadores de la lista sin pasarte del presupuesto.",
+      "text-viewcontestentry"           : "Ve a “<b>Mis Concursos</b>” para editar tus alineaciones, ver a tu equipo puntuando en directo o para ver tu histórico de concursos. <br> <br> <p class=\"subtitle\">Recuerda: puedes jugar a todos los concursos que quieras y elegir tantas alineaciones como quieras.</p>"
+    }
+    ,"tutorial_oficial"                 :
+    {
+      "title-lobby"                     : "[OFICIAL] SELECCIONA UN TORNEO",
+      "title-entercontest"              : "[OFICIAL] SELECCIONA TU ALINEACIÓN",
+      "title-viewcontestentry"          : "[OFICIAL] BIENVENIDO A EPIC ELEVEN",
+      "text-lobby"                      : "Puedes participar en todos los torneos que quieras de La Liga BBVA, Barclays Premier League y UEFA Champions League.",
+      "text-entercontest"               : "Elije 11 jugadores de la lista sin pasarte del presupuesto.",
+      "text-viewcontestentry"           : "Ve a “<b>Mis Concursos</b>” para editar tus alineaciones, ver a tu equipo puntuando en directo o para ver tu histórico de concursos. <br> <br> <p class=\"subtitle\">Recuerda: puedes jugar a todos los concursos que quieras y elegir tantas alineaciones como quieras.</p>"
+    }
+    ,"restricted"                       :
+    {
+      "desc"                            : "Lo sentimos, está prohibido comprar Oro desde el pais en el que estás.<br><br>Si piensas que esto se debe a un error y necesitas asistencia, por favor contacta con nosotros a través de <a href=\"mailto:support@epiceleven.com\">support@epiceleven.com</a>",
       "gotolobby"                       : "Volver a los concursos"
-    },
-    "scoringrules"                      :
+    }
+    ,"scoringrules"                     :
     {
       "all"                             : "TODOS LOS JUGADORES",
       "goalkeepers"                     : "PORTEROS",
@@ -526,7 +658,7 @@
       "tackle"                          : "Entrada",
       "interception"                    : "Intercepción",
       "save"                            : "Parada",
-      "saveshot"                       : "Bloqueo de tiro",
+      "saveshot"                        : "Bloqueo de tiro",
       "claim"                           : "Anticipación",
       "clearance"                       : "Despeje",
       "miss"                            : "Tiro fallado",
@@ -553,39 +685,134 @@
       "penaltysaved"                    : "Penalti parado",
       "clean"                           : "Portería a cero",
       "goalconceded"                    : "Gol recibido"
-    },
-    "shop"                              :
+    }
+    ,"shop"                             :
     {
+      "name"                            : "TIENDA",
       "goldshopdescription"             : "Compra Oro y accede a <strong>Torneos Oficiales</strong>",
-      "trainerpointsshopdescription"    : "Aumenta tu nivel de entrenador y ficha a los <strong>mejores jugadores</strong>",
-      "energyshopdescription"           : "Recárgate de energía para acceder a <strong>Torneos de Entrenamiento</strong>"
-    },
-    "goldshop"                          :
-    {
-      "product_gold_1"                  : "CALDERILLA",
-      "product_gold_2"                  : "JEFAZO",
-      "product_gold_3"                  : "OJEADOR",
-      "product_gold_4"                  : "REPRESENTANTE",
-      "product_gold_5"                  : "PRESIDENTE",
-      "product_gold_6"                  : "HOMBRE DE NEGRO",
+      "trainerpointsshopdescription"    : "Aumenta tu Nivel de Mánager y ficha a los <strong>mejores jugadores</strong>",
+      "energyshopdescription"           : "Recárgate de energía para acceder a <strong>Torneos de Entrenamiento</strong>",
       "free"                            : "GRATIS",
-      "buttonback"                      : "Volver",
-      "mostpopularimagesource"          : "images/icon-mas-popular.png"
-    },
-    "energyshop"                        :
-    {
+      "mostpopularimagesource"          : "images/icon-mas-popular.png",
+      "product_gold_1"                  : "CALDERILLA",
+      "product_gold_2"                  : "PILA DE ORO",
+      "product_gold_3"                  : "MONTÓN DE ORO",
+      "product_gold_4"                  : "MALETÍN DE ORO",
+      "product_gold_5"                  : "CAJA FUERTE DE ORO",
+      "product_gold_6"                  : "GRAN BÓVEDA DE ORO",
       "product_maxrefill"               : "Recarga al máximo con:",
       "autorefill"                      : "Recarga +1 automática en:",
+      "alert-user-gold-message"         : "Tienes actualmente @MONEY"
+    }
+    ,"goldshop"                         :
+    {
+      "buttonback"                      : "Volver"
+    }
+    ,"energyshop"                       :
+    {
       "buttonback"                      : "Volver",
-      "alert-no-gold-title"             : "Sin ORO suficiente",
-      "alert-no-gold-message"           : "No tienes ORO para comprar este producto",
-      "buy-gold-button"                 : "COMPRAR ORO",
-      "alert-user-gold-message"         : "Tienes actualmente @MONEY",
-      "erroruserbalancenegativetitle"   : "No tienes ORO suficiente",
-      "erroruserbalancenegativegeneric" : "No tienes ORO suficiente. Por favor, ingresa fondos para poder continuar",
+
+
+      "erroruserbalancenegativetitle"   : "No tienes Oro suficiente",
+      "erroruserbalancenegativegeneric" : "No tienes Oro suficiente. Por favor, compra Oro para poder continuar",
       "errordefaulttitle"               : "Atención",
       "errordefaultgeneric"             : "Ha ocurrido un error. Inténtalo mas tarde."
     }
+    ,"createcontest"                    :
+    {
+      "select_event"                    : "Selecciona Evento",
+      "select_competition_first"        : "Selecciona antes una competición",
+      "name"                            : "Nombre",
+      "create_contest"                  : "Crear torneo",
+      "contest_name_placeholder"        : "Nombre del torneo",
+      "contest_type"                    : "Tipo de torneo",
+      "oficial"                         : "Oficial",
+      "training"                        : "Entrenamiento",
+      "competition"                     : "Competición",
+      "spanish_league"                  : "La liga",
+      "premiere_league"                 : "Premiere",
+      "event"                           : "Evento",
+      "rivals"                          : "Rivales",
+      "head_to_head"                    : "Uno contra uno",
+      "league"                          : "Liga",
+      "no_limit"                        : "Sin límite",
+      "date"                            : "Fecha",
+      "fixed_hour_warning"              : "La fecha de los torneos oficiales es fija",
+      "create_contest_btt"              : "Crear torneo",
+      "matches_title"                   : "Partidos"
+    }
+    ,"home"                             :
+    {
+      "play"                            : "Jugar",
+      "learn_to_play"                   : "Aprende a ganar<br>y comienza tu carrera de manager",
+      "create_contest_title"            : "Reta a tus amigos",
+      "create_contest_text_nolog"       : "Debes estar registrado",
+      "create_contest_text_notut"       : "Primero debes aprender a jugar",
+      "create_contest_text_logNtut"     : "Demuestra quien manda",
 
+      "scouting_title"                  : "Ojeador",
+      "scouting_info"                   : "Próximamente",
+
+      "upcoming_title"                  : "Próximos torneos",
+      "live_title"                      : "Torneos en vivo",
+      "history_title"                   : "Histórico",
+      "mycontest_disabled_info"         : "Todavía no has participado",
+
+      "blog_title"                      : "Palabra de Míster",
+      "blog_info"                       : "EPIC ELEVEN SEASON REVIEW: PREMIER LEAGUE",
+      "blog_author"                     : "Por Salva Carmona",
+
+      "help_title"                      : "Escuela de Entrenadores",
+      "help_info"                       : "Aprende a jugar"
+    }
+    ,"notifications"                    :
+    {
+      "name"                            : "NOTIFICACIONES",
+
+      "NEW_SPECIAL_EVENT_ACTIVE"        : "NEW_SPECIAL_EVENT_ACTIVE",
+      "NEW_OFFER_ACTIVE"                : "NEW_OFFER_ACTIVE",
+
+      "CONTEST_FINISHED"                : "TORNEO TERMINADO",
+      "CONTEST_FINISHED_DESCRIPTION"    : "@NAME: Lorem fistrum te voy a borrar el cerito condemor tiene musho peligro mamaar sexuarl.",
+
+      "DUEL_FINISHED"                   : "DUELO TERMINADO",
+
+      "CONTEST_CANCELLED"               : "TORNEO CANCELADO",
+      "DAILY_CHALLENGE_ENABLED"         : "DAILY_CHALLENGE_ENABLED",
+      "OFICIAL_CONTEST_START"           : "OFICIAL_CONTEST_START",
+      "CONTEST_INVITATIONS"             : "CONTEST_INVITATIONS",
+      "SKILL_LEVEL_UP"                  : "SKILL_LEVEL_UP",
+      "SKILL_LEVEL_DOWN"                : "SKILL_LEVEL_DOWN",
+      "MANAGER_LEVEL_UP"                : "HAS SUBIDO TU NIVEL DE MANAGER",
+      "MANAGER_LEVEL_DOWN"              : "HAS BAJADO TU NIVEL DE MANAGER",
+      "ACHIEVEMENT_EARNED"              : "HAS CONSEGUIDO @NAME",
+      
+      "BUTTON_NEW_SPECIAL_EVENT_ACTIVE" : "Participar",
+      "BUTTON_NEW_OFFER_ACTIVE"         : "Mas información",
+      "BUTTON_CONTEST_FINISHED"         : "Ver resultado",
+      "BUTTON_DUEL_FINISHED"            : "Ver resultado",
+      "BUTTON_CONTEST_CANCELLED"        : "Participar en otro",
+      "BUTTON_DAILY_CHALLENGE_ENABLED"  : "Entrar",
+      "BUTTON_OFICIAL_CONTEST_START"    : "Ver en vivo",
+      "BUTTON_CONTEST_INVITATIONS"      : "Ver",
+      "BUTTON_SKILL_LEVEL_UP"           : "",
+      "BUTTON_SKILL_LEVEL_DOWN"         : "",
+      "BUTTON_MANAGER_LEVEL_UP"         : "",
+      "BUTTON_MANAGER_LEVEL_DOWN"       : "",
+      "BUTTON_ACHIEVEMENT_EARNED"       : ""
+    }
+    ,"howitworks"                       :
+    {
+      "point1title"                     : "<span class=\"help-point\">1</span> Elige un torneo",
+      "point1content"                   : "<img class=\"capital-icon\" src=\"images/iconTrophyGold.png\"><br><strong>Torneos oficiales</strong><br>Cuestan y dan oro y se juegan cuando se celebran los partidos reales asociados<br><img class=\"capital-icon\" src=\"images/iconTrainerBlue.png\"><br><strong>Torneos de entrenamiento</strong><br>Cuestan energía y dan Manager Points. Comienzan a la hora anunciada",
+      "point2title"                     : "<span class=\"help-point\">2</span> Haz tu equipo",
+      "point2content"                   : "<strong>A continuación, selecciona los 11 jugadores de tu equipo<br>sin pasarte del límite salarial. Recuerda:<strong><br><br><br><ul><li>No puedes escoger a más de 4 jugadores del mismo equipo.</li><li>Puedes cambiar tu alineación hasta la hora de comienzo del torneo</li></ul>",
+      "point3title"                     : "<span class=\"help-point\">3</span> Puntúa y gana",
+      "point3content"                   : "<strong>En los torneos oficiales, sigue la evolución de tu equipo</strong><br>en tiempo real cuando hayan comenzado los partidos asociados al torneo.<br>Una vez hayan terminado, puedes consultar el resultado en \"Mis torneos\"",
+      "point3content2"                  : "<strong>Los torneos de entrenamiento se resuelven de forma<br>automática en pocos segundos</strong>",
+      "point4title"                     : "Juega desde donde quieras",
+      "point4description"               : "Es muy fácil jugar a Epic Eleven desde cualquier lugar y con cualquier dispositivo. Puedes seguir la evolución de tu alineación desde tu ordenador, tablet o smartphone con un diseño adaptado a cada dispositivo.",
+      "button-play"                     : "Jugar"
+    }
   }
 }

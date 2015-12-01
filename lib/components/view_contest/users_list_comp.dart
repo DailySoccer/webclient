@@ -28,6 +28,13 @@ class UsersListComp {
   set watch(dynamic value) {
     _refresh();
   }
+  
+  @NgCallback("on-invite-friends")
+  Function onInviteFriends = null;
+  
+  @NgOneWay("show-invite")
+  void set setShowInvite(bool b) { showInvite = b; }
+  bool showInvite = false;
 
   bool get isViewContestEntryMode => _routeProvider.route.name.contains("view_contest_entry");
   bool isMainPlayer(var user) => _profileService.user.userId == user["id"];
@@ -64,7 +71,7 @@ class UsersListComp {
       onRowClick({"contestEntry":user["contestEntry"]});
     }
   }
-
+  
   Contest _contest;
   List<ContestEntry> _contestEntries;
   RouteProvider _routeProvider;

@@ -582,7 +582,7 @@
     ,"tutorial_iniciacion"              :
     {
       "msg-01"                          : "<span class='modal-body-title'>Bienvenido a Epic Eleven.</span><span class='modal-body-text'> Haz tu equipo ideal alineando jugadores reales de la Liga o Premier y enfréntate en torneos contra otros jugadores.</span>",
-      "msg-02"                          : "Comienza eligiendo un torneo oficial. Participar en los torneos cuesta oro, pero no te preocupes, esta vez invitamos nosotros.",
+      "msg-02"                          : "Comienza eligiendo un torneo oficial. Participar en los torneos oficiales cuesta oro, pero no te preocupes, esta vez invitamos nosotros.",
       "msg-02a"                         : "Selecciona este torneo",
       "msg-02b"                         : "Los torneos oficiales se basan en partidos de la vida real.",
       "msg-02c"                         : "Elige tu alineación ideal entre todos los jugadores que participaran en esos partidos.",
@@ -602,8 +602,8 @@
       "msg-03e"                         : "Intenta seleccionar un jugador marcado en rojo",
       "msg-03f"                         : "Necesitas subir tu nivel de manager compitiendo en torneos de entrenamiento.",
       "msg-04"                          : "Puedes participar en torneos de entrenamiento siempre que tengas energía.",
-      "msg-04a"                         : "Participa en los torneos de entrenamiento para ganar prestigio que hará subir tu nivel de manager.",
-      "msg-05"                          : "Cada torneo tiene un coste de energía.",
+      "msg-04a"                         : "Participa en los torneos de entrenamiento para ganar puntos de manager, que harán subir tu nivel de manager.",
+      "msg-05"                          : "Cada torneo de entrenamiento tiene un coste de energía.",
       "msg-06"                          : "Selecciona este torneo",
       "msg-07"                          : "A diferencia de los torneos oficiales, en los torneo de entrenamiento no existe limitación por nivel de manager. Tu única limitación será tu presupuesto.",
       "msg-08"                          : "Esta vez hemos hecho la alineación por ti, sólo falta un delantero.",
@@ -612,13 +612,13 @@
       "msg-10a"                         : "Si no tienes energía, siempre podrás comprarla en la tienda.",
       "msg-10b"                         : "Compra una recarga de energía.",
       "msg-10c"                         : "Púlsalo para completar tu entrada en el torneo.",
-      "msg-11"                          : "<span class='modal-body-title'>Enhorabuena.</span><span class='modal-body-text'> Acabas de apuntarte a un torneo de práctica.</span>",
+      "msg-11"                          : "<span class='modal-body-title'>Enhorabuena.</span><span class='modal-body-text'> Acabas de apuntarte a un torneo de entrenamiento.</span>",
       "msg-12"                          : "Esta es la pantalla de simulación, donde podrás ver en tiempo real cómo se desarrolla el torneo, la puntuación de tus jugadores y tu clasificación frente a los rivales.",
 
       "msg-13"                          : "Aquí podrás ver los puntos conseguidos por tus jugadores.",
       "msg-14"                          : "Aquí puedes ver tu puntuación frente a los rivales. Haz clic en el nombre de un rival para ver su alineación.",
       "msg-15"                          : "Fijate, uno de tus jugadores acaba de conseguir sus primeros puntos.",
-      "msg-16"                          : "<span class='modal-body-title'>¡Enhorabuena, has ganado tu primer torneo!</span><span class='modal-body-text'> Has conseguido n puntos de manager y has subido tu nivel de manager.",
+      "msg-16"                          : "<span class='modal-body-title'>¡Enhorabuena, has ganado tu primer torneo!</span><span class='modal-body-text'> Has conseguido puntos de manager y has subido tu nivel de manager.",
       "msg-17"                          : "Ya estás preparado. Regístrate ahora y consigue tus primeras 30 monedas de oro para comenzar tu carrera como manager.</span>"
     },
     "tutorial_entrenamiento"            :

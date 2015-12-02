@@ -647,7 +647,7 @@ tc.put("packages/webclient/components/account/shop_comp.html", new HttpResponse(
         <div class="tile">
           <div class="energy-items" ng-repeat="energyItem in energyProducts">
             <div class="energy-separator" ng-if="$index > 0"></div>
-            <div ng-class="{'no-purchasable': !energyItem.purchasable}" class="product" ng-if="energyItem.price != null || timeLeft != ''">
+            <div ng-class="{'no-purchasable': !energyItem.purchasable}" class="product">
               <img class="energy-icon" ng-src="{{energyItem.captionImage}}">
               <div class="energy-description">{{energyItem.description}}</div>
               <div ng-switch="energyItem.purchasable">
@@ -656,7 +656,9 @@ tc.put("packages/webclient/components/account/shop_comp.html", new HttpResponse(
                     <span class="quantity">{{energyItem.price}}</span>
                   </button>
                 </div>
-                <span ng-switch-when="false" class="product-time-left">{{timeLeft}}</span>
+                <div class="button-wrapper" ng-switch-when="false">
+                  <span  class="product-time-left" ng-if="timeLeft != ''">{{timeLeft}}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -1043,7 +1045,7 @@ tc.put("packages/webclient/components/create_contest_comp.html", new HttpRespons
                  ng-class="{'disabled-radio': templatesFilteredList[leagueUK_val].length == 0 }"
                  ng-value="leagueUK_val" ng-model="selectedCompetition"
                  ng-disabled="templatesFilteredList[leagueUK_val].length == 0">
-          <label for="contestPremiere"><span class="icon"></span>{{getLocalizedText("premiere_league")}}</label>
+          <label for="contestPremiere"><span class="icon"></span>{{getLocalizedText("premier_league")}}</label>
         </span>
       </div>
     </div>
@@ -1624,7 +1626,7 @@ tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", ne
 </div>
 """));
 tc.put("packages/webclient/components/legalese_and_help/how_it_works_comp.html", new HttpResponse(200, r"""<div id="helpInfo">
-  <div class="block-light">
+  <div class="block-light" id="help-info-1">
     <div class="title" ng-bind-html="getLocalizedText('point1title')"></div>
     <div class="description" ng-bind-html="getLocalizedText('point1content')"></div>
     <div class="img-wrapper">
@@ -1633,7 +1635,7 @@ tc.put("packages/webclient/components/legalese_and_help/how_it_works_comp.html",
     </div>
   </div>
   
-  <div class="block-dark">
+  <div class="block-dark" id="help-info-2">
     <div class="title" ng-bind-html="getLocalizedText('point2title')"></div>
     <div class="description" ng-bind-html="getLocalizedText('point2content')"></div>
     <div class="img-wrapper">
@@ -1642,17 +1644,17 @@ tc.put("packages/webclient/components/legalese_and_help/how_it_works_comp.html",
     </div>
   </div>
   
-  <div class="block-light">
+  <div class="block-light" id="help-info-3">
     <div class="title" ng-bind-html="getLocalizedText('point3title')"></div>
     <div class="description" ng-bind-html="getLocalizedText('point3content')"></div>
     <div class="img-wrapper">
       <img src="images/help04-xs.jpg" ng-if="scrDet.isXsScreen">
-      <img src="images/help04.jpg" ng-if="!scrDet.isXsScreen">
+      <img src="images/help04.png" ng-if="!scrDet.isXsScreen">
     </div>
     <div class="description" ng-bind-html="getLocalizedText('point3content2')"></div>
   </div>
   
-  <div class="block-light">
+  <div class="block-light" id="help-info-4">
     <div class="title" ng-bind-html="getLocalizedText('point4title')"></div>
     <div class="block-last">
       <div class="img-wrapper-left">

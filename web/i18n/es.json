@@ -271,7 +271,8 @@
       "buy-gold-button"                 : "COMPRAR ORO",
       "buy-energy-button"               : "RECARGAR ENERGÍA",
       "alert-user-gold-message"         : "Tienes actualmente: @MONEY",
-      "alert-no-energy-message"         : "<strong>No tienes suficiente energía</strong><br>para entrar en este torneo."
+      "alert-no-energy-message_1"       : "No tienes energía para entrar en este torneo",
+      "alert-no-energy-message_2"       : "Actualmente tienes: @ENERGY"
     }
     ,"lineupselector"                   :
     {
@@ -702,7 +703,7 @@
       "product_gold_6"                  : "GRAN BÓVEDA DE ORO",
       "product_maxrefill"               : "Recarga al máximo con:",
       "refillable"                      : "Recarga +1 automática en:",
-      "no-refillable"                   : "Tienes la energía atope",
+      "no-refillable"                   : "Tienes la energía a tope",
       "alert-user-gold-message"         : "Tienes actualmente @MONEY"
     }
     ,"goldshop"                         :

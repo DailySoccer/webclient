@@ -747,7 +747,7 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
 </div>"""));
 tc.put("packages/webclient/components/achievement_comp.html", new HttpResponse(200, r"""<div class="achievement {{achiev.style}}" ng-class="{'earned': earned}">
   <div class="achievement-icon">
-    <img src="images/achievements/{{achiev.image}}" ng-if="achiev.image != ''">
+    <img ng-src="images/achievements/{{achiev.image}}" ng-if="achiev.image != ''">
     <span class="achievement-level" ng-if="achiev.level != -1">{{achiev.level}}</span>
   </div>
   <div class="achievement-name">{{achiev.name}}</div>

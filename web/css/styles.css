@@ -9333,6 +9333,8 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   padding: 30px 15px 30px 15px;
   background-color: #ecf0f1;
+  text-align: left;
+  background-image: url('../images/BgTitles.jpg');
   background-color: #ffffff;
   padding-bottom: 40px;
   text-transform: uppercase;
@@ -24577,7 +24579,8 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
   text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   padding: 30px 15px 30px 15px;
   background-color: #ecf0f1;
-  text-align: center;
+  text-align: left;
+  background-image: url('../images/BgTitles.jpg');
 }
 @media (max-width: 767px) {
   .default-section-header {

@@ -771,36 +771,48 @@
       "name"                            : "NOTIFICACIONES",
 
       "NEW_SPECIAL_EVENT_ACTIVE"        : "NEW_SPECIAL_EVENT_ACTIVE",
+      "NEW_SPECIAL_EVENT_ACTIVE_BTN"    : "Participar",
+
       "NEW_OFFER_ACTIVE"                : "NEW_OFFER_ACTIVE",
+      "NEW_OFFER_ACTIVE_BTN"            : "Mas información",
 
       "CONTEST_FINISHED"                : "TORNEO TERMINADO",
-      "CONTEST_FINISHED_DESCRIPTION"    : "@NAME: Lorem fistrum te voy a borrar el cerito condemor tiene musho peligro mamaar sexuarl.",
+      "CONTEST_FINISHED_DESCRIPTION"    : "Torneo '@NAME' terminado, consulta tus resultados.",
+      "CONTEST_FINISHED_BTN"            : "Ver resultado",
 
       "DUEL_FINISHED"                   : "DUELO TERMINADO",
+      "DUEL_FINISHED_DESCRIPTION"       : "Duelo '@NAME' terminado, consulta tus resultados.",
+      "DUEL_FINISHED_BTN"               : "Ver resultado",
 
       "CONTEST_CANCELLED"               : "TORNEO CANCELADO",
+      "CONTEST_CANCELLED_DESCRIPTION"   : "El torneo '@NAME' ha sido cancelado.",
+      "CONTEST_CANCELLED_BTN"           : "Participar en otro",
+
       "DAILY_CHALLENGE_ENABLED"         : "DAILY_CHALLENGE_ENABLED",
+      "DAILY_CHALLENGE_ENABLED_BTN"     : "Entrar",
+
       "OFICIAL_CONTEST_START"           : "OFICIAL_CONTEST_START",
+      "OFICIAL_CONTEST_START_BTN"       : "Ver en vivo",
+
       "CONTEST_INVITATIONS"             : "CONTEST_INVITATIONS",
+      "CONTEST_INVITATIONS_BTN"         : "Ver",
+
       "SKILL_LEVEL_UP"                  : "SKILL_LEVEL_UP",
+      "SKILL_LEVEL_UP_BTN"              : "",
+
       "SKILL_LEVEL_DOWN"                : "SKILL_LEVEL_DOWN",
+      "SKILL_LEVEL_DOWN_BTN"            : "",
+
       "MANAGER_LEVEL_UP"                : "HAS SUBIDO TU NIVEL DE MANAGER",
+      "MANAGER_LEVEL_UP_DESCRIPTION"    : "¡Enhorabuena! ha subido tu nivel de manager.",
+      "MANAGER_LEVEL_UP_BTN"            : "",
+
       "MANAGER_LEVEL_DOWN"              : "HAS BAJADO TU NIVEL DE MANAGER",
+      "MANAGER_LEVEL_DOWN_DESCRIPTION"  : "¡Ooops! ha bajado tu nivel de manager.",
+      "MANAGER_LEVEL_DOWN_BTN"          : "",
+
       "ACHIEVEMENT_EARNED"              : "HAS CONSEGUIDO @NAME",
-      
-      "BUTTON_NEW_SPECIAL_EVENT_ACTIVE" : "Participar",
-      "BUTTON_NEW_OFFER_ACTIVE"         : "Mas información",
-      "BUTTON_CONTEST_FINISHED"         : "Ver resultado",
-      "BUTTON_DUEL_FINISHED"            : "Ver resultado",
-      "BUTTON_CONTEST_CANCELLED"        : "Participar en otro",
-      "BUTTON_DAILY_CHALLENGE_ENABLED"  : "Entrar",
-      "BUTTON_OFICIAL_CONTEST_START"    : "Ver en vivo",
-      "BUTTON_CONTEST_INVITATIONS"      : "Ver",
-      "BUTTON_SKILL_LEVEL_UP"           : "",
-      "BUTTON_SKILL_LEVEL_DOWN"         : "",
-      "BUTTON_MANAGER_LEVEL_UP"         : "",
-      "BUTTON_MANAGER_LEVEL_DOWN"       : "",
-      "BUTTON_ACHIEVEMENT_EARNED"       : ""
+      "ACHIEVEMENT_EARNED_BTN"          : ""
     }
     ,"howitworks"                       :
     {
@@ -861,6 +873,6 @@
       "how-it-works"                     : "Cómo funciona",
       "rules"                            : "Reglas"
     }
-    
+
   }
 }

@@ -38,60 +38,67 @@ class UserNotification {
     topic = jsonMap["topic"];
     info = jsonMap.containsKey("info") ? jsonMap["info"] : {};
     createdAt = jsonMap.containsKey("createdAt") ? DateTimeService.fromMillisecondsSinceEpoch(jsonMap["createdAt"]) : DateTimeService.now;
+
+    // Cuando el contest únicamente lo compone 2 usuarios, lo trataremos como un "Duelo"
+    if (topic == CONTEST_FINISHED && info.containsKey("numEntries") && info["numEntries"] == "2") {
+      topic = DUEL_FINISHED;
+    }
+
     name = _generateName();
     description = _generateDescription();
     link = {
       "url": _generateLinkUrl(),
-      "name" : _generateLinkName(jsonMap["topic"])
+      "name" : _generateLinkName(topic)
     };
   }
 
   String _generateName() {
-    String result = null;
+    String name = "";
 
     switch(topic) {
       case ACHIEVEMENT_EARNED:
-        result = getLocalizedText(topic, substitutions:{'NAME': Achievement.getAchievementWithKey(info["achievement"]).name});
+        name = Achievement.getAchievementWithKey(info["achievement"]).name;
         break;
       default:
-        result = getLocalizedText(topic, substitutions:{'NAME': topic});
+        name = topic;
     }
 
-    return result;
+    return getLocalizedText(topic, substitutions:{'NAME': name});
   }
 
   String _generateDescription() {
-    String result = null;
+    String name = "";
+
     switch(topic) {
       case CONTEST_FINISHED:
-        result = getLocalizedText(topic + "_DESCRIPTION", substitutions:{'NAME': info["contestName"]});
+      case CONTEST_CANCELLED:
+      case DUEL_FINISHED:
+        name = info["contestName"];
         break;
-
-      default:
-        result = "Lorem fistrum te voy a borrar el cerito condemor tiene musho peligro mamaar sexuarl.";
     }
-    return result;
+
+    return getLocalizedText(topic + "_DESCRIPTION", substitutions:{'NAME': name});
   }
 
   String _generateLinkUrl() {
     String result = null;
+
     switch(topic) {
       case ACHIEVEMENT_EARNED:
         result = "#/leaderboard/achievements/";
         break;
       case CONTEST_FINISHED:
+      case DUEL_FINISHED:
         result = "#/history_contest/my_contests/${info['contestId']}";
         break;
-
-      case CONTEST_CANCELLED:
-      case MANAGER_LEVEL_UP:
-      case MANAGER_LEVEL_DOWN:
-        break;
+      default:
+        result = '#/lobby';
     }
+
     return result;
   }
 
   String _generateLinkName(String topic) {
-    return getLocalizedText('BUTTON_' + topic);
+    return getLocalizedText(topic + "_BTN");
   }
 }

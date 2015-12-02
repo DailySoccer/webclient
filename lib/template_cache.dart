@@ -817,7 +817,7 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
               <li class="tab active"><a data-toggle="tab" ng-click="tabChange('matches')">{{getLocalizedText("matches")}}</a></li>
               <li class="tab"><a data-toggle="tab" ng-click="tabChange('prizes')">{{getLocalizedText("prizes")}}</a></li>
               <li class="tab"><a data-toggle="tab" ng-click="tabChange('contestants')">{{getLocalizedText("contenders")}}</a></li>
-              <li class="tab"><a data-toggle="tab" ng-click="tabChange('scoring')">{{getLocalizedText("scoringrules")}}</a></li>
+              <!--li class="tab"><a data-toggle="tab" ng-click="tabChange('scoring')">{{getLocalizedText("scoringrules")}}</a></li-->
               <!--<li class="buton-place">
                 <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">ENTER</button>
               </li>-->
@@ -876,12 +876,11 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
               </div>
 
                             <!-- Tab panes -->
-              <div class="tab-pane" id="scoring">
-                  <!--div class="clearfix"></div-->
+              <!--div class="tab-pane" id="scoring">
                   <div class="rules-description">
                     <scoring-rules></scoring-rules>
                   </div>
-              </div>
+              </div-->
 
           </div>
       </div>
@@ -929,13 +928,13 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
       </div>
   </div>
   <div class="clearfix"></div>
-  <div class="info-section"></div>
+  <!--div class="info-section"></div>
 
   <p class="title">{{getLocalizedText("scoringrules").toUpperCase()}}</p>
   <div class="rules-description">
     <scoring-rules></scoring-rules>
   </div>
-  <div class="clearfix"></div>
+  <div class="clearfix"></div-->
 
 </div>
 

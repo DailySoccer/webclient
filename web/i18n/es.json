@@ -812,6 +812,7 @@
       "MANAGER_LEVEL_DOWN_BTN"          : "",
 
       "ACHIEVEMENT_EARNED"              : "HAS CONSEGUIDO @NAME",
+      "ACHIEVEMENT_EARNED_DESCRIPTION"  : "",
       "ACHIEVEMENT_EARNED_BTN"          : ""
     }
     ,"howitworks"                       :

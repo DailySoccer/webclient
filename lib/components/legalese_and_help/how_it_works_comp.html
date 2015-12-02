@@ -1,5 +1,5 @@
 <div id="helpInfo">
-  <div class="block-light">
+  <div class="block-light" id="help-info-1">
     <div class="title" ng-bind-html="getLocalizedText('point1title')"></div>
     <div class="description" ng-bind-html="getLocalizedText('point1content')"></div>
     <div class="img-wrapper">
@@ -8,7 +8,7 @@
     </div>
   </div>
   
-  <div class="block-dark">
+  <div class="block-dark" id="help-info-2">
     <div class="title" ng-bind-html="getLocalizedText('point2title')"></div>
     <div class="description" ng-bind-html="getLocalizedText('point2content')"></div>
     <div class="img-wrapper">
@@ -17,17 +17,17 @@
     </div>
   </div>
   
-  <div class="block-light">
+  <div class="block-light" id="help-info-3">
     <div class="title" ng-bind-html="getLocalizedText('point3title')"></div>
     <div class="description" ng-bind-html="getLocalizedText('point3content')"></div>
     <div class="img-wrapper">
       <img src="images/help04-xs.jpg" ng-if="scrDet.isXsScreen">
-      <img src="images/help04.jpg" ng-if="!scrDet.isXsScreen">
+      <img src="images/help04.png" ng-if="!scrDet.isXsScreen">
     </div>
     <div class="description" ng-bind-html="getLocalizedText('point3content2')"></div>
   </div>
   
-  <div class="block-light">
+  <div class="block-light" id="help-info-4">
     <div class="title" ng-bind-html="getLocalizedText('point4title')"></div>
     <div class="block-last">
       <div class="img-wrapper-left">

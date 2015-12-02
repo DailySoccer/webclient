@@ -22614,6 +22614,8 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
   text-shadow: 1px 1px 1px rgba(67, 67, 67, 0.004);
   text-align: center;
   padding: 0 20px 10px 20px;
+  max-width: 475px;
+  margin: 0 auto;
 }
 #helpInfo .description .capital-icon {
   margin-top: 15px;
@@ -22628,6 +22630,9 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
   color: #434343;
   text-shadow: 1px 1px 1px rgba(67, 67, 67, 0.004);
   list-style-type: none;
+}
+#helpInfo #help-info-1 .description {
+  max-width: none;
 }
 #helpInfo .img-wrapper {
   max-width: 829px;

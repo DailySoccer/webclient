@@ -202,8 +202,10 @@ class ContestsService {
         });
   }
 
-  Future refreshLiveMatchEvents(String templateContestId) {
-    return _server.getLiveMatchEventsFromTemplateContest(templateContestId)
+  Future refreshLiveMatchEvents({String templateContestId: null, String contestId: null}) {
+    return templateContestId != null
+        ? _server.getLiveMatchEventsFromTemplateContest(templateContestId)
+        : _server.getLiveMatchEventsFromContest(contestId)
       .then((jsonMap) {
           jsonMap["content"].forEach((jsonMap) {
             lastContest.matchEvents.firstWhere((matchEvent) => matchEvent.templateMatchEventId == (jsonMap.containsKey("templateMatchEventId") ? jsonMap["templateMatchEventId"] : jsonMap["_id"]))

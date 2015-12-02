@@ -96,14 +96,14 @@ class EnterContestComp implements DetachAware {
   String get printableAvailableSalary => StringUtils.parseSalary(availableSalary);
 
   // Comprobamos si tenemos recursos suficientes para pagar el torneo (salvo que estemos editando el contestEntry)
-  bool get enoughResourcesForEntryFee =>
+  bool get enoughResourcesForEntryFee => 
       contest == null || !_profileService.isLoggedIn || _profileService.user.hasMoney(moneyNeeded);
 
   String get resourceName => contest != null && contest.simulation ? getLocalizedText("resource-energy") : getLocalizedText("resource-gold");
-
+  
   bool playersInSameTeamInvalid = false;
   bool isNegativeBalance = false;
-
+  
   bool get isInvalidFantasyTeam => lineupSlots.any((player) => player == null) || playersInSameTeamInvalid || isNegativeBalance;
   bool get editingContestEntry => contestEntryId != "none";
   bool get isCreatingContest => _parent.contains("create_contest");
@@ -664,7 +664,7 @@ class EnterContestComp implements DetachAware {
      _verifyMaxPlayersInSameTeam();
     }
   }
-
+  
   void alertNotBuy(Money coins) {
     modalShow(
       "",
@@ -687,12 +687,14 @@ class EnterContestComp implements DetachAware {
   }
 
   void alertNotEnoughResources() {
-    modalShow(
+    /*modalShow(
       "",
-      contest.entryFee.isEnergy ? getNotEnoughEnergyContent() : getNotEnoughGoldContent(),
+      (contest.entryFee.isEnergy ? alertNotEnoughEnergyContent() : alertNotEnoughGoldContent()),
       onOk: contest.entryFee.isEnergy ? getLocalizedText('buy-energy-button') : getLocalizedText("buy-gold-button"),
+      onBackdropClick: true,
       closeButton:true
-    )
+    )*/
+    (contest.entryFee.isEnergy ? alertNotEnoughEnergyContent() : alertNotEnoughGoldContent())
     .then((_) {
       // Registramos dónde tendría que navegar al tener éxito en "add_funds"
       window.localStorage[contest.entryFee.isEnergy ? "add_energy_success" : "add_gold_success"] = window.location.href;
@@ -703,23 +705,45 @@ class EnterContestComp implements DetachAware {
     _tutorialService.triggerEnter("alert-not-enough-resources");
   }
 
-  String getNotEnoughGoldContent() {
-    return '''
-    <div class="content-wrapper">
-      <img class="main-image" src="images/iconNoGold.png">
-      <span class="not-enough-resources-count">${coinsNeeded}</span>
-      <p class="content-text">
-        <strong>${getLocalizedText("alert-no-gold-message")}</strong>
-        <br>
-        ${getLocalizedText('alert-user-gold-message', substitutions:{'MONEY': _profileService.user.goldBalance})}
-        <img src="images/icon-coin-xs.png">
-      </p>
-    </div>
-    ''';
+  Future alertNotEnoughGoldContent() {
+    return modalShow(
+          ""
+          , '''
+          <div class="content-wrapper">
+            <h1 class="alert-content-title">${getLocalizedText("alert-no-gold-message")}</h1>
+            <div class="gold-needed-icon-wrapper">
+              <img class="gold-image" src="images/EpicCoinModales.png">
+              <span class="not-enough-resources-count">${coinsNeeded}</span>
+            </div>
+            <h2 class="alert-content-subtitle">${getLocalizedText('alert-user-gold-message', substitutions:{'MONEY': _profileService.user.goldBalance})}<span class="gold-icon-tiny"></span></h2>
+          </div>
+          '''
+          , onOk: getLocalizedText("buy-gold-button")
+          , onBackdropClick: true
+          , closeButton: false
+          , aditionalClass: "noGold"
+        );
   }
 
-  String getNotEnoughEnergyContent() {
-    return '''
+  Future alertNotEnoughEnergyContent() {
+    return modalShow(
+          ""
+          , '''
+          <div class="content-wrapper">
+            <h1 class="alert-content-title">${getLocalizedText("alert-no-energy-message_1")}</h1>
+            <div class="gold-needed-icon-wrapper">
+              <img class="gold-image" src="images/IconEnergyXL.png">
+              <span class="not-enough-resources-count">${moneyNeeded.toInt()}</span>
+            </div>
+            <h2 class="alert-content-subtitle">${getLocalizedText("alert-no-energy-message_2", substitutions:{'ENERGY': _profileService.user.Energy})}<span class="energy-icon-tiny"></span></h2>
+          </div>
+          '''
+          , onOk: getLocalizedText('buy-energy-button')
+          , onBackdropClick: true
+          , closeButton: false
+          , aditionalClass: "noGold"
+        );
+    /*return '''
     <div class="content-wrapper">
       <img class="main-image" src="images/iconNoEnergy.png">
       <div class="energy-bar-wrapper">
@@ -729,7 +753,7 @@ class EnterContestComp implements DetachAware {
       </div>
       <p class="content-text">${getLocalizedText("alert-no-energy-message")}</p>
     </div>
-    ''';
+    ''';*/
   }
 
   String getConfirmButtonText() {

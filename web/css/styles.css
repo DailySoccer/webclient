@@ -13473,6 +13473,7 @@ main-menu-f2p {
 #mainMenu #menuNotLoggedIn .button-wrapper {
   float: left;
   width: 100%;
+  padding: 0;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
@@ -13676,7 +13677,8 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
     font-size: 12pt;
     color: #a1c931;
     text-shadow: 1px 1px 1px rgba(161, 201, 49, 0.004);
-    width: 100px;
+    width: auto;
+    padding: 10px 5px;
   }
   #mainMenu #menuNotLoggedIn .button-wrapper .button-login-flat:hover,
   #mainMenu #menuNotLoggedIn .button-wrapper .button-login-flat:active {
@@ -13719,7 +13721,8 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
     font-size: 12pt;
     color: #afd3e4;
     text-shadow: 1px 1px 1px rgba(175, 211, 228, 0.004);
-    width: 100px;
+    width: auto;
+    padding: 10px 5px;
   }
   #mainMenu #menuNotLoggedIn .button-wrapper .button-signup-flat:hover,
   #mainMenu #menuNotLoggedIn .button-wrapper .button-signup-flat:active {
@@ -13764,7 +13767,8 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
     font-size: 12pt;
     color: #59add5;
     text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
-    width: 100px;
+    width: auto;
+    padding: 10px 5px;
   }
   #mainMenu #menuNotLoggedIn .button-wrapper .button-help-flat:hover,
   #mainMenu #menuNotLoggedIn .button-wrapper .button-help-flat:active {
@@ -13782,6 +13786,7 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
 @media (max-width: 480px) {
   #mainMenu #menuNotLoggedIn .button-wrapper .button-help-flat {
     width: 75px;
+    padding: 10px 0px;
   }
 }
 @media (max-width: 767px) {
@@ -19876,6 +19881,16 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   vertical-align: text-bottom;
   margin-left: 5px;
 }
+#alertRoot.noGold .energy-icon-tiny {
+  content: " ";
+  background-image: url("../images/icon-lightning-lg.png");
+  width: 27px;
+  height: 27px;
+  display: inline-block;
+  vertical-align: middle;
+  vertical-align: text-bottom;
+  margin-left: 5px;
+}
 #alertRoot.noGold .alert-content-subtitle {
   vertical-align: middle;
   font-family: 'Exo', sans-serif;
@@ -22614,6 +22629,8 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
   text-shadow: 1px 1px 1px rgba(67, 67, 67, 0.004);
   text-align: center;
   padding: 0 20px 10px 20px;
+  max-width: 475px;
+  margin: 0 auto;
 }
 #helpInfo .description .capital-icon {
   margin-top: 15px;
@@ -22628,6 +22645,9 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
   color: #434343;
   text-shadow: 1px 1px 1px rgba(67, 67, 67, 0.004);
   list-style-type: none;
+}
+#helpInfo #help-info-1 .description {
+  max-width: none;
 }
 #helpInfo .img-wrapper {
   max-width: 829px;
@@ -23206,12 +23226,24 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
   background-color: #ffffff;
 }
 #achievement-list-wrapper .achievement {
-  position: relative;
   float: left;
-  width: 25%;
+  width: 100%;
+  position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+}
+@media (min-width: 768px) {
+  #achievement-list-wrapper .achievement {
+    float: left;
+    width: 33.33333333%;
+  }
+}
+@media (min-width: 1200px) {
+  #achievement-list-wrapper .achievement {
+    float: left;
+    width: 25%;
+  }
 }
 .achievement {
   text-align: center;

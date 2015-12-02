@@ -193,13 +193,13 @@ Future<bool> modalShow(String title, String content, {String modalSize: "lg",
   modalWindow.querySelectorAll("[eventCallback]").onClick.listen(onButtonClick);
 
   JsUtils.runJavascript('#' + globalRootId, 'modal', null);
-  JsUtils.runJavascript('#' + globalRootId, 'on', {'hidden.bs.modal': (sender) { 
-                                                                        result = onBackdropClick; 
-                                                                        onClose(sender); 
-                                                                      } 
+  JsUtils.runJavascript('#' + globalRootId, 'on', {'hidden.bs.modal': (sender) {
+                                                                        result = result || onBackdropClick;
+                                                                        onClose(sender);
+                                                                      }
                                                   });
   BackdropComp.instance.show();
-  
+
   return completer.future;
 }
 

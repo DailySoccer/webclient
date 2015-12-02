@@ -44,7 +44,7 @@ class FooterComp implements ShadowRootAware {
         <div class="sub-footer">
   
           <div class="logo-wrapper">
-            <a destination="lobby"><img src="images/logoLobbyFooter.png" alt="EPIC ELEVEN"></img></a> <span class="footer-count">&nbsp;</span>
+            <a destination="home"><img src="images/logoLobbyFooter.png" alt="EPIC ELEVEN"></img></a> <span class="footer-count">&nbsp;</span>
           </div>
   
           <div class="data-wrapper">

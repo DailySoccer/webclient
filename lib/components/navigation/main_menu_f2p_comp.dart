@@ -8,6 +8,7 @@ import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'package:intl/intl.dart';
 
 @Component(
     selector: 'main-menu-f2p',
@@ -271,7 +272,21 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     if (!profileService.isLoggedIn) {
       return "";
     }
-    return profileService.user.Gold.toString();
+    
+    int gold = profileService.user.Gold;
+    String goldString = gold.toString();
+    
+    if(gold > 100000) {
+      gold ~/= 1000;
+      goldString = '${gold}k';
+      
+      if(gold > 10000) {
+        gold ~/= 1000;
+        goldString = '${gold}M';
+      }
+    }
+    
+    return goldString;
   }
 
   String get _userTrueSkill {

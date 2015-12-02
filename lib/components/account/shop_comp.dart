@@ -69,7 +69,7 @@ class ShopComp implements DetachAware{
         }
 
         energyProducts.addAll([
-          {"id" : "AUTO_REFILL", "description" : timeLeft != '' ? getLocalizedText("refillable") :  getLocalizedText("no-refillable"), "captionImage" : "images/icon-EnergyLevelUp.png","purchasable": false}
+          {"id" : "AUTO_REFILL", "description" : timeLeft != '' ? getLocalizedText("refillable") :  getLocalizedText("no-refillable"), "captionImage" : "images/iconEnergyLevelUp.png","purchasable": false}
         ]);
     });
 

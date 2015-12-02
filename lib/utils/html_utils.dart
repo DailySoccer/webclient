@@ -13,7 +13,7 @@ final NodeTreeSanitizer NULL_TREE_SANITIZER = new _NullTreeSanitizer();
 
 Future<bool> modalShow(String title, String content, {String modalSize: "lg",
     String onOk: null, String onCancel: null, bool closeButton: false,
-    type: 'alert', onBackdropClick: false}) {
+    type: 'alert', onBackdropClick: false, aditionalClass: ""}) {
 
   String globalRootId = 'alertRoot';
 
@@ -97,7 +97,7 @@ Future<bool> modalShow(String title, String content, {String modalSize: "lg",
 
   String composeAlert() {
     return ''' 
-            <div id="alertRoot" class="modal container fade" tabindex="-1" role="dialog" style="display: block;">
+            <div id="alertRoot" class="modal container $aditionalClass" tabindex="-1" role="dialog" style="display: block;">
               <div class="modal-dialog modal-${modalSize}">
                 <div class="modal-content"> 
   
@@ -138,7 +138,7 @@ Future<bool> modalShow(String title, String content, {String modalSize: "lg",
 
   String composeModal() {
     return ''' 
-            <div id="welcomeRoot" class="modal" tabindex="-1" role="dialog"  style="display: block;">
+            <div id="welcomeRoot" class="modal $aditionalClass" tabindex="-1" role="dialog"  style="display: block;">
               <div class="modal-dialog modal-${modalSize}">
                 <div class="modal-content">
                   
@@ -193,13 +193,13 @@ Future<bool> modalShow(String title, String content, {String modalSize: "lg",
   modalWindow.querySelectorAll("[eventCallback]").onClick.listen(onButtonClick);
 
   JsUtils.runJavascript('#' + globalRootId, 'modal', null);
-  JsUtils.runJavascript('#' + globalRootId, 'on', {'hidden.bs.modal': (sender) { 
-                                                                        result = onBackdropClick; 
-                                                                        onClose(sender); 
-                                                                      } 
+  JsUtils.runJavascript('#' + globalRootId, 'on', {'hidden.bs.modal': (sender) {
+                                                                        result = result || onBackdropClick;
+                                                                        onClose(sender);
+                                                                      }
                                                   });
   BackdropComp.instance.show();
-  
+
   return completer.future;
 }
 

@@ -270,7 +270,7 @@
       "resource-energy"                 : "ENERGÍA",
       "buy-gold-button"                 : "COMPRAR ORO",
       "buy-energy-button"               : "RECARGAR ENERGÍA",
-      "alert-user-gold-message"         : "Tienes actualmente @MONEY",
+      "alert-user-gold-message"         : "Tienes actualmente: @MONEY",
       "alert-no-energy-message"         : "<strong>No tienes suficiente energía</strong><br>para entrar en este torneo."
     }
     ,"lineupselector"                   :
@@ -582,10 +582,10 @@
     ,"tutorial_iniciacion"              :
     {
       "msg-01"                          : "<span class='modal-body-title'>Bienvenido a Epic Eleven.</span><span class='modal-body-text'> Haz tu equipo ideal alineando jugadores reales de la Liga o Premier y enfréntate en torneos contra otros jugadores.</span>",
-      "msg-02"                          : "Comienza eligiendo un torneo oficial. Participar en los torneos oficiales cuesta oro, pero no te preocupes, esta vez invitamos nosotros.",
+      "msg-02"                          : "<span class='modal-body-text'>Comienza eligiendo un torneo oficial. Participar en los torneos oficiales cuesta oro, pero no te preocupes, esta vez invitamos nosotros.</span>",
       "msg-02a"                         : "Selecciona este torneo",
-      "msg-02b"                         : "Los torneos oficiales se basan en partidos de la vida real.",
-      "msg-02c"                         : "Elige tu alineación ideal entre todos los jugadores que participaran en esos partidos.",
+      "msg-02b"                         : "<span class='modal-body-text'>Los torneos oficiales se basan en partidos de la vida real.</span>",
+      "msg-02c"                         : "<span class='modal-body-text'>Elige tu alineación ideal entre todos los jugadores que participaran en esos partidos.</span>",
       "msg-02d"                         : "Esta es la lista de partidos de este torneo.",
 
       "msg-02e"                         : "Aqui puedes desplegar la lista de formaciones",
@@ -600,20 +600,20 @@
       "msg-03c"                         : "Cada jugador, además de su salario requiere un nivel de manager u oro",
       "msg-03d"                         : "Los jugadores marcados en rojo requieren un nivel de manager superior a tu nivel actual",
       "msg-03e"                         : "Intenta seleccionar un jugador marcado en rojo",
-      "msg-03f"                         : "Necesitas subir tu nivel de manager compitiendo en torneos de entrenamiento.",
-      "msg-04"                          : "Puedes participar en torneos de entrenamiento siempre que tengas energía.",
+      "msg-03f"                         : "<span class='modal-body-text'>Necesitas subir tu nivel de manager compitiendo en torneos de entrenamiento.</span>",
+      "msg-04"                          : "<span class='modal-body-text'>Puedes participar en torneos de entrenamiento siempre que tengas energía.</span>",
       "msg-04a"                         : "Participa en los torneos de entrenamiento para ganar puntos de manager, que harán subir tu nivel de manager.",
       "msg-05"                          : "Cada torneo de entrenamiento tiene un coste de energía.",
       "msg-06"                          : "Selecciona este torneo",
-      "msg-07"                          : "A diferencia de los torneos oficiales, en los torneo de entrenamiento no existe limitación por nivel de manager. Tu única limitación será tu presupuesto.",
-      "msg-08"                          : "Esta vez hemos hecho la alineación por ti, sólo falta un delantero.",
+      "msg-07"                          : "<span class='modal-body-text'>A diferencia de los torneos oficiales, en los torneo de entrenamiento no existe limitación por nivel de manager. Tu única limitación será tu presupuesto.</span>",
+      "msg-08"                          : "<span class='modal-body-text'>Esta vez hemos hecho la alineación por ti, sólo falta un delantero.</span>",
       "msg-09"                          : "Añade un delantero",
       "msg-10"                          : "Una vez completada la alineación, si tienes energia, se activa el botón de continuar.",
       "msg-10a"                         : "Si no tienes energía, siempre podrás comprarla en la tienda.",
       "msg-10b"                         : "Compra una recarga de energía, esta vez es gratis.",
       "msg-10c"                         : "Púlsalo para completar tu entrada en el torneo.",
       "msg-11"                          : "<span class='modal-body-title'>Enhorabuena.</span><span class='modal-body-text'> Acabas de apuntarte a un torneo de entrenamiento.</span>",
-      "msg-12"                          : "Esta es la pantalla de simulación, donde podrás ver en tiempo real cómo se desarrolla el torneo, la puntuación de tus jugadores y tu clasificación frente a los rivales.",
+      "msg-12"                          : "<span class='modal-body-text'>Esta es la pantalla de simulación, donde podrás ver en tiempo real cómo se desarrolla el torneo, la puntuación de tus jugadores y tu clasificación frente a los rivales.</span>",
 
       "msg-13"                          : "Aquí podrás ver los puntos conseguidos por tus jugadores.",
       "msg-14"                          : "Aquí puedes ver tu puntuación frente a los rivales. Haz clic en el nombre de un rival para ver su alineación.",
@@ -701,7 +701,8 @@
       "product_gold_5"                  : "CAJA FUERTE DE ORO",
       "product_gold_6"                  : "GRAN BÓVEDA DE ORO",
       "product_maxrefill"               : "Recarga al máximo con:",
-      "autorefill"                      : "Recarga +1 automática en:",
+      "refillable"                      : "Recarga +1 automática en:",
+      "no-refillable"                   : "Tienes la energía atope",
       "alert-user-gold-message"         : "Tienes actualmente @MONEY"
     }
     ,"goldshop"                         :
@@ -730,7 +731,7 @@
       "training"                        : "Entrenamiento",
       "competition"                     : "Competición",
       "spanish_league"                  : "La liga",
-      "premiere_league"                 : "Premiere",
+      "premier_league"                  : "Premier",
       "event"                           : "Evento",
       "rivals"                          : "Rivales",
       "head_to_head"                    : "Uno contra uno",
@@ -770,49 +771,109 @@
       "name"                            : "NOTIFICACIONES",
 
       "NEW_SPECIAL_EVENT_ACTIVE"        : "NEW_SPECIAL_EVENT_ACTIVE",
+      "NEW_SPECIAL_EVENT_ACTIVE_BTN"    : "Participar",
+
       "NEW_OFFER_ACTIVE"                : "NEW_OFFER_ACTIVE",
+      "NEW_OFFER_ACTIVE_BTN"            : "Mas información",
 
       "CONTEST_FINISHED"                : "TORNEO TERMINADO",
-      "CONTEST_FINISHED_DESCRIPTION"    : "@NAME: Lorem fistrum te voy a borrar el cerito condemor tiene musho peligro mamaar sexuarl.",
+      "CONTEST_FINISHED_DESCRIPTION"    : "Torneo '@NAME' terminado, consulta tus resultados.",
+      "CONTEST_FINISHED_BTN"            : "Ver resultado",
 
       "DUEL_FINISHED"                   : "DUELO TERMINADO",
+      "DUEL_FINISHED_DESCRIPTION"       : "Duelo '@NAME' terminado, consulta tus resultados.",
+      "DUEL_FINISHED_BTN"               : "Ver resultado",
 
       "CONTEST_CANCELLED"               : "TORNEO CANCELADO",
+      "CONTEST_CANCELLED_DESCRIPTION"   : "El torneo '@NAME' ha sido cancelado.",
+      "CONTEST_CANCELLED_BTN"           : "Participar en otro",
+
       "DAILY_CHALLENGE_ENABLED"         : "DAILY_CHALLENGE_ENABLED",
+      "DAILY_CHALLENGE_ENABLED_BTN"     : "Entrar",
+
       "OFICIAL_CONTEST_START"           : "OFICIAL_CONTEST_START",
+      "OFICIAL_CONTEST_START_BTN"       : "Ver en vivo",
+
       "CONTEST_INVITATIONS"             : "CONTEST_INVITATIONS",
+      "CONTEST_INVITATIONS_BTN"         : "Ver",
+
       "SKILL_LEVEL_UP"                  : "SKILL_LEVEL_UP",
+      "SKILL_LEVEL_UP_BTN"              : "",
+
       "SKILL_LEVEL_DOWN"                : "SKILL_LEVEL_DOWN",
+      "SKILL_LEVEL_DOWN_BTN"            : "",
+
       "MANAGER_LEVEL_UP"                : "HAS SUBIDO TU NIVEL DE MANAGER",
+      "MANAGER_LEVEL_UP_DESCRIPTION"    : "¡Enhorabuena! ha subido tu nivel de manager.",
+      "MANAGER_LEVEL_UP_BTN"            : "",
+
       "MANAGER_LEVEL_DOWN"              : "HAS BAJADO TU NIVEL DE MANAGER",
+      "MANAGER_LEVEL_DOWN_DESCRIPTION"  : "¡Ooops! ha bajado tu nivel de manager.",
+      "MANAGER_LEVEL_DOWN_BTN"          : "",
+
       "ACHIEVEMENT_EARNED"              : "HAS CONSEGUIDO @NAME",
-      
-      "BUTTON_NEW_SPECIAL_EVENT_ACTIVE" : "Participar",
-      "BUTTON_NEW_OFFER_ACTIVE"         : "Mas información",
-      "BUTTON_CONTEST_FINISHED"         : "Ver resultado",
-      "BUTTON_DUEL_FINISHED"            : "Ver resultado",
-      "BUTTON_CONTEST_CANCELLED"        : "Participar en otro",
-      "BUTTON_DAILY_CHALLENGE_ENABLED"  : "Entrar",
-      "BUTTON_OFICIAL_CONTEST_START"    : "Ver en vivo",
-      "BUTTON_CONTEST_INVITATIONS"      : "Ver",
-      "BUTTON_SKILL_LEVEL_UP"           : "",
-      "BUTTON_SKILL_LEVEL_DOWN"         : "",
-      "BUTTON_MANAGER_LEVEL_UP"         : "",
-      "BUTTON_MANAGER_LEVEL_DOWN"       : "",
-      "BUTTON_ACHIEVEMENT_EARNED"       : ""
+      "ACHIEVEMENT_EARNED_DESCRIPTION"  : "",
+      "ACHIEVEMENT_EARNED_BTN"          : ""
     }
     ,"howitworks"                       :
     {
       "point1title"                     : "<span class=\"help-point\">1</span> Elige un torneo",
       "point1content"                   : "<img class=\"capital-icon\" src=\"images/iconTrophyGold.png\"><br><strong>Torneos oficiales</strong><br>Cuestan y dan oro y se juegan cuando se celebran los partidos reales asociados<br><img class=\"capital-icon\" src=\"images/iconTrainerBlue.png\"><br><strong>Torneos de entrenamiento</strong><br>Cuestan energía y dan Manager Points. Comienzan a la hora anunciada",
       "point2title"                     : "<span class=\"help-point\">2</span> Haz tu equipo",
-      "point2content"                   : "<strong>A continuación, selecciona los 11 jugadores de tu equipo<br>sin pasarte del límite salarial. Recuerda:<strong><br><br><br><ul><li>No puedes escoger a más de 4 jugadores del mismo equipo.</li><li>Puedes cambiar tu alineación hasta la hora de comienzo del torneo</li></ul>",
+      "point2content"                   : "<strong>A continuación, selecciona los 11 jugadores de tu equipo sin pasarte del límite salarial. Recuerda:</strong><br><br><br>No puedes escoger a más de 4 jugadores del mismo equipo.<br>Puedes cambiar tu alineación hasta la hora de comienzo del torneo",
       "point3title"                     : "<span class=\"help-point\">3</span> Puntúa y gana",
-      "point3content"                   : "<strong>En los torneos oficiales, sigue la evolución de tu equipo</strong><br>en tiempo real cuando hayan comenzado los partidos asociados al torneo.<br>Una vez hayan terminado, puedes consultar el resultado en \"Mis torneos\"",
-      "point3content2"                  : "<strong>Los torneos de entrenamiento se resuelven de forma<br>automática en pocos segundos</strong>",
+      "point3content"                   : "<strong>En los torneos oficiales, sigue la evolución de tu equipo</strong> en tiempo real cuando hayan comenzado los partidos asociados al torneo. Una vez hayan terminado, puedes consultar el resultado en \"Mis torneos\"",
+      "point3content2"                  : "<strong>Los torneos de entrenamiento se resuelven de forma automática en pocos segundos</strong>",
       "point4title"                     : "Juega desde donde quieras",
       "point4description"               : "Es muy fácil jugar a Epic Eleven desde cualquier lugar y con cualquier dispositivo. Puedes seguir la evolución de tu alineación desde tu ordenador, tablet o smartphone con un diseño adaptado a cada dispositivo.",
       "button-play"                     : "Jugar"
     }
+    ,"rules"                            :
+    {
+      "rules-title"                      : "Reglas",
+      "num-rules"                        : "13",
+      "1-title"                          : "1. Legalidad",
+      "1-text"                           : "<p>Para efectuar jugar en cualquiera de nuestros torneos, debes tener 18 años o más y ser residente en España. Para más información sobre bases legales, por favor, consulta nuestros <a href=\"#/terminus_info\">Términos y Condiciones de Uso.</a>.</p>",
+      "2-title"                          : "2. Cuentas Múltiples",
+      "2-text"                           : "<p>Cada jugador de Epic Eleven puede tener una sola cuenta de usuario. No obstante, en casos especiales, Epic Eleven permite la creación de una segunda cuenta de usuario. Para ello, debes recibir por escrito una autorización expresa de Epic Eleven antes de abrir la segunda cuenta. En este caso, es decisión última de Epic Eleven determinar el derecho de un usuario a estar en posesión de dos cuentas. Las sanciones serán emitidas a discreción del personal de Epic Eleven y pueden conllevar el cierre de todas las cuentas de un usuario, así como la perdida de oro, si determinamos que ha sido obtenido de manera fraudulenta.</p>",
+      "3-title"                          : "3. Cuentas Anuladas",
+      "3-text"                           : "<p>Existen determinados comportamientos que actúan en detrimento de Epic Eleven y del resto de jugadores. La práctica de estos comportamientos implicará la anulación de algunas (o la totalidad) de las funciones asociadas a una cuenta de usuario. Como consecuencia de lo anteriormente expuesto, los usuarios cuyas cuentas hayan sido anuladas deberán respetar las medidas disciplinarias impuestas. Toda comunicación perteneciente a la restauración de una cuenta de usuario deberá efectuarse a través de la cuenta de correo electrónico <a href='mailto:support@epiceleven.com'>support@epiceleven.com</a>.</p>",
+      "4-title"                          : "4. Nombres de Usuario",
+      "4-text"                           : "<p>Epic Eleven se reserva el derecho de solicitar el cambio de nombre de usuario en los casos en que resulte ofensivo o responda a intereses comerciales. El requisito de cambio será determinado exclusivamente por Epic Eleven. Si el usuario ignora la petición Epic Eleven podrá modificar dicho nombre de usuario.</p>",
+      "5-title"                          : "5. Torneos sin Participación",
+      "5-text"                           : "<p>Todos los torneos abiertos que se realicen en Epic Eleven tienen un premio determinado y un número de participantes mínimo. Si no se alcanza este mínimo de participantes al inicio del torneo, éste podrá anularse. Por ejemplo, una competición \"Uno contra Uno\" sin 2 competidores y una liga de 10 personas con sólo 2 participantes podrán no celebrarse.</p>",
+      "6-title"                          : "6. Cancelar una Participación",
+      "6-text"                           : "<p>Users can withdraw its participation in any contest by clicking the \"Cancel Entry\" button at the bottom left of the section in which you can edit your team. Once the tournament has started, the button \"Cancel entry\" will disappear from that section. Epic Eleven will not consider requests for cancellation of entries in competitions that are completed during the first 15 minutes of the start of the game. Epic Eleven has no obligation to attend requests for cancellation that are not received or that have been received after the deadlines listed above in this section, due to technical difficulties or other reasons. Also, Epic Eleven will not attend requests to cancel registrations in contests \"One versus One\".</p>",
+      "7-title"                          : "7. Juegos Pospuestos",
+      "7-text"                           : "<p>Las reglas que especifican el tratamiento de los juegos pospuestos varían en función del tipo de torneo. Epic Eleven se reserva el derecho de actuar a este respecto en función de cada circunstancia particular.</p>",
+      "8-title"                          : "8. Partidos Suspendidos",
+      "8-text"                           : "<p>Las reglas que se refieren a partidos que hayan sido suspendidos tienen un tratamiento determinado en función del tipo de torneo. Se considera que un partido ha quedado suspendido cuando queda sin concluir, pero con perspectivas de finalizarse en el futuro. Como mínimo, las estadísticas recopiladas antes de la finalización del periodo del torneo serán tenidas en cuenta entre los partidos.</p>",
+      "9-title"                          : "9. Jugadores en proceso de negociación",
+      "9-text"                           : "<p>Los jugadores inmersos en procesos de negociación pueden afectar al desarrollo de los torneos que ya hayan sido planificados teniendo en cuenta a estos jugadores en sus antiguos equipos. Los listados de jugadores de los equipos en Epic Eleven se actualizan una vez al día (por la noche). Hay que tener en cuenta que los torneos se crean con un adelanto de 5 a 6 días previos al partido, por lo que los jugadores que estén en proceso de negociación pueden no estar disponibles para torneos que incluyan un partido con su equipo nuevo, pero no con su antiguo equipo. También hay que tener en cuenta que, en algunos casos, un jugador que se ha seleccionado ya no esté disponible para un torneo que vaya a disputar su antiguo equipo ni su nuevo equipo. En este caso, el usuario deberá seleccionar un suplente o será acreditado con cero puntos para este jugador en cuestión.</p><p>Ten en cuenta que, el mismo día que un jugador es objeto de negociación, aún puede aparecer en el listado de jugadores de su antiguo equipo. Si la negociación se está produciendo, precisamente, con el equipo rival del jugador en negociaciones en el mismo partido en el que estás participando, todavía podrás recibir puntos por su participación en la competición. Estos puntos no se podrán reflejar con exactitud durante la puntuación en vivo, pero se tendrán en cuenta en el momento en que finalice el partido. Asimismo, ten en cuenta que la liquidación del torneo puede sufrir retrasos con el fin de asegurar la máxima exactitud.</p><p>En casos muy raros, un jugador se traspasa lo suficientemente temprano en el día como para poder jugar un partido para su nuevo equipo esa misma jornada. Si se traspasa desde un equipo que juega un partido tarde a un equipo que va a jugar un partido temprano, podrás seleccionar este jugador para el juego que tenga lugar de manera tardía aun sabiendo que el traspaso se ha realizado de facto antes del partido. Si este fuera el caso, se te asignarán cero puntos por su desempeño.</p>",
+      "10-title"                         : "10. Restricciones en las Alineaciones",
+      "10-text"                          : "<p>Además del límite salarial, hay una restricción adicional que rige la combinación de jugadores permitidos en tu alineación para los torneos de Epic Eleven. No puedes seleccionar más de cuatro jugadores del mismo equipo.</p>",
+      "11-title"                         : "11. Las revisiones de puntuación",
+      "11-text"                          : "<p>Durante el partido recibimos las puntuaciones en directo desde nuestro proveedor de Estadísticas, Opta. Al finalizar el juego, nos envía el documento final con las estadísticas completas del partido. Una vez recibidas y confirmadas las estadísticas de todos los partidos de la jornada, comenzamos a gestionar la liquidación de todas las participaciones. Sin embargo, en contadas ocasiones, las ligas y estadísticas revisadas por el proveedor sufren alguna modificación posterior a la publicación del cuadro de puntuación final. En caso de que esto ocurra, no se actualizará la puntuación del jugador en Epic Eleven. Ten en cuenta que esta situación no es la misma que un caso en que una corrección deba hacerse después del cierre debido a un problema con la fuente de datos o al proceso de resolución.</p>",
+      "12-title"                         : "12. Servicio de Acceso y Edición de Problemas",
+      "12-text"                          : "<p>Aunque tratamos de asegurar que Epic Eleven funciona sin problemas en todo momento, al igual que cualquier servicio online, en ocasiones podemos experimentar períodos de interrupción o rendimiento lento. A veces, se producen problemas para acceder al servicio, para editar alineaciones o para entrar en nuevos torneos. Si no puedes acceder al Servicio, por favor, infórmanos de los problemas escribiendo a nuestro correo electrónico <a href='mailto:support@epiceleven.com'>support@epiceleven.com</a>. Si hay períodos prolongados en que los usuarios no puedan acceder a la funcionalidad de nuestro servicio, la edición de alineaciones no funciona correctamente u otros casos no especificados, desde Epic Eleven, ofrecemos instrucciones para cancelar las entradas en los torneos por correo electrónico antes de que empiece el juego.",
+      "13-title"                    		 : "13. Cancelación de Torneos",
+      "13-text"                      		 : "<p>Epic Eleven también se reserva el derecho de cancelar los torneos a su criterio, sin ningún tipo de restricciones. Normalmente, esto se llevará a cabo sólo en los casos en los que creemos que, debido a problemas en el servicio o hechos que afecten a los eventos deportivos, no habría un impacto generalizado en la mayor parte de las competiciones.</p><p>Para más información sobre la manera en que Epic Eleven trabaja, por favor, visita nuestra sección de Preguntas Frecuentes en nuestra Página de Ayuda.</p>"
+    }
+    ,"tutorials"                         :
+    {
+      "go-tutorial"                      : "Ir al tutorial",
+      "incoming"                         : "Proximamente",
+      "learn-to-play"                    : "Aprende a jugar a epic eleven",
+      "rankings"                         : "Clasificaciones",
+      "how-to-create-contest"            : "Como crear torneos"
+    }
+    ,"help"                              :
+    {
+      "title"                            : "Ayuda",
+      "tutorials"                        : "Tutoriales",
+      "how-it-works"                     : "Cómo funciona",
+      "rules"                            : "Reglas"
+    }
+
   }
 }

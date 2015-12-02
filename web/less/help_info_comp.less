@@ -1,3 +1,7 @@
+.global-help-info #mainWrapper {
+	background-color: @white;
+}
+
 #helpInfo {
 	how-it-works {
 		display: block;
@@ -31,6 +35,8 @@
 		.opensans_normal(10pt, @greyUltraDark);
 		text-align: center;
 		padding: 0 20px 10px 20px;
+		max-width: 475px;
+		margin: 0 auto;
 		
 		.capital-icon {
 			margin-top: 15px;
@@ -42,6 +48,10 @@
 				list-style-type: none;
 			}
 		}
+	}
+	
+	#help-info-1 .description {
+		max-width: none;
 	}
 
 	.img-wrapper {
@@ -59,6 +69,7 @@
 			text-align: center;
 		}
 	}
+	
 	.block-last {
 		max-width: 660px;
 		margin: 0 auto;
@@ -156,7 +167,7 @@
 
 	// Tabs menu
 	.help-info-tabs {
-		.tabs-navigation(2);
+		.tabs-navigation(3);
 	}
 
 	.tab-pane {
@@ -165,5 +176,54 @@
 
 	.tab-pane.active {
 		display: block;
+	}
+
+}
+
+.tutorial-row {
+	.make-row(0);
+
+	.tutorial-tile {
+		.make-xs-column(12);
+		.make-sm-column(4);
+		text-align: center;
+		display: inline-block;
+		position: relative;
+		margin-top: 40px;
+		.tutorial-title {
+			.exo_light(20pt, @blueUltraDark);
+			padding: 0 20px;
+			height: 60px;
+			margin-top: 5px;
+			@media (max-width: @screen-sm-max) {
+				.exo_light(16pt, @blueUltraDark);
+			}
+		}
+		.tutorial-description {
+			.opensans_normal(12pt, @greyDark);
+			padding: 0 10px;
+			height: 50px;
+			@media (max-width: @screen-sm-max) {
+				.opensans_normal(10pt, @greyDark);
+			}
+		}
+		.button-go-tutorial {
+			.btn-primary();
+			.opensans_bold(10pt, @white);
+			text-transform: uppercase;
+			padding: 10px 20px;
+			margin-bottom: 5px;
+		}
+		.incoming {
+			.opensans_bold(10pt, @greyDark);
+			text-transform: uppercase;
+			display: block;
+			padding: 10px 20px;
+			margin-bottom: 5px;
+		}
+	}
+
+	.tutorial-tile + .tutorial-tile {
+		border-left: 1px solid @blueUltraDark;
 	}
 }

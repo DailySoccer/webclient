@@ -90,7 +90,7 @@ class UserProfileComp {
     _router.go('edit_profile', {});
   }
   void goBuyGold() {
-    _router.go('shop.gold', {});
+    _router.go('shop', {});
   }
   void goLeaderboard() {
     _router.go('leaderboard', {});

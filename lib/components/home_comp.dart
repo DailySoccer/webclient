@@ -157,7 +157,7 @@ class HomeComp  {
 
   void onBlogClick() {
     if (!isBlogTileEnabled) return;
-    window.location.assign("http://halftime.epiceleven.com");
+    window.open("http://halftime.epiceleven.com", "HalfTime");
   }
 
   void onHowItWorksClick() {

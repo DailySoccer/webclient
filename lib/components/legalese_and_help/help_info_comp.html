@@ -1,122 +1,32 @@
 <div id="helpInfo">
 
   <!-- header title -->
-  <div class="default-section-header">HELP</div>
+  <div class="default-section-header">{{getLocalizedText('title')}}</div>
 
   <!-- Nav tabs -->
   <ul class="help-info-tabs" role="tablist">
-    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('how-works-content')">How it works</a></li>
-    <li><a role="tab" data-toggle="tab" ng-click="tabChange('rules-scores-content')">Rules and scoring</a></li>
+    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('tutorial-content')">{{getLocalizedText('tutorials')}}</a></li>
+    <li><a role="tab" data-toggle="tab" ng-click="tabChange('how-works-content')">{{getLocalizedText('how-it-works')}}</a></li>
+    <li><a role="tab" data-toggle="tab" ng-click="tabChange('rules-scores-content')">{{getLocalizedText('rules')}}</a></li>
   </ul>
 
-  <div class="tab-pane active" id="how-works-content">
+  <div class="tab-pane active" id="tutorial-content">
+    <div class="block-light">
+      <tutorials-comp></tutorials-comp>
+    </div>
+  </div>
+
+  <div class="tab-pane" id="how-works-content">
     <how-it-works></how-it-works>
   </div>
   <div class="tab-pane" id="rules-scores-content">
-    <div class="block-dark">
+    <!--div class="block-dark">
       <div class="title">SCORING AND RULES</div>
       <div class="scores-wrapper">
         <scoring-rules></scoring-rules>
       </div>
-    </div>
-    <div class="block-light">
-      <div class="title">RULES</div>
-      <div class="toogle-block">
-        <input type="checkbox" id="rule1" class="toggle">
-        <label for="rule1">1. Legals</label>
-        <div>
-          <p>To play in Epic Eleven you must be at least 18 years older. For further information, please, see our<a ng-click="goTo('terminus_info')">Terms of Use</a>.</p>
-        </div>
-      </div>
-      <div class="toogle-block">
-        <input type="checkbox" id="rule2" class="toggle">
-        <label for="rule2">2. Multiple Accounts</label>
-        <div>
-          <p>Any Player can only own a single user account of Epic Eleven. However, in special cases, Epic Eleven allows the creation of a second account. To do this, you must receive written consent of Epic Eleven before opening a second account, so is Epic Eleven’s final decision to let a User possess two user accounts. If this condition is not met, any penalty that Epic Eleven suits fit will be issued at Epic Eleven’s staff discretion and may involve the closure of all involved user accounts and the retention of cash within, if we determine that has been obtained fraudulently.</p>
-        </div>
-      </div>
-      <div class="toogle-block">
-        <input type="checkbox" id="rule3" class="toggle">
-
-        <label for="rule3">3. Banned accounts</label>
-        <div>
-          <p>There are certain behaviors that are detrimental to Epic Eleven and the other players. These behaviors may imply the cancellation of some (or all) of the functions associated with a user account. As a result of the foregoing, users whose accounts have been canceled shall respect the disciplinary measures imposed. All communication pertaining to the restoration of a user account must be made through the email account <a href="mailto:support@epiceleven.com">support@epiceleven.com</a>.</p>
-        </div>
-      </div>
-      <div class="toogle-block">
-        <input type="checkbox" id="rule4" class="toggle">
-        <label for="rule4">4. Nicknames</label>
-        <div>
-          <p>Epic Eleven holds the right to request the change of a user name where that is offensive or respond to commercial interests. Only Epic Eleven can determine the reasons for that request. If the User ignores the request, Epic Eleven will alter this username without being obliged to extend any further notice to the User.</p>
-        </div>
-      </div>
-      <div class="toogle-block">
-        <input type="checkbox" id="rule5" class="toggle">
-        <label for="rule5">5. Empty contests</label>
-        <div>
-          <p>All open tournaments that take place in Epic Eleven have a certain prize and a number of specific participants. If at the start of the tournament this number of participants is not reached, it may be canceled. For example, a competition "One on One" without 2 competitors and a league of 10 people with only 9 participants can not be held. In every case, is up to Epic Eleven discretion to cancel a contest.</p>
-        </div>
-      </div>
-      <div class="toogle-block">
-        <input type="checkbox" id="rule6" class="toggle">
-        <label for="rule6">6. Cancelled participation</label>
-        <div>
-          <p>Users can withdraw its participation in any contest by clicking the "Cancel Entry" button at the bottom left of the section in which you can edit your team. Once the tournament has started, the button "Cancel entry" will disappear from that section. Epic Eleven will not consider requests for cancellation of entries in competitions that are completed during the first 15 minutes of the start of the game. Epic Eleven has no obligation to attend requests for cancellation that are not received or that have been received after the deadlines listed above in this section, due to technical difficulties or other reasons. Also, Epic Eleven will not attend requests to cancel registrations in contests "One versus One".</p>
-        </div>
-      </div>
-      <div class="toogle-block">
-        <input type="checkbox" id="rule7" class="toggle">
-        <label for="rule7">7. Postponed games</label>
-        <div>
-          <p>The rules that specify the treatment of postponed games vary depending on the type of contest. Epic Eleven reserves the right to act in this regard depending on the particular circumstances.</p>
-        </div>
-      </div>
-      <div class="toogle-block">
-        <input type="checkbox" id="rule8" class="toggle">
-        <label for="rule8">8. Suspended games</label>
-        <div>
-          <p>The rules that specify the treatment to suspended matches depend on the type of contest. It is considered that a match has been suspended when it is unfinished, but with prospects for completion in the future. Epic Eleven is committed to, at least, take into account the statistics collected before the end of the contest, for the sake of the game.</p>
-        </div>
-      </div>
-      <div class="toogle-block">
-        <input type="checkbox" id="rule9" class="toggle">
-        <label for="rule9">9. Players in negotiation process</label>
-        <div>
-          <p>Any player involved in team transaction processes might affect current contests, may these players being in a team that is no longer his actual team. Our player lists are updated once a day (at 00:00), so keep in mind that contests might have been created several days before the transfer was made, which results in players being available for their old teams, not for their new teams. Also, in some cases, a player might not be available for a contest since he was transferred to a team that does not fit into that very contest, so unless the player selects an alternate player, the transferred player would be credited with zero points.</p>
-          <p>When a transaction is under negotiation the player may still appear in the list of player of his former team. If he plays against his former team, he may still be awarded with points, as he plays in the same game, which usually will be included in the same contests. Points may not be accurately awarded, but will be reflected at the end of the game. Is worth noting that the settlement of the contest may be delayed in order to ensure maximum accuracy.</p>
-          <p>In very rare cases, a player is transferred early enough in the day to play a game for his new team the same day. If it is transferred from a team that plays a game later in the evening to a team that will play a game earlier, you might be able to select the player for later game, knowing that the transfer was made de facto before the game. If this is the case, the transferred player would be credited with zero points.</p>
-        </div>
-      </div>
-      <div class="toogle-block">
-        <input type="checkbox" id="rule10" class="toggle">
-        <label for="rule10">10. lineup restrictions</label>
-        <div>
-          <p>Lineup restrictions are limited to one rule: no more than 4 players from the same team. Any attempt to overcome this limitation will find an automatic refusal to proceed by the platform itself.</p>
-        </div>
-      </div>
-      <div class="toogle-block">
-        <input type="checkbox" id="rule11" class="toggle">
-        <label for="rule11">11. score revisions</label>
-        <div>
-          <p>During the game we received the events from our supplier, OPTA. After the game, they provide us with a final document with full match statistics. Once received and confirmed, contests will begin to be settled. However, on rare occasions, our provider might review those documents, which may alter the final box score. If this were to happen, the player's score on Epic Eleven will not be updated. Note that this situation is not the same as a case where a correction must be made after closing due to a problem with the data source or the resolution process.</p>
-        </div>
-      </div>
-      <div class="toogle-block">
-        <input type="checkbox" id="rule12" class="toggle">
-        <label for="rule12">12. Access associated issues</label>
-        <div>
-          <p>Although we do our best to guarantee the correct performance of Epic Eleven at any time, we may experience cuts or slow performance due to unexpected problems that may arise in Epic Eleven or in the support provided by third parties for the Portal. Sometimes, the user may experience problems while accessing the service, editing lineups or entering new contests.</p>
-          <p>If you experience any problems accessing the service, please contact us vía <a href="mailto:support@epiceleven.com">support@epiceleven.com</a>. If there were periods during which users were unable to access our services, to edit lineups or to perform any action, Epic Eleven will provide instructions to cancel any contest by email before the game starts.</p>
-        </div>
-      </div>
-      <div class="toogle-block">
-        <input type="checkbox" id="rule13" class="toggle">
-        <label for="rule13">13. Contest cancellation</label>
-        <div>
-          <p>Epic Eleven holds the right to cancel contests at discretion, without any restrictions. Usually this might be done in extreme situations, where an event might affect several contests in a negative way or even the real competitions, which in the end would affect Epic Eleven.</p>
-        </div>
-      </div>
-    </div>
+    </div-->
+    <rules-comp></rules-comp>
   </div>
 
 </div>

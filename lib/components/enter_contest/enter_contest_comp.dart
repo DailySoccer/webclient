@@ -664,7 +664,7 @@ class EnterContestComp implements DetachAware {
      _verifyMaxPlayersInSameTeam();
     }
   }
-
+  
   void alertNotBuy(Money coins) {
     modalShow(
       "",

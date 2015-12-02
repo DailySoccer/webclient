@@ -19876,6 +19876,16 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   vertical-align: text-bottom;
   margin-left: 5px;
 }
+#alertRoot.noGold .energy-icon-tiny {
+  content: " ";
+  background-image: url("../images/icon-lightning-lg.png");
+  width: 27px;
+  height: 27px;
+  display: inline-block;
+  vertical-align: middle;
+  vertical-align: text-bottom;
+  margin-left: 5px;
+}
 #alertRoot.noGold .alert-content-subtitle {
   vertical-align: middle;
   font-family: 'Exo', sans-serif;

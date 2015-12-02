@@ -1,6 +1,6 @@
 <div class="achievement {{achiev.style}}" ng-class="{'earned': earned}">
   <div class="achievement-icon">
-    <img src="images/achievements/{{achiev.image}}" ng-if="achiev.image != ''">
+    <img ng-src="images/achievements/{{achiev.image}}" ng-if="achiev.image != ''">
     <span class="achievement-level" ng-if="achiev.level != -1">{{achiev.level}}</span>
   </div>
   <div class="achievement-name">{{achiev.name}}</div>

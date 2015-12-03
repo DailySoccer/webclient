@@ -532,7 +532,7 @@ tc.put("packages/webclient/components/account/notifications_comp.html", new Http
         </div>
       </div>
 
-      <span class="close-button" ng-click="closeNotification(notificationList[0].id)"><img src="images/alertCloseButton.png"></span>
+      <span class="close-button" ng-click="closeNotification(notification.id)"><img src="images/alertCloseButton.png"></span>
 
     </div>
 
@@ -747,7 +747,7 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
 </div>"""));
 tc.put("packages/webclient/components/achievement_comp.html", new HttpResponse(200, r"""<div class="achievement {{achiev.style}}" ng-class="{'earned': earned}">
   <div class="achievement-icon">
-    <img src="images/achievements/{{achiev.image}}" ng-if="achiev.image != ''">
+    <img ng-src="images/achievements/{{achiev.image}}" ng-if="achiev.image != ''">
     <span class="achievement-level" ng-if="achiev.level != -1">{{achiev.level}}</span>
   </div>
   <div class="achievement-name">{{achiev.name}}</div>

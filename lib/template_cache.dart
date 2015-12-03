@@ -532,7 +532,7 @@ tc.put("packages/webclient/components/account/notifications_comp.html", new Http
         </div>
       </div>
 
-      <span class="close-button" ng-click="closeNotification(notificationList[0].id)"><img src="images/alertCloseButton.png"></span>
+      <span class="close-button" ng-click="closeNotification(notification.id)"><img src="images/alertCloseButton.png"></span>
 
     </div>
 
@@ -623,7 +623,7 @@ tc.put("packages/webclient/components/account/shop_comp.html", new HttpResponse(
               <span class="title">{{item.description}}</span>
             </div>
             <div class="content">
-              <img class="gold-icon" src="{{item.captionImage}}">
+              <img class="gold-icon" ng-src="{{item.captionImage}}">
               <div class="content-info">
                 <span class="gold-quantity">{{item.quantity}}</span>
                 <div class="price-wrapper">
@@ -636,7 +636,7 @@ tc.put("packages/webclient/components/account/shop_comp.html", new HttpResponse(
                   </div>
                 </div>                
               </div>
-              <img src="{{getLocalizedText('mostpopularimagesource')}}" class="gold-item-popular" ng-if="item.isMostPopular">
+              <img ng-src="{{getLocalizedText('mostpopularimagesource')}}" class="gold-item-popular" ng-if="item.isMostPopular">
             </div>            
           </div>
         </div>
@@ -648,7 +648,7 @@ tc.put("packages/webclient/components/account/shop_comp.html", new HttpResponse(
           <div class="energy-items" ng-repeat="energyItem in energyProducts">
             <div class="energy-separator" ng-if="$index > 0"></div>
             <div ng-class="{'no-purchasable': !energyItem.purchasable}" class="product">
-              <img class="energy-icon" src="{{energyItem.captionImage}}">
+              <img class="energy-icon" ng-src="{{energyItem.captionImage}}">
               <div class="energy-description">{{energyItem.description}}</div>
               <div ng-switch="energyItem.purchasable">
                 <div class="button-wrapper" ng-switch-when="true">
@@ -692,12 +692,10 @@ tc.put("packages/webclient/components/account/transaction_history_comp.html", ne
 </div>
 """));
 tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpResponse(200, r"""<div id="viewProfileContent">
+  <div class="default-section-header">{{getLocalizedText('title')}}</div>
   <div class="profile-content">
 
     <div class="personal-data profile-section">
-      <div class="data-header">
-        <span class="data-header-title">{{getLocalizedText("title")}}</span>
-      </div>
       <div class="data-content">
         <div class="data-row"><span class="data-key">{{getLocalizedText("fullname")}}:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
         <div class="data-row"><span class="data-key">{{getLocalizedText("nick")}}:</span><span class="data-value">{{userData.nickName}}</span></div>
@@ -747,7 +745,7 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
 </div>"""));
 tc.put("packages/webclient/components/achievement_comp.html", new HttpResponse(200, r"""<div class="achievement {{achiev.style}}" ng-class="{'earned': earned}">
   <div class="achievement-icon">
-    <img src="images/achievements/{{achiev.image}}" ng-if="achiev.image != ''">
+    <img ng-src="images/achievements/{{achiev.image}}" ng-if="achiev.image != ''">
     <span class="achievement-level" ng-if="achiev.level != -1">{{achiev.level}}</span>
   </div>
   <div class="achievement-name">{{achiev.name}}</div>

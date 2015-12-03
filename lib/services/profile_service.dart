@@ -18,6 +18,7 @@ class ProfileService {
 
   User user = null;
   bool get isLoggedIn => user != null;
+  String get mainMenuInfo => isLoggedIn ? user.mainMenuInfo : "";
 
   bool get isWelcoming => !_hasDoneLogin;
 
@@ -103,6 +104,7 @@ class ProfileService {
   }
 
   Future<Map> removeNotification(String notificationId) {
+    user.removeNotification(notificationId);
     return _server.removeNotification(notificationId);
   }
 

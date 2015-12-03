@@ -1,10 +1,8 @@
 <div id="viewProfileContent">
+  <div class="default-section-header">{{getLocalizedText('title')}}</div>
   <div class="profile-content">
 
     <div class="personal-data profile-section">
-      <div class="data-header">
-        <span class="data-header-title">{{getLocalizedText("title")}}</span>
-      </div>
       <div class="data-content">
         <div class="data-row"><span class="data-key">{{getLocalizedText("fullname")}}:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
         <div class="data-row"><span class="data-key">{{getLocalizedText("nick")}}:</span><span class="data-value">{{userData.nickName}}</span></div>

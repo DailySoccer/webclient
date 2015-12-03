@@ -22,7 +22,7 @@ class NotificationsComp {
   }
 
   NotificationsComp(this._profileService) {
-    
+
     /* TEST: Incluir notificaciones al usuario
     if (_profileService.isLoggedIn) {
       _profileService.user.notifications = [
@@ -34,6 +34,11 @@ class NotificationsComp {
       ].map((jsonMap) => new UserNotification.fromJsonObject(jsonMap) ).toList();
     }
     */
+
+    refreshNotifications();
+  }
+
+  void refreshNotifications() {
     notificationList = _profileService.user.notifications.map( (notification) => {
       "id": notification.id,
       "type" : notification.topic,
@@ -43,7 +48,7 @@ class NotificationsComp {
       "link": notification.link,
       "date" : DateTimeService.formatDateWithDayOfTheMonth(notification.createdAt).toUpperCase()
     }).toList();
-    
+
     /*
     notificationList = [
       {"id": '0', "type" : UserNotification.ACHIEVEMENT_EARNED,   "info" : {"date": "10 Nov. 2015", "link": "http://127.0.0.1:3030/webclient/web/index.html#/leaderboard", "achievementKey" : "WON_1_VIRTUAL_CONTEST"}},
@@ -55,25 +60,26 @@ class NotificationsComp {
       {"id": '6', "type" : UserNotification.OFICIAL_CONTEST_START,"info" : {"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec turpis vel enim finibus cursus. Sed aliquam felis turpis, et suscipit neque dignissim tempus.", "date": "10 Nov. 2015", "link": "http://127.0.0.1:3030/webclient/web/index.html#/notifications"}}
     ];
    */
-  }
+}
 
   void closeNotification(String notificationId) {
-    print("Cerrando notificacion:" + notificationId);
+    // print("Cerrando notificacion: $notificationId}");
     _profileService.removeNotification(notificationId).then((_) {
       notificationList.removeWhere((notification) => notification['id'] == notificationId);
+      // refreshNotifications();
     });
   }
 
   void goToLink(String link) {
     window.location.assign(link);
   }
-  
+
   void onAction(String id) {
     Map n = notificationList.firstWhere((notification) => notification['id'] == id);
-    
+
     if (n['type'] == UserNotification.ACHIEVEMENT_EARNED) {
       goToLink(n['link']['url']);
-    }    
+    }
   }
 
   ProfileService _profileService;

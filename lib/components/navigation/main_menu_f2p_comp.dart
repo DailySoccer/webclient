@@ -33,7 +33,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
   }
 
   @override void onShadowRoot(emulatedRoot) {
-    _scope.watch("profileService.mainMenuInfo", _monitorChanges, canChangeModel: false);
+    _scope.watch("profileService.user", _monitorChanges, canChangeModel: false);
     _streamListener = _scrDet.mediaScreenWidth.listen(onScreenWidthChange);
   }
 

@@ -517,7 +517,8 @@
       "contestfifty"                    : "50 / 50",
       "salarycap"                       : "Cuota",
       "contenders"                      : "participantes",
-      "of"                              : "de"
+      "of"                              : "de",
+      "minimum-contenders"              : "Mín. @NUMERO"
     }
     ,"contestinfo"                      :
     {

@@ -50,6 +50,7 @@ class Contest {
   List<ContestEntry> contestEntries;
   int numEntries;
 
+  int minEntries;
   int maxEntries;
 
   int salaryCap;
@@ -92,7 +93,10 @@ class Contest {
     if(isLive || isHistory) {
       return "${tournamentTypeName}";
     }
-    return "${tournamentTypeName}: ${numEntries} ${StringUtils.translate("of", "contest")} ${maxEntries} ${StringUtils.translate("contenders", "contest")}";
+    return (maxEntries <= 0)
+      ? "${tournamentTypeName}: ${numEntries} ${StringUtils.translate("contenders", "contest")}"
+      : "${tournamentTypeName}: ${numEntries} ${StringUtils.translate("of", "contest")} ${maxEntries} " +
+        ((numEntries < minEntries) ? "(${StringUtils.translate("minimum-contenders", "contest", {'NUMERO': minEntries.toString()})})" : "");
   }
 
   List<ContestEntry> get contestEntriesOrderByPoints {
@@ -253,6 +257,7 @@ class Contest {
 
     state = jsonMap.containsKey("state") ? jsonMap["state"] : "ACTIVE";
     _namePattern = jsonMap["name"];
+    minEntries = jsonMap.containsKey("minEntries") ? jsonMap["minEntries"] : 2;
     maxEntries = jsonMap["maxEntries"];
     salaryCap = jsonMap["salaryCap"];
     entryFee = new Money.fromJsonObject(jsonMap["entryFee"]);

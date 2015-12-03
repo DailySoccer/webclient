@@ -43,6 +43,9 @@ class User {
   Set<String> achievements = new Set<String>();
   List<UserNotification> notifications = new List<UserNotification>();
 
+  // Información que se muestra en el mainMenu (se utilizará para detectar cambios en la información del perfil)
+  String get mainMenuInfo => "$userId;${energyBalance.toInt()};${managerBalance.toInt()};${goldBalance.toInt()};$trueSkill;${notifications.length};${achievements.length}";
+
   bool hasAchievement(String achievement) => achievements.contains(achievement);
 
   //String get fullName => "$firstName $lastName";

@@ -103,6 +103,7 @@ class ProfileService {
   }
 
   Future<Map> removeNotification(String notificationId) {
+    user.removeNotification(notificationId);
     return _server.removeNotification(notificationId);
   }
 

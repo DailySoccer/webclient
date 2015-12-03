@@ -176,4 +176,9 @@ class User {
 
     return this;
   }
+
+  // Eliminar temporalmente del usuario la notificación (a la espera de que el servidor mande una versión actualizada)
+  void removeNotification(String notificationId) {
+    notifications.removeWhere((notification) => notification.id == notificationId);
+  }
 }

@@ -18,7 +18,7 @@ class ProfileService {
 
   User user = null;
   bool get isLoggedIn => user != null;
-  String get mainMenuInfo => isLoggedIn ? user.mainMenuInfo : "";
+  String get info => isLoggedIn ? user.mainMenuInfo : "";
 
   bool get isWelcoming => !_hasDoneLogin;
 

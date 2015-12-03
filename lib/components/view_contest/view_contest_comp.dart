@@ -91,9 +91,9 @@ class ViewContestComp implements DetachAware {
 
   void updateLive() {
     // Actualizamos únicamente la lista de live MatchEvents
-    _contestsService.lastContest.simulation
+    (_contestsService.lastContest.simulation
       ? _contestsService.refreshLiveMatchEvents(contestId: _contestsService.lastContest.contestId)
-      : _contestsService.refreshLiveMatchEvents(templateContestId: _contestsService.lastContest.templateContestId)
+      : _contestsService.refreshLiveMatchEvents(templateContestId: _contestsService.lastContest.templateContestId))
         .then((_) {
           updatedDate = DateTimeService.now;
         })

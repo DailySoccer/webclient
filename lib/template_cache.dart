@@ -636,7 +636,7 @@ tc.put("packages/webclient/components/account/shop_comp.html", new HttpResponse(
                   </div>
                 </div>                
               </div>
-              <img src="{{getLocalizedText('mostpopularimagesource')}}" class="gold-item-popular" ng-if="item.isMostPopular">
+              <img ng-src="{{getLocalizedText('mostpopularimagesource')}}" class="gold-item-popular" ng-if="item.isMostPopular">
             </div>            
           </div>
         </div>
@@ -692,12 +692,10 @@ tc.put("packages/webclient/components/account/transaction_history_comp.html", ne
 </div>
 """));
 tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpResponse(200, r"""<div id="viewProfileContent">
+  <div class="default-section-header">{{getLocalizedText('title')}}</div>
   <div class="profile-content">
 
     <div class="personal-data profile-section">
-      <div class="data-header">
-        <span class="data-header-title">{{getLocalizedText("title")}}</span>
-      </div>
       <div class="data-content">
         <div class="data-row"><span class="data-key">{{getLocalizedText("fullname")}}:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
         <div class="data-row"><span class="data-key">{{getLocalizedText("nick")}}:</span><span class="data-value">{{userData.nickName}}</span></div>

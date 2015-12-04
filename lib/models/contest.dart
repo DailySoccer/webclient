@@ -50,6 +50,7 @@ class Contest {
   List<ContestEntry> contestEntries;
   int numEntries;
 
+  int minEntries;
   int maxEntries;
 
   int salaryCap;
@@ -92,7 +93,11 @@ class Contest {
     if(isLive || isHistory) {
       return "${tournamentTypeName}";
     }
-    return "${tournamentTypeName}: ${numEntries} ${StringUtils.translate("of", "contest")} ${maxEntries} ${StringUtils.translate("contenders", "contest")}";
+    return (maxEntries <= 0)
+      ? "${tournamentTypeName}: ${numEntries} ${StringUtils.translate("contenders", "contest")} " +
+        ((numEntries < minEntries) ? "(${StringUtils.translate("minimum-contenders", "contest", {'NUMERO': minEntries.toString()})})" : "")
+      : "${tournamentTypeName}: ${numEntries} ${StringUtils.translate("of", "contest")} ${maxEntries} ${StringUtils.translate("contenders", "contest")} " +
+        ((numEntries < minEntries) ? "(${StringUtils.translate("minimum-contenders", "contest", {'NUMERO': minEntries.toString()})})" : "");
   }
 
   List<ContestEntry> get contestEntriesOrderByPoints {
@@ -253,6 +258,7 @@ class Contest {
 
     state = jsonMap.containsKey("state") ? jsonMap["state"] : "ACTIVE";
     _namePattern = jsonMap["name"];
+    minEntries = jsonMap.containsKey("minEntries") ? jsonMap["minEntries"] : 2;
     maxEntries = jsonMap["maxEntries"];
     salaryCap = jsonMap["salaryCap"];
     entryFee = new Money.fromJsonObject(jsonMap["entryFee"]);
@@ -265,9 +271,6 @@ class Contest {
     optaCompetitionId = jsonMap.containsKey("optaCompetitionId") && (jsonMap["optaCompetitionId"] != null) ? jsonMap["optaCompetitionId"] : "";
     matchEvents = jsonMap.containsKey("templateMatchEventIds") ? jsonMap["templateMatchEventIds"].map( (matchEventId) => references.getMatchEventById(matchEventId) ).toList() : [];
 
-    String prizeCurrency = entryFee.isEnergy ? Money.CURRENCY_MANAGER : Money.CURRENCY_GOLD;
-    _prizePool = new Money.from(prizeCurrency, maxEntries * entryFee.amount * prizeMultiplier);
-
     instanceSoccerPlayers = {};
     if (jsonMap.containsKey("instanceSoccerPlayers")) {
       jsonMap["instanceSoccerPlayers"].forEach((jsonObject) {
@@ -279,6 +282,9 @@ class Contest {
     // <FINAL> : Necesita acceso a los instanceSoccerPlayers
     contestEntries = jsonMap.containsKey("contestEntries") ? jsonMap["contestEntries"].map((jsonMap) => new ContestEntry.initFromJsonObject(jsonMap, references, this) ).toList() : [];
     numEntries = jsonMap.containsKey("numEntries") ? jsonMap["numEntries"] : contestEntries.length;
+
+    String prizeCurrency = entryFee.isEnergy ? Money.CURRENCY_MANAGER : Money.CURRENCY_GOLD;
+    _prizePool = new Money.from(prizeCurrency, (numEntries < minEntries ? minEntries : numEntries) * entryFee.amount * prizeMultiplier);
 
     // print("Contest: id($contestId) name($name) currentUserIds($currentUserIds) templateContestId($templateContestId)");
     return this;

@@ -73,7 +73,7 @@ class UserNotification {
       case CONTEST_FINISHED:
       case CONTEST_CANCELLED:
       case DUEL_FINISHED:
-        name = info["contestName"];
+        name = info["contestName"].trim();
         break;
     }
 

@@ -447,7 +447,8 @@
       "contestfifty"                    : "50 / 50",
       "salarycap"                       : "Salary cap",
       "contenders"                      : "contenders",
-      "of"                              : "of"
+      "of"                              : "of",
+      "minimum-contenders"              : "Min. @NUMERO"
     }
     ,"contestinfo"                      :
     {
@@ -659,7 +660,7 @@
       "MANAGER_LEVEL_UP"                : "HAS SUBIDO TU NIVEL DE MANAGER",
       "MANAGER_LEVEL_DOWN"              : "HAS BAJADO TU NIVEL DE MANAGER",
       "ACHIEVEMENT_EARNED"              : "HAS CONSEGUIDO @NAME",
-      
+
       "BUTTON_NEW_SPECIAL_EVENT_ACTIVE" : "Participar",
       "BUTTON_NEW_OFFER_ACTIVE"         : "Mas información",
       "BUTTON_CONTEST_FINISHED"         : "Ver resultado",

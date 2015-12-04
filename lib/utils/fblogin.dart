@@ -39,6 +39,22 @@ class FBLogin {
       }]);
     }
   }
+  
+  static void share(Map info) {
+    JsUtils.runJavascript(null, "facebookShare", 
+        [{'description'   : info.containsKey('description') ?  info['description']  : '',
+          'imageUrl'      : info.containsKey('image') ?        info['image']        : '',
+          'caption'       : info.containsKey('caption') ?      info['caption']      : '',
+          'url'           : info.containsKey('url') ?          info['url']          : 'jugar.epiceleven.com',
+          'title'         : info.containsKey('title') ?        info['title']        : null,
+          'dartCallback'  : info.containsKey('dartCallback') ? info['dartCallback'] : () => null
+        }]
+        /*(js.JsObject loginResponse) {
+            if (loginResponse["status"]=="connected") {
+              loginCallback(loginResponse);
+            }
+          }]*/);
+  }
 
   void loginCallback(loginResponse) {
     _profileManager.facebookLogin(loginResponse["authResponse"]["accessToken"])

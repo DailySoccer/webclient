@@ -42,6 +42,7 @@ import 'package:webclient/components/navigation/main_menu_f2p_comp.dart';
 import 'package:webclient/components/navigation/footer_comp.dart';
 import 'package:webclient/components/flash_messages_comp.dart';
 import 'package:webclient/components/modal_comp.dart';
+import 'package:webclient/components/facebook_share_comp.dart';
 import 'package:webclient/components/paginator_comp.dart';
 import 'package:webclient/components/lobby_f2p_comp.dart';
 import 'package:webclient/components/home_comp.dart';
@@ -156,6 +157,7 @@ class WebClientApp extends Module {
     bind(FooterComp);
     bind(FlashMessageComp);
     bind(ModalComp);
+    bind(FacebookShareComp);
     bind(LoginComp);
     bind(JoinComp);
     bind(LobbyF2PComp);

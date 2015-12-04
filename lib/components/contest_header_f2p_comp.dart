@@ -11,6 +11,7 @@ import 'dart:async';
 import 'package:webclient/services/contests_service.dart';
 import 'dart:html';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/services/facebook_service.dart';
 
 @Component(
     selector: 'contest-header-f2p',
@@ -65,7 +66,7 @@ class ContestHeaderF2PComp implements DetachAware, ShadowRootAware {
   void set setContestId(String value) {
     if (value != null) {
       contest = _contestsService.getContestById(value);
-
+      
       _refreshHeader();
       _refreshCountdownDate();
     }
@@ -74,6 +75,11 @@ class ContestHeaderF2PComp implements DetachAware, ShadowRootAware {
   String getLocalizedText(key) {
     return StringUtils.translate(key, "contestheader");
   }
+  
+  String get fbTitle => FacebookService.titleByContest(contest, _profileService.user.userId);
+  String get fbDescription => FacebookService.descriptionByContest(contest, _profileService.user.userId);
+  String get fbPhoto => FacebookService.imageByContest(contest, _profileService.user.userId);
+  String get fbCaption => FacebookService.captionByContest(contest, _profileService.user.userId);
 
   ContestHeaderF2PComp(this._router, this._routeProvider, this._profileService, this.scrDet, this._contestsService, this._rootElement) {
     _count = new Timer.periodic(new Duration(seconds: 1), (Timer timer) => _refreshCountdownDate());

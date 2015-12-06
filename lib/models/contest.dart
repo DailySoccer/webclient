@@ -76,7 +76,7 @@ class Contest {
 
   Prize get prize {
     if (_prize == null) {
-      _prize = PrizesService.getPrize(Prize.getKey(prizeType, maxEntries, _prizePool));
+      _prize = new Prize.fromContest(this); //PrizesService.getPrize(Prize.getKey(prizeType, maxEntries, _prizePool));
     }
     return _prize;
   }

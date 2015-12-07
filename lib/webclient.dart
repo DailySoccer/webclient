@@ -86,6 +86,9 @@ import 'package:webclient/components/enter_contest/soccer_players_filter_comp.da
 import 'package:webclient/components/enter_contest/matches_filter_comp.dart';
 import 'package:webclient/components/enter_contest/soccer_player_stats_comp.dart';
 
+import 'package:webclient/components/favorites/favorites_comp.dart';
+import 'package:webclient/components/favorites/teams_filter_comp.dart';
+
 import 'package:webclient/components/legalese_and_help/help_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/how_it_works_comp.dart';
 import 'package:webclient/components/legalese_and_help/tutorials_comp.dart';
@@ -206,6 +209,8 @@ class WebClientApp extends Module {
     bind(TerminusInfoComp);
     bind(LegalInfoComp);
     bind(PolicyInfoComp);
+    bind(TeamsFilterComp);
+    bind(FavoritesComp);
 
     //bind(AddFundsComp);
     //bind(TransactionHistoryComp);
@@ -449,6 +454,10 @@ class WebClientApp extends Module {
           path: '/policy_info',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<policy-info></policy-info>'
+      ,'favorites': ngRoute(
+          path: '/favorites',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+          viewHtml: '<favorites></favorites>'
       )
     });
   }
@@ -495,26 +504,29 @@ class WebClientApp extends Module {
 
     event.allowEnter(_waitingjQueryReady(() {
       bool bEnter = true;
+      TutorialService tutorialService = TutorialService.Instance;
 
       if ((visibility == _ONLY_WHEN_LOGGED_IN && !ProfileService.instance.isLoggedIn) ||
-          (visibility == _ONLY_WHEN_LOGGED_OUT && ProfileService.instance.isLoggedIn)) {
+          (visibility == _ONLY_WHEN_LOGGED_OUT && ProfileService.instance.isLoggedIn) /*||
+          (tutorialService != null && !tutorialService.isValidTrigger(event.route.name))*/) {
+        tutorialService.skipTutorial(routePath: 'home');
         bEnter = false;
       }
 
       if (!bEnter) {
-        router.go("lobby", {}, replace:true);
+        router.go("home", {}, replace:true);
         /*
-        if (ProfileService.instance.isLoggedIn) {
-          // Antes de redirigir al lobby, miramos que vengamos desde 0. Esto evita un flashazo en el que si estas
-          // por ejemplo en my_contest e intentas ir a la landing, se ve brevemente el lobby
-          if (router.activePath.isEmpty) {
-            router.go("lobby", {}, replace:true);
+          if (ProfileService.instance.isLoggedIn) {
+            // Antes de redirigir al lobby, miramos que vengamos desde 0. Esto evita un flashazo en el que si estas
+            // por ejemplo en my_contest e intentas ir a la landing, se ve brevemente el lobby
+            if (router.activePath.isEmpty) {
+              router.go("lobby", {}, replace:true);
+            }
           }
-        }
-        else {
-          router.go("landing_page", {}, replace: true);
-        }
-         */
+          else {
+            router.go("landing_page", {}, replace: true);
+          }
+        */
       }
 
       window.scroll(0, 0);

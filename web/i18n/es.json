@@ -622,8 +622,8 @@
       "msg-15"                          : "Fijate, uno de tus jugadores acaba de conseguir sus primeros puntos.",
       "msg-16"                          : "<span class='modal-body-title'>¡Enhorabuena, has ganado tu primer torneo!</span><span class='modal-body-text'> Has conseguido puntos de manager y has subido tu nivel de manager.",
       "msg-17"                          : "<span class='modal-body-title'>Ya estás preparado. </span><span class='modal-body-text'>Regístrate ahora y consigue tus primeras 30 monedas de oro para comenzar tu carrera como manager.</span>"
-    },
-    "tutorial_entrenamiento"            :
+    }
+    , "tutorial_entrenamiento"          :
     {
       "title-lobby"                     : "[ENTRENAMIENTO] SELECCIONA UN TORNEO",
       "title-entercontest"              : "[ENTRENAMIENTO] SELECCIONA TU ALINEACIÓN",
@@ -722,8 +722,8 @@
       "erroruserbalancenegativegeneric" : "No tienes Oro suficiente. Por favor, compra Oro para poder continuar",
       "errordefaulttitle"               : "Atención",
       "errordefaultgeneric"             : "Ha ocurrido un error. Inténtalo mas tarde."
-    },
-    "facebook_service"                  :
+    }
+    , "facebook_service"                :
     {
       "default_title"                   : "Epic Eleven",
       "default_description"             : "Juega hoy gratis a Epic Eleven",
@@ -959,6 +959,11 @@
       "point-9-content"                 : "<p>La utilización de la página web es responsabilidad única y exclusiva de cada Usuario, por lo que será responsabilidad suya cualquier infracción o cualquier perjuicio que pueda causar por el uso de dicha página. EPIC ELEVEN, sus socios, colaboradores, empleados y cualquier otro representante o tercero quedan pues exonerados de cualquier responsabilidad que pudiera conllevar las acciones del Usuario. EPIC ELEVEN, aún cuando ponga todo su esfuerzo en facilitar siempre información actualizada mediante su página web, no garantiza la inexistencia de errores o inexactitudes en ninguno de los contenidos, siempre que sea por razones no imputables de forma directa a EPIC ELEVEN. Por lo anterior, será el Usuario el único responsable frente a todas aquellas reclamaciones o acciones legales iniciadas contra EPIC ELEVEN basadas en el uso de la página web o sus contenidos por parte del usuario, siempre que esta utilización se haya realizado de forma ilícita, vulnerando derechos de terceros, o causando cualquier tipo de perjuicio, asumiendo por ello cuantos gastos, costes o indemnizaciones en los que pueda incurrir EPIC ELEVEN.</p>",
       "point-10-title"                  : "Ley aplicable y Jurisdicción",
       "point-10-content"                : "<p>Esta Web se rige por la legislación española. EPIC ELEVEN y el Usuario, con renuncia expresa a su propio fuero, si lo tuvieren, se someten a la jurisdicción de los juzgados y tribunales de la ciudad de Madrid (España). Esto siempre que este no sea un usuario final, siendo el foro que la ley estipula el domicilio del demandado.</p>"
+    ,"favorites"                         :
+    {
+      "title"                            : "Ojeador",
+      "spanish-league"                   : "La Liga",
+      "premier-league"                   : "Premier"
     }
   }
 }

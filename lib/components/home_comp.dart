@@ -34,7 +34,7 @@ class HomeComp  {
 
   bool get isContestTileEnabled => tutorialIsDone;
   bool get isCreateContestTileEnabled => userIsLogged && tutorialIsDone;
-  bool get isScoutingTileEnabled => false;
+  bool get isScoutingTileEnabled => true;
   bool get isMyContestTilesEnabled => userIsLogged && tutorialIsDone;
   bool get isUpcomingTileEnabled => isMyContestTilesEnabled;
   bool get isLiveTileEnabled => isMyContestTilesEnabled;
@@ -133,6 +133,7 @@ class HomeComp  {
 
   void onScoutingClick() {
     if (!isScoutingTileEnabled) return;
+    _router.go('favorites', {});
   }
 
   void onCreateContestClick() {

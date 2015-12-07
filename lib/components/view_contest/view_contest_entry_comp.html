@@ -4,10 +4,11 @@
 
   <!--<div class="separator-bar"></div>-->
   <div class="info-complete-bar" ng-if="!isModeViewing">
-    <p ng-if="isModeCreated">{{getLocalizedText("created")}}</p>
-    <p ng-if="isModeEdited">{{getLocalizedText("edited")}}</p>
-    <p ng-if="isModeSwapped">{{getLocalizedText("swapped")}}</p>
-    <p>{{getLocalizedText("tip")}}</p>
+    <p class="important-info" ng-if="isModeCreated">{{getLocalizedText("created")}}</p>
+    <p class="important-info" ng-if="isModeEdited">{{getLocalizedText("edited")}}</p>
+    <p class="important-info" ng-if="isModeSwapped">{{getLocalizedText("swapped")}}</p>
+    <facebook-share description="fbDescription" title="fbTitle" image="fbImage"></facebook-share>
+    <p class="complementary-info">{{getLocalizedText("tip")}}</p>
   </div>
 
   <div id="viewContestEntry" ng-switch="scrDet.isXsScreen" >
@@ -22,7 +23,6 @@
         <users-list class="tab-pane" id="usersList" contest-entries="contestEntries" watch="updatedDate"></users-list>
       </div>
     </div>
-
     <div ng-switch-when="false">
       <fantasy-team id="userFantasyTeam" contest-entry="mainPlayer" watch="updatedDate" is-opponent="false"></fantasy-team>
       <users-list show-invite="showInviteButton" on-invite-friends="onInviteFriends()" id="usersList" ng-show="selectedOpponent == null" contest-entries="contestEntries" watch="updatedDate"></users-list>

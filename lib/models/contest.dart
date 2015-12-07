@@ -76,7 +76,7 @@ class Contest {
 
   Prize get prize {
     if (_prize == null) {
-      _prize = PrizesService.getPrize(Prize.getKey(prizeType, maxEntries, _prizePool));
+      _prize = new Prize.fromContest(this); //PrizesService.getPrize(Prize.getKey(prizeType, maxEntries, _prizePool));
     }
     return _prize;
   }
@@ -284,7 +284,13 @@ class Contest {
     numEntries = jsonMap.containsKey("numEntries") ? jsonMap["numEntries"] : contestEntries.length;
 
     String prizeCurrency = entryFee.isEnergy ? Money.CURRENCY_MANAGER : Money.CURRENCY_GOLD;
-    _prizePool = new Money.from(prizeCurrency, (numEntries < minEntries ? minEntries : numEntries) * entryFee.amount * prizeMultiplier);
+
+    if (jsonMap.containsKey("prizePool") && jsonMap["prizePool"] != null) {
+      _prizePool = new Money.fromJsonObject(jsonMap["prizePool"]);
+    }
+    if (_prizePool == null || _prizePool.amount.toInt() == 0) {
+      _prizePool = new Money.from(prizeCurrency, (numEntries < minEntries ? minEntries : numEntries) * entryFee.amount * prizeMultiplier);
+    }
 
     // print("Contest: id($contestId) name($name) currentUserIds($currentUserIds) templateContestId($templateContestId)");
     return this;

@@ -68,6 +68,10 @@ class Money {
     return new Money.from(currencyUnit, amount - money.amount);
   }
 
+  Money multipliedBy(num multiplier) {
+    return new Money.from(currencyUnit, amount * multiplier);
+  }
+
   bool operator >=(Money other) {
     return amount >= other.amount;
   }

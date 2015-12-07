@@ -1,6 +1,8 @@
 library prize;
 import 'package:webclient/models/money.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/models/contest.dart';
+import 'package:logging/logging.dart';
 
 class Prize {
   // Tipos de Premios (obtenidos del backend)
@@ -19,7 +21,7 @@ class Prize {
   };
 
   String prizeType;
-  int maxEntries;
+  int entries;
   Money prizePool;
   List<Money> values = [];
   // List<num> multipliers = new List<num>();
@@ -28,15 +30,22 @@ class Prize {
     prizeType = FREE;
   }
 
+  Prize.fromContest(Contest contest) {
+    prizeType = contest.prizeType;
+    entries = (contest.numEntries < contest.minEntries) ? contest.minEntries : contest.numEntries;
+    prizePool = contest.prizePool; //getPool(contest.entryFee, entries, contest.prizeMultiplier);
+    values = _calculateValues();
+  }
+
   Prize.fromJsonObject(Map jsonMap) {
     prizeType = jsonMap["prizeType"];
-    maxEntries = jsonMap["maxEntries"];
+    entries = jsonMap["maxEntries"];
     prizePool = jsonMap.containsKey("prizePool") ? new Money.fromJsonObject(jsonMap["prizePool"]) : new Money.zero();
     // multipliers = jsonMap.containsKey("multipliers") ? jsonMap["multipliers"] : [];
     values = jsonMap.containsKey("values") ? jsonMap["values"].map((jsonMap) => new Money.fromJsonObject(jsonMap)).toList() : [];
   }
 
-  String get key => getKey(prizeType, maxEntries, prizePool);
+  String get key => getKey(prizeType, entries, prizePool);
 
   int get numPrizes {
     int ret = 0;
@@ -46,7 +55,7 @@ class Prize {
       ret = 1;
     }
     else if (prizeType == FIFTY_FIFTY) {
-      ret = (maxEntries ~/ 2);
+      ret = (entries ~/ 2);
     }
     else {
       ret = values.length;
@@ -62,7 +71,7 @@ class Prize {
       return (index == 0) ? values[0] : new Money.zero();
     }
     else if (prizeType == FIFTY_FIFTY) {
-      return (index < (maxEntries / 2)) ? values[0] : new Money.zero();
+      return (index < (entries / 2)) ? values[0] : new Money.zero();
     }
     return (index < values.length) ? values[index] : new Money.zero();
   }
@@ -71,7 +80,7 @@ class Prize {
     List<Money> ret = [];
 
     if (prizeType == FIFTY_FIFTY) {
-      for (int i=0; i<maxEntries~/2; i++) {
+      for (int i=0; i<entries~/2; i++) {
         ret.add(values[0]);
       }
     }
@@ -91,4 +100,47 @@ class Prize {
     }
     return "${prizeType}_${maxEntries}_${prizePool}";
   }
+
+  List<Money> _calculateValues() {
+    List<Money> result = [];
+
+    if (prizeType == WINNER) {
+      // El ganador se lo lleva todo
+      result.add(prizePool);
+    }
+    else if (prizeType == TOP_3) {
+      // Reparto directamente proporcional entre los 3 primeros (proporción: 5, 3 y 2)
+      result.add(prizePool.multipliedBy(5 / 10));
+      result.add(prizePool.multipliedBy(3 / 10));
+      result.add(prizePool.multipliedBy(2 / 10));
+    }
+    else if (prizeType == TOP_THIRD) {
+      // Reparto directamente proporcional entre los n primeros
+      int third = entries ~/ 3;
+      int total = 0;
+      for (int i=0; i<third; i++)
+        total += (i+1);
+
+      for (int i=0; i<third; i++) {
+        result.add(prizePool.multipliedBy( (third - i) / total));
+      }
+    }
+    else if (prizeType == FIFTY_FIFTY) {
+      // Se reparte a partes iguales entre la mitad de los participantes
+      int mitad = entries ~/ 2;
+      Money money = new Money.from(prizePool.currencyUnit, prizePool.amount ~/ mitad);
+      for (int i=0; i<mitad; i++) {
+        result.add(money);
+      }
+    }
+
+    Logger.root.info("Prize: $prizeType: [${result.map((premio) => premio.toString()).join(" : ")}]");
+    return result;
+  }
+
+  static Money getPool(Money entryFee, int entries, num prizeMultiplier) {
+      Money money = new Money.zeroFrom(entryFee.currencyUnit == Money.CURRENCY_ENERGY ? Money.CURRENCY_MANAGER : Money.CURRENCY_GOLD);
+      return money.plus(entryFee).multipliedBy(entries * prizeMultiplier);
+  }
+
 }

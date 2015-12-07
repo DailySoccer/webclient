@@ -1,0 +1,13 @@
+<div class="facebook-share-wrapper">
+  <div class="facebook-like">
+    <fb:like href="https://www.facebook.com/epicelevenfantasy" layout="button_count" action="like" />
+  </div>
+  <div class="facebook-share-button" ng-click="shareOnFB()">
+    <img src="images/iconFacebook.png"/> Share
+  </div>
+  <script>
+    if (typeof FB !== "undefined" && FB != null) {
+      FB.XFBML.parse();
+    }
+  </script>
+</div>

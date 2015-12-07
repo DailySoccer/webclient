@@ -3,14 +3,14 @@
 	.container-fluid();
 	display: block;
 	.clean-paddings();
-	top: -10px;
+	top: 0px;
+	margin-bottom: 5px;
 	position: relative;
 	//display: inline-block;
 	.teams-toggler-wrapper {
 		cursor: pointer;
 		display: block;
 		text-align: right;
-		background-color: @white;
 		.teams-toggler {
 			.opensans_bold(8pt, @greyDark);
 			.user-select(none);
@@ -31,14 +31,7 @@
 			//right: 15px;
 		}
 
-	// Reserva de sitio
-	@media (max-width: @screen-sm-max) {
-		background-color: @white;
-		//min-height: 45px;
-	}
 	@media (min-width: @screen-md-min) {
-		background-color: @white;
-		//min-height: 50px;
 		overflow: hidden;
 
 		// Animacion para cuando hay mas de una linea (solo en desktop)

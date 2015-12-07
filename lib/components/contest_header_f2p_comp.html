@@ -29,6 +29,7 @@
       <span>{{info['startTime']}}&nbsp;</span>
     </div>
   </div>
+  <facebook-share ng-if="contest.isLive || contest.isHistory" description="fbDescription" title="fbTitle" caption="fbCaption" image="fbPhoto"></facebook-share>
   
   <div class="tournament-and-type-section">
     <span class="{{getSourceFlag()}}"></span>

@@ -786,6 +786,7 @@ tc.put("packages/webclient/components/contest_header_f2p_comp.html", new HttpRes
       <span>{{info['startTime']}}&nbsp;</span>
     </div>
   </div>
+  <facebook-share ng-if="contest.isLive || contest.isHistory" description="fbDescription" title="fbTitle" caption="fbCaption" image="fbPhoto"></facebook-share>
   
   <div class="tournament-and-type-section">
     <span class="{{getSourceFlag()}}"></span>
@@ -1430,6 +1431,19 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_filter_comp.h
   </div>
 
   <input type="text" class="name-player-input-filter" placeholder="{{getLocalizedText('search-player', group: 'soccerplayerlist')}}" ng-model="nameFilter" />
+</div>"""));
+tc.put("packages/webclient/components/facebook_share_comp.html", new HttpResponse(200, r"""<div class="facebook-share-wrapper">
+  <div class="facebook-like">
+    <fb:like href="https://www.facebook.com/epicelevenfantasy" layout="button_count" action="like" />
+  </div>
+  <div class="facebook-share-button" ng-click="shareOnFB()">
+    <img src="images/iconFacebook.png"/> Share
+  </div>
+  <script>
+    if (typeof FB !== "undefined" && FB != null) {
+      FB.XFBML.parse();
+    }
+  </script>
 </div>"""));
 tc.put("packages/webclient/components/home_comp.html", new HttpResponse(200, r"""<div id="homeRoot">
   <!--
@@ -2394,10 +2408,11 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
 
   <!--<div class="separator-bar"></div>-->
   <div class="info-complete-bar" ng-if="!isModeViewing">
-    <p ng-if="isModeCreated">{{getLocalizedText("created")}}</p>
-    <p ng-if="isModeEdited">{{getLocalizedText("edited")}}</p>
-    <p ng-if="isModeSwapped">{{getLocalizedText("swapped")}}</p>
-    <p>{{getLocalizedText("tip")}}</p>
+    <p class="important-info" ng-if="isModeCreated">{{getLocalizedText("created")}}</p>
+    <p class="important-info" ng-if="isModeEdited">{{getLocalizedText("edited")}}</p>
+    <p class="important-info" ng-if="isModeSwapped">{{getLocalizedText("swapped")}}</p>
+    <facebook-share description="fbDescription" title="fbTitle" image="fbImage"></facebook-share>
+    <p class="complementary-info">{{getLocalizedText("tip")}}</p>
   </div>
 
   <div id="viewContestEntry" ng-switch="scrDet.isXsScreen" >
@@ -2412,7 +2427,6 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
         <users-list class="tab-pane" id="usersList" contest-entries="contestEntries" watch="updatedDate"></users-list>
       </div>
     </div>
-
     <div ng-switch-when="false">
       <fantasy-team id="userFantasyTeam" contest-entry="mainPlayer" watch="updatedDate" is-opponent="false"></fantasy-team>
       <users-list show-invite="showInviteButton" on-invite-friends="onInviteFriends()" id="usersList" ng-show="selectedOpponent == null" contest-entries="contestEntries" watch="updatedDate"></users-list>

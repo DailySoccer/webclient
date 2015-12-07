@@ -68,9 +68,8 @@ import 'package:webclient/components/account/user_profile_comp.dart';
 import 'package:webclient/components/account/edit_personal_data_comp.dart';
 import 'package:webclient/components/account/remember_password_comp.dart';
 import 'package:webclient/components/account/change_password_comp.dart';
-import 'package:webclient/components/account/add_funds_comp.dart';
-import 'package:webclient/components/account/transaction_history_comp.dart';
 import 'package:webclient/components/account/shop_comp.dart';
+import 'package:webclient/components/account/payment_response_comp.dart';
 
 import 'package:webclient/components/account/notifications_comp.dart';
 
@@ -93,6 +92,8 @@ import 'package:webclient/components/legalese_and_help/tutorials_comp.dart';
 import 'package:webclient/components/legalese_and_help/rules_comp.dart';
 import 'package:webclient/components/legalese_and_help/terminus_info_comp.dart';
 
+//import 'package:webclient/components/account/add_funds_comp.dart';
+//import 'package:webclient/components/account/transaction_history_comp.dart';
 //import 'package:webclient/components/landing_page_1_slide_comp.dart';
 //import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
 //import 'package:webclient/components/contest_filters_comp.dart';
@@ -101,7 +102,6 @@ import 'package:webclient/components/legalese_and_help/terminus_info_comp.dart';
 //import 'package:webclient/components/contests_list_comp.dart';
 //import 'package:webclient/components/contest_header_comp.dart';
 //import 'package:webclient/components/account/payment_comp.dart';
-//import 'package:webclient/components/account/payment_response_comp.dart';
 //import 'package:webclient/components/account/withdraw_funds_comp.dart';
 //import 'package:webclient/components/account/trainer_points_shop_comp.dart';
 //import 'package:webclient/components/account/gold_shop_comp.dart';
@@ -124,7 +124,7 @@ class WebClientApp extends Module {
 
     // No usamos animacion -> podemos quitar esto
     bind(CompilerConfig, toValue:new CompilerConfig.withOptions(elementProbeEnabled: false));
-    
+
     // Disable CSS shim
     bind(PlatformJsBasedShim, toImplementation: PlatformJsBasedNoShim);
     bind(DefaultPlatformShim, toImplementation: DefaultPlatformNoShim);
@@ -191,10 +191,9 @@ class WebClientApp extends Module {
     bind(RememberPasswordComp);
     bind(UserProfileComp);
     bind(EditPersonalDataComp);
-    bind(AddFundsComp);
-    bind(TransactionHistoryComp);
     bind(ShopComp);
-    bind(NotificationsComp);    
+    bind(PaymentResponseComp);
+    bind(NotificationsComp);
     bind(HelpInfoComp);
     bind(TutorialsComp);
     bind(RulesComp);
@@ -205,6 +204,8 @@ class WebClientApp extends Module {
     bind(HowItWoksComp);
     bind(TerminusInfoComp);
 
+    //bind(AddFundsComp);
+    //bind(TransactionHistoryComp);
     //bind(LandingPage1SlideComp);
     //bind(MainMenuSlideComp);
     //bind(LobbyComp);
@@ -218,7 +219,6 @@ class WebClientApp extends Module {
     //bind(BetaInfoComp);
     //bind(RestrictedComp);
     //bind(PaymentComp);
-    //bind(PaymentResponseComp);
     //bind(WithdrawFundsComp);
     //bind(TrainerPointsShopComp);
     //bind(GoldShopComp);
@@ -307,6 +307,7 @@ class WebClientApp extends Module {
           viewHtml: '<edit-personal-data></edit-personal-data>'
       )
 
+      /*
       ,'add_funds': ngRoute(
           path: '/add_funds',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
@@ -323,10 +324,17 @@ class WebClientApp extends Module {
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<transaction-history></transaction-history>'
       )
+      */
       ,'shop': ngRoute(
           path: '/shop',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
-          viewHtml: '<shop-comp></shop-comp>'
+          viewHtml: '<shop-comp></shop-comp>',
+          mount: {
+            'response': ngRoute(
+                path: '/response/:result',
+                viewHtml: '<payment-response></payment-response>')
+          }
+
           /*,mount: {
             'gold': ngRoute(
               path: '/gold_shop',

@@ -8,6 +8,8 @@ import 'package:angular/angular.dart';
 import "package:webclient/services/server_service.dart";
 import 'package:webclient/models/product.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/models/money.dart';
+import 'package:webclient/services/payment_service.dart';
 
 @Injectable()
 class CatalogService {
@@ -15,9 +17,14 @@ class CatalogService {
   HashMap<String, Product> productsMap;
   List<Product> products;
 
-  CatalogService(this._server, this._profileService);
+  CatalogService(this._server, this._profileService, this._paymentService);
 
   Future buyProduct(String productId) {
+    if (productsMap.containsKey(productId) && productsMap[productId].price.currencyUnit == Money.EUR) {
+      Completer completer = new Completer();
+      _paymentService.expressCheckoutWithPaypal(productId: productId);
+      return completer.future;
+    }
     return _server.buyProduct(productId)
       .then((jsonMap) {
         if (jsonMap.containsKey("profile")) {
@@ -64,4 +71,5 @@ class CatalogService {
 
   ServerService _server;
   ProfileService _profileService;
+  PaymentService _paymentService;
 }

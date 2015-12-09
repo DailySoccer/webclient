@@ -193,7 +193,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
       var slot = _sortedSoccerPlayers[c];
 
       if (_isVisibleWithFilters(slot, filterPosVal, filterMatchIdVal, filterNameVal)) {
-        allHtml.write(_getHtmlForSlot(slot, !lineupFilter.contains(slot)));
+        allHtml.write(_getHtmlForSlot(slot, !(lineupFilter.contains(slot))));
       }
     }
 
@@ -325,7 +325,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     _sortedSoccerPlayers.sort((player1, player2) {
       int compResult = 0;
       int fieldIndex = 0;
-
+      
       // Ordenamos por todos los campos uno tras otro
       do {
         String currField = _sortList[fieldIndex]["field"];

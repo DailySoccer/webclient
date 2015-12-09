@@ -12,7 +12,7 @@ import 'package:webclient/utils/string_utils.dart';
 
 @Component(
     selector: 'teams-filter',
-    templateUrl: 'packages/webclient/components/favorites/teams_filter_comp.html',
+    templateUrl: 'packages/webclient/components/scouting/teams_filter_comp.html',
     useShadowDom: false)
 class TeamsFilterComp {
   List<dynamic> _teamList = [];

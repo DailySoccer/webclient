@@ -133,7 +133,7 @@ class HomeComp  {
 
   void onScoutingClick() {
     if (!isScoutingTileEnabled) return;
-    _router.go('favorites', {});
+    _router.go('scouting', {});
   }
 
   void onCreateContestClick() {

@@ -15,31 +15,16 @@
 
         <!-- Tab del contenido normal de seleccion de lineup -->
         <div class="tab-pane active" id="spanish-league">
-            
-            <scouting-league team-list="teamList" soccer-player-list="allSoccerPlayers" 
-                             favorite-player-list="favoritesPlayers"></scouting-league>
-            
-            <!-- Este sera el selector de partidos en "grande", con botones-->
-            <!--teams-filter team-list="teamList" selected-option="teamFilter"></teams-filter>
-
-            <div class="enter-contest-soccer-players-wrapper">
-              <div class="enter-contest-soccer-players">
-
-                <soccer-players-filter name-filter="nameFilter" field-pos-filter="fieldPosFilter"></soccer-players-filter>
-
-                <soccer-players-list soccer-players="allSoccerPlayers"
-                                     manager-level="10"
-                                     field-pos-filter="fieldPosFilter" name-filter="nameFilter" match-filter="teamFilter"
-                                     on-row-click="onRowClick(soccerPlayerId)"
-                                     on-action-click="onSoccerPlayerActionButton(soccerPlayer)"></soccer-players-list>
-              </div>
-            </div-->
+            <scouting-league team-list="teamListES" soccer-player-list="allSoccerPlayersES" 
+                             on-action-button="onFavoritesChange(soccerPlayer)"
+                             favorites-player-list="favoritesPlayers"></scouting-league>
         </div>
         
         <!-- El otro tab, el del contest-info  -->
         <div class="tab-pane" id="premier-league">
-            <scouting-league team-list="teamList" soccer-player-list="allSoccerPlayers" 
-                             favorite-player-list="favoritesPlayers"></scouting-league>
+            <scouting-league team-list="teamListUK" soccer-player-list="allSoccerPlayersUK" 
+                             on-action-button="onFavoritesChange(soccerPlayer)"
+                             favorites-player-list="favoritesPlayers"></scouting-league>
         </div>
 
       </div>

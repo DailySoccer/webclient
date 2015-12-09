@@ -36,17 +36,16 @@ class ScoutingComp implements DetachAware {
 
   LoadingService loadingService;
 
-  List<dynamic> allSoccerPlayers;
-  List<dynamic> favoritesPlayers;
-  
-  List<Map<String, String>> teamList = [];
-  
-  FieldPos fieldPosFilter;
-  String nameFilter;
-  String teamFilter;
+  List<dynamic> favoritesPlayers = [];
 
-  final String LEAGUE_ES_ID = Competition.LEAGUE_ES_ID;
-  final String LEAGUE_UK_ID = Competition.LEAGUE_UK_ID;
+  List<dynamic> allSoccerPlayersES;
+  List<Map<String, String>> teamListES = [];
+  bool leagueES_isLoading;
+  List<dynamic> allSoccerPlayersUK;
+  List<Map<String, String>> teamListUK = [];
+  bool leagueUK_isLoading;
+
+  String currentTab = 'spanish-league';
 
   InstanceSoccerPlayer selectedInstanceSoccerPlayer;
 
@@ -61,26 +60,62 @@ class ScoutingComp implements DetachAware {
   ScoutingComp(this._routeProvider, this._router,
                    this._contestsService, this.loadingService, this._profileService, this._catalogService,
                    this._flashMessage, this._rootElement, this._tutorialService, this._soccerPlayerService) {
-    loadingService.isLoading = true;
-    removeAllFilters();
-    //_parent = _routeProvider.parameters["parent"];
     loadData();
-
   }
 
   void loadData() {
+    loadingService.isLoading = true;
+    leagueES_isLoading = true;
+    leagueUK_isLoading = true;
+    int intId = 0;
+    
+    void loadUKData() {
+      _soccerPlayerService.getSoccerPlayersByCompetition(Competition.LEAGUE_UK_ID)
+        .then((Map info) {
+          List<InstanceSoccerPlayer> instanceSoccerPlayers = info["instanceSoccerPlayers"];
+          List<SoccerTeam> soccerTeams = info["soccerTeams"];
+          
+          print ("InstanceSoccerPlayers UK: ${instanceSoccerPlayers.length}");
+          allSoccerPlayersUK = new List<dynamic>();
+          teamListUK = [];
+          instanceSoccerPlayers.forEach( (InstanceSoccerPlayer instance) {
+            allSoccerPlayersUK.add({
+              "instanceSoccerPlayer": instance,
+              "id": instance.id,
+              "intId": intId++,
+              "fieldPos": instance.fieldPos,
+              "fieldPosSortOrder": instance.fieldPos.sortOrder,
+              "fullName": instance.soccerPlayer.name,
+              "fullNameNormalized": StringUtils.normalize(instance.soccerPlayer.name).toUpperCase(),
+              "matchId" :  instance.soccerTeam.templateSoccerTeamId,
+              "matchEventName": instance.soccerTeam.name.toUpperCase(),
+              "remainingMatchTime": "-",
+              "fantasyPoints": instance.soccerPlayer.fantasyPoints,
+              "playedMatches": instance.soccerPlayer.getPlayedMatchesForCompetition(Competition.LEAGUE_UK_ID),
+              "salary": instance.salary
+            });
+          });
+          soccerTeams.forEach((team) {
+            teamListUK.add({"id": team.templateSoccerTeamId, "name": team.name, "shortName": team.shortName});
+          });
+
+          leagueUK_isLoading = false;
+          evaluateTabLoading();
+          updateFavorites();
+        });
+    }
+    
+    
     _soccerPlayerService.getSoccerPlayersByCompetition(Competition.LEAGUE_ES_ID)
         .then((Map info) {
           List<InstanceSoccerPlayer> instanceSoccerPlayers = info["instanceSoccerPlayers"];
           List<SoccerTeam> soccerTeams = info["soccerTeams"];
           
-          int intId = 0;
-          print ("InstanceSoccerPlayers: ${instanceSoccerPlayers.length}");
-          allSoccerPlayers = new List<dynamic>();
-          teamList = [];
+          print ("InstanceSoccerPlayers ES: ${instanceSoccerPlayers.length}");
+          allSoccerPlayersES = new List<dynamic>();
+          teamListES = [];
           instanceSoccerPlayers.forEach( (InstanceSoccerPlayer instance) {
-            //instanceSoccerPlayer = new InstanceSoccerPlayer.initFromJsonObject(json, references);
-            allSoccerPlayers.add({
+            allSoccerPlayersES.add({
               "instanceSoccerPlayer": instance,
               "id": instance.id,
               "intId": intId++,
@@ -95,41 +130,26 @@ class ScoutingComp implements DetachAware {
               "playedMatches": instance.soccerPlayer.getPlayedMatchesForCompetition(Competition.LEAGUE_ES_ID),
               "salary": instance.salary
             });
-
-            //print("${instance.soccerPlayer.name} : ${instance.fieldPos.abrevName} : ${instance.salary}");
           });
           soccerTeams.forEach((team) {
-            teamList.add({"id": team.templateSoccerTeamId, "name": team.name, "shortName": team.shortName});
+            teamListES.add({"id": team.templateSoccerTeamId, "name": team.name, "shortName": team.shortName});
           });
           
-          loadingService.isLoading = false;
+          leagueES_isLoading = false;
+          evaluateTabLoading();
+          loadUKData();
+          updateFavorites();
         });
-/*
-    String PATH = "tutorial/iniciacion/";
-    getContentJson(PATH + "instance_soccer_players.json").then((list) {
-        instanceSoccerPlayers = list;
-        allSoccerPlayers.clear();
-        int intId = 0;
-        instanceSoccerPlayers.forEach((json) {
-            json['level'] = intId % 6;
-            //instanceSoccerPlayer = new InstanceSoccerPlayer.initFromJsonObject(json, references);
-            allSoccerPlayers.add({
-              "instanceSoccerPlayer": null,
-              "id": intId,
-              "intId": intId++,
-              "fieldPos": FieldPos.DEFENSE,
-              "fieldPosSortOrder": FieldPos.DEFENSE.sortOrder,
-              "fullName": "NNN $intId",
-              "fullNameNormalized": StringUtils.normalize("NNN $intId").toUpperCase(),
-              "matchId" : null,
-              "matchEventName": null,
-              "remainingMatchTime": "-",
-              "fantasyPoints": 123,
-              "playedMatches": 23,
-              "salary": 11111
-            });
-          });
-    });*/
+  }
+  
+  void updateFavorites() {
+    favoritesPlayers.clear();
+    
+    favoritesPlayers.addAll(_profileService.user.favorites.map((playerId) {
+        allSoccerPlayersES.firstWhere( (player) => player['id'] == playerId, 
+            orElse: () => allSoccerPlayersES.firstWhere( (player) => player['id'] == playerId, 
+            orElse: () => null));
+      }).where( (d) => d != null));
   }
 
   Future getContentJson(String fileName) {
@@ -143,8 +163,14 @@ class ScoutingComp implements DetachAware {
   void tabChange(String tab) {
     querySelectorAll("#enter-contest-wrapper .tab-pane").classes.remove('active');
     querySelector("#${tab}").classes.add("active");
+    currentTab = tab;
   }
-
+  
+  void evaluateTabLoading() {
+    loadingService.isLoading = (currentTab == 'spanish-league' && leagueES_isLoading) || 
+                               (currentTab == 'premier-league' && leagueUK_isLoading);
+  }
+  
   void detach() {
     /*_routeHandle.discard();
 
@@ -152,96 +178,18 @@ class ScoutingComp implements DetachAware {
       _retryOpTimer.cancel();
     }*/
   }
-/*
 
-  void onSoccerPlayerActionButton(var soccerPlayer) {
-
-    int indexOfPlayer = favoritesPlayers.indexOf(soccerPlayer);
-    if (indexOfPlayer != -1) {
-      favoritesPlayers.remove(soccerPlayer);
-    } else {
-      // TODO: control max
-      favoritesPlayers.add(soccerPlayer);
+  void onFavoritesChange(var soccerPlayer) {
+    if (!(leagueES_isLoading || leagueES_isLoading)) {
+      int indexOfPlayer = favoritesPlayers.indexOf(soccerPlayer);
+      if (indexOfPlayer != -1) {
+        favoritesPlayers.remove(soccerPlayer);
+      } else {
+        // TODO: control max
+        favoritesPlayers.add(soccerPlayer);
+      }
+      _soccerPlayerService.setFavorites(favoritesPlayers.map((player) => player["id"]).toList());
     }
-  }
-
-  void initAllSoccerPlayers() {
-    int intId = 0;
-    allSoccerPlayers = new List<dynamic>();
-
-    contest.instanceSoccerPlayers.forEach((templateSoccerId, instanceSoccerPlayer) {
-
-      MatchEvent matchEvent = instanceSoccerPlayer.soccerTeam.matchEvent;
-      SoccerTeam soccerTeam = instanceSoccerPlayer.soccerTeam;
-
-      String shortNameTeamA = matchEvent.soccerTeamA.shortName;
-      String shortNameTeamB = matchEvent.soccerTeamB.shortName;
-
-      var matchEventName = (instanceSoccerPlayer.soccerTeam.templateSoccerTeamId == matchEvent.soccerTeamA.templateSoccerTeamId)
-           ? "<strong>$shortNameTeamA</strong> - $shortNameTeamB"
-           : "$shortNameTeamA - <strong>$shortNameTeamB</strong>";
-
-      allSoccerPlayers.add({
-        "instanceSoccerPlayer": instanceSoccerPlayer,
-        "id": instanceSoccerPlayer.id,
-        "intId": intId++,
-        "fieldPos": instanceSoccerPlayer.fieldPos,
-        "fieldPosSortOrder": instanceSoccerPlayer.fieldPos.sortOrder,
-        "fullName": instanceSoccerPlayer.soccerPlayer.name,
-        "fullNameNormalized": StringUtils.normalize(instanceSoccerPlayer.soccerPlayer.name).toUpperCase(),
-        "matchId" : matchEvent.templateMatchEventId,
-        "matchEventName": matchEventName,
-        "remainingMatchTime": "-",
-        "fantasyPoints": instanceSoccerPlayer.soccerPlayer.getFantasyPointsForCompetition(contest.optaCompetitionId),
-        "playedMatches": instanceSoccerPlayer.soccerPlayer.getPlayedMatchesForCompetition(contest.optaCompetitionId),
-        "salary": instanceSoccerPlayer.salary
-      });
-    });
-  }
-
-  void removeAllFilters() {
-    fieldPosFilter = null;
-    nameFilter = null;
-    teamFilter = null;
-  }
-  /*
-  void deleteFantasyTeam() {
-    resetLineup();
-    removeAllFilters();
-    availableSalary = contest.salaryCap;
-    // Comprobamos si estamos en salario negativo
-    isNegativeBalance = availableSalary < 0;
-    _verifyMaxPlayersInSameTeam();
-  }
-  */
-
-  String get _getKeyForCurrentUserContest => (_profileService.isLoggedIn ? _profileService.user.userId : 'guest') + '#' + contest.optaCompetitionId;
-  */
-
-  void onRowClick(String soccerPlayerId) {
-    ModalComp.open(_router, "enter_contest.soccer_player_stats", { "instanceSoccerPlayerId":soccerPlayerId, "selectable": true}, addSoccerPlayerToFavorite);
-  }
-
-  void onSoccerPlayerActionButton(var soccerPlayer) {
-
-    int indexOfPlayer = favoritesPlayers.indexOf(soccerPlayer);
-    if (indexOfPlayer != -1) {
-      favoritesPlayers.remove(soccerPlayer);
-    } else {
-      // TODO: control max
-      favoritesPlayers.add(soccerPlayer);
-    }
-  }
-
-  void addSoccerPlayerToFavorite(String soccerPlayerId) {
-    var soccerPlayer = allSoccerPlayers.firstWhere((soccerPlayer) => soccerPlayer["id"] == soccerPlayerId, orElse: () => null);
-    onSoccerPlayerActionButton(soccerPlayer);
-  }
-
-  void removeAllFilters() {
-    fieldPosFilter = null;
-    nameFilter = null;
-    teamFilter = null;
   }
 
   Router _router;

@@ -1,6 +1,7 @@
 library legal_info_comp;
 
 import 'package:angular/angular.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
    selector: 'legal-info',
@@ -9,5 +10,9 @@ import 'package:angular/angular.dart';
 )
 class LegalInfoComp {
 
+  String getLocalizedText(key, [Map substitutions]) {
+    return StringUtils.translate(key, "legals", substitutions);
+  }
+  
   LegalInfoComp();
 }

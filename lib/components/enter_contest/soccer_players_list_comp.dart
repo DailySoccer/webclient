@@ -71,7 +71,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     }
 
     lineupFilter = sp;
-
+    
     if (_lineupFilterWatch != null) {
       _lineupFilterWatch.remove();
       _lineupFilterWatch = null;
@@ -204,8 +204,6 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     _element.querySelectorAll(".column-action").onClick.listen(_onSoccerPlayerAction);
   }
 
-  /*
-   * 
   String _getHtmlForSlot(var slot, bool addButton) { 
     InstanceSoccerPlayer soccerPlayer = slot['instanceSoccerPlayer'];
     Money moneyToBuy = slot['instanceSoccerPlayer'].moneyToBuy(managerLevel);
@@ -231,13 +229,13 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
       </div>
     ''';
   }
-  */
+  
   
   
   // FIXME: Pillar la funcion de arriba, esta está adaptada para las pruebas 
-  String _getHtmlForSlot(var slot, bool addButton) { 
+  /*String _getHtmlForSlot(var slot, bool addButton) { 
     //InstanceSoccerPlayer soccerPlayer = slot['instanceSoccerPlayer'];
-    Money moneyToBuy = new Money.fromValue(10);//soccerPlayer.moneyToBuy(managerLevel);
+    Money moneyToBuy = new Money.fromValue(1);//soccerPlayer.moneyToBuy(managerLevel);
     bool soccerPlayerIsAvailable = moneyToBuy.toInt() == 0;
     String strAddButton = _getActionButton(addButton, moneyToBuy);
     
@@ -259,7 +257,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
         </div>
       </div>
     ''';
-  }
+  }*/
 
   String _getActionButton(bool addButton, Money moneyToBuy) {
     bool isFree = moneyToBuy.toInt() == 0;

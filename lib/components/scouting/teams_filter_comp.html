@@ -1,0 +1,10 @@
+<div id="teamsFilterWrapper">
+
+  <div id="teamsFilterButtons" class="teams-filter-buttons">
+    <div class="teams-filter-wrapper" ng-repeat="team in teamList" >
+      <button class="btn btn-default button-filter-team" ng-bind-html="teamHTML(team)" id="team-{{team.id}}"
+              ng-click="optionsSelectorValue = team.id" ng-class="{'active': optionsSelectorValue == team.id}">
+      </button>
+    </div>
+  </div>
+</div>

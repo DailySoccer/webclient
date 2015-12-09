@@ -3,4 +3,68 @@
 	.enter-contest-soccer-players-wrapper {
 		width: 100% !important;
 	}
+	
+	.soccer-players-list .soccer-players-list-slot {
+		 .soccer-player-info .column-manager-level {
+			visibility: visible;
+			&:after {
+				.addIcon("icon-star-xs.png", 17px, 17px);
+				vertical-align: baseline;
+			}
+		}
+		
+		.column-action {
+			.action-button {
+				
+				.no-text() {
+					line-height: 0;
+					.opensans_normal(0, @white);
+				}
+				
+				&.add { 
+					.btn-primary();
+					.no-text();
+					padding: 5px;
+					&:after {
+						.addIcon("iconFavoriteAdd.png", 17px, 17px);
+					}
+				}
+				&.remove { 
+					.btn-default();
+					.no-text();
+					padding: 5px;
+					&:after {
+						.addIcon("iconFavoriteRemove.png", 17px, 17px);
+					}
+				}
+				&.free-purchase {
+					.no-text();
+				}
+				/*
+				&.add.coin-purchase {
+					text-align: right;
+					width: 53px;
+					padding: 5px;
+				}
+				
+				min-width: 30px;
+				font-size: 10pt;
+				
+				.coins-to-buy:after {
+					.addIcon("icon-coin-xs.png", 17px, 17px);
+					margin-left: 3px;
+					vertical-align: top;
+				}
+				@media (max-width: @screen-xs-min) {
+					
+					&.add.coin-purchase {
+						width: 43px;
+						padding-left: 0px;
+						padding-right: 0px;
+					}
+				}
+				*/
+			}
+		}
+	}
 }

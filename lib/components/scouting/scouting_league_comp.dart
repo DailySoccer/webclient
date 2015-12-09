@@ -1,4 +1,4 @@
-library favorites_comp;
+library scouting_league_comp;
 
 import 'dart:html';
 import 'dart:async';
@@ -28,17 +28,36 @@ import 'package:webclient/services/soccer_player_service.dart';
 import 'package:webclient/models/competition.dart';
 
 @Component(
-    selector: 'favorites',
-    templateUrl: 'packages/webclient/components/favorites/favorites_comp.html',
+    selector: 'scouting-league',
+    templateUrl: 'packages/webclient/components/scouting/scouting_league_comp.html',
     useShadowDom: false
 )
-class FavoritesComp implements DetachAware {
-
+class ScoutingLeagueComp implements DetachAware {
+  
   LoadingService loadingService;
+  List<dynamic> _allSoccerPlayers;
+  List<dynamic> _favoritesPlayers;
+  
+  List<Map<String, String>> _teamList = [];
 
-  List<dynamic> allSoccerPlayers = [];
-  List<dynamic> favoritesPlayers = [];
-
+  @NgOneWay('soccer-player-list')
+  void set allSoccerPlayers(List<dynamic> players) {
+    _allSoccerPlayers = players;
+  }
+  List<dynamic> get allSoccerPlayers => _allSoccerPlayers;
+  
+  @NgOneWay('favorites-player-list')
+  void set favoritesPlayers(List<dynamic> players) {
+    _favoritesPlayers = players;
+  }
+  List<dynamic> get favoritesPlayers => _favoritesPlayers;
+  
+  @NgOneWay('team-list')
+  void set teamList(List<Map<String, String>> teams) {
+    _teamList = teams;
+  }
+  List<Map<String, String>> get teamList => _teamList;
+  
   FieldPos fieldPosFilter;
   String nameFilter;
   String teamFilter;
@@ -56,50 +75,12 @@ class FavoritesComp implements DetachAware {
     return StringUtils.formatCurrency(amount);
   }
 
-  FavoritesComp(this._routeProvider, this._router,
+  ScoutingLeagueComp(this._routeProvider, this._router,
                    this._contestsService, this.loadingService, this._profileService, this._catalogService,
                    this._flashMessage, this._rootElement, this._tutorialService, this._soccerPlayerService) {
-    //loadingService.isLoading = true;
     removeAllFilters();
     //_parent = _routeProvider.parameters["parent"];
-    loadData();
 
-  }
-
-  void loadData() {
-    List instanceSoccerPlayers;
-
-    _soccerPlayerService.getSoccerPlayersByCompetition(Competition.LEAGUE_ES_ID)
-        .then((List instanceSoccerPlayers) {
-          print ("InstanceSoccerPlayers: ${instanceSoccerPlayers.length}");
-          instanceSoccerPlayers.forEach( (InstanceSoccerPlayer instance) => print("${instance.soccerPlayer.name} : ${instance.fieldPos.abrevName} : ${instance.salary}"));
-        });
-
-    String PATH = "tutorial/iniciacion/";
-    getContentJson(PATH + "instance_soccer_players.json").then((list) {
-        instanceSoccerPlayers = list;
-        allSoccerPlayers.clear();
-        int intId = 0;
-        instanceSoccerPlayers.forEach((json) {
-            json['level'] = intId % 6;
-            //instanceSoccerPlayer = new InstanceSoccerPlayer.initFromJsonObject(json, references);
-            allSoccerPlayers.add({
-              "instanceSoccerPlayer": null,
-              "id": intId,
-              "intId": intId++,
-              "fieldPos": FieldPos.DEFENSE,
-              "fieldPosSortOrder": FieldPos.DEFENSE.sortOrder,
-              "fullName": "NNN $intId",
-              "fullNameNormalized": StringUtils.normalize("NNN $intId").toUpperCase(),
-              "matchId" : null,
-              "matchEventName": null,
-              "remainingMatchTime": "-",
-              "fantasyPoints": 123,
-              "playedMatches": 23,
-              "salary": 11111
-            });
-          });
-    });
   }
 
   Future getContentJson(String fileName) {

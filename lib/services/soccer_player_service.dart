@@ -61,6 +61,7 @@ class SoccerPlayerService {
         .then((jsonMap) {
           ContestReferences contestReferences = new ContestReferences();
           List<InstanceSoccerPlayer> instanceSoccerPlayers = [];
+          List<SoccerTeam> soccerTeams = [];
 
           if (jsonMap.containsKey("instanceSoccerPlayers")) {
             jsonMap["instanceSoccerPlayers"].forEach((jsonObject) {
@@ -73,15 +74,18 @@ class SoccerPlayerService {
           }
 
           if (jsonMap.containsKey("soccer_teams")) {
-            jsonMap["soccer_teams"].forEach( (jsonTeam) =>
-                new SoccerTeam.fromJsonObject(jsonTeam, contestReferences) );
+            soccerTeams = jsonMap["soccer_teams"].map( (jsonTeam) =>
+                new SoccerTeam.fromJsonObject(jsonTeam, contestReferences)).toList();
           }
 
           if (jsonMap.containsKey("profile")) {
             _profileService.updateProfileFromJson(jsonMap["profile"]);
           }
-
-          completer.complete(instanceSoccerPlayers);
+          
+          completer.complete({
+              "instanceSoccerPlayers": instanceSoccerPlayers,
+              "soccerTeams": soccerTeams
+            });
         });
 
     return completer.future;

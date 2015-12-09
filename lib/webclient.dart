@@ -86,8 +86,9 @@ import 'package:webclient/components/enter_contest/soccer_players_filter_comp.da
 import 'package:webclient/components/enter_contest/matches_filter_comp.dart';
 import 'package:webclient/components/enter_contest/soccer_player_stats_comp.dart';
 
-import 'package:webclient/components/favorites/favorites_comp.dart';
-import 'package:webclient/components/favorites/teams_filter_comp.dart';
+import 'package:webclient/components/scouting/scouting_comp.dart';
+import 'package:webclient/components/scouting/scouting_league_comp.dart';
+import 'package:webclient/components/scouting/teams_filter_comp.dart';
 
 import 'package:webclient/components/legalese_and_help/help_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/how_it_works_comp.dart';
@@ -210,7 +211,8 @@ class WebClientApp extends Module {
     bind(LegalInfoComp);
     bind(PolicyInfoComp);
     bind(TeamsFilterComp);
-    bind(FavoritesComp);
+    bind(ScoutingComp);
+    bind(ScoutingLeagueComp);
 
     //bind(AddFundsComp);
     //bind(TransactionHistoryComp);
@@ -454,10 +456,16 @@ class WebClientApp extends Module {
           path: '/policy_info',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<policy-info></policy-info>'
+      )
       ,'favorites': ngRoute(
           path: '/favorites',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<favorites></favorites>'
+      )
+      ,'scouting': ngRoute(
+          path: '/scouting',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+          viewHtml: '<scouting></scouting>'
       )
     });
   }

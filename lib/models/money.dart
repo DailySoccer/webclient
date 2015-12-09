@@ -84,6 +84,8 @@ class Money {
     return amount.compareTo(other.amount);
   }
 
+  bool get isZero => amount.toInt() == 0;
+
   bool get isGold => currencyUnit == CURRENCY_GOLD;
   bool get isManagerPoints => currencyUnit == CURRENCY_MANAGER;
   bool get isEnergy => currencyUnit == CURRENCY_ENERGY;

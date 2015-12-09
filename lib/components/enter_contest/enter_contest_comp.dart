@@ -96,14 +96,14 @@ class EnterContestComp implements DetachAware {
   String get printableAvailableSalary => StringUtils.parseSalary(availableSalary);
 
   // Comprobamos si tenemos recursos suficientes para pagar el torneo (salvo que estemos editando el contestEntry)
-  bool get enoughResourcesForEntryFee => 
+  bool get enoughResourcesForEntryFee =>
       contest == null || !_profileService.isLoggedIn || _profileService.user.hasMoney(moneyNeeded);
 
   String get resourceName => contest != null && contest.simulation ? getLocalizedText("resource-energy") : getLocalizedText("resource-gold");
-  
+
   bool playersInSameTeamInvalid = false;
   bool isNegativeBalance = false;
-  
+
   bool get isInvalidFantasyTeam => lineupSlots.any((player) => player == null) || playersInSameTeamInvalid || isNegativeBalance;
   bool get editingContestEntry => contestEntryId != "none";
   bool get isCreatingContest => _parent.contains("create_contest");
@@ -112,6 +112,9 @@ class EnterContestComp implements DetachAware {
 
   num get playerManagerLevel =>
       (contest != null && contest.simulation) ? User.MAX_MANAGER_LEVEL : (_profileService.isLoggedIn ? _profileService.user.managerLevel : 0);
+
+  int get playerGold => _profileService.isLoggedIn ? _profileService.user.Gold: 0;
+  int get playerEnergy => _profileService.isLoggedIn ? _profileService.user.Energy : 0;
 
   List<String> lineupAlertList = [];
 
@@ -380,7 +383,7 @@ class EnterContestComp implements DetachAware {
   void _tryToAddSoccerPlayerToLineup(var soccerPlayer) {
     if (contest.entryFee.isGold && !_isRestoringTeam) {
       Money moneyToBuy = new Money.from(Money.CURRENCY_GOLD, soccerPlayer["instanceSoccerPlayer"].moneyToBuy(playerManagerLevel).amount);
-      bool hasMoney = _profileService.isLoggedIn && _profileService.user.hasMoney(moneyToBuy);
+      bool hasMoney = _profileService.isLoggedIn ? _profileService.user.hasMoney(moneyToBuy) : moneyToBuy.isZero;
       if (!hasMoney) {
         alertNotBuy(moneyToBuy);
         return;
@@ -664,7 +667,7 @@ class EnterContestComp implements DetachAware {
      _verifyMaxPlayersInSameTeam();
     }
   }
-  
+
   void alertNotBuy(Money coins) {
     modalShow(
       "",
@@ -675,7 +678,7 @@ class EnterContestComp implements DetachAware {
           <img class="gold-image" src="images/EpicCoinModales.png">
           <span class="not-enough-resources-count">${coins}</span>
         </div>
-        <h2 class="alert-content-subtitle">${getLocalizedText('alert-user-gold-message', substitutions:{'MONEY': _profileService.user.goldBalance})}<span class="gold-icon-tiny"></span></h2>
+        <h2 class="alert-content-subtitle">${getLocalizedText('alert-user-gold-message', substitutions:{'MONEY': playerGold})}<span class="gold-icon-tiny"></span></h2>
       </div>
       '''
       , onBackdropClick: true
@@ -715,7 +718,7 @@ class EnterContestComp implements DetachAware {
               <img class="gold-image" src="images/EpicCoinModales.png">
               <span class="not-enough-resources-count">${coinsNeeded}</span>
             </div>
-            <h2 class="alert-content-subtitle">${getLocalizedText('alert-user-gold-message', substitutions:{'MONEY': _profileService.user.goldBalance})}<span class="gold-icon-tiny"></span></h2>
+            <h2 class="alert-content-subtitle">${getLocalizedText('alert-user-gold-message', substitutions:{'MONEY': playerGold})}<span class="gold-icon-tiny"></span></h2>
           </div>
           '''
           , onOk: getLocalizedText("buy-gold-button")
@@ -735,7 +738,7 @@ class EnterContestComp implements DetachAware {
               <img class="gold-image" src="images/IconEnergyXL.png">
               <span class="not-enough-resources-count">${moneyNeeded.toInt()}</span>
             </div>
-            <h2 class="alert-content-subtitle">${getLocalizedText("alert-no-energy-message_2", substitutions:{'ENERGY': _profileService.user.Energy})}<span class="energy-icon-tiny"></span></h2>
+            <h2 class="alert-content-subtitle">${getLocalizedText("alert-no-energy-message_2", substitutions:{'ENERGY': playerEnergy})}<span class="energy-icon-tiny"></span></h2>
           </div>
           '''
           , onOk: getLocalizedText('buy-energy-button')

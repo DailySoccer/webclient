@@ -92,6 +92,8 @@ import 'package:webclient/components/legalese_and_help/how_it_works_comp.dart';
 import 'package:webclient/components/legalese_and_help/tutorials_comp.dart';
 import 'package:webclient/components/legalese_and_help/rules_comp.dart';
 import 'package:webclient/components/legalese_and_help/terminus_info_comp.dart';
+import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
+import 'package:webclient/components/legalese_and_help/policy_info_comp.dart';
 
 //import 'package:webclient/components/landing_page_1_slide_comp.dart';
 //import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
@@ -106,8 +108,7 @@ import 'package:webclient/components/legalese_and_help/terminus_info_comp.dart';
 //import 'package:webclient/components/account/trainer_points_shop_comp.dart';
 //import 'package:webclient/components/account/gold_shop_comp.dart';
 //import 'package:webclient/components/account/energy_shop_comp.dart';
-//import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
-//import 'package:webclient/components/legalese_and_help/policy_info_comp.dart';
+
 //import 'package:webclient/components/legalese_and_help/beta_info_comp.dart';
 //import 'package:webclient/components/legalese_and_help/restricted_comp.dart';
 
@@ -204,6 +205,8 @@ class WebClientApp extends Module {
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
     bind(HowItWoksComp);
     bind(TerminusInfoComp);
+    bind(LegalInfoComp);
+    bind(PolicyInfoComp);
 
     //bind(LandingPage1SlideComp);
     //bind(MainMenuSlideComp);
@@ -213,8 +216,7 @@ class WebClientApp extends Module {
     //bind(SimplePromoViewerComp);
     //bind(ContestFiltersComp);
     //bind(ContestHeaderComp);
-    //bind(LegalInfoComp);
-    //bind(PolicyInfoComp);
+
     //bind(BetaInfoComp);
     //bind(RestrictedComp);
     //bind(PaymentComp);
@@ -239,16 +241,6 @@ class WebClientApp extends Module {
           path: '/beta_info',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<beta-info></beta-info>'
-      )
-      ,'legal_info': ngRoute(
-          path: '/legal_info',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-          viewHtml: '<legal-info></legal-info>'
-      )
-      ,'policy_info': ngRoute(
-          path: '/policy_info',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-          viewHtml: '<policy-info></policy-info>'
       )
       ,'payment': ngRoute(
           path: '/payment',
@@ -439,6 +431,16 @@ class WebClientApp extends Module {
           path: '/terminus_info',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<terminus-info></terminus-info>'
+      )
+      ,'legal_info': ngRoute(
+          path: '/legal_info',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+          viewHtml: '<legal-info></legal-info>'
+      )
+      ,'policy_info': ngRoute(
+          path: '/policy_info',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+          viewHtml: '<policy-info></policy-info>'
       )
     });
   }

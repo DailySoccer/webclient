@@ -24,6 +24,8 @@ import 'package:webclient/services/catalog_service.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/models/money.dart';
 import 'package:webclient/services/tutorial_service.dart';
+import 'package:webclient/services/soccer_player_service.dart';
+import 'package:webclient/models/competition.dart';
 
 @Component(
     selector: 'favorites',
@@ -31,12 +33,12 @@ import 'package:webclient/services/tutorial_service.dart';
     useShadowDom: false
 )
 class FavoritesComp implements DetachAware {
-  
+
   LoadingService loadingService;
 
   List<dynamic> allSoccerPlayers = [];
   List<dynamic> favoritesPlayers = [];
-  
+
   FieldPos fieldPosFilter;
   String nameFilter;
   String teamFilter;
@@ -56,16 +58,23 @@ class FavoritesComp implements DetachAware {
 
   FavoritesComp(this._routeProvider, this._router,
                    this._contestsService, this.loadingService, this._profileService, this._catalogService,
-                   this._flashMessage, this._rootElement, this._tutorialService) {
+                   this._flashMessage, this._rootElement, this._tutorialService, this._soccerPlayerService) {
     //loadingService.isLoading = true;
     removeAllFilters();
     //_parent = _routeProvider.parameters["parent"];
     loadData();
 
   }
-  
+
   void loadData() {
     List instanceSoccerPlayers;
+
+    _soccerPlayerService.getSoccerPlayersByCompetition(Competition.LEAGUE_ES_ID)
+        .then((List instanceSoccerPlayers) {
+          print ("InstanceSoccerPlayers: ${instanceSoccerPlayers.length}");
+          instanceSoccerPlayers.forEach( (InstanceSoccerPlayer instance) => print("${instance.soccerPlayer.name}"));
+        });
+
     String PATH = "tutorial/iniciacion/";
     getContentJson(PATH + "instance_soccer_players.json").then((list) {
         instanceSoccerPlayers = list;
@@ -105,7 +114,7 @@ class FavoritesComp implements DetachAware {
     querySelectorAll("#enter-contest-wrapper .tab-pane").classes.remove('active');
     querySelector("#${tab}").classes.add("active");
   }
-  
+
   void detach() {
     /*_routeHandle.discard();
 
@@ -129,7 +138,7 @@ class FavoritesComp implements DetachAware {
   void initAllSoccerPlayers() {
     int intId = 0;
     allSoccerPlayers = new List<dynamic>();
-    
+
     contest.instanceSoccerPlayers.forEach((templateSoccerId, instanceSoccerPlayer) {
 
       MatchEvent matchEvent = instanceSoccerPlayer.soccerTeam.matchEvent;
@@ -193,22 +202,23 @@ class FavoritesComp implements DetachAware {
       favoritesPlayers.add(soccerPlayer);
     }
   }
-  
+
   void addSoccerPlayerToFavorite(String soccerPlayerId) {
     var soccerPlayer = allSoccerPlayers.firstWhere((soccerPlayer) => soccerPlayer["id"] == soccerPlayerId, orElse: () => null);
     onSoccerPlayerActionButton(soccerPlayer);
   }
-  
+
   void removeAllFilters() {
     fieldPosFilter = null;
     nameFilter = null;
     teamFilter = null;
   }
-  
+
   Router _router;
   RouteProvider _routeProvider;
   String _parent;
 
+  SoccerPlayerService _soccerPlayerService;
   TutorialService _tutorialService;
   ContestsService _contestsService;
   ProfileService _profileService;

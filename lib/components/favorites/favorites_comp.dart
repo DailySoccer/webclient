@@ -72,7 +72,7 @@ class FavoritesComp implements DetachAware {
     _soccerPlayerService.getSoccerPlayersByCompetition(Competition.LEAGUE_ES_ID)
         .then((List instanceSoccerPlayers) {
           print ("InstanceSoccerPlayers: ${instanceSoccerPlayers.length}");
-          instanceSoccerPlayers.forEach( (InstanceSoccerPlayer instance) => print("${instance.soccerPlayer.name}"));
+          instanceSoccerPlayers.forEach( (InstanceSoccerPlayer instance) => print("${instance.soccerPlayer.name} : ${instance.fieldPos.abrevName} : ${instance.salary}"));
         });
 
     String PATH = "tutorial/iniciacion/";

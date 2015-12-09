@@ -116,11 +116,12 @@ class ShopComp implements DetachAware{
     }
   }
 
+
   void alertNotEnoughResources(Money goldNeeded) {
      modalShow(
        "",
        getNotEnoughGoldContent(goldNeeded),
-       onOk: getLocalizedText("buy-gold-button", group:'entercontest'),
+       onOk: getLocalizedText("buy-gold-button"),
        closeButton:true
      )
      /*.then((_) {
@@ -134,9 +135,9 @@ class ShopComp implements DetachAware{
       <img class="main-image" src="images/iconNoGold.png">
       <span class="not-enough-resources-count">${goldNeeded}</span>
       <p class="content-text">
-        <strong>${getLocalizedText("alert-no-gold-message", group:'entercontest')}</strong>
+        <strong>${getLocalizedText("alert-no-gold-message")}</strong>
         <br>
-        ${getLocalizedText('alert-user-gold-message', group:'entercontest', substitutions:{'MONEY': _profileService.user.goldBalance})}
+        ${getLocalizedText('alert-user-gold-message', substitutions:{'MONEY': _profileService.user.goldBalance})}
         <img src="images/icon-coin-xs.png">
       </p>
     </div>

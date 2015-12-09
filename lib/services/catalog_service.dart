@@ -20,7 +20,8 @@ class CatalogService {
   CatalogService(this._server, this._profileService, this._paymentService);
 
   Future buyProduct(String productId) {
-    if (productsMap.containsKey(productId) && productsMap[productId].price.currencyUnit == Money.EUR) {
+    // TODO: El producto más barato se obtiene GRATIS !!!!
+    if (productsMap.containsKey(productId) && productsMap[productId].price.currencyUnit == Money.EUR && productId != "GOLD_1") {
       Completer completer = new Completer();
       _paymentService.expressCheckoutWithPaypal(productId: productId);
       return completer.future;

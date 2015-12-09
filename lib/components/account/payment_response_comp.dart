@@ -20,7 +20,6 @@ class PaymentResponseComp implements ShadowRootAware {
     return StringUtils.translate(key, "paymentresponse");
   }
 
-
   PaymentResponseComp(this._routeProvider, this._router, this._paymentService) {
     result = _routeProvider.route.parameters['result'];
     titleText = result == 'success' ? getLocalizedText("resultok") : getLocalizedText("resultnook");

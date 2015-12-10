@@ -229,35 +229,6 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
       </div>
     ''';
   }
-  
-  
-  
-  // FIXME: Pillar la funcion de arriba, esta está adaptada para las pruebas 
-  /*String _getHtmlForSlot(var slot, bool addButton) { 
-    //InstanceSoccerPlayer soccerPlayer = slot['instanceSoccerPlayer'];
-    Money moneyToBuy = new Money.fromValue(1);//soccerPlayer.moneyToBuy(managerLevel);
-    bool soccerPlayerIsAvailable = moneyToBuy.toInt() == 0;
-    String strAddButton = _getActionButton(addButton, moneyToBuy);
-    
-    return '''
-      <div id="soccerPlayer${slot["intId"]}" class="soccer-players-list-slot ${_POS_CLASS_NAMES[slot["fieldPos"].abrevName]} ${!soccerPlayerIsAvailable? 'not-available' : ''}">
-        <div id="soccerPlayerInfo${slot["intId"]}" class="soccer-player-info">
-          <div class="column-fieldpos">${slot["fieldPos"].abrevName}</div>
-          <div class="column-primary-info">
-            <span class="soccer-player-name">${slot["fullName"]}</span>
-            <span class="match-event-name">${slot["matchEventName"]}</span>
-          </div>
-          <div class="column-dfp">${StringUtils.parseFantasyPoints(slot["fantasyPoints"])}</div>
-          <div class="column-played">${slot["playedMatches"]}</div>
-          <div class="column-salary">\$${StringUtils.parseSalary(slot["salary"])}</div>
-          <div class="column-manager-level"><span class="manager-level-needed">${(slot['id']%5) + 1 /*soccerPlayer.level*/}</span></div>
-        </div>
-        <div class="column-action" id="soccerPlayerAction${slot["intId"]}" >
-          ${strAddButton}
-        </div>
-      </div>
-    ''';
-  }*/
 
   String _getActionButton(bool addButton, Money moneyToBuy) {
     bool isFree = moneyToBuy.toInt() == 0;
@@ -295,7 +266,6 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   }
 
   bool _isVisible(player) => !_isVisibleWithFilters(player, _filterList[FILTER_POSITION], _filterList[FILTER_MATCH], _filterList[FILTER_NAME]);
-
 
   void sortListByField(String fieldName, {bool invert : true}) {
 

@@ -44,6 +44,8 @@ class ScoutingComp implements DetachAware {
   List<dynamic> allSoccerPlayersUK;
   List<Map<String, String>> teamListUK = [];
   bool leagueUK_isLoading;
+  static bool favoritesIsSaving = false;
+  bool thereIsNewFavorites;
 
   String currentTab = 'spanish-league';
 
@@ -61,6 +63,7 @@ class ScoutingComp implements DetachAware {
                    this._contestsService, this.loadingService, this._profileService, this._catalogService,
                    this._flashMessage, this._rootElement, this._tutorialService, this._soccerPlayerService) {
     loadData();
+    thereIsNewFavorites = false;
   }
 
   void loadData() {
@@ -168,7 +171,8 @@ class ScoutingComp implements DetachAware {
   
   void evaluateTabLoading() {
     loadingService.isLoading = (currentTab == 'spanish-league' && leagueES_isLoading) || 
-                               (currentTab == 'premier-league' && leagueUK_isLoading);
+                               (currentTab == 'premier-league' && leagueUK_isLoading) ||
+                               favoritesIsSaving;
   }
   
   void detach() {
@@ -181,6 +185,7 @@ class ScoutingComp implements DetachAware {
 
   void onFavoritesChange(var soccerPlayer) {
     if (!(leagueES_isLoading || leagueES_isLoading)) {
+      thereIsNewFavorites = favoritesIsSaving;
       int indexOfPlayer = favoritesPlayers.indexOf(soccerPlayer);
       if (indexOfPlayer != -1) {
         favoritesPlayers.remove(soccerPlayer);
@@ -188,7 +193,22 @@ class ScoutingComp implements DetachAware {
         // TODO: control max
         favoritesPlayers.add(soccerPlayer);
       }
-      _soccerPlayerService.setFavorites(favoritesPlayers.map((player) => player["id"]).toList());
+      
+      saveFavorites();
+    }
+  }
+  
+  void saveFavorites() {
+    if (!favoritesIsSaving) {
+      thereIsNewFavorites = false;
+      favoritesIsSaving = true;
+      evaluateTabLoading();
+      _soccerPlayerService.setFavorites(favoritesPlayers.map((player) => player["id"]).toList())
+          .then( (_) { 
+              favoritesIsSaving = false; 
+              evaluateTabLoading();
+              if (thereIsNewFavorites) saveFavorites();
+            });
     }
   }
 

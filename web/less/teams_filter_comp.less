@@ -1,81 +1,85 @@
 // Reserva de sitio
 teams-filter {
 	@media (min-width: @screen-md-min) {
-		min-height: 60px;
 		display: block;
 	}
-}
+	.teams-toggler-wrapper {
+		cursor: pointer;
+		display: block;
+		text-align: left;
+		.teams-toggler {
+			.opensans_bold(10pt, @greyDark);
+			.user-select(none);
+			padding: 10px 20px 5px 20px;
+		}
+		.toggleOff::after{
+			.create-glyph("\E114", 6pt, @greyUltraDark);
+			padding-left: 3px;
+		}
+		.toggleOn::after{
+			.create-glyph("\E113", 6pt, @greyUltraDark);
+			padding-left: 3px;
+		}
+		border-bottom: 1px solid @greyLight;
+	}
 
-#teamsFilterWrapper {
+	#teamsFilterWrapper {
 
-	.clearfix();
-	
-	.teams-filter-buttons {
-		background-color: @tramaBlue;
-		padding: -1px 5px 5px 5px;
-		float: left;
-		width: 100%;
-						
-		// Animacion para cuando hay mas de una linea (solo en desktop)
-		@media (min-width: @screen-md-min) {
-			min-height: 60px;
-			overflow: hidden;
+		.clearfix();
 
-			&.animate {
-				#doKeyFrames(matchesfilter-height-keyframes, {
-					 from { max-height: 60px; opacity: 0;}
-					 30% { max-height: 60px; opacity: 1;}
-					 to { max-height: 240px; opacity: 1;}
-					});
-				.animateWithKeyFrames(matchesfilter-height-keyframes, 1s);
+		.teams-filter-buttons {
+			background-color: @tramaBlue;
+			padding: -1px 5px 5px 5px;
+			float: left;
+			width: 100%;
+
+			.teams-filter-wrapper {
+				.make-xs-column(6);
+				.make-sm-column(3);
+				.make-md-column(2);
+				height: 45px;
+				float: left;
+				display: inline-block;
+				padding: 0 5px;
+				margin: 0px 0 15px 0;
+				position: relative;			
+				top: 8px;
+			}
+			&:after { clear:both; }
+			.button-filter-team {
+				width: 100%;
+				padding: 5px 0;			
+				text-align: center;			
+				line-height: 15px;
+				.opensans_bold(9pt, @white);
+				border: 1px solid transparent;
+			}
+			.button-filter-team:active, .button-filter-team:focus, .button-filter-team:hover, .button-filter-team:visited {
+				outline: none;
+			}
+			.active {
+				background-color: @white;
+				color: @greyDark;
+				box-shadow: none !important;
+				outline: none !important;
+				border: 1px solid @greyDark;
+			}
+			.active:active, .active:hover, .active:focus, .active:visited {
+				color: @greyDark;
 			}
 		}
-		.teams-filter-wrapper {
-			.make-xs-column(6);
-			.make-sm-column(3);
-			.make-md-column(2);
-			height: 45px;
-			float: left;
-			display: inline-block;
-			padding: 0 5px;
-			margin: 0px 0 15px 0;
-			position: relative;			
-			top: 8px;
+
+		@media (max-width: @screen-xs-max) {
+			padding: 10px 10px 0px 10px;
 		}
-		&:after { clear:both; }
-		.button-filter-team {
-			width: 100%;
-			padding: 5px 0;			
-			text-align: center;			
-			line-height: 15px;
-			.opensans_bold(9pt, @white);
-			border: 1px solid transparent;
-		}
-		.button-filter-team:active, .button-filter-team:focus, .button-filter-team:hover, .button-filter-team:visited {
-			outline: none;
-		}
-		.active {
-			background-color: @white;
-			color: @greyDark;
-			box-shadow: none !important;
-			outline: none !important;
-			border: 1px solid @greyDark;
-		}
-		.active:active, .active:hover, .active:focus, .active:visited {
-			color: @greyDark;
+
+		// Selector de opciones desplegable
+		.teams-selector-filter {
+			.form-control();
+			.hidden-sm();
+			.hidden-md();
+			.hidden-lg();
 		}
 	}
 
-	@media (max-width: @screen-xs-max) {
-		padding: 10px 10px 0px 10px;
-	}
-
-	// Selector de opciones desplegable
-	.teams-selector-filter {
-		.form-control();
-		.hidden-sm();
-		.hidden-md();
-		.hidden-lg();
-	}
 }
-

@@ -968,7 +968,9 @@
     }
     ,"teamsfilter"                      :
     {
-      "all-teams"                       : "Todos los<br>Equipos" 
+      "all-teams"                       : "Todos los<br>Equipos",
+      "show-teams"                      : "Mostrar equipos",
+      "hide-teams"                      : "Ocultar equipos" 
     }
   }
 }

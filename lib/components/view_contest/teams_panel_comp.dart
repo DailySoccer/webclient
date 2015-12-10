@@ -174,7 +174,6 @@ class TeamsPanelComp implements DetachAware {
     isTeamsPanelOpen = false;
     querySelector('#teamsToggler').classes.remove('toggleOn');
     querySelector('#teamsToggler').classes.add('toggleOff');
-
   }
   
   bool _togglerEventsInitialized = false;

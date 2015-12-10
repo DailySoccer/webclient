@@ -37,6 +37,7 @@ class ScoutingLeagueComp implements DetachAware {
   LoadingService loadingService;
   List<dynamic> _allSoccerPlayers;
   List<dynamic> _favoritesPlayers;
+  bool onlyFavorites = false;
   
   List<Map<String, String>> _teamList = [];
 

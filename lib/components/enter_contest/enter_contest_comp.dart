@@ -63,6 +63,8 @@ class EnterContestComp implements DetachAware {
   List<dynamic> allSoccerPlayers;
   List<dynamic> lineupSlots;
   List<String> get lineupFormation => FieldPos.FORMATIONS[formationId];
+  List<dynamic> favoritesPlayers = [];
+  bool onlyFavorites = false;
 
   FieldPos fieldPosFilter;
   String nameFilter;
@@ -210,6 +212,14 @@ class EnterContestComp implements DetachAware {
 
     subscribeToLeaveEvent();
   }
+  
+  void updateFavorites() {
+    favoritesPlayers.clear();
+    favoritesPlayers.addAll(_profileService.user.favorites.map((playerId) =>
+        allSoccerPlayers.firstWhere( (player) => player['id'] == playerId, orElse: () => null)
+      ).where( (d) => d != null));
+  }
+
 
   void subscribeToLeaveEvent() {
     // Subscripción para controlar la salida
@@ -488,6 +498,7 @@ class EnterContestComp implements DetachAware {
         "salary": instanceSoccerPlayer.salary
       });
     });
+    updateFavorites();
   }
 
   void createFantasyTeam() {

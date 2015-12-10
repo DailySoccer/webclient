@@ -81,7 +81,7 @@ class SoccerPlayerService {
           if (jsonMap.containsKey("profile")) {
             _profileService.updateProfileFromJson(jsonMap["profile"]);
           }
-          
+
           completer.complete({
               "instanceSoccerPlayers": instanceSoccerPlayers,
               "soccerTeams": soccerTeams
@@ -95,7 +95,13 @@ class SoccerPlayerService {
     var completer = new Completer();
 
     _server.favorites(soccerPlayers)
-      .then((_) => completer.complete(true));
+      .then((jsonMap) {
+        if (jsonMap.containsKey("profile")) {
+          _profileService.updateProfileFromJson(jsonMap["profile"]);
+        }
+
+        completer.complete(_profileService.isLoggedIn ? _profileService.user.favorites : []);
+    });
 
     return completer.future;
   }

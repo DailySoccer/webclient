@@ -203,14 +203,20 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     StringBuffer allHtml = new StringBuffer();
 
     int length = _sortedSoccerPlayers.length;
+    int visibleItems = 0;
     for (int c = 0; c < length; ++c) {
       var slot = _sortedSoccerPlayers[c];
 
       if (_isVisibleWithFilters(slot, filterPosVal, filterMatchIdVal, filterNameVal)) {
+        visibleItems++;
         allHtml.write(_getHtmlForSlot(slot, !(lineupFilter.contains(slot))));
       }
     }
-
+    
+    if (visibleItems == 0) {
+      allHtml.write(_getHtmlForEmpty());
+    }
+    
     _soccerPlayerListRoot.appendHtml(allHtml.toString());
     _element.append(_soccerPlayerListRoot);
 
@@ -237,13 +243,38 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
           <div class="column-salary">\$${StringUtils.parseSalary(slot["salary"])}</div>
           <div class="column-manager-level"><span class="manager-level-needed">${soccerPlayer.level}</span></div>
         </div>
-        <div class="column-action" id="soccerPlayerAction${slot["intId"]}" >
+        <div class="column-action" id="soccerPlayerAction${slot["intId"]}">
           ${strAddButton}
         </div>
       </div>
     ''';
   }
 
+
+  String _getHtmlForEmpty() {
+    String text = "";
+    if (_sortedSoccerPlayers.length == 0) {
+      return '';
+    }
+    
+    if (onlyFavorites) {
+      if (favoritesList.length == 0) {
+        text = getLocalizedText('empty-favorites');
+      } else {
+        text = getLocalizedText('empty-filtered-favorites');
+      }
+      text = "$text <span class='go-scouting'>${getLocalizedText('go-scouting-tip')}</span>";
+    } else {
+      text = getLocalizedText('empty-filtered');
+    }
+
+    return '''
+              <div class="empty-info-wrapper">
+                <span class="empty-info">$text</span>
+              </div>
+           ''';
+  }
+  
   String _getActionButton(bool addButton, Money moneyToBuy) {
     bool isFree = moneyToBuy.toInt() == 0;
     String buttonText = !addButton? '-' : isFree? '+' : '<span class="coins-to-buy">${moneyToBuy.toInt()}</span>';

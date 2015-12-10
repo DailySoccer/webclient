@@ -4,132 +4,6 @@ library template_cache;
 import 'package:angular/angular.dart';
 
 primeTemplateCache(TemplateCache tc) {
-tc.put("packages/webclient/components/account/add_funds_comp.html", new HttpResponse(200, r"""<div id="addFundsContent">
-
-  <!-- header title -->
-  <div class="default-section-header">{{getLocalizedText("title")}}</div>
-
-  <div>
-    <div class="description">
-      <p id="descriptionTip1">{{getLocalizedText("description1")}}</p>
-      <p id="descriptionTip2">{{getLocalizedText("description2")}}</p>
-    </div>
-    <div class="add-founds-box">
-      <p>{{getLocalizedText("minfunds")}}{{formatCurrency("10")}}</p>
-      <div class="money-selector">
-        <div class="money-element">
-          <input type="radio" name="money-radio" id="firstOffer" value="10"><label for="firstOffer">{{formatCurrency("10")}}</label>
-        </div>
-        <div class="money-element">
-          <input type="radio" name="money-radio" id="secondOffer" value="25" checked="checked"><label for="secondOffer">{{formatCurrency("25")}}</label>
-        </div>
-        <div class="money-element">
-          <input type="radio" name="money-radio" id="thirdOffer" value="50"><label for="thirdOffer">{{formatCurrency("50")}}</label>
-        </div>
-        <div class="money-element custom-money-element">
-          <input type="radio" name="money-radio" id="customEuros">
-          <input type="number" id="customEurosAmount" value="10"><label for="customEuros">{{formatCurrency("")}}</label>
-        </div>
-      </div>
-      <h2 class="paypal-info">Add <span id="selectedAmountInfo">{{formatCurrency(selectedValue.toString())}}</span> {{getLocalizedText("via")}} <img src="images/markPaypalMed.jpg"></h2>
-      <p class="paypal-info">{{getLocalizedText("paypalinfo")}}</p>
-      <div class="button-wrapper"><button class="add-funds-button" id="addFundsButton">{{getLocalizedText("buttonaddfunds")}}</button></div>
-    </div>
-  </div>
-  <div class="need-help-box">
-    <p id="need-help-text">{{getLocalizedText("needhelp")}}</p>
-    <p id="need-help-email">support@epiceleven.com</p>
-  </div>
-
-  <!-- Comentado hasta que tengamos los textos legales
-
-  <div class="pay-faq-block">
-    <h1 class="pay-faq-title">Preguntas frecuentes sobre el pago</h1>
-    <div class="toogle-block">
-      <input type="checkbox" id="rule1" class="toggle">
-      <label for="rule1">Por qué estoy pagando exactamente</label>
-      <div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mollis placerat leo quis pellentesque. Proin sollicitudin vel felis vulputate varius. Aenean non ante nec dolor sagittis ornare sit amet vel diam. Etiam eu dui at odio tempor eleifend. Nunc urna justo, volutpat sed mollis efficitur, venenatis id purus. Fusce elementum tellus in ligula maximus, in aliquet erat tincidunt. Aenean mollis sollicitudin tincidunt. Etiam ac velit eu erat placerat condimentum. Donec lorem tortor, convallis pretium finibus eu, euismod eget dolor. </p>
-      </div>
-    </div>
-    <div class="toogle-block">
-      <input type="checkbox" id="rule2" class="toggle">
-      <label for="rule2">¿Cuánto puedo ganar?</label>
-      <div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mollis placerat leo quis pellentesque. Proin sollicitudin vel felis vulputate varius. Aenean non ante nec dolor sagittis ornare sit amet vel diam. Etiam eu dui at odio tempor eleifend. Nunc urna justo, volutpat sed mollis efficitur, venenatis id purus. Fusce elementum tellus in ligula maximus, in aliquet erat tincidunt. Aenean mollis sollicitudin tincidunt. Etiam ac velit eu erat placerat condimentum. Donec lorem tortor, convallis pretium finibus eu, euismod eget dolor. </p>
-      </div>
-    </div>
-    <div class="toogle-block">
-      <input type="checkbox" id="rule3" class="toggle">
-      <label for="rule3">¿Es este juego legal en España y la Unión Europea?</label>
-      <div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mollis placerat leo quis pellentesque. Proin sollicitudin vel felis vulputate varius. Aenean non ante nec dolor sagittis ornare sit amet vel diam. Etiam eu dui at odio tempor eleifend. Nunc urna justo, volutpat sed mollis efficitur, venenatis id purus. Fusce elementum tellus in ligula maximus, in aliquet erat tincidunt. Aenean mollis sollicitudin tincidunt. Etiam ac velit eu erat placerat condimentum. Donec lorem tortor, convallis pretium finibus eu, euismod eget dolor. </p>
-      </div>
-    </div>
-  </div>
-   Comentado hasta que tengamos los textos legales -->
-
-
-  <ng-view></ng-view>
-  <!--div class="default-header-text"> MI CUENTA </div>
-  <div class="blue-separator"></div>
-  <div class="profile-content">
-
-    <div class="personal-data">
-      <div class="data-header">
-        <span class="data-header-title">INFORMACION PERSONAL</span>
-        <div class="button-wrapper"><button class="action-button" ng-click="editPersonalData()">EDITAR</button></div>
-      </div>
-      <div class="bloque-sm">
-        <div class="data-row"><span class="data-key">Nombre personal:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
-        <div class="data-row"><span class="data-key">Nombre de usuario:</span><span class="data-value">{{userData.nickName}}</span></div>
-        <div class="data-row"><span class="data-key">Correo electrónico:</span><span class="data-value">{{userData.email}}</span></div>
-        <div class="data-row"><span class="data-key">Contraseña:</span><span class="data-value">********</span></div>
-      </div>
-      <!--
-      <div class="bloque-sm">
-        <div class="data-row"><span class="data-key">Pais:</span><span class="data-value">&lt; Pais &gt;</span></div>
-        <div class="data-row"><span class="data-key">Region:</span><span class="data-value">&lt; Region &gt;</span></div>
-        <div class="data-row"><span class="data-key">Ciudad:</span><span class="data-value">&lt; Ciudad &gt;</span></div>
-        <div class="data-row"><span class="data-key">Notificaciones:</span><span class="data-value">&lt; Notificaciones &gt;</span></div>
-      </div>
-      -->
-    <!--/div-->
-
-    <!--
-    <div class="pocket-data">
-      <div class="data-header">
-          <span class="data-header-title">MONEDERO</span>
-          <div class="button-wrapper">
-            <button class="action-button-transaction">TRANSACCIONES</button>
-            <button class="action-button-get-funds">RETIRAR FONDOS</button>
-          </div>
-       </div>
-      <div class="data-container-9">
-        <div class="data-row"><span class="data-key">Balance actual:</span><span class="data-value-balance">&lt;balance&gt;€</span></div>
-        <div class="data-row"><span class="data-key">Bonus pendientes:</span><span class="data-value">&lt;pending-bonuses&gt;€</span></div>
-      </div>
-      <div class="data-container-3">
-        <button class="add-funds-button">AÑADIR FONDOS</button>
-      </div>
-    </div>
-
-    <div class="epicpoints-data">
-      <div class="data-header"><span class="data-header-title">EPIC POINTS</span></div>
-      <div class="data-row">
-        <div class="data-column"><span class="data-key">E11P BALANCE:</span><span class="data-value">--€</span></div>
-        <div class="data-column"><span class="data-key">&lt;ulti-month&gt;:</span><span class="data-value">--€</span></div>
-      </div>
-      <div class="data-row">
-        <div class="data-column"><span class="data-key">THIS MONTH:</span><span class="data-value">--€</span></div>
-        <div class="data-column"><span class="data-key">&lt;penul-month&gt;:</span><span class="data-value">--€</span></div>
-        <div class="data-column"><a class="data-link" href="">¿Cómo gastar tus EPs?</a></div>
-      </div>
-    </div>
-    -->
-
-  <!--/div-->
-</div>"""));
 tc.put("packages/webclient/components/account/change_password_comp.html", new HttpResponse(200, r"""<div id="changePasswordRoot">
   <div id="changePasswordBox" class="main-box air">
 
@@ -539,6 +413,25 @@ tc.put("packages/webclient/components/account/notifications_comp.html", new Http
   </div>
 
 </div>"""));
+tc.put("packages/webclient/components/account/payment_response_comp.html", new HttpResponse(200, r"""<modal>
+  <div id="paymentResponse" class="main-box">
+    <div class="panel">
+
+      <div class="panel-heading">
+        <div class="panel-title paypal-success">{{titleText}}</div>
+        <!--div class="panel-title paypal-cancel" login="">Pago cancelado</div-->
+        <button type="button" class="close">
+          <span class="glyphicon glyphicon-remove"></span>
+        </button>
+      </div>
+      <div class="panel-body">
+        {{descriptionText}}
+      </div>
+    </div>
+  </div>
+  <!--h1>Payment Response: {{result}}</h1-->
+</modal>
+"""));
 tc.put("packages/webclient/components/account/remember_password_comp.html", new HttpResponse(200, r"""<div id="rememberPasswordRoot" ng-show="!loadingService.isLoading">
   <div id="loginBox" class="main-box air">
 
@@ -667,30 +560,6 @@ tc.put("packages/webclient/components/account/shop_comp.html", new HttpResponse(
     </div>
   </div>
 </div> """));
-tc.put("packages/webclient/components/account/transaction_history_comp.html", new HttpResponse(200, r"""<div id="transactionHistoryRoot">
-  <!-- header title -->
-  <div class="default-section-header">{{getLocalizedText("title")}}</div>
-
-  <div class="transaction-headers">
-    <span class="header-date">{{getLocalizedText("date")}}</span>
-    <span class="header-id">{{getLocalizedText("id")}}</span>
-    <span class="header-concept">{{getLocalizedText("subject")}}</span>
-    <span class="header-amount">{{getLocalizedText("value")}}</span>
-    <span class="header-balance">{{getLocalizedText("balance")}}</span>
-  </div>
-
-  <div class="transaction-row" ng-repeat="transaction in currentPageList">
-    <div class="field-date">{{transaction.formattedDate}}</div>
-    <div class="field-id">{{transaction.transactionID}}</div>
-    <div class="field-concept">{{transaction.transactionDescription}}</div>
-    <div class="field-amount"><div class="money-label">{{getLocalizedText("value")}}: </div> {{transaction.value}}</div>
-    <div class="field-balance"><div class="money-label">{{getLocalizedText("balance")}}: </div> {{transaction.balance}}</div>
-  </div>
-
-  <paginator on-page-change="onPageChange(currentPage, itemsPerPage)" items-per-page="20" list-length="transactions.length"></paginator>
-
-</div>
-"""));
 tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpResponse(200, r"""<div id="viewProfileContent">
   <div class="default-section-header">{{getLocalizedText('title')}}</div>
   <div class="profile-content">
@@ -745,7 +614,7 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
 </div>"""));
 tc.put("packages/webclient/components/achievement_comp.html", new HttpResponse(200, r"""<div class="achievement {{achiev.style}}" ng-class="{'earned': earned}">
   <div class="achievement-icon">
-    <img src="images/achievements/{{achiev.image}}" ng-if="achiev.image != ''">
+    <img ng-src="images/achievements/{{achiev.image}}" ng-if="achiev.image != ''">
     <span class="achievement-level" ng-if="achiev.level != -1">{{achiev.level}}</span>
   </div>
   <div class="achievement-name">{{achiev.name}}</div>
@@ -999,7 +868,8 @@ tc.put("packages/webclient/components/contests_list_f2p_comp.html", new HttpResp
 """));
 tc.put("packages/webclient/components/create_contest_comp.html", new HttpResponse(200, r"""<div id="createContest">
 
-  <div class="default-section-header dark">{{getLocalizedText("create_contest")}}</div>
+  <!-- header title -->
+  <div class="default-section-header">{{getLocalizedText('create_contest')}}</div>
 
   <div class="create-contest-section-wrapper">
     <div class="create-contest-section">
@@ -1208,11 +1078,12 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
                 <!-- Este es el desplegable para el movil -->
                 <matches-filter contest="contest" selected-option="matchFilter" ng-if="scrDet.isXsScreen"></matches-filter>
 
-                <soccer-players-filter name-filter="nameFilter" field-pos-filter="fieldPosFilter"></soccer-players-filter>
+                <soccer-players-filter name-filter="nameFilter" field-pos-filter="fieldPosFilter" only-favorites="onlyFavorites"></soccer-players-filter>
 
                 <soccer-players-list soccer-players="allSoccerPlayers"
                                      lineup-filter="lineupSlots"
                                      manager-level="playerManagerLevel"
+                                     favorites-list="favoritesPlayers" only-favorites="onlyFavorites"
                                      field-pos-filter="fieldPosFilter" name-filter="nameFilter" match-filter="matchFilter"
                                      on-row-click="onRowClick(soccerPlayerId)"
                                      on-action-click="onSoccerPlayerActionButton(soccerPlayer)"></soccer-players-list>
@@ -1428,6 +1299,8 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_filter_comp.h
     <span>{{getLocalizedText("players", group: "soccerplayerlist")}}</span>
     <button class="button-filter-position" ng-click="fieldPosFilter = fieldPos"
             ng-repeat="fieldPos in posFilterList" ng-bind-html="getTextForFieldPos(fieldPos)" ng-class="getClassForFieldPos(fieldPos)"></button>
+    <button class="button-filter-favorites" ng-click="switchFavorites()"
+            ng-class="{'active': onlyFavorites}"></button>
   </div>
 
   <input type="text" class="name-player-input-filter" placeholder="{{getLocalizedText('search-player', group: 'soccerplayerlist')}}" ng-model="nameFilter" />
@@ -1624,6 +1497,7 @@ tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", ne
   <div class="tab-pane" id="how-works-content">
     <how-it-works></how-it-works>
   </div>
+  
   <div class="tab-pane" id="rules-scores-content">
     <!--div class="block-dark">
       <div class="title">SCORING AND RULES</div>
@@ -1665,7 +1539,7 @@ tc.put("packages/webclient/components/legalese_and_help/how_it_works_comp.html",
     <div class="description" ng-bind-html="getLocalizedText('point3content2')"></div>
   </div>
   
-  <div class="block-light" id="help-info-4">
+  <!-- div class="block-light" id="help-info-4">
     <div class="title" ng-bind-html="getLocalizedText('point4title')"></div>
     <div class="block-last">
       <div class="img-wrapper-left">
@@ -1676,8 +1550,81 @@ tc.put("packages/webclient/components/legalese_and_help/how_it_works_comp.html",
         <button type="button" class="button-play" ng-click="goTo('lobby')">{{getLocalizedText("button-play")}}</button>
       </div>
     </div>
+  </div-->
+</div>"""));
+tc.put("packages/webclient/components/legalese_and_help/legal_info_comp.html", new HttpResponse(200, r"""<div id="staticInfo">
+  <!-- header title -->
+  <div class="default-section-header">LEGALS</div>
+  <div class="blue-separator"></div>
+
+  <div class="info-wrapper">
+  
+    <h1>{{getLocalizedText('point-1-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-1-content')"></div>
+    
+    <h1>{{getLocalizedText('point-2-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-2-content')"></div>
+    
+    <h1>{{getLocalizedText('point-3-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-3-content')"></div>
+    
+    <h1>{{getLocalizedText('point-4-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-4-content')"></div>
+    
+    <h1>{{getLocalizedText('point-5-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-5-content')"></div>
+    
+    <h1>{{getLocalizedText('point-6-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-6-content')"></div>
+    
+    <h1>{{getLocalizedText('point-7-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-7-content')"></div>
+    
+    <h1>{{getLocalizedText('point-8-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-8-content')"></div>
+    
+    <h1>{{getLocalizedText('point-9-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-9-content')"></div>
+    
+    <h1>{{getLocalizedText('point-10-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-10-content')"></div>
+    
   </div>
 </div>"""));
+tc.put("packages/webclient/components/legalese_and_help/policy_info_comp.html", new HttpResponse(200, r"""<div id="staticInfo">
+
+  <!-- header title -->
+  <div class="default-section-header">PRIVACY POLICY</div>
+  <div class="blue-separator"></div>
+
+  <div class="info-wrapper">
+  
+    <h1>{{getLocalizedText('point-1-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-1-content')"></div>
+    
+    <h1>{{getLocalizedText('point-2-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-2-content')"></div>
+    
+    <h1>{{getLocalizedText('point-3-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-3-content')"></div>
+    
+    <h1>{{getLocalizedText('point-4-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-4-content')"></div>
+    
+    <h1>{{getLocalizedText('point-5-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-5-content')"></div>
+    
+    <h1>{{getLocalizedText('point-6-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-6-content')"></div>
+    
+    <h1>{{getLocalizedText('point-7-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-7-content')"></div>
+    
+  </div>
+
+</div>
+
+"""));
 tc.put("packages/webclient/components/legalese_and_help/rules_comp.html", new HttpResponse(200, r"""<div class="block-light">
   <div class="title">{{getLocalizedText('rules-title')}}</div>
   <div class="rules-wrapper">
@@ -1695,354 +1642,33 @@ tc.put("packages/webclient/components/legalese_and_help/terminus_info_comp.html"
   <div class="blue-separator"></div>
 
   <div class="info-wrapper">
-    <h1>
-        1. GENERAL Terms
-    </h1>
-    <p>
-        1.1 The present Terms and Conditions of Use (onwards “Terms and Conditions”) regulate the use and access to our Platform, being expressly and completely accepted by the mere fact of entering the Platform and/or by the visualization of its contents or use of the included content. In the case that this conditions are not accepted or any of the particular conditions, the user should refrain from enter our Platform as well as using its services and products.
-    </p>
-    <p>
-        1.2 Epic Eleven holds the right to modify this Terms and Conditions whenever considers its due, without assuming any responsibility for it, binding the user by the Terms and Conditions in force at that time, by the mere fact of accessing our Portal or signing up in that specific moment.
-    </p>
-    <p>
-        1.3 Our Portal is oriented to citizens of any nationality or residency, but always to legally adults according to local regulations, therefore denying the inscription to under-ages. Epic Eleven prohibits expressly the under-ages, according to local regulations, to sign up. Moreover, every user can only have one single account in Epic Eleven. Epic Eleven holds the right to cancel the account of users who commit fraud, like duplicates of a certain account or falsify personal data with the goal of gaining more points or contests. Users agree that there is a process to validate any data they introduce in the Portal, such as validation of the phone number or a request of documentation that allows Epic Eleven to check if a user is a legal adult.
-    </p>
-    <p>
-        1.4 The Portal is oriented to citizens of any nationality or residency, as long as the current regulations allows them to perform activity in the Portal, with a purely promotional, free-to-play end, which is the main end of the Portal. According to our Terms and Conditions, Epic Eleven expressly prohibits its use to individuals whose legislation, according to their nationality or residency, does not allow them to participate in our Portal. Also, to those who sign up and participate in it albeit being forbidden, Epic Eleven declines any responsibility.
-    </p>
-    <p>
-        1.5 Any person who signs up in our Portal acquires the condition of “User” (onwards known as “User” or “the User”), being able to access all the services offered within the Portal. The user must identify every time, in order to guarantee the security of the process, the fulfillment of this Terms and Conditions and moreover, the transaction of money to a certain user wherever it is fit. To sign up or log in (once a user has already sign up for the first time), the user must use a valid e-mail address. Accessing as a “visitor” (onwards known as “Visitor” of “the Visitor”) to Epic Eleven will not require any personal info until the visitor tries to introduce a line up in a contest, independently if that contest is free or requires an entry fee. In case the visitor wants to subscribe to any of Epic Eleven newsletter, an email would be required, being that a personal e-mail, not a public one.
-    </p>
-    <p>
-        1.6 Both the User and the Visitor are aware that the access and use of the Portal is being made under its own responsibility. In this regard, the User will be asked to choose a user name and a password. The User is responsible for keeping the password hidden from a third person, as well as to not allow a third person to access the account on its behalf or to let a third person manipulate the account in a way that presents a danger to the security of the account and its rightful owner.
-    </p>
-    <p>
-        1.7 The user must establish the necessary security measures in order to avoid unwanted actions on the personal systems and computers that the User uses to access Internet and, specially, our Portal.
-    </p>
-    <h1>
-        2. User’s Rights and obligations
-    </h1>
-    <p>
-        The user will be able to:
-    </p>
-    <p>
-        2.1 Access for free to our Portal’s available contents without previous authorization, without taking harm to any special technical conditions or the need of a previous sign up in services and specific contents of a third partner, as are specified in this conditions. Nonetheless, the User will be held responsible for the payment of any Internet service regarding the connection and navigation through the web, from its own computer to any device the User uses, that providers charge in those concepts, attending to its own deals with those providers.
-    </p>
-    <p>
-        2.2 Make use of the available services and contents for its particular use, without taking harm about what was explicitly disposed in the conditions that regulates the use of a specific service and/or content. The User commits to use the Portal for its rightful use, and not for commercial use without the specific written consent of Epic Eleven or without having agreed to specific terms and conditions for that commercial use with Epic Eleven.
-    </p>
-    <p>
-        2.3 Make a good and legal use of the Portal; in agree with this Terms and Conditions, the actual legislation, moral grounds and good faith.
-    </p>
-    <p>
-        2.4 Particularly, to what its due to CHEATING OR HACKING, the User makes a commitment by agreeing to this Terms and Conditions, to not perform any of the follow actions:
-    </p>
-    <ul>
-        <li>
-            To design, activate, sell or help to create any unauthorized software which end purpose interferes with the Portal, with any of its services or contents, or other users.
-        </li>
-        <li>
-            To modify any file or software that belongs to the Portal, without previous explicit and written consent from Epic Eleven.
-        </li>
-        <li>
-          To harm, overload or contribute in any way to interfere with the good performance of any piece of hardware related in some way to give assistance to the Portal or to help anyone to enjoy all services and contents that the Portal has to offer.
-        </li>
-        <li>
-            To impulse, contribute or take part in any kind of attack, including, e.g. distributing a virus via e-mail, unwanted e-mails, spam… or any other attempts to do harm to the Portal, its use or enjoyment of the Portal by a third party.
-        </li>
-        <li>
-            To try to access the Portal through an unauthorized way, through other user’s accounts or through any hardware related to the computers, servers or networks that belongs to Epic Eleven or any other third party.
-        </li>
-    </ul>
-    <p>
-        Also, regarding to OFFENSIVE CONTENTS, the User commits not to perform any of the following actions:
-    </p>
-    <ul>
-        <li>
-            To publish any information that can be abusive, threatening, obscene, defamatory or offensive from a racial, sexual or religious point of view.
-        </li>
-        <li>
-            To publish any information that contains sexual material, excessive violence or offensive topics, or that contains a link to any of this topics.
-        </li>
-        <li>
-            To bully, abuse, offend or, in short, to mistreat any other User, groups of people, or any of the employees and collaborators of Epic Eleven.
-        </li>
-        <li>
-            To use the Portal, including any use of links, to make accessible any material or information that infringes any copyright, commercial brand, patent, industrial or commercial secret, privacy right, commercial right or any right of any physical or legal person, or to impersonate anyone, e.g. any Epic Eleven’s employee or collaborator.
-        </li>
-        <li>
-            To use inappropriately Epic Eleven’s customer service, which includes sending false reports of any kind of abuse or the use of an inadequate, obscene or abusive language in any communication.
-        </li>
-    </ul>
-    <p>
-        Generally, the User will never be allowed to:
-    </p>
-    <ul>
-        <li>
-            To access or use the services and contents of the Portal with illicit, harmful ends that infringe rights and freedom of a third party, or that may harm or impede by any mean the access to those services and contents to Epic Eleven or a third party.
-        </li>
-        <li>
-            To use the services that Epic Eleven provides to, complete or partially, promote, sell, hire, market or divulge you own or third party’s information.
-        </li>
-        <li>
-            To include links in its own particular or commercial site to this Portal, breaking the Terms and Conditions provided for. Also, to use the services or contents offered through the Portal in a way that it Terms and Conditions does not allow, or inflicting harm on any of the rights that the rest of the users or Epic Eleven itself holds.
-        </li>
-        <li>
-            To perform any action that impedes or difficult the access to the Portal to other Users, as well as to the links to other services or contents offered by Epic Eleven or a third party via the Portal; To use the Portal as a medium to commit any felony or act against the actual legislation, moral grounds and good faith.
-        </li>
-        <li>
-            To use any kind of virus, code, software or hardware that might result in any harm or unauthorized alteration in the Portal, its contents or any system accessible via the Portal or the hardware and software of any User.
-        </li>
-        <li>
-            To erase or modify in any way any medium the Portal uses to protect and identify its Users, the contents stored in the Portal or any symbol that Epic Eleven or any other third party uploads into the Portal. Those contents will be protected by the inherent copyrights that those Users incorporate to their creations.
-        </li>
-        <li>
-            To include in any web site of its own responsibility or property “metatags” of any brand, commercial name o any distinctive symbol property of Epic Eleven or any other related third party.
-        </li>
-        <li>
-            To reproduce total or partially the Portal in any other web site without fulfilling the expected conditions for that matter.
-        </li>
-        <li>
-            To get frames of the Portal, or any web site accessible through the Portal, that hide or modify –with delimitative intention, but not restrictive- contents, commercial spaces and brands of Epic Eleven or any other related third party, independently of this action being one considered as unfair competition or to create confusion.
-        </li>
-        <li>
-            To create frames inside any web site of its own responsibility or property that reproduces the main page or the Portal or any of the accessible pages through it without the explicit consent of Epic Eleven.
-        </li>
-        <li>
-            To ask or try to obtain through any mean personal information about other Users of the Portal; collect, publish or obtain by any mean personal information of other Users of Epic Eleven, without the explicit consent of Epic Eleven.
-        </li>
-    </ul>
-
-    <h1>
-        3. epic eleven’s rights
-    </h1>
-    <p>
-        Epic Eleven holds the following rights:
-    </p>
-    <p>
-        3.1 To modify the present Terms and Conditions, as the conditions, technical or not, to access the Portal unilaterally and without previous notice to the Users, without detriment of anything set in the particular conditions that regulate the use of a certain service or content within this Portal.
-    </p>
-    <p>
-        3.2 To establish a certain condition or instead a price in order to access particular features or services within the Portal.
-    </p>
-    <p>
-        3.3 To limit, exclude, suspend, cancel, modify or influence the access to the Portal, without previous notice to the Users, when those Users do not respect the previous guarantees for a safety and correct use of the Portal. In those cases, Epic Eleven might cancel the username and passwords, any points, benefits, gifts or winnings associated to a certain user account, without being obliged to extend any compensation.
-    </p>
-    <p>
-        3.4 To terminate, suspend, modify or influence, without previous notification to the Users, the service provided or the supply of content without being obliged to compensate in any way, when the said service turns out to be used by the User in a way that attacks the legality or the present Terms and Conditions that regulates any service or content within the Portal. In those cases, Epic Eleven may cancel the username, passwords, any point, benefit or gift associated to a certain account, without being obliged to extend any compensation.
-    </p>
-    <p>
-        3.5 To modify unilaterally and without previous notice, anytime Epic Eleven sees fit, the structure and design of the Portal, as well as to update, modify or suppress all or part of the contents, services or access and use conditions of the Portal, and may even restrict or prohibit the access to that specific information.
-    </p>
-    <p>
-        3.6 To deny at any time and without previous notice the access to the Portal to those Users or Visitors that break this Terms and Conditions. In those cases, Epic Eleven may even cancel the username, passwords any point, benefits or gift associated to a certain account, without being obliged to extend any compensation to the User or Visitor.
-    </p>
-    <p>
-        3.7 To undertake any legal action that sees fit for the protection of Epic Eleven’s rights, and any third party that gives service or contents through the Portal, anytime.
-    </p>
-    <p>
-        3.8 To demand compensation that may sees fit from improper or illegal use of all or part of the services and contents provided through the Portal.
-    </p>
-    <h1>
-        4. Operations within the portal
-    </h1>
-    <p>
-        4.1 Any adult physical person, being an ‘adult’ what the law of this person’s nationality considers so, that signs up as User and provides the necessary truthful information would be considered as a “Player” (onwards “Player” or “the Player”).
-    </p>
-    <p>
-        4.2 By the mere fact of filling the sign up form, the Player accepts irrevocably this Terms and Conditions.
-    </p>
-    <p>
-        4.3 A User can only own one account and can only play on Epic Eleven with this very one account. Epic Eleven holds the right to impede this User to participate in the case that this rule is not met.
-    </p>
-    <p>
-        4.4 The Player will have a balance of Epic Eleven Points (or “Epic Points”), displayed within the Portal. Those Epic Points will vary according to the rules displayed in the Portal.
-    </p>
-    <p>
-        4.5 Epic Eleven might change the rules of the Epic Points unilaterally without previous notice to the Users and at any time if considered necessary.
-    </p>
-    <p>
-        4.6 Additionally, this balance might be increase by promotions, such as share-with-friends promotions, commercial promotions or special occasions that Epic Eleven sees fit. This additional means to increase Epic Points will be regulated by the conditions exposed by Epic Eleven at the Portal.
-    </p>
-    <p>
-        4.7 The balance will diminish naturally when the User uses Epic Points to enter any contests that allows this as a mean to participate.
-    </p>
-    <p>
-        4.8 The Epic Points in any account and the account itself could be cancelled by Epic Eleven at any point, unilaterally and without being obliged to extend any compensation, if there is no movement in the account for a consecutive period of twelve months.
-    </p>
-    <p>
-        4.9 Epic Points are personal and not transferable, and therefore can’t be loaned, transferred, sold or used in any other way than its primary purpose explained in the Rules. Also, Epic Points cannot be transferred between accounts even if the Player attests to be the owner of both accounts, which would be also a violation of this Terms and Conditions, as it was explained in section 4.3 of this Terms and Conditions.
-    </p>
-    <p>
-        4.10 Epic Eleven advises to act within the limits of the local law every time. Epic Eleven does not know the applicable local laws, and therefore will not assume any responsibility derived of the misuse of the Portal, which includes taxations. If any User requires information about taxation and/or any legal inquiry, Epic Eleven advises to appeal to the relevant consultant agents on its own jurisdiction.
-    </p>
-    <p>
-        4.11 Epic Eleven holds the right to terminate the condition of “Player” of any User and every derived right of that condition, at any time and without being obliged to extend any compensation, as a consequence of a Player breaking any of this obligations according to the Terms and Conditions, Force Majeure, suspension or cancellation of any service offered by Epic Eleven. This is valid as well for a situation where the Portal is about to stop, extinct or dissolve its activity. In the case of cessation of activity of the User in its condition as Player in the Portal, Epic Eleven won’t have any responsibility or obligation towards the User if cancels the account and revoke the points, although Epic Eleven will be able to take any action it considers necessary according to the Law in order to demand accountability in case the User does not meet the Terms and Conditions or the applicable law at any point.
-    </p>
-    <h1>
-        5. EXEMPTIONS and limitation of liability of epic eleven
-    </h1>
-    <p>
-        Epic Eleven is exempt from any liability for damages of any nature in the following cases:
-    </p>
-    <p>
-        5.1 Due to the impossibility or difficulties in connecting to the communications network through which this Portal is accessible regardless of the type of connection used by the user.
-    </p>
-    <p>
-        5.2 Due to the interruption, suspension or cancellation of the Portal, as well as the availability and continuity of the Website or the services and/or contents therein, when this one is due to causes beyond the control of Epic Eleven.
-    </p>
-    <p>
-        5.3 Epic Eleven assumes no responsibility for the services and contents, nor for the availability and conditions, technical or otherwise, to access to those services and contents, which are offered by third party service providers, especially regarding those providers specially dedicated to offer this access.
-    </p>
-    <p>
-        5.4 Epic Eleven, at any time, does not accept liability for damages that may cause the information, content, products and services, communicated, hosted, transmitted, displayed or offered by third parties outside Epic Eleven, including service providers. That includes anything that can be accessed through a link on this website posted by these third parties or any other User.
-    </p>
-    <p>
-        5.5 Treatment and subsequent use of personal data by third parties outside Epic Eleven, and the relevance of the information requested by them.
-    </p>
-    <p>
-        5.6 Quality and speed of access to the Portal and technical conditions to be met by the User to gain access to the Portal and its services and/or content.
-    </p>
-    <p>
-        5.7 Epic Eleven will not be responsible for delays or faults produced in access and/or operation of services and/or contents of the Portal, due to Force Majeure.
-    </p>
-    <p>
-        5.8 The User will be personally liable for damages of any kind caused to Epic Eleven, directly or indirectly, for breach of any of the obligations under these Terms and Conditions or other rules governing the use of the Portal.
-    </p>
-    <h1>
-        6. Intellectual and industrial property
-    </h1>
-    <p>
-        6.1 User acknowledges that the contents and services offered through the Site, -including text, graphics, images, animations, musical creations, videos, sounds, drawings, photographs, all comments, exhibitions, applications, databases and html code same without this list being limited- are protected by intellectual property laws. Copyright and economic exploitation of this Site is for Epic Eleven. As for the contents included in the Portal, copyright and economic exploitation are the property of Epic Eleven or where appropriate, from third parties, and where is applicable, intellectual property laws protects both cases: Epic Eleven and third parties.
-    </p>
-    <p>
-        6.2 The trademarks, trade names or logos appearing on the Site are owned by Epic Eleven, and are protected by applicable intellectual property laws.
-    </p>
-    <p>
-        6.3 The provision of services and publication of content through the Portal does not imply any assignment, surrender or transfer all or part of the ownership of the corresponding intellectual and industrial property.
-    </p>
-    <p>
-        6.4 No part of this Website may be reproduced, distributed, transmitted, copied, publicly communicated, transformed, in whole or in part by any system or manual, electronic or mechanical means (including photocopying, recording or any retrieval system and storage) through any media now known or invented in the future, without the consent of Epic Eleven. The use, in any form, all or part of the content of the Website is subject to the need for prior authorization of Epic Eleven, and acceptance of the license, if any, except for the provisions on the rights and granted to the User in these Terms and Conditions or what is thus determined by the particular conditions that Epic Eleven may establish to regulate the use of a particular service and/or content offered through the Portal.
-    </p>
-    <p>
-        6.5 Under no circumstances, the user may make an application or use of services and content on the page that is not exclusively personal, safe from the exceptions identified in the present conditions of use of this Portal or the particular conditions that Epic Eleven may establish to regulate the use of a particular service and/or content offered through the Portal.
-    </p>
-    <p>
-        6.6 If the act or omission fault or negligence directly or indirectly attributable to User Portal arising from the infringement of the rights of intellectual property of Epic Eleven or third parties, whether or not benefit to the same, fells into Epic Eleven damages, losses, joint obligations, expenses of any kind, sanctions, coercive measures, fines and other amounts arising or resulting from any claim, demand, action, suit or proceeding, whether civil, criminal or administrative, Epic Eleven is entitled to bring proceedings against the User by all legal means at its disposal and to claim any compensation, including, but not limited to, moral and image damages, consequential damages and loss of earnings, advertising costs or any other that might be for repair, sanction or convictions, that of the default interest, court costs and the total cost of the defense in any process that could arise due to the aforementioned causes for damages incurred by reason of his act or omission, without Subject to exercise any other remedies available to him accordingly to the law.
-    </p>
-    <h1>
-        7. Links and hyperlinks
-    </h1>
-    <p>
-        7.1 Individuals or entities who wish to create a hyperlink from a web page from another internet portal to any pages of Epic Eleven’s Portal must abide by the following conditions:
-    </p>
-
-    <ul class="latin-list">
-      <li>
-        The total or partial reproduction of any services or content offered is not allowed.
-      </li>
-      <li>
-        No deep-links, or frames with the pages of the Portal would be established without the express permission of Epic Eleven.
-      </li>
-      <li>
-        No false, inaccurate or incorrect demonstration will be included on the pages of the Portal or any of its services or contents.
-      </li>
-      <li>
-        Except for those signs that are part of the "hyperlink", the website where the links directs the User will not contain any trademark, trade name, label, name, logo, slogan or other distinctive signs belonging to Epic Eleven, unless previous authorization.
-      </li>
-      <li>
-        The establishment of "hyperlink" does not imply the existence of any relationship between Epic Eleven and the owner of the website or portal from which it is made.
-      </li>
-      <li>
-        Epic Eleven is not responsible for the contents or services made available to the public on the website or portal from which the "hyperlink" or the information and statements included therein.
-      </li>
-      <li>
-        Any "hyperlink" to Portal Epic Eleven will be to the homepage or main pages of the sections it contains.
-      </li>
-    </ul>
-
-    <p>
-        7.2 Eleven Epic disclaims any responsibility for information contained in third party websites connected by links to the Portal of Epic Eleven or to those links that are not directly managed by our website administrator. The function of the links on this website is for information and in no way a suggestion, invitation or recommendation to visit the places of destination. When a Player wishes to use some of the Portal services, it must provide first some certain personal data to Epic Eleven. Epic Eleven treat such data for the purposes and under the conditions defined in this Privacy Policy.
-    </p>
-    <h1>
-        8. FINALS
-    </h1>
-    <p>
-        8.1 Disputes. For the resolution of any disputes arising from the interpretation and/or enforcement of these Terms and Conditions, Users, both Players and Visitors, expressly waiving any other jurisdiction that may apply to the Courts, they consent to undergo to the courts of the city of Madrid.
-    </p>
-    <p>
-        8.2 Applicable law. These Terms and Conditions are governed by the common Spanish legislation and construed in accordance with the same.
-    </p>
-    <p>
-        8.3 Invalid clauses. If any provision of these Terms and Conditions shall be deemed or may be illegal, invalid or unenforceable, these Terms and Conditions shall be deemed severable and inoperative in relation to that clause and to where it is deemed unlawful, void or unenforceable; and, by making reference to any other aspect of these Terms and Conditions will remain in full force and full effect; provided, however, that any provision of these Terms and Conditions shall be deemed or may be illegal, invalid or unenforceable, Epic Eleven will automatically include a clause as close as possible to the illegal, invalid or unenforceable to make it legal, valid and enforceable provision.
-    </p>
-    <p>
-        8.4 Headings. The headings of the clauses of these Terms and Conditions are made only for reference purposes and in no way affect or limit the meaning and content thereof.
-    </p>
-    <p>
-        8.5 Claims. To make any claims about the services provided through the portal, the User can send an email to support@epiceleven.com indicating their data, exposing the facts underlying the claim or complaint and specifying his claim. If you prefer, we also have complaint forms available to those requesting it at the address stated in the Legal Notice.
-    </p>
-    <h1>
-        Identification data
-    </h1>
-    <p>
-        You are visiting the website <a href="http://www.epiceleven.com" target="_blank">www.epiceleven.com</a>, ownership of SPORTS FANTASY GAMES, SL (hereinafter EPIC ELEVEN). The same is domiciled in Avenida Brasil, 23, Officinal 5-A, 28020, Madrid, and its e- mail address: info@epiceleven.com identified with C.I.F. B-87028445.
-    </p>
-    <h1>
-        User Agreement
-    </h1>
-    <p>
-        This Legal Notice governs the access and use of the website <a href="http://www.epiceleven.com" target="_blank">www.epiceleven.com</a> (hereinafter the "Portal") that EPIC ELEVEN makes available to Internet users. Access to it implies unreserved acceptance of this Legal Notice. Also, EPIC ELEVEN can offer through the Portal services that may be subject to some own conditions on which the User will be informed in each case.
-    </p>
-    <h1>
-        ACCESs to the WEB and passwords
-    </h1>
-    <p>
-        By accessing the website, the User declares to have enough capacity to navigate EPIC ELEVEN, ie: be eighteen years old and not be incapacitated. In turn, generally no subscription or registration as a user is required to access and use of the Portal, without prejudice to the use of certain services or content of such where a subscription or registration is required. The obtained data from Users through the subscription or registration to this website are protected by passwords chosen by themselves. The User agrees to keep that password secret and protect it from unauthorized use by third parties. The User shall immediately notify EPIC ELEVEN any non-consensual use of the account or any violation security-related of any service within the Portal of which he was aware. EPIC ELEVEN adopts the technical and organizational measures to ensure the protection of personal data and avoid its alteration, loss, treatment and/or unauthorized access, given the state of the art, the nature of the stored data and the risks they are exposed, all in accordance with the provisions of the Spanish legislation Protection of Personal Data. EPIC ELEVEN is not made liable to the Users for the disclosure of personal data to third parties other than due to causes directly attributable to EPIC ELEVEN, nor for the use made of such data to third parties that are not part of EPIC ELEVEN.
-    </p>
-    <h1>
-        Correct use of the web
-    </h1>
-    <p>
-        The User agrees to use the Portal, content and services in accordance with the law, this Legal Notice, morals and public order. Similarly, the User agrees not to use the Portal or the services provided through it for illegal purposes or contrary to the contents of this Legal Notice, detrimental to the interests or rights of others, or in any way could damage, disable or impair the website or its services or impede normal enjoyment of the website by other users. Without limiting the foregoing, EPIC ELEVEN can offer through the web additional services that have their own additional regulation. In these cases, the Users will be properly informed in each specific case. Also, the User expressly agrees not to destroy, alter, disable or otherwise, damage data, programs or documents that are on the Portal. The User agrees not to hinder access of other users to access service through the mass consumption of computing resources through which EPIC ELEVEN serves, as well as actions that may damage, interrupt or generate errors in these systems. The User agrees not to introduce programs, viruses, macros, applets, ActiveX controls or any other logical device or character sequence that cause or may cause any type of alteration in EPIC ELEVEN or third parties computer systems.
-    </p>
-    <h1>
-        Links to third parties
-    </h1>
-    <p>
-        This legal notice relates only to the Portal and content of EPIC ELEVEN, and does not apply to the links or the websites of third parties accessible through the Portal. The webs of these links are not under the control of EPIC ELEVEN, and the same is not responsible for the content of any of the Web pages destination of a link, or any link contained in a Web page that is reached from the EPIC web ELEVEN, or any changes or updates to such sites. These links are provided solely to inform the user about the existence of other sources of information about a particular topic, and the inclusion of any link does not imply endorsement of the linked website by EPIC ELEVEN.
-    </p>
-    <h1>
-        Intellectual property
-    </h1>
-    <p>
-        ELEVEN EPIC warns that intellectual property rights of the Portal, its source, design, navigation structure, databases and different elements contained in this code are exclusively owned by EPIC ELEVEN, who has the exclusive rights to exploit them in any way desired according to the law, and in particular, by way of example but not limited to, rights of reproduction, copying, distribution, processing, marketing, and public communication. The reproduction, copying, distribution, processing, marketing, and partial or total public communication of the information contained in this website is strictly prohibited without the express written permission of EPIC ELEVEN, and constitutes an infringement of intellectual property rights and industrial.
-    </p>
-    <h1>
-        Forums, Blogs and Images
-    </h1>
-    <p>
-        EPIC ELEVEN gives Users the ability to enter comments and/or submit photographs for inclusion in the appropriate sections. The publication of comments and/or photographs is subject to this Legal Notice. The person identified in each case as the one who has made comments and/or sent photographs, is responsible for them. Comments and / or photographs do not reflect the opinions of EPIC ELEVEN, and EPIC ELEVEN will not made any statement in this regard. EPIC ELEVEN will not be liable, unless those extremes that would force the law, for any errors, inaccuracies or irregularities that may contain the comments and/or photographs, as well as any damages that may result by inserting those comments and/or photos on the Forum or on other sections of the Web that allow this kind of services. The User which supplies texts and/or photographs yields to EPIC ELEVEN his rights to reproduce, use, distribution, public communication in electronic form as part of the activities for this website. And, especially, the User grants such rights to the location of text and / or photos on the Web, so that other users of the website can access them. The supplier User declares to be the owner of the rights to the texts or pictures or, where appropriate, ensures to have the necessary rights and authorizations of the author or owner of the text and/or photographs, for use by EPIC ELEVEN to through the Web. EPIC ELEVEN will not be liable, except in those extremes to which compels the Law, of the damages that could be caused by the use, reproduction, distribution or public communication or any type of activity carried on texts and/or photographs are protected by intellectual property rights belonging to third parties without the User having previously obtained from the owners needed to carry out the use made or intended release. EPIC ELEVEN also reserves the right to withdraw unilaterally comments and/or photographs housed in any other section of the Web, when EPIC ELEVEN deems appropriate. EPIC ELEVEN will not responsible for the information sent by the user when they have actual knowledge that the information stored is unlawful or harms property or rights of a third party liable for compensation. At the moment EPIC ELEVEN realizes that is housing data as referred to above, the User agrees to act expeditiously to remove or block all access to them. In any case, any claim relating to or inserted in forum sections similar content, you can do so by going to the following email address: <a href="mailto:support@epiceleven.com">support@epiceleven.com</a>.
-    </p>
-    <h1>
-        CHANGES TO THE TERMS OF USE
-    </h1>
-    <p>
-        ELEVEN EPIC reserves the right to modify, develop or update at any time and without notice the Terms and Conditions of this Portal. The User will be automatically bound by the conditions of use that are in effect at the time they access the web, so you should periodically read the Terms and Conditions.
-    </p>
-    <h1>
-        LIABILITY REGIME
-    </h1>
-    <p>
-        The use of the website is the sole responsibility of each User, so it will be the User responsibility if any breach or any harm resulting from the use of this page gets into the Portal. EPIC ELEVEN, its partners, collaborators, employees and other representatives or third parties are therefore exempt from any liability that may involve the actions of the User. EPIC ELEVEN puts all its capacity into providing constantly updated information via their website, but that does not guarantee the absence of errors or inaccuracies in any of the contents, even whenever the reasons are not attributable directly to EPIC ELEVEN. Therefore, the User shall be solely liable against any claims or legal proceedings against EPIC ELEVEN based on the use of the website or its contents by the User, provided such use has been made illegally, violating rights of third parties or causing any damage, thereby assuming all costs, expenses or damages that may be incurred in EPIC ELEVEN.
-    </p>
-    <h1>
-        APPLICABLE LAW AND JURISDICTION
-    </h1>
-    <p>
-        This website is governed by Spanish law. EPIC ELEVEN and the user, expressly waiving their own jurisdiction, if they will have it, will submit to the jurisdiction of the courts of the city of Madrid (Spain). This provided this is not an end user, being the forum that the law provides the defendant's domicile.
-    </p>
+  
+    <h1>{{getLocalizedText('point-1-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-1-content')"></div>
+    
+    <h1>{{getLocalizedText('point-2-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-2-content')"></div>
+    
+    <h1>{{getLocalizedText('point-3-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-3-content')"></div>
+    
+    <h1>{{getLocalizedText('point-4-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-4-content')"></div>
+    
+    <h1>{{getLocalizedText('point-5-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-5-content')"></div>
+    
+    <h1>{{getLocalizedText('point-6-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-6-content')"></div>
+    
+    <h1>{{getLocalizedText('point-7-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-7-content')"></div>
+    
+    <h1>{{getLocalizedText('point-8-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-8-content')"></div>
+    
   </div>
+  
 </div>"""));
 tc.put("packages/webclient/components/legalese_and_help/tutorials_comp.html", new HttpResponse(200, r"""<div class="tutorial-row">
   <div class="tutorial-tile">
@@ -2250,6 +1876,91 @@ tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse
     <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in Forwards">
       <span class="name">{{event["name"]}} </span>
       <span class="points"><b>{{event["points"]}}</b></span>
+    </div>
+  </div>
+</div>"""));
+tc.put("packages/webclient/components/scouting/scouting_comp.html", new HttpResponse(200, r"""<div id="enter-contest-wrapper" class="favorites-wrapper" >
+
+  <!-- header title -->
+  <div class="default-section-header">{{getLocalizedText("title")}}</div>
+
+  <!-- Nav tabs -->
+  <ul class="enter-contest-tabs" role="tablist">
+    <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('spanish-league')">{{getLocalizedText("spanish-league")}}</a></li>
+    <li><a role="tab" data-toggle="tab" ng-click="tabChange('premier-league')">{{getLocalizedText("premier-league")}}</a></li>
+  </ul>
+
+  <div id="enterContest">
+    <div class="tabs">
+      <div class="tab-content">
+
+        <!-- Tab del contenido normal de seleccion de lineup -->
+        <div class="tab-pane active" id="spanish-league">
+            <scouting-league team-list="teamListES" soccer-player-list="allSoccerPlayersES" 
+                             on-action-button="onFavoritesChange(soccerPlayer)"
+                             favorites-player-list="favoritesPlayers"></scouting-league>
+        </div>
+        
+        <!-- El otro tab, el del contest-info  -->
+        <div class="tab-pane" id="premier-league">
+            <scouting-league team-list="teamListUK" soccer-player-list="allSoccerPlayersUK" 
+                             on-action-button="onFavoritesChange(soccerPlayer)"
+                             favorites-player-list="favoritesPlayers"></scouting-league>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<ng-view></ng-view>"""));
+tc.put("packages/webclient/components/scouting/scouting_league_comp.html", new HttpResponse(200, r"""<!-- Este sera el selector de partidos en "grande", con botones-->
+<teams-filter team-list="teamList" selected-option="teamFilter"></teams-filter>
+
+<div class="enter-contest-soccer-players-wrapper">
+  <div class="enter-contest-soccer-players">
+
+    <soccer-players-filter name-filter="nameFilter" field-pos-filter="fieldPosFilter" only-favorites="onlyFavorites"></soccer-players-filter>
+
+    <soccer-players-list soccer-players="allSoccerPlayers"
+                         lineup-filter="favoritesPlayers" manager-level="10" 
+                         favorites-list="favoritesPlayers" only-favorites="onlyFavorites"
+                         field-pos-filter="fieldPosFilter" name-filter="nameFilter" match-filter="teamFilter"
+                         on-row-click="onRowClick(soccerPlayerId)"
+                         on-action-click="onSoccerPlayerActionButton(soccerPlayer)"></soccer-players-list>
+  </div>
+</div>"""));
+tc.put("packages/webclient/components/scouting/teams_filter_comp.html", new HttpResponse(200, r"""<!--div class="teams-toggler-wrapper">
+  <div id="teamsToggler" type="button" class="teams-toggler"  ng-class="{'toggleOff': !isTeamsPanelOpen, 'toggleOn': isTeamsPanelOpen }" ng-click="toggleTeamsPanel()"  data-toggle="collapse" data-target="#teamsPanel">{{buttonText}}</div>
+</div>
+<div id="teamsPanelRoot" ng-show="isShown" class="animate">
+
+  <div class="teams-comp-bar" >
+
+    <div id="teamsPanel" class="teams-container collapse" ng-class="{'in': isTeamsPanelOpen }">
+      <div class="top-border"></div>
+      <div class="teams-box" ng-repeat="match in matchEventsSorted">
+        <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index)"></div>
+      </div>
+      <div class="bottom-border"></div>
+    </div>
+  </div>
+
+</div-->
+
+
+<div class="teams-toggler-wrapper">
+  <div id="teamsToggler" type="button" class="teams-toggler"  ng-click="toggleTeamsPanel()" 
+       ng-class="{'toggleOff': !isTeamsPanelOpen, 'toggleOn': isTeamsPanelOpen }"  data-toggle="collapse" 
+       data-target="#teamsFilterWrapper">{{buttonText}}</div>
+</div>
+<div id="teamsFilterWrapper" class="collapse in">
+  <div id="teamsFilterButtons" class="teams-filter-buttons">
+    <div class="teams-filter-wrapper" ng-repeat="team in teamList" >
+      <button class="btn btn-default button-filter-team" ng-bind-html="teamHTML(team)" id="team-{{team.id}}"
+              ng-click="optionsSelectorValue = team.id" ng-class="{'active': optionsSelectorValue == team.id}">
+      </button>
     </div>
   </div>
 </div>"""));

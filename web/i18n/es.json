@@ -297,7 +297,11 @@
       "numMatchesAbrev"                 : "PJ.",
       "salary"                          : "Salario",
       "search-player"                   : "Buscar jugador...",
-      "players"                         : "Jugadores"
+      "players"                         : "Jugadores",
+      "empty-favorites"                 : "No tienes jugadores favoritos.",
+      "empty-filtered-favorites"        : "No tienes jugadores favoritos que cumplan las condiciones de filtrado.",
+      "go-scouting-tip"                 : "Puedes elegir jugadores favoritos en el <a href='/#/scouting'>Ojeador.</a>",
+      "empty-filtered"                  : "No tienes jugadores que cumplan las condiciones de filtrado."
     }
     ,"soccerplayerpositions"            :
     {

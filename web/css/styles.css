@@ -17420,6 +17420,25 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
 .soccer-players-list .soccer-players-list-slot.not-available .column-manager-level {
   visibility: visible;
 }
+.soccer-players-list .empty-info-wrapper .empty-info {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 15pt;
+  color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
+  display: block;
+  text-align: center;
+  padding: 150px 0 0 0;
+}
+.soccer-players-list .empty-info-wrapper .empty-info .go-scouting {
+  display: block;
+}
+.soccer-players-list .empty-info-wrapper .empty-info .go-scouting a:hover,
+.soccer-players-list .empty-info-wrapper .empty-info .go-scouting a:visited,
+.soccer-players-list .empty-info-wrapper .empty-info .go-scouting a:focus,
+.soccer-players-list .empty-info-wrapper .empty-info .go-scouting a {
+  text-decoration: none;
+}
 @media (max-width: 767px) {
   .soccer-players-filter {
     padding: 0 10px;
@@ -23821,6 +23840,10 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 }
 .favorites-wrapper .enter-contest-soccer-players-wrapper {
   width: 100% !important;
+}
+.favorites-wrapper .empty-info-wrapper .empty-info .go-scouting {
+  display: none;
+  font-size: 18pt;
 }
 .favorites-wrapper .soccer-players-list .soccer-players-list-slot .soccer-player-info .column-manager-level {
   visibility: visible;

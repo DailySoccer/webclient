@@ -100,8 +100,8 @@ class ScoutingComp implements DetachAware {
           });
 
           leagueUK_isLoading = false;
-          evaluateTabLoading();
           updateFavorites();
+          evaluateTabLoading();
         });
     }
     
@@ -137,19 +137,18 @@ class ScoutingComp implements DetachAware {
           
           leagueES_isLoading = false;
           evaluateTabLoading();
-          loadUKData();
           updateFavorites();
+          loadUKData();
         });
   }
   
   void updateFavorites() {
     favoritesPlayers.clear();
-    
-    favoritesPlayers.addAll(_profileService.user.favorites.map((playerId) {
+    favoritesPlayers.addAll(_profileService.user.favorites.map((playerId) =>
         allSoccerPlayersES.firstWhere( (player) => player['id'] == playerId, 
             orElse: () => allSoccerPlayersES.firstWhere( (player) => player['id'] == playerId, 
-            orElse: () => null));
-      }).where( (d) => d != null));
+            orElse: () => null))
+      ).where( (d) => d != null));
   }
 
   Future getContentJson(String fileName) {
@@ -157,6 +156,7 @@ class ScoutingComp implements DetachAware {
     HttpRequest.getString(fileName).then((json) {
         completer.complete(JSON.decode(json));
       });
+    
     return completer.future;
   }
 

@@ -34,6 +34,14 @@ class TeamsFilterComp {
 
     _teamList.addAll(teams);
   }
+  
+  String idSufix = '';
+  @NgOneWay('id-sufix')
+  void set identifier(String id) {
+    idSufix = id;
+  }
+  
+  
   String get buttonText => getLocalizedText(isTeamsPanelOpen? "hide-teams" : "show-teams");
   List<dynamic> get teamList => _teamList;
   String teamHTML(team) { return "${team['name']}<br>${team['shortName']}"; }

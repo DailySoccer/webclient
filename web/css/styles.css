@@ -24247,29 +24247,29 @@ teams-filter .teams-toggler-wrapper .toggleOn::after {
   color: #434343;
   padding-left: 3px;
 }
-teams-filter #teamsFilterWrapper:before,
-teams-filter #teamsFilterWrapper:after {
+teams-filter .teams-filter-wrapper:before,
+teams-filter .teams-filter-wrapper:after {
   content: " ";
   display: table;
 }
-teams-filter #teamsFilterWrapper:after {
+teams-filter .teams-filter-wrapper:after {
   clear: both;
 }
-teams-filter #teamsFilterWrapper:before,
-teams-filter #teamsFilterWrapper:after {
+teams-filter .teams-filter-wrapper:before,
+teams-filter .teams-filter-wrapper:after {
   content: " ";
   display: table;
 }
-teams-filter #teamsFilterWrapper:after {
+teams-filter .teams-filter-wrapper:after {
   clear: both;
 }
-teams-filter #teamsFilterWrapper .teams-filter-buttons {
+teams-filter .teams-filter-wrapper .teams-filter-buttons {
   background-color: #ecf0f1;
   padding: -1px 5px 5px 5px;
   float: left;
   width: 100%;
 }
-teams-filter #teamsFilterWrapper .teams-filter-buttons .teams-filter-wrapper {
+teams-filter .teams-filter-wrapper .teams-filter-buttons .teams-filter-wrapper {
   width: 50%;
   min-height: 1px;
   padding-left: 15px;
@@ -24283,21 +24283,21 @@ teams-filter #teamsFilterWrapper .teams-filter-buttons .teams-filter-wrapper {
   top: 8px;
 }
 @media (min-width: 768px) {
-  teams-filter #teamsFilterWrapper .teams-filter-buttons .teams-filter-wrapper {
+  teams-filter .teams-filter-wrapper .teams-filter-buttons .teams-filter-wrapper {
     float: left;
     width: 25%;
   }
 }
 @media (min-width: 992px) {
-  teams-filter #teamsFilterWrapper .teams-filter-buttons .teams-filter-wrapper {
+  teams-filter .teams-filter-wrapper .teams-filter-buttons .teams-filter-wrapper {
     float: left;
     width: 16.66666667%;
   }
 }
-teams-filter #teamsFilterWrapper .teams-filter-buttons:after {
+teams-filter .teams-filter-wrapper .teams-filter-buttons:after {
   clear: both;
 }
-teams-filter #teamsFilterWrapper .teams-filter-buttons .button-filter-team {
+teams-filter .teams-filter-wrapper .teams-filter-buttons .button-filter-team {
   width: 100%;
   padding: 5px 0;
   text-align: center;
@@ -24309,31 +24309,31 @@ teams-filter #teamsFilterWrapper .teams-filter-buttons .button-filter-team {
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   border: 1px solid transparent;
 }
-teams-filter #teamsFilterWrapper .teams-filter-buttons .button-filter-team:active,
-teams-filter #teamsFilterWrapper .teams-filter-buttons .button-filter-team:focus,
-teams-filter #teamsFilterWrapper .teams-filter-buttons .button-filter-team:hover,
-teams-filter #teamsFilterWrapper .teams-filter-buttons .button-filter-team:visited {
+teams-filter .teams-filter-wrapper .teams-filter-buttons .button-filter-team:active,
+teams-filter .teams-filter-wrapper .teams-filter-buttons .button-filter-team:focus,
+teams-filter .teams-filter-wrapper .teams-filter-buttons .button-filter-team:hover,
+teams-filter .teams-filter-wrapper .teams-filter-buttons .button-filter-team:visited {
   outline: none;
 }
-teams-filter #teamsFilterWrapper .teams-filter-buttons .active {
+teams-filter .teams-filter-wrapper .teams-filter-buttons .active {
   background-color: #ffffff;
   color: #777777;
   box-shadow: none !important;
   outline: none !important;
   border: 1px solid #777777;
 }
-teams-filter #teamsFilterWrapper .teams-filter-buttons .active:active,
-teams-filter #teamsFilterWrapper .teams-filter-buttons .active:hover,
-teams-filter #teamsFilterWrapper .teams-filter-buttons .active:focus,
-teams-filter #teamsFilterWrapper .teams-filter-buttons .active:visited {
+teams-filter .teams-filter-wrapper .teams-filter-buttons .active:active,
+teams-filter .teams-filter-wrapper .teams-filter-buttons .active:hover,
+teams-filter .teams-filter-wrapper .teams-filter-buttons .active:focus,
+teams-filter .teams-filter-wrapper .teams-filter-buttons .active:visited {
   color: #777777;
 }
 @media (max-width: 767px) {
-  teams-filter #teamsFilterWrapper {
+  teams-filter .teams-filter-wrapper {
     padding: 10px 10px 0px 10px;
   }
 }
-teams-filter #teamsFilterWrapper .teams-selector-filter {
+teams-filter .teams-filter-wrapper .teams-selector-filter {
   display: block;
   width: 100%;
   height: 34px;
@@ -24350,44 +24350,44 @@ teams-filter #teamsFilterWrapper .teams-selector-filter {
   -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
-teams-filter #teamsFilterWrapper .teams-selector-filter:focus {
+teams-filter .teams-filter-wrapper .teams-selector-filter:focus {
   border-color: #66afe9;
   outline: 0;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
-teams-filter #teamsFilterWrapper .teams-selector-filter::-moz-placeholder {
+teams-filter .teams-filter-wrapper .teams-selector-filter::-moz-placeholder {
   color: #999999;
   opacity: 1;
 }
-teams-filter #teamsFilterWrapper .teams-selector-filter:-ms-input-placeholder {
+teams-filter .teams-filter-wrapper .teams-selector-filter:-ms-input-placeholder {
   color: #999999;
 }
-teams-filter #teamsFilterWrapper .teams-selector-filter::-webkit-input-placeholder {
+teams-filter .teams-filter-wrapper .teams-selector-filter::-webkit-input-placeholder {
   color: #999999;
 }
-teams-filter #teamsFilterWrapper .teams-selector-filter[disabled],
-teams-filter #teamsFilterWrapper .teams-selector-filter[readonly],
-fieldset[disabled] teams-filter #teamsFilterWrapper .teams-selector-filter {
+teams-filter .teams-filter-wrapper .teams-selector-filter[disabled],
+teams-filter .teams-filter-wrapper .teams-selector-filter[readonly],
+fieldset[disabled] teams-filter .teams-filter-wrapper .teams-selector-filter {
   cursor: not-allowed;
   background-color: #eeeeee;
   opacity: 1;
 }
-textareateams-filter #teamsFilterWrapper .teams-selector-filter {
+textareateams-filter .teams-filter-wrapper .teams-selector-filter {
   height: auto;
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  teams-filter #teamsFilterWrapper .teams-selector-filter {
+  teams-filter .teams-filter-wrapper .teams-selector-filter {
     display: none !important;
   }
 }
 @media (min-width: 992px) and (max-width: 1199px) {
-  teams-filter #teamsFilterWrapper .teams-selector-filter {
+  teams-filter .teams-filter-wrapper .teams-selector-filter {
     display: none !important;
   }
 }
 @media (min-width: 1200px) {
-  teams-filter #teamsFilterWrapper .teams-selector-filter {
+  teams-filter .teams-filter-wrapper .teams-selector-filter {
     display: none !important;
   }
 }

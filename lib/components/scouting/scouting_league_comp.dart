@@ -66,6 +66,12 @@ class ScoutingLeagueComp implements DetachAware {
     onSoccerPlayerAction({"soccerPlayer": soccerPlayer});
   }
   
+  String idSufix;
+  @NgOneWay('id-sufix')
+  void set identifier(String id) {
+    idSufix = id;
+  }
+  
   FieldPos fieldPosFilter;
   String nameFilter;
   String teamFilter;

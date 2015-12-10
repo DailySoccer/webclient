@@ -16,14 +16,14 @@
         <!-- Tab del contenido normal de seleccion de lineup -->
         <div class="tab-pane active" id="spanish-league">
             <scouting-league team-list="teamListES" soccer-player-list="allSoccerPlayersES" 
-                             on-action-button="onFavoritesChange(soccerPlayer)"
+                             on-action-button="onFavoritesChange(soccerPlayer)" id-sufix="'ES'"
                              favorites-player-list="favoritesPlayers"></scouting-league>
         </div>
         
         <!-- El otro tab, el del contest-info  -->
         <div class="tab-pane" id="premier-league">
             <scouting-league team-list="teamListUK" soccer-player-list="allSoccerPlayersUK" 
-                             on-action-button="onFavoritesChange(soccerPlayer)"
+                             on-action-button="onFavoritesChange(soccerPlayer)" id-sufix="'UK'"
                              favorites-player-list="favoritesPlayers"></scouting-league>
         </div>
 

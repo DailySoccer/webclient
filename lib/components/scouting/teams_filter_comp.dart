@@ -28,7 +28,7 @@ class TeamsFilterComp {
   @NgOneWay("team-list")
   void set teamList(List<dynamic> teams) {
     _teamList.clear();
-    _teamList.add({"id": _ALL_MATCHES, "name": StringUtils.translate("all-matches", "matchesfilter"), "shortName": ''});
+    _teamList.add({"id": _ALL_MATCHES, "name": StringUtils.translate("all-teams", "teamsfilter"), "shortName": ''});
 
     _teamList.addAll(teams);
     //runAnimation();

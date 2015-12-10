@@ -960,11 +960,15 @@
       "point-10-title"                  : "Ley aplicable y Jurisdicción",
       "point-10-content"                : "<p>Esta Web se rige por la legislación española. EPIC ELEVEN y el Usuario, con renuncia expresa a su propio fuero, si lo tuvieren, se someten a la jurisdicción de los juzgados y tribunales de la ciudad de Madrid (España). Esto siempre que este no sea un usuario final, siendo el foro que la ley estipula el domicilio del demandado.</p>"
     }
-    ,"favorites"                         :
+    ,"favorites"                        :
     {
-      "title"                            : "Ojeador",
-      "spanish-league"                   : "La Liga",
-      "premier-league"                   : "Premier"
+      "title"                           : "Ojeador",
+      "spanish-league"                  : "La Liga",
+      "premier-league"                  : "Premier"
+    }
+    ,"teamsfilter"                      :
+    {
+      "all-teams"                       : "Todos los<br>Equipos" 
     }
   }
 }

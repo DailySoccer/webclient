@@ -19014,6 +19014,14 @@ button.panel .panel-heading button.close {
   padding-left: 15px;
   padding-right: 15px;
 }
+.panel .panel-body p {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
+  color: #434343;
+  text-shadow: 1px 1px 1px rgba(67, 67, 67, 0.004);
+  text-align: center;
+}
 .panel .panel-body .user-form-field {
   position: relative;
   float: left;

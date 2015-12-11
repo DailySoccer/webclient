@@ -119,10 +119,11 @@ class ShopComp implements DetachAware{
 
   void alertNotEnoughResources(Money goldNeeded) {
      modalShow(
-       "",
-       getNotEnoughGoldContent(goldNeeded),
-       onOk: getLocalizedText("buy-gold-button"),
-       closeButton:true
+       ""
+       , getNotEnoughGoldContent(goldNeeded)
+       , onOk: getLocalizedText("buy-gold-button")
+       , closeButton:true
+       , aditionalClass: "noGold"
      )
      /*.then((_) {
        _router.go('shop.gold', {});
@@ -131,17 +132,15 @@ class ShopComp implements DetachAware{
 
    String getNotEnoughGoldContent(Money goldNeeded) {
      return '''
-    <div class="content-wrapper">
-      <img class="main-image" src="images/iconNoGold.png">
-      <span class="not-enough-resources-count">${goldNeeded}</span>
-      <p class="content-text">
-        <strong>${getLocalizedText("alert-no-gold-message")}</strong>
-        <br>
-        ${getLocalizedText('alert-user-gold-message', substitutions:{'MONEY': _profileService.user.goldBalance})}
-        <img src="images/icon-coin-xs.png">
-      </p>
-    </div>
-    ''';
+            <div class="content-wrapper">
+              <h1 class="alert-content-title">${getLocalizedText("alert-no-gold-message")}</h1>
+              <div class="gold-needed-icon-wrapper">
+                <img class="gold-image" src="images/EpicCoinModales.png">
+                <span class="not-enough-resources-count">${goldNeeded}</span>
+              </div>
+              <h2 class="alert-content-subtitle">${getLocalizedText('alert-user-gold-message', substitutions:{'MONEY': _profileService.user.goldBalance})}<span class="gold-icon-tiny"></span></h2>
+            </div>
+          ''';
    }
 
    void detach() {

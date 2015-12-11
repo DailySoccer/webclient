@@ -119,6 +119,11 @@ class Contest {
 
   Contest.referenceInit(this.contestId);
 
+  Contest.fromInstancesSoccerPlayers(String id, List<InstanceSoccerPlayer> instanceSoccerPlayerList) {
+    contestId = id;
+    instanceSoccerPlayerList.forEach( (instance) => instanceSoccerPlayers[instance.id] = instance );
+  }
+
   bool get isActive   => state == "ACTIVE";
   bool get isLive     => state == "LIVE";
   bool get isHistory  => state == "HISTORY";

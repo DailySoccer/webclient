@@ -33,12 +33,12 @@ import 'package:webclient/models/competition.dart';
     useShadowDom: false
 )
 class ScoutingLeagueComp implements DetachAware {
-  
+
   LoadingService loadingService;
   List<dynamic> _allSoccerPlayers;
   List<dynamic> _favoritesPlayers;
   bool onlyFavorites = false;
-  
+
   List<Map<String, String>> _teamList = [];
 
   @NgOneWay('soccer-player-list')
@@ -46,36 +46,36 @@ class ScoutingLeagueComp implements DetachAware {
     _allSoccerPlayers = players;
   }
   List<dynamic> get allSoccerPlayers => _allSoccerPlayers;
-  
+
   @NgTwoWay('favorites-player-list')
   void set favoritesPlayers(List<dynamic> players) {
     _favoritesPlayers = players;
   }
   List<dynamic> get favoritesPlayers => _favoritesPlayers;
-  
+
   @NgOneWay('team-list')
   void set teamList(List<Map<String, String>> teams) {
     _teamList = teams;
   }
   List<Map<String, String>> get teamList => _teamList;
-  
+
   @NgCallback('on-action-button')
   Function onSoccerPlayerAction;
-  
+
   void onSoccerPlayerActionButton(var soccerPlayer) {
     onSoccerPlayerAction({"soccerPlayer": soccerPlayer});
   }
-  
+
   String idSufix;
   @NgOneWay('id-sufix')
   void set identifier(String id) {
     idSufix = id;
   }
-  
+
   FieldPos fieldPosFilter;
   String nameFilter;
   String teamFilter;
-  
+
   InstanceSoccerPlayer selectedInstanceSoccerPlayer;
 
   String getLocalizedText(key, {substitutions: null}) {

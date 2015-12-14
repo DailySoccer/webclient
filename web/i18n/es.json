@@ -254,6 +254,10 @@
       "errorcontestnotactivetitle"      : "Torneo en Directo",
       "errorcontestnotactivegeneric"    : "No es posible entrar al concurso en directo",
       "errorcontestnotactiveediting"    : "No es posible modificar tu alineación cuando el torneo ya haya empezado",
+      "error-managerlevel-invalid-title"    : "Manager Level Inválido",
+      "error-managerlevel-invalid-generic"  : "No cumples las condiciones de Manager Level necesarias.",
+      "error-trueskill-invalid-title"   : "Nivel de Habilidad Inválido",
+      "error-trueskill-invalid-generic" : "No cumples las condiciones de Nivel de Habilidad necesarias.",
       "errormaxplayerssameteamtitle"    : "Jugadores del mismo equipo",
       "errormaxplayerssameteamgeneric"  : "No es posible...",
       "erroruserbalancenegativetitle"   : "No tienes Oro suficiente",
@@ -987,7 +991,7 @@
     {
       "all-teams"                       : "Todos los<br>Equipos",
       "show-teams"                      : "Mostrar equipos",
-      "hide-teams"                      : "Ocultar equipos" 
+      "hide-teams"                      : "Ocultar equipos"
     }
   }
 }

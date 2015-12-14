@@ -9,6 +9,7 @@ import "package:webclient/services/prizes_service.dart";
 import "package:webclient/models/contest.dart";
 import 'package:logging/logging.dart';
 import 'package:webclient/models/template_contest.dart';
+import 'package:webclient/models/user.dart';
 
 
 @Injectable()
@@ -229,11 +230,31 @@ class ContestsService {
     return activeContests.isNotEmpty ? activeContests.first : null;
   }
 
+  bool hasLevel(Contest contest) {
+    bool result = true;
+
+    if (contest.minManagerLevel != 0 || contest.maxManagerLevel != User.MAX_MANAGER_LEVEL) {
+      int userLevel = _profileService.isLoggedIn ? _profileService.user.managerLevel.toInt() : 0;
+      result = (userLevel >= contest.minManagerLevel) && (userLevel <= contest.maxManagerLevel);
+    }
+
+    if (result) {
+      if (contest.minTrueSkill != -1 || contest.maxTrueSkill != -1) {
+        int userTrueSkill = _profileService.isLoggedIn ? _profileService.user.trueSkill : 0;
+        result = (contest.minTrueSkill == -1 || userTrueSkill >= contest.minTrueSkill) && (contest.maxTrueSkill == -1 || userTrueSkill <= contest.maxTrueSkill);
+      }
+    }
+
+    return result;
+  }
+
   void _initActiveContests(List<Contest> contests) {
     activeContests = contests;
     activeContests.forEach((contest) => _registerContest(contest));
 
     if (_profileService.isLoggedIn) {
+      activeContests = activeContests.where((contest) => hasLevel(contest)).toList();
+
       _myEnteredActiveContests = activeContests.where((contest) => contest.containsContestEntryWithUser(_profileService.user.userId)).toList();
       activeContests.removeWhere((contest) => contest.containsContestEntryWithUser(_profileService.user.userId));
 

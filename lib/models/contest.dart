@@ -55,6 +55,11 @@ class Contest {
 
   int salaryCap;
 
+  int minManagerLevel = 0;
+  int maxManagerLevel = User.MAX_MANAGER_LEVEL;
+  int minTrueSkill = -1;
+  int maxTrueSkill = -1;
+
   bool simulation = false;
   String specialImage;
 
@@ -266,6 +271,11 @@ class Contest {
     prizeMultiplier = jsonMap.containsKey("prizeMultiplier") ? jsonMap["prizeMultiplier"] : 0.9;
     simulation = jsonMap.containsKey("simulation") ? jsonMap["simulation"] : false;
     specialImage = jsonMap.containsKey("specialImage") ? jsonMap["specialImage"] : null;
+
+    minManagerLevel = jsonMap.containsKey("minManagerLevel") && jsonMap["minManagerLevel"] != null ? jsonMap["minManagerLevel"] : 0;
+    maxManagerLevel = jsonMap.containsKey("maxManagerLevel") && jsonMap["maxManagerLevel"] != null ? jsonMap["maxManagerLevel"] : User.MAX_MANAGER_LEVEL;
+    minTrueSkill = jsonMap.containsKey("minTrueSkill") && jsonMap["minTrueSkill"] != null ? jsonMap["minTrueSkill"] : -1;
+    maxTrueSkill = jsonMap.containsKey("maxTrueSkill") && jsonMap["maxTrueSkill"] != null ? jsonMap["maxTrueSkill"] : -1;
 
     startDate = DateTimeService.fromMillisecondsSinceEpoch(jsonMap["startDate"]);
     optaCompetitionId = jsonMap.containsKey("optaCompetitionId") && (jsonMap["optaCompetitionId"] != null) ? jsonMap["optaCompetitionId"] : "";

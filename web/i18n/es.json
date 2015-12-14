@@ -269,7 +269,7 @@
       "alert-no-gold-title"             : "¡No hay Oro!",
       "alert-no-energy-message"         : "No tienes ENERGÍA para entrar en el torneo",
       "alert-no-gold-message"           : "No tienes ORO para entrar en el torneo",
-      "alert-no-gold-to-buy-message"    : "No tienes ORO para seleccionar al jugador",
+      "alert-no-gold-to-buy-message"    : "Tu Nivel de Manager es insuficiente y no tienes el oro necesario para alinear este jugador",
       "resource-gold"                   : "ORO",
       "resource-energy"                 : "ENERGÍA",
       "buy-gold-button"                 : "COMPRAR ORO",
@@ -592,7 +592,7 @@
     ,"tutorial_iniciacion"              :
     {
       "msg-01"                          : "<span class='modal-body-title'>Bienvenido a Epic Eleven.</span><span class='modal-body-text'> Haz tu equipo ideal alineando jugadores reales de la Liga o Premier y enfréntate en torneos contra otros jugadores.</span>",
-      "msg-02"                          : "<span class='modal-body-text'>Comienza eligiendo un torneo oficial. Participar en los torneos oficiales cuesta oro, pero no te preocupes, esta vez invitamos nosotros.</span>",
+      "msg-02"                          : "<span class='modal-body-text'>Comienza eligiendo un torneo oficial. Participar en los torneos oficiales cuesta oro, pero no te preocupes al registrate recibiras 10 monedas de oro.</span>",
       "msg-02a"                         : "Selecciona este torneo",
       "msg-02b"                         : "<span class='modal-body-text'>Los torneos oficiales se basan en partidos de la vida real.</span>",
       "msg-02c"                         : "<span class='modal-body-text'>Elige tu alineación ideal entre todos los jugadores que participaran en esos partidos.</span>",
@@ -611,8 +611,8 @@
       "msg-03d"                         : "Los jugadores marcados en rojo requieren un nivel de manager superior a tu nivel actual",
       "msg-03e"                         : "Intenta seleccionar un jugador marcado en rojo",
       "msg-03f"                         : "<span class='modal-body-text'>Necesitas subir tu nivel de manager compitiendo en torneos virtuales.</span>",
-      "msg-04"                          : "<span class='modal-body-text'>Puedes participar en torneos virtuales siempre que tengas energía.</span>",
-      "msg-04a"                         : "Participa en los torneos virtuales para ganar puntos de manager, que harán subir tu nivel de manager.",
+      "msg-04a"                          : "<span class='modal-body-text'>Puedes participar en torneos virtuales siempre que tengas energía.</span>",
+      "msg-04"                         : "Participa en los torneos virtuales para ganar puntos de manager, que harán subir tu nivel de manager.",
       "msg-05"                          : "Cada torneo virtual tiene un coste de energía.",
       "msg-06"                          : "Selecciona este torneo",
       "msg-07"                          : "<span class='modal-body-text'>A diferencia de los torneos oficiales, en los torneos virtuales no existe limitación por nivel de manager. Tu única limitación será tu presupuesto.</span>",
@@ -629,7 +629,7 @@
       "msg-14"                          : "Aquí puedes ver tu puntuación frente a los rivales. Haz clic en el nombre de un rival para ver su alineación.",
       "msg-15"                          : "Fijate, uno de tus jugadores acaba de conseguir sus primeros puntos.",
       "msg-16"                          : "<span class='modal-body-title'>¡Enhorabuena, has ganado tu primer torneo!</span><span class='modal-body-text'> Has conseguido puntos de manager y has subido tu nivel de manager.",
-      "msg-17"                          : "<span class='modal-body-title'>Ya estás preparado. </span><span class='modal-body-text'>Regístrate ahora y consigue tus primeras 30 monedas de oro para comenzar tu carrera como manager.</span>"
+      "msg-17"                          : "<span class='modal-body-title'>Ya estás preparado. </span><span class='modal-body-text'>Regístrate ahora y consigue tus primeras 10 monedas de oro para comenzar tu carrera como manager.</span>"
     }
     , "tutorial_entrenamiento"          :
     {

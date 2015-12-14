@@ -23997,6 +23997,54 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
   display: none !important;
   visibility: hidden !important;
 }
+#alertRoot.achievementEarned .panel {
+  background-image: url("../images/BgModalesEspeciales.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#alertRoot.achievementEarned .alert-content-title {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 18pt;
+  color: #214a5f;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+  margin-top: 10px;
+}
+#alertRoot.achievementEarned .alert-content-title.large {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 24pt;
+  color: #214a5f;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+  padding-bottom: 0;
+}
+#alertRoot.achievementEarned .achievment-earned-icon-wrapper {
+  display: block;
+  position: relative;
+}
+#alertRoot.achievementEarned .achievment-earned-icon-wrapper .achievement {
+  padding: 0;
+}
+#alertRoot.achievementEarned .achievment-earned-icon-wrapper .gold-image {
+  display: block;
+  position: relative;
+  margin: 0px auto -60px auto;
+}
+#alertRoot.achievementEarned .achievment-earned-icon-wrapper .achievement-description {
+  display: none;
+}
+#alertRoot.achievementEarned .alert-content-subtitle {
+  vertical-align: middle;
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 14pt;
+  color: #214a5f;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+  margin-bottom: 20px;
+}
 .favorites-wrapper .enter-contest-soccer-players-wrapper {
   width: 100% !important;
 }

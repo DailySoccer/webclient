@@ -13,6 +13,7 @@ import 'package:webclient/services/promos_service.dart';
 import 'dart:html';
 import 'package:webclient/tutorial/tutorial_iniciacion.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/components/account/notifications_comp.dart';
 
 @Component(
   selector: 'home',
@@ -55,6 +56,7 @@ class HomeComp  {
     loadingService.isLoading = true;
     _refreshMyContests();
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
+    NotificationsComp.triggerNotificationsPopUp(_router);
   }
 
 

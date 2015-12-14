@@ -11,7 +11,7 @@ import 'package:webclient/services/tutorial_service.dart';
     useShadowDom: false
 )
 class TutorialsComp {
-
+  
   String getLocalizedText(key) {
     return StringUtils.translate(key, "tutorials");
   }
@@ -20,9 +20,14 @@ class TutorialsComp {
     _tutorialService.restart(tutorial);
   }
   
+  void goToPage(String page) {
+    _router.go(page, {});
+  }
+  
   String get tutorialIniciacionName => TutorialIniciacion.NAME;
 
-  TutorialsComp(this._tutorialService);
+  TutorialsComp(this._tutorialService, this._router);
   
   TutorialService _tutorialService;
+  Router _router;
 }

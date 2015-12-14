@@ -23255,6 +23255,158 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
 #helpInfo .tab-pane.active {
   display: block;
 }
+#helpInfo .button-back {
+  background-color: #428bca;
+  border-color: #357ebd;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  background-color: #a1c931;
+  color: #ffffff;
+  outline: none !important;
+  margin: 0 auto;
+  display: block;
+  margin-top: 15px;
+  padding: 8px 25px;
+}
+#helpInfo .button-back:hover,
+#helpInfo .button-back:focus,
+#helpInfo .button-back:active,
+#helpInfo .button-back.active,
+.open .dropdown-toggle#helpInfo .button-back {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+#helpInfo .button-back:active,
+#helpInfo .button-back.active,
+.open .dropdown-toggle#helpInfo .button-back {
+  background-image: none;
+}
+#helpInfo .button-back.disabled,
+#helpInfo .button-back[disabled],
+fieldset[disabled] #helpInfo .button-back,
+#helpInfo .button-back.disabled:hover,
+#helpInfo .button-back[disabled]:hover,
+fieldset[disabled] #helpInfo .button-back:hover,
+#helpInfo .button-back.disabled:focus,
+#helpInfo .button-back[disabled]:focus,
+fieldset[disabled] #helpInfo .button-back:focus,
+#helpInfo .button-back.disabled:active,
+#helpInfo .button-back[disabled]:active,
+fieldset[disabled] #helpInfo .button-back:active,
+#helpInfo .button-back.disabled.active,
+#helpInfo .button-back[disabled].active,
+fieldset[disabled] #helpInfo .button-back.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+#helpInfo .button-back .badge {
+  color: #428bca;
+  background-color: #ffffff;
+}
+#helpInfo .button-back:focus,
+#helpInfo .button-back:active:focus,
+#helpInfo .button-back.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#helpInfo .button-back:hover,
+#helpInfo .button-back:focus {
+  color: #333333;
+  text-decoration: none;
+}
+#helpInfo .button-back:active,
+#helpInfo .button-back.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#helpInfo .button-back.disabled,
+#helpInfo .button-back[disabled],
+fieldset[disabled] #helpInfo .button-back {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#helpInfo .button-back:active,
+#helpInfo .button-back.active {
+  box-shadow: none;
+}
+#helpInfo .button-back:active:focus,
+#helpInfo .button-back.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#helpInfo .button-back:active:hover,
+#helpInfo .button-back.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+#helpInfo .button-back:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#helpInfo .button-back:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#helpInfo .button-back:hover:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+#helpInfo .button-back:active,
+#helpInfo .button-back.active {
+  box-shadow: none;
+  background-color: #a1c931;
+}
+#helpInfo .button-back:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+#helpInfo .button-back.disabled,
+#helpInfo .button-back[disabled],
+fieldset[disabled] #helpInfo .button-back {
+  background-color: #b5d657;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+#helpInfo .button-back.close {
+  background-color: #a1c931;
+  outline: none !important;
+  color: #ffffff;
+}
 .tutorial-row {
   margin-left: 0;
   margin-right: 0;
@@ -23341,11 +23493,10 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   -ms-transition: All 0.08s ease-out;
   -o-transition: All 0.08s ease-out;
   transition: All 0.08s ease-out;
-  font-weight: 400;
   background-color: #a1c931;
   outline: none !important;
   font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 10pt;
   color: #ffffff;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);

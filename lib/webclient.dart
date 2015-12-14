@@ -92,6 +92,7 @@ import 'package:webclient/components/scouting/teams_filter_comp.dart';
 
 import 'package:webclient/components/legalese_and_help/help_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/how_it_works_comp.dart';
+import 'package:webclient/components/legalese_and_help/how_to_create_contest_comp.dart';
 import 'package:webclient/components/legalese_and_help/tutorials_comp.dart';
 import 'package:webclient/components/legalese_and_help/rules_comp.dart';
 import 'package:webclient/components/legalese_and_help/terminus_info_comp.dart';
@@ -207,6 +208,7 @@ class WebClientApp extends Module {
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
     bind(HowItWoksComp);
+    bind(HowToCreateContestComp);
     bind(TerminusInfoComp);
     bind(LegalInfoComp);
     bind(PolicyInfoComp);
@@ -440,8 +442,13 @@ class WebClientApp extends Module {
       ,'help_info': ngRoute(
           path: '/help-info',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-          viewHtml: '<help-info></help-info>'
+          viewHtml: '<help-info></help-info>'            
       )
+      ,'howtocreatecontest': ngRoute(
+          path: '/how-to-create-contest',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPagePayment(e, router),
+          viewHtml: '<how-to-create-contest></how-to-create-contest>'
+      )    
       ,'terminus_info': ngRoute(
           path: '/terminus_info',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),

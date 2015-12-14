@@ -37,6 +37,8 @@ class EnterContestComp implements DetachAware {
   static const String ERROR_USER_ALREADY_INCLUDED = "ERROR_USER_ALREADY_INCLUDED";
   static const String ERROR_USER_BALANCE_NEGATIVE = "ERROR_USER_BALANCE_NEGATIVE";
   static const String ERROR_MAX_PLAYERS_SAME_TEAM = "ERROR_MAX_PLAYERS_SAME_TEAM";
+  static const String ERROR_MANAGER_LEVEL_INVALID = "ERROR_MANAGER_LEVEL_INVALID";
+  static const String ERROR_TRUESKILL_INVALID = "ERROR_TRUESKILL_INVALID";
 
   // Errores de los que no tendríamos que informar
   static const String ERROR_CONTEST_INVALID = "ERROR_CONTEST_INVALID";
@@ -141,6 +143,14 @@ class EnterContestComp implements DetachAware {
           "generic" : getLocalizedText("errorcontestnotactivegeneric"),
           "editing" : getLocalizedText("errorcontestnotactiveediting")
       },
+      ERROR_MANAGER_LEVEL_INVALID: {
+          "title"   : getLocalizedText("error-managerlevel-invalid-title"),
+          "generic" : getLocalizedText("error-managerlevel-invalid-generic")
+      },
+      ERROR_TRUESKILL_INVALID: {
+        "title"   : getLocalizedText("error-trueskill-invalid-title"),
+        "generic" : getLocalizedText("error-trueskill-invalid-generic")
+      },
       ERROR_MAX_PLAYERS_SAME_TEAM: {
         "title"   : getLocalizedText("errormaxplayerssameteamtitle"),
         "generic" : getLocalizedText("errormaxplayerssameteamgeneric"),
@@ -212,7 +222,7 @@ class EnterContestComp implements DetachAware {
 
     subscribeToLeaveEvent();
   }
-  
+
   void updateFavorites() {
     favoritesPlayers.clear();
     favoritesPlayers.addAll(_profileService.user.favorites.map((playerId) =>

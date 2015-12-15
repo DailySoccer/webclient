@@ -4,16 +4,11 @@ import 'dart:html';
 import 'dart:async';
 import 'dart:convert';
 import 'package:angular/angular.dart';
-import 'package:webclient/services/contests_service.dart';
-import 'package:webclient/services/flash_messages_service.dart';
-import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/loading_service.dart';
 import "package:webclient/models/soccer_team.dart";
 import "package:webclient/models/instance_soccer_player.dart";
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/profile_service.dart';
-import 'package:webclient/services/catalog_service.dart';
-import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/services/soccer_player_service.dart';
 import 'package:webclient/models/competition.dart';
 

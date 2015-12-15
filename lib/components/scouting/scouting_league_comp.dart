@@ -4,28 +4,11 @@ import 'dart:html';
 import 'dart:async';
 import 'dart:convert';
 import 'package:angular/angular.dart';
-import 'package:webclient/services/contests_service.dart';
-import 'package:webclient/services/flash_messages_service.dart';
-import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/loading_service.dart';
-import 'package:webclient/services/server_error.dart';
 import 'package:webclient/models/field_pos.dart';
-import "package:webclient/models/soccer_team.dart";
-import 'package:webclient/models/match_event.dart';
-import 'package:webclient/models/contest.dart';
-import 'package:webclient/models/contest_entry.dart';
 import "package:webclient/models/instance_soccer_player.dart";
 import 'package:webclient/utils/string_utils.dart';
-import 'package:webclient/utils/game_metrics.dart';
-import 'package:webclient/utils/html_utils.dart';
-import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/components/modal_comp.dart';
-import 'package:webclient/services/catalog_service.dart';
-import 'package:webclient/models/user.dart';
-import 'package:webclient/models/money.dart';
-import 'package:webclient/services/tutorial_service.dart';
-import 'package:webclient/services/soccer_player_service.dart';
-import 'package:webclient/models/competition.dart';
 
 @Component(
     selector: 'scouting-league',
@@ -86,9 +69,7 @@ class ScoutingLeagueComp implements DetachAware {
     return StringUtils.formatCurrency(amount);
   }
 
-  ScoutingLeagueComp(this._routeProvider, this._router,
-                   this._contestsService, this.loadingService, this._profileService, this._catalogService,
-                   this._flashMessage, this._rootElement, this._tutorialService, this._soccerPlayerService) {
+  ScoutingLeagueComp(this._routeProvider, this._router) {
     removeAllFilters();
     //_parent = _routeProvider.parameters["parent"];
   }
@@ -115,9 +96,9 @@ class ScoutingLeagueComp implements DetachAware {
   }
 
   void onRowClick(String soccerPlayerId) {
-    ModalComp.open(_router, "scouting.soccer_player_stats", { 
-        "soccerPlayerId": soccerPlayerId, 
-        "selectable": true 
+    ModalComp.open(_router, "scouting.soccer_player_stats", {
+        "soccerPlayerId": soccerPlayerId,
+        "selectable": (favoritesPlayers.firstWhere((soccerPlayer) => soccerPlayer["id"] == soccerPlayerId, orElse: () => null) == null)
       }, addSoccerPlayerToFavorite);
   }
 
@@ -136,24 +117,5 @@ class ScoutingLeagueComp implements DetachAware {
   RouteProvider _routeProvider;
   String _parent;
 
-  SoccerPlayerService _soccerPlayerService;
-  TutorialService _tutorialService;
-  ContestsService _contestsService;
-  ProfileService _profileService;
-  CatalogService _catalogService;
-  FlashMessagesService _flashMessage;
-
-  var _streamListener;
-  ElementList<dynamic> _totalSalaryTexts;
-
-  Timer _retryOpTimer;
-  ScreenDetectorService _scrDet;
-
-  RouteHandle _routeHandle;
-
-  bool _teamConfirmed = false;
-  bool _isRestoringTeam = false;
-
-  Element _rootElement;
   Element alertMaxplayerInSameTeam;
 }

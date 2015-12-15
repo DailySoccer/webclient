@@ -14,7 +14,7 @@ class InstanceSoccerPlayer {
     ];
 
   static List<int> LEVEL_PRICE = [
-    0, 8, 19, 33, 51, 88, 160, 269, 414, 632, 1068
+    0, 7, 16, 28, 43, 74, 135, 228, 350, 534, 903
     ];
 
   SoccerPlayer soccerPlayer;
@@ -37,8 +37,9 @@ class InstanceSoccerPlayer {
   Money moneyToBuy(num managerLevel) {
     Money result = new Money.from(Money.CURRENCY_GOLD, 0);
     if (managerLevel < level) {
-      // Diferencia de nivel * precio del nivel
-      result.amount += (level - managerLevel.toInt()) * LEVEL_PRICE[level];
+      for (int i = managerLevel.toInt() + 1; i <= level; i++) {
+        result.amount += LEVEL_PRICE[i];
+      }
     }
     return result;
   }

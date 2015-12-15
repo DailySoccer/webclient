@@ -52,6 +52,7 @@ class Contest {
 
   int minEntries;
   int maxEntries;
+  bool get isFull => contestEntries.length == maxEntries;
 
   int salaryCap;
 
@@ -334,6 +335,23 @@ class Contest {
       .replaceAll("%PrizeType", prizeTypeName)
       .replaceAll("%EntryFee", "${entryFee}")
       .replaceAll("%MockUsers", "");
+  }
+  
+
+  bool hasManagerLevel(int userManagerLevel) => (minManagerLevel == 0 || userManagerLevel >= minManagerLevel) && 
+                                                userManagerLevel <= maxManagerLevel;
+  
+  bool hasTrueSkill(int userTrueSkill) => userTrueSkill >= minTrueSkill &&
+                                          (maxTrueSkill == -1 || userTrueSkill <= maxTrueSkill);
+
+  bool hasLevel(int userManagerLevel, int userTrueSkill) => hasManagerLevel(userManagerLevel) && hasTrueSkill(userTrueSkill);
+  
+  bool userIsRegistered(String userId) {
+    return getContestEntryWithUser(userId) != null;
+  }
+  
+  bool canEnter(User user) {
+    return !isFull && hasLevel(user.managerLevel.toInt(), user.trueSkill);
   }
 
   String _name;

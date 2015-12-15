@@ -20156,6 +20156,26 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   margin-bottom: 20px;
 }
+#alertRoot.cannotEnter .panel .panel-body {
+  padding: 15px 20px;
+}
+#alertRoot.cannotEnter .alert-content-title {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 24pt;
+  color: #214a5f;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+}
+#alertRoot.cannotEnter .alert-content-subtitle {
+  vertical-align: middle;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14pt;
+  color: #afafaf;
+  text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
+  margin-bottom: 20px;
+}
 #alertRoot .content-text {
   margin-top: 20px;
   font-family: 'Open Sans', sans-serif;

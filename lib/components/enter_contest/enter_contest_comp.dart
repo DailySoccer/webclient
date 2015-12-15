@@ -109,7 +109,7 @@ class EnterContestComp implements DetachAware {
   bool isNegativeBalance = false;
 
   bool get isInvalidFantasyTeam => lineupSlots.any((player) => player == null) || playersInSameTeamInvalid || isNegativeBalance;
-  bool get editingContestEntry => contestEntryId != "none";
+  bool get editingContestEntry => contestEntryId != "none" || (contest != null && contest.userIsRegistered(_profileService.user.userId));
   bool get isCreatingContest => _parent.contains("create_contest");
 
   bool contestInfoFirstTimeActivation = false;  // Optimizacion para no compilar el contest_info hasta que no sea visible la primera vez
@@ -189,28 +189,12 @@ class EnterContestComp implements DetachAware {
         loadingService.isLoading = false;
 
         contest = _contestsService.lastContest;
-        /*
-        if (contest.contestEntries.length == contest.maxEntries) {
-          modalShow(
-                "",
-                '''
-                  <div class="content-wrapper">
-                    <h1 class="alert-content-title">${getLocalizedText("alert-no-gold-to-buy-message")}</h1>
-                    <div class="gold-needed-icon-wrapper">
-                      <img class="gold-image" src="images/EpicCoinModales.png">
-                      <span class="not-enough-resources-count">${coins}</span>
-                    </div>
-                    <h2 class="alert-content-subtitle">${getLocalizedText('alert-user-gold-message', substitutions:{'MONEY': playerGold})}<span class="gold-icon-tiny"></span></h2>
-                  </div>
-                '''
-                , onBackdropClick: true
-                , aditionalClass: "noGold"
-              )
-              .then((_) {
-                _tutorialService.triggerEnter("alert-not-buy");
-              });
+        
+        if (_profileService.isLoggedIn && !contest.canEnter(_profileService.user)) {
+          cannotEnterMessageRedirect();
+          return;
         }
-        */
+        
         availableSalary = contest.salaryCap;
         // Comprobamos si estamos en salario negativo
         isNegativeBalance = availableSalary < 0;
@@ -245,6 +229,47 @@ class EnterContestComp implements DetachAware {
     subscribeToLeaveEvent();
   }
 
+  void cannotEnterMessageRedirect() {
+    String title = "";
+    String description = "";
+    int userLevel = _profileService.user.managerLevel.toInt();
+    int userTrueSkill = _profileService.user.trueSkill;
+    
+    if (contest.isFull) {
+      title = "¡Torneo lleno!";
+      description = "No quedan plazas disponibles para participar en el torneo seleccionado";
+    } else if (contest.hasManagerLevel(userLevel)) {
+      if (userLevel < contest.minManagerLevel ) {
+        title = "Nivel de manager bajo";
+        description = "Necesitas nivel de manager mayor que ${contest.minManagerLevel}, actualmente tienes $userLevel";
+      } else {
+        title = "Nivel de manager alto";
+        description = "El máximo nivel de manager permitido es ${contest.maxManagerLevel}, actualmente tienes $userLevel";
+      }
+    } else if (contest.hasTrueSkill(_profileService.user.trueSkill)) {
+      if (userTrueSkill < contest.minTrueSkill ) {
+        title = "TrueSkill bajo";
+        description = "Necesitas nivel de TrueSkill mayor que ${contest.minTrueSkill}, actualmente tienes $userTrueSkill";
+      } else {
+        title = "TrueSkill alto";
+        description = "El máximo nivel de TrueSkill permitido es ${contest.maxTrueSkill}, actualmente tienes $userTrueSkill";
+      }
+    }
+    modalShow(
+          "",
+          '''
+            <div class="content-wrapper">
+              <h1 class="alert-content-title">$title</h1>
+              <h2 class="alert-content-subtitle">$description</h2>
+            </div>
+          '''
+          , onBackdropClick: true
+          , aditionalClass: "cannotEnter"
+        )
+        .then((_) => _router.go('lobby', {}))
+        .catchError((_) => _router.go('lobby', {}));
+  }
+  
   void updateFavorites() {
     favoritesPlayers.clear();
     favoritesPlayers.addAll(_profileService.user.favorites.map((playerId) =>

@@ -592,13 +592,13 @@
     ,"tutorial_iniciacion"              :
     {
       "msg-01"                          : "<span class='modal-body-title'>Bienvenido a Epic Eleven.</span><span class='modal-body-text'> Haz tu equipo ideal alineando jugadores reales de la Liga o Premier y enfréntate en torneos contra otros jugadores.</span>",
-      "msg-02"                          : "<span class='modal-body-text'>Comienza eligiendo un torneo oficial. Participar en los torneos oficiales cuesta oro, pero no te preocupes al registrate recibiras 10 monedas de oro.</span>",
+      "msg-02"                          : "<span class='modal-body-text'>Comienza eligiendo un torneo oficial. Participar en los torneos oficiales cuesta oro, pero no te preocupes al registrate recibirás 10 monedas de oro.</span>",
       "msg-02a"                         : "Selecciona este torneo",
       "msg-02b"                         : "<span class='modal-body-text'>Los torneos oficiales se basan en partidos de la vida real.</span>",
-      "msg-02c"                         : "<span class='modal-body-text'>Elige tu alineación ideal entre todos los jugadores que participaran en esos partidos.</span>",
+      "msg-02c"                         : "<span class='modal-body-text'>Elige tu alineación ideal entre todos los jugadores que participarán en esos partidos.</span>",
       "msg-02d"                         : "Esta es la lista de partidos de este torneo.",
 
-      "msg-02e"                         : "Aqui puedes desplegar la lista de formaciones",
+      "msg-02e"                         : "Aquí puedes desplegar la lista de formaciones",
       "msg-02f"                         : "Estas son las formaciones disponibles, por defecto está seleccionada la 4-4-2",
       "msg-02g"                         : "Selecciona una formación 4-3-3",
       "msg-02h"                         : "Al cambiar de formación, cambia el número de jugadores por posición.",
@@ -607,29 +607,29 @@
       "msg-03"                          : "Añade este jugador a tu alineación",
       "msg-03a"                         : "Bien, ya has añadido tu primer jugador",
       "msg-03b"                         : "Cuando añades un jugador, su salario se descuenta de tu presupuesto",
-      "msg-03c"                         : "Cada jugador, además de su salario requiere un nivel de manager u oro",
-      "msg-03d"                         : "Los jugadores marcados en rojo requieren un nivel de manager superior a tu nivel actual",
+      "msg-03c"                         : "Cada jugador, además de su salario requiere un nivel de mánager u oro",
+      "msg-03d"                         : "Los jugadores marcados en rojo requieren un nivel de mánager superior a tu nivel actual",
       "msg-03e"                         : "Intenta seleccionar un jugador marcado en rojo",
-      "msg-03f"                         : "<span class='modal-body-text'>Necesitas subir tu nivel de manager compitiendo en torneos virtuales.</span>",
+      "msg-03f"                         : "<span class='modal-body-text'>Necesitas subir tu nivel de mánager compitiendo en torneos virtuales.</span>",
       "msg-04a"                          : "<span class='modal-body-text'>Puedes participar en torneos virtuales siempre que tengas energía.</span>",
-      "msg-04"                         : "Participa en los torneos virtuales para ganar puntos de manager, que harán subir tu nivel de manager.",
+      "msg-04"                         : "Participa en los torneos virtuales para ganar puntos de mánager, que harán subir tu nivel de mánager.",
       "msg-05"                          : "Cada torneo virtual tiene un coste de energía.",
       "msg-06"                          : "Selecciona este torneo",
-      "msg-07"                          : "<span class='modal-body-text'>A diferencia de los torneos oficiales, en los torneos virtuales no existe limitación por nivel de manager. Tu única limitación será tu presupuesto.</span>",
+      "msg-07"                          : "<span class='modal-body-text'>A diferencia de los torneos oficiales, en los torneos virtuales no existe limitación por nivel de mánager. Tu única limitación será tu presupuesto.</span>",
       "msg-08"                          : "<span class='modal-body-text'>Esta vez hemos hecho la alineación por ti, sólo falta un delantero.</span>",
       "msg-09"                          : "Añade un delantero",
-      "msg-10"                          : "Una vez completada la alineación, si tienes energia, se activa el botón de continuar.",
+      "msg-10"                          : "Una vez completada la alineación, si tienes energía, se activa el botón de continuar.",
       "msg-10a"                         : "Si no tienes energía, siempre podrás comprarla en la tienda.",
       "msg-10b"                         : "Compra una recarga de energía, esta vez es gratis.",
       "msg-10c"                         : "Púlsalo para completar tu entrada en el torneo.",
       "msg-11"                          : "<span class='modal-body-title'>Enhorabuena.</span><span class='modal-body-text'> Acabas de apuntarte a un torneo virtual.</span>",
-      "msg-12"                          : "<span class='modal-body-text'>Esta es la pantalla de simulación, donde podrás ver en tiempo real cómo se desarrolla el torneo, la puntuación de tus jugadores y tu clasificación frente a los rivales.</span>",
+      "msg-12"                          : "<span class='modal-body-text'>Esta es la pantalla de resultados, donde podrás ver, una vez acabado el torneo, la puntuación de tus jugadores y tu clasificación frente a los rivales.</span>",
 
       "msg-13"                          : "Aquí podrás ver los puntos conseguidos por tus jugadores.",
       "msg-14"                          : "Aquí puedes ver tu puntuación frente a los rivales. Haz clic en el nombre de un rival para ver su alineación.",
-      "msg-15"                          : "Fijate, uno de tus jugadores acaba de conseguir sus primeros puntos.",
-      "msg-16"                          : "<span class='modal-body-title'>¡Enhorabuena, has ganado tu primer torneo!</span><span class='modal-body-text'> Has conseguido puntos de manager y has subido tu nivel de manager.",
-      "msg-17"                          : "<span class='modal-body-title'>Ya estás preparado. </span><span class='modal-body-text'>Regístrate ahora y consigue tus primeras 10 monedas de oro para comenzar tu carrera como manager.</span>"
+      "msg-15"                          : "Fíjate, uno de tus jugadores acaba de conseguir sus primeros puntos.",
+      "msg-16"                          : "<span class='modal-body-title'>¡Enhorabuena, has ganado tu primer torneo!</span><span class='modal-body-text'> Has conseguido puntos de mánager y has subido tu nivel de mánager.",
+      "msg-17"                          : "<span class='modal-body-title'>Ya estás preparado. </span><span class='modal-body-text'>Regístrate ahora y consigue tus primeras 10 monedas de oro para comenzar tu carrera como mánager.</span>"
     }
     , "tutorial_entrenamiento"          :
     {

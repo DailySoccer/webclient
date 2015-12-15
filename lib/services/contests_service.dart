@@ -249,12 +249,10 @@ class ContestsService {
   }
 
   void _initActiveContests(List<Contest> contests) {
-    activeContests = contests;
+    activeContests = contests.where((contest) => hasLevel(contest)).toList();
     activeContests.forEach((contest) => _registerContest(contest));
 
     if (_profileService.isLoggedIn) {
-      activeContests = activeContests.where((contest) => hasLevel(contest)).toList();
-
       _myEnteredActiveContests = activeContests.where((contest) => contest.containsContestEntryWithUser(_profileService.user.userId)).toList();
       activeContests.removeWhere((contest) => contest.containsContestEntryWithUser(_profileService.user.userId));
 

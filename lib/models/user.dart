@@ -12,7 +12,7 @@ class User {
   static const num MAX_ENERGY = 10;
 
   static List MANAGER_POINTS = [
-    0, 65, 125, 250, 500, 1000, 1065, 10125, 10250, 10500, 11000
+    0, 50, 125, 225, 350, 600, 1100, 1850, 2850, 4350, 7350
   ];
 
   static num get MAX_MANAGER_LEVEL => MANAGER_POINTS.length - 1;

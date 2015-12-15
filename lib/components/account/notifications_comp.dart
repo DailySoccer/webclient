@@ -37,7 +37,7 @@ class NotificationsComp {
     }
     */
 
-    refreshNotifications();
+    ProfileService.instance.refreshUserProfile().then( (_) => refreshNotifications() );
   }
 
   void refreshNotifications() {
@@ -83,46 +83,6 @@ class NotificationsComp {
       goToLink(n['link']['url']);
     }
   }
-  
-  static void triggerNotificationsPopUp(Router router) {
-    if (userIsLoggedIn != ProfileService.instance.isLoggedIn) {
-      if(!userIsLoggedIn && ProfileService.instance.isLoggedIn) {
-        List<UserNotification> achievementNotifs = ProfileService.instance.user.notifications.where( (notif) => notif.topic == 'ACHIEVEMENT_EARNED').toList();
-        
-        if (achievementNotifs.length == 0) { return; }
-        UserNotification shown = achievementNotifs[0];
-        int aditionalCount = achievementNotifs.length - 1;
-        
-        modalShow(""
-                 , '''
-                  <div class="content-wrapper">
-                    <h1 class="alert-content-title large">
-                        ${'¡Enhorabuena!'/*getLocalizedText("alert-no-energy-message_1")*/}
-                    </h1>
-                    <h1 class="alert-content-title">
-                        ${'Has conseguido...'/*getLocalizedText("alert-no-energy-message_1")*/}
-                    </h1>
-                    <div class="achievment-earned-icon-wrapper">
-                      ${AchievementComp.toHtml(shown.info['achievement'])}
-                    </div>
-                    ${aditionalCount > 0? "<h2 class='alert-content-subtitle'>${'Has ganado $aditionalCount logros más...'}</h2>" : ''}
-                  </div>
-                  '''
-                 , onOk: 'Ir a notificaciones'//getLocalizedText('buy-energy-button')
-                 , onBackdropClick: false
-                 , closeButton: true
-                 , aditionalClass: "achievementEarned"
-               )
-               .then((_) => router.go('notifications', {}))
-               .catchError((_) => print('error'));
-               
-      }
-      userIsLoggedIn = ProfileService.instance.isLoggedIn;
-    }
-  }
-  
-  static bool userIsLoggedIn = false;
-  
   
   ProfileService _profileService;
 }

@@ -56,7 +56,7 @@ class HomeComp  {
     loadingService.isLoading = true;
     _refreshMyContests();
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
-    NotificationsComp.triggerNotificationsPopUp(_router);
+    _profileService.triggerNotificationsPopUp(_router);
   }
 
 

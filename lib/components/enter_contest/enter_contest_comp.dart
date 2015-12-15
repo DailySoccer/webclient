@@ -194,6 +194,11 @@ class EnterContestComp implements DetachAware {
           cannotEnterMessageRedirect();
           return;
         }
+
+        if (!_profileService.isLoggedIn && contest.isFull) {
+          cannotEnterMessageRedirect();
+          return;
+        }
         
         availableSalary = contest.salaryCap;
         // Comprobamos si estamos en salario negativo
@@ -232,8 +237,8 @@ class EnterContestComp implements DetachAware {
   void cannotEnterMessageRedirect() {
     String title = "";
     String description = "";
-    int userLevel = _profileService.user.managerLevel.toInt();
-    int userTrueSkill = _profileService.user.trueSkill;
+    int userLevel = _profileService.isLoggedIn ? _profileService.user.managerLevel.toInt() : 0;
+    int userTrueSkill = _profileService.isLoggedIn ? _profileService.user.trueSkill : 0;
     
     if (contest.isFull) {
       title = "¡Torneo lleno!";
@@ -246,7 +251,7 @@ class EnterContestComp implements DetachAware {
         title = "Nivel de manager alto";
         description = "El máximo nivel de manager permitido es ${contest.maxManagerLevel}, actualmente tienes $userLevel";
       }
-    } else if (contest.hasTrueSkill(_profileService.user.trueSkill)) {
+    } else if (contest.hasTrueSkill(userTrueSkill)) {
       if (userTrueSkill < contest.minTrueSkill ) {
         title = "TrueSkill bajo";
         description = "Necesitas nivel de TrueSkill mayor que ${contest.minTrueSkill}, actualmente tienes $userTrueSkill";

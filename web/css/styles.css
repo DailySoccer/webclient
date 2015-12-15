@@ -20172,8 +20172,8 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 14pt;
-  color: #afafaf;
-  text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
+  color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   margin-bottom: 20px;
 }
 #alertRoot .content-text {

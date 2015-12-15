@@ -98,7 +98,7 @@ class ShopComp implements DetachAware{
       if (_profileService.user.hasMoney(price)) {
         _catalogService.buyProduct(id)
           .then( (_) {
-            _flashMessage.addGlobalMessage("Has comprado [ Recarga  Completa ]", 1);
+            _flashMessage.addGlobalMessage( (product["id"] == "ENERGY_ALL") ? "Has comprado [Recarga  Completa]" : "Has comprado [Recarga +1]", 1);
 
             if (window.localStorage.containsKey("add_energy_success")) {
               ModalComp.close();

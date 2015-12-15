@@ -54,6 +54,24 @@ class SoccerPlayerService {
     return completer.future;
   }
 
+  Future refreshSoccerPlayerInfo(String soccerPlayerId) {
+    var completer = new Completer();
+
+    _server.getSoccerPlayerInfo(soccerPlayerId)
+        .then((jsonMap) {
+          ContestReferences contestReferences = new ContestReferences();
+
+          nextMatchEvent = jsonMap.containsKey("match_event") ? new MatchEvent.fromJsonObject(jsonMap["match_event"], contestReferences) : null;
+          jsonMap["soccer_teams"].forEach( (jsonTeam) =>
+              new SoccerTeam.fromJsonObject(jsonTeam, contestReferences) );
+          soccerPlayer = new SoccerPlayer.fromJsonObject(jsonMap["soccer_player"], contestReferences);
+          instanceSoccerPlayer = new InstanceSoccerPlayer.initFromJsonObject(jsonMap["instance_soccer_player"], contestReferences);
+          completer.complete();
+        });
+
+    return completer.future;
+  }
+
   Future getSoccerPlayersByCompetition(String competitionId) {
     var completer = new Completer();
 

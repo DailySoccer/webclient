@@ -65,6 +65,7 @@ class SoccerPlayerService {
           jsonMap["soccer_teams"].forEach( (jsonTeam) =>
               new SoccerTeam.fromJsonObject(jsonTeam, contestReferences) );
           soccerPlayer = new SoccerPlayer.fromJsonObject(jsonMap["soccer_player"], contestReferences);
+          instanceSoccerPlayer = new InstanceSoccerPlayer.initFromJsonObject(jsonMap["instance_soccer_player"], contestReferences);
           completer.complete();
         });
 

@@ -96,12 +96,25 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
 
   SoccerPlayerStatsComp(this._flashMessage, this.scrDet, this._soccerPlayerService, RouteProvider routeProvider, Router router, this._rootElement) {
 
-    var contestId = routeProvider.route.parent.parameters["contestId"];
-    var instanceSoccerPlayerId = routeProvider.route.parameters['instanceSoccerPlayerId'];
+    Future refreshInstancePlayerInfo;
+
+    // 2 Opciones:
+    // a) parent.contestId + instanceSoccerPlayerId + selectable
+    // b) soccerPlayerId + selectable
+    var contestId = routeProvider.route.parent.parameters.containsKey("contestId") ? routeProvider.route.parent.parameters["contestId"] : null;
+    if (contestId != null) {
+      var instanceSoccerPlayerId = routeProvider.route.parameters['instanceSoccerPlayerId'];
+      collectSoccerPlayerInfo(_soccerPlayerService.getInstanceSoccerPlayer(contestId, instanceSoccerPlayerId));
+      refreshInstancePlayerInfo = _soccerPlayerService.refreshInstancePlayerInfo(contestId, instanceSoccerPlayerId);
+    }
+    else {
+      var soccerPlayerId = routeProvider.route.parameters["soccerPlayerId"];
+      refreshInstancePlayerInfo = _soccerPlayerService.refreshSoccerPlayerInfo(soccerPlayerId);
+    }
+
     selectablePlayer = routeProvider.route.parameters["selectable"] == "true";
 
-    collectSoccerPlayerInfo(_soccerPlayerService.getInstanceSoccerPlayer(contestId, instanceSoccerPlayerId));
-    _soccerPlayerService.refreshInstancePlayerInfo(contestId, instanceSoccerPlayerId)
+    refreshInstancePlayerInfo
       .then((_) {
         updateSoccerPlayerInfoFromService();
       })

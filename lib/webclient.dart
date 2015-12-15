@@ -442,13 +442,13 @@ class WebClientApp extends Module {
       ,'help_info': ngRoute(
           path: '/help-info',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-          viewHtml: '<help-info></help-info>'            
+          viewHtml: '<help-info></help-info>'
       )
       ,'howtocreatecontest': ngRoute(
           path: '/how-to-create-contest',
           preEnter: (RoutePreEnterEvent e) => _preEnterPagePayment(e, router),
           viewHtml: '<how-to-create-contest></how-to-create-contest>'
-      )    
+      )
       ,'terminus_info': ngRoute(
           path: '/terminus_info',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
@@ -472,7 +472,12 @@ class WebClientApp extends Module {
       ,'scouting': ngRoute(
           path: '/scouting',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-          viewHtml: '<scouting></scouting>'
+          viewHtml: '<scouting></scouting>',
+          mount: {
+            'soccer_player_stats': ngRoute(
+              path: '/soccer_player_stats/:soccerPlayerId/selectable/:selectable',
+              viewHtml: '<soccer-player-stats></soccer-player-stats>')
+          }
       )
     });
   }

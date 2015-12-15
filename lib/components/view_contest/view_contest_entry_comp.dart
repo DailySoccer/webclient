@@ -37,7 +37,7 @@ class ViewContestEntryComp {
 
   String get _getKeyForCurrentUserContest => (_profileService.isLoggedIn ? _profileService.user.userId : 'guest') + '#' + contest.contestId;
 
-  bool get showInviteButton => true;
+  bool get showInviteButton => (contest != null) ?  contest.maxEntries != contest.contestEntries.length : false;
   
   // A esta pantalla entramos de varias maneras:
   bool get isModeViewing => _viewContestEntryMode == "viewing"; // Clickamos "my_contests->proximos->ver".

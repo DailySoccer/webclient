@@ -6548,8 +6548,8 @@ scoring-rules:after,
   }
 }
 .contest-header-f2p-wrapper .conditions-section .fit-icon-size {
-  width: 16px;
-  height: 16px;
+  width: 17px;
+  height: 17px;
   position: relative;
   display: inline-block;
   margin-left: 3px;
@@ -6558,8 +6558,8 @@ scoring-rules:after,
 @media (min-width: 768px) {
   .contest-header-f2p-wrapper .conditions-section .fit-icon-size {
     float: right;
-    width: 25px;
-    height: 25px;
+    width: 27px;
+    height: 27px;
     margin-left: 0px;
     top: 0px;
   }
@@ -6567,8 +6567,8 @@ scoring-rules:after,
 .contest-header-f2p-wrapper .conditions-section .entry-fee-energy::after {
   content: " ";
   background-image: url("../images/icon-lightning-xs.png");
-  width: 16px;
-  height: 16px;
+  width: 17px;
+  height: 17px;
   position: relative;
   display: inline-block;
   margin-left: 3px;
@@ -6582,8 +6582,8 @@ scoring-rules:after,
 @media (min-width: 768px) {
   .contest-header-f2p-wrapper .conditions-section .entry-fee-energy::after {
     float: right;
-    width: 25px;
-    height: 25px;
+    width: 27px;
+    height: 27px;
     margin-left: 0px;
     top: 0px;
   }
@@ -6592,8 +6592,8 @@ scoring-rules:after,
 .contest-header-f2p-wrapper .conditions-section .prize-coin::after {
   content: " ";
   background-image: url("../images/icon-coin-xs.png");
-  width: 16px;
-  height: 16px;
+  width: 17px;
+  height: 17px;
   position: relative;
   display: inline-block;
   margin-left: 3px;
@@ -6609,8 +6609,8 @@ scoring-rules:after,
   .contest-header-f2p-wrapper .conditions-section .entry-fee-coin::after,
   .contest-header-f2p-wrapper .conditions-section .prize-coin::after {
     float: right;
-    width: 25px;
-    height: 25px;
+    width: 27px;
+    height: 27px;
     margin-left: 0px;
     top: 0px;
   }
@@ -6618,8 +6618,8 @@ scoring-rules:after,
 .contest-header-f2p-wrapper .conditions-section .prize-managerpoints::after {
   content: " ";
   background-image: url("../images/icon-star-xs.png");
-  width: 16px;
-  height: 16px;
+  width: 17px;
+  height: 17px;
   position: relative;
   display: inline-block;
   margin-left: 3px;
@@ -6633,8 +6633,8 @@ scoring-rules:after,
 @media (min-width: 768px) {
   .contest-header-f2p-wrapper .conditions-section .prize-managerpoints::after {
     float: right;
-    width: 25px;
-    height: 25px;
+    width: 27px;
+    height: 27px;
     margin-left: 0px;
     top: 0px;
   }

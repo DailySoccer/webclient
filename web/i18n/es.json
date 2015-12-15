@@ -710,7 +710,7 @@
       "product_gold_4"                  : "MALETÍN DE ORO",
       "product_gold_5"                  : "CAJA FUERTE DE ORO",
       "product_gold_6"                  : "GRAN BÓVEDA DE ORO",
-      "product_energy_1"                : "Recarga 1 slot:",
+      "product_energy_1"                : "Recarga +1:",
       "product_maxrefill"               : "Recarga al máximo con:",
       "refillable"                      : "Recarga +1 automática en:",
       "no-refillable"                   : "Tienes la energía a tope",

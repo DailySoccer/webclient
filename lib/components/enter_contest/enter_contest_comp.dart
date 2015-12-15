@@ -189,6 +189,28 @@ class EnterContestComp implements DetachAware {
         loadingService.isLoading = false;
 
         contest = _contestsService.lastContest;
+        /*
+        if (contest.contestEntries.length == contest.maxEntries) {
+          modalShow(
+                "",
+                '''
+                  <div class="content-wrapper">
+                    <h1 class="alert-content-title">${getLocalizedText("alert-no-gold-to-buy-message")}</h1>
+                    <div class="gold-needed-icon-wrapper">
+                      <img class="gold-image" src="images/EpicCoinModales.png">
+                      <span class="not-enough-resources-count">${coins}</span>
+                    </div>
+                    <h2 class="alert-content-subtitle">${getLocalizedText('alert-user-gold-message', substitutions:{'MONEY': playerGold})}<span class="gold-icon-tiny"></span></h2>
+                  </div>
+                '''
+                , onBackdropClick: true
+                , aditionalClass: "noGold"
+              )
+              .then((_) {
+                _tutorialService.triggerEnter("alert-not-buy");
+              });
+        }
+        */
         availableSalary = contest.salaryCap;
         // Comprobamos si estamos en salario negativo
         isNegativeBalance = availableSalary < 0;

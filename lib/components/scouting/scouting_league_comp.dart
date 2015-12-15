@@ -115,7 +115,10 @@ class ScoutingLeagueComp implements DetachAware {
   }
 
   void onRowClick(String soccerPlayerId) {
-    ModalComp.open(_router, "scouting.soccer_player_stats", { "soccerPlayerId": soccerPlayerId, "selectable": true }, addSoccerPlayerToFavorite);
+    ModalComp.open(_router, "scouting.soccer_player_stats", { 
+        "soccerPlayerId": soccerPlayerId, 
+        "selectable": true 
+      }, addSoccerPlayerToFavorite);
   }
 
   void addSoccerPlayerToFavorite(String soccerPlayerId) {

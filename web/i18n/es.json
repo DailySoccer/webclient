@@ -994,5 +994,13 @@
       "show-teams"                      : "Mostrar equipos",
       "hide-teams"                      : "Ocultar equipos"
     }
+    ,"notificationsmodal"               :
+    {
+      "congratulations"                 : "¡Enhorabuena!",
+      "you-earned"                      : "Has conseguido...",
+      "aditional-achievement-single"    : "Has ganado 1 logro más...",
+      "aditional-achievements"          : "Has ganado @NUM_ACHIEVEMENTS logros más...",
+      "go-notifications"                : "Ir a notificaciones"
+    }
   }
 }

@@ -35,7 +35,7 @@ class HomeComp  {
 
   bool get isContestTileEnabled => tutorialIsDone;
   bool get isCreateContestTileEnabled => userIsLogged && tutorialIsDone;
-  bool get isScoutingTileEnabled => userIsLogged;
+  bool get isScoutingTileEnabled => userIsLogged && tutorialIsDone;
   bool get isMyContestTilesEnabled => userIsLogged && tutorialIsDone;
   bool get isUpcomingTileEnabled => isMyContestTilesEnabled;
   bool get isLiveTileEnabled => isMyContestTilesEnabled;

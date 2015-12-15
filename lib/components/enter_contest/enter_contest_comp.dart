@@ -109,7 +109,7 @@ class EnterContestComp implements DetachAware {
   bool isNegativeBalance = false;
 
   bool get isInvalidFantasyTeam => lineupSlots.any((player) => player == null) || playersInSameTeamInvalid || isNegativeBalance;
-  bool get editingContestEntry => contestEntryId != "none" || (contest != null && contest.userIsRegistered(_profileService.user.userId));
+  bool get editingContestEntry => contestEntryId != "none" || (contest != null && _profileService.isLoggedIn && contest.userIsRegistered(_profileService.user.userId));
   bool get isCreatingContest => _parent.contains("create_contest");
 
   bool contestInfoFirstTimeActivation = false;  // Optimizacion para no compilar el contest_info hasta que no sea visible la primera vez
@@ -272,9 +272,11 @@ class EnterContestComp implements DetachAware {
   
   void updateFavorites() {
     favoritesPlayers.clear();
-    favoritesPlayers.addAll(_profileService.user.favorites.map((playerId) =>
-        allSoccerPlayers.firstWhere( (player) => player['id'] == playerId, orElse: () => null)
-      ).where( (d) => d != null));
+    if (_profileService.isLoggedIn) {
+      favoritesPlayers.addAll(_profileService.user.favorites.map((playerId) =>
+          allSoccerPlayers.firstWhere( (player) => player['id'] == playerId, orElse: () => null)
+        ).where( (d) => d != null));
+    }
   }
 
 

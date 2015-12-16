@@ -117,6 +117,10 @@ class ContestsService {
   Future editContestEntry(String contestId, String formation, List<String> soccerPlayerIds) {
     return _server.editContestEntry(contestId, formation, soccerPlayerIds)
       .then((jsonMap) {
+        if (jsonMap.containsKey("profile")) {
+          _profileService.updateProfileFromJson(jsonMap["profile"]);
+        }
+
         Logger.root.info("response: " + jsonMap.toString());
       });
   }

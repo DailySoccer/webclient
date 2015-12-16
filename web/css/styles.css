@@ -23796,7 +23796,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 .achievement .achievement-name {
   font-family: 'Exo', sans-serif;
   font-weight: 600;
-  font-size: 16pt;
+  font-size: 14pt;
   color: #434343;
   text-transform: uppercase;
   text-shadow: 1px 1px 1px rgba(67, 67, 67, 0.004);
@@ -23824,7 +23824,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 .achievement.Training .achievement-name {
   font-family: 'Exo', sans-serif;
   font-weight: 600;
-  font-size: 16pt;
+  font-size: 14pt;
   color: #214a5f;
   text-transform: uppercase;
 }
@@ -23842,7 +23842,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 .achievement.Oficial .achievement-name {
   font-family: 'Exo', sans-serif;
   font-weight: 600;
-  font-size: 16pt;
+  font-size: 14pt;
   color: #214a5f;
   text-transform: uppercase;
 }
@@ -23860,7 +23860,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 .achievement.ManagerLevel .achievement-name {
   font-family: 'Exo', sans-serif;
   font-weight: 600;
-  font-size: 16pt;
+  font-size: 14pt;
   color: #214a5f;
   text-transform: uppercase;
 }
@@ -23878,7 +23878,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 .achievement.Player .achievement-name {
   font-family: 'Exo', sans-serif;
   font-weight: 600;
-  font-size: 16pt;
+  font-size: 14pt;
   color: #214a5f;
   text-transform: uppercase;
 }
@@ -23896,7 +23896,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 .achievement.SkillLevel .achievement-name {
   font-family: 'Exo', sans-serif;
   font-weight: 600;
-  font-size: 16pt;
+  font-size: 14pt;
   color: #214a5f;
   text-transform: uppercase;
 }

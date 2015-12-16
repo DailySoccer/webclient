@@ -228,7 +228,17 @@
       "name_manager_level_4"                  : "Nivel de Manager 4",
       "desc_manager_level_4"                  : "Nivel de Manager 4",
       "name_manager_level_5"                  : "Nivel de Manager 5",
-      "desc_manager_level_5"                  : "Nivel de Manager 5"
+      "desc_manager_level_5"                  : "Nivel de Manager 5",
+      "name_manager_level_6"                  : "Nivel de Manager 6",
+      "desc_manager_level_6"                  : "Nivel de Manager 6",
+      "name_manager_level_7"                  : "Nivel de Manager 7",
+      "desc_manager_level_7"                  : "Nivel de Manager 7",
+      "name_manager_level_8"                  : "Nivel de Manager 8",
+      "desc_manager_level_8"                  : "Nivel de Manager 8",
+      "name_manager_level_9"                  : "Nivel de Manager 9",
+      "desc_manager_level_9"                  : "Nivel de Manager 9",
+      "name_manager_level_10"                 : "Nivel de Manager 10",
+      "desc_manager_level_10"                 : "Nivel de Manager 10"
     }
     ,"withdrawfunds"                    :
     {

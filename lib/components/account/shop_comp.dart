@@ -13,6 +13,7 @@ import 'package:webclient/models/money.dart';
 import 'package:webclient/services/server_error.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/services/tutorial_service.dart';
+import 'package:webclient/models/user.dart';
 
 @Component(
     selector: 'shop-comp',
@@ -35,7 +36,6 @@ class ShopComp implements DetachAware{
   String getLocalizedText(key, {group: "shop", substitutions: null}) {
     return StringUtils.translate(key, group, substitutions);
   }
-
 
   ShopComp(this._flashMessage, this._profileService, this._catalogService, this._tutorialService) {
     goldProducts = [];
@@ -67,10 +67,6 @@ class ShopComp implements DetachAware{
           eProduct["purchasable"]  = true;
           energyProducts.add(eProduct);
         }
-
-        energyProducts.addAll([
-          {"id" : "AUTO_REFILL", "description" : timeLeft != '' ? getLocalizedText("refillable") :  getLocalizedText("no-refillable"), "captionImage" : "images/iconEnergyLevelUp.png","purchasable": false}
-        ]);
     });
 
     _tutorialService.triggerEnter("shop", component: this, activateIfNeeded: false);
@@ -148,6 +144,8 @@ class ShopComp implements DetachAware{
      window.localStorage.remove("add_gold_success");
      window.localStorage.remove("add_energy_success");
    }
+   
+  bool get canBuyEnergy => _profileService.user.energyBalance.amount < User.MAX_ENERGY;
 
   FlashMessagesService _flashMessage;
   ProfileService _profileService;

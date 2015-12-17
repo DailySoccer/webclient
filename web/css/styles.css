@@ -16473,6 +16473,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-clean-lineup-list {
   background-color: #a1c931;
   color: #ffffff;
   outline: none !important;
+  position: relative;
 }
 .enter-contest-actions-wrapper .btn-confirm-lineup-list:hover,
 .enter-contest-actions-wrapper .btn-confirm-lineup-list:focus,
@@ -16804,6 +16805,14 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 }
 .enter-contest-lineup-wrapper .enter-contest-total-salary .total-salary .red-numbers {
   color: red;
+}
+soccer-players-list {
+  position: relative;
+  display: block;
+}
+soccer-players-list:after {
+  content: "";
+  clear: both;
 }
 .soccer-player-list-header-table {
   -webkit-user-select: none;

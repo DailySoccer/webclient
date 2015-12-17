@@ -68,9 +68,8 @@ import 'package:webclient/components/account/user_profile_comp.dart';
 import 'package:webclient/components/account/edit_personal_data_comp.dart';
 import 'package:webclient/components/account/remember_password_comp.dart';
 import 'package:webclient/components/account/change_password_comp.dart';
-import 'package:webclient/components/account/add_funds_comp.dart';
-import 'package:webclient/components/account/transaction_history_comp.dart';
 import 'package:webclient/components/account/shop_comp.dart';
+import 'package:webclient/components/account/payment_response_comp.dart';
 
 import 'package:webclient/components/account/notifications_comp.dart';
 
@@ -87,12 +86,21 @@ import 'package:webclient/components/enter_contest/soccer_players_filter_comp.da
 import 'package:webclient/components/enter_contest/matches_filter_comp.dart';
 import 'package:webclient/components/enter_contest/soccer_player_stats_comp.dart';
 
+import 'package:webclient/components/scouting/scouting_comp.dart';
+import 'package:webclient/components/scouting/scouting_league_comp.dart';
+import 'package:webclient/components/scouting/teams_filter_comp.dart';
+
 import 'package:webclient/components/legalese_and_help/help_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/how_it_works_comp.dart';
+import 'package:webclient/components/legalese_and_help/how_to_create_contest_comp.dart';
 import 'package:webclient/components/legalese_and_help/tutorials_comp.dart';
 import 'package:webclient/components/legalese_and_help/rules_comp.dart';
 import 'package:webclient/components/legalese_and_help/terminus_info_comp.dart';
+import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
+import 'package:webclient/components/legalese_and_help/policy_info_comp.dart';
 
+//import 'package:webclient/components/account/add_funds_comp.dart';
+//import 'package:webclient/components/account/transaction_history_comp.dart';
 //import 'package:webclient/components/landing_page_1_slide_comp.dart';
 //import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
 //import 'package:webclient/components/contest_filters_comp.dart';
@@ -101,13 +109,11 @@ import 'package:webclient/components/legalese_and_help/terminus_info_comp.dart';
 //import 'package:webclient/components/contests_list_comp.dart';
 //import 'package:webclient/components/contest_header_comp.dart';
 //import 'package:webclient/components/account/payment_comp.dart';
-//import 'package:webclient/components/account/payment_response_comp.dart';
 //import 'package:webclient/components/account/withdraw_funds_comp.dart';
 //import 'package:webclient/components/account/trainer_points_shop_comp.dart';
 //import 'package:webclient/components/account/gold_shop_comp.dart';
 //import 'package:webclient/components/account/energy_shop_comp.dart';
-//import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
-//import 'package:webclient/components/legalese_and_help/policy_info_comp.dart';
+
 //import 'package:webclient/components/legalese_and_help/beta_info_comp.dart';
 //import 'package:webclient/components/legalese_and_help/restricted_comp.dart';
 
@@ -124,7 +130,7 @@ class WebClientApp extends Module {
 
     // No usamos animacion -> podemos quitar esto
     bind(CompilerConfig, toValue:new CompilerConfig.withOptions(elementProbeEnabled: false));
-    
+
     // Disable CSS shim
     bind(PlatformJsBasedShim, toImplementation: PlatformJsBasedNoShim);
     bind(DefaultPlatformShim, toImplementation: DefaultPlatformNoShim);
@@ -191,10 +197,9 @@ class WebClientApp extends Module {
     bind(RememberPasswordComp);
     bind(UserProfileComp);
     bind(EditPersonalDataComp);
-    bind(AddFundsComp);
-    bind(TransactionHistoryComp);
     bind(ShopComp);
-    bind(NotificationsComp);    
+    bind(PaymentResponseComp);
+    bind(NotificationsComp);
     bind(HelpInfoComp);
     bind(TutorialsComp);
     bind(RulesComp);
@@ -203,8 +208,16 @@ class WebClientApp extends Module {
     bind(RouteInitializerFn, toValue: webClientRouteInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
     bind(HowItWoksComp);
+    bind(HowToCreateContestComp);
     bind(TerminusInfoComp);
+    bind(LegalInfoComp);
+    bind(PolicyInfoComp);
+    bind(TeamsFilterComp);
+    bind(ScoutingComp);
+    bind(ScoutingLeagueComp);
 
+    //bind(AddFundsComp);
+    //bind(TransactionHistoryComp);
     //bind(LandingPage1SlideComp);
     //bind(MainMenuSlideComp);
     //bind(LobbyComp);
@@ -213,12 +226,10 @@ class WebClientApp extends Module {
     //bind(SimplePromoViewerComp);
     //bind(ContestFiltersComp);
     //bind(ContestHeaderComp);
-    //bind(LegalInfoComp);
-    //bind(PolicyInfoComp);
+
     //bind(BetaInfoComp);
     //bind(RestrictedComp);
     //bind(PaymentComp);
-    //bind(PaymentResponseComp);
     //bind(WithdrawFundsComp);
     //bind(TrainerPointsShopComp);
     //bind(GoldShopComp);
@@ -239,16 +250,6 @@ class WebClientApp extends Module {
           path: '/beta_info',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<beta-info></beta-info>'
-      )
-      ,'legal_info': ngRoute(
-          path: '/legal_info',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-          viewHtml: '<legal-info></legal-info>'
-      )
-      ,'policy_info': ngRoute(
-          path: '/policy_info',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-          viewHtml: '<policy-info></policy-info>'
       )
       ,'payment': ngRoute(
           path: '/payment',
@@ -307,6 +308,7 @@ class WebClientApp extends Module {
           viewHtml: '<edit-personal-data></edit-personal-data>'
       )
 
+      /*
       ,'add_funds': ngRoute(
           path: '/add_funds',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
@@ -323,10 +325,17 @@ class WebClientApp extends Module {
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<transaction-history></transaction-history>'
       )
+      */
       ,'shop': ngRoute(
           path: '/shop',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
-          viewHtml: '<shop-comp></shop-comp>'
+          viewHtml: '<shop-comp></shop-comp>',
+          mount: {
+            'response': ngRoute(
+                path: '/response/:result',
+                viewHtml: '<payment-response></payment-response>')
+          }
+
           /*,mount: {
             'gold': ngRoute(
               path: '/gold_shop',
@@ -435,10 +444,40 @@ class WebClientApp extends Module {
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<help-info></help-info>'
       )
+      ,'howtocreatecontest': ngRoute(
+          path: '/how-to-create-contest',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPagePayment(e, router),
+          viewHtml: '<how-to-create-contest></how-to-create-contest>'
+      )
       ,'terminus_info': ngRoute(
           path: '/terminus_info',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<terminus-info></terminus-info>'
+      )
+      ,'legal_info': ngRoute(
+          path: '/legal_info',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+          viewHtml: '<legal-info></legal-info>'
+      )
+      ,'policy_info': ngRoute(
+          path: '/policy_info',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+          viewHtml: '<policy-info></policy-info>'
+      )
+      ,'favorites': ngRoute(
+          path: '/favorites',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+          viewHtml: '<favorites></favorites>'
+      )
+      ,'scouting': ngRoute(
+          path: '/scouting',
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+          viewHtml: '<scouting></scouting>',
+          mount: {
+            'soccer_player_stats': ngRoute(
+              path: '/soccer_player_stats/:soccerPlayerId/selectable/:selectable',
+              viewHtml: '<soccer-player-stats></soccer-player-stats>')
+          }
       )
     });
   }
@@ -485,26 +524,29 @@ class WebClientApp extends Module {
 
     event.allowEnter(_waitingjQueryReady(() {
       bool bEnter = true;
+      TutorialService tutorialService = TutorialService.Instance;
 
       if ((visibility == _ONLY_WHEN_LOGGED_IN && !ProfileService.instance.isLoggedIn) ||
-          (visibility == _ONLY_WHEN_LOGGED_OUT && ProfileService.instance.isLoggedIn)) {
+          (visibility == _ONLY_WHEN_LOGGED_OUT && ProfileService.instance.isLoggedIn) /*||
+          (tutorialService != null && !tutorialService.isValidTrigger(event.route.name))*/) {
+        tutorialService.skipTutorial(routePath: 'home');
         bEnter = false;
       }
 
       if (!bEnter) {
-        router.go("lobby", {}, replace:true);
+        router.go("home", {}, replace:true);
         /*
-        if (ProfileService.instance.isLoggedIn) {
-          // Antes de redirigir al lobby, miramos que vengamos desde 0. Esto evita un flashazo en el que si estas
-          // por ejemplo en my_contest e intentas ir a la landing, se ve brevemente el lobby
-          if (router.activePath.isEmpty) {
-            router.go("lobby", {}, replace:true);
+          if (ProfileService.instance.isLoggedIn) {
+            // Antes de redirigir al lobby, miramos que vengamos desde 0. Esto evita un flashazo en el que si estas
+            // por ejemplo en my_contest e intentas ir a la landing, se ve brevemente el lobby
+            if (router.activePath.isEmpty) {
+              router.go("lobby", {}, replace:true);
+            }
           }
-        }
-        else {
-          router.go("landing_page", {}, replace: true);
-        }
-         */
+          else {
+            router.go("landing_page", {}, replace: true);
+          }
+        */
       }
 
       window.scroll(0, 0);

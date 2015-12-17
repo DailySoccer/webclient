@@ -10,11 +10,11 @@ import 'package:webclient/models/money.dart';
 
 class InstanceSoccerPlayer {
   static List<int> LEVEL_SALARY = [
-      6100, 6500, 6900, 7300, 8000, 100000
+    5600, 5700, 5800, 5900, 6000, 6200, 6400, 6700, 7500, 8000, 13000
     ];
 
   static List<int> LEVEL_PRICE = [
-      0, 3, 7, 15, 30, 59
+    0, 7, 16, 28, 43, 74, 135, 228, 350, 534, 903
     ];
 
   SoccerPlayer soccerPlayer;
@@ -37,8 +37,9 @@ class InstanceSoccerPlayer {
   Money moneyToBuy(num managerLevel) {
     Money result = new Money.from(Money.CURRENCY_GOLD, 0);
     if (managerLevel < level) {
-      // Diferencia de nivel * precio del nivel
-      result.amount += (level - managerLevel.toInt()) * LEVEL_PRICE[level];
+      for (int i = managerLevel.toInt() + 1; i <= level; i++) {
+        result.amount += LEVEL_PRICE[i];
+      }
     }
     return result;
   }
@@ -59,5 +60,10 @@ class InstanceSoccerPlayer {
     fieldPos = jsonMap.containsKey("fieldPos") ? new FieldPos(StringUtils.translate(jsonMap["fieldPos"].toString().toLowerCase(), "soccerplayerpositions")) : null;
     salary = jsonMap.containsKey("salary") ? jsonMap["salary"] : 0;
     soccerTeam = references.getSoccerTeamById(jsonMap["templateSoccerTeamId"]);
+  }
+
+  InstanceSoccerPlayer.init(String templateSoccerPlayerId, String templateSoccerTeamId, ContestReferences references) {
+    soccerPlayer = references.getSoccerPlayerById(templateSoccerPlayerId);
+    soccerTeam = references.getSoccerTeamById(templateSoccerTeamId);
   }
 }

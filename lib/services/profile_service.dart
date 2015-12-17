@@ -12,6 +12,10 @@ import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/models/money.dart';
 import 'package:webclient/services/server_error.dart';
 import 'package:webclient/services/tutorial_service.dart';
+import 'package:webclient/models/user_notification.dart';
+import 'package:webclient/utils/html_utils.dart';
+import 'package:webclient/components/achievement_comp.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Injectable()
 class ProfileService {
@@ -179,6 +183,53 @@ class ProfileService {
     }
   }
 
+  void triggerNotificationsPopUp(Router router) {
+    if (_wasLoggedInForTriggerPopUp != ProfileService.instance.isLoggedIn) {
+      ProfileService.instance.refreshUserProfile().then( (_) {
+
+        String getLocalizedText(key, {substitutions: null}) {
+          return StringUtils.translate(key, "notificationsmodal", substitutions);
+        }
+        
+        if(!_wasLoggedInForTriggerPopUp && ProfileService.instance.isLoggedIn) {
+          List<UserNotification> achievementNotifs = ProfileService.instance.user.notifications.where( (notif) => notif.topic == 'ACHIEVEMENT_EARNED').toList();
+          
+          if (achievementNotifs.length == 0) { return; }
+          UserNotification shown = achievementNotifs[0];
+          int aditionalCount = achievementNotifs.length - 1;
+          String aditionalAchievemetsKey = aditionalCount > 1? 'aditional-achievements' : 'aditional-achievement-single';
+          
+          modalShow(""
+                   , '''
+                    <div class="content-wrapper">
+                      <h1 class="alert-content-title large">
+                        ${getLocalizedText("congratulations")}
+                      </h1>
+                      <h1 class="alert-content-title">
+                        ${getLocalizedText("you-earned")}
+                      </h1>
+                      <div class="achievment-earned-icon-wrapper">
+                        ${AchievementComp.toHtml(shown.info['achievement'])}
+                      </div>
+                      ${aditionalCount > 0? "<h2 class='alert-content-subtitle'>${getLocalizedText(aditionalAchievemetsKey, substitutions: {'NUM_ACHIEVEMENTS': aditionalCount})}</h2>" : ''}
+                    </div>
+                    '''
+                   , onOk: getLocalizedText('go-notifications')
+                   , onBackdropClick: false
+                   , closeButton: true
+                   , aditionalClass: "achievementEarned"
+                 )
+                 .then((_) => router.go('notifications', {}))
+                 .catchError((_) => print('error'));
+                 
+        }
+        _wasLoggedInForTriggerPopUp = ProfileService.instance.isLoggedIn;
+      });
+    }
+  }
+  
+  bool _wasLoggedInForTriggerPopUp = false;
+  
   bool get _hasDoneLogin => window.localStorage.containsKey('user');
 
   static ProfileService _instance;

@@ -31,32 +31,32 @@
 			//right: 15px;
 		}
 
-	@media (min-width: @screen-md-min) {
-		overflow: hidden;
+		@media (min-width: @screen-md-min) {
+			overflow: hidden;
 
-		// Animacion para cuando hay mas de una linea (solo en desktop)
-		.animate {
-			#doKeyFrames(teamspanel-height-keyframes, {
-				 from { max-height: 50px; opacity: 0;}
-				 to { max-height: 240px; opacity: 1;}
-				});
-			.animateWithKeyFrames(teamspanel-height-keyframes, 1s);
+			// Animacion para cuando hay mas de una linea (solo en desktop)
+			.animate {
+				#doKeyFrames(teamspanel-height-keyframes, {
+					 from { max-height: 50px; opacity: 0;}
+					 to { max-height: 240px; opacity: 1;}
+					});
+				.animateWithKeyFrames(teamspanel-height-keyframes, 1s);
+			}
 		}
 	}
-}
 
-#teamsPanelRoot {
-  display: block;
-  .make-border(1px, solid none none none, #ccc);
+	#teamsPanelRoot {
+		display: block;
+		.make-border(1px, solid none none none, #ccc);
 
-	.teams-comp-bar{
-		.make-row(0);
-		background-color: @tramaBlue;
-		.social{
-			.make-xs-column(0);
-			width: 150px;
-			padding: 9px 20px;
-		}
+		.teams-comp-bar{
+			.make-row(0);
+			background-color: @tramaBlue;
+			.social{
+				.make-xs-column(0);
+				width: 150px;
+				padding: 9px 20px;
+			}
 		}
 		.teams-container {
 			.make-row(0);

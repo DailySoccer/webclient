@@ -1,3 +1,12 @@
+soccer-players-list {
+	position: relative;
+	display: block;
+	
+	&:after {
+		content: "";
+		clear: both;
+	}
+}
 // Tabla de ordenacion en la cabecera del listado de jugadores
 .soccer-player-list-header-table {
 	.user-select(none);
@@ -142,12 +151,12 @@
 			}
 			.column-manager-level {
 				.make-xs-column(1.5, @soccer-players-list-gutter);
-				.opensans_bold(9pt, @blueLight);
+				.opensans_bold(9pt, @greyDark);
 				padding-top: 10px;
 				text-align: right;
 				visibility: hidden;
 				&:after {
-					.addIcon("icon-star-xs-white.png", 12pt, 12pt);
+					.addIcon("icon-star-xs-white.png", 17px, 17px);
 					vertical-align: baseline;
 				}
 			}
@@ -216,5 +225,24 @@
 				visibility: visible;
 			}
 		}
-	}	
+	}
+	
+	.empty-info-wrapper {
+			
+			.empty-info {
+				.opensans_normal(15pt, @greyDark);
+				display: block;
+				text-align: center;
+				padding: 150px 0 0 0;
+				.go-scouting {
+					display: block;
+					a:hover,
+					a:visited,
+					a:focus,
+					a { text-decoration: none; }
+				}
+			}
+	}
 }
+
+

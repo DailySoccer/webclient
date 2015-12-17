@@ -12,7 +12,7 @@ class User {
   static const num MAX_ENERGY = 10;
 
   static List MANAGER_POINTS = [
-    0, 65, 125, 250, 500, 1000
+    0, 50, 125, 225, 350, 600, 1100, 1850, 2850, 4350, 7350
   ];
 
   static num get MAX_MANAGER_LEVEL => MANAGER_POINTS.length - 1;
@@ -42,6 +42,7 @@ class User {
 
   Set<String> achievements = new Set<String>();
   List<UserNotification> notifications = new List<UserNotification>();
+  List<String> favorites = [];
 
   // Información que se muestra en el mainMenu (se utilizará para detectar cambios en la información del perfil)
   String get mainMenuInfo => "$userId;${energyBalance.toInt()};${managerBalance.toInt()};${goldBalance.toInt()};$trueSkill;${notifications.length};${achievements.length}";
@@ -175,6 +176,10 @@ class User {
 
       // Ordenarlos en orden decreciente (reciente -> antiguo)
       notifications.sort((el1, el2) => el2.createdAt.compareTo(el1.createdAt));
+    }
+
+    if (jsonMap.containsKey("favorites")) {
+      favorites = jsonMap["favorites"];
     }
 
     return this;

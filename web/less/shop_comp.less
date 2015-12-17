@@ -4,17 +4,14 @@
 
 #mainShopCompWrapper {
 	@item-height: 195;
-	@quantity-font-size: 20pt;
+	@quantity-font-size: 15pt;
 
 	.container-fluid();
 	padding: 0;
 	
 	.gold {
 		.addIcon("icon-coin-lg.png", 27px, 27px);
-		vertical-align: baseline;
 		position: relative;
-		left: 4px;
-		top: 3px;
 	}
 	
 	.header {
@@ -158,57 +155,105 @@
 
 
 			.tile {
-				padding: 0;
+				padding: 15px;
 				background-color: transparent;
 				cursor: default;
 				position: relative;
 				min-height: 185px;
-
-				.products {
-					height: 187px;
-				}
 				
-				.energy-separator {
-					margin: 30px 20px 18px 25px;
-					border-top: 1px solid @blueLight;
-				}
+				.energy-item {
+					.make-row(0);
+					padding-bottom: 20px;
+					border-bottom: 1px solid fade(@greyBlue, 50%);
+					
+					.item-title {
+						.make-row(0);
+						text-align: center;
+						span {
+							.make-xs-column(4);
+							vertical-align: middle;
+							padding: 0;
+							.opensans_bold(10pt, @white);
+							text-transform: uppercase;
+							margin-top: 30px;
+						}
+						div {
+							.make-xs-column(4);
+							padding: 0 0 0 8px;
+							vertical-align: middle;
+						}
+						padding-bottom: 10px;
+					}
 
-				.energy-icon {
-					margin: 0 auto;
-					display: block;
-				}
-				.energy-description {
-					.opensans_normal(10pt, @white);
-					text-align: center;
-				}
-				.button-wrapper {
-					padding-top: 15px;
-					max-height: 65px;
-					.refill-button{
-						.btn-primary();
-						margin-right: auto;
-						margin-left: auto;
-						display: block;
-						.quantity {
-							.exo_light(@quantity-font-size, @white);
-							padding: 0 20px;
-							&:after{
-								.gold();
+					.product+.product {
+						float: right;
+					}
+					.product {
+						.make-xs-column(5.5);
+						text-align: center;
+						padding: 0;
+						border: 1px solid @blueLight;
+						border-radius: 3px;
+						.energy-description {
+							margin-top: 10px;
+							.opensans_normal(10pt, @white);
+							text-transform: uppercase;
+							text-align: center;
+						}
+						
+						.product-image {
+							margin: 10px 0 15px 0;
+						}
+
+						.button-wrapper {
+							margin: -1px;
+							display: block;
+							padding: 0;
+							.refill-button{
+								.btn-primary();
+								.make-xs-column(12);
+								border-top-right-radius: 0;
+								border-top-left-radius: 0;
+								padding: 5px;;
+								margin-right: auto;
+								margin-left: auto;
+								display: block;
+								.quantity {
+									.opensans_bold(14pt, @white);
+									vertical-align: middle;
+									margin-left: 5px;
+									
+									&:after{
+										.gold();
+										margin-left: 10px;
+									}
+								}
 							}
 						}
 					}
 				}
-				
-				.no-purchasable {
-					padding: 0 10px 18px;
-				}
+			}
+		}
+		
+		.energy-refill-counter {
+			text-align: center;
+			.no-purchasable {
+				padding: 0 10px 18px;
+			}
+			.energy-icon {
+				margin: 20px auto 20px auto;
+			}
 
-				.product-time-left {
-					display: block;
-					text-align: center;
-					.exo_light(28pt, @blueLight);
-				}
-				
+			.product-time-left {
+				display: block;
+				text-align: center;
+				.exo_light(20pt, @blueLight);
+			}
+			
+			.energy-description {
+				margin: 0 10px;
+				.opensans_normal(10pt, @white);
+				text-align: center;
 			}
 		}
 	}

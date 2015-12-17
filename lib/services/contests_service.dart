@@ -9,6 +9,7 @@ import "package:webclient/services/prizes_service.dart";
 import "package:webclient/models/contest.dart";
 import 'package:logging/logging.dart';
 import 'package:webclient/models/template_contest.dart';
+import 'package:webclient/models/user.dart';
 
 
 @Injectable()
@@ -34,7 +35,7 @@ class ContestsService {
     // Al crear un contest se nos devuelve el contest recientemente creado
     return _server.createContest(contest, soccerPlayers)
       .then((jsonMap) {
-        _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
+        registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
         return lastContest;
       });
   }
@@ -71,7 +72,7 @@ class ContestsService {
   Future refreshActiveContest(String contestId) {
     return _server.getActiveContest(contestId)
       .then((jsonMap) {
-        _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
+        registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
       });
   }
 
@@ -97,7 +98,7 @@ class ContestsService {
   Future refreshContestInfo(String contestId) {
     return _server.getContestInfo(contestId)
       .then((jsonMap) {
-        _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
+        registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
         _prizesService.loadFromJsonObject(jsonMap);
       });
   }
@@ -116,6 +117,10 @@ class ContestsService {
   Future editContestEntry(String contestId, String formation, List<String> soccerPlayerIds) {
     return _server.editContestEntry(contestId, formation, soccerPlayerIds)
       .then((jsonMap) {
+        if (jsonMap.containsKey("profile")) {
+          _profileService.updateProfileFromJson(jsonMap["profile"]);
+        }
+
         Logger.root.info("response: " + jsonMap.toString());
       });
   }
@@ -137,7 +142,7 @@ class ContestsService {
     return _server.getMyActiveContests()
         .then((jsonMap) {
           waitingContests = Contest.loadContestsFromJsonObject(jsonMap)
-            .. forEach((contest) => _registerContest(contest));
+            .. forEach((contest) => registerContest(contest));
           _prizesService.loadFromJsonObject(jsonMap);
 
           if (jsonMap.containsKey("profile")) {
@@ -150,7 +155,7 @@ class ContestsService {
     return _server.getMyLiveContests()
         .then((jsonMap) {
           liveContests = Contest.loadContestsFromJsonObject(jsonMap)
-            .. forEach((contest) => _registerContest(contest));
+            .. forEach((contest) => registerContest(contest));
           _prizesService.loadFromJsonObject(jsonMap);
 
           if (jsonMap.containsKey("profile")) {
@@ -163,7 +168,7 @@ class ContestsService {
     return _server.getMyHistoryContests()
         .then((jsonMap) {
           historyContests = Contest.loadContestsFromJsonObject(jsonMap)
-            .. forEach((contest) => _registerContest(contest));
+            .. forEach((contest) => registerContest(contest));
           _prizesService.loadFromJsonObject(jsonMap);
 
           if (jsonMap.containsKey("profile")) {
@@ -175,21 +180,21 @@ class ContestsService {
   Future refreshMyActiveContest(String contestId) {
     return _server.getMyActiveContest(contestId)
         .then((jsonMap) {
-          _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
+          registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
         });
   }
 
   Future refreshMyContestEntry(String contestId) {
     return _server.getMyContestEntry(contestId)
         .then((jsonMap) {
-          _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
+          registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
         });
   }
 
   Future refreshMyLiveContest(String contestId) {
     return _server.getMyLiveContest(contestId)
         .then((jsonMap) {
-          _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
+          registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
           _prizesService.loadFromJsonObject(jsonMap);
         });
   }
@@ -197,7 +202,7 @@ class ContestsService {
   Future refreshMyHistoryContest(String contestId) {
     return _server.getMyHistoryContest(contestId)
         .then((jsonMap) {
-          _registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
+          registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
           _prizesService.loadFromJsonObject(jsonMap);
         });
   }
@@ -229,9 +234,17 @@ class ContestsService {
     return activeContests.isNotEmpty ? activeContests.first : null;
   }
 
+  void registerContest(Contest contest) {
+    _contests[contest.contestId] = contest;
+    lastContest = contest;
+  }
+
   void _initActiveContests(List<Contest> contests) {
-    activeContests = contests;
-    activeContests.forEach((contest) => _registerContest(contest));
+    int userLevel = _profileService.isLoggedIn ? _profileService.user.managerLevel.toInt() : 0;
+    int userTrueSkill = _profileService.isLoggedIn ? _profileService.user.trueSkill : 0;
+    
+    activeContests = contests.where((contest) => contest.hasLevel(userLevel, userTrueSkill)).toList();
+    activeContests.forEach((contest) => registerContest(contest));
 
     if (_profileService.isLoggedIn) {
       _myEnteredActiveContests = activeContests.where((contest) => contest.containsContestEntryWithUser(_profileService.user.userId)).toList();
@@ -243,16 +256,11 @@ class ContestsService {
   }
 
   void _initMyContests(List<Contest> contests) {
-    contests.forEach((contest) => _registerContest(contest));
+    contests.forEach((contest) => registerContest(contest));
 
     waitingContests = contests.where((contest) => contest.isActive).toList();
     liveContests = contests.where((contest) => contest.isLive).toList();
     historyContests = contests.where((contest) => contest.isHistory).toList();
-  }
-
-  void _registerContest(Contest contest) {
-    _contests[contest.contestId] = contest;
-    lastContest = contest;
   }
 
   ServerService _server;

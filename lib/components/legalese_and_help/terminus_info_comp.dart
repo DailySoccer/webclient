@@ -1,6 +1,7 @@
 library terminus_info_comp;
 
 import 'package:angular/angular.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
    selector: 'terminus-info',
@@ -9,5 +10,9 @@ import 'package:angular/angular.dart';
 )
 class TerminusInfoComp {
 
+  String getLocalizedText(key, [Map substitutions]) {
+    return StringUtils.translate(key, "terminus", substitutions);
+  }
+  
   TerminusInfoComp();
 }

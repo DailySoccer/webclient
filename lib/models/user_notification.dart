@@ -57,7 +57,10 @@ class UserNotification {
 
     switch(topic) {
       case ACHIEVEMENT_EARNED:
-        name = Achievement.getAchievementWithKey(info["achievement"]).name;
+        Achievement achievement = Achievement.getAchievementWithKey(info["achievement"]);
+        if (achievement != null) {
+          name = achievement.name;
+        }
         break;
       default:
         name = topic;

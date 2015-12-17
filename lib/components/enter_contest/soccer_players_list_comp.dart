@@ -22,6 +22,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   static const String FILTER_POSITION = "FILTER_POSITION";
   static const String FILTER_NAME = "FILTER_NAME";
   static const String FILTER_MATCH = "FILTER_MATCH";
+  static const String FILTER_FAVORITES = "FILTER_FAVORITES";
 
   @NgCallback("on-row-click")
   Function onRowClick;
@@ -36,6 +37,19 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   FieldPos get fieldPosFilter => new FieldPos(_filterList[FILTER_POSITION]);
   void     set fieldPosFilter(FieldPos fieldPos) => _setFilter(FILTER_POSITION, fieldPos != null? fieldPos.value : null);
 
+  @NgOneWay("only-favorites")
+  bool     get onlyFavorites {
+    if (_filterList[FILTER_FAVORITES] == null) {
+      _filterList[FILTER_FAVORITES] = false;
+    }
+    return _filterList[FILTER_FAVORITES];
+  }
+  void     set onlyFavorites(bool only) => _setFilter(FILTER_FAVORITES, only);
+  
+  @NgOneWay("favorites-list")
+  List     get favoritesList => _favoritesList == null? [] : _favoritesList;
+  void     set favoritesList(List favs) { _favoritesList = favs; }
+
   @NgOneWay("name-filter")
   String get nameFilter => _filterList[FILTER_NAME];
   void   set nameFilter(String val) => _setFilter(FILTER_NAME, val);
@@ -44,7 +58,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   String get matchFilter => _filterList[FILTER_MATCH];
   void   set matchFilter(String matchId) => _setFilter(FILTER_MATCH, matchId);
 
-  void _setFilter(String key, String valor) {
+  void _setFilter(String key, dynamic valor) {
 
     // En movil no permitimos nunca poner el filtro vacio!
     if (_scrDet.isXsScreen && key == FILTER_POSITION && valor == null) {
@@ -63,7 +77,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     _sortedSoccerPlayers = sp;  // Nos quedamos directamente con la lista sin hacer copias y la ordenaremos.
     _refreshSort();
   }
-
+  
   @NgOneWay("lineup-filter")
   void set setLineupFilter(List<dynamic> sp) {
     if (sp == lineupFilter) {
@@ -71,7 +85,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     }
 
     lineupFilter = sp;
-
+    
     if (_lineupFilterWatch != null) {
       _lineupFilterWatch.remove();
       _lineupFilterWatch = null;
@@ -84,7 +98,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     _isDirty = true;
   }
 
-  List<dynamic> lineupFilter;
+  List<dynamic> lineupFilter = [];
 
   String getLocalizedText(key) {
     return StringUtils.translate(key, "soccerplayerlist");
@@ -189,14 +203,20 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     StringBuffer allHtml = new StringBuffer();
 
     int length = _sortedSoccerPlayers.length;
+    int visibleItems = 0;
     for (int c = 0; c < length; ++c) {
       var slot = _sortedSoccerPlayers[c];
 
       if (_isVisibleWithFilters(slot, filterPosVal, filterMatchIdVal, filterNameVal)) {
-        allHtml.write(_getHtmlForSlot(slot, !lineupFilter.contains(slot)));
+        visibleItems++;
+        allHtml.write(_getHtmlForSlot(slot, !(lineupFilter.contains(slot))));
       }
     }
-
+    
+    if (visibleItems == 0) {
+      allHtml.write(_getHtmlForEmpty());
+    }
+    
     _soccerPlayerListRoot.appendHtml(allHtml.toString());
     _element.append(_soccerPlayerListRoot);
 
@@ -223,13 +243,38 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
           <div class="column-salary">\$${StringUtils.parseSalary(slot["salary"])}</div>
           <div class="column-manager-level"><span class="manager-level-needed">${soccerPlayer.level}</span></div>
         </div>
-        <div class="column-action" id="soccerPlayerAction${slot["intId"]}" >
+        <div class="column-action" id="soccerPlayerAction${slot["intId"]}">
           ${strAddButton}
         </div>
       </div>
     ''';
   }
 
+
+  String _getHtmlForEmpty() {
+    String text = "";
+    if (_sortedSoccerPlayers.length == 0) {
+      return '';
+    }
+    
+    if (onlyFavorites) {
+      if (favoritesList.length == 0) {
+        text = getLocalizedText('empty-favorites');
+      } else {
+        text = getLocalizedText('empty-filtered-favorites');
+      }
+      text = "$text <span class='go-scouting'>${getLocalizedText('go-scouting-tip')}</span>";
+    } else {
+      text = getLocalizedText('empty-filtered');
+    }
+
+    return '''
+              <div class="empty-info-wrapper">
+                <span class="empty-info">$text</span>
+              </div>
+           ''';
+  }
+  
   String _getActionButton(bool addButton, Money moneyToBuy) {
     bool isFree = moneyToBuy.toInt() == 0;
     String buttonText = !addButton? '-' : isFree? '+' : '<span class="coins-to-buy">${moneyToBuy.toInt()}</span>';
@@ -259,14 +304,14 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     }
   }  
   
-  static bool _isVisibleWithFilters(player, pos, matchId, name) {
+  bool _isVisibleWithFilters(player, pos, matchId, name) {
     return (pos == null || player["fieldPos"].value == pos) &&
            (matchId == null || player["matchId"] == matchId) &&
-           (name == null || name.isEmpty || player["fullNameNormalized"].contains(name));
+           (name == null || name.isEmpty || player["fullNameNormalized"].contains(name)) &&
+           (!onlyFavorites || (onlyFavorites && favoritesList.contains(player)));
   }
 
-  bool _isVisible(player) => !_isVisibleWithFilters(player, _filterList[FILTER_POSITION], _filterList[FILTER_MATCH], _filterList[FILTER_NAME]);
-
+  //bool _isVisible(player) => !_isVisibleWithFilters(player, _filterList[FILTER_POSITION], _filterList[FILTER_MATCH], _filterList[FILTER_NAME]);
 
   void sortListByField(String fieldName, {bool invert : true}) {
 
@@ -296,7 +341,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     _sortedSoccerPlayers.sort((player1, player2) {
       int compResult = 0;
       int fieldIndex = 0;
-
+      
       // Ordenamos por todos los campos uno tras otro
       do {
         String currField = _sortList[fieldIndex]["field"];
@@ -325,8 +370,9 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   
 
   List<dynamic> _sortedSoccerPlayers = null;
+  List<dynamic> _favoritesList = null;
   List<Map> _sortList = [_SORT_FIELDS["Pos"], _SORT_FIELDS["Name"]];
-  Map<String, String> _filterList = {};
+  Map<String, dynamic> _filterList = {};
 
   static final Map<String, String> _POS_CLASS_NAMES = {
     StringUtils.translate("gk", "soccerplayerpositions") : "posPOR",

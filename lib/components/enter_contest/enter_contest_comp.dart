@@ -37,6 +37,8 @@ class EnterContestComp implements DetachAware {
   static const String ERROR_USER_ALREADY_INCLUDED = "ERROR_USER_ALREADY_INCLUDED";
   static const String ERROR_USER_BALANCE_NEGATIVE = "ERROR_USER_BALANCE_NEGATIVE";
   static const String ERROR_MAX_PLAYERS_SAME_TEAM = "ERROR_MAX_PLAYERS_SAME_TEAM";
+  static const String ERROR_MANAGER_LEVEL_INVALID = "ERROR_MANAGER_LEVEL_INVALID";
+  static const String ERROR_TRUESKILL_INVALID = "ERROR_TRUESKILL_INVALID";
 
   // Errores de los que no tendríamos que informar
   static const String ERROR_CONTEST_INVALID = "ERROR_CONTEST_INVALID";
@@ -63,6 +65,8 @@ class EnterContestComp implements DetachAware {
   List<dynamic> allSoccerPlayers;
   List<dynamic> lineupSlots;
   List<String> get lineupFormation => FieldPos.FORMATIONS[formationId];
+  List<dynamic> favoritesPlayers = [];
+  bool onlyFavorites = false;
 
   FieldPos fieldPosFilter;
   String nameFilter;
@@ -96,22 +100,25 @@ class EnterContestComp implements DetachAware {
   String get printableAvailableSalary => StringUtils.parseSalary(availableSalary);
 
   // Comprobamos si tenemos recursos suficientes para pagar el torneo (salvo que estemos editando el contestEntry)
-  bool get enoughResourcesForEntryFee => 
+  bool get enoughResourcesForEntryFee =>
       contest == null || !_profileService.isLoggedIn || _profileService.user.hasMoney(moneyNeeded);
 
   String get resourceName => contest != null && contest.simulation ? getLocalizedText("resource-energy") : getLocalizedText("resource-gold");
-  
+
   bool playersInSameTeamInvalid = false;
   bool isNegativeBalance = false;
-  
+
   bool get isInvalidFantasyTeam => lineupSlots.any((player) => player == null) || playersInSameTeamInvalid || isNegativeBalance;
-  bool get editingContestEntry => contestEntryId != "none";
+  bool get editingContestEntry => contestEntryId != "none" || (contest != null && _profileService.isLoggedIn && contest.userIsRegistered(_profileService.user.userId));
   bool get isCreatingContest => _parent.contains("create_contest");
 
   bool contestInfoFirstTimeActivation = false;  // Optimizacion para no compilar el contest_info hasta que no sea visible la primera vez
 
   num get playerManagerLevel =>
       (contest != null && contest.simulation) ? User.MAX_MANAGER_LEVEL : (_profileService.isLoggedIn ? _profileService.user.managerLevel : 0);
+
+  int get playerGold => _profileService.isLoggedIn ? _profileService.user.Gold: 0;
+  int get playerEnergy => _profileService.isLoggedIn ? _profileService.user.Energy : 0;
 
   List<String> lineupAlertList = [];
 
@@ -135,6 +142,14 @@ class EnterContestComp implements DetachAware {
           "title"   : getLocalizedText("errorcontestnotactivetitle"),
           "generic" : getLocalizedText("errorcontestnotactivegeneric"),
           "editing" : getLocalizedText("errorcontestnotactiveediting")
+      },
+      ERROR_MANAGER_LEVEL_INVALID: {
+          "title"   : getLocalizedText("error-managerlevel-invalid-title"),
+          "generic" : getLocalizedText("error-managerlevel-invalid-generic")
+      },
+      ERROR_TRUESKILL_INVALID: {
+        "title"   : getLocalizedText("error-trueskill-invalid-title"),
+        "generic" : getLocalizedText("error-trueskill-invalid-generic")
       },
       ERROR_MAX_PLAYERS_SAME_TEAM: {
         "title"   : getLocalizedText("errormaxplayerssameteamtitle"),
@@ -174,6 +189,17 @@ class EnterContestComp implements DetachAware {
         loadingService.isLoading = false;
 
         contest = _contestsService.lastContest;
+        
+        if (_profileService.isLoggedIn && !contest.canEnter(_profileService.user)) {
+          cannotEnterMessageRedirect();
+          return;
+        }
+
+        if (!_profileService.isLoggedIn && contest.isFull) {
+          cannotEnterMessageRedirect();
+          return;
+        }
+        
         availableSalary = contest.salaryCap;
         // Comprobamos si estamos en salario negativo
         isNegativeBalance = availableSalary < 0;
@@ -207,6 +233,57 @@ class EnterContestComp implements DetachAware {
 
     subscribeToLeaveEvent();
   }
+
+  void cannotEnterMessageRedirect() {
+    String title = "";
+    String description = "";
+    int userLevel = _profileService.isLoggedIn ? _profileService.user.managerLevel.toInt() : 0;
+    int userTrueSkill = _profileService.isLoggedIn ? _profileService.user.trueSkill : 0;
+    
+    if (contest.isFull) {
+      title = "¡Torneo lleno!";
+      description = "No quedan plazas disponibles para participar en el torneo seleccionado";
+    } else if (contest.hasManagerLevel(userLevel)) {
+      if (userLevel < contest.minManagerLevel ) {
+        title = "Nivel de manager bajo";
+        description = "Necesitas nivel de manager mayor que ${contest.minManagerLevel}, actualmente tienes $userLevel";
+      } else {
+        title = "Nivel de manager alto";
+        description = "El máximo nivel de manager permitido es ${contest.maxManagerLevel}, actualmente tienes $userLevel";
+      }
+    } else if (contest.hasTrueSkill(userTrueSkill)) {
+      if (userTrueSkill < contest.minTrueSkill ) {
+        title = "TrueSkill bajo";
+        description = "Necesitas nivel de TrueSkill mayor que ${contest.minTrueSkill}, actualmente tienes $userTrueSkill";
+      } else {
+        title = "TrueSkill alto";
+        description = "El máximo nivel de TrueSkill permitido es ${contest.maxTrueSkill}, actualmente tienes $userTrueSkill";
+      }
+    }
+    modalShow(
+          "",
+          '''
+            <div class="content-wrapper">
+              <h1 class="alert-content-title">$title</h1>
+              <h2 class="alert-content-subtitle">$description</h2>
+            </div>
+          '''
+          , onBackdropClick: true
+          , aditionalClass: "cannotEnter"
+        )
+        .then((_) => _router.go('lobby', {}))
+        .catchError((_) => _router.go('lobby', {}));
+  }
+  
+  void updateFavorites() {
+    favoritesPlayers.clear();
+    if (_profileService.isLoggedIn) {
+      favoritesPlayers.addAll(_profileService.user.favorites.map((playerId) =>
+          allSoccerPlayers.firstWhere( (player) => player['id'] == playerId, orElse: () => null)
+        ).where( (d) => d != null));
+    }
+  }
+
 
   void subscribeToLeaveEvent() {
     // Subscripción para controlar la salida
@@ -380,7 +457,7 @@ class EnterContestComp implements DetachAware {
   void _tryToAddSoccerPlayerToLineup(var soccerPlayer) {
     if (contest.entryFee.isGold && !_isRestoringTeam) {
       Money moneyToBuy = new Money.from(Money.CURRENCY_GOLD, soccerPlayer["instanceSoccerPlayer"].moneyToBuy(playerManagerLevel).amount);
-      bool hasMoney = _profileService.isLoggedIn && _profileService.user.hasMoney(moneyToBuy);
+      bool hasMoney = _profileService.isLoggedIn ? _profileService.user.hasMoney(moneyToBuy) : moneyToBuy.isZero;
       if (!hasMoney) {
         alertNotBuy(moneyToBuy);
         return;
@@ -485,6 +562,7 @@ class EnterContestComp implements DetachAware {
         "salary": instanceSoccerPlayer.salary
       });
     });
+    updateFavorites();
   }
 
   void createFantasyTeam() {
@@ -664,7 +742,7 @@ class EnterContestComp implements DetachAware {
      _verifyMaxPlayersInSameTeam();
     }
   }
-  
+
   void alertNotBuy(Money coins) {
     modalShow(
       "",
@@ -675,7 +753,7 @@ class EnterContestComp implements DetachAware {
           <img class="gold-image" src="images/EpicCoinModales.png">
           <span class="not-enough-resources-count">${coins}</span>
         </div>
-        <h2 class="alert-content-subtitle">${getLocalizedText('alert-user-gold-message', substitutions:{'MONEY': _profileService.user.goldBalance})}<span class="gold-icon-tiny"></span></h2>
+        <h2 class="alert-content-subtitle">${getLocalizedText('alert-user-gold-message', substitutions:{'MONEY': playerGold})}<span class="gold-icon-tiny"></span></h2>
       </div>
       '''
       , onBackdropClick: true
@@ -715,7 +793,7 @@ class EnterContestComp implements DetachAware {
               <img class="gold-image" src="images/EpicCoinModales.png">
               <span class="not-enough-resources-count">${coinsNeeded}</span>
             </div>
-            <h2 class="alert-content-subtitle">${getLocalizedText('alert-user-gold-message', substitutions:{'MONEY': _profileService.user.goldBalance})}<span class="gold-icon-tiny"></span></h2>
+            <h2 class="alert-content-subtitle">${getLocalizedText('alert-user-gold-message', substitutions:{'MONEY': playerGold})}<span class="gold-icon-tiny"></span></h2>
           </div>
           '''
           , onOk: getLocalizedText("buy-gold-button")
@@ -735,7 +813,7 @@ class EnterContestComp implements DetachAware {
               <img class="gold-image" src="images/IconEnergyXL.png">
               <span class="not-enough-resources-count">${moneyNeeded.toInt()}</span>
             </div>
-            <h2 class="alert-content-subtitle">${getLocalizedText("alert-no-energy-message_2", substitutions:{'ENERGY': _profileService.user.Energy})}<span class="energy-icon-tiny"></span></h2>
+            <h2 class="alert-content-subtitle">${getLocalizedText("alert-no-energy-message_2", substitutions:{'ENERGY': playerEnergy})}<span class="energy-icon-tiny"></span></h2>
           </div>
           '''
           , onOk: getLocalizedText('buy-energy-button')

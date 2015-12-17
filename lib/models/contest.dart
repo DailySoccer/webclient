@@ -52,8 +52,14 @@ class Contest {
 
   int minEntries;
   int maxEntries;
+  bool get isFull => contestEntries.length == maxEntries;
 
   int salaryCap;
+
+  int minManagerLevel = 0;
+  int maxManagerLevel = User.MAX_MANAGER_LEVEL;
+  int minTrueSkill = -1;
+  int maxTrueSkill = -1;
 
   bool simulation = false;
   String specialImage;
@@ -113,6 +119,11 @@ class Contest {
   Contest.instance();
 
   Contest.referenceInit(this.contestId);
+
+  Contest.fromInstancesSoccerPlayers(String id, List<InstanceSoccerPlayer> instanceSoccerPlayerList) {
+    contestId = id;
+    instanceSoccerPlayerList.forEach( (instance) => instanceSoccerPlayers[instance.id] = instance );
+  }
 
   bool get isActive   => state == "ACTIVE";
   bool get isLive     => state == "LIVE";
@@ -267,6 +278,11 @@ class Contest {
     simulation = jsonMap.containsKey("simulation") ? jsonMap["simulation"] : false;
     specialImage = jsonMap.containsKey("specialImage") ? jsonMap["specialImage"] : null;
 
+    minManagerLevel = jsonMap.containsKey("minManagerLevel") && jsonMap["minManagerLevel"] != null ? jsonMap["minManagerLevel"] : 0;
+    maxManagerLevel = jsonMap.containsKey("maxManagerLevel") && jsonMap["maxManagerLevel"] != null ? jsonMap["maxManagerLevel"] : User.MAX_MANAGER_LEVEL;
+    minTrueSkill = jsonMap.containsKey("minTrueSkill") && jsonMap["minTrueSkill"] != null ? jsonMap["minTrueSkill"] : -1;
+    maxTrueSkill = jsonMap.containsKey("maxTrueSkill") && jsonMap["maxTrueSkill"] != null ? jsonMap["maxTrueSkill"] : -1;
+
     startDate = DateTimeService.fromMillisecondsSinceEpoch(jsonMap["startDate"]);
     optaCompetitionId = jsonMap.containsKey("optaCompetitionId") && (jsonMap["optaCompetitionId"] != null) ? jsonMap["optaCompetitionId"] : "";
     matchEvents = jsonMap.containsKey("templateMatchEventIds") ? jsonMap["templateMatchEventIds"].map( (matchEventId) => references.getMatchEventById(matchEventId) ).toList() : [];
@@ -319,6 +335,23 @@ class Contest {
       .replaceAll("%PrizeType", prizeTypeName)
       .replaceAll("%EntryFee", "${entryFee}")
       .replaceAll("%MockUsers", "");
+  }
+  
+
+  bool hasManagerLevel(int userManagerLevel) => (minManagerLevel == 0 || userManagerLevel >= minManagerLevel) && 
+                                                userManagerLevel <= maxManagerLevel;
+  
+  bool hasTrueSkill(int userTrueSkill) => userTrueSkill >= minTrueSkill &&
+                                          (maxTrueSkill == -1 || userTrueSkill <= maxTrueSkill);
+
+  bool hasLevel(int userManagerLevel, int userTrueSkill) => hasManagerLevel(userManagerLevel) && hasTrueSkill(userTrueSkill);
+  
+  bool userIsRegistered(String userId) {
+    return getContestEntryWithUser(userId) != null;
+  }
+  
+  bool canEnter(User user) {
+    return !isFull && hasLevel(user.managerLevel.toInt(), user.trueSkill);
   }
 
   String _name;

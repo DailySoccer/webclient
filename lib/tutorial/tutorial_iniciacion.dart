@@ -193,7 +193,7 @@ class TutorialIniciacion extends Tutorial {
                   new ToolTip(".fixed-user-stats .energy", tipId: 'energyTip', arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-04a"), highlight: true, position: ToolTip.POSITION_BOTTOM),
                   new ToolTip("main-menu-f2p", highlight: true)
                 ] );
-
+                TutorialService.Instance.disableElementEvents('main-menu-f2p');
                 // Cada torneo tiene un coste de energia.
                 await onClick( [new ToolTip(".entry-fee-box", tipText: getLocalizedText("msg-05"), highlight: true, position: ToolTip.POSITION_TOP)] );
 

@@ -13,6 +13,7 @@ import 'package:webclient/services/promos_service.dart';
 import 'dart:html';
 import 'package:webclient/tutorial/tutorial_iniciacion.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/components/account/notifications_comp.dart';
 
 @Component(
   selector: 'home',
@@ -34,7 +35,7 @@ class HomeComp  {
 
   bool get isContestTileEnabled => tutorialIsDone;
   bool get isCreateContestTileEnabled => userIsLogged && tutorialIsDone;
-  bool get isScoutingTileEnabled => false;
+  bool get isScoutingTileEnabled => userIsLogged && tutorialIsDone;
   bool get isMyContestTilesEnabled => userIsLogged && tutorialIsDone;
   bool get isUpcomingTileEnabled => isMyContestTilesEnabled;
   bool get isLiveTileEnabled => isMyContestTilesEnabled;
@@ -55,6 +56,7 @@ class HomeComp  {
     loadingService.isLoading = true;
     _refreshMyContests();
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
+    _profileService.triggerNotificationsPopUp(_router);
   }
 
 
@@ -133,6 +135,7 @@ class HomeComp  {
 
   void onScoutingClick() {
     if (!isScoutingTileEnabled) return;
+    _router.go('scouting', {});
   }
 
   void onCreateContestClick() {

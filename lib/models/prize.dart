@@ -134,7 +134,7 @@ class Prize {
       }
     }
 
-    Logger.root.info("Prize: $prizeType: [${result.map((premio) => premio.toString()).join(" : ")}]");
+    // Logger.root.info("Prize: $prizeType: [${result.map((premio) => premio.toString()).join(" : ")}]");
     return result;
   }
 

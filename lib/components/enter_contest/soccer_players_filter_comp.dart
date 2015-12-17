@@ -24,6 +24,12 @@ class SoccerPlayersFilterComp implements AttachAware {
   void     set fieldPosFilter(FieldPos value) {
     _fieldPosFilter = value;
   }
+  
+  @NgTwoWay('only-favorites')
+  bool get onlyFavorites => _onlyFavorites;
+  void set onlyFavorites(bool value) {
+    _onlyFavorites = value;
+  }
 
   String getLocalizedText(key, {group: "soccerplayerpositions"}) {
     return StringUtils.translate(key, group);
@@ -49,10 +55,15 @@ class SoccerPlayersFilterComp implements AttachAware {
       //_fieldPosFilter = new FieldPos("FORWARD");
     }
   }
+  
+  void switchFavorites() {
+    onlyFavorites = !onlyFavorites;
+  }
 
   String getClassForFieldPos(FieldPos fieldPos) => fieldPos == fieldPosFilter? "active" : "";
   String getTextForFieldPos(FieldPos fieldPos)  => fieldPos == null? StringUtils.translate("all", "soccerplayerpositions") : fieldPos.abrevName;
 
   FieldPos _fieldPosFilter;
   String _nameFilter;
+  bool _onlyFavorites;
 }

@@ -36,6 +36,43 @@
 				}
 			}
 		}
+		.button-filter-favorites {
+			.btn-default();
+			padding: 10px 15px;
+			.transition(none);
+			font-size: 9pt;
+			margin: -10px 10px 0 15px;
+			border: 1px solid transparent;
+			&:hover {
+				border: 1px solid transparent;
+			}
+			box-shadow: none;
+			float: right;
+			&:after {
+				display: block;
+				.addIcon("iconFavoritePos.png", 18px, 17px);
+			}
+			&.active {
+				background-color: @white;
+				border: 1px solid @greyUltraDark;
+				color: @greyUltraDark;
+				box-shadow: none;
+				&:focus {
+					background-color: @white;
+					color: @greyUltraDark;
+					box-shadow: none;
+				}
+				&:hover {
+					background-color: @white;
+					color: @greyUltraDark;
+				}
+				
+				&:after {
+					display: block;
+					.addIcon("iconFavoriteNeg.png", 18px, 17px);
+				}
+			}
+		}
 	}
 
 	// Por nombre de jugador

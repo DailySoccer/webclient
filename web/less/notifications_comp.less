@@ -131,3 +131,43 @@
 		}
 	}
 }
+
+
+#alertRoot.achievementEarned {
+	
+	.panel {
+		background-image: url("@{images}/BgModalesEspeciales.jpg");
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+
+	.alert-content-title {
+		.exo_bold(18pt, @blueDark);
+		margin-top: 10px;
+		&.large {
+			.exo_light(24pt, @blueDark);
+			padding-bottom: 0;
+		}
+	}
+	.achievment-earned-icon-wrapper {
+		display: block;
+		position: relative;
+		.achievement {
+			padding: 0;
+		}
+		.gold-image {
+			display: block;
+			position: relative;
+			margin: 0px auto -60px auto;
+		}
+		.achievement-description {
+			display: none;
+		}
+	}
+	.alert-content-subtitle {
+		vertical-align: middle;
+		.exo_light(14pt, @blueDark);
+		margin-bottom: 20px;
+	}
+	
+}

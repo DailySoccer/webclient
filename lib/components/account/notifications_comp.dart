@@ -7,6 +7,8 @@ import 'package:webclient/models/achievement.dart';
 import 'package:webclient/models/user_notification.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/datetime_service.dart';
+import 'package:webclient/utils/html_utils.dart';
+import 'package:webclient/components/achievement_comp.dart';
 
 @Component(
     selector: 'notifications',
@@ -35,7 +37,7 @@ class NotificationsComp {
     }
     */
 
-    refreshNotifications();
+    ProfileService.instance.refreshUserProfile().then( (_) => refreshNotifications() );
   }
 
   void refreshNotifications() {
@@ -81,6 +83,6 @@ class NotificationsComp {
       goToLink(n['link']['url']);
     }
   }
-
+  
   ProfileService _profileService;
 }

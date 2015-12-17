@@ -25,6 +25,11 @@ class Achievement {
   static const String MANAGER_LEVEL_3 = "MANAGER_LEVEL_3";
   static const String MANAGER_LEVEL_4 = "MANAGER_LEVEL_4";
   static const String MANAGER_LEVEL_5 = "MANAGER_LEVEL_5";
+  static const String MANAGER_LEVEL_6 = "MANAGER_LEVEL_6";
+  static const String MANAGER_LEVEL_7 = "MANAGER_LEVEL_7";
+  static const String MANAGER_LEVEL_8 = "MANAGER_LEVEL_8";
+  static const String MANAGER_LEVEL_9 = "MANAGER_LEVEL_9";
+  static const String MANAGER_LEVEL_10 = "MANAGER_LEVEL_10";
 
   static const String TRUE_SKILL_LEVEL_1 = "TRUE_SKILL_500";
   static const String TRUE_SKILL_LEVEL_2 = "TRUE_SKILL_1000";
@@ -78,9 +83,10 @@ class Achievement {
   }
 
   static String translate(String key) => StringUtils.translate(key, "achievements");
-  
+
   static Achievement getAchievementWithKey(String key){
-    return new Achievement.fromJsonObject(AVAILABLES.firstWhere((achievementMap) => achievementMap['id'] == key));
+    Map jsonMap = AVAILABLES.firstWhere((achievementMap) => achievementMap['id'] == key, orElse: () => null);
+    return jsonMap != null ? new Achievement.fromJsonObject(jsonMap) : new Achievement();
   }
 
   static List<Map> AVAILABLES = [
@@ -280,6 +286,46 @@ class Achievement {
       "image": 'IconManager.png',
       "style": 'ManagerLevel',
       "level": 5
+    },
+    {
+      "id": MANAGER_LEVEL_6,
+      "name": translate("name_manager_level_6"), // "Nivel de Manager 6",
+      "description": translate("desc_manager_level_6"), // "Nivel de Manager 6",
+      "image": 'IconManager.png',
+      "style": 'ManagerLevel',
+      "level": 6
+    },
+    {
+      "id": MANAGER_LEVEL_7,
+      "name": translate("name_manager_level_7"), // "Nivel de Manager 7",
+      "description": translate("desc_manager_level_5"), // "Nivel de Manager 7",
+      "image": 'IconManager.png',
+      "style": 'ManagerLevel',
+      "level": 7
+    },
+    {
+      "id": MANAGER_LEVEL_8,
+      "name": translate("name_manager_level_8"), // "Nivel de Manager 8",
+      "description": translate("desc_manager_level_8"), // "Nivel de Manager 8",
+      "image": 'IconManager.png',
+      "style": 'ManagerLevel',
+      "level": 8
+    },
+    {
+      "id": MANAGER_LEVEL_9,
+      "name": translate("name_manager_level_9"), // "Nivel de Manager 9",
+      "description": translate("desc_manager_level_9"), // "Nivel de Manager 9",
+      "image": 'IconManager.png',
+      "style": 'ManagerLevel',
+      "level": 9
+    },
+    {
+      "id": MANAGER_LEVEL_10,
+      "name": translate("name_manager_level_10"), // "Nivel de Manager 10",
+      "description": translate("desc_manager_level_10"), // "Nivel de Manager 10",
+      "image": 'IconManager.png',
+      "style": 'ManagerLevel',
+      "level": 10
     }
   ];
 

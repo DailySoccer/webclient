@@ -32,7 +32,8 @@ class HostServer {
   static bool get _isLocalHost => (window.location.hostname.contains("127.") || window.location.hostname.contains("localhost"));
   static bool get _isForcedProd => window.location.href.contains("prod=true");
   static bool get _isNgrok => window.location.hostname.contains("ngrok");
-  static bool get isDev => (_isNgrok || _isLocalHost) && !_isForcedProd;
+  static bool get _isStaging => window.location.hostname.contains("staging");
+  static bool get isDev => (_isNgrok || _isLocalHost || _isStaging) && !_isForcedProd;
   static bool get isProd => !isDev;
   static bool get isEpicEleven => window.location.hostname.contains("epiceleven.com") && !window.location.hostname.contains("staging");
 

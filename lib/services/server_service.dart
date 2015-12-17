@@ -27,6 +27,7 @@ abstract class ServerService {
   Future<Map> changeUserProfile(String firstName, String lastName, String email, String nickName, String password);
   Future<Map> askForPasswordReset(String email);
   Future<Map> removeNotification(String notificationId);
+  Future<Map> favorites(List<String> soccerPlayers);
 
   // Conseguir la lista de Contests Active/Live/History en los que esté inscrito el User
   Future<Map> getMyContests();
@@ -58,6 +59,7 @@ abstract class ServerService {
   // Estadísticas SoccerPlayer
   Future<Map> getInstancePlayerInfo(String contestId, String instanceSoccerPlayerId);
   Future<Map> getSoccerPlayerInfo(String templateSoccerPlayerId);
+  Future<Map> getSoccerPlayersByCompetition(String competitionId);
 
   // Promos
   Future<Map> getPromos();
@@ -140,6 +142,16 @@ class DailySoccerServer implements ServerService {
 
   Future<Map> changeUserProfile(String firstName, String lastName, String email, String nickName, String password) {
     return _innerServerCall("${HostServer.url}/change_user_profile", postData: {'firstName': firstName, 'lastName': lastName, 'email': email, 'nickName': nickName, 'password': password});
+  }
+
+  Future<Map> favorites(List<String> soccerPlayers) {
+    String jsonSoccerPlayers = JSON.encode(soccerPlayers);
+
+    Map postData = {
+      'soccerPlayers': jsonSoccerPlayers
+    };
+
+    return _innerServerCall("${HostServer.url}/favorites", postData: postData);
   }
 
   Future<Map> getMyContests() {
@@ -237,6 +249,10 @@ class DailySoccerServer implements ServerService {
 
   Future<Map> getSoccerPlayerInfo(String templateSoccerPlayerId) {
     return _innerServerCall("${HostServer.url}/get_soccer_player_info/$templateSoccerPlayerId");
+  }
+
+  Future<Map> getSoccerPlayersByCompetition(String competitionId) {
+    return _innerServerCall("${HostServer.url}/get_soccer_players_by_competition/$competitionId");
   }
 
   Future<Map> getSimulatorState() {

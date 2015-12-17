@@ -28,7 +28,7 @@ class TutorialService {
   Tutorial CurrentTutorial;
   TutorialStep get CurrentStep => CurrentTutorial != null ? CurrentTutorial.CurrentStep : null;
 
-  TutorialService(this._router, this._profileService) {
+  TutorialService(this._router, this._profileService, this._ttservice) {
     _instance = this;
 
     _availables = [
@@ -135,7 +135,7 @@ class TutorialService {
    */
 
     modalClose(type: 'welcome');
-    ToolTipService.instance.clear();
+    _ttservice.clear();
     BackdropComp.instance.hide(forceUpdate: true);
     querySelector('body').classes.remove('tutorial');
 
@@ -184,4 +184,5 @@ class TutorialService {
   List<Tutorial> _availables;
 
   static TutorialService _instance;
+  ToolTipService _ttservice;
 }

@@ -4,17 +4,16 @@ import 'dart:async';
 import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/components/backdrop_comp.dart';
+import 'package:webclient/services/screen_detector_service.dart';
 
 @Injectable()
 class ToolTipService {
 
-  static ToolTipService get instance {
-    if(_instance == null)
-      _instance = new ToolTipService();
-    return _instance;
-  }
+  static ToolTipService get instance => _instance;
 
-  ToolTipService();
+  ToolTipService(this._scrDet) {
+    _instance = this;
+  }
 
   void tipElement(ToolTip tip, {bool hideOnClick: true}) {
     _requestedTooltips.add(tip);
@@ -34,7 +33,7 @@ class ToolTipService {
 
     if (hideOnClick) tip.onClick.listen(hideTip);
 
-    tip.show();
+    tip.show(screenDetector: _scrDet);
   }
 
   Future tipMultipleElement(List<ToolTip> tipList, {bool hideAllOnClick: true}) {
@@ -59,7 +58,7 @@ class ToolTipService {
       if (hideAllOnClick) tip.onClick.listen(hideAll);
 
       tip.onShow.listen(notifyFirstShow);
-      tip.show();
+      tip.show(screenDetector: _scrDet);
     });
 
     if (hideAllOnClick) subscription = backdrop.onClick.listen(hideAll);
@@ -80,6 +79,7 @@ class ToolTipService {
 
   List<ToolTip> _requestedTooltips = [];
   static ToolTipService _instance = null;
+  ScreenDetectorService _scrDet;
 }
 
 class ToolTip {
@@ -102,7 +102,7 @@ class ToolTip {
            String position: ToolTip.POSITION_TOP, String tipId: '',
            Duration delay: Duration.ZERO, Duration duration: Duration.ZERO,
            void onClickCb(Tooltip): null, bool allowClickOnElement: false,
-           String arrowPosition: null}) {
+           String arrowPosition: null, String scrollSelector: ''}) {
     _cssSelector = cssSelector;
     _tipText = tipText;
     _highlight = highlight;
@@ -112,6 +112,7 @@ class ToolTip {
     _duration = duration;
     _allowClickOnElement = allowClickOnElement;
     _arrowPosition = arrowPosition;
+    _scrollCssSelector = scrollSelector;
 
     if (onClickCb != null) {
       _onClickCb = onClickCb;
@@ -120,7 +121,8 @@ class ToolTip {
   }
 
 
-  void show() {
+  void show({ScreenDetectorService screenDetector: null}) {
+    _scrDet = screenDetector;
     _delayTimer = new Timer(_delay, () => _showAsSoonAsPossible() );
   }
 
@@ -172,7 +174,10 @@ class ToolTip {
       _isShown = true;
       _onShow.add(this);
       _showAsSoonTimer.cancel();
-
+      if (_scrollCssSelector != '') {
+        _scrDet.scrollTo(_scrollCssSelector , smooth: true, offset: -150);
+      }
+      
       if (_duration != null && _duration != Duration.ZERO) {
         _durationTimer = new Timer(_duration, () => _onClick.add(this));
       }
@@ -189,6 +194,8 @@ class ToolTip {
   Function _onClickCb;
   bool _allowClickOnElement;
   String _arrowPosition;
+  String _scrollCssSelector;
+  ScreenDetectorService _scrDet;
 
   Element _theTip = null;
   Element _theTippedElem;

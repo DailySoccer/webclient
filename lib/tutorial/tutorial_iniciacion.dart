@@ -239,7 +239,7 @@ class TutorialIniciacion extends Tutorial {
                 clearTooltips();
 
                 // FIX !!!!
-                profileService.user.goldBalance.amount += 30;
+                profileService.user.goldBalance.amount += 3;
 
                 // Compra una recarga de energía.
                 showTooltip(new ToolTip(".energy-layout", tipText: getLocalizedText("msg-10b"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true));
@@ -337,7 +337,7 @@ class TutorialIniciacion extends Tutorial {
     DateTimeService.setFakeDateTime(currentDate);
 
     CurrentStepId = Tutorial.STEP_BEGIN;
-    changeUser(TutorialPlayer(energyBalance: "JPY 0.00", goldBalance: "AUD 1.00"));
+    changeUser(TutorialPlayer(energyBalance: "JPY 0.00", goldBalance: "AUD 0.00"));
 
     loadContent();
   }

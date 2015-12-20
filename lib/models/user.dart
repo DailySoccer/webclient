@@ -30,7 +30,7 @@ class User {
   num managerLevel;
   int get pointsToNextLevel {
     int level = managerLevel.toInt();
-    return (level == 5) ? MANAGER_POINTS[5] : MANAGER_POINTS[level+1];
+    return (level == MAX_MANAGER_LEVEL) ? MANAGER_POINTS[MAX_MANAGER_LEVEL] : MANAGER_POINTS[level+1];
   }
 
   DateTime lastUpdatedEnergy;

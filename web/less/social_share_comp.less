@@ -67,22 +67,28 @@ social-share {
 	}
 }
 
-view-contest-entry .social-share-wrapper {
+view-contest-entry {
 	
-	facebook-share,
-	.facebook-share-wrapper { 
-		display: inline-block; 
-		margin-bottom: 0; 
+	social-share {
+		height: 35px;
 	}
 	
-	twitter-share,
-	.twitter-share-wrapper  { 
-		display: inline-block; 
-		margin-top: 0; 
+	.social-share-wrapper {
+
+		facebook-share,
+		.facebook-share-wrapper { 
+			display: inline-block; 
+			margin-bottom: 0; 
+		}
+
+		twitter-share,
+		.twitter-share-wrapper  { 
+			display: inline-block; 
+			margin-top: 0; 
+		}
+
+		.facebook-share-wrapper .facebook-share-button { 
+			margin-bottom: 0; 
+		}
 	}
-	
-	.facebook-share-wrapper .facebook-share-button { 
-		margin-bottom: 0; 
-	}
-	
 }

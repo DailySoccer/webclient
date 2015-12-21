@@ -14592,6 +14592,9 @@ social-share {
 social-share twitter-share {
   margin-top: 7px;
 }
+view-contest-entry social-share {
+  height: 35px;
+}
 view-contest-entry .social-share-wrapper facebook-share,
 view-contest-entry .social-share-wrapper .facebook-share-wrapper {
   display: inline-block;

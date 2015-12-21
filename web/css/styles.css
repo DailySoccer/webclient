@@ -14511,13 +14511,17 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
     width: 50%;
   }
 }
+facebook-share,
 .facebook-share-wrapper {
   height: 20px;
-  display: inline-block;
+  display: block;
+  position: relative;
+  vertical-align: middle;
 }
+facebook-share .facebook-share-button,
 .facebook-share-wrapper .facebook-share-button {
   font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
+  font-weight: 700;
   font-size: 8pt;
   color: #ffffff;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
@@ -14531,20 +14535,75 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
   user-select: none;
   cursor: pointer;
   line-height: 8pt;
-  margin-left: 10px;
   vertical-align: middle;
   height: 20px;
+  margin: 0 10px;
+  min-width: 80px;
 }
+facebook-share .facebook-share-button img,
 .facebook-share-wrapper .facebook-share-button img {
   width: 12px;
   height: 12px;
 }
+facebook-share .facebook-like,
 .facebook-share-wrapper .facebook-like {
   display: inline-block;
   vertical-align: middle;
   min-width: 90px;
   max-width: 120px;
   height: 20px;
+}
+twitter-share,
+.twitter-share-wrapper {
+  height: 20px;
+  display: block;
+  position: relative;
+  vertical-align: middle;
+}
+twitter-share span,
+.twitter-share-wrapper span {
+  display: inline-block;
+}
+twitter-share .twitter-follow-button-wrapper,
+.twitter-share-wrapper .twitter-follow-button-wrapper,
+twitter-share .twitter-share-button-wrapper,
+.twitter-share-wrapper .twitter-share-button-wrapper {
+  display: inline-block;
+}
+twitter-share .twitter-share-button,
+.twitter-share-wrapper .twitter-share-button {
+  margin: 0 10px;
+  min-width: 80px;
+}
+twitter-share .twitter-share-2,
+.twitter-share-wrapper .twitter-share-2 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #000000;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+}
+social-share {
+  height: 50px;
+  display: block;
+  position: relative;
+  vertical-align: middle;
+}
+social-share twitter-share {
+  margin-top: 7px;
+}
+view-contest-entry .social-share-wrapper facebook-share,
+view-contest-entry .social-share-wrapper .facebook-share-wrapper {
+  display: inline-block;
+  margin-bottom: 0;
+}
+view-contest-entry .social-share-wrapper twitter-share,
+view-contest-entry .social-share-wrapper .twitter-share-wrapper {
+  display: inline-block;
+  margin-top: 0;
+}
+view-contest-entry .social-share-wrapper .facebook-share-wrapper .facebook-share-button {
+  margin-bottom: 0;
 }
 #modalSoccerPlayerStats {
   background-color: #777777;

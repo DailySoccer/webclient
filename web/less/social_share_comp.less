@@ -1,0 +1,88 @@
+facebook-share,
+.facebook-share-wrapper {
+	height: 20px;
+	display: block;
+	position: relative;
+	vertical-align: middle;
+	
+	.facebook-share-button {
+		.opensans_bold(8pt, @white);
+		border-radius: 2px;
+		background-color: @blueFB;
+		display: inline-block;
+		padding: 4px 7px 4px 4px;
+		.user-select(none);
+		cursor: pointer;
+		line-height: 8pt;
+		vertical-align: middle;
+		height: 20px;
+		img {
+			width: 12px;
+			height: 12px;
+		}
+		margin: 0 10px;
+		min-width: 80px;
+	}
+	.facebook-like {
+		display: inline-block;
+		vertical-align: middle;
+		min-width: 90px;
+		max-width: 120px;
+		height: 20px;
+	}
+}
+
+twitter-share,
+.twitter-share-wrapper {
+	height: 20px;
+	display: block;
+	position: relative;
+	vertical-align: middle;
+	
+	span { display: inline-block; }
+	
+	.twitter-follow-button-wrapper,
+	.twitter-share-button-wrapper { display: inline-block; }
+	
+	.twitter-share-button {
+		margin: 0 10px;
+		min-width: 80px;
+	}
+	.twitter-follow-button {
+		//margin-left: 5px;
+	}
+	.twitter-share-2 {
+		.opensans_bold(8pt, @black);
+	}
+}
+
+social-share {
+	height: 50px;
+	display: block;
+	position: relative;
+	vertical-align: middle;
+	
+	twitter-share {
+		margin-top: 7px;
+	}
+}
+
+view-contest-entry .social-share-wrapper {
+	
+	facebook-share,
+	.facebook-share-wrapper { 
+		display: inline-block; 
+		margin-bottom: 0; 
+	}
+	
+	twitter-share,
+	.twitter-share-wrapper  { 
+		display: inline-block; 
+		margin-top: 0; 
+	}
+	
+	.facebook-share-wrapper .facebook-share-button { 
+		margin-bottom: 0; 
+	}
+	
+}

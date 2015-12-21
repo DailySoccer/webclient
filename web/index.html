@@ -215,6 +215,84 @@
       }(document, 'script', 'facebook-jssdk'));
 
     </script>
+    <script>
+      window.twitterShare = window.twitterShare || function(event) {
+        if (typeof twitterShareCB !== "undefined" && twitterShareCB != null) {
+          twitterShareCB();
+        }
+      };
+      window.twitterFollow = window.twitterFollow || function(event) {
+        if (typeof twitterFollowCB !== "undefined" && twitterFollowCB != null) {
+          twitterFollowCB();
+        }
+      };
+
+      function loadTwitterWidgets(options) {
+        var shareWrapper = document.getElementById('twitterShareButton');
+        var followWrapper = document.getElementById('twitterFollowButton');
+        
+        if (shareWrapper != null && followWrapper != null && typeof twttr !== "undefined" && twttr != null) {
+          var l = 0;
+          for(l = shareWrapper.children.length -1; l >= 0; l--) {
+            shareWrapper.children[l].remove();
+          }
+          twttr.widgets.createShareButton(
+            'https://dev.twitter.com/',
+            shareWrapper,
+            {
+              text: options['text'],
+              hashtags: options['hashtags'],
+              via: options['via']
+            }
+          );
+
+          for(l = followWrapper.children.length -1; l >= 0; l--) {
+            followWrapper.children[l].remove();
+          }
+          twttr.widgets.createFollowButton(
+            'EpicEleven',
+            followWrapper,
+            { showScreenName: 'false' }
+          );
+        } else {
+          setTimeout(function () { loadTwitterWidgets(options); }, 100);
+        }
+      }
+      window.twttr = (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+          t = window.twttr || {};
+        if (d.getElementById(id)) return t;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+       
+        t._e = [];
+        t.ready = function(f) {t._e.push(f);};
+       
+        return t;
+      }(document, "script", "twitter-wjs"));
+      
+      twttr.ready(function (twttr) {
+        // Now bind our custom intent events
+        twttr.events.bind('tweet', window.twitterShare);
+        twttr.events.bind('follow', window.twitterFollow);
+        /*
+        twttr.events.bind('click', window.twitterShare);
+        twttr.events.bind('retweet', retweetIntentToAnalytics);
+        twttr.events.bind('like', likeIntentToAnalytics);
+        */
+      });
+    </script>
+    <!--script>
+      !function(d,s,id){
+        var js,fjs=d.getElementsByTagName(s)[0],
+            p=/^http:/.test(d.location)?'http':'https';
+        if(!d.getElementById(id)){js=d.createElement(s);
+        js.id=id;js.src=p+'://platform.twitter.com/widgets.js';
+        fjs.parentNode.insertBefore(js,fjs);}}
+      (document, 'script', 'twitter-wjs');
+    </script-->
 
 
     <!-- Google Remarketing codes -->

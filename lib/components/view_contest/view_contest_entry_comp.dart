@@ -128,6 +128,17 @@ class ViewContestEntryComp {
                   });
   }
   
+
+  Map sharingInfo = {
+    'description': FacebookService.descriptionOfInscription(),
+    'caption': '',
+    'hashtag': 'EpicEleven',
+    'url': 'https://dev.twitter.com/web/javascript/events',
+    'title': FacebookService.titleOfInscription(),
+    //'dartCallback': () { print('SHARE CB'); },
+    'image': FacebookService.imageOfInscription()
+  };
+  
   Router _router;
   RouteProvider _routeProvider;
 

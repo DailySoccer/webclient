@@ -463,11 +463,17 @@ class EnterContestComp implements DetachAware {
   void _tryToAddSoccerPlayerToLineup(var soccerPlayer) {
     if (contest.entryFee.isGold && !_isRestoringTeam) {
       Money moneyToBuy = new Money.from(Money.CURRENCY_GOLD, soccerPlayer["instanceSoccerPlayer"].moneyToBuy(playerManagerLevel).amount);
-      bool hasMoney = _profileService.isLoggedIn ? _profileService.user.hasMoney(moneyToBuy) : moneyToBuy.isZero;
-      if (!hasMoney) {
-        alertNotBuy(moneyToBuy);
-        return;
+
+      // TODO: En el tutorial no queremos permitir que el usuario alinee un futbolista que cueste GOLD
+      // BEGIN HACK ---------------------->
+      if (TutorialService.isActivated) {
+        bool hasMoney = _profileService.isLoggedIn ? _profileService.user.hasMoney(moneyToBuy) : moneyToBuy.isZero;
+        if (!hasMoney) {
+          alertNotBuy(moneyToBuy);
+          return;
+        }
       }
+      // END HACK ---------------------->
     }
 
     // Buscamos el primer slot libre para la posicion que ocupa el soccer player

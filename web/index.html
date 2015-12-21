@@ -146,7 +146,7 @@
 
       function facebookLogin(callback) {
         console.log("js facebook login");
-        FB.login(callback, {scope: 'email,user_likes'});
+        FB.login(callback, {scope: 'email,user_likes,user_friends'});
       }
       
       function facebookShare(params) {
@@ -201,7 +201,9 @@
      window.fbAsyncInit = function() {
        FB.init({
          appId      : '865176766847011',
+         //appId      : '1043008439063842', // TestAPP
          xfbml      : true,
+         //frictionlessRequests : true,
          version    : 'v2.5'
        });
      };

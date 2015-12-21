@@ -726,7 +726,10 @@
       "no-refillable"                   : "Tienes la energía a tope",
       "alert-user-gold-message"         : "Tienes actualmente @MONEY",
       "buy-gold-button"                 : "COMPRAR ORO",
-      "alert-no-gold-message"           : "No tienes ORO suficiente."
+      "alert-no-gold-message"           : "No tienes ORO suficiente.",
+
+      "errordefaulttitle"               : "Atención",
+      "errordefaultgeneric"             : "Ha ocurrido un error. Inténtalo mas tarde."
     }
     ,"goldshop"                         :
     {

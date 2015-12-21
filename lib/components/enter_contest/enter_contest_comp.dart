@@ -24,6 +24,7 @@ import 'package:webclient/services/catalog_service.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/models/money.dart';
 import 'package:webclient/services/tutorial_service.dart';
+import 'dart:math';
 
 @Component(
     selector: 'enter-contest',
@@ -114,8 +115,13 @@ class EnterContestComp implements DetachAware {
 
   bool contestInfoFirstTimeActivation = false;  // Optimizacion para no compilar el contest_info hasta que no sea visible la primera vez
 
-  num get playerManagerLevel =>
-      (contest != null && contest.simulation) ? User.MAX_MANAGER_LEVEL : (_profileService.isLoggedIn ? _profileService.user.managerLevel : 0);
+  num get playerManagerLevel {
+      num result = _profileService.isLoggedIn ? _profileService.user.managerLevel : 0;
+      if (contest != null) {
+        result = (contest.simulation) ? User.MAX_MANAGER_LEVEL : min(result, contest.maxManagerLevel);
+      }
+      return result;
+  }
 
   int get playerGold => _profileService.isLoggedIn ? _profileService.user.Gold: 0;
   int get playerEnergy => _profileService.isLoggedIn ? _profileService.user.Energy : 0;
@@ -189,8 +195,8 @@ class EnterContestComp implements DetachAware {
         loadingService.isLoading = false;
 
         contest = _contestsService.lastContest;
-        
-        if (_profileService.isLoggedIn && !contest.canEnter(_profileService.user)) {
+
+        if (_profileService.isLoggedIn && !contest.canEnter(_profileService.user) && !editingContestEntry) {
           cannotEnterMessageRedirect();
           return;
         }
@@ -199,7 +205,7 @@ class EnterContestComp implements DetachAware {
           cannotEnterMessageRedirect();
           return;
         }
-        
+
         availableSalary = contest.salaryCap;
         // Comprobamos si estamos en salario negativo
         isNegativeBalance = availableSalary < 0;
@@ -239,11 +245,11 @@ class EnterContestComp implements DetachAware {
     String description = "";
     int userLevel = _profileService.isLoggedIn ? _profileService.user.managerLevel.toInt() : 0;
     int userTrueSkill = _profileService.isLoggedIn ? _profileService.user.trueSkill : 0;
-    
+
     if (contest.isFull) {
       title = "¡Torneo lleno!";
       description = "No quedan plazas disponibles para participar en el torneo seleccionado";
-    } else if (contest.hasManagerLevel(userLevel)) {
+    } else if (!contest.hasManagerLevel(userLevel)) {
       if (userLevel < contest.minManagerLevel ) {
         title = "Nivel de manager bajo";
         description = "Necesitas nivel de manager mayor que ${contest.minManagerLevel}, actualmente tienes $userLevel";
@@ -251,7 +257,7 @@ class EnterContestComp implements DetachAware {
         title = "Nivel de manager alto";
         description = "El máximo nivel de manager permitido es ${contest.maxManagerLevel}, actualmente tienes $userLevel";
       }
-    } else if (contest.hasTrueSkill(userTrueSkill)) {
+    } else if (!contest.hasTrueSkill(userTrueSkill)) {
       if (userTrueSkill < contest.minTrueSkill ) {
         title = "TrueSkill bajo";
         description = "Necesitas nivel de TrueSkill mayor que ${contest.minTrueSkill}, actualmente tienes $userTrueSkill";
@@ -274,7 +280,7 @@ class EnterContestComp implements DetachAware {
         .then((_) => _router.go('lobby', {}))
         .catchError((_) => _router.go('lobby', {}));
   }
-  
+
   void updateFavorites() {
     favoritesPlayers.clear();
     if (_profileService.isLoggedIn) {

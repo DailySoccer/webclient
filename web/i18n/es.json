@@ -283,7 +283,7 @@
       "resource-gold"                   : "ORO",
       "resource-energy"                 : "ENERGÍA",
       "buy-gold-button"                 : "COMPRAR ORO",
-      "buy-energy-button"               : "RECARGAR ENERGÍA",
+      "buy-energy-button"               : "IR A LA TIENDA",
       "alert-user-gold-message"         : "Tienes actualmente: @MONEY",
       "alert-no-energy-message_1"       : "No tienes energía para entrar en este torneo",
       "alert-no-energy-message_2"       : "Actualmente tienes: @ENERGY"
@@ -638,7 +638,7 @@
       "msg-13"                          : "Aquí podrás ver los puntos conseguidos por tus jugadores.",
       "msg-14"                          : "Aquí puedes ver tu puntuación frente a los rivales. Haz clic en el nombre de un rival para ver su alineación.",
       "msg-15"                          : "Fíjate, uno de tus jugadores acaba de conseguir sus primeros puntos.",
-      "msg-16"                          : "<span class='modal-body-title'>¡Enhorabuena, has ganado tu primer torneo!</span><span class='modal-body-text'> Has conseguido puntos de mánager y has subido tu nivel de mánager.",
+      "msg-16"                          : "<span class='modal-body-title'>¡Enhorabuena, has ganado tu primer torneo!</span><span class='modal-body-text'> Has conseguido 50 puntos de mánager y has subido tu nivel de mánager.",
       "msg-17"                          : "<span class='modal-body-title'>Ya estás preparado. </span><span class='modal-body-text'>Regístrate ahora y consigue tus primeras 10 monedas de oro para comenzar tu carrera como mánager.</span>"
     }
     , "tutorial_entrenamiento"          :

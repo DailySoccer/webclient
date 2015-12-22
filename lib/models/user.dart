@@ -27,6 +27,8 @@ class User {
   Money managerBalance;
   Money energyBalance;
 
+  String facebookID;
+
   num managerLevel;
   int get pointsToNextLevel {
     int level = managerLevel.toInt();
@@ -134,6 +136,8 @@ class User {
     firstName = (jsonMap.containsKey("firstName")) ? jsonMap["firstName"] : "";
     lastName = (jsonMap.containsKey("lastName")) ? jsonMap["lastName"] : "";
     nickName = jsonMap["nickName"];
+
+    facebookID = jsonMap.containsKey("facebookID") ? jsonMap["facebookID"] : "";
 
     email = (jsonMap.containsKey("email")) ? jsonMap["email"] : "<email: null>";
     wins = (jsonMap.containsKey("wins")) ? jsonMap["wins"] : 0;

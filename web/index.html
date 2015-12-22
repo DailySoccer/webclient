@@ -146,7 +146,33 @@
 
       function facebookLogin(callback) {
         console.log("js facebook login");
-        FB.login(callback, {scope: 'email,user_likes,user_friends'});
+        FB.login(callback, {scope: 'email, user_likes, user_friends'});
+      }
+
+      function facebookProfileInfo(callback) {
+        FB.api('/me', {fields: 'id, name, email'}, 
+           function(response) {
+             if (response && !response.error) {
+               response['error'] = false;
+             }
+             callback(response);
+           }
+        );
+      }
+      
+      function facebookProfilePhoto(facebookId, callback) {
+        FB.api('/' + facebookId + '/picture', 
+           function(response) {
+             if (response && !response.error) {
+               callback({ error: false, 
+                          imageUrl: response.data.url, 
+                          isDefault: response.data.is_silhouette
+                         });
+             } else {
+               callback({error: response.error});
+             }
+           }
+        );
       }
       
       function facebookShare(params) {
@@ -264,14 +290,10 @@
         var js, fjs = d.getElementsByTagName(s)[0],
           t = window.twttr || {};
         if (d.getElementById(id)) return t;
-        js = d.createElement(s);
-        js.id = id;
+        js = d.createElement(s); js.id = id;
         js.src = "https://platform.twitter.com/widgets.js";
         fjs.parentNode.insertBefore(js, fjs);
-       
-        t._e = [];
-        t.ready = function(f) {t._e.push(f);};
-       
+        t._e = []; t.ready = function(f) {t._e.push(f);};
         return t;
       }(document, "script", "twitter-wjs"));
       

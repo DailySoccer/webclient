@@ -56,11 +56,13 @@ class ProfileService {
     return _server.login(email, password).then(_onLoginResponse);
   }
 
-  Future<Map> facebookLogin(String accessToken) {
-    return _server.facebookLogin(accessToken, "ID", "Name", "Email").then(_onLoginResponse);
+  Future<Map> facebookLogin(String accessToken, String id, String name, String email) {
+    return _server.facebookLogin(accessToken, id, name, email).then(_onLoginResponse);
   }
 
   Future<Map> _onLoginResponse(Map loginResponseJson) {
+    
+    
     _server.setSessionToken(loginResponseJson["sessionToken"]); // to make the getUserProfile call succeed
     return _server.getUserProfile()
                       .then((jsonMap) => _setProfile(loginResponseJson["sessionToken"], jsonMap, true));

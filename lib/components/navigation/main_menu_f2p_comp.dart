@@ -296,6 +296,13 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     return StringUtils.parseTrueSkill(profileService.user.trueSkill);
   }
 
+  String get _userPhoto {
+    if (!profileService.isLoggedIn) {
+      return "";
+    }
+    return profileService.user.profileImage;
+  }
+  
   String get _energyTimeLeft {
     if (!profileService.isLoggedIn) {
       return "";
@@ -386,7 +393,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
           </li>
 
           <li id="desktopMenuUser" class="profile">
-            <img src="images/icon-userProfile.png" data-toggle="dropdown">
+            <img src="$_userPhoto" data-toggle="dropdown">
             <div class="count">${_userTrueSkill}</div>
             <ul id="desktopUserMenu" class="dropdown-menu">
               ${getUserMenuOptions(_scrDet.isNotXsScreen)}

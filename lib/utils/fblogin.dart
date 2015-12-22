@@ -6,6 +6,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:logging/logging.dart';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/server_error.dart';
+import 'dart:async';
 
 class FBLogin {
 
@@ -57,13 +58,52 @@ class FBLogin {
   }
 
   void loginCallback(loginResponse) {
-    _profileManager.facebookLogin(loginResponse["authResponse"]["accessToken"])
-                          .then((_) => _onLogin())
-                          .catchError((ServerError error) {
-                              Logger.root.severe(error);
-                           }, test: (error) => error is ServerError);
-  }
 
+    String accessToken = loginResponse["authResponse"]["accessToken"];
+    String email = null;
+    String id = null;
+    String name = null;
+    
+    JsUtils.runJavascript(null, "facebookProfileInfo", [(js.JsObject profileInfoResponse) {
+      if (!profileInfoResponse["error"]) {
+        email = profileInfoResponse['email'];
+        id = profileInfoResponse['id'];
+        name = profileInfoResponse['name'];
+      }
+      
+      // LOGIN
+      _profileManager.facebookLogin(accessToken, id, name, email)
+                            .then((_) => _onLogin())
+                            .catchError((ServerError error) {
+                                Logger.root.severe(error);
+                             }, test: (error) => error is ServerError);
+    }]);
+  }
+  
+  static Map profileImage(String facebookId) {
+    Map defaultImage = { 'isDefault' : true, 'url': null };
+    if (facebookId == null || facebookId == '') return defaultImage;
+
+    if (_profileImageCache.containsKey(facebookId)) {
+      return _profileImageCache[facebookId];
+    }
+    
+    _profileImageCache[facebookId] = defaultImage;
+    JsUtils.runJavascript(null, "facebookProfilePhoto", [facebookId, (js.JsObject profileInfoResponse) {
+          Map image = {};
+          if (profileInfoResponse["error"] == false) {
+            image['imageUrl'] = profileInfoResponse['imageUrl'];
+            image['isDefault'] = profileInfoResponse['isDefault'];
+            _profileImageCache[facebookId] = image;
+          } else {
+            Logger.root.warning("WTF 3510");
+          }
+        }]);
+    
+    return defaultImage;
+  }
+  
+  static Map <String, Map> _profileImageCache = {};
   Router _router;
   ProfileService _profileManager;
   Function _onLogin;

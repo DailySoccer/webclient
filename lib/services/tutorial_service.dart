@@ -112,7 +112,7 @@ class TutorialService {
   }
 
 
-  void skipTutorial({String routePath: 'home'}) {
+  void skipTutorial({String routePathLogged: 'home', String routePathNotLogged: 'join'}) {
     _activated = false;
     configureSkipComponent();
 
@@ -132,14 +132,14 @@ class TutorialService {
       // Si no estamos en una pantalla en la que podamos actualizar el contenido correctamente, navegaremos al home
       _router.go('home', {});
     }
-   */
+    */
 
     modalClose(type: 'welcome');
     _ttservice.clear();
     BackdropComp.instance.hide(forceUpdate: true);
     querySelector('body').classes.remove('tutorial');
 
-    _router.go(routePath, {});
+    _router.go(_profileService.isLoggedIn? routePathLogged: routePathNotLogged, {});
   }
 
   void registerContentUpdater(String name, Function contentUpdater) {

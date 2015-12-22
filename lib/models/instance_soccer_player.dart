@@ -7,6 +7,7 @@ import 'package:webclient/services/contest_references.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/models/money.dart';
+import 'package:webclient/models/contest.dart';
 
 class InstanceSoccerPlayer {
   static List<int> LEVEL_SALARY = [
@@ -15,6 +16,10 @@ class InstanceSoccerPlayer {
 
   static List<int> LEVEL_PRICE = [
     0, 7, 16, 28, 43, 74, 135, 228, 350, 534, 903
+    ];
+
+  static List<num> LEVEL_MULTIPLIER = [
+    0, 0.04378283713, 0.05429071804, 0.06654991243, 0.08143607706, 0.09894921191, 0.1204028021,  0.1457968476,  0.1760070053,  0.2127845884
     ];
 
   SoccerPlayer soccerPlayer;
@@ -34,12 +39,15 @@ class InstanceSoccerPlayer {
     return _level;
   }
 
-  Money moneyToBuy(num managerLevel) {
+  Money moneyToBuy(num managerLevel, Contest contest) {
     Money result = new Money.from(Money.CURRENCY_GOLD, 0);
     if (managerLevel < level) {
-      for (int i = managerLevel.toInt() + 1; i <= level; i++) {
-        result.amount += LEVEL_PRICE[i];
+      num prize = contest.prizePool.amount - contest.entryFee.amount;
+      num sum = 0;
+      for (int i=0; i<level; i++) {
+        sum += LEVEL_MULTIPLIER[i] * prize;
       }
+      result.amount = contest.entryFee.amount + sum;
     }
     return result;
   }

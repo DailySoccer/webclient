@@ -125,7 +125,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
           // Quiza nos mandan quitar un portero pero estamos filtrando por defensas....
           if (elem != null) {
-            Money moneyToBuy = soccerPlayer['instanceSoccerPlayer'].moneyToBuy(managerLevel);
+            Money moneyToBuy = soccerPlayer['instanceSoccerPlayer'].moneyToBuy(contest, managerLevel);
             elem.setInnerHtml(_getActionButton(!lineupFilter.contains(soccerPlayer), moneyToBuy), treeSanitizer: NULL_TREE_SANITIZER);
           }
         }
@@ -230,7 +230,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
   String _getHtmlForSlot(var slot, bool addButton) {
     InstanceSoccerPlayer soccerPlayer = slot['instanceSoccerPlayer'];
-    Money moneyToBuy = slot['instanceSoccerPlayer'].moneyToBuy(managerLevel, contest);
+    Money moneyToBuy = slot['instanceSoccerPlayer'].moneyToBuy(contest, managerLevel);
     bool soccerPlayerIsAvailable = moneyToBuy.toInt() == 0;
     String strAddButton = _getActionButton(addButton, moneyToBuy);
 

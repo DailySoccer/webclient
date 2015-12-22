@@ -70,7 +70,7 @@ class LineupSelectorComp {
   String getPrintableSalary(int salary) => StringUtils.parseSalary(salary);
 
   String getPrintableGoldCost(dynamic slot) {
-    Money money = slot['instanceSoccerPlayer'].moneyToBuy(managerLevel, contest);
+    Money money = slot['instanceSoccerPlayer'].moneyToBuy(contest, managerLevel);
     return money.amount <= 0 ? '' : '<span class="coins-amount">${money.toInt()}</span>';
   }
 

@@ -135,6 +135,7 @@ class Contest {
   bool get needManagerPoints => entryFee.isManagerPoints;
   bool get needEnergy => entryFee.isEnergy;
 
+  Money get prizeMin => _prizeMin;
   Money get prizePool => _prizePool;
   String get prizeTypeName => Prize.typeNames[prizeType];
 
@@ -308,6 +309,8 @@ class Contest {
       _prizePool = new Money.from(prizeCurrency, (numEntries < minEntries ? minEntries : numEntries) * entryFee.amount * prizeMultiplier);
     }
 
+    _prizeMin = new Money.from(prizeCurrency, minEntries * entryFee.amount * prizeMultiplier);
+
     // print("Contest: id($contestId) name($name) currentUserIds($currentUserIds) templateContestId($templateContestId)");
     return this;
   }
@@ -336,20 +339,20 @@ class Contest {
       .replaceAll("%EntryFee", "${entryFee}")
       .replaceAll("%MockUsers", "");
   }
-  
 
-  bool hasManagerLevel(int userManagerLevel) => (minManagerLevel == 0 || userManagerLevel >= minManagerLevel) && 
+
+  bool hasManagerLevel(int userManagerLevel) => (minManagerLevel == 0 || userManagerLevel >= minManagerLevel) &&
                                                 userManagerLevel <= maxManagerLevel;
-  
+
   bool hasTrueSkill(int userTrueSkill) => userTrueSkill >= minTrueSkill &&
                                           (maxTrueSkill == -1 || userTrueSkill <= maxTrueSkill);
 
   bool hasLevel(int userManagerLevel, int userTrueSkill) => hasManagerLevel(userManagerLevel) && hasTrueSkill(userTrueSkill);
-  
+
   bool userIsRegistered(String userId) {
     return getContestEntryWithUser(userId) != null;
   }
-  
+
   bool canEnter(User user) {
     return !isFull && hasLevel(user.managerLevel.toInt(), user.trueSkill);
   }
@@ -358,4 +361,5 @@ class Contest {
   String _namePattern;
   Prize _prize;
   Money _prizePool;
+  Money _prizeMin;
 }

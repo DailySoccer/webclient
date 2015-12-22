@@ -39,15 +39,15 @@ class InstanceSoccerPlayer {
     return _level;
   }
 
-  Money moneyToBuy(num managerLevel, Contest contest) {
+  Money moneyToBuy(Contest contest, num managerLevel) {
     Money result = new Money.from(Money.CURRENCY_GOLD, 0);
     if (managerLevel < level) {
-      num prize = contest.prizePool.amount - contest.entryFee.amount;
+      num prize = contest.prizeMin.amount - contest.entryFee.amount;
       num sum = 0;
       for (int i=0; i<level; i++) {
         sum += LEVEL_MULTIPLIER[i] * prize;
       }
-      result.amount = contest.entryFee.amount + sum;
+      result.amount = (contest.entryFee.amount + sum).round();
     }
     return result;
   }

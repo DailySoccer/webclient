@@ -58,7 +58,11 @@ class TutorialIniciacion extends Tutorial {
       "get_contest_info" : (url, postData) => waitCompleter( () => TrainingContestList ),
       "get_instance_soccer_player_info": (url, postData) => getContentJson(PATH + "stats-player-03.json"),
       "add_contest_entry": (url, postData) { CurrentStepId = STEP_4; return addContestEntry(postData); },
-      "buy_product": (url, postData) { profileService.user.energyBalance.amount = User.MAX_ENERGY; return emptyContent(); }
+      "buy_product": (String url, postData) {
+        profileService.user.energyBalance.amount = User.MAX_ENERGY;
+        profileService.user.goldBalance.amount = 0;
+        return emptyContent();
+      }
     }]);
 
     var serverCallsWhenVirtualContestEntry = joinMaps([defaultServerCalls, {

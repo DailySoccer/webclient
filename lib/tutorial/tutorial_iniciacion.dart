@@ -322,7 +322,7 @@ class TutorialIniciacion extends Tutorial {
 
                 if (!isCompleted) {
                   CurrentStepId = Tutorial.STEP_END;
-                  TutorialService.Instance.skipTutorial(routePath: "join");
+                  TutorialService.Instance.skipTutorial();
                 }
               }
             },

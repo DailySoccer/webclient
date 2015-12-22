@@ -13504,6 +13504,12 @@ main-menu-f2p {
   background-image: url("../images/progress-bar-front.png");
   background-color: transparent;
 }
+#mainMenu #desktopMenu .fixed-user-stats .profile img {
+  width: 28px;
+  height: 28px;
+  border-radius: 10000px;
+  cursor: pointer;
+}
 #mainMenu #menuNotLoggedIn {
   overflow: hidden;
   height: 68px;

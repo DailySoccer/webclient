@@ -84,7 +84,7 @@ class EnterContestComp implements DetachAware {
     lineupSlots
       .where((c) => c != null)
       .forEach( (c) =>
-          _coinsNeeded.amount += c["instanceSoccerPlayer"].moneyToBuy(managerLevel).amount);
+          _coinsNeeded.amount += c["instanceSoccerPlayer"].moneyToBuy(contest, managerLevel).amount);
 
     if (contest != null && contest.entryFee != null && contest.entryFee.isGold && !editingContestEntry) {
       _coinsNeeded.amount += contest.entryFee.amount;
@@ -462,7 +462,7 @@ class EnterContestComp implements DetachAware {
 
   void _tryToAddSoccerPlayerToLineup(var soccerPlayer) {
     if (contest.entryFee.isGold && !_isRestoringTeam) {
-      Money moneyToBuy = new Money.from(Money.CURRENCY_GOLD, soccerPlayer["instanceSoccerPlayer"].moneyToBuy(playerManagerLevel).amount);
+      Money moneyToBuy = new Money.from(Money.CURRENCY_GOLD, soccerPlayer["instanceSoccerPlayer"].moneyToBuy(contest, playerManagerLevel).amount);
 
       // TODO: En el tutorial no queremos permitir que el usuario alinee un futbolista que cueste GOLD
       // BEGIN HACK ---------------------->

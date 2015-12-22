@@ -34,13 +34,14 @@
                       <span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{formatCurrency(printableAvailableSalary)}}</span>
                     </div>
                 </div>
-                
+
                 <lineup-selector ng-show="!isSelectingSoccerPlayer || scrDet.isNotXsScreen"
                                  not-enough-resources="!enoughResourcesForEntryFee"
                                  resource="resourceName"
                                  has-max-players-same-team="playersInSameTeamInvalid"
                                  has-negative-balance="isNegativeBalance"
                                  manager-level="playerManagerLevel"
+                                 contest="contest"
                                  lineup-slots="lineupSlots"
                                  on-lineup-slot-selected="onLineupSlotSelected(slotIndex)"
                                  formation-id="formationId"
@@ -59,6 +60,7 @@
                 <soccer-players-list soccer-players="allSoccerPlayers"
                                      lineup-filter="lineupSlots"
                                      manager-level="playerManagerLevel"
+                                     contest="contest"
                                      favorites-list="favoritesPlayers" only-favorites="onlyFavorites"
                                      field-pos-filter="fieldPosFilter" name-filter="nameFilter" match-filter="matchFilter"
                                      on-row-click="onRowClick(soccerPlayerId)"

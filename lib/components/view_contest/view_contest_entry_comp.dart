@@ -64,8 +64,10 @@ class ViewContestEntryComp {
 
     tutorialService.triggerEnter("view_contest_entry");
 
+    /*
     _profileService.getFacebookProfiles(["1637839359811046", "10208059340630083"])
       .then( (List<User> users) => users.forEach( (user) => print("${user.nickName}")) );
+    */
 
     _contestsService.refreshMyContestEntry(contestId)
       .then((_) {

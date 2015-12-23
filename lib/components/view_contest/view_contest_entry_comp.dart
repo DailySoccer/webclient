@@ -16,6 +16,7 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/services/facebook_service.dart';
 import 'package:webclient/models/user.dart';
+import 'package:webclient/utils/fblogin.dart';
 
 @Component(
    selector: 'view-contest-entry',
@@ -50,7 +51,19 @@ class ViewContestEntryComp {
   String get fbTitle => FacebookService.titleOfInscription();
   String get fbDescription => FacebookService.descriptionOfInscription();
   String get fbImage => FacebookService.imageOfInscription();
-
+  
+  List<User> _friendList = [];
+  List<User> _filteredFriendList = [];
+  List<User> get filteredFriendList {
+    if (contest == null) return _filteredFriendList;
+    if (_friendList != _profileService.friendList) {
+      _friendList = _profileService.friendList;
+      _filteredFriendList = _friendList.where((u) => !contest.contestEntries.any(
+              (entry) => entry.user.facebookID == u.facebookID)).toList();
+    }
+    return _filteredFriendList;
+  }
+  
   String getLocalizedText(key, [Map substitutions]) {
     return StringUtils.translate(key, "viewcontestentry", substitutions);
   }
@@ -63,12 +76,7 @@ class ViewContestEntryComp {
     contestId = _routeProvider.route.parameters['contestId'];
 
     tutorialService.triggerEnter("view_contest_entry");
-
-    /*
-    _profileService.getFacebookProfiles(["1637839359811046", "10208059340630083"])
-      .then( (List<User> users) => users.forEach( (user) => print("${user.nickName}")) );
-    */
-
+    
     _contestsService.refreshMyContestEntry(contestId)
       .then((_) {
         loadingService.isLoading = false;

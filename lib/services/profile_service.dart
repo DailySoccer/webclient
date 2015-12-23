@@ -16,6 +16,7 @@ import 'package:webclient/models/user_notification.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/components/achievement_comp.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/utils/fblogin.dart';
 
 @Injectable()
 class ProfileService {
@@ -61,8 +62,6 @@ class ProfileService {
   }
 
   Future<Map> _onLoginResponse(Map loginResponseJson) {
-
-
     _server.setSessionToken(loginResponseJson["sessionToken"]); // to make the getUserProfile call succeed
     return _server.getUserProfile()
                       .then((jsonMap) => _setProfile(loginResponseJson["sessionToken"], jsonMap, true));
@@ -133,9 +132,10 @@ class ProfileService {
   }
 
   Map _setProfile(String theSessionToken, Map jsonMap, bool bSave) {
-
+    
     if (theSessionToken != null && jsonMap != null) {
       user = new User.fromJsonObject(jsonMap);
+      refreshFriendList();
       GameMetrics.identifyMixpanel(user.email);
       GameMetrics.peopleSet({"\$email": user.email, "\$last_login": new DateTime.now()});
     }
@@ -241,6 +241,22 @@ class ProfileService {
     }
   }
 
+  Future<List<User>> refreshFriendList() {
+    Completer<List<User>> completer = new Completer<List<User>>();
+    FBLogin.friendList(user.facebookID).then((list) {
+        getFacebookProfiles(list).then( (List<User> users) {
+          completer.complete(users);
+          _friendList = users;
+        });
+      })
+      .catchError((error) => completer.completeError(error));
+    
+    return completer.future;
+  }
+  
+  List<User> _friendList = [];
+  List<User> get friendList => user == null? [] : _friendList;
+  
   bool _wasLoggedInForTriggerPopUp = false;
 
   bool get _hasDoneLogin => window.localStorage.containsKey('user');

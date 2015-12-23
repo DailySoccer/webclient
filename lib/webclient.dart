@@ -64,6 +64,7 @@ import 'package:webclient/components/achievement_comp.dart';
 import 'package:webclient/components/social/facebook_share_comp.dart';
 import 'package:webclient/components/social/twitter_share_comp.dart';
 import 'package:webclient/components/social/social_share_comp.dart';
+import 'package:webclient/components/social/friends_bar_comp.dart';
 
 import 'package:webclient/components/account/login_comp.dart';
 import 'package:webclient/components/account/join_comp.dart';
@@ -158,6 +159,7 @@ class WebClientApp extends Module {
     bind(FacebookShareComp);
     bind(TwitterShareComp);
     bind(SocialShareComp);
+    bind(FriendsBarComp);
 
     bind(NgBindHtmlUnsafeDirective);
     bind(FormAutofillDecorator);

@@ -175,6 +175,26 @@
         );
       }
       
+      function facebookFriends(facebookId, callback) {
+        
+        waitForFacebookAuthResponse(function() {
+          
+          FB.api('/' + facebookId + '/friends',
+              function (response) {
+                if (response && !response.error) {
+                  var idList = [];
+                  for(var i = 0; i < response.data.length; i++) {
+                    idList[i] = response.data[i].id;
+                  }
+                  callback({ error: false,
+                             idList: idList });
+                } else {
+                  callback({error: response.error});
+                }
+              });
+        });
+      }
+      
       function facebookShare(params) {
         dartCallback = params.dartCallback || function() {};
         FB.ui({ method: 'share',
@@ -223,11 +243,25 @@
 
     <!-- Facebook Stuff -->
     <script>
-
+     function waitForFacebookAuthResponse(callback) {
+       if (FB.getAuthResponse() == null) {
+         var onAuthResponse;
+         
+         onAuthResponse = function() {
+           FB.Event.unsubscribe('auth.authResponseChange', onAuthResponse);
+           callback();
+         }
+         
+         FB.Event.subscribe('auth.authResponseChange', onAuthResponse);
+       } else {
+         callback();
+       }
+     }
+    
      window.fbAsyncInit = function() {
        FB.init({
-         appId      : '865176766847011',
-         //appId      : '1043008439063842', // TestAPP
+         //appId      : '865176766847011',
+         appId      : '1043008439063842', // TestAPP
          xfbml      : true,
          //frictionlessRequests : true,
          version    : 'v2.5'

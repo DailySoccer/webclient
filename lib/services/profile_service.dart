@@ -61,8 +61,8 @@ class ProfileService {
   }
 
   Future<Map> _onLoginResponse(Map loginResponseJson) {
-    
-    
+
+
     _server.setSessionToken(loginResponseJson["sessionToken"]); // to make the getUserProfile call succeed
     return _server.getUserProfile()
                       .then((jsonMap) => _setProfile(loginResponseJson["sessionToken"], jsonMap, true));
@@ -71,6 +71,17 @@ class ProfileService {
   Future<Map> refreshUserProfile() {
     return _server.getUserProfile()
                       .then((jsonMap) => _setProfile(_sessionToken, jsonMap, true));
+  }
+
+  Future<List<User>> getFacebookProfiles(List<String> facebookIds) {
+    return _server.getFacebookProfiles(facebookIds)
+                      .then((jsonMap) {
+        List<User> users = [];
+        if (jsonMap.containsKey("users_info")) {
+          users = jsonMap["users_info"].map((jsonMap) => new User.fromJsonObject(jsonMap)).toList();
+        }
+        return users;
+    });
   }
 
   Future<Map> changeUserProfile(String firstName, String lastName, String email, String nickName, String password) {

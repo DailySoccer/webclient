@@ -15,6 +15,7 @@ import 'package:webclient/services/server_error.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/services/facebook_service.dart';
+import 'package:webclient/models/user.dart';
 
 @Component(
    selector: 'view-contest-entry',
@@ -38,7 +39,7 @@ class ViewContestEntryComp {
   String get _getKeyForCurrentUserContest => (_profileService.isLoggedIn ? _profileService.user.userId : 'guest') + '#' + contest.contestId;
 
   bool get showInviteButton => (contest != null) ?  contest.maxEntries != contest.contestEntries.length : false;
-  
+
   // A esta pantalla entramos de varias maneras:
   bool get isModeViewing => _viewContestEntryMode == "viewing"; // Clickamos "my_contests->proximos->ver".
   bool get isModeCreated => _viewContestEntryMode == "created"; // Acabamos de crearla a traves de enter_contest
@@ -49,7 +50,7 @@ class ViewContestEntryComp {
   String get fbTitle => FacebookService.titleOfInscription();
   String get fbDescription => FacebookService.descriptionOfInscription();
   String get fbImage => FacebookService.imageOfInscription();
-  
+
   String getLocalizedText(key, [Map substitutions]) {
     return StringUtils.translate(key, "viewcontestentry", substitutions);
   }
@@ -62,6 +63,9 @@ class ViewContestEntryComp {
     contestId = _routeProvider.route.parameters['contestId'];
 
     tutorialService.triggerEnter("view_contest_entry");
+
+    _profileService.getFacebookProfiles(["1637839359811046", "10208059340630083"])
+      .then( (List<User> users) => users.forEach( (user) => print("${user.nickName}")) );
 
     _contestsService.refreshMyContestEntry(contestId)
       .then((_) {
@@ -117,7 +121,7 @@ class ViewContestEntryComp {
   void onInviteFriends() {
     String theBasicUrl = window.location.toString().split("#")[0];
     String theUrl = "${theBasicUrl}#/enter_contest/lobby/${contest.contestId}/none";
-    
+
     modalShow(      "Invita a tus amigos",
                     theUrl,
                     onOk: "Copiado",
@@ -127,7 +131,7 @@ class ViewContestEntryComp {
                  .then((resp){
                   });
   }
-  
+
 
   Map sharingInfo = {
     'description': FacebookService.descriptionOfInscription(),
@@ -138,7 +142,7 @@ class ViewContestEntryComp {
     //'dartCallback': () { print('SHARE CB'); },
     'image': FacebookService.imageOfInscription()
   };
-  
+
   Router _router;
   RouteProvider _routeProvider;
 

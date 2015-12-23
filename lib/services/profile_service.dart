@@ -56,11 +56,13 @@ class ProfileService {
     return _server.login(email, password).then(_onLoginResponse);
   }
 
-  Future<Map> facebookLogin(String accessToken) {
-    return _server.facebookLogin(accessToken).then(_onLoginResponse);
+  Future<Map> facebookLogin(String accessToken, String id, String name, String email) {
+    return _server.facebookLogin(accessToken, id, name, email).then(_onLoginResponse);
   }
 
   Future<Map> _onLoginResponse(Map loginResponseJson) {
+
+
     _server.setSessionToken(loginResponseJson["sessionToken"]); // to make the getUserProfile call succeed
     return _server.getUserProfile()
                       .then((jsonMap) => _setProfile(loginResponseJson["sessionToken"], jsonMap, true));
@@ -69,6 +71,17 @@ class ProfileService {
   Future<Map> refreshUserProfile() {
     return _server.getUserProfile()
                       .then((jsonMap) => _setProfile(_sessionToken, jsonMap, true));
+  }
+
+  Future<List<User>> getFacebookProfiles(List<String> facebookIds) {
+    return _server.getFacebookProfiles(facebookIds)
+                      .then((jsonMap) {
+        List<User> users = [];
+        if (jsonMap.containsKey("users_info")) {
+          users = jsonMap["users_info"].map((jsonMap) => new User.fromJsonObject(jsonMap)).toList();
+        }
+        return users;
+    });
   }
 
   Future<Map> changeUserProfile(String firstName, String lastName, String email, String nickName, String password) {
@@ -190,15 +203,15 @@ class ProfileService {
         String getLocalizedText(key, {substitutions: null}) {
           return StringUtils.translate(key, "notificationsmodal", substitutions);
         }
-        
+
         if(!_wasLoggedInForTriggerPopUp && ProfileService.instance.isLoggedIn) {
           List<UserNotification> achievementNotifs = ProfileService.instance.user.notifications.where( (notif) => notif.topic == 'ACHIEVEMENT_EARNED').toList();
-          
+
           if (achievementNotifs.length == 0) { return; }
           UserNotification shown = achievementNotifs[0];
           int aditionalCount = achievementNotifs.length - 1;
           String aditionalAchievemetsKey = aditionalCount > 1? 'aditional-achievements' : 'aditional-achievement-single';
-          
+
           modalShow(""
                    , '''
                     <div class="content-wrapper">
@@ -221,15 +234,15 @@ class ProfileService {
                  )
                  .then((_) => router.go('notifications', {}))
                  .catchError((_) => print('error'));
-                 
+
         }
         _wasLoggedInForTriggerPopUp = ProfileService.instance.isLoggedIn;
       });
     }
   }
-  
+
   bool _wasLoggedInForTriggerPopUp = false;
-  
+
   bool get _hasDoneLogin => window.localStorage.containsKey('user');
 
   static ProfileService _instance;

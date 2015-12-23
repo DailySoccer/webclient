@@ -22,8 +22,9 @@ abstract class ServerService {
   Future<Map> resetPassword(String password, String stormPathTokenId);
   Future<Map> signup(String firstName, String lastName, String email, String nickName, String password);
   Future<Map> login(String email, String password);
-  Future<Map> facebookLogin(String accessToken);
+  Future<Map> facebookLogin(String accessToken, String facebookID, String facebookName, String facebookEmail);
   Future<Map> getUserProfile();
+  Future<Map> getFacebookProfiles(List<String> facebookIds);
   Future<Map> changeUserProfile(String firstName, String lastName, String email, String nickName, String password);
   Future<Map> askForPasswordReset(String email);
   Future<Map> removeNotification(String notificationId);
@@ -124,8 +125,13 @@ class DailySoccerServer implements ServerService {
     return _innerServerCall("${HostServer.url}/login", postData: {'email': email, 'password': password});
   }
 
-  Future<Map> facebookLogin(String accessToken) {
-    return _innerServerCall("${HostServer.url}/facebooklogin", postData: {'accessToken': accessToken});
+  Future<Map> facebookLogin(String accessToken, String facebookID, String facebookName, String facebookEmail) {
+    return _innerServerCall("${HostServer.url}/facebooklogin", postData: {
+      'accessToken': accessToken,
+      'facebookID': facebookID,
+      'facebookName': facebookName,
+      'facebookEmail': facebookEmail
+      });
   }
 
   Future<Map> askForPasswordReset(String email) {
@@ -138,6 +144,16 @@ class DailySoccerServer implements ServerService {
 
   Future<Map> getUserProfile() {
     return _innerServerCall("${HostServer.url}/get_user_profile", cancelIfChangeContext: false);
+  }
+
+  Future<Map> getFacebookProfiles(List<String> facebookIds) {
+    String jsonFacebookIds = JSON.encode(facebookIds);
+
+    Map postData = {
+      'facebookIds': jsonFacebookIds
+    };
+
+    return _innerServerCall("${HostServer.url}/get_facebook_profiles", postData: postData);
   }
 
   Future<Map> changeUserProfile(String firstName, String lastName, String email, String nickName, String password) {

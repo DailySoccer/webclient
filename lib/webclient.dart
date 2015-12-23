@@ -42,7 +42,6 @@ import 'package:webclient/components/navigation/main_menu_f2p_comp.dart';
 import 'package:webclient/components/navigation/footer_comp.dart';
 import 'package:webclient/components/flash_messages_comp.dart';
 import 'package:webclient/components/modal_comp.dart';
-import 'package:webclient/components/facebook_share_comp.dart';
 import 'package:webclient/components/paginator_comp.dart';
 import 'package:webclient/components/lobby_f2p_comp.dart';
 import 'package:webclient/components/home_comp.dart';
@@ -62,6 +61,10 @@ import 'package:webclient/components/create_contest_comp.dart';
 import 'package:webclient/components/achievement_list_comp.dart';
 import 'package:webclient/components/achievement_comp.dart';
 
+import 'package:webclient/components/social/facebook_share_comp.dart';
+import 'package:webclient/components/social/twitter_share_comp.dart';
+import 'package:webclient/components/social/social_share_comp.dart';
+
 import 'package:webclient/components/account/login_comp.dart';
 import 'package:webclient/components/account/join_comp.dart';
 import 'package:webclient/components/account/user_profile_comp.dart';
@@ -70,7 +73,6 @@ import 'package:webclient/components/account/remember_password_comp.dart';
 import 'package:webclient/components/account/change_password_comp.dart';
 import 'package:webclient/components/account/shop_comp.dart';
 import 'package:webclient/components/account/payment_response_comp.dart';
-
 import 'package:webclient/components/account/notifications_comp.dart';
 
 import 'package:webclient/components/view_contest/view_contest_entry_comp.dart';
@@ -153,6 +155,10 @@ class WebClientApp extends Module {
     bind(TutorialService);
     bind(ToolTipService);
 
+    bind(FacebookShareComp);
+    bind(TwitterShareComp);
+    bind(SocialShareComp);
+
     bind(NgBindHtmlUnsafeDirective);
     bind(FormAutofillDecorator);
     bind(AutoFocusDecorator);
@@ -163,7 +169,6 @@ class WebClientApp extends Module {
     bind(FooterComp);
     bind(FlashMessageComp);
     bind(ModalComp);
-    bind(FacebookShareComp);
     bind(LoginComp);
     bind(JoinComp);
     bind(LobbyF2PComp);
@@ -529,7 +534,8 @@ class WebClientApp extends Module {
       if ((visibility == _ONLY_WHEN_LOGGED_IN && !ProfileService.instance.isLoggedIn) ||
           (visibility == _ONLY_WHEN_LOGGED_OUT && ProfileService.instance.isLoggedIn) /*||
           (tutorialService != null && !tutorialService.isValidTrigger(event.route.name))*/) {
-        tutorialService.skipTutorial(routePath: 'home');
+        tutorialService.skipTutorial();
+
         bEnter = false;
       }
 

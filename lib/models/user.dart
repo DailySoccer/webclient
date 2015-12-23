@@ -6,6 +6,7 @@ import 'package:logging/logging.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:intl/intl.dart';
 import 'package:webclient/models/user_notification.dart';
+import 'package:webclient/utils/fblogin.dart';
 
 class User {
   static const int MINUTES_TO_RELOAD_ENERGY = 60;
@@ -27,10 +28,23 @@ class User {
   Money managerBalance;
   Money energyBalance;
 
+  String facebookID;
+  String get profileImage {
+    Map image = FBLogin.profileImage(facebookID);
+    String url;
+    if (image['isDefault']) {
+      url = "images/icon-userProfile.png";
+    } else {
+      url = image['imageUrl'];
+    }
+    
+    return url;
+  }
+  
   num managerLevel;
   int get pointsToNextLevel {
     int level = managerLevel.toInt();
-    return (level == 5) ? MANAGER_POINTS[5] : MANAGER_POINTS[level+1];
+    return (level == MAX_MANAGER_LEVEL) ? MANAGER_POINTS[MAX_MANAGER_LEVEL] : MANAGER_POINTS[level+1];
   }
 
   DateTime lastUpdatedEnergy;
@@ -45,7 +59,7 @@ class User {
   List<String> favorites = [];
 
   // Información que se muestra en el mainMenu (se utilizará para detectar cambios en la información del perfil)
-  String get mainMenuInfo => "$userId;${energyBalance.toInt()};${managerBalance.toInt()};${goldBalance.toInt()};$trueSkill;${notifications.length};${achievements.length}";
+  String get mainMenuInfo => "$userId;$facebookID;$profileImage;${energyBalance.toInt()};${managerBalance.toInt()};${goldBalance.toInt()};$trueSkill;${notifications.length};${achievements.length}";
 
   bool hasAchievement(String achievement) => achievements.contains(achievement);
 
@@ -134,6 +148,8 @@ class User {
     firstName = (jsonMap.containsKey("firstName")) ? jsonMap["firstName"] : "";
     lastName = (jsonMap.containsKey("lastName")) ? jsonMap["lastName"] : "";
     nickName = jsonMap["nickName"];
+
+    facebookID = jsonMap.containsKey("facebookID") ? jsonMap["facebookID"] : "";
 
     email = (jsonMap.containsKey("email")) ? jsonMap["email"] : "<email: null>";
     wins = (jsonMap.containsKey("wins")) ? jsonMap["wins"] : 0;

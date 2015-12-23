@@ -5,7 +5,7 @@ import 'package:webclient/utils/fblogin.dart';
 
 @Component(
   selector: 'facebook-share',
-  templateUrl: 'packages/webclient/components/facebook_share_comp.html',
+  templateUrl: 'packages/webclient/components/social/facebook_share_comp.html',
   useShadowDom: false
 )
 class FacebookShareComp {
@@ -29,7 +29,6 @@ class FacebookShareComp {
   @NgCallback("on-share")
   void set onShare(func) { _info['dartCallback'] = func; }
   
-
   // Este es por comodidad
   @NgOneWay("parameters-by-map")
   void set info(Map allInfo) { _info = allInfo; }

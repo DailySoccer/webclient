@@ -58,7 +58,11 @@ class TutorialIniciacion extends Tutorial {
       "get_contest_info" : (url, postData) => waitCompleter( () => TrainingContestList ),
       "get_instance_soccer_player_info": (url, postData) => getContentJson(PATH + "stats-player-03.json"),
       "add_contest_entry": (url, postData) { CurrentStepId = STEP_4; return addContestEntry(postData); },
-      "buy_product": (url, postData) { profileService.user.energyBalance.amount = User.MAX_ENERGY; return emptyContent(); }
+      "buy_product": (String url, postData) {
+        profileService.user.energyBalance.amount = User.MAX_ENERGY;
+        profileService.user.goldBalance.amount = 0;
+        return emptyContent();
+      }
     }]);
 
     var serverCallsWhenVirtualContestEntry = joinMaps([defaultServerCalls, {
@@ -68,6 +72,7 @@ class TutorialIniciacion extends Tutorial {
       "get_my_active_contest": (url, postData) => waitCompleter( () => TrainingContestList ),
       "edit_contest_entry": (url, postData) => addContestEntry(postData),
       "get_my_live_contest": (url, postData) => waitCompleter( () => TrainingContestLive ),
+      "get_my_history_contest": (url, postData) => waitCompleter( () => TrainingContestHistory ),
       "get_live_match_events": (url, postData) => waitCompleter( () => LiveMatchEventsResponse )
     }]);
 
@@ -239,7 +244,7 @@ class TutorialIniciacion extends Tutorial {
                 clearTooltips();
 
                 // FIX !!!!
-                profileService.user.goldBalance.amount += 30;
+                profileService.user.goldBalance.amount += 3;
 
                 // Compra una recarga de energía.
                 showTooltip(new ToolTip(".energy-layout", tipText: getLocalizedText("msg-10b"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true));
@@ -284,35 +289,10 @@ class TutorialIniciacion extends Tutorial {
                 // TODO: Una vez recibido el evento de usuario seleccionado, dejamos de estar pendiente en el mismo.
                 removeTrigger('user_selected');
 
-                ViewContestComp liveContest = context;
-
-                var completer = new Completer();
-
                 clearTooltips();
 
-                new Timer(new Duration(seconds: 3), () {
-                  if (liveStep + 1 < LiveMatchEventsList.length) {
-                    liveStep++;
-                    liveContest.updateLive();
-
-                    //Fijate, uno de tus jugadores acaba de conseguir sus primeros puntos
-                    showTooltip(new ToolTip(".soccer-player-row[data-id='56260840c1f5fbc410f99549']", delay: new Duration(seconds: 1), tipText: getLocalizedText("msg-15"), highlight: true, position: ToolTip.POSITION_TOP, onClickCb: (_) {
-                      new Timer.periodic(new Duration(seconds: 3), (Timer t) {
-                          if (liveStep + 1 < LiveMatchEventsList.length) {
-                            liveStep++;
-                            liveContest.updateLive();
-                          }
-                          else {
-                            completer.complete(true);
-                            t.cancel();
-                          }
-                      });
-                    }));
-
-                  }
-                });
-
-                await completer.future;
+                ViewContestComp liveContest = context;
+                liveContest.updateLive();
 
                 // Enhorabuena, has ganado tu primer torneo!
                 await openModal( text: () => getLocalizedText("msg-16") );
@@ -322,7 +302,7 @@ class TutorialIniciacion extends Tutorial {
 
                 if (!isCompleted) {
                   CurrentStepId = Tutorial.STEP_END;
-                  TutorialService.Instance.skipTutorial(routePath: "join");
+                  TutorialService.Instance.skipTutorial();
                 }
               }
             },
@@ -337,12 +317,13 @@ class TutorialIniciacion extends Tutorial {
     DateTimeService.setFakeDateTime(currentDate);
 
     CurrentStepId = Tutorial.STEP_BEGIN;
-    changeUser(TutorialPlayer(energyBalance: "JPY 0.00", goldBalance: "AUD 1.00"));
+    changeUser(TutorialPlayer(energyBalance: "JPY 0.00", goldBalance: "AUD 0.00"));
 
     loadContent();
   }
 
   Future loadContent() async {
+    /*
     LiveMatchEventsList.add([]);
     LiveMatchEventsList.add( await getContentJson(PATH + "live-01.json") );
     LiveMatchEventsList.add( await getContentJson(PATH + "live-02.json") );
@@ -353,6 +334,7 @@ class TutorialIniciacion extends Tutorial {
     LiveMatchEventsList.add( await getContentJson(PATH + "live-07.json") );
     LiveMatchEventsList.add( await getContentJson(PATH + "live-08.json") );
     LiveMatchEventsList.add( await getContentJson(PATH + "live-09.json") );
+     */
     LiveMatchEventsList.add( await getContentJson(PATH + "live-10.json") );
   }
 
@@ -424,6 +406,16 @@ class TutorialIniciacion extends Tutorial {
       "soccer_players": SoccerPlayerList
   };
 
+  Map get TrainingContestHistory => {
+    "contests": [
+      TrainingContestInstanceHistory
+      ],
+      "users_info": profileService.isLoggedIn && FantasyTeam.isNotEmpty ? joinLists(UsersInfo, element: PlayerInfo) : UsersInfo,
+      "match_events": MatchEvents,
+      "soccer_teams": SoccerTeams,
+      "soccer_players": SoccerPlayerList
+  };
+
   Map get TrainingContestInstance => {
         "templateContestId": "56331d4dd4c6912cf152f1f4",
         "state": "ACTIVE",
@@ -447,6 +439,26 @@ class TutorialIniciacion extends Tutorial {
   Map get TrainingContestInstanceLive => {
         "templateContestId": "56331d4dd4c6912cf152f1f4",
         "state": "LIVE",
+        "name": "Tutorial [Entrenamiento]",
+        "contestEntries": profileService.isLoggedIn && FantasyTeam.isNotEmpty ? joinLists(ContestEntries, element: PlayerEntry) : ContestEntries,
+        "templateMatchEventIds": TemplateMatchEventIds,
+        "instanceSoccerPlayers": InstanceSoccerPlayerList,
+        "maxEntries": 20,
+        "salaryCap": 70000,
+        "entryFee": "JPY 1",
+        "prizeMultiplier": 10.0,
+        "prizeType": "FIFTY_FIFTY",
+        "startDate": currentDate.add(new Duration(minutes: 60)).millisecondsSinceEpoch,
+        "optaCompetitionId": "23",
+        "simulation": true,
+        "specialImage": "",
+        "numEntries": ContestEntries.length,
+        "_id":  "TRAINING-56331d69d4c6912cf152f201"
+  };
+
+  Map get TrainingContestInstanceHistory => {
+        "templateContestId": "56331d4dd4c6912cf152f1f4",
+        "state": "HISTORY",
         "name": "Tutorial [Entrenamiento]",
         "contestEntries": profileService.isLoggedIn && FantasyTeam.isNotEmpty ? joinLists(ContestEntries, element: PlayerEntry) : ContestEntries,
         "templateMatchEventIds": TemplateMatchEventIds,

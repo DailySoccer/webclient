@@ -21,6 +21,7 @@ import 'package:webclient/models/user.dart';
     useShadowDom: false
 )
 class ShopComp implements DetachAware{
+  static const String ERROR_USER_BALANCE_NEGATIVE = "ERROR_USER_BALANCE_NEGATIVE";
 
   LoadingService loadingService;
 
@@ -40,6 +41,13 @@ class ShopComp implements DetachAware{
   ShopComp(this._flashMessage, this._profileService, this._catalogService, this._tutorialService) {
     goldProducts = [];
     energyProducts = [];
+
+    errorMap = {
+      "_ERROR_DEFAULT_": {
+          "title"   : getLocalizedText("errordefaulttitle"),
+          "generic" : getLocalizedText("errordefaultgeneric")
+      }
+    };
 
     _catalogService.getCatalog()
       .then((catalog) {
@@ -83,6 +91,10 @@ class ShopComp implements DetachAware{
           Map product = goldProducts.firstWhere((product) => product["id"] == id, orElse: () => {});
           _flashMessage.addGlobalMessage("Has comprado [${product["description"]}]", 1);
         }
+    })
+    .catchError((ServerError error) {
+        String keyError = errorMap.keys.firstWhere( (key) => error.responseError.contains(key), orElse: () => "_ERROR_DEFAULT_" );
+        modalShow(errorMap[keyError]["title"],errorMap[keyError]["generic"]);
     });
   }
 
@@ -144,7 +156,7 @@ class ShopComp implements DetachAware{
      window.localStorage.remove("add_gold_success");
      window.localStorage.remove("add_energy_success");
    }
-   
+
   bool get canBuyEnergy => _profileService.user.energyBalance.amount < User.MAX_ENERGY;
 
   FlashMessagesService _flashMessage;

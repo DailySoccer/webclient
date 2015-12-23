@@ -56,4 +56,8 @@ class JsUtils {
         return js.context.callMethod(r'$', [selector]).callMethod(method, [params]);
       }
     }
+  
+  static void setJavascriptFunction(String functionName, Function function) {
+    js.context[functionName] = function;
+  }
 }

@@ -1,13 +1,13 @@
 <section ng-show="!loadingService.isLoading">
-
   <contest-header-f2p id="contestHeader" contest="contest" contest-id="contestId"></contest-header-f2p>
-
+  
   <!--<div class="separator-bar"></div>-->
   <div class="info-complete-bar" ng-if="!isModeViewing">
     <p class="important-info" ng-if="isModeCreated">{{getLocalizedText("created")}}</p>
     <p class="important-info" ng-if="isModeEdited">{{getLocalizedText("edited")}}</p>
     <p class="important-info" ng-if="isModeSwapped">{{getLocalizedText("swapped")}}</p>
-    <facebook-share description="fbDescription" title="fbTitle" image="fbImage"></facebook-share>
+    <social-share parameters-by-map="sharingInfo"></social-share>
+    <!--twitter-share description="fbDescription" title="fbTitle" image="fbImage"></twitter-share-->
     <p class="complementary-info">{{getLocalizedText("tip")}}</p>
   </div>
 

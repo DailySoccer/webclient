@@ -534,7 +534,8 @@ class WebClientApp extends Module {
       if ((visibility == _ONLY_WHEN_LOGGED_IN && !ProfileService.instance.isLoggedIn) ||
           (visibility == _ONLY_WHEN_LOGGED_OUT && ProfileService.instance.isLoggedIn) /*||
           (tutorialService != null && !tutorialService.isValidTrigger(event.route.name))*/) {
-        tutorialService.skipTutorial(routePath: 'home');
+        tutorialService.skipTutorial();
+
         bEnter = false;
       }
 

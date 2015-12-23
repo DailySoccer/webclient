@@ -281,11 +281,10 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
             <div class="small-text">{{getLocalizedText("registered")}} <a id="gotoLoginLink" ng-click="onAction('LOGIN', $event)"> {{getLocalizedText("loginhere")}}</a></div>
           </div>
 
-          <!--
-          Facebook stuff-->
+          <!-- Facebook stuff-->
           <div  class="user-form-field">
             <div class="fb-button-wrapper">
-              <fb:login-button scope="public_profile,email" size="large" onlogin="jsLoginFB()">
+              <fb:login-button scope="public_profile,email,user_friends" size="large" onlogin="jsLoginFB()">
               </fb:login-button>
             </div>
           </div>
@@ -365,7 +364,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
           <!--Facebook stuff-->
           <div  class="user-form-field">
             <div class="fb-button-wrapper">
-              <fb:login-button scope="public_profile,email" size="large" onlogin="jsLoginFB()">
+              <fb:login-button scope="public_profile,email,user_friends" size="large" onlogin="jsLoginFB()">
               </fb:login-button>
             </div>
           </div>
@@ -413,8 +412,8 @@ tc.put("packages/webclient/components/account/notifications_comp.html", new Http
   </div>
 
 </div>"""));
-tc.put("packages/webclient/components/account/payment_response_comp.html", new HttpResponse(200, r"""<modal>
-  <div id="paymentResponse" class="main-box">
+tc.put("packages/webclient/components/account/payment_response_comp.html", new HttpResponse(200, r"""<modal window-size="'md'">
+  <div id="paymentResponse" class="main-box air">
     <div class="panel">
 
       <div class="panel-heading">
@@ -425,7 +424,7 @@ tc.put("packages/webclient/components/account/payment_response_comp.html", new H
         </button>
       </div>
       <div class="panel-body">
-        {{descriptionText}}
+        <p>{{descriptionText}}</p>
       </div>
     </div>
   </div>
@@ -510,46 +509,62 @@ tc.put("packages/webclient/components/account/shop_comp.html", new HttpResponse(
   <div class="content">
   
     <div class="money-layout">        
-        <div class="money-tile-wrapper" ng-repeat="item in goldProducts">
-          <div class="tile">
-            <div class="header">
-              <span class="title">{{item.description}}</span>
-            </div>
-            <div class="content">
-              <img class="gold-icon" ng-src="{{item.captionImage}}">
-              <div class="content-info">
-                <span class="gold-quantity">{{item.quantity}}</span>
-                <div class="price-wrapper">
-                  <div class="free-increment" ng-if="item.freeIncrement > 0">
-                    <span class="free-increment-count">{{item.freeIncrement}}</span>
-                    <span class="free-increment-desc">{{getLocalizedText('free')}}</span>
-                  </div>
-                  <div class="button-wrapper">
-                    <button class="price" ng-click="buyGold(item.id)">{{item.price}}</button>
-                  </div>
-                </div>                
-              </div>
-              <img ng-src="{{getLocalizedText('mostpopularimagesource')}}" class="gold-item-popular" ng-if="item.isMostPopular">
-            </div>            
+      <div class="money-tile-wrapper" ng-repeat="item in goldProducts">
+        <div class="tile">
+          <div class="header">
+            <span class="title">{{item.description}}</span>
           </div>
+          <div class="content">
+            <img class="gold-icon" ng-src="{{item.captionImage}}">
+            <div class="content-info">
+              <span class="gold-quantity">{{item.quantity}}</span>
+              <div class="price-wrapper">
+                <!--div class="free-increment" ng-if="item.freeIncrement > 0">
+                  <span class="free-increment-count">{{item.freeIncrement}}</span>
+                  <span class="free-increment-desc">{{getLocalizedText('free')}}</span>
+                </div-->
+                <div class="button-wrapper">
+                  <button class="price" ng-click="buyGold(item.id)">{{item.price}}</button>
+                </div>
+              </div>                
+            </div>
+            <img ng-src="{{getLocalizedText('mostpopularimagesource')}}" class="gold-item-popular" ng-if="item.isMostPopular">
+          </div>            
         </div>
+      </div>
     </div>
     
     <div class="energy-layout">
       <div class="energy-tiles-wrapper">
         <div class="tile">
-          <div class="energy-items" ng-repeat="energyItem in energyProducts">
-            <div class="energy-separator" ng-if="$index > 0"></div>
-            <div ng-class="{'no-purchasable': !energyItem.purchasable}" class="product">
-              <img class="energy-icon" ng-src="{{energyItem.captionImage}}">
+          <div class="energy-item">
+            <!--div class="energy-separator" ng-if="$index > 0"></div-->
+            
+            <div class="item-title">
+              <span>RECARGA</span>
+              <div><img class="energy-icon" src="images/icon-FullEnergy.png"></div>
+              <span>ENERGÍA</span>
+            </div>
+            <div class="product" ng-repeat="energyItem in energyProducts">
               <div class="energy-description">{{energyItem.description}}</div>
+              <img class="product-image" ng-src="{{energyItem.captionImage}}">
               <div ng-switch="energyItem.purchasable">
                 <div class="button-wrapper" ng-switch-when="true">
-                  <button class="refill-button" ng-click="buyEnergy(energyItem.id)">
+                  <button class="refill-button" ng-class="{'disabled': !canBuyEnergy}" ng-click="buyEnergy(energyItem.id)">
                     <span class="quantity">{{energyItem.price}}</span>
                   </button>
                 </div>
-                <div class="button-wrapper" ng-switch-when="false">
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="energy-refill-counter">
+            <div class="product">
+              <img class="energy-icon" src="images/iconEnergyLevelUp.png">
+              <div class="energy-description">{{timeLeft != '' ? getLocalizedText("refillable") :  getLocalizedText("no-refillable")}}</div>
+              <div>
+                <div class="button-wrapper">
                   <span  class="product-time-left" ng-if="timeLeft != ''">{{timeLeft}}</span>
                 </div>
               </div>
@@ -559,7 +574,9 @@ tc.put("packages/webclient/components/account/shop_comp.html", new HttpResponse(
       </div>
     </div>
   </div>
-</div> """));
+</div> 
+
+<ng-view></ng-view>"""));
 tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpResponse(200, r"""<div id="viewProfileContent">
   <div class="default-section-header">{{getLocalizedText('title')}}</div>
   <div class="profile-content">
@@ -612,14 +629,7 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
     </div>
   </div>
 </div>"""));
-tc.put("packages/webclient/components/achievement_comp.html", new HttpResponse(200, r"""<div class="achievement {{achiev.style}}" ng-class="{'earned': earned}">
-  <div class="achievement-icon">
-    <img ng-src="images/achievements/{{achiev.image}}" ng-if="achiev.image != ''">
-    <span class="achievement-level" ng-if="achiev.level != -1">{{achiev.level}}</span>
-  </div>
-  <div class="achievement-name">{{achiev.name}}</div>
-  <div class="achievement-description">{{achiev.description}}</div>
-</div>"""));
+tc.put("packages/webclient/components/achievement_comp.html", new HttpResponse(200, r"""<div ng-bind-html="theHtml"></div>"""));
 tc.put("packages/webclient/components/achievement_list_comp.html", new HttpResponse(200, r"""<div id="achievement-list-wrapper">
   <achievement ng-repeat="achiev in achievementList" enabled="achievementEarned(achiev.id)" key="achiev.id"></achievement>
   <div class="clearfix"></div>
@@ -1058,13 +1068,14 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
                       <span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{formatCurrency(printableAvailableSalary)}}</span>
                     </div>
                 </div>
-                
+
                 <lineup-selector ng-show="!isSelectingSoccerPlayer || scrDet.isNotXsScreen"
                                  not-enough-resources="!enoughResourcesForEntryFee"
                                  resource="resourceName"
                                  has-max-players-same-team="playersInSameTeamInvalid"
                                  has-negative-balance="isNegativeBalance"
                                  manager-level="playerManagerLevel"
+                                 contest="contest"
                                  lineup-slots="lineupSlots"
                                  on-lineup-slot-selected="onLineupSlotSelected(slotIndex)"
                                  formation-id="formationId"
@@ -1083,6 +1094,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
                 <soccer-players-list soccer-players="allSoccerPlayers"
                                      lineup-filter="lineupSlots"
                                      manager-level="playerManagerLevel"
+                                     contest="contest"
                                      favorites-list="favoritesPlayers" only-favorites="onlyFavorites"
                                      field-pos-filter="fieldPosFilter" name-filter="nameFilter" match-filter="matchFilter"
                                      on-row-click="onRowClick(soccerPlayerId)"
@@ -1305,19 +1317,6 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_filter_comp.h
 
   <input type="text" class="name-player-input-filter" placeholder="{{getLocalizedText('search-player', group: 'soccerplayerlist')}}" ng-model="nameFilter" />
 </div>"""));
-tc.put("packages/webclient/components/facebook_share_comp.html", new HttpResponse(200, r"""<div class="facebook-share-wrapper">
-  <div class="facebook-like">
-    <fb:like href="https://www.facebook.com/epicelevenfantasy" layout="button_count" action="like" />
-  </div>
-  <div class="facebook-share-button" ng-click="shareOnFB()">
-    <img src="images/iconFacebook.png"/> Share
-  </div>
-  <script>
-    if (typeof FB !== "undefined" && FB != null) {
-      FB.XFBML.parse();
-    }
-  </script>
-</div>"""));
 tc.put("packages/webclient/components/home_comp.html", new HttpResponse(200, r"""<div id="homeRoot">
   <!--
   Torneos
@@ -1509,14 +1508,15 @@ tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", ne
   </div>
 
 </div>
+<ng-view></ng-view>
 """));
 tc.put("packages/webclient/components/legalese_and_help/how_it_works_comp.html", new HttpResponse(200, r"""<div id="helpInfo">
   <div class="block-light" id="help-info-1">
     <div class="title" ng-bind-html="getLocalizedText('point1title')"></div>
     <div class="description" ng-bind-html="getLocalizedText('point1content')"></div>
     <div class="img-wrapper">
-      <img src="images/help01-xs.jpg" ng-if="scrDet.isXsScreen">
-      <img src="images/help01.png" ng-if="!scrDet.isXsScreen">
+      <img src="images/help/help01-xs.jpg" ng-if="scrDet.isXsScreen">
+      <img src="images/help/help01.png" ng-if="!scrDet.isXsScreen">
     </div>
   </div>
   
@@ -1524,8 +1524,8 @@ tc.put("packages/webclient/components/legalese_and_help/how_it_works_comp.html",
     <div class="title" ng-bind-html="getLocalizedText('point2title')"></div>
     <div class="description" ng-bind-html="getLocalizedText('point2content')"></div>
     <div class="img-wrapper">
-      <img src="images/help03-xs.jpg" ng-if="scrDet.isXsScreen">
-      <img src="images/help03.png" ng-if="!scrDet.isXsScreen">
+      <img src="images/help/help03-xs.jpg" ng-if="scrDet.isXsScreen">
+      <img src="images/help/help03.png" ng-if="!scrDet.isXsScreen">
     </div>
   </div>
   
@@ -1533,8 +1533,8 @@ tc.put("packages/webclient/components/legalese_and_help/how_it_works_comp.html",
     <div class="title" ng-bind-html="getLocalizedText('point3title')"></div>
     <div class="description" ng-bind-html="getLocalizedText('point3content')"></div>
     <div class="img-wrapper">
-      <img src="images/help04-xs.jpg" ng-if="scrDet.isXsScreen">
-      <img src="images/help04.png" ng-if="!scrDet.isXsScreen">
+      <img src="images/help/help04-xs.jpg" ng-if="scrDet.isXsScreen">
+      <img src="images/help/help04.png" ng-if="!scrDet.isXsScreen">
     </div>
     <div class="description" ng-bind-html="getLocalizedText('point3content2')"></div>
   </div>
@@ -1543,7 +1543,7 @@ tc.put("packages/webclient/components/legalese_and_help/how_it_works_comp.html",
     <div class="title" ng-bind-html="getLocalizedText('point4title')"></div>
     <div class="block-last">
       <div class="img-wrapper-left">
-        <img src="images/help06.jpg">
+        <img src="images/help/help06.jpg">
       </div>
       <div class="description-right">
         <p ng-bind-html="getLocalizedText('point4description')"></p>
@@ -1551,6 +1551,49 @@ tc.put("packages/webclient/components/legalese_and_help/how_it_works_comp.html",
       </div>
     </div>
   </div-->
+</div>"""));
+tc.put("packages/webclient/components/legalese_and_help/how_to_create_contest_comp.html", new HttpResponse(200, r"""<div id="helpInfo">
+  <div class="block-light" id="help-info-1">
+    <div class="title" ng-bind-html="getLocalizedText('point1title')"></div>
+    <div class="description" ng-bind-html="getLocalizedText('point1content')"></div>
+    <div class="img-wrapper">
+      <img src="images/help/helpCrearTorneos1XS.png" ng-if="scrDet.isXsScreen">
+      <img src="images/help/helpCrearTorneos1.png" ng-if="!scrDet.isXsScreen">
+    </div>
+  </div>
+  
+  <div class="block-dark" id="help-info-2">
+    <div class="title" ng-bind-html="getLocalizedText('point2title')"></div>
+    <div class="description" ng-bind-html="getLocalizedText('point2content')"></div>
+    <div class="img-wrapper">
+      <img src="images/help/helpCrearTorneos2XS.png" ng-if="scrDet.isXsScreen">
+      <img src="images/help/helpCrearTorneos2.png" ng-if="!scrDet.isXsScreen">
+    </div>
+  </div>
+  
+  <div class="block-light" id="help-info-3">
+    <div class="title" ng-bind-html="getLocalizedText('point3title')"></div>
+    <div class="description" ng-bind-html="getLocalizedText('point3content')"></div>
+    <div class="img-wrapper">
+      <img src="images/help/helpCrearTorneos3XS.png" ng-if="scrDet.isXsScreen">
+      <img src="images/help/helpCrearTorneos3.png" ng-if="!scrDet.isXsScreen">
+    </div>
+  </div>
+  
+   <div class="block-dark" id="help-info-4">
+    <div class="title" ng-bind-html="getLocalizedText('point4title')"></div>
+    <div class="description" ng-bind-html="getLocalizedText('point4content')"></div>
+    <div class="img-wrapper">
+      <img src="images/help/helpCrearTorneos4XS.png" ng-if="scrDet.isXsScreen">
+      <img src="images/help/helpCrearTorneos4.png" ng-if="!scrDet.isXsScreen">
+    </div>
+    <div class="button-wrapper">
+      <button type="button" class="button-back" ng-click="goToPage('help_info')">{{getLocalizedText("button-back")}}</button>
+    </div>
+  </div>
+  
+  
+  
 </div>"""));
 tc.put("packages/webclient/components/legalese_and_help/legal_info_comp.html", new HttpResponse(200, r"""<div id="staticInfo">
   <!-- header title -->
@@ -1684,7 +1727,7 @@ tc.put("packages/webclient/components/legalese_and_help/tutorials_comp.html", ne
   <div class="tutorial-tile">
     <h1 class="tutorial-title">{{getLocalizedText("how-to-create-contest")}}</h1>
     <!--p class="tutorial-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p-->
-    <span class="incoming">{{getLocalizedText("incoming")}}.</span>
+    <button type="button" class="button-go-tutorial" ng-click="goToPage('howtocreatecontest')">{{getLocalizedText("go-to-help")}}</button>
   </div>
 </div>"""));
 tc.put("packages/webclient/components/lobby_f2p_comp.html", new HttpResponse(200, r"""<div id="lobbyf2pRoot">
@@ -1897,14 +1940,14 @@ tc.put("packages/webclient/components/scouting/scouting_comp.html", new HttpResp
         <!-- Tab del contenido normal de seleccion de lineup -->
         <div class="tab-pane active" id="spanish-league">
             <scouting-league team-list="teamListES" soccer-player-list="allSoccerPlayersES" 
-                             on-action-button="onFavoritesChange(soccerPlayer)"
+                             on-action-button="onFavoritesChange(soccerPlayer)" id-sufix="'ES'"
                              favorites-player-list="favoritesPlayers"></scouting-league>
         </div>
         
         <!-- El otro tab, el del contest-info  -->
         <div class="tab-pane" id="premier-league">
             <scouting-league team-list="teamListUK" soccer-player-list="allSoccerPlayersUK" 
-                             on-action-button="onFavoritesChange(soccerPlayer)"
+                             on-action-button="onFavoritesChange(soccerPlayer)" id-sufix="'UK'"
                              favorites-player-list="favoritesPlayers"></scouting-league>
         </div>
 
@@ -1916,7 +1959,7 @@ tc.put("packages/webclient/components/scouting/scouting_comp.html", new HttpResp
 
 <ng-view></ng-view>"""));
 tc.put("packages/webclient/components/scouting/scouting_league_comp.html", new HttpResponse(200, r"""<!-- Este sera el selector de partidos en "grande", con botones-->
-<teams-filter team-list="teamList" selected-option="teamFilter"></teams-filter>
+<teams-filter team-list="teamList" selected-option="teamFilter" id-sufix="idSufix"></teams-filter>
 
 <div class="enter-contest-soccer-players-wrapper">
   <div class="enter-contest-soccer-players">
@@ -1931,31 +1974,12 @@ tc.put("packages/webclient/components/scouting/scouting_league_comp.html", new H
                          on-action-click="onSoccerPlayerActionButton(soccerPlayer)"></soccer-players-list>
   </div>
 </div>"""));
-tc.put("packages/webclient/components/scouting/teams_filter_comp.html", new HttpResponse(200, r"""<!--div class="teams-toggler-wrapper">
-  <div id="teamsToggler" type="button" class="teams-toggler"  ng-class="{'toggleOff': !isTeamsPanelOpen, 'toggleOn': isTeamsPanelOpen }" ng-click="toggleTeamsPanel()"  data-toggle="collapse" data-target="#teamsPanel">{{buttonText}}</div>
-</div>
-<div id="teamsPanelRoot" ng-show="isShown" class="animate">
-
-  <div class="teams-comp-bar" >
-
-    <div id="teamsPanel" class="teams-container collapse" ng-class="{'in': isTeamsPanelOpen }">
-      <div class="top-border"></div>
-      <div class="teams-box" ng-repeat="match in matchEventsSorted">
-        <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index)"></div>
-      </div>
-      <div class="bottom-border"></div>
-    </div>
-  </div>
-
-</div-->
-
-
-<div class="teams-toggler-wrapper">
+tc.put("packages/webclient/components/scouting/teams_filter_comp.html", new HttpResponse(200, r"""<div class="teams-toggler-wrapper">
   <div id="teamsToggler" type="button" class="teams-toggler"  ng-click="toggleTeamsPanel()" 
        ng-class="{'toggleOff': !isTeamsPanelOpen, 'toggleOn': isTeamsPanelOpen }"  data-toggle="collapse" 
-       data-target="#teamsFilterWrapper">{{buttonText}}</div>
+       data-target="#teamsFilterWrapper{{idSufix}}">{{buttonText}}</div>
 </div>
-<div id="teamsFilterWrapper" class="collapse in">
+<div id="teamsFilterWrapper{{idSufix}}" class="teams-filter-wrapper collapse in">
   <div id="teamsFilterButtons" class="teams-filter-buttons">
     <div class="teams-filter-wrapper" ng-repeat="team in teamList" >
       <button class="btn btn-default button-filter-team" ng-bind-html="teamHTML(team)" id="team-{{team.id}}"
@@ -1963,6 +1987,27 @@ tc.put("packages/webclient/components/scouting/teams_filter_comp.html", new Http
       </button>
     </div>
   </div>
+</div>"""));
+tc.put("packages/webclient/components/social/facebook_share_comp.html", new HttpResponse(200, r"""<div class="facebook-share-wrapper">
+  <div class="facebook-share-button" ng-click="shareOnFB()">
+    <img src="images/iconFacebook.png"/> Compartir
+  </div>
+  <div class="facebook-like">
+    <fb:like href="https://www.facebook.com/epicelevenfantasy" layout="button_count" action="like" />
+  </div>
+  <script>
+    if (typeof FB !== "undefined" && FB != null) {
+      FB.XFBML.parse();
+    }
+  </script>
+</div>"""));
+tc.put("packages/webclient/components/social/social_share_comp.html", new HttpResponse(200, r"""<div class="social-share-wrapper">
+  <facebook-share parameters-by-map="sharingInfo"></facebook-share>
+  <twitter-share parameters-by-map="sharingInfo"></twitter-share>
+</div>"""));
+tc.put("packages/webclient/components/social/twitter_share_comp.html", new HttpResponse(200, r"""<div class="twitter-share-wrapper">
+  <div id="twitterShareButton" class="twitter-share-button-wrapper"></div>
+  <div id="twitterFollowButton" class="twitter-follow-button-wrapper"></div>
 </div>"""));
 tc.put("packages/webclient/components/tutorial_list_comp.html", new HttpResponse(200, r"""<div id="tutorialListRoot">
   
@@ -2114,15 +2159,15 @@ tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new 
 </section>
 """));
 tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html", new HttpResponse(200, r"""<section ng-show="!loadingService.isLoading">
-
   <contest-header-f2p id="contestHeader" contest="contest" contest-id="contestId"></contest-header-f2p>
-
+  
   <!--<div class="separator-bar"></div>-->
   <div class="info-complete-bar" ng-if="!isModeViewing">
     <p class="important-info" ng-if="isModeCreated">{{getLocalizedText("created")}}</p>
     <p class="important-info" ng-if="isModeEdited">{{getLocalizedText("edited")}}</p>
     <p class="important-info" ng-if="isModeSwapped">{{getLocalizedText("swapped")}}</p>
-    <facebook-share description="fbDescription" title="fbTitle" image="fbImage"></facebook-share>
+    <social-share parameters-by-map="sharingInfo"></social-share>
+    <!--twitter-share description="fbDescription" title="fbTitle" image="fbImage"></twitter-share-->
     <p class="complementary-info">{{getLocalizedText("tip")}}</p>
   </div>
 

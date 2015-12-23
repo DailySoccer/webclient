@@ -135,6 +135,8 @@ class TutorialService {
     */
 
     modalClose(type: 'welcome');
+    modalClose(type: 'generic');
+
     _ttservice.clear();
     BackdropComp.instance.hide(forceUpdate: true);
     querySelector('body').classes.remove('tutorial');

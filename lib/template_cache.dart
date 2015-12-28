@@ -408,6 +408,10 @@ tc.put("packages/webclient/components/account/notifications_comp.html", new Http
       <span class="close-button" ng-click="closeNotification(notification.id)"><img src="images/alertCloseButton.png"></span>
 
     </div>
+    
+    <div class="notification-list-empty" ng-if="notificationList.length == 0">
+      {{getLocalizedText('notification-list-empty')}}
+    </div>
 
   </div>
 
@@ -870,6 +874,7 @@ tc.put("packages/webclient/components/contests_list_f2p_comp.html", new HttpResp
       <div class="tournament-and-type-section">
         <span class="{{getSourceFlag(contest)}}"></span>
         <span class="contest-type {{getContestTypeIcon(contest)}}"></span>
+        <span class="friends-in" ng-if="(!userIsRegistered(contest)) && friendsCount(contest) > 0"><span class="count">{{friendsCount(contest)}}</span></span>
       </div>
       
     </div>
@@ -1036,12 +1041,14 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
 
   <contest-header-f2p id="contestHeader" contest="contest" contest-id="contestId" show-matches="false"></contest-header-f2p>
 
+  <friends-bar user-list="filteredFriendList" show-challenge="false"></friends-bar>
+  
   <!-- Nav tabs -->
   <ul class="enter-contest-tabs" role="tablist">
     <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('lineup-tab-content')">{{getLocalizedText("tablineup")}}</a></li>
     <li><a role="tab" data-toggle="tab" ng-click="tabChange('contest-info-tab-content')">{{getLocalizedText("tabcontestinfo")}}</a></li>
   </ul>
-
+  
   <div id="enterContest">
     <div class="tabs">
       <div class="tab-content">
@@ -1992,7 +1999,7 @@ tc.put("packages/webclient/components/social/facebook_share_comp.html", new Http
   <div class="facebook-share-button" ng-click="shareOnFB()">
     <img src="images/iconFacebook.png"/> Compartir
   </div>
-  <div class="facebook-like">
+  <div class="facebook-like"  ng-show="showLike">
     <fb:like href="https://www.facebook.com/epicelevenfantasy" layout="button_count" action="like" />
   </div>
   <script>
@@ -2001,13 +2008,21 @@ tc.put("packages/webclient/components/social/facebook_share_comp.html", new Http
     }
   </script>
 </div>"""));
+tc.put("packages/webclient/components/social/friends_bar_comp.html", new HttpResponse(200, r"""<div class="friends-bar-wrapper">
+  <div class="friend-element-wrapper" ng-repeat="user in fbUsers">
+    <img class="friend-picture" ng-src="{{user.profileImage}}">
+    <span class="friend-name">{{user.nickName}}</span>
+    <span class="friend-manager-level"><span class="amount">{{user.managerLevel}}</span></span>
+    <button class="challenge-friend" ng-click="onChallenge({'user': user})" ng-if="showChallenge">Retar</button>
+  </div>
+</div>"""));
 tc.put("packages/webclient/components/social/social_share_comp.html", new HttpResponse(200, r"""<div class="social-share-wrapper">
-  <facebook-share parameters-by-map="sharingInfo"></facebook-share>
-  <twitter-share parameters-by-map="sharingInfo"></twitter-share>
+  <facebook-share parameters-by-map="sharingInfo" show-like="showLike"></facebook-share>
+  <twitter-share parameters-by-map="sharingInfo" show-like="showLike"></twitter-share>
 </div>"""));
 tc.put("packages/webclient/components/social/twitter_share_comp.html", new HttpResponse(200, r"""<div class="twitter-share-wrapper">
   <div id="twitterShareButton" class="twitter-share-button-wrapper"></div>
-  <div id="twitterFollowButton" class="twitter-follow-button-wrapper"></div>
+  <div id="twitterFollowButton" class="twitter-follow-button-wrapper" ng-show="showLike"></div>
 </div>"""));
 tc.put("packages/webclient/components/tutorial_list_comp.html", new HttpResponse(200, r"""<div id="tutorialListRoot">
   
@@ -2099,10 +2114,9 @@ tc.put("packages/webclient/components/view_contest/teams_panel_comp.html", new H
 </div>"""));
 tc.put("packages/webclient/components/view_contest/users_list_comp.html", new HttpResponse(200, r"""<div id="usersListRoot" >
 
-  <div ng-class="{'users-header-next': isViewContestEntryMode, 'users-header' : !isViewContestEntryMode, 'invite-friends-wrapper' : showInvite}">
+  <div ng-class="{'users-header-next': isViewContestEntryMode, 'users-header' : !isViewContestEntryMode}">
     <h1>{{getLocalizedText("title")}}</h1>
     <h2 ng-if="!isViewContestEntryMode">{{getLocalizedText("desc")}}:</h2>
-    <h2 ng-if="showInvite" ng-click="onInviteFriends()" class="invite-friends">{{getLocalizedText("invite_text")}}</h2>
   </div>
 
   <div class="users-table-header">
@@ -2166,11 +2180,16 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
     <p class="important-info" ng-if="isModeCreated">{{getLocalizedText("created")}}</p>
     <p class="important-info" ng-if="isModeEdited">{{getLocalizedText("edited")}}</p>
     <p class="important-info" ng-if="isModeSwapped">{{getLocalizedText("swapped")}}</p>
-    <social-share parameters-by-map="sharingInfo"></social-share>
+    <h2 ng-click="onInviteFriends()" class="invite-friends">{{getLocalizedText("invite_text")}}</h2>
+    <!--social-share parameters-by-map="sharingInfo" inline></social-share-->
     <!--twitter-share description="fbDescription" title="fbTitle" image="fbImage"></twitter-share-->
     <p class="complementary-info">{{getLocalizedText("tip")}}</p>
   </div>
-
+  
+  
+  <friends-bar user-list="filteredFriendList" on-challenge="onChallenge(user)"></friends-bar>
+  
+  
   <div id="viewContestEntry" ng-switch="scrDet.isXsScreen" >
     <div ng-switch-when="true">
       <!-- Tabs de la versión XS -->
@@ -2185,7 +2204,7 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
     </div>
     <div ng-switch-when="false">
       <fantasy-team id="userFantasyTeam" contest-entry="mainPlayer" watch="updatedDate" is-opponent="false"></fantasy-team>
-      <users-list show-invite="showInviteButton" on-invite-friends="onInviteFriends()" id="usersList" ng-show="selectedOpponent == null" contest-entries="contestEntries" watch="updatedDate"></users-list>
+      <users-list id="usersList" ng-show="selectedOpponent == null" contest-entries="contestEntries" watch="updatedDate"></users-list>
     </div>
 
 
@@ -2201,7 +2220,6 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
 <!-- End Nuevos Bottons Autocentrables-->
 
 
-
       <!--Viejos Bottons
       <div class="button-wrapper">
         <button type="button" class="btn-cancel-contest" ng-click="cancelContestEntry()">ABANDON</button>
@@ -2215,6 +2233,19 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
     </div>
     <div class="clear-fix-bottom"></div>
   </div>
+  
+  <div class="share-methods-modal-content" id="shareMethodsContent">
+    <div class="share-method">
+      <p>Puedes compartir el enlace del torneo en tu perfil de Facebook</p>
+      <social-share parameters-by-map="sharingInfo" inline></social-share>
+    </div>
+    <div class="share-method">
+      <p>o enviarlo por mail a los amigos que quieras.</p>
+      <p class="important">Copia y envia este enlace a tus amigos</p>
+      <span class="share-url">http://jugar.epiceleven.com/#/enter_contest/lobby/567ac1a6e4b0a538cf739014/none</span>
+    </div>
+  </div>
+  
 <ng-view></ng-view>
 </section>"""));
 tc.put("packages/webclient/components/week_calendar_comp.html", new HttpResponse(200, r"""<div class="week-calendar">

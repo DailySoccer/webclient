@@ -25,6 +25,10 @@
       <span class="close-button" ng-click="closeNotification(notification.id)"><img src="images/alertCloseButton.png"></span>
 
     </div>
+    
+    <div class="notification-list-empty" ng-if="notificationList.length == 0">
+      {{getLocalizedText('notification-list-empty')}}
+    </div>
 
   </div>
 

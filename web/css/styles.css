@@ -24251,6 +24251,16 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
   display: none !important;
   visibility: hidden !important;
 }
+#notificationsComp .notification-list-wrapper .notification-list-empty {
+  text-align: center;
+  margin: 100px 0;
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 20pt;
+  color: #434343;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(67, 67, 67, 0.004);
+}
 #alertRoot.achievementEarned .panel {
   background-image: url("../images/BgModalesEspeciales.jpg");
   background-size: cover;

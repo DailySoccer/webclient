@@ -818,6 +818,8 @@
     ,"notifications"                    :
     {
       "name"                            : "NOTIFICACIONES",
+      
+      "notification-list-empty"         : "No hay notificaciones pendientes",
 
       "NEW_SPECIAL_EVENT_ACTIVE"        : "NEW_SPECIAL_EVENT_ACTIVE",
       "NEW_SPECIAL_EVENT_ACTIVE_BTN"    : "Participar",

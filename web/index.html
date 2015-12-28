@@ -293,7 +293,7 @@
         var shareWrapper = document.getElementById('twitterShareButton');
         var followWrapper = document.getElementById('twitterFollowButton');
         
-        if (shareWrapper != null && typeof twttr !== "undefined" && twttr != null) {
+        if (followWrapper != null && shareWrapper != null && typeof twttr !== "undefined" && twttr != null) {
           var l = 0;
           for(l = shareWrapper.children.length -1; l >= 0; l--) {
             shareWrapper.children[l].remove();
@@ -307,8 +307,6 @@
               via: options['via']
             }
           );
-        }
-        if (followWrapper != null && typeof twttr !== "undefined" && twttr != null) {
           
           for(l = followWrapper.children.length -1; l >= 0; l--) {
             followWrapper.children[l].remove();
@@ -319,12 +317,13 @@
             { showScreenName: 'false' }
           );
         }
-        if (shareWrapper != null && followWrapper != null) {
-          twitterLoaderProcess = null;
-        }
-        if ((shareWrapper == null && followWrapper == null) || typeof twttr === "undefined" || twttr == null) {
+        
+        if (shareWrapper == null || followWrapper == null || typeof twttr === "undefined" || twttr == null) {
           if (twitterLoaderProcess == null) {
-            twitterLoaderProcess = setTimeout(function () { loadTwitterWidgets(options); }, 100);
+            twitterLoaderProcess = setTimeout(function () { 
+              twitterLoaderProcess = null;
+              loadTwitterWidgets(options); 
+            }, 100);
           } 
         }
       }

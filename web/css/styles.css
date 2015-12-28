@@ -12711,8 +12711,7 @@ main-menu-f2p {
 main-menu-f2p {
   height: 87px;
 }
-main-menu-f2p:after {
-  content: "VERSIÓN BETA";
+main-menu-f2p .beta-label {
   font-family: 'Exo', sans-serif;
   font-weight: 600;
   font-size: 8pt;
@@ -12730,7 +12729,7 @@ main-menu-f2p:after {
   border-radius: 0;
   z-index: 998;
 }
-.global-logged-in main-menu-f2p:after {
+.global-logged-in main-menu-f2p .beta-label {
   position: fixed;
   display: block;
   top: 70px;
@@ -20849,21 +20848,6 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
     padding-right: 15px;
   }
 }
-#usersListRoot .invite-friends-wrapper h1 {
-  margin-top: 10px;
-  margin-bottom: 5px;
-}
-#usersListRoot .invite-friends-wrapper .invite-friends {
-  font-family: 'Exo', sans-serif;
-  font-weight: 600;
-  font-size: 12pt;
-  color: #59add5;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
-  margin: 0;
-  text-align: center;
-  cursor: pointer;
-}
 .global-user-profile #mainWrapper.wrapper-content-container {
   background-color: #ffffff;
 }
@@ -21436,18 +21420,167 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   color: #0d75a6;
   text-transform: uppercase;
   text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
+  margin-bottom: 5px;
 }
 .info-complete-bar p.complementary-info {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 10pt;
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 12pt;
   color: #777777;
   text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   text-transform: uppercase;
 }
-.info-complete-bar facebook-share {
-  display: block;
-  margin-bottom: 10px;
+.info-complete-bar .invite-friends {
+  margin: 0;
+  color: #333333;
+  background-color: #ffffff;
+  border-color: #cccccc;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  background-color: #59add5;
+  color: #ffffff;
+  outline: none !important;
+  line-height: 25px;
+  margin-bottom: 8px;
+}
+.info-complete-bar .invite-friends:hover,
+.info-complete-bar .invite-friends:focus,
+.info-complete-bar .invite-friends:active,
+.info-complete-bar .invite-friends.active,
+.open .dropdown-toggle.info-complete-bar .invite-friends {
+  color: #333333;
+  background-color: #ebebeb;
+  border-color: #adadad;
+}
+.info-complete-bar .invite-friends:active,
+.info-complete-bar .invite-friends.active,
+.open .dropdown-toggle.info-complete-bar .invite-friends {
+  background-image: none;
+}
+.info-complete-bar .invite-friends.disabled,
+.info-complete-bar .invite-friends[disabled],
+fieldset[disabled] .info-complete-bar .invite-friends,
+.info-complete-bar .invite-friends.disabled:hover,
+.info-complete-bar .invite-friends[disabled]:hover,
+fieldset[disabled] .info-complete-bar .invite-friends:hover,
+.info-complete-bar .invite-friends.disabled:focus,
+.info-complete-bar .invite-friends[disabled]:focus,
+fieldset[disabled] .info-complete-bar .invite-friends:focus,
+.info-complete-bar .invite-friends.disabled:active,
+.info-complete-bar .invite-friends[disabled]:active,
+fieldset[disabled] .info-complete-bar .invite-friends:active,
+.info-complete-bar .invite-friends.disabled.active,
+.info-complete-bar .invite-friends[disabled].active,
+fieldset[disabled] .info-complete-bar .invite-friends.active {
+  background-color: #ffffff;
+  border-color: #cccccc;
+}
+.info-complete-bar .invite-friends .badge {
+  color: #ffffff;
+  background-color: #333333;
+}
+.info-complete-bar .invite-friends:focus,
+.info-complete-bar .invite-friends:active:focus,
+.info-complete-bar .invite-friends.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.info-complete-bar .invite-friends:hover,
+.info-complete-bar .invite-friends:focus {
+  color: #333333;
+  text-decoration: none;
+}
+.info-complete-bar .invite-friends:active,
+.info-complete-bar .invite-friends.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.info-complete-bar .invite-friends.disabled,
+.info-complete-bar .invite-friends[disabled],
+fieldset[disabled] .info-complete-bar .invite-friends {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.info-complete-bar .invite-friends:active,
+.info-complete-bar .invite-friends.active {
+  box-shadow: none;
+}
+.info-complete-bar .invite-friends:active:focus,
+.info-complete-bar .invite-friends.active:focus {
+  color: #ffffff;
+  background-color: #82c1df;
+}
+.info-complete-bar .invite-friends:active:hover,
+.info-complete-bar .invite-friends.active:hover {
+  color: #ffffff;
+  background-color: #82c1df;
+}
+.info-complete-bar .invite-friends:focus {
+  background-color: #59add5;
+  color: #ffffff;
+}
+.info-complete-bar .invite-friends:hover {
+  background-color: #6db7da;
+  outline: none !important;
+  color: #ffffff;
+}
+.info-complete-bar .invite-friends:hover:focus {
+  background-color: #59add5;
+  color: #ffffff;
+}
+.info-complete-bar .invite-friends:active,
+.info-complete-bar .invite-friends.active {
+  box-shadow: none;
+  background-color: #59add5;
+}
+.info-complete-bar .invite-friends:hover {
+  background-color: #6db7da;
+  outline: none !important;
+  color: #ffffff;
+}
+.info-complete-bar .invite-friends.disabled,
+.info-complete-bar .invite-friends[disabled],
+fieldset[disabled] .info-complete-bar .invite-friends {
+  background-color: #82c1df;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+.info-complete-bar .invite-friends.close {
+  background-color: #59add5;
+  outline: none !important;
+  color: #ffffff;
 }
 .view-contest-entry-actions-wrapper {
   margin-left: 0;

@@ -85,6 +85,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     <nav id="mainMenu" class="${navClass}" role="navigation">
       ${innerHtml}
     </nav>
+    <span class='beta-label'>${StringUtils.translate('beta', 'mainmenu')}</span>
     ''';
 
     _rootElement.setInnerHtml(finalHtml, treeSanitizer: NULL_TREE_SANITIZER);

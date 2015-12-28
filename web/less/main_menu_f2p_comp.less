@@ -9,8 +9,7 @@ main-menu-f2p {
 main-menu-f2p when (@beta) {
 	height: 87px;
 	
-	&:after {
-		content: "VERSIÓN BETA";
+	.beta-label {
 		.exo_bold(8pt, @black);
 		display: inline-block;
 		width: 100%;
@@ -21,7 +20,7 @@ main-menu-f2p when (@beta) {
 		z-index: 998;
 	}
 }
-.global-logged-in main-menu-f2p:after when (@beta) {
+.global-logged-in main-menu-f2p .beta-label when (@beta) {
 	position: fixed;
 	display: block;
 	top: 70px;

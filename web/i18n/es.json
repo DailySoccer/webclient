@@ -422,7 +422,10 @@
       "howitworks2"                     : "Cómo funciona",
       "logout"                          : "Salir",
       "login"                           : "Entrar",
-      "signup"                          : "Regístrate"
+      "signup"                          : "Regístrate",
+      
+      
+      "beta"                          : "Versión Beta"
     }
     ,"contestlist"                      :
     {
@@ -483,7 +486,6 @@
     ,"userlist"                         :
     {
       "title"                           : "PARTICIPANTES DEL TORNEO",
-      "invite_text"                     : "Invitar amigos",
       "desc"                            : "Elige un participante para comparar su alineación",
       "pos"                             : "POS",
       "player"                          : "JUGADOR",
@@ -507,6 +509,7 @@
       "users"                           : "Usuarios",
       "backtocontests"                  : "VUELVE A LOS TORNEOS",
       "cancel"                          : "SALIR DEL TORNEO",
+      "invite_text"                     : "Invitar amigos",
       "alertcanceltitle"                : "¡Atención!",
       "alertcancelpaidcontest"          : "Estás a punto de cancelar tu participación en este concurso.<br><br>La entrada que abonaste de @PRICE será devuelta.<br><br>¿Estás seguro de querer abandonar este concurso?<br><br>",
       "alertcancelcontest"              : "Estás a punto de cancelar tu participación en este concurso.<br><br>¿Estás seguro de querer abandonar este concurso?<br><br>",

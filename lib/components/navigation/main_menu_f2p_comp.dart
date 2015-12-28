@@ -16,6 +16,8 @@ import 'package:intl/intl.dart';
     exportExpressions: const ["profileService.user"])
 class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
   ProfileService profileService;
+  
+  bool betaOn = true;
 
   MainMenuF2PComp(
       this._router, this.profileService, this._scrDet, this._rootElement) {

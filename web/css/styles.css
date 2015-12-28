@@ -12706,7 +12706,34 @@ main-menu-f2p {
   display: block;
   height: 70px;
   width: 100%;
-  font-size: 10pt;
+  font-size: 0pt;
+}
+main-menu-f2p {
+  height: 87px;
+}
+main-menu-f2p:after {
+  content: "VERSIÓN BETA";
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 8pt;
+  color: #000000;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+  display: inline-block;
+  width: 100%;
+  background-color: #fa9c19;
+  text-align: center;
+  height: 17px;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  border-color: #ffffff;
+  border-radius: 0;
+  z-index: 998;
+}
+.global-logged-in main-menu-f2p:after {
+  position: fixed;
+  display: block;
+  top: 70px;
 }
 .navbar {
   margin-bottom: 0;
@@ -20285,25 +20312,25 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
 #alertRoot.noGold .gold-needed-icon-wrapper .gold-image {
   display: block;
   position: relative;
-  margin: 0px auto -60px auto;
+  margin: 0px auto -80px auto;
 }
 #alertRoot.noGold .gold-needed-icon-wrapper .not-enough-resources-count {
   font-family: 'Exo', sans-serif;
   font-weight: 600;
-  font-size: 18pt;
+  font-size: 16pt;
   color: #214a5f;
   text-transform: uppercase;
   text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   display: block;
   margin: 0px auto;
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   position: relative;
   border-radius: 100%;
   background-color: #dcdcdc;
   border: 2px solid #ffffff;
   box-shadow: 0 0 5px 3px rgba(67, 67, 67, 0.5);
-  padding-top: 8px;
+  padding-top: 18px;
   text-align: center;
   padding-left: 2px;
 }

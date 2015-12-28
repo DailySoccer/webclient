@@ -73,6 +73,7 @@
 @import (inline) "../nouislider/jquery.nouislider.css";
 @import "../bootstrap-switch/less/bootstrap3/bootstrap-switch.less";
 
+@beta: true;
 
 // Path Definitions
 @images: "../images"; // No ponemos / al final para separar mejor donde realmente se define la imagen
@@ -115,7 +116,6 @@ body {
 	@media (max-width: @screen-sm-max) {
 		margin: -70px auto -88px; 	// Para que el footer se ponga encima nuestra (teniendo en cuenta el menu)
 	}
-
 	// Contenedor interior que envuelve al contenido. Fijamos el width con el.
 	.main-content-container {
 		padding-top: 70px;
@@ -132,6 +132,7 @@ body {
 		}
 	}
 }
+
 .global-landing-page .wrapper-content-container  {
 	width: 100%;
 	height: 100%;

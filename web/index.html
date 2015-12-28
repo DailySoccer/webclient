@@ -260,8 +260,8 @@
     
      window.fbAsyncInit = function() {
        FB.init({
-         appId      : '865176766847011',
-         //appId      : '1043008439063842', // TestAPP
+         //appId      : '865176766847011',
+         appId      : '1043008439063842', // TestAPP
          xfbml      : true,
          //frictionlessRequests : true,
          version    : 'v2.5'
@@ -290,35 +290,43 @@
       };
       var twitterLoaderProcess = null;
       function loadTwitterWidgets(options) {
-        var shareWrapper = document.getElementById('twitterShareButton');
-        var followWrapper = document.getElementById('twitterFollowButton');
+        var shareWrapper = document.querySelectorAll(".twitter-share-button-wrapper"); //document.getElementsById('twitterShareButton');
+        var followWrapper = document.querySelectorAll(".twitter-follow-button-wrapper"); //document.getElementById('twitterFollowButton');
         
-        if (followWrapper != null && shareWrapper != null && typeof twttr !== "undefined" && twttr != null) {
-          var l = 0;
-          for(l = shareWrapper.children.length -1; l >= 0; l--) {
-            shareWrapper.children[l].remove();
-          }
-          twttr.widgets.createShareButton(
-            'https://dev.twitter.com/',
-            shareWrapper,
-            {
-              text: options['text'],
-              hashtags: options['hashtags'],
-              via: options['via']
-            }
-          );
+        if (followWrapper.length != 0 && shareWrapper.length != 0 && typeof twttr !== "undefined" && twttr != null) {
           
-          for(l = followWrapper.children.length -1; l >= 0; l--) {
-            followWrapper.children[l].remove();
+          for (var i = 0; i < shareWrapper.length; i++) {
+            var l = 0;
+            var wrapper = shareWrapper[i];
+            for(l = wrapper.children.length -1; l >= 0; l--) {
+              wrapper.children[l].remove();
+            }
+            twttr.widgets.createShareButton(
+              options['url'],
+              wrapper,
+              {
+                text: options['text'],
+                hashtags: options['hashtags'],
+                via: options['via']
+              }
+            );
           }
-          twttr.widgets.createFollowButton(
-            'EpicEleven',
-            followWrapper,
-            { showScreenName: 'false' }
-          );
+
+          for (var i = 0; i < followWrapper.length; i++) {
+            var l = 0;
+            var wrapper = followWrapper[i];
+            for(l = wrapper.children.length -1; l >= 0; l--) {
+              wrapper.children[l].remove();
+            }
+            twttr.widgets.createFollowButton(
+              'EpicEleven',
+              wrapper,
+              { showScreenName: 'false' }
+            );
+          }
         }
         
-        if (shareWrapper == null || followWrapper == null || typeof twttr === "undefined" || twttr == null) {
+        if (followWrapper.length == 0 && shareWrapper.length == 0 || typeof twttr === "undefined" || twttr == null) {
           if (twitterLoaderProcess == null) {
             twitterLoaderProcess = setTimeout(function () { 
               twitterLoaderProcess = null;

@@ -752,6 +752,8 @@
     {
       "default_title"                   : "Epic Eleven",
       "default_description"             : "Juega hoy gratis a Epic Eleven",
+      "contest_invite"                  : "Juega conmigo en este torneo",
+      "contest_img_invite"              : "http://jugar.epiceleven.com/images/PostGenerico.png",
 
       "contest_live_title"              : "¡Sigue el torneo en directo!",
       "contest_live_description"        : "Estoy jugando en un torneo de Epic Eleven, ¡fíjate en cómo lo estoy haciendo!",

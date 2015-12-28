@@ -193,6 +193,29 @@ class ContestHeaderF2PComp implements DetachAware, ShadowRootAware {
     }
   }
 
+  
+  String get inviteUrl => "${window.location.toString().split("#")[0]}#/enter_contest/lobby/${contest.contestId}/none";
+
+  Map _sharingInfo = {};
+  Map get sharingInfo {
+    if (contest == null) return _sharingInfo;
+    if (_sharingInfo.length == 0) {
+      _sharingInfo = {
+        'description': fbDescription,
+        'caption': fbCaption,
+        'hashtag': 'EpicEleven',
+        'url': inviteUrl,
+        'title': fbTitle,
+        'image': fbPhoto
+      };
+    }
+    return _sharingInfo;
+  }
+
+  bool userIsRegistered() {
+    return _profileService.isLoggedIn && contest.containsContestEntryWithUser(_profileService.user.userId);
+  }
+  
   Router _router;
   RouteProvider _routeProvider;
   ContestsService _contestsService;

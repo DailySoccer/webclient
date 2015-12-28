@@ -6690,10 +6690,9 @@ scoring-rules:after,
     text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
   }
 }
-.contest-header-f2p-wrapper facebook-share {
+.contest-header-f2p-wrapper social-share {
   clear: both;
   display: block;
-  margin-left: 15px;
 }
 #teamsPanelComp {
   margin-right: auto;

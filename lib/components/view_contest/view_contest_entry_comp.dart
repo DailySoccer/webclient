@@ -127,10 +127,10 @@ class ViewContestEntryComp {
         goToParent();
       });
   }
+  
+  String get inviteUrl => "${window.location.toString().split("#")[0]}#/enter_contest/lobby/${contest.contestId}/none";
 
   void onInviteFriends() {
-    String theBasicUrl = window.location.toString().split("#")[0];
-    String theUrl = "${theBasicUrl}#/enter_contest/lobby/${contest.contestId}/none";
     if (_shareContent == null) {
       _shareContent = querySelector("#shareMethodsContent");
     }
@@ -152,16 +152,22 @@ class ViewContestEntryComp {
     onInviteFriends();
   }
 
-  Map sharingInfo = {
-    'description': FacebookService.descriptionOfInscription(),
-    'caption': '',
-    'hashtag': 'EpicEleven',
-    'url': 'https://dev.twitter.com/web/javascript/events',
-    'title': FacebookService.titleOfInscription(),
-    //'dartCallback': () { print('SHARE CB'); },
-    'image': FacebookService.imageOfInscription()
-  };
-
+  Map _sharingInfo = {};
+  Map get sharingInfo {
+    if (contest == null) return _sharingInfo;
+    if (_sharingInfo.length == 0) {
+      _sharingInfo = {
+        'description': FacebookService.descriptionOfInscription(),
+        'caption': '',
+        'hashtag': 'EpicEleven',
+        'url': inviteUrl,
+        'title': FacebookService.titleOfInscription(),
+        'image': FacebookService.imageOfInscription()
+      };
+    }
+    return _sharingInfo;
+  }
+  
   Router _router;
   RouteProvider _routeProvider;
   Element _shareContent;

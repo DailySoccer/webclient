@@ -37,7 +37,7 @@ class FacebookService {
     } else if (contest.isHistory) {
       return getLocalizedText('contest_history_description');
     } else {
-      return getLocalizedText('default_description');
+      return getLocalizedText('contest_invite');
     }
   }
   static String imageByContest(Contest contest, dynamic userId) {
@@ -49,13 +49,15 @@ class FacebookService {
         case 3:  return getLocalizedText('contest_live_img_third');
         default: return getLocalizedText('contest_live_img_other');
       }
-    } else {
+    } else  if (contest.isHistory) {
       switch(userPos) {
         case 1:  return getLocalizedText('contest_history_img_first');
         case 2:  return getLocalizedText('contest_history_img_second');
         case 3:  return getLocalizedText('contest_history_img_third');
         default: return getLocalizedText('contest_history_img_other');
       }
+    } else {
+      return getLocalizedText('contest_img_invite');
     }
   }
   static String captionByContest(Contest contest, dynamic userId) {

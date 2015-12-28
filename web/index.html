@@ -260,8 +260,8 @@
     
      window.fbAsyncInit = function() {
        FB.init({
-         appId      : '865176766847011',
-         //appId      : '1043008439063842', // TestAPP
+         //appId      : '865176766847011',
+         appId      : '1043008439063842', // TestAPP
          xfbml      : true,
          //frictionlessRequests : true,
          version    : 'v2.5'
@@ -288,7 +288,7 @@
           twitterFollowCB();
         }
       };
-
+      var twitterLoaderProcess = null;
       function loadTwitterWidgets(options) {
         var shareWrapper = document.getElementById('twitterShareButton');
         var followWrapper = document.getElementById('twitterFollowButton');
@@ -319,8 +319,13 @@
             { showScreenName: 'false' }
           );
         }
+        if (shareWrapper != null && followWrapper != null) {
+          twitterLoaderProcess = null;
+        }
         if ((shareWrapper == null && followWrapper == null) || typeof twttr === "undefined" || twttr == null) {
-          setTimeout(function () { loadTwitterWidgets(options); }, 100);
+          if (twitterLoaderProcess == null) {
+            twitterLoaderProcess = setTimeout(function () { loadTwitterWidgets(options); }, 100);
+          } 
         }
       }
       window.twttr = (function(d, s, id) {

@@ -7422,13 +7422,31 @@ scoring-rules:after,
 .contests-list-f2p-root .contestSlot .tournament-and-type-section .contest-type.train {
   background-image: url("../images/trainContest.png");
 }
-.contests-list-f2p-root .contestSlot .tournament-and-type-section .friends {
+.contests-list-f2p-root .contestSlot .tournament-and-type-section .friends-in {
   position: absolute;
-  top: 3px;
-  left: 60px;
+  top: 5px;
+  left: 70px;
   width: 32px;
   height: 27px;
   background-image: url("../images/friendsIcon.png");
+}
+.contests-list-f2p-root .contestSlot .tournament-and-type-section .friends-in .count {
+  background-color: #59add5;
+  border-radius: 1000px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  border: 1px solid #ffffff;
+  min-width: 20px;
+  min-height: 20px;
+  text-align: center;
+  position: absolute;
+  bottom: -2px;
+  right: -7px;
+  display: block;
+  padding: 0px 3px 0 3px;
 }
 .contests-list-f2p-root .contestSlot .special-image-section {
   overflow: hidden;
@@ -8192,6 +8210,10 @@ fieldset[disabled] .contests-list-f2p-root .contestSlot .action-section .action-
 }
 .contests-list-f2p-root .special.contestSlot {
   background-color: #434343;
+}
+.contests-list-f2p-root .special.contestSlot .friends-in .count {
+  color: #434343;
+  border: 1px solid #434343;
 }
 .contests-list-f2p-root .special .time-section {
   position: relative;

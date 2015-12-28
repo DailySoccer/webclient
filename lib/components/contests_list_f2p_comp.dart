@@ -113,6 +113,10 @@ class ContestsListF2PComp {
     return secondsLeft >= 0 && secondsLeft < SOON_SECONDS;
   }
   
+  bool userIsRegistered(Contest contest) {
+    return _profileService.isLoggedIn && contest.containsContestEntryWithUser(_profileService.user.userId);
+  }
+  
   String timeInfo(DateTime date) {
     // Avisamos 2 horas antes...
     int secondsLeft = timeLeft(date);

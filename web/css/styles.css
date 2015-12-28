@@ -24856,6 +24856,7 @@ textareateams-filter .teams-filter-wrapper .teams-selector-filter {
   margin-left: 0;
   margin-right: 0;
   background-color: #f8f8f8;
+  border-top: 1px solid #59add5;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;

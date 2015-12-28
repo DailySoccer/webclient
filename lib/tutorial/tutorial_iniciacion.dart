@@ -282,7 +282,7 @@ class TutorialIniciacion extends Tutorial {
                   await onClick( [new ToolTip("fantasy-team", tipText: getLocalizedText("msg-13"), highlight: true, position: ToolTip.POSITION_TOP)] );
 
                   // Aquí puedes ver tu puntuación frente a los rivales
-                  //showTooltip(new ToolTip("#usersList", tipText: getLocalizedText("msg-14"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true));
+                  await onClick( [new ToolTip("#usersList", tipText: getLocalizedText("msg-14"), highlight: true, position: ToolTip.POSITION_TOP)]);
                 }
                   
                 clearTooltips();

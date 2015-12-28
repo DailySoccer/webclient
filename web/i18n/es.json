@@ -618,7 +618,7 @@
       "msg-03a"                         : "Bien, ya has añadido tu primer jugador",
       "msg-03b"                         : "Cuando añades un jugador, su salario se descuenta de tu presupuesto.",
       "msg-03c"                         : "Cada jugador, además de su salario requiere un nivel de mánager u oro.",
-      "msg-03d"                         : "Los jugadores marcados en rojo requieren un nivel de mánager superior a tu nivel actual",
+      "msg-03d"                         : "Los jugadores marcados en rojo requieren un nivel de mánager superior a tu nivel actual.",
       "msg-03e"                         : "Intenta seleccionar un jugador marcado en rojo",
       "msg-03f"                         : "<span class='modal-body-text'>Necesitas subir tu nivel de mánager compitiendo en torneos virtuales.</span>",
       "msg-04a"                         : "<span class='modal-body-text'>Puedes participar en torneos virtuales siempre que tengas energía.</span>",

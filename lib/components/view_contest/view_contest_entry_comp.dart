@@ -55,7 +55,7 @@ class ViewContestEntryComp {
   List<User> _friendList = [];
   List<User> _filteredFriendList = [];
   List<User> get filteredFriendList {
-    if (contest == null) return _filteredFriendList;
+    if (contest == null || contest.isFull) return _filteredFriendList;
     if (_friendList != _profileService.friendList) {
       _friendList = _profileService.friendList;
       _filteredFriendList = _friendList.where((u) => !contest.contestEntries.any(

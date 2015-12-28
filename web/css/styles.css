@@ -7422,6 +7422,14 @@ scoring-rules:after,
 .contests-list-f2p-root .contestSlot .tournament-and-type-section .contest-type.train {
   background-image: url("../images/trainContest.png");
 }
+.contests-list-f2p-root .contestSlot .tournament-and-type-section .friends {
+  position: absolute;
+  top: 3px;
+  left: 60px;
+  width: 32px;
+  height: 27px;
+  background-image: url("../images/friendsIcon.png");
+}
 .contests-list-f2p-root .contestSlot .special-image-section {
   overflow: hidden;
   position: relative;

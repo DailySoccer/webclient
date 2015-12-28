@@ -2,12 +2,14 @@
 
   <contest-header-f2p id="contestHeader" contest="contest" contest-id="contestId" show-matches="false"></contest-header-f2p>
 
+  <friends-bar user-list="filteredFriendList" show-challenge="false"></friends-bar>
+  
   <!-- Nav tabs -->
   <ul class="enter-contest-tabs" role="tablist">
     <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('lineup-tab-content')">{{getLocalizedText("tablineup")}}</a></li>
     <li><a role="tab" data-toggle="tab" ng-click="tabChange('contest-info-tab-content')">{{getLocalizedText("tabcontestinfo")}}</a></li>
   </ul>
-
+  
   <div id="enterContest">
     <div class="tabs">
       <div class="tab-content">

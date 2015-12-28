@@ -29,6 +29,9 @@ class FacebookShareComp {
   @NgCallback("on-share")
   void set onShare(func) { _info['dartCallback'] = func; }
   
+  @NgOneWay("show-like")
+  bool showLike = true;
+  
   // Este es por comodidad
   @NgOneWay("parameters-by-map")
   void set info(Map allInfo) { _info = allInfo; }

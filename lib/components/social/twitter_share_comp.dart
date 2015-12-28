@@ -45,6 +45,9 @@ class TwitterShareComp {
    *      data-dnt="true">Tweet</a>
    */
   
+  @NgOneWay("show-like")
+  bool showLike = true;
+  
   // Este es por comodidad
   @NgOneWay("parameters-by-map")
   void set info(Map allInfo) {

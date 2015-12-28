@@ -1,11 +1,13 @@
 .friends-bar-wrapper {
 	.make-row(0);
+	background-color: @greyUltraLight;
 	.opensans_normal(10pt, @black);
 	text-align: center;
 	padding: 0 15%;
 	
 	.friend-element-wrapper {
 		.make-xs-column(2.4); // 5 columnas
+		padding: 5px 5px;
 		
 		.friend-picture {
 			width: 50px;
@@ -18,6 +20,7 @@
 			color: @greyUltraDark;
 			display: block;
 			margin: 3px;
+			padding: 2px 5px;
 		}
 		.friend-manager-level {
 			display: inline-block;
@@ -54,6 +57,10 @@
 			vertical-align: bottom;
 		}
 		
+	}
+	
+	.friend-element-wrapper + .friend-element-wrapper {
+		border-left: 1px solid @greyLight;
 	}
 }
 

@@ -260,8 +260,8 @@
     
      window.fbAsyncInit = function() {
        FB.init({
-         //appId      : '865176766847011',
-         appId      : '1043008439063842', // TestAPP
+         appId      : '865176766847011',
+         //appId      : '1043008439063842', // TestAPP
          xfbml      : true,
          //frictionlessRequests : true,
          version    : 'v2.5'
@@ -293,7 +293,7 @@
         var shareWrapper = document.getElementById('twitterShareButton');
         var followWrapper = document.getElementById('twitterFollowButton');
         
-        if (shareWrapper != null && followWrapper != null && typeof twttr !== "undefined" && twttr != null) {
+        if (shareWrapper != null && typeof twttr !== "undefined" && twttr != null) {
           var l = 0;
           for(l = shareWrapper.children.length -1; l >= 0; l--) {
             shareWrapper.children[l].remove();
@@ -307,7 +307,9 @@
               via: options['via']
             }
           );
-
+        }
+        if (followWrapper != null && typeof twttr !== "undefined" && twttr != null) {
+          
           for(l = followWrapper.children.length -1; l >= 0; l--) {
             followWrapper.children[l].remove();
           }
@@ -316,7 +318,8 @@
             followWrapper,
             { showScreenName: 'false' }
           );
-        } else {
+        }
+        if ((shareWrapper == null && followWrapper == null) || typeof twttr === "undefined" || twttr == null) {
           setTimeout(function () { loadTwitterWidgets(options); }, 100);
         }
       }

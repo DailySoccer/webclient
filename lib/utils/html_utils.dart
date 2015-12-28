@@ -13,7 +13,8 @@ final NodeTreeSanitizer NULL_TREE_SANITIZER = new _NullTreeSanitizer();
 
 Future<bool> modalShow(String title, String content, {String modalSize: "lg",
     String onOk: null, String onCancel: null, bool closeButton: false,
-    type: 'alert', onBackdropClick: false, aditionalClass: ""}) {
+    type: 'alert', onBackdropClick: false, aditionalClass: "",
+    Element contentNode: null}) {
 
   String globalRootId = 'alertRoot';
 
@@ -27,8 +28,7 @@ Future<bool> modalShow(String title, String content, {String modalSize: "lg",
 
       if (result) {
         completer.complete(result);
-      }
-      else {
+      } else {
         completer.completeError(result);
       }
     }
@@ -115,7 +115,7 @@ Future<bool> modalShow(String title, String content, {String modalSize: "lg",
                                 </button> ''' : ''
                           }           
                           <!-- Alert Text -->
-                          <div class="form-description">${content}</div>            
+                          <div class="form-description" id="modalContentWrapper">${content}</div>            
                           <!-- Alert Buttons -->
                           <div class="input-group user-form-field">
                             <div class="new-row">                  
@@ -154,7 +154,7 @@ Future<bool> modalShow(String title, String content, {String modalSize: "lg",
                             </button> ''' : ''
                       }           
                       <!-- Alert Text -->
-                      <div class="form-description">${content}</div>            
+                      <div class="form-description" id="modalContentWrapper">${content}</div>            
                       <!-- Alert Buttons -->
                       <div class="input-group user-form-field">
                         <div class="new-row">                  
@@ -188,7 +188,10 @@ Future<bool> modalShow(String title, String content, {String modalSize: "lg",
   }
 
   modalWindow.setInnerHtml(modalBody, treeSanitizer: NULL_TREE_SANITIZER);
-
+  if (contentNode != null) {
+    modalWindow.querySelector("#modalContentWrapper").append(contentNode);
+  }
+  
   // Aqui hago el setup de los botones. (que tiene que hacer cada botón al ser clickado... ver: main_menu_slide_comp).
   modalWindow.querySelectorAll("[eventCallback]").onClick.listen(onButtonClick);
 

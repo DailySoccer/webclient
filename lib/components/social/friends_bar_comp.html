@@ -3,33 +3,6 @@
     <img class="friend-picture" ng-src="{{user.profileImage}}">
     <span class="friend-name">{{user.nickName}}</span>
     <span class="friend-manager-level"><span class="amount">{{user.managerLevel}}</span></span>
-    <button class="challenge-friend">Retar</button>
+    <button class="challenge-friend" ng-click="onChallenge({'user': user})" ng-if="showChallenge">Retar</button>
   </div>
-  
-  
-  <!--div class="friend-element-wrapper">
-    <img class="friend-picture" ng-src="{{pictureUrl}}">
-    <span class="friend-name">AmadeoTadeo</span>
-    <span class="friend-manager-level">3</span>
-    <button class="challenge-friend">Retar</button>
-  </div>
-  <div class="friend-element-wrapper">
-    <img class="friend-picture" ng-src="{{pictureUrl}}">
-    <span class="friend-name">AmadeoTadeo</span>
-    <span class="friend-manager-level">3</span>
-    <button class="challenge-friend">Retar</button>
-  </div>
-  <div class="friend-element-wrapper">
-    <img class="friend-picture" ng-src="{{pictureUrl}}">
-    <span class="friend-name">AmadeoTadeo</span>
-    <span class="friend-manager-level">3</span>
-    <button class="challenge-friend">Retar</button>
-  </div>
-  <div class="friend-element-wrapper">
-    <img class="friend-picture" ng-src="{{pictureUrl}}">
-    <span class="friend-name">AmadeoTadeo</span>
-    <span class="friend-manager-level">3</span>
-    <button class="challenge-friend">Retar</button>
-  </div-->
-  
 </div>

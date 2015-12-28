@@ -31,6 +31,9 @@ class SocialShareComp {
 
   @NgOneWay("image")
   void set image(String img) { sharingInfo['image'] = img; }
+  
+  @NgOneWay("show-like")
+  bool showLike = true;
 
   /*
    *   <a href="https%3A%2F%2Fepiceleven.com%2Fshare"

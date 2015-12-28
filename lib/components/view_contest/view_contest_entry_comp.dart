@@ -131,17 +131,26 @@ class ViewContestEntryComp {
   void onInviteFriends() {
     String theBasicUrl = window.location.toString().split("#")[0];
     String theUrl = "${theBasicUrl}#/enter_contest/lobby/${contest.contestId}/none";
-
+    if (_shareContent == null) {
+      _shareContent = querySelector("#shareMethodsContent");
+    }
+    _shareContent.remove();
+    
     modalShow(      "Invita a tus amigos",
-                    theUrl,
-                    onOk: "Copiado",
-                    modalSize: "lg",
-                    type: 'welcome'
+                    '',
+                    contentNode: _shareContent,
+                    onOk: "Cerrar",
+                    modalSize: "md",
+                    type: 'welcome',
+                    aditionalClass: 'invite-friends-popup'
                  )
                  .then((resp){
                   });
   }
-
+  
+  void onChallenge(user) {
+    onInviteFriends();
+  }
 
   Map sharingInfo = {
     'description': FacebookService.descriptionOfInscription(),
@@ -155,6 +164,7 @@ class ViewContestEntryComp {
 
   Router _router;
   RouteProvider _routeProvider;
+  Element _shareContent;
 
   ProfileService _profileService;
   ContestsService _contestsService;

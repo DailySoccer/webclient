@@ -276,19 +276,15 @@ class TutorialIniciacion extends Tutorial {
               'view_contest': () async {
                 // Ésta es la pantalla de simulación
                 await openModal( text: () => getLocalizedText("msg-12") );
-
+                
                 if (!isCompleted) {
                   // Aquí podrás ver los puntos conseguidos por tus jugadores
                   await onClick( [new ToolTip("fantasy-team", tipText: getLocalizedText("msg-13"), highlight: true, position: ToolTip.POSITION_TOP)] );
 
                   // Aquí puedes ver tu puntuación frente a los rivales
-                  showTooltip(new ToolTip("#usersList", tipText: getLocalizedText("msg-14"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true));
+                  //showTooltip(new ToolTip("#usersList", tipText: getLocalizedText("msg-14"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true));
                 }
-              },
-              'user_selected': () async {
-                // TODO: Una vez recibido el evento de usuario seleccionado, dejamos de estar pendiente en el mismo.
-                removeTrigger('user_selected');
-
+                  
                 clearTooltips();
 
                 ViewContestComp liveContest = context;

@@ -638,7 +638,7 @@
       "msg-13"                          : "Aquí puedes ver los puntos conseguidos por tus jugadores.",
       "msg-14"                          : "Esta es la ventana de resultados, como puedes ver has logrado la primera posición, Haz clic para continuar.",
       "msg-15"                          : "Fíjate, uno de tus jugadores acaba de conseguir sus primeros puntos.",
-      "msg-16"                          : "<span class='modal-body-title'>¡Enhorabuena, has ganado tu primer torneo!</span><span class='modal-body-text'> Has conseguido 50 puntos de mánager y has subido tu nivel de mánager.",
+      "msg-16"                          : "<span class='modal-body-title'>¡Enhorabuena, has ganado tu primer torneo!</span><img class=\"capital-icon\" src=\"images/TutorialManagerLevelUp.png\"><span class='modal-body-text'> Has conseguido 50 puntos de mánager y has subido tu nivel de mánager.</span>",
       "msg-17"                          : "<span class='modal-body-title'>Ya estás preparado. </span><span class='modal-body-text'>Regístrate ahora y consigue tus primeras 10 monedas de oro para comenzar tu carrera como mánager.</span>"
     }
     , "tutorial_entrenamiento"          :

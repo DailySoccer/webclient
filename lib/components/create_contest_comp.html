@@ -35,39 +35,21 @@
       <div class="data-input-wrapper competition">
         <span class="data-element">
           <input id="contestLeague" type="radio" value="LEAGUE_ES" name="competition"
-                 ng-class="{'disabled-radio': templatesFilteredList[leagueES_val].length == 0 }"
+                 ng-class="{'disabled-radio': templatesPerLeagueList[leagueES_val].length == 0 }"
                  ng-value="leagueES_val" ng-model="selectedCompetition"
-                 ng-disabled="templatesFilteredList[leagueES_val].length == 0">
+                 ng-disabled="templatesPerLeagueList[leagueES_val].length == 0">
           <label for="contestLeague"><span class="icon"></span>{{getLocalizedText("spanish_league")}}</label>
         </span>
         <span class="data-element">
           <input id="contestPremiere" type="radio" value="LEAGUE_UK" name="competition"
-                 ng-class="{'disabled-radio': templatesFilteredList[leagueUK_val].length == 0 }"
+                 ng-class="{'disabled-radio': templatesPerLeagueList[leagueUK_val].length == 0 }"
                  ng-value="leagueUK_val" ng-model="selectedCompetition"
-                 ng-disabled="templatesFilteredList[leagueUK_val].length == 0">
+                 ng-disabled="templatesPerLeagueList[leagueUK_val].length == 0">
           <label for="contestPremiere"><span class="icon"></span>{{getLocalizedText("premier_league")}}</label>
         </span>
       </div>
     </div>
   </div>
-
-  <div class="create-contest-section-wrapper">
-    <div class="create-contest-section">
-      <div class="title">{{getLocalizedText("event")}}</div>
-      <div class="data-input-wrapper contest-template">
-        <select ng-disabled="printableTemplateList.length == 0" name="contestTemplateSelector" id="contestTemplateSelector"
-                class="form-control contest-template-selector dropdown-toggle" ng-model="selectedTemplate" >
-
-          <option id="option-contest-select-contest" value="" ng-value="null" ng-bind="comboDefaultText"></option>
-
-          <option ng-repeat="template in printableTemplateList" id="option-contest-template-{{template.templateContestId}}"
-                  value="{{$index + 1}}" ng-value="template">{{template.name}}</option>
-        </select>
-      </div>
-    </div>
-  </div>
-
-  <teams-panel id="teamsPanelComp" panel-open="true" template-contest="selectedTemplate" button-text="getLocalizedText('matches_title')"></teams-panel>
 
   <div class="create-contest-section-wrapper">
     <div class="create-contest-section">
@@ -92,6 +74,22 @@
       </div>
     </div>
   </div>
+  
+  <div class="create-contest-section-wrapper">
+    <div class="create-contest-section">
+      <div class="title">{{getLocalizedText("event")}}</div>
+      <div class="data-input-wrapper contest-template">
+        <select ng-disabled="printableTemplateList.length == 0" name="contestTemplateSelector" id="contestTemplateSelector"
+                class="form-control contest-template-selector dropdown-toggle" ng-model="selectedTemplate" >
+
+          <option id="option-contest-select-contest" value="" ng-value="null" ng-bind="comboDefaultText"></option>
+
+          <option ng-repeat="template in printableTemplateList" id="option-contest-template-{{template.templateContestId}}"
+                  value="{{$index + 1}}" ng-value="template">{{template.name}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
 
   <div class="create-contest-section-wrapper">
     <div class="create-contest-section">
@@ -112,6 +110,9 @@
       </div>
     </div>
   </div>
+
+  <teams-panel id="teamsPanelComp" panel-open="true" template-contest="selectedTemplate" button-text="getLocalizedText('matches_title')"></teams-panel>
+  
   <div class="create-contest-section-wrapper large">
     <div class="create-contest-section" ng-if="selectedTemplate != null">
       <div class="title">Premios</div>

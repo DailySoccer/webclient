@@ -20,26 +20,42 @@ import 'package:webclient/models/prize.dart';
 )
 class CreateContestComp  {
 
-  String selectedCompetition;
+  String _selectedCompetition;
   String contestName;
   String _contestType;
-  String contestStyle;
+  String _contestStyle;
 
+  String get selectedCompetition => _selectedCompetition;
+  void set selectedCompetition(String val) {
+    _selectedCompetition = val;
+    updateAll();
+  }
+  
+  String get contestStyle => _contestStyle;
+  void set contestStyle(String val) {
+    _contestStyle = val;
+    updateAll();
+  }
+  
   String get contestType => _contestType;
   void set contestType(String val) {
     _contestType = val;
-    updateDate();
+    updateAll();
   }
 
   int selectedHour = 12;
   String selectedMinutesText = '00';
   DateTime selectedDate = null;
 
-  String TYPE_OFICIAL = "oficial";
-  String TYPE_TRAINING = "training";
+  
+  static String S_TYPE_OFICIAL = "oficial";
+  static String S_TYPE_TRAINING = "training";
+  
+  String TYPE_OFICIAL = S_TYPE_OFICIAL;
+  String TYPE_TRAINING = S_TYPE_TRAINING;
 
-  String STYLE_HEAD_TO_HEAD = "headToHead";
-  String STYLE_LEAGUE = "league";
+  String STYLE_HEAD_TO_HEAD = Contest.TOURNAMENT_HEAD_TO_HEAD;
+  String STYLE_LEAGUE = Contest.TOURNAMENT_LEAGUE;
 
   String leagueES_val = Competition.LEAGUE_ES;
   String leagueUK_val = Competition.LEAGUE_UK;
@@ -60,7 +76,7 @@ class CreateContestComp  {
     }
   }
   String get placeholderName => selectedTemplate != null? selectedTemplate.name : getLocalizedText("contest_name_placeholder");
-
+  
   String get comboDefaultText {
     if (printableTemplateList.length == 0) {
       return getLocalizedText("select_competition_first");
@@ -70,10 +86,7 @@ class CreateContestComp  {
 
   List<TemplateContest> emptyListAuxiliar = [];
   List<TemplateContest> get printableTemplateList {
-    if(templatesFilteredList.containsKey(selectedCompetition)) {
-      return templatesFilteredList[selectedCompetition];
-    }
-    return emptyListAuxiliar;
+    return _templatesFilteredList;
   }
 
   // Esta sin completar el formulario?
@@ -93,24 +106,32 @@ class CreateContestComp  {
     _contestsService.getActiveTemplateContests()
       .then((templateContests) {
         _templateContests = templateContests;
-
+        
         selectedCompetition = null;
-        if(_templateContests.length > 0) {
-
-          templatesFilteredList.forEach( (String key, List<TemplateContest> list) {
-            list.clear();
-            list.addAll(_templateContests.where((t) => t.competitionType == key));
-            if (selectedCompetition == null && list.isNotEmpty) selectedCompetition = key;
-          });
-        }
-
+        _contestType = null;
+        updateTemplatesPerType();
+        
       });
   }
 
   num get prizeMultiplier => contestType == TYPE_OFICIAL ? _selectedTemplate.prizeMultiplier : 10;
 
   Money get prizePool => new Money.from(contestType == TYPE_OFICIAL ? Money.CURRENCY_GOLD : Money.CURRENCY_MANAGER, maxEntries * _selectedTemplate.entryFee.amount * prizeMultiplier);
-
+  
+  void updateTemplateList() {
+    _templatesFilteredList = [];
+    if(templatesPerLeagueList.containsKey(selectedCompetition)) {
+      _templatesFilteredList = templatesPerLeagueList[selectedCompetition].where((t) => isAvailable(t)).toList();
+    }
+  }
+  
+  bool isAvailable(TemplateContest template) {
+    bool contestTypeOk = _contestType == TYPE_OFICIAL? !template.isSimulation : template.isSimulation;
+    bool rivalsOk = contestStyle == STYLE_HEAD_TO_HEAD? template.tournamentType == TemplateContest.TOURNAMENT_HEAD_TO_HEAD : true; 
+    
+    return contestTypeOk && rivalsOk;
+  }
+  
   String getLocalizedText(key) {
     return StringUtils.translate(key, "createcontest");
   }
@@ -152,6 +173,11 @@ class CreateContestComp  {
           _router.go('enter_contest', { "contestId": contestCreated.contestId, "parent": "create_contest", "contestEntryId": "none" });
         });
     }
+  }
+  
+  void updateAll() {
+    updateDate();
+    updateTemplateList();
   }
 
   void updateDate() {
@@ -204,13 +230,65 @@ class CreateContestComp  {
     if (selectedHour < hourList[0]) selectedHour = hourList[0];
     if (selectedHour > hourList.last) selectedHour = hourList.last;
   }
-
+  
   TemplateContest _selectedTemplate;
-  Map<String, List<TemplateContest>> templatesFilteredList = {
+  
+  Map<String, List<TemplateContest>> templatesPerTypeList = {
+    S_TYPE_OFICIAL: [],
+    S_TYPE_TRAINING: []
+  };
+  
+  void updateTemplatesPerType() {
+    templatesPerTypeList.forEach( (String key, List<TemplateContest> list) {
+      list.clear();
+      list.addAll(_templateContests.where((t) => (key == S_TYPE_TRAINING) == t.isSimulation));
+    });
+    updateTemplatesPerLeague();
+  }
+/*
+  _contestType = templatesPerTypeList[S_TYPE_OFICIAL].isNotEmpty? S_TYPE_OFICIAL : 
+                 templatesPerTypeList[S_TYPE_TRAINING].isNotEmpty? S_TYPE_TRAINING : 
+                 /*else*/ null; 
+    */
+  Map<String, List<TemplateContest>> templatesPerLeagueList = {
     Competition.LEAGUE_ES: [],
     Competition.LEAGUE_UK: []
   };
 
+  void updateTemplatesPerLeague() {
+    templatesPerLeagueList.forEach( (String key, List<TemplateContest> list) {
+      list.clear();
+      if(contestType != null) {
+        list.addAll(templatesPerTypeList[contestType].where((t) => t.competitionType == key));
+      }
+    });
+    _selectedCompetition = templatesPerLeagueList[Competition.LEAGUE_ES].isNotEmpty? Competition.LEAGUE_ES : 
+                           templatesPerLeagueList[Competition.LEAGUE_UK].isNotEmpty? Competition.LEAGUE_UK : 
+                           /*else*/ null; 
+    updateTemplatesPerStyle();
+  }
+  
+  Map<String, List<TemplateContest>> templatesPerStyle = {
+    Contest.TOURNAMENT_HEAD_TO_HEAD: [],
+    Contest.TOURNAMENT_LEAGUE: []
+  };
+
+  /*contestStyle = templatesPerLeagueList[Competition.LEAGUE_ES].isNotEmpty? Competition.LEAGUE_ES : 
+                 templatesPerLeagueList[Competition.LEAGUE_UK].isNotEmpty? Competition.LEAGUE_UK : 
+                 /*else*/ null;*/ 
+
+  void updateTemplatesPerStyle() {
+    String h2h = TemplateContest.TOURNAMENT_HEAD_TO_HEAD;
+    templatesPerStyle.forEach( (String key, List<TemplateContest> list) {
+      list.clear();
+      if(contestStyle != null) {
+        list.addAll(templatesPerLeagueList[contestStyle].where((t) => (t.tournamentType == h2h) == (h2h == key)));
+      }
+    });
+  }
+  
+  List<TemplateContest> _templatesFilteredList = [];
+  
   List<TemplateContest> _templateContests;
   ContestsService _contestsService;
 

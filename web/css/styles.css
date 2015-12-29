@@ -23328,7 +23328,8 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
 }
 #helpInfo .img-wrapper img {
   display: block;
-  width: 100%;
+  margin: 0 auto;
+  max-width: 100%;
 }
 @media (min-width: 768px) {
   #helpInfo .img-wrapper img {

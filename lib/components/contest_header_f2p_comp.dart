@@ -200,14 +200,7 @@ class ContestHeaderF2PComp implements DetachAware, ShadowRootAware {
   Map get sharingInfo {
     if (contest == null) return _sharingInfo;
     if (_sharingInfo.length == 0) {
-      _sharingInfo = {
-        'description': fbDescription,
-        'caption': fbCaption,
-        'hashtag': 'EpicEleven',
-        'url': inviteUrl,
-        'title': fbTitle,
-        'image': fbPhoto
-      };
+      _sharingInfo = FacebookService.inscribeInContest(contest.contestId);
     }
     return _sharingInfo;
   }

@@ -144,8 +144,7 @@ class ViewContestEntryComp {
                     type: 'welcome',
                     aditionalClass: 'invite-friends-popup'
                  )
-                 .then((resp){
-                  });
+                 .then((resp){});
   }
   
   void onChallenge(user) {
@@ -156,14 +155,7 @@ class ViewContestEntryComp {
   Map get sharingInfo {
     if (contest == null) return _sharingInfo;
     if (_sharingInfo.length == 0) {
-      _sharingInfo = {
-        'description': FacebookService.descriptionOfInscription(),
-        'caption': '',
-        'hashtag': 'EpicEleven',
-        'url': inviteUrl,
-        'title': FacebookService.titleOfInscription(),
-        'image': FacebookService.imageOfInscription()
-      };
+      _sharingInfo = FacebookService.inscribeInContest(contest.contestId);
     }
     return _sharingInfo;
   }

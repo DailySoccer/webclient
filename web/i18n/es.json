@@ -761,7 +761,7 @@
       "contest_live_img_second"         : "http://jugar.epiceleven.com/images/PostGenerico.png",
       "contest_live_img_third"          : "http://jugar.epiceleven.com/images/PostGenerico.png",
       "contest_live_img_other"          : "http://jugar.epiceleven.com/images/PostGenerico.png",
-
+      
       "contest_history_title"           : "¡He quedado @USER_POS!",
       "contest_history_description"     : "Juega conmigo en Epic Eleven y demuestra si puedes superarme.",
       "contest_history_img_first"       : "http://jugar.epiceleven.com/images/PostGenerico.png",
@@ -769,9 +769,10 @@
       "contest_history_img_third"       : "http://jugar.epiceleven.com/images/PostGenerico.png",
       "contest_history_img_other"       : "http://jugar.epiceleven.com/images/PostGenerico.png",
 
+      "contest_inscription_hastag"      : "EpicEleven",
       "contest_inscription_title"       : "¡Acabo de inscribirme en un torneo de Epic Eleven!",
-      "contest_inscription_description" : "Pulsa sobre este enlace y gana un bono de bienvenida para jugar conmigo.",
-      "contest_inscription_img"         : "http://jugar.epiceleven.com/images/PostGenerico.png"
+      "contest_inscription_description" : "Me he apuntado a este torneo, date prisa y unete.",
+      "contest_inscription_img"         : "social/InscribirseTorneo.jpg"
     }
     ,"createcontest"                    :
     {

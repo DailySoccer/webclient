@@ -202,7 +202,7 @@ class TemplateContest {
     // print("Contest: id($contestId) name($name) currentUserIds($currentUserIds) templateContestId($templateContestId)");
     return this;
   }
-
+  
   String _parsePattern(String text) {
     return text
       .replaceAll("%StartDate", DateTimeService.formatDateWithDayOfTheMonth(startDate))

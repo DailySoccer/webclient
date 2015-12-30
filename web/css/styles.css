@@ -24492,9 +24492,85 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 .favorites-wrapper .enter-contest-soccer-players-wrapper {
   width: 100% !important;
 }
+.favorites-wrapper .enter-contest-soccer-players-wrapper .enter-contest-soccer-players .soccer-player-list-header-table {
+  padding-right: 6.5%;
+}
+@media (max-width: 991px) {
+  .favorites-wrapper .enter-contest-soccer-players-wrapper .enter-contest-soccer-players .soccer-player-list-header-table {
+    padding-right: 11.5%;
+  }
+}
+.favorites-wrapper .enter-contest-soccer-players-wrapper .enter-contest-soccer-players .soccer-player-list-header-table .filter.filterOrderPos {
+  position: relative;
+  float: left;
+  width: 8.33333333%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-left: 7px;
+}
+.favorites-wrapper .enter-contest-soccer-players-wrapper .enter-contest-soccer-players .soccer-player-list-header-table .filter.filterOrderName {
+  float: left;
+  width: 50%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-left: 5px;
+}
+@media (min-width: 992px) {
+  .favorites-wrapper .enter-contest-soccer-players-wrapper .enter-contest-soccer-players .soccer-player-list-header-table .filter.filterOrderName {
+    float: left;
+    width: 41.66666667%;
+  }
+}
+.favorites-wrapper .enter-contest-soccer-players-wrapper .enter-contest-soccer-players .soccer-player-list-header-table .filter.filterOrderDFP {
+  position: relative;
+  float: left;
+  width: 10.83333333%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  text-align: center;
+}
+.favorites-wrapper .enter-contest-soccer-players-wrapper .enter-contest-soccer-players .soccer-player-list-header-table .filter.filterOrderPlayed {
+  position: relative;
+  float: left;
+  width: 10%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  text-align: center;
+}
+.favorites-wrapper .enter-contest-soccer-players-wrapper .enter-contest-soccer-players .soccer-player-list-header-table .filter.filterOrderSalary {
+  position: relative;
+  float: left;
+  width: 16.66666667%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  text-align: center;
+}
+.favorites-wrapper .enter-contest-soccer-players-wrapper .enter-contest-soccer-players .soccer-player-list-header-table .filter.filterOrderManager {
+  position: relative;
+  float: left;
+  width: 12.5%;
+  min-height: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  text-align: center;
+}
 .favorites-wrapper .empty-info-wrapper .empty-info .go-scouting {
   display: none;
   font-size: 18pt;
+}
+.favorites-wrapper .soccer-players-list .soccer-players-list-slot .soccer-player-info {
+  width: 95%;
+}
+@media (max-width: 991px) {
+  .favorites-wrapper .soccer-players-list .soccer-players-list-slot .soccer-player-info {
+    width: 88%;
+  }
 }
 .favorites-wrapper .soccer-players-list .soccer-players-list-slot .soccer-player-info .column-manager-level {
   visibility: visible;
@@ -24507,6 +24583,15 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
   display: inline-block;
   vertical-align: middle;
   vertical-align: baseline;
+}
+.favorites-wrapper .soccer-players-list .soccer-players-list-slot .column-action {
+  float: right;
+  width: 5%;
+}
+@media (max-width: 991px) {
+  .favorites-wrapper .soccer-players-list .soccer-players-list-slot .column-action {
+    width: 12%;
+  }
 }
 .favorites-wrapper .soccer-players-list .soccer-players-list-slot .column-action .action-button {
   /*

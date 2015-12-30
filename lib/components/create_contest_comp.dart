@@ -25,7 +25,7 @@ class CreateContestComp  {
   int selectedHour = 12;
   String selectedMinutesText = '00';
   DateTime selectedDate = null;
-
+  
   static String S_TYPE_OFICIAL = "oficial";
   static String S_TYPE_TRAINING = "training";
   

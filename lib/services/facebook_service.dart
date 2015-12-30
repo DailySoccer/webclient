@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'dart:html';
 
 @Injectable()
 class FacebookService {
@@ -19,6 +20,20 @@ class FacebookService {
     _instance = this;
   }
 
+  static Map inscribeInContest(String contestId) {
+    String rootUrl = window.location.toString().split("#")[0];
+    String inviteUrl = "$rootUrl#/enter_contest/lobby/${contestId}/none";
+    //String inviteUrl = "jugar.epiceleven.com/#/enter_contest/lobby/${contest.contestId}/none";
+    
+    return {
+      'description': getLocalizedText('contest_inscription_description'),
+      'caption': '',
+      'hashtag': getLocalizedText('contest_inscription_hastag'),
+      'url': inviteUrl,
+      'title': getLocalizedText('contest_inscription_title'),
+      'image': "$rootUrl/images/${getLocalizedText('contest_inscription_img')}"
+    };
+  }
   
   /********* Constest Headers in Live and History *********/
   static String titleByContest(Contest contest, dynamic userId) {

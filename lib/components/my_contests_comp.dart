@@ -76,28 +76,21 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
 
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
   }
-
+  
   void _refreshMyContests() {
-    Future myContests =
-          _tabSelected  == TAB_WAITING  ? contestsService.refreshMyActiveContests()
-        : _tabSelected  == TAB_LIVE     ? contestsService.refreshMyLiveContests()
-        : contestsService.refreshMyHistoryContests()
-        .. then((_) {
+    Future refresher = contestsService.refreshMyLiveContests();
+    if (_tabSelected  != TAB_LIVE) {
+      Future selected = _tabSelected  == TAB_WAITING ? 
+                          contestsService.refreshMyActiveContests() : 
+                          contestsService.refreshMyHistoryContests();
+      refresher = Future.wait([refresher, selected]);
+    }
+    
+    refresher.then((_) {
           loadingService.isLoading = false;
-
-          // Actualizar el número de contests "live"
-          if (_tabSelected == TAB_LIVE) {
-            _numLiveContests = contestsService.liveContests.length;
-          }
+          _numLiveContests = contestsService.liveContests.length;
         })
         .catchError((ServerError error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW), test: (error) => error is ServerError);
-
-    // Cuando no estamos en "live" tenemos que actualizar el número de "live" con una query independiente
-    if (_tabSelected != TAB_LIVE) {
-      contestsService.countMyLiveContests().then((count) {
-        _numLiveContests = count;
-      });
-    }
   }
 
   void onWaitingActionClick(Contest contest) {

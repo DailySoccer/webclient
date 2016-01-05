@@ -209,7 +209,9 @@ class ContestHeaderF2PComp implements DetachAware, ShadowRootAware {
       } else */{
         _sharingInfo = FacebookService.inscribeInContest(contest.contestId);
       }
+      _sharingInfo['selector-prefix'] = '${_sharingInfo['selector-prefix']}_contestHeader';
     }
+    
     return _sharingInfo;
   }
 

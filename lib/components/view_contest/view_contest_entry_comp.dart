@@ -156,6 +156,7 @@ class ViewContestEntryComp {
     if (contest == null) return _sharingInfo;
     if (_sharingInfo.length == 0) {
       _sharingInfo = FacebookService.inscribeInContest(contest.contestId);
+      _sharingInfo['selector-prefix'] = '${_sharingInfo['selector-prefix']}_inviteBtt';
     }
     return _sharingInfo;
   }

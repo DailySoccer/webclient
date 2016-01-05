@@ -426,6 +426,11 @@ class WebClientApp extends Module {
             )
           }
       )
+      ,'sec': ngRoute( // shortcutRoute - sec: Short Enter Contest
+          path: '/sec/:contestId',
+          preEnter: (RoutePreEnterEvent e) => _preEnterShortEnterContest(e, router, visibility: _ALWAYS),
+          viewHtml: '<enter-contest></enter-contest>'
+      )
       ,'view_contest_entry': ngRoute(
           path: '/view_contest_entry/:parent/:viewContestEntryMode/:contestId',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
@@ -516,9 +521,17 @@ class WebClientApp extends Module {
 
   void _preEnterMycontest(RoutePreEnterEvent event, Router router, {int visibility}) {
     _preEnterPage(event, router,visibility:visibility);
-    if (event.parameters["section"] == "null") {
+    if (event.parameters["section"]) {
       //event.parameters["section"] = "live";
       router.go(event.route.name, {"section":'live'});
+    }
+  }
+
+  void _preEnterShortEnterContest(RoutePreEnterEvent event, Router router, {int visibility}) {
+    if (event.parameters.containsKey("contestId")) {
+      router.go('enter_contest', { "contestId": event.parameters["contestId"], "parent": "lobby", "contestEntryId": "none" });
+    } else {
+      router.go("home", {}, replace:true);
     }
   }
 

@@ -24,7 +24,7 @@ class FacebookService {
   static String get _rootUrl => window.location.toString().split("#")[0];
 
   static Map inscribeInContest(String contestId) {
-    return _buildShareMap('contest_inscription', "$_rootUrl#/enter_contest/lobby/${contestId}/none");
+    return _buildShareMap('contest_inscription', "$_rootUrl#/sec/${contestId}");
   }
 
   static Map historyContest(Contest contest, int position) {

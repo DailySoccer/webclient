@@ -63,10 +63,11 @@ class TwitterShareComp {
   void updateButtons() {
     if(sharingInfo['url'] != null && sharingInfo['hashtag'] != null && sharingInfo['description'] != null) {
       JsUtils.runJavascript(null, 'loadTwitterWidgets', { 
-            'text': sharingInfo['description'],
+            'text': '${sharingInfo['title']} ${sharingInfo['description']}',
             'hashtags': sharingInfo['hashtag'],
             'url': sharingInfo['url'],
-            'via': "Epiceleven"
+            'via': "Epiceleven",
+            'selector-prefix': sharingInfo['selector-prefix']
           });
     }
   }

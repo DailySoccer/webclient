@@ -14,11 +14,16 @@
           <span class="date">{{notification.date}}</span>
         </div>
       </div>
-
+      <div ng-class="{'clearfix': notification.type == 'ACHIEVEMENT_EARNED'}"></div>
+      <!--social-share parameters-by-map="sharingInfo(notification)" show-like="false" inline ng-show="shareEnabled(notification)"></social-share-->
+      
       <div class="additional-info">
         <div class="wrapper">
           <div class="description">{{notification.description}}</div>
-          <div class="button-wrapper" ng-if="notification.link.name != ''"><button class="btn-primary" ng-click="goToLink(notification.link.url)">{{notification.link.name}}</button></div>
+          <div class="button-wrapper" ng-show="notification.link.name != '' || shareEnabled(notification)">
+            <button class="btn-primary" ng-if="notification.link.name != ''" ng-click="goToLink(notification.link.url)">{{notification.link.name}}</button>
+            <social-share parameters-by-map="sharingInfo(notification)" show-like="false" inline ng-show="shareEnabled(notification)"></social-share>
+          </div>
         </div>
       </div>
 

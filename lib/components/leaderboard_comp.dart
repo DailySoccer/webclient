@@ -8,6 +8,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/achievement.dart';
+import 'package:webclient/services/facebook_service.dart';
 
 
 @Component(
@@ -43,6 +44,21 @@ class LeaderboardComp implements ShadowRootAware{
   Map playerPointsInfo = {'position':'_', 'id':'', 'name': '', 'points': ' '};
   Map playerMoneyInfo = {'position':'_', 'id':'', 'name': '', 'points': '\$ '};
 
+  Map _sharingInfoGold = null;
+  Map get sharingInfoGold {
+    if (_sharingInfoGold == null) {
+      _sharingInfoGold = FacebookService.leaderboardGold();
+    }
+    return _sharingInfoGold;
+  }
+  Map _sharingInfoTrueSkill = null;
+  Map get sharingInfoTrueSkill {
+    if (_sharingInfoTrueSkill == null) {
+      _sharingInfoTrueSkill = FacebookService.leaderboardTrueskill();
+    }
+    return _sharingInfoTrueSkill;
+  }
+  
   String getLocalizedText(key, {group: "leaderboard", Map substitutions}) {
     return StringUtils.translate(key, group, substitutions);
   }

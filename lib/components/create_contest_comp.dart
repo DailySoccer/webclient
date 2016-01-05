@@ -236,9 +236,7 @@ class CreateContestComp  {
     templatesPerCompetitionList.forEach( (String key, List<TemplateContest> list) {
       list.clear();
       if(contestType != null) {
-        list.addAll(templatesPerTypeList[contestType].where((t) {
-          return t.competitionType == key;
-        }));
+        list.addAll(templatesPerTypeList[contestType].where((t) => t.competitionType == key));
       }
     });
     updateSelectedCompetition();
@@ -271,9 +269,7 @@ class CreateContestComp  {
     templatesPerStyle.forEach( (String key, List<TemplateContest> list) {
       list.clear();
       if(selectedCompetition != null) {
-        list.addAll(templatesPerCompetitionList[selectedCompetition].where((t) {
-            return (t.tournamentType == h2h) == (h2h == key);
-        }));
+        list.addAll(templatesPerCompetitionList[selectedCompetition].where((t) => (t.tournamentType == h2h) == (h2h == key)));
       }
     });
     updateSelectedStyle();

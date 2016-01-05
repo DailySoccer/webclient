@@ -750,29 +750,51 @@
     }
     , "facebook_service"                :
     {
-      "default_title"                   : "Epic Eleven",
-      "default_description"             : "Juega hoy gratis a Epic Eleven",
-      "contest_invite"                  : "Juega conmigo en este torneo",
-      "contest_img_invite"              : "http://jugar.epiceleven.com/images/PostGenerico.png",
-
-      "contest_live_title"              : "¡Sigue el torneo en directo!",
-      "contest_live_description"        : "Estoy jugando en un torneo de Epic Eleven, ¡fíjate en cómo lo estoy haciendo!",
-      "contest_live_img_first"          : "http://jugar.epiceleven.com/images/PostGenerico.png",
-      "contest_live_img_second"         : "http://jugar.epiceleven.com/images/PostGenerico.png",
-      "contest_live_img_third"          : "http://jugar.epiceleven.com/images/PostGenerico.png",
-      "contest_live_img_other"          : "http://jugar.epiceleven.com/images/PostGenerico.png",
-      
-      "contest_history_title"           : "¡He quedado @USER_POS!",
-      "contest_history_description"     : "Juega conmigo en Epic Eleven y demuestra si puedes superarme.",
-      "contest_history_img_first"       : "http://jugar.epiceleven.com/images/PostGenerico.png",
-      "contest_history_img_second"      : "http://jugar.epiceleven.com/images/PostGenerico.png",
-      "contest_history_img_third"       : "http://jugar.epiceleven.com/images/PostGenerico.png",
-      "contest_history_img_other"       : "http://jugar.epiceleven.com/images/PostGenerico.png",
-
       "contest_inscription_hastag"      : "EpicEleven",
       "contest_inscription_title"       : "¡Acabo de inscribirme en un torneo de Epic Eleven!",
       "contest_inscription_description" : "Me he apuntado a este torneo, date prisa y unete.",
-      "contest_inscription_img"         : "social/InscribirseTorneo.jpg"
+      "contest_inscription_img"         : "social/InscribirseTorneo.jpg",
+      
+      "contest_win_hastag"              : "EpicEleven",
+      "contest_win_title"               : "He ganado",
+      "contest_win_description"         : "¡He ganado un torneo en Epic Eleven!",
+      "contest_win_img"                 : "social/TorenoGanado.jpg",
+      
+      "contest_history_hastag"          : "EpicEleven",
+      "contest_history_title"           : "Resultado",
+      "contest_history_description"     : "¡He quedado @USER_POS! Juega conmigo en Epic Eleven y demuestra si puedes superarme.",
+      "contest_history_img"             : "social/ClasifTorneoTerminado.jpg",
+      
+      "contest_live_hastag"             : "EpicEleven",
+      "contest_live_title"              : "¡Sigue el torneo en directo!",
+      "contest_live_description"        : "Estoy jugando en un torneo de Epic Eleven, ¡fíjate en cómo lo estoy haciendo!",
+      "contest_live_img"                : "social/Live.jpg",
+      
+      "win_achievement_hastag"          : "EpicEleven",
+      "win_achievement_title"           : "Logro Conseguido",
+      "win_achievement_description"     : "¡He conseguido el Logro @ACHIEV_NAME!",
+      "win_achievement_img"             : "social/@ACHIEV_IMG_KEY",
+      
+      "manager_level_up_hastag"         : "EpicEleven",
+      "manager_level_up_title"          : "¡He subido de Nivel de Mánager!",
+      "manager_level_up_description"    : "Ahora puedo jugar con mejores jugadores en Epic Eleven. ¿Crees que puedes derrotarme?",
+      "manager_level_up_img"            : "social/ManagerLevel@MANAGER_LEVEL.jpg",
+      
+      "created_contest_hastag"          : "EpicEleven",
+      "created_contest_title"           : "Torneo creado",
+      "created_contest_description"     : "He creado un torneo en Epic Eleven, apuntate e intententa ganarme.",
+      "created_contest_img"             : "social/CreaTorneo.jpg",
+      
+      "leadeboard_gold_hastag"          : "EpicEleven",
+      "leadeboard_gold_title"           : "Leaderboard Oro",
+      "leadeboard_gold_description"     : "¡Mira cómo me va en las clasificaciones!",
+      "leadeboard_gold_img"             : "social/ClasifORO.jpg",
+      
+      "leadeboard_trueskill_hastag"     : "EpicEleven",
+      "leadeboard_trueskill_title"      : "Leaderboard TrueSkill",
+      "leadeboard_trueskill_description": "¡Mira cómo me va en las clasificaciones!",
+      "leadeboard_trueskill_img"        : "social/ClasifTrueSkill.jpg"
+      
     }
     ,"createcontest"                    :
     {

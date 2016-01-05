@@ -14589,6 +14589,7 @@ facebook-share .facebook-share-button,
   font-size: 8pt;
   color: #ffffff;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  text-transform: none;
   border-radius: 2px;
   background-color: #4a65a0;
   display: inline-block;
@@ -18884,6 +18885,9 @@ lineup-selector {
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-column {
   padding: 20px;
 }
+#leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-column social-share {
+  height: 20px;
+}
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-position {
   float: left;
   width: 16.66666667%;
@@ -18909,7 +18913,7 @@ lineup-selector {
 @media (min-width: 768px) {
   #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-name {
     float: left;
-    width: 25%;
+    width: 33.33333333%;
   }
 }
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint {
@@ -18941,7 +18945,7 @@ lineup-selector {
 @media (min-width: 768px) {
   #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-skillpoints {
     float: left;
-    width: 25%;
+    width: 16.66666667%;
   }
 }
 #loginRoot,
@@ -24382,9 +24386,15 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
   display: inline-block;
   height: 34px;
   margin-top: 20px;
-}
-#notificationsComp .notification-list-wrapper .notification .additional-info button {
   margin-left: 20px;
+}
+#notificationsComp .notification-list-wrapper .notification .additional-info .button-wrapper .btn-primary {
+  vertical-align: middle;
+}
+#notificationsComp .notification-list-wrapper .notification .additional-info .button-wrapper social-share {
+  display: inline-block;
+  height: 20px;
+  vertical-align: middle;
 }
 #notificationsComp .notification-list-wrapper .close-button {
   position: absolute;
@@ -24428,6 +24438,18 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
   padding: 0 0 15px 0;
 }
 #notificationsComp .notification-list-wrapper .uncommon .additional-info {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 35px;
+}
+#notificationsComp .notification-list-wrapper .uncommon .additional-info .button-wrapper {
+  margin-top: 0;
+}
+#notificationsComp .notification-list-wrapper .uncommon .additional-info .button-wrapper .btn-primary {
   display: none !important;
   visibility: hidden !important;
 }

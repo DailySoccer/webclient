@@ -50,6 +50,8 @@ class SocialShareComp {
   @NgOneWay("parameters-by-map")
   void set info(Map allInfo) { sharingInfo = allInfo; }
   
+  String get wraperId => sharingInfo['selector-prefix'].toString().replaceAll('#', '');
+  
   SocialShareComp();
   
   Map sharingInfo = {};

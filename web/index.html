@@ -260,8 +260,8 @@
     
      window.fbAsyncInit = function() {
        FB.init({
-         appId      : '865176766847011',
-         //appId      : '1043008439063842', // TestAPP
+         //appId      : '865176766847011',
+         appId      : '1043008439063842', // TestAPP
          xfbml      : true,
          //frictionlessRequests : true,
          version    : 'v2.5'
@@ -290,16 +290,17 @@
       };
       var twitterLoaderProcess = null;
       function loadTwitterWidgets(options) {
-        var shareWrapper = document.querySelectorAll(".twitter-share-button-wrapper"); //document.getElementsById('twitterShareButton');
-        var followWrapper = document.querySelectorAll(".twitter-follow-button-wrapper"); //document.getElementById('twitterFollowButton');
+        var generalWrapperSelector = options['selector-prefix'] || '';
+        var shareWrapper = document.querySelectorAll(generalWrapperSelector + " .twitter-share-button-wrapper"); //document.getElementsById('twitterShareButton');
+        var followWrapper = document.querySelectorAll(generalWrapperSelector + " .twitter-follow-button-wrapper"); //document.getElementById('twitterFollowButton');
         
         if (followWrapper.length != 0 && shareWrapper.length != 0 && typeof twttr !== "undefined" && twttr != null) {
           
           for (var i = 0; i < shareWrapper.length; i++) {
             var l = 0;
             var wrapper = shareWrapper[i];
-            for(l = wrapper.children.length -1; l >= 0; l--) {
-              wrapper.children[l].remove();
+            while (wrapper.children.length > 0) {
+              wrapper.children[0].remove();
             }
             twttr.widgets.createShareButton(
               options['url'],
@@ -315,8 +316,8 @@
           for (var i = 0; i < followWrapper.length; i++) {
             var l = 0;
             var wrapper = followWrapper[i];
-            for(l = wrapper.children.length -1; l >= 0; l--) {
-              wrapper.children[l].remove();
+            while (wrapper.children.length > 0) {
+              wrapper.children[0].remove();
             }
             twttr.widgets.createFollowButton(
               'EpicEleven',
@@ -327,12 +328,9 @@
         }
         
         if (followWrapper.length == 0 && shareWrapper.length == 0 || typeof twttr === "undefined" || twttr == null) {
-          if (twitterLoaderProcess == null) {
-            twitterLoaderProcess = setTimeout(function () { 
-              twitterLoaderProcess = null;
-              loadTwitterWidgets(options); 
-            }, 100);
-          } 
+          setTimeout(function () {
+            loadTwitterWidgets(options); 
+          }, 100);
         }
       }
       window.twttr = (function(d, s, id) {

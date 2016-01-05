@@ -194,9 +194,9 @@ class EnterContestComp implements DetachAware {
 
     resetLineup();
 
-    _parent = _routeProvider.parameters.containsKey('parent')? _routeProvider.parameters["parent"] : 'lobby';
+    _parent = _routeProvider.parameters["parent"];
     contestId = _routeProvider.route.parameters['contestId'];
-    contestEntryId = _routeProvider.parameters.containsKey('contestEntryId')? _routeProvider.route.parameters['contestEntryId'] : 'none';
+    contestEntryId = _routeProvider.route.parameters['contestEntryId'];
 
     _tutorialService.triggerEnter("enter_contest", component: this);
 

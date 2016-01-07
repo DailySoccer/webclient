@@ -397,11 +397,16 @@ tc.put("packages/webclient/components/account/notifications_comp.html", new Http
           <span class="date">{{notification.date}}</span>
         </div>
       </div>
-
+      <div ng-class="{'clearfix': notification.type == 'ACHIEVEMENT_EARNED'}"></div>
+      <!--social-share parameters-by-map="sharingInfo(notification)" show-like="false" inline ng-show="shareEnabled(notification)"></social-share-->
+      
       <div class="additional-info">
         <div class="wrapper">
           <div class="description">{{notification.description}}</div>
-          <div class="button-wrapper" ng-if="notification.link.name != ''"><button class="btn-primary" ng-click="goToLink(notification.link.url)">{{notification.link.name}}</button></div>
+          <div class="button-wrapper" ng-show="notification.link.name != '' || shareEnabled(notification)">
+            <button class="btn-primary" ng-if="notification.link.name != ''" ng-click="goToLink(notification.link.url)">{{notification.link.name}}</button>
+            <social-share parameters-by-map="sharingInfo(notification)" show-like="false" inline ng-show="shareEnabled(notification)"></social-share>
+          </div>
         </div>
       </div>
 
@@ -669,7 +674,7 @@ tc.put("packages/webclient/components/contest_header_f2p_comp.html", new HttpRes
       <span>{{info['startTime']}}&nbsp;</span>
     </div>
   </div>
-  <facebook-share ng-if="contest.isLive || contest.isHistory" description="fbDescription" title="fbTitle" caption="fbCaption" image="fbPhoto"></facebook-share>
+  <social-share ng-if="userIsRegistered()" parameters-by-map="sharingInfo" inline></social-share>
   
   <div class="tournament-and-type-section">
     <span class="{{getSourceFlag()}}"></span>
@@ -684,6 +689,7 @@ tc.put("packages/webclient/components/contest_header_f2p_comp.html", new HttpRes
 </div>
 <teams-panel id="teamsPanelComp" contest="contest" contest-id="contest.contestId"  ng-if="showMatches"></teams-panel>
 
+  
 <div class="clearfix"></div>
 """));
 tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(200, r"""<modal id="contestInfoModal" ng-if="isModal">
@@ -901,11 +907,17 @@ tc.put("packages/webclient/components/create_contest_comp.html", new HttpRespons
       <div class="title">{{getLocalizedText("contest_type")}}</div>
       <div class="data-input-wrapper contest-type">
         <span class="data-element">
-          <input id="contestOficial" type="radio" value="oficial" ng-value="TYPE_OFICIAL" ng-model="contestType" name="contestType" checked>
+          <input id="contestOficial" type="radio" value="oficial" name="contestType" 
+                 ng-value="TYPE_OFICIAL" ng-model="contestType"
+                 ng-class="{'disabled-radio': templatesPerTypeList[TYPE_OFICIAL].isEmpty }"
+                 ng-disabled="templatesPerTypeList[TYPE_OFICIAL].isEmpty">
           <label for="contestOficial"><span class="icon"></span>{{getLocalizedText("oficial")}}</label>
         </span>
         <span class="data-element">
-          <input id="contestTraining" type="radio" value="training" ng-value="TYPE_TRAINING" ng-model="contestType" name="contestType">
+          <input id="contestTraining" type="radio" value="training" name="contestType"
+                 ng-value="TYPE_TRAINING" ng-model="contestType"
+                 ng-class="{'disabled-radio': templatesPerTypeList[TYPE_TRAINING].isEmpty }"
+                 ng-disabled="templatesPerTypeList[TYPE_TRAINING].isEmpty">
           <label for="contestTraining"><span class="icon"></span>{{getLocalizedText("training")}}</label>
         </span>
       </div>
@@ -918,22 +930,52 @@ tc.put("packages/webclient/components/create_contest_comp.html", new HttpRespons
       <div class="data-input-wrapper competition">
         <span class="data-element">
           <input id="contestLeague" type="radio" value="LEAGUE_ES" name="competition"
-                 ng-class="{'disabled-radio': templatesFilteredList[leagueES_val].length == 0 }"
-                 ng-value="leagueES_val" ng-model="selectedCompetition"
-                 ng-disabled="templatesFilteredList[leagueES_val].length == 0">
+                 ng-value="LEAGUE_ES" ng-model="selectedCompetition"
+                 ng-class="{'disabled-radio': templatesPerCompetitionList[LEAGUE_ES].isEmpty }"
+                 ng-disabled="templatesPerCompetitionList[LEAGUE_ES].isEmpty">
           <label for="contestLeague"><span class="icon"></span>{{getLocalizedText("spanish_league")}}</label>
         </span>
         <span class="data-element">
           <input id="contestPremiere" type="radio" value="LEAGUE_UK" name="competition"
-                 ng-class="{'disabled-radio': templatesFilteredList[leagueUK_val].length == 0 }"
-                 ng-value="leagueUK_val" ng-model="selectedCompetition"
-                 ng-disabled="templatesFilteredList[leagueUK_val].length == 0">
+                 ng-class="{'disabled-radio': templatesPerCompetitionList[LEAGUE_UK].isEmpty }"
+                 ng-value="LEAGUE_UK" ng-model="selectedCompetition"
+                 ng-disabled="templatesPerCompetitionList[LEAGUE_UK].isEmpty">
           <label for="contestPremiere"><span class="icon"></span>{{getLocalizedText("premier_league")}}</label>
         </span>
       </div>
     </div>
   </div>
 
+  <div class="create-contest-section-wrapper">
+    <div class="create-contest-section">
+      <div class="title">{{getLocalizedText("rivals")}}</div>
+      <div class="data-input-wrapper contest-style">
+        <span class="data-element">
+          <input id="contestHeadToHead" type="radio" value="headToHead" name="contestStyle"
+                 ng-value="STYLE_HEAD_TO_HEAD" ng-model="contestStyle"
+                 ng-class="{'disabled-radio': templatesPerStyle[STYLE_HEAD_TO_HEAD].isEmpty }"
+                 ng-disabled="templatesPerStyle[STYLE_HEAD_TO_HEAD].isEmpty">
+          <label for="contestHeadToHead"><span class="icon"></span>{{getLocalizedText("head_to_head")}}</label>
+        </span>
+        <span class="data-element">
+          <input id="contestOpen" type="radio" value="league" name="contestStyle"
+                 ng-value="STYLE_LEAGUE" ng-model="contestStyle"
+                 ng-class="{'disabled-radio': templatesPerStyle[STYLE_LEAGUE].isEmpty }"
+                 ng-disabled="templatesPerStyle[STYLE_LEAGUE].isEmpty">
+          <label for="contestOpen"><span class="icon"></span>{{getLocalizedText("league")}}
+            <select name="contestLeagueCountSelector" id="contestLeagueCountSelector"
+                    class="form-control contest-league-count-selector dropdown-toggle" ng-model="selectedLeaguePlayerCount">
+
+              <option ng-repeat="count in leaguePlayerCountList" id="option-contest-count-{{count}}"
+                      value="{{$index + 1}}" ng-value="count">{{count == -1? getLocalizedText("no_limit") : count}}</option>
+
+            </select>
+          </label>
+        </span>
+      </div>
+    </div>
+  </div>
+  
   <div class="create-contest-section-wrapper">
     <div class="create-contest-section">
       <div class="title">{{getLocalizedText("event")}}</div>
@@ -947,33 +989,7 @@ tc.put("packages/webclient/components/create_contest_comp.html", new HttpRespons
                   value="{{$index + 1}}" ng-value="template">{{template.name}}</option>
         </select>
       </div>
-    </div>
-  </div>
-
-  <teams-panel id="teamsPanelComp" panel-open="true" template-contest="selectedTemplate" button-text="getLocalizedText('matches_title')"></teams-panel>
-
-  <div class="create-contest-section-wrapper">
-    <div class="create-contest-section">
-      <div class="title">{{getLocalizedText("rivals")}}</div>
-      <div class="data-input-wrapper contest-style">
-        <span class="data-element">
-          <input id="contestHeadToHead" type="radio" value="headToHead" ng-value="STYLE_HEAD_TO_HEAD" ng-model="contestStyle" name="contestStyle" checked>
-          <label for="contestHeadToHead"><span class="icon"></span>{{getLocalizedText("head_to_head")}}</label>
-        </span>
-        <span class="data-element">
-          <input id="contestOpen" type="radio" value="league" ng-value="STYLE_LEAGUE" ng-model="contestStyle" name="contestStyle">
-          <label for="contestOpen"><span class="icon"></span>{{getLocalizedText("league")}}
-            <select name="contestLeagueCountSelector" id="contestLeagueCountSelector"
-                    class="form-control contest-league-count-selector dropdown-toggle" ng-model="selectedLeaguePlayerCount">
-
-              <option ng-repeat="count in leaguePlayerCountList" id="option-contest-count-{{count}}"
-                      value="{{$index + 1}}" ng-value="count">{{count == -1? getLocalizedText("no_limit") : count}}</option>
-
-            </select>
-          </label>
-        </span>
-      </div>
-    </div>
+    </div> 
   </div>
 
   <div class="create-contest-section-wrapper">
@@ -995,6 +1011,9 @@ tc.put("packages/webclient/components/create_contest_comp.html", new HttpRespons
       </div>
     </div>
   </div>
+
+  <teams-panel id="teamsPanelComp" panel-open="true" template-contest="selectedTemplate" button-text="getLocalizedText('matches_title')"></teams-panel>
+  
   <div class="create-contest-section-wrapper large">
     <div class="create-contest-section" ng-if="selectedTemplate != null">
       <div class="title">Premios</div>
@@ -1444,13 +1463,13 @@ tc.put("packages/webclient/components/leaderboard_comp.html", new HttpResponse(2
 
       <div class="tab-pane active" id="points-content">
 
-        <leaderboard-table show-header="true" highlight-element="playerPointsInfo" table-elements="pointsUserList" rows="USERS_TO_SHOW" points-column-label="pointsColumnName" hint="playerPointsHint" ng-show="!loadingService.isLoading"></leaderboard-table>
+        <leaderboard-table share-info="sharingInfoTrueSkill" show-header="true" highlight-element="playerPointsInfo" table-elements="pointsUserList" rows="USERS_TO_SHOW" points-column-label="pointsColumnName" hint="playerPointsHint" ng-show="!loadingService.isLoading"></leaderboard-table>
 
       </div>
 
       <div class="tab-pane" id="money-content">
 
-        <leaderboard-table show-header="true" highlight-element="playerMoneyInfo" table-elements="moneyUserList" rows="USERS_TO_SHOW" points-column-label="moneyColumnName" hint="playerMoneyHint" ng-show="!loadingService.isLoading"></leaderboard-table>
+        <leaderboard-table share-info="sharingInfoGold" show-header="true" highlight-element="playerMoneyInfo" table-elements="moneyUserList" rows="USERS_TO_SHOW" points-column-label="moneyColumnName" hint="playerMoneyHint" ng-show="!loadingService.isLoading"></leaderboard-table>
 
       </div>
 
@@ -1477,7 +1496,9 @@ tc.put("packages/webclient/components/leaderboard_table_comp.html", new HttpResp
     <div class="leaderboard-table-element {{isThePlayer(element['id'])? 'player-position' : ''}}" ng-repeat="element in shownElements">
       <span class="leaderboard-column leaderboard-table-position">{{element['position']}} </span>
       <span class="leaderboard-column leaderboard-table-name">{{element['name']}} </span>
-      <span class="leaderboard-column leaderboard-table-hint">{{isThePlayer(element['id'])? playerHint : ''}} </span>
+      <span class="leaderboard-column leaderboard-table-hint">
+        <social-share parameters-by-map="sharingInfo" show-like="false" inline ng-if="isThePlayer(element['id'])"></social-share>
+      </span>
       <span class="leaderboard-column leaderboard-table-skillpoints">{{element['points']}} </span>
     </div>
   </div>
@@ -1644,11 +1665,14 @@ tc.put("packages/webclient/components/legalese_and_help/legal_info_comp.html", n
 tc.put("packages/webclient/components/legalese_and_help/policy_info_comp.html", new HttpResponse(200, r"""<div id="staticInfo">
 
   <!-- header title -->
-  <div class="default-section-header">PRIVACY POLICY</div>
+  <div class="default-section-header">{{getLocalizedText('title')}}</div>
   <div class="blue-separator"></div>
 
   <div class="info-wrapper">
   
+    <h1>{{getLocalizedText('point-0-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-0-content')"></div>
+      
     <h1>{{getLocalizedText('point-1-title')}}</h1>
     <div ng-bind-html-unsafe="getLocalizedText('point-1-content')"></div>
     
@@ -1669,6 +1693,54 @@ tc.put("packages/webclient/components/legalese_and_help/policy_info_comp.html", 
     
     <h1>{{getLocalizedText('point-7-title')}}</h1>
     <div ng-bind-html-unsafe="getLocalizedText('point-7-content')"></div>
+      
+    <h1>{{getLocalizedText('point-8-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-8-content')"></div>
+      
+    <h1>{{getLocalizedText('point-9-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-9-content')"></div>
+      
+    <h1>{{getLocalizedText('point-10-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-10-content')"></div>
+      
+    <h1>{{getLocalizedText('point-11-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-11-content')"></div> 
+      
+    <h1>{{getLocalizedText('point-12-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-12-content')"></div> 
+      
+    <h1>{{getLocalizedText('point-13-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-13-content')"></div>  
+      
+    <h1>{{getLocalizedText('point-14-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-14-content')"></div> 
+      
+    <h1>{{getLocalizedText('point-15-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-15-content')"></div> 
+      
+    <h1>{{getLocalizedText('point-16-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-16-content')"></div> 
+      
+    <h1>{{getLocalizedText('point-17-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-17-content')"></div> 
+      
+    <h1>{{getLocalizedText('point-18-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-18-content')"></div> 
+      
+    <h1>{{getLocalizedText('point-19-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-19-content')"></div> 
+      
+    <h1>{{getLocalizedText('point-20-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-20-content')"></div>  
+      
+    <h1>{{getLocalizedText('point-21-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-21-content')"></div>  
+      
+    <h1>{{getLocalizedText('point-22-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-22-content')"></div>  
+      
+    <h1>{{getLocalizedText('point-23-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-23-content')"></div>  
     
   </div>
 
@@ -1688,35 +1760,100 @@ tc.put("packages/webclient/components/legalese_and_help/rules_comp.html", new Ht
 tc.put("packages/webclient/components/legalese_and_help/terminus_info_comp.html", new HttpResponse(200, r"""<div id="staticInfo">
 
   <!-- header title -->
-  <div class="default-section-header">TERMS AND CONDITIONS</div>
+  <div class="default-section-header">TÉRMINOS DE USO</div>
   <div class="blue-separator"></div>
 
   <div class="info-wrapper">
-  
-    <h1>{{getLocalizedText('point-1-title')}}</h1>
-    <div ng-bind-html-unsafe="getLocalizedText('point-1-content')"></div>
+      
+    <h1>{{getLocalizedText('point-0-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-0-content')"></div>
     
+    <h1>{{getLocalizedText('point-1-title')}}</h1>
+    <h2>{{getLocalizedText('point-1-subtitle')}}</h2>
+    <div ng-bind-html-unsafe="getLocalizedText('point-1-content')"></div>
+        
     <h1>{{getLocalizedText('point-2-title')}}</h1>
     <div ng-bind-html-unsafe="getLocalizedText('point-2-content')"></div>
     
-    <h1>{{getLocalizedText('point-3-title')}}</h1>
+    <h2>{{getLocalizedText('point-3-subtitle')}}</h2>
     <div ng-bind-html-unsafe="getLocalizedText('point-3-content')"></div>
     
     <h1>{{getLocalizedText('point-4-title')}}</h1>
+    <h2>{{getLocalizedText('point-4-subtitle')}}</h2>
     <div ng-bind-html-unsafe="getLocalizedText('point-4-content')"></div>
-    
-    <h1>{{getLocalizedText('point-5-title')}}</h1>
+            
+    <h2>{{getLocalizedText('point-5-subtitle')}}</h2>
     <div ng-bind-html-unsafe="getLocalizedText('point-5-content')"></div>
-    
-    <h1>{{getLocalizedText('point-6-title')}}</h1>
+      
+    <h2>{{getLocalizedText('point-6-subtitle')}}</h2>
     <div ng-bind-html-unsafe="getLocalizedText('point-6-content')"></div>
-    
-    <h1>{{getLocalizedText('point-7-title')}}</h1>
-    <div ng-bind-html-unsafe="getLocalizedText('point-7-content')"></div>
-    
+           
+    <h2>{{getLocalizedText('point-7-subtitle')}}</h2>
+    <div ng-bind-html-unsafe="getLocalizedText('point-7-content')"></div>  
+         
     <h1>{{getLocalizedText('point-8-title')}}</h1>
-    <div ng-bind-html-unsafe="getLocalizedText('point-8-content')"></div>
+    <h2>{{getLocalizedText('point-8-subtitle')}}</h2>
+    <div ng-bind-html-unsafe="getLocalizedText('point-8-content')"></div> 
+          
+    <h2>{{getLocalizedText('point-9-subtitle')}}</h2>
+    <h3>{{getLocalizedText('point-9-3title')}}</h3>
+    <div ng-bind-html-unsafe="getLocalizedText('point-9-content')"></div> 
+        
+    <h3>{{getLocalizedText('point-10-3title')}}</h3>
+    <div ng-bind-html-unsafe="getLocalizedText('point-10-content')"></div>  
+           
+    <h2>{{getLocalizedText('point-11-subtitle')}}</h2>
+    <div ng-bind-html-unsafe="getLocalizedText('point-11-content')"></div>   
+      
+    <h2>{{getLocalizedText('point-12-subtitle')}}</h2>
+    <div ng-bind-html-unsafe="getLocalizedText('point-12-content')"></div>   
+     
+    <h1>{{getLocalizedText('point-13-title')}}</h1>
+    <h2>{{getLocalizedText('point-13-subtitle')}}</h2>
+    <div ng-bind-html-unsafe="getLocalizedText('point-13-content')"></div>  
+      
+    <h2>{{getLocalizedText('point-14-subtitle')}}</h2>
+    <div ng-bind-html-unsafe="getLocalizedText('point-14-content')"></div>    
     
+    <h1>{{getLocalizedText('point-15-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-15-content')"></div>  
+        
+    <h1>{{getLocalizedText('point-16-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-16-content')"></div>  
+  
+    <h1>{{getLocalizedText('point-17-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-17-content')"></div>  
+        
+    <h1>{{getLocalizedText('point-18-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-18-content')"></div>   
+  
+    <h1>{{getLocalizedText('point-19-title')}}</h1>
+    <div ng-bind-html-unsafe="getLocalizedText('point-19-content')"></div>   
+    
+    <h1>{{getLocalizedText('point-20-title')}}</h1>
+    <h2>{{getLocalizedText('point-20-subtitle')}}</h2>
+    <div ng-bind-html-unsafe="getLocalizedText('point-20-content')"></div>  
+      
+    <h2>{{getLocalizedText('point-21-subtitle')}}</h2>
+    <div ng-bind-html-unsafe="getLocalizedText('point-21-content')"></div>  
+        
+    <h2>{{getLocalizedText('point-22-subtitle')}}</h2>
+    <div ng-bind-html-unsafe="getLocalizedText('point-22-content')"></div>   
+  
+    <h2>{{getLocalizedText('point-23-subtitle')}}</h2>
+    <div ng-bind-html-unsafe="getLocalizedText('point-23-content')"></div>
+      
+    <h2>{{getLocalizedText('point-24-subtitle')}}</h2>
+    <div ng-bind-html-unsafe="getLocalizedText('point-24-content')"></div>  
+        
+    <h2>{{getLocalizedText('point-25-subtitle')}}</h2>
+    <div ng-bind-html-unsafe="getLocalizedText('point-25-content')"></div>   
+  
+    <h2>{{getLocalizedText('point-26-subtitle')}}</h2>
+    <div ng-bind-html-unsafe="getLocalizedText('point-26-content')"></div>
+        
+         
+  
   </div>
   
 </div>"""));
@@ -2016,7 +2153,7 @@ tc.put("packages/webclient/components/social/friends_bar_comp.html", new HttpRes
     <button class="challenge-friend" ng-click="onChallenge({'user': user})" ng-if="showChallenge">Retar</button>
   </div>
 </div>"""));
-tc.put("packages/webclient/components/social/social_share_comp.html", new HttpResponse(200, r"""<div class="social-share-wrapper">
+tc.put("packages/webclient/components/social/social_share_comp.html", new HttpResponse(200, r"""<div class="social-share-wrapper" id="{{wraperId}}">
   <facebook-share parameters-by-map="sharingInfo" show-like="showLike"></facebook-share>
   <twitter-share parameters-by-map="sharingInfo" show-like="showLike"></twitter-share>
 </div>"""));
@@ -2181,8 +2318,6 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
     <p class="important-info" ng-if="isModeEdited">{{getLocalizedText("edited")}}</p>
     <p class="important-info" ng-if="isModeSwapped">{{getLocalizedText("swapped")}}</p>
     <h2 ng-click="onInviteFriends()" class="invite-friends">{{getLocalizedText("invite_text")}}</h2>
-    <!--social-share parameters-by-map="sharingInfo" inline></social-share-->
-    <!--twitter-share description="fbDescription" title="fbTitle" image="fbImage"></twitter-share-->
     <p class="complementary-info">{{getLocalizedText("tip")}}</p>
   </div>
   
@@ -2242,7 +2377,7 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
     <div class="share-method">
       <p>o enviarlo por mail a los amigos que quieras.</p>
       <p class="important">Copia y envia este enlace a tus amigos</p>
-      <span class="share-url">http://jugar.epiceleven.com/#/enter_contest/lobby/567ac1a6e4b0a538cf739014/none</span>
+      <span class="share-url" ng-if="contest != null">{{inviteUrl}}</span>
     </div>
   </div>
   

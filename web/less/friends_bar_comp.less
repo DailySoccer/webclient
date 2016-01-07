@@ -4,10 +4,14 @@
 	border-top: 1px solid @blueLight;
 	.opensans_normal(10pt, @black);
 	text-align: center;
-	padding: 0 15%;
+	
+	@media (min-width: @screen-sm-max) {
+		padding: 0 15%;
+	}
 	
 	.friend-element-wrapper {
-		.make-xs-column(2.4); // 5 columnas
+		.make-xs-column(4); // 5 columnas
+		.make-sm-column(2.4); // 5 columnas
 		padding: 5px 5px;
 		
 		.friend-picture {
@@ -62,6 +66,9 @@
 	
 	.friend-element-wrapper + .friend-element-wrapper {
 		border-left: 1px solid @greyLight;
+	}
+	.friend-element-wrapper + .friend-element-wrapper + .friend-element-wrapper + .friend-element-wrapper {
+		.hidden-xs();
 	}
 }
 

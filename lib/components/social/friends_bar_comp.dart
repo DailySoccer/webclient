@@ -13,7 +13,7 @@ import 'package:webclient/models/user.dart';
 )
 class FriendsBarComp {
   
-
+  int nameWidth = 105;
   List<User> _fbUsers = [];
   
   @NgOneWay('user-list')

@@ -37,6 +37,7 @@ import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/utils/noshim.dart';
 import 'package:webclient/utils/ng_bind_html_unsafe.dart';
+import 'package:webclient/utils/max_text_width.dart';
 
 import 'package:webclient/components/navigation/main_menu_f2p_comp.dart';
 import 'package:webclient/components/navigation/footer_comp.dart';
@@ -162,6 +163,7 @@ class WebClientApp extends Module {
     bind(FriendsBarComp);
 
     bind(NgBindHtmlUnsafeDirective);
+    bind(MaxTextWidthDirective);
     bind(FormAutofillDecorator);
     bind(AutoFocusDecorator);
     bind(LimitToDot);

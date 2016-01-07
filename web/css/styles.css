@@ -25181,16 +25181,26 @@ textareateams-filter .teams-filter-wrapper .teams-selector-filter {
   color: #000000;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
   text-align: center;
-  padding: 0 15%;
+}
+@media (min-width: 991px) {
+  .friends-bar-wrapper {
+    padding: 0 15%;
+  }
 }
 .friends-bar-wrapper .friend-element-wrapper {
-  position: relative;
   float: left;
-  width: 20%;
+  width: 33.33333333%;
+  position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
   padding: 5px 5px;
+}
+@media (min-width: 768px) {
+  .friends-bar-wrapper .friend-element-wrapper {
+    float: left;
+    width: 20%;
+  }
 }
 .friends-bar-wrapper .friend-element-wrapper .friend-picture {
   width: 50px;
@@ -25396,6 +25406,11 @@ fieldset[disabled] .friends-bar-wrapper .friend-element-wrapper .challenge-frien
 }
 .friends-bar-wrapper .friend-element-wrapper + .friend-element-wrapper {
   border-left: 1px solid #dcdcdc;
+}
+@media (max-width: 767px) {
+  .friends-bar-wrapper .friend-element-wrapper + .friend-element-wrapper + .friend-element-wrapper + .friend-element-wrapper {
+    display: none !important;
+  }
 }
 /*
     <img class="friend-picture" ng-src="{{user.profileImage}}">

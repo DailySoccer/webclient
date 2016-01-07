@@ -12,6 +12,7 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/models/money.dart';
 import 'package:webclient/models/prize.dart';
+import 'dart:math';
 
 @Component(
   selector: 'create-contest',
@@ -19,8 +20,13 @@ import 'package:webclient/models/prize.dart';
   useShadowDom: false
 )
 class CreateContestComp  {
-
-  String contestName;
+  
+  int MAX_LENGTH_CONTEST_NAME = 30;
+  String _contestName;
+  String get contestName => _contestName;
+  void set contestName(String name) {
+    _contestName = name.substring(0, min(MAX_LENGTH_CONTEST_NAME, name.length));
+  }
 
   int selectedHour = 12;
   String selectedMinutesText = '00';

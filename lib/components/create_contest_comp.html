@@ -7,8 +7,10 @@
     <div class="create-contest-section">
       <div class="title">{{getLocalizedText("name")}}</div>
       <div class="data-input-wrapper contest-name">
-        <input id="contestNameInput" type="text" ng-model="contestName" placeholder="{{placeholderName}}" 
-               class="form-control ng-binding ng-pristine ng-touched" tabindex="1">
+        <input id="contestNameInput" type="text" ng-model="contestName" tabindex="1"
+               placeholder="{{placeholderName}}" maxlength="{{MAX_LENGTH_CONTEST_NAME}}"
+               class="form-control ng-binding ng-pristine ng-touched">
+        <span class="contest-name-length">{{MAX_LENGTH_CONTEST_NAME - contestName.length}}</span>
       </div>
     </div>
   </div>

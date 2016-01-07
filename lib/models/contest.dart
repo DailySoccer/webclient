@@ -62,7 +62,10 @@ class Contest {
   int maxTrueSkill = -1;
 
   bool simulation = false;
+  String authorId = "";
   String specialImage;
+  
+  bool isAuthor(User user) => user.userId == authorId;
 
   String get printableSalaryCap => StringUtils.parseSalary(salaryCap);
 
@@ -277,6 +280,7 @@ class Contest {
     prizeType = jsonMap["prizeType"];
     prizeMultiplier = jsonMap.containsKey("prizeMultiplier") ? jsonMap["prizeMultiplier"] : 0.9;
     simulation = jsonMap.containsKey("simulation") ? jsonMap["simulation"] : false;
+    authorId = jsonMap.containsKey("authorId") ? jsonMap["authorId"] : "";
     specialImage = jsonMap.containsKey("specialImage") ? jsonMap["specialImage"] : null;
 
     minManagerLevel = jsonMap.containsKey("minManagerLevel") && jsonMap["minManagerLevel"] != null ? jsonMap["minManagerLevel"] : 0;

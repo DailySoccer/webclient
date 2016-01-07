@@ -35,6 +35,7 @@ abstract class Tutorial {
   String CurrentStepId = STEP_BEGIN;
   TutorialStep get CurrentStep => tutorialSteps[CurrentStepId];
 
+  bool get isActive => !isCompleted;
   bool get isCompleted => CurrentStepId == STEP_END;
   String get name;
 
@@ -226,9 +227,9 @@ abstract class Tutorial {
 
   Map TutorialPlayer({String energyBalance: null, String goldBalance: null}) => {
     "userId":"PLAYER-5625d093d4c6ebe295987fd1",
-    "firstName": "Player",
-    "lastName": "XXX",
-    "nickName":"Player",
+    "firstName": "Tú",
+    "lastName": "",
+    "nickName":"Tú",
     "email": "player@epiceleven.com",
     "wins":0,
     "trueSkill":0,
@@ -241,35 +242,35 @@ abstract class Tutorial {
   List get UsersInfo => [
     {
       "userId":"USER01-5625d093d4c6ebe295987fd1",
-      "nickName":"User01",
+      "nickName":"Misery",
       "wins":0,
       "trueSkill":0,
       "earnedMoney":"AUD 0.00"
     },
     {
       "userId":"USER02-5625d093d4c6ebe295987fd6",
-      "nickName":"User02",
+      "nickName":"Damián",
       "wins":0,
       "trueSkill":0,
       "earnedMoney":"AUD 0.00"
     },
     {
       "userId":"USER03-5625d093d4c6ebe295987fd8",
-      "nickName":"User03",
+      "nickName":"Fernando",
       "wins":0,
       "trueSkill":0,
       "earnedMoney":"AUD 0.00"
     },
     {
       "userId":"USER04-5625d093d4c6ebe295987fdb",
-      "nickName":"User04",
+      "nickName":"Chinaski",
       "wins":0,
       "trueSkill":0,
       "earnedMoney":"AUD 0.00"
     },
     {
       "userId":"USER05-5625d093d4c6ebe295987fde",
-      "nickName":"User05",
+      "nickName":"Goyo",
       "wins":0,
       "trueSkill":0,
       "earnedMoney":"AUD 0.00"

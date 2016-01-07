@@ -276,7 +276,7 @@ class TutorialIniciacion extends Tutorial {
               'view_contest': () async {
                 // Ésta es la pantalla de simulación
                 await openModal( text: () => getLocalizedText("msg-12") );
-                
+
                 if (!isCompleted) {
                   // Aquí podrás ver los puntos conseguidos por tus jugadores
                   await onClick( [new ToolTip("fantasy-team", tipText: getLocalizedText("msg-13"), highlight: true, position: ToolTip.POSITION_TOP)] );
@@ -284,7 +284,7 @@ class TutorialIniciacion extends Tutorial {
                   // Aquí puedes ver tu puntuación frente a los rivales
                   await onClick( [new ToolTip("#usersList", tipText: getLocalizedText("msg-14"), highlight: true, position: ToolTip.POSITION_TOP)]);
                 }
-                  
+
                 clearTooltips();
 
                 ViewContestComp liveContest = context;
@@ -314,6 +314,9 @@ class TutorialIniciacion extends Tutorial {
 
     CurrentStepId = Tutorial.STEP_BEGIN;
     changeUser(TutorialPlayer(energyBalance: "JPY 0.00", goldBalance: "AUD 0.00"));
+
+    // Inicialización del FantasyTeam
+    FantasyTeam = [];
 
     loadContent();
   }

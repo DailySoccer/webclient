@@ -35,6 +35,7 @@ abstract class Tutorial {
   String CurrentStepId = STEP_BEGIN;
   TutorialStep get CurrentStep => tutorialSteps[CurrentStepId];
 
+  bool get isActive => !isCompleted;
   bool get isCompleted => CurrentStepId == STEP_END;
   String get name;
 

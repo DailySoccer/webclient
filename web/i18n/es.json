@@ -162,7 +162,7 @@
     }
     ,"leaderboard"                      :
     {
-      "title"                           : "Game Center",
+      "title"                           : "Logros y Clasificaciones",
       "trueskill_tab"                   : "Habilidad (@PLAYER_POSITIONº)",
       "gold_tab"                        : "Monedas (@PLAYER_POSITIONº)",
       "achievements_tab"                : "Logros (@PLAYER_ACHIEVEMENTS de @TOTAL_ACHIEVEMENTS)",

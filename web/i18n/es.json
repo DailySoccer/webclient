@@ -750,6 +750,8 @@
     }
     , "facebook_service"                :
     {
+      "challenge"                       : "Retar",
+      
       "contest_inscription_hastag"      : "EpicEleven",
       "contest_inscription_title"       : "¡Acabo de inscribirme en un torneo de Epic Eleven!",
       "contest_inscription_description" : "Me he apuntado a este torneo, date prisa y unete.",

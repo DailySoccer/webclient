@@ -5,6 +5,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/utils/fblogin.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/models/user.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
   selector: 'friends-bar',
@@ -29,6 +30,7 @@ class FriendsBarComp {
   bool showChallenge = true;
   
   String get pictureUrl => pro.user.profileImage;
+  String get challengeText => StringUtils.translate("challenge", "facebook_service");
   
   FriendsBarComp(this.pro);
   

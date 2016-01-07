@@ -3,6 +3,6 @@
     <img class="friend-picture" ng-src="{{user.profileImage}}">
     <span class="friend-name" max-text-width="{width: nameWidth, text: user.nickName}"></span>
     <span class="friend-manager-level"><span class="amount">{{user.managerLevel}}</span></span>
-    <button class="challenge-friend" ng-click="onChallenge({'user': user})" ng-if="showChallenge">Retar</button>
+    <button class="challenge-friend" ng-click="onChallenge({'user': user})" ng-if="showChallenge">{{challengeText}}</button>
   </div>
 </div>

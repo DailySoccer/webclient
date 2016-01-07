@@ -155,7 +155,11 @@ class ViewContestEntryComp {
   Map get sharingInfo {
     if (contest == null) return _sharingInfo;
     if (_sharingInfo.length == 0) {
-      _sharingInfo = FacebookService.inscribeInContest(contest.contestId);
+      if (contest.isAuthor(_profileService.user)) {
+        _sharingInfo = FacebookService.createdContest(contest.contestId);
+      } else {
+        _sharingInfo = FacebookService.inscribeInContest(contest.contestId);
+      }
       _sharingInfo['selector-prefix'] = '${_sharingInfo['selector-prefix']}_inviteBtt';
     }
     return _sharingInfo;

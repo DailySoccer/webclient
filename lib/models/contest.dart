@@ -64,6 +64,8 @@ class Contest {
   bool simulation = false;
   String authorId = "";
   String specialImage;
+  
+  bool isAuthor(User user) => user.userId == authorId;
 
   String get printableSalaryCap => StringUtils.parseSalary(salaryCap);
 

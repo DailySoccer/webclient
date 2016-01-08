@@ -127,7 +127,24 @@ class EnterContestComp implements DetachAware {
   int get playerEnergy => _profileService.isLoggedIn ? _profileService.user.Energy : 0;
 
   List<String> lineupAlertList = [];
-
+  
+  List<User> _userList = [];
+  List<User> _orderedList = [];
+  List<User> get filteredFriendList {
+    if (contest == null) return _orderedList;
+    if (_userList.length != contest.contestEntries.length) {
+      _userList = contest.contestEntries.map( (contestEntry) => contestEntry.user).toList();
+      List<User> friendList = _profileService.friendList;
+      
+      _orderedList = _userList.where((u) => friendList.any(
+              (friend) => friend.facebookID == u.facebookID)).toList();
+      _orderedList.addAll( _userList.where((u) => !friendList.any(
+              (friend) => friend.facebookID == u.facebookID)).toList());
+      
+    }
+    return _orderedList;
+  }
+  
   Map<String, Map> errorMap;
 
   String getLocalizedText(key, {substitutions: null}) {

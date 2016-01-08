@@ -6,11 +6,14 @@
     <p class="important-info" ng-if="isModeCreated">{{getLocalizedText("created")}}</p>
     <p class="important-info" ng-if="isModeEdited">{{getLocalizedText("edited")}}</p>
     <p class="important-info" ng-if="isModeSwapped">{{getLocalizedText("swapped")}}</p>
-    <social-share parameters-by-map="sharingInfo"></social-share>
-    <!--twitter-share description="fbDescription" title="fbTitle" image="fbImage"></twitter-share-->
+    <h2 ng-if="showInviteButton" ng-click="onInviteFriends()" class="invite-friends">{{getLocalizedText("invite_text")}}</h2>
     <p class="complementary-info">{{getLocalizedText("tip")}}</p>
   </div>
-
+  
+  
+  <friends-bar user-list="filteredFriendList" on-challenge="onChallenge(user)"></friends-bar>
+  
+  
   <div id="viewContestEntry" ng-switch="scrDet.isXsScreen" >
     <div ng-switch-when="true">
       <!-- Tabs de la versión XS -->
@@ -25,7 +28,7 @@
     </div>
     <div ng-switch-when="false">
       <fantasy-team id="userFantasyTeam" contest-entry="mainPlayer" watch="updatedDate" is-opponent="false"></fantasy-team>
-      <users-list show-invite="showInviteButton" on-invite-friends="onInviteFriends()" id="usersList" ng-show="selectedOpponent == null" contest-entries="contestEntries" watch="updatedDate"></users-list>
+      <users-list id="usersList" ng-show="selectedOpponent == null" contest-entries="contestEntries" watch="updatedDate"></users-list>
     </div>
 
 
@@ -41,7 +44,6 @@
 <!-- End Nuevos Bottons Autocentrables-->
 
 
-
       <!--Viejos Bottons
       <div class="button-wrapper">
         <button type="button" class="btn-cancel-contest" ng-click="cancelContestEntry()">ABANDON</button>
@@ -55,5 +57,18 @@
     </div>
     <div class="clear-fix-bottom"></div>
   </div>
+  
+  <div class="share-methods-modal-content" id="shareMethodsContent">
+    <div class="share-method">
+      <p>Puedes compartir el enlace del torneo en tu perfil de Facebook</p>
+      <social-share parameters-by-map="sharingInfo" inline></social-share>
+    </div>
+    <div class="share-method">
+      <p>o enviarlo por mail a los amigos que quieras.</p>
+      <p class="important">Copia y envia este enlace a tus amigos</p>
+      <span class="share-url" ng-if="contest != null">{{inviteUrl}}</span>
+    </div>
+  </div>
+  
 <ng-view></ng-view>
 </section>

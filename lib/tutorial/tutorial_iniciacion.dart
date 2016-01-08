@@ -15,6 +15,7 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'dart:html';
 import 'package:webclient/models/user.dart';
+import 'package:webclient/models/instance_soccer_player.dart';
 
 class TutorialIniciacion extends Tutorial {
   static String NAME = "TUTORIAL_INICIACION";
@@ -29,7 +30,29 @@ class TutorialIniciacion extends Tutorial {
   DateTime currentDate = new DateTime.now();
 
   TutorialIniciacion(Router router, ProfileService profileService) : super(router, profileService) {
-    getContentJson(PATH + "instance_soccer_players.json").then((list) => InstanceSoccerPlayerList = list);
+    getContentJson(PATH + "instance_soccer_players.json").then((list) {
+      InstanceSoccerPlayerList = list;
+
+      Map<String, String> forwards = {
+        "56260898c1f5fbc410f998b1": "Adnane Tighadouini",
+        "5625d0edc1f5fbc410e6ee06": "Adrián",
+        "5625d0edc1f5fbc410e6ecfe": "Aduriz",
+        "5625d162c1f5fbc410e739c1": "Álvaro Negredo",
+        "5625d0edc1f5fbc410e6efb6": "Álvaro Vázquez",
+        "5625d0edc1f5fbc410e6ed18": "Ángel Correa",
+        "5625d0edc1f5fbc410e6ef3c": "Antoine Griezmann",
+        "5625d162c1f5fbc410e737c1": "Antonio Sanabria",
+        "56260840c1f5fbc410f994c7": "Asdrúbal",
+        "5625d162c1f5fbc410e73c00": "Bebé"
+        // "5625d0edc1f5fbc410e6ef72": "Borja Bastón"
+      };
+
+      // Filtrar la lista de delanteros
+      InstanceSoccerPlayerWithFilteredForwardsList = InstanceSoccerPlayerList.where((instance) {
+        return (instance["fieldPos"] == "FORWARD") ? forwards.containsKey(instance["templateSoccerPlayerId"]) : true;
+      }).toList();
+    });
+
     getContentJson(PATH + "soccer_players.json").then((list) => SoccerPlayerList = list);
 
     var serverCallsWhenOficial = joinMaps([defaultServerCalls, {
@@ -66,7 +89,7 @@ class TutorialIniciacion extends Tutorial {
     }]);
 
     var serverCallsWhenVirtualContestEntry = joinMaps([defaultServerCalls, {
-      "get_my_contest_entry": (url, postData) => waitCompleter( () => TrainingContestList ),
+      "get_my_contest_entry": (url, postData) => waitCompleter( () => TrainingContestLive ),
       "get_my_active_contests": (url, postData) => waitCompleter( () => TrainingContestList ),
       "get_contest_info" : (url, postData) => waitCompleter( () => TrainingContestList ),
       "get_my_active_contest": (url, postData) => waitCompleter( () => TrainingContestList ),
@@ -75,6 +98,11 @@ class TutorialIniciacion extends Tutorial {
       "get_my_history_contest": (url, postData) => waitCompleter( () => TrainingContestHistory ),
       "get_live_match_events": (url, postData) => waitCompleter( () => LiveMatchEventsResponse )
     }]);
+
+    // Identificadores de los futbolistas a seleccionar
+    String soccerPlayer0 = "#soccerPlayer187"; // "#soccerPlayer220";
+    String soccerPlayer1 = "#soccerPlayer389"; // "#soccerPlayer464";
+    String soccerPlayer2 = "#soccerPlayer292"; // "#soccerPlayer344";
 
     tutorialSteps = {
       Tutorial.STEP_BEGIN: new TutorialStep(
@@ -145,8 +173,8 @@ class TutorialIniciacion extends Tutorial {
 
                 // Añade este jugador a tu alineación.
                 showTooltips([
-                  new ToolTip("#soccerPlayer220 .action-button", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-03"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
-                  new ToolTip("#soccerPlayer220", highlight: true)
+                  new ToolTip("$soccerPlayer0 .action-button", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-03"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
+                  new ToolTip("$soccerPlayer0", highlight: true)
                 ]);
               },
               'lineup-9': () async {
@@ -159,18 +187,18 @@ class TutorialIniciacion extends Tutorial {
                 await onClick( [new ToolTip(".enter-contest-lineup-wrapper", tipText: getLocalizedText("msg-03b"), highlight: true, position: ToolTip.POSITION_TOP)] );
 
                 // Cada jugador además de su salario
-                await onClick( [new ToolTip("#soccerPlayer464 .column-manager-level", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-03c"), highlight: true, position: ToolTip.POSITION_BOTTOM, tipId: 'soccerManagerLevel')] );
+                await onClick( [new ToolTip("$soccerPlayer1 .column-manager-level", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-03c"), highlight: true, position: ToolTip.POSITION_BOTTOM, tipId: 'soccerManagerLevel')] );
 
                 // Los jugadores marcados en rojo
-                await onClick ( [new ToolTip("#soccerPlayer464", tipId: 'soccerPlayerRedStyle', tipText: getLocalizedText("msg-03d"), highlight: true, position: ToolTip.POSITION_TOP)] );
+                await onClick ( [new ToolTip("$soccerPlayer1", tipId: 'soccerPlayerRedStyle', tipText: getLocalizedText("msg-03d"), highlight: true, position: ToolTip.POSITION_TOP)] );
 
                 clearTooltips();
 
                 // Intenta seleccionar un jugador marcado en rojo.
-                // showTooltip(new ToolTip("#soccerPlayer464", tipText: getLocalizedText("msg-11"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true));
+                // showTooltip(new ToolTip("$soccerPlayer1", tipText: getLocalizedText("msg-11"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true));
                 showTooltips([
-                  new ToolTip("#soccerPlayer464 .action-button", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-03e"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
-                  new ToolTip("#soccerPlayer464", highlight: true)
+                  new ToolTip("$soccerPlayer1 .action-button", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-03e"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
+                  new ToolTip("$soccerPlayer1", highlight: true)
                 ]);
               },
               'alert-not-buy': () async {
@@ -198,7 +226,12 @@ class TutorialIniciacion extends Tutorial {
                   new ToolTip(".fixed-user-stats .energy", tipId: 'energyTip', arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-04a"), highlight: true, position: ToolTip.POSITION_BOTTOM),
                   new ToolTip("main-menu-f2p", highlight: true)
                 ] );
-                TutorialService.Instance.disableElementEvents('main-menu-f2p');
+
+                // TODO: Puede que el tutorial haya sido cancelado en el paso anterior, ¿cómo salirse del flujo normal sin "hacks"?
+                if (isActive) {
+                  TutorialService.Instance.disableElementEvents('main-menu-f2p');
+                }
+
                 // Cada torneo tiene un coste de energia.
                 await onClick( [new ToolTip(".entry-fee-box", tipText: getLocalizedText("msg-05"), highlight: true, position: ToolTip.POSITION_TOP)] );
 
@@ -222,8 +255,8 @@ class TutorialIniciacion extends Tutorial {
 
                 // Añade un delantero
                 showTooltips([
-                  new ToolTip("#soccerPlayer344 .action-button", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-09"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
-                  new ToolTip("#soccerPlayer344", highlight: true)
+                  new ToolTip("$soccerPlayer2 .action-button", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-09"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
+                  new ToolTip("$soccerPlayer2", highlight: true)
                 ]);
               },
               'lineup-11': () async {
@@ -282,12 +315,8 @@ class TutorialIniciacion extends Tutorial {
                   await onClick( [new ToolTip("fantasy-team", tipText: getLocalizedText("msg-13"), highlight: true, position: ToolTip.POSITION_TOP)] );
 
                   // Aquí puedes ver tu puntuación frente a los rivales
-                  showTooltip(new ToolTip("#usersList", tipText: getLocalizedText("msg-14"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true));
+                  await onClick( [new ToolTip("#usersList", tipText: getLocalizedText("msg-14"), highlight: true, position: ToolTip.POSITION_TOP)]);
                 }
-              },
-              'user_selected': () async {
-                // TODO: Una vez recibido el evento de usuario seleccionado, dejamos de estar pendiente en el mismo.
-                removeTrigger('user_selected');
 
                 clearTooltips();
 
@@ -318,6 +347,9 @@ class TutorialIniciacion extends Tutorial {
 
     CurrentStepId = Tutorial.STEP_BEGIN;
     changeUser(TutorialPlayer(energyBalance: "JPY 0.00", goldBalance: "AUD 0.00"));
+
+    // Inicialización del FantasyTeam
+    FantasyTeam = [];
 
     loadContent();
   }
@@ -422,7 +454,7 @@ class TutorialIniciacion extends Tutorial {
         "name": "Tutorial [Entrenamiento]",
         "contestEntries": profileService.isLoggedIn && FantasyTeam.isNotEmpty ? joinLists(ContestEntries, element: PlayerEntry) : ContestEntries,
         "templateMatchEventIds": TemplateMatchEventIds,
-        "instanceSoccerPlayers": InstanceSoccerPlayerList,
+        "instanceSoccerPlayers": InstanceSoccerPlayerWithFilteredForwardsList,
         "maxEntries": 20,
         "salaryCap": 70000,
         "entryFee": "JPY 1",
@@ -482,7 +514,7 @@ class TutorialIniciacion extends Tutorial {
         "name": "Tutorial [Oficial]",
         "contestEntries": profileService.isLoggedIn && FantasyTeam.isNotEmpty ? joinLists(ContestEntries, element: PlayerEntry) : ContestEntries,
         "templateMatchEventIds": TemplateMatchEventIds,
-        "instanceSoccerPlayers": InstanceSoccerPlayerList,
+        "instanceSoccerPlayers": InstanceSoccerPlayerWithFilteredForwardsList,
         "maxEntries": 10,
         "salaryCap": 70000,
         "entryFee": "AUD 1",
@@ -578,6 +610,7 @@ class TutorialIniciacion extends Tutorial {
   ];
 
   List InstanceSoccerPlayerList = [];
+  List InstanceSoccerPlayerWithFilteredForwardsList = [];
   List SoccerPlayerList = [];
   List FantasyTeam = [];
   List<List> LiveMatchEventsList = [];

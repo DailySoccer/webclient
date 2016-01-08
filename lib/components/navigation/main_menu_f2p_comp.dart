@@ -16,6 +16,8 @@ import 'package:intl/intl.dart';
     exportExpressions: const ["profileService.user"])
 class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
   ProfileService profileService;
+  
+  bool betaOn = true;
 
   MainMenuF2PComp(
       this._router, this.profileService, this._scrDet, this._rootElement) {
@@ -83,6 +85,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     <nav id="mainMenu" class="${navClass}" role="navigation">
       ${innerHtml}
     </nav>
+    <span class='beta-label'>${StringUtils.translate('beta', 'mainmenu')}</span>
     ''';
 
     _rootElement.setInnerHtml(finalHtml, treeSanitizer: NULL_TREE_SANITIZER);

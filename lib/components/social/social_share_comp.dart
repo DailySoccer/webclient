@@ -31,6 +31,9 @@ class SocialShareComp {
 
   @NgOneWay("image")
   void set image(String img) { sharingInfo['image'] = img; }
+  
+  @NgOneWay("show-like")
+  bool showLike = true;
 
   /*
    *   <a href="https%3A%2F%2Fepiceleven.com%2Fshare"
@@ -46,6 +49,8 @@ class SocialShareComp {
   // Este es por comodidad
   @NgOneWay("parameters-by-map")
   void set info(Map allInfo) { sharingInfo = allInfo; }
+  
+  String get wraperId => sharingInfo['selector-prefix'].toString().replaceAll('#', '');
   
   SocialShareComp();
   

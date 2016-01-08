@@ -19,6 +19,12 @@ class LeaderboardTableComp {
 
   //ScreenDetectorService _scrDet;
   //var _streamListener;
+
+  Map sharingInfo = null;
+  @NgOneWay("share-info")
+  void set info(Map allInfo) {
+    sharingInfo = allInfo;
+  }
   
   bool isHeaded = true;
   String pointsColumnName = "Points";

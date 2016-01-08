@@ -19,7 +19,7 @@
     <meta property="og:title"        content="Epic Eleven" />
     <meta property="og:description"  content="Play football fantasy leagues" />
     <meta property="og:image"        content="http://jugar.epiceleven.com/images/logoEpic11-2x.png" />
-    
+
     <title>Epic Eleven</title>
 
     <!-- Nuestros estilos compilados con less. Cuando compilamos nuestro styles.less (para dar nuestro styles.css) arrastramos
@@ -150,7 +150,7 @@
       }
 
       function facebookProfileInfo(callback) {
-        FB.api('/me', {fields: 'id, name, email'}, 
+        FB.api('/me', {fields: 'id, name, email'},
            function(response) {
              if (response && !response.error) {
                response['error'] = false;
@@ -159,13 +159,13 @@
            }
         );
       }
-      
+
       function facebookProfilePhoto(facebookId, callback) {
-        FB.api('/' + facebookId + '/picture', 
+        FB.api('/' + facebookId + '/picture',
            function(response) {
              if (response && !response.error) {
-               callback({ error: false, 
-                          imageUrl: response.data.url, 
+               callback({ error: false,
+                          imageUrl: response.data.url,
                           isDefault: response.data.is_silhouette
                          });
              } else {
@@ -174,7 +174,27 @@
            }
         );
       }
-      
+
+      function facebookFriends(facebookId, callback) {
+
+        waitForFacebookAuthResponse(function() {
+
+          FB.api('/' + facebookId + '/friends',
+              function (response) {
+                if (response && !response.error) {
+                  var idList = [];
+                  for(var i = 0; i < response.data.length; i++) {
+                    idList[i] = response.data[i].id;
+                  }
+                  callback({ error: false,
+                             idList: idList });
+                } else {
+                  callback({error: response.error});
+                }
+              });
+        });
+      }
+
       function facebookShare(params) {
         dartCallback = params.dartCallback || function() {};
         FB.ui({ method: 'share',
@@ -223,6 +243,20 @@
 
     <!-- Facebook Stuff -->
     <script>
+     function waitForFacebookAuthResponse(callback) {
+       if (FB.getAuthResponse() == null) {
+         var onAuthResponse;
+
+         onAuthResponse = function() {
+           FB.Event.unsubscribe('auth.authResponseChange', onAuthResponse);
+           callback();
+         }
+
+         FB.Event.subscribe('auth.authResponseChange', onAuthResponse);
+       } else {
+         callback();
+       }
+     }
 
      window.fbAsyncInit = function() {
        FB.init({
@@ -254,36 +288,49 @@
           twitterFollowCB();
         }
       };
-
+      var twitterLoaderProcess = null;
       function loadTwitterWidgets(options) {
-        var shareWrapper = document.getElementById('twitterShareButton');
-        var followWrapper = document.getElementById('twitterFollowButton');
-        
-        if (shareWrapper != null && followWrapper != null && typeof twttr !== "undefined" && twttr != null) {
-          var l = 0;
-          for(l = shareWrapper.children.length -1; l >= 0; l--) {
-            shareWrapper.children[l].remove();
-          }
-          twttr.widgets.createShareButton(
-            'https://dev.twitter.com/',
-            shareWrapper,
-            {
-              text: options['text'],
-              hashtags: options['hashtags'],
-              via: options['via']
-            }
-          );
+        var generalWrapperSelector = options['selector-prefix'] || '';
+        var shareWrapper = document.querySelectorAll(generalWrapperSelector + " .twitter-share-button-wrapper"); //document.getElementsById('twitterShareButton');
+        var followWrapper = document.querySelectorAll(generalWrapperSelector + " .twitter-follow-button-wrapper"); //document.getElementById('twitterFollowButton');
 
-          for(l = followWrapper.children.length -1; l >= 0; l--) {
-            followWrapper.children[l].remove();
+        if (followWrapper.length != 0 && shareWrapper.length != 0 && typeof twttr !== "undefined" && twttr != null) {
+
+          for (var i = 0; i < shareWrapper.length; i++) {
+            var l = 0;
+            var wrapper = shareWrapper[i];
+            while (wrapper.children.length > 0) {
+              wrapper.children[0].remove();
+            }
+            twttr.widgets.createShareButton(
+              options['url'],
+              wrapper,
+              {
+                text: options['text'],
+                hashtags: options['hashtags'],
+                via: options['via']
+              }
+            );
           }
-          twttr.widgets.createFollowButton(
-            'EpicEleven',
-            followWrapper,
-            { showScreenName: 'false' }
-          );
-        } else {
-          setTimeout(function () { loadTwitterWidgets(options); }, 100);
+
+          for (var i = 0; i < followWrapper.length; i++) {
+            var l = 0;
+            var wrapper = followWrapper[i];
+            while (wrapper.children.length > 0) {
+              wrapper.children[0].remove();
+            }
+            twttr.widgets.createFollowButton(
+              'EpicEleven',
+              wrapper,
+              { showScreenName: 'false' }
+            );
+          }
+        }
+
+        if (followWrapper.length == 0 && shareWrapper.length == 0 || typeof twttr === "undefined" || twttr == null) {
+          setTimeout(function () {
+            loadTwitterWidgets(options);
+          }, 100);
         }
       }
       window.twttr = (function(d, s, id) {
@@ -296,7 +343,7 @@
         t._e = []; t.ready = function(f) {t._e.push(f);};
         return t;
       }(document, "script", "twitter-wjs"));
-      
+
       twttr.ready(function (twttr) {
         // Now bind our custom intent events
         twttr.events.bind('tweet', window.twitterShare);

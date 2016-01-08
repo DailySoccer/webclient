@@ -193,6 +193,32 @@ class ContestHeaderF2PComp implements DetachAware, ShadowRootAware {
     }
   }
 
+  
+  String get inviteUrl => "${window.location.toString().split("#")[0]}#/enter_contest/lobby/${contest.contestId}/none";
+
+  Map _sharingInfo = {};
+  Map get sharingInfo {
+    if (contest == null) return _sharingInfo;
+    if (_sharingInfo.length == 0) {
+      if (contest.isHistory) {
+        _sharingInfo = FacebookService.historyContest(contest, contest.getContestEntryWithUser(_profileService.user.userId).position);
+      } else if (contest.isLive) {
+        _sharingInfo = FacebookService.liveContest(contest.contestId);
+      } else if (contest.isAuthor(_profileService.user)) {
+        _sharingInfo = FacebookService.createdContest(contest.contestId);
+      } else {
+        _sharingInfo = FacebookService.inscribeInContest(contest.contestId);
+      }
+      _sharingInfo['selector-prefix'] = '${_sharingInfo['selector-prefix']}_contestHeader';
+    }
+    
+    return _sharingInfo;
+  }
+
+  bool userIsRegistered() {
+    return _profileService.isLoggedIn && contest.containsContestEntryWithUser(_profileService.user.userId);
+  }
+  
   Router _router;
   RouteProvider _routeProvider;
   ContestsService _contestsService;

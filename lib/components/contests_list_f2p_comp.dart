@@ -113,6 +113,10 @@ class ContestsListF2PComp {
     return secondsLeft >= 0 && secondsLeft < SOON_SECONDS;
   }
   
+  bool userIsRegistered(Contest contest) {
+    return _profileService.isLoggedIn && contest.containsContestEntryWithUser(_profileService.user.userId);
+  }
+  
   String timeInfo(DateTime date) {
     // Avisamos 2 horas antes...
     int secondsLeft = timeLeft(date);
@@ -198,6 +202,27 @@ class ContestsListF2PComp {
     return mainContestEntry.prize;
   }
   
+  int friendsCount(Contest contest) {
+    bool refresh = true;
+    if (_friendsCountCache.containsKey(contest.contestId)) {
+      Contest cachedContest = _friendsCountCache[contest.contestId]['contest'];
+      int cachedUserFriends = _friendsCountCache[contest.contestId]['userFriends'];
+      refresh = (cachedContest != contest && contest.contestEntries != cachedContest.contestEntries) || cachedUserFriends != _profileService.friendList.length;
+    }
+    
+    if (refresh) {
+      int contestFriends = _profileService.friendList.where( (user) => contest.containsContestEntryWithUser(user.userId)).length;
+      int userFriends = _profileService.friendList.length;
+      
+      _friendsCountCache[contest.contestId] = {
+        'contest': contest,
+        'userFriends': userFriends,
+        'friends': contestFriends
+      };
+    }
+    
+    return _friendsCountCache[contest.contestId]['friends'];
+  }
   
   /********* HANDLERS */
   void onRow(Contest contest) {
@@ -215,6 +240,7 @@ class ContestsListF2PComp {
   
   DateTime _dateFilter = null;
   Map _sortOrder = {'fieldName':'contest-start-time', 'order': 1};
+  Map _friendsCountCache = {};
   ProfileService _profileService;
   ScreenDetectorService scrDet;
 }

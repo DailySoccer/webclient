@@ -4,6 +4,8 @@ import 'package:angular/angular.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'dart:html';
+import 'package:webclient/models/achievement.dart';
 
 @Injectable()
 class FacebookService {
@@ -18,7 +20,68 @@ class FacebookService {
 
     _instance = this;
   }
+  
+  static String get _rootUrl => window.location.toString().split("#")[0];
 
+  static Map inscribeInContest(String contestId) {
+    return _buildShareMap('contest_inscription', "$_rootUrl#/sec/${contestId}");
+  }
+
+  static Map historyContest(Contest contest, int position) {
+    String url = "$_rootUrl#/history_contest/my_contests/${contest.contestId}";
+    if (position == 0) {
+      return _buildShareMap('contest_win', url);
+    } else {
+      return _buildShareMap('contest_history', url, substitutions: {'USER_POS': '$position'});
+    }
+  }
+
+  static Map liveContest(String contestId) {
+    return _buildShareMap('contest_live', "$_rootUrl#/live_contest/my_contests/${contestId}");
+  }
+
+  static Map managerLevelUp(int managerLevel) {
+    Map shareMap = _buildShareMap('manager_level_up', _rootUrl, substitutions: {'MANAGER_LEVEL': managerLevel});
+    return shareMap;
+  }
+
+  static Map createdContest(String contestId) {
+    return _buildShareMap('created_contest', "$_rootUrl#/enter_contest/lobby/${contestId}/none");
+  }
+
+  static Map leaderboardGold() {
+    Map shareMap = _buildShareMap('leadeboard_gold', "$_rootUrl#/leaderboard/money/");
+    shareMap['selector-prefix'] = '${shareMap['selector-prefix']}_gold';
+    return shareMap;
+  }
+
+  static Map leaderboardTrueskill() {
+    Map shareMap = _buildShareMap('leadeboard_trueskill', "$_rootUrl#/leaderboard/points/");
+    shareMap['selector-prefix'] = '${shareMap['selector-prefix']}_trueskill';
+    return shareMap;
+  }
+  
+  static Map _buildShareMap(String prefix, String link, {Map substitutions: null}) {
+    return {
+          'description': getLocalizedText('${prefix}_description', substitutions),
+          'caption': '',
+          'hashtag': getLocalizedText('${prefix}_hastag', substitutions),
+          'url': link,
+          'title': getLocalizedText('${prefix}_title', substitutions),
+          'image': "$_rootUrl/images/${getLocalizedText('${prefix}_img', substitutions)}",
+          'selector-prefix': '#shareWrapper'
+        };
+  }
+
+  static Map winAchievement(achievementId) {
+    Achievement achievement = Achievement.getAchievementWithKey(achievementId);
+    Map shareMap = _buildShareMap('win_achievement', _rootUrl, substitutions: {
+                                                          'ACHIEV_NAME' : achievement.name, 
+                                                          'ACHIEV_IMG_KEY' : achievement.shareImage
+                                                       });
+    shareMap['selector-prefix'] = '${shareMap['selector-prefix']}${achievementId}';
+    return shareMap;
+  }
   
   /********* Constest Headers in Live and History *********/
   static String titleByContest(Contest contest, dynamic userId) {
@@ -37,7 +100,7 @@ class FacebookService {
     } else if (contest.isHistory) {
       return getLocalizedText('contest_history_description');
     } else {
-      return getLocalizedText('default_description');
+      return getLocalizedText('contest_invite');
     }
   }
   static String imageByContest(Contest contest, dynamic userId) {
@@ -49,13 +112,15 @@ class FacebookService {
         case 3:  return getLocalizedText('contest_live_img_third');
         default: return getLocalizedText('contest_live_img_other');
       }
-    } else {
+    } else  if (contest.isHistory) {
       switch(userPos) {
         case 1:  return getLocalizedText('contest_history_img_first');
         case 2:  return getLocalizedText('contest_history_img_second');
         case 3:  return getLocalizedText('contest_history_img_third');
         default: return getLocalizedText('contest_history_img_other');
       }
+    } else {
+      return getLocalizedText('contest_img_invite');
     }
   }
   static String captionByContest(Contest contest, dynamic userId) {

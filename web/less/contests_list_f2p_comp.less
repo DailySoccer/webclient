@@ -33,6 +33,28 @@
 				&.real {background-image: url("@{images}/realContest.png");}
 				&.train {background-image: url("@{images}/trainContest.png");}
 			}
+			.friends-in {
+				position: absolute; 
+				top: 5px;
+				left: 70px;
+				width: 32px;
+				height: 27px;
+				background-image: url("@{images}/friendsIcon.png");
+				.count {
+					background-color: @blueLight;
+					border-radius: 1000px;
+					.opensans_bold(9pt, @white);
+					border: 1px solid @white;
+					min-width: 20px;
+					min-height: 20px;
+					text-align: center;
+					position: absolute;
+					bottom: -2px;
+					right: -7px;
+					display: block;
+					padding: 0px 3px 0 3px;
+				}
+			}
 		}
 		// Imagen para los concursos especiales
 		.special-image-section {
@@ -241,7 +263,14 @@
 	}
 	//Definición especifica para concursos especiales.
 	.special{
-		&.contestSlot { background-color: @greyUltraDark; }
+		&.contestSlot { 
+			background-color: @greyUltraDark; 
+			
+			.friends-in .count {
+				color: @greyUltraDark;
+				border: 1px solid @greyUltraDark;
+			}
+		}
 		.special-image-section {}
 		.time-section {
 			position: relative;

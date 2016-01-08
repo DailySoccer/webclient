@@ -37,6 +37,7 @@ import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/utils/noshim.dart';
 import 'package:webclient/utils/ng_bind_html_unsafe.dart';
+import 'package:webclient/utils/max_text_width.dart';
 
 import 'package:webclient/components/navigation/main_menu_f2p_comp.dart';
 import 'package:webclient/components/navigation/footer_comp.dart';
@@ -64,6 +65,7 @@ import 'package:webclient/components/achievement_comp.dart';
 import 'package:webclient/components/social/facebook_share_comp.dart';
 import 'package:webclient/components/social/twitter_share_comp.dart';
 import 'package:webclient/components/social/social_share_comp.dart';
+import 'package:webclient/components/social/friends_bar_comp.dart';
 
 import 'package:webclient/components/account/login_comp.dart';
 import 'package:webclient/components/account/join_comp.dart';
@@ -158,8 +160,10 @@ class WebClientApp extends Module {
     bind(FacebookShareComp);
     bind(TwitterShareComp);
     bind(SocialShareComp);
+    bind(FriendsBarComp);
 
     bind(NgBindHtmlUnsafeDirective);
+    bind(MaxTextWidthDirective);
     bind(FormAutofillDecorator);
     bind(AutoFocusDecorator);
     bind(LimitToDot);
@@ -424,6 +428,11 @@ class WebClientApp extends Module {
             )
           }
       )
+      ,'sec': ngRoute( // shortcutRoute - sec: Short Enter Contest
+          path: '/sec/:contestId',
+          preEnter: (RoutePreEnterEvent e) => _preEnterShortEnterContest(e, router, visibility: _ALWAYS),
+          viewHtml: '<enter-contest></enter-contest>'
+      )
       ,'view_contest_entry': ngRoute(
           path: '/view_contest_entry/:parent/:viewContestEntryMode/:contestId',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
@@ -514,9 +523,17 @@ class WebClientApp extends Module {
 
   void _preEnterMycontest(RoutePreEnterEvent event, Router router, {int visibility}) {
     _preEnterPage(event, router,visibility:visibility);
-    if (event.parameters["section"] == "null") {
+    if (event.parameters["section"]) {
       //event.parameters["section"] = "live";
       router.go(event.route.name, {"section":'live'});
+    }
+  }
+
+  void _preEnterShortEnterContest(RoutePreEnterEvent event, Router router, {int visibility}) {
+    if (event.parameters.containsKey("contestId")) {
+      router.go('enter_contest', { "contestId": event.parameters["contestId"], "parent": "lobby", "contestEntryId": "none" });
+    } else {
+      router.go("home", {}, replace:true);
     }
   }
 

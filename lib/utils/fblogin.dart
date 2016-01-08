@@ -7,10 +7,12 @@ import 'package:logging/logging.dart';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/server_error.dart';
 import 'dart:async';
+import 'package:webclient/models/user.dart';
 
 class FBLogin {
 
-  FBLogin(this._router, this._profileManager, [this._onLogin]) {
+  FBLogin(this._router, ProfileService _profileService, [this._onLogin]) {
+    _profileManager = _profileService;
     js.context['jsLoginFB'] = loginFB;
 
     // Default action onLogin
@@ -103,8 +105,25 @@ class FBLogin {
     return defaultImage;
   }
   
+  static Future<List<String>> friendList(facebookId) {
+    Completer<List<String>> completer = new Completer<List<String>>();
+    if (facebookId == null || facebookId == '') return completer.future;
+    
+    JsUtils.runJavascript(null, "facebookFriends", [facebookId, (js.JsObject profileInfoResponse) {
+          if (profileInfoResponse["error"] == false) {
+            List<String> idList = new List<String>.from(profileInfoResponse['idList']);
+            completer.complete(idList);
+          } else {
+            Logger.root.warning("WTF 3511");
+            completer.completeError(profileInfoResponse["error"]);
+          }
+        }]);
+    
+    return completer.future;
+  }
+  
   static Map <String, Map> _profileImageCache = {};
   Router _router;
-  ProfileService _profileManager;
+  static ProfileService _profileManager;
   Function _onLogin;
 }

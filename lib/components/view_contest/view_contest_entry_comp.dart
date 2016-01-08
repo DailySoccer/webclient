@@ -16,6 +16,7 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/services/facebook_service.dart';
 import 'package:webclient/models/user.dart';
+import 'package:webclient/utils/fblogin.dart';
 
 @Component(
    selector: 'view-contest-entry',
@@ -50,7 +51,19 @@ class ViewContestEntryComp {
   String get fbTitle => FacebookService.titleOfInscription();
   String get fbDescription => FacebookService.descriptionOfInscription();
   String get fbImage => FacebookService.imageOfInscription();
-
+  
+  List<User> _friendList = [];
+  List<User> _filteredFriendList = [];
+  List<User> get filteredFriendList {
+    if (contest == null || contest.isFull) return _filteredFriendList;
+    if (_friendList != _profileService.friendList) {
+      _friendList = _profileService.friendList;
+      _filteredFriendList = _friendList.where((u) => !contest.contestEntries.any(
+              (entry) => entry.user.facebookID == u.facebookID)).toList();
+    }
+    return _filteredFriendList;
+  }
+  
   String getLocalizedText(key, [Map substitutions]) {
     return StringUtils.translate(key, "viewcontestentry", substitutions);
   }
@@ -63,12 +76,7 @@ class ViewContestEntryComp {
     contestId = _routeProvider.route.parameters['contestId'];
 
     tutorialService.triggerEnter("view_contest_entry");
-
-    /*
-    _profileService.getFacebookProfiles(["1637839359811046", "10208059340630083"])
-      .then( (List<User> users) => users.forEach( (user) => print("${user.nickName}")) );
-    */
-
+    
     _contestsService.refreshMyContestEntry(contestId)
       .then((_) {
         loadingService.isLoading = false;
@@ -119,34 +127,47 @@ class ViewContestEntryComp {
         goToParent();
       });
   }
+  
+  String get inviteUrl => "${window.location.toString().split("#")[0]}#/enter_contest/lobby/${contest.contestId}/none";
 
   void onInviteFriends() {
-    String theBasicUrl = window.location.toString().split("#")[0];
-    String theUrl = "${theBasicUrl}#/enter_contest/lobby/${contest.contestId}/none";
-
+    if (_shareContent == null) {
+      _shareContent = querySelector("#shareMethodsContent");
+    }
+    _shareContent.remove();
+    
     modalShow(      "Invita a tus amigos",
-                    theUrl,
-                    onOk: "Copiado",
-                    modalSize: "lg",
-                    type: 'welcome'
+                    '',
+                    contentNode: _shareContent,
+                    onOk: "Cerrar",
+                    modalSize: "md",
+                    type: 'welcome',
+                    aditionalClass: 'invite-friends-popup'
                  )
-                 .then((resp){
-                  });
+                 .then((resp){});
+  }
+  
+  void onChallenge(user) {
+    onInviteFriends();
   }
 
-
-  Map sharingInfo = {
-    'description': FacebookService.descriptionOfInscription(),
-    'caption': '',
-    'hashtag': 'EpicEleven',
-    'url': 'https://dev.twitter.com/web/javascript/events',
-    'title': FacebookService.titleOfInscription(),
-    //'dartCallback': () { print('SHARE CB'); },
-    'image': FacebookService.imageOfInscription()
-  };
-
+  Map _sharingInfo = {};
+  Map get sharingInfo {
+    if (contest == null) return _sharingInfo;
+    if (_sharingInfo.length == 0) {
+      if (contest.isAuthor(_profileService.user)) {
+        _sharingInfo = FacebookService.createdContest(contest.contestId);
+      } else {
+        _sharingInfo = FacebookService.inscribeInContest(contest.contestId);
+      }
+      _sharingInfo['selector-prefix'] = '${_sharingInfo['selector-prefix']}_inviteBtt';
+    }
+    return _sharingInfo;
+  }
+  
   Router _router;
   RouteProvider _routeProvider;
+  Element _shareContent;
 
   ProfileService _profileService;
   ContestsService _contestsService;

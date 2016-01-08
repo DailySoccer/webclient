@@ -9,6 +9,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/components/achievement_comp.dart';
+import 'package:webclient/services/facebook_service.dart';
 
 @Component(
     selector: 'notifications',
@@ -84,5 +85,37 @@ class NotificationsComp {
     }
   }
   
+  Map sharingInfo(notification) {
+    Map sharingMap;
+    var id = notification['id'];
+    
+    switch(notification['type']) {
+      case UserNotification.ACHIEVEMENT_EARNED:
+        if (!sharingInfoCache.containsKey(id)) {
+          sharingInfoCache[id] = FacebookService.winAchievement(notification['info']['achievement']);
+          sharingInfoCache[id]['selector-prefix'] = '${sharingInfoCache[id]['selector-prefix']}$id';
+        }
+        sharingMap = sharingInfoCache[id];
+      break;
+      case UserNotification.MANAGER_LEVEL_UP:
+        if (!sharingInfoCache.containsKey(id)) {
+          sharingInfoCache[id] = FacebookService.managerLevelUp(int.parse(notification['info']['level']));
+          sharingInfoCache[id]['selector-prefix'] = '${sharingInfoCache[id]['selector-prefix']}$id';
+        }
+        sharingMap = sharingInfoCache[id];
+      break;
+      default:
+        sharingMap = emptyShareInfo;
+    }
+    return sharingMap;
+  }
+  
+  bool shareEnabled(notification) {
+    return sharingInfoCache.containsKey(notification['id']);
+  }
+  
+
+  Map emptyShareInfo = {};
+  Map<String, Map> sharingInfoCache = {};
   ProfileService _profileService;
 }

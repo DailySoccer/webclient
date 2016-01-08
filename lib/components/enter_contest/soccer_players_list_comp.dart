@@ -11,7 +11,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/models/instance_soccer_player.dart';
 import 'package:webclient/models/money.dart';
 import 'package:webclient/models/contest.dart';
-
+import 'package:logging/logging.dart';
 
 @Component(
     selector: 'soccer-players-list',
@@ -214,6 +214,8 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
       if (_isVisibleWithFilters(slot, filterPosVal, filterMatchIdVal, filterNameVal)) {
         visibleItems++;
         allHtml.write(_getHtmlForSlot(slot, !(lineupFilter.contains(slot))));
+
+        // Logger.root.info("${slot["id"]}: ${slot["intId"]}: ${slot["fullName"]}");
       }
     }
 

@@ -7,8 +7,10 @@
     <div class="create-contest-section">
       <div class="title">{{getLocalizedText("name")}}</div>
       <div class="data-input-wrapper contest-name">
-        <input id="contestNameInput" type="text" ng-model="contestName" placeholder="{{placeholderName}}" 
-               class="form-control ng-binding ng-pristine ng-touched" tabindex="1">
+        <input id="contestNameInput" type="text" ng-model="contestName" tabindex="1"
+               placeholder="{{placeholderName}}" maxlength="{{MAX_LENGTH_CONTEST_NAME}}"
+               class="form-control ng-binding ng-pristine ng-touched">
+        <span class="contest-name-length">{{MAX_LENGTH_CONTEST_NAME - contestName.length}}</span>
       </div>
     </div>
   </div>
@@ -18,11 +20,17 @@
       <div class="title">{{getLocalizedText("contest_type")}}</div>
       <div class="data-input-wrapper contest-type">
         <span class="data-element">
-          <input id="contestOficial" type="radio" value="oficial" ng-value="TYPE_OFICIAL" ng-model="contestType" name="contestType" checked>
+          <input id="contestOficial" type="radio" value="oficial" name="contestType" 
+                 ng-value="TYPE_OFICIAL" ng-model="contestType"
+                 ng-class="{'disabled-radio': templatesPerTypeList[TYPE_OFICIAL].isEmpty }"
+                 ng-disabled="templatesPerTypeList[TYPE_OFICIAL].isEmpty">
           <label for="contestOficial"><span class="icon"></span>{{getLocalizedText("oficial")}}</label>
         </span>
         <span class="data-element">
-          <input id="contestTraining" type="radio" value="training" ng-value="TYPE_TRAINING" ng-model="contestType" name="contestType">
+          <input id="contestTraining" type="radio" value="training" name="contestType"
+                 ng-value="TYPE_TRAINING" ng-model="contestType"
+                 ng-class="{'disabled-radio': templatesPerTypeList[TYPE_TRAINING].isEmpty }"
+                 ng-disabled="templatesPerTypeList[TYPE_TRAINING].isEmpty">
           <label for="contestTraining"><span class="icon"></span>{{getLocalizedText("training")}}</label>
         </span>
       </div>
@@ -35,22 +43,52 @@
       <div class="data-input-wrapper competition">
         <span class="data-element">
           <input id="contestLeague" type="radio" value="LEAGUE_ES" name="competition"
-                 ng-class="{'disabled-radio': templatesFilteredList[leagueES_val].length == 0 }"
-                 ng-value="leagueES_val" ng-model="selectedCompetition"
-                 ng-disabled="templatesFilteredList[leagueES_val].length == 0">
+                 ng-value="LEAGUE_ES" ng-model="selectedCompetition"
+                 ng-class="{'disabled-radio': templatesPerCompetitionList[LEAGUE_ES].isEmpty }"
+                 ng-disabled="templatesPerCompetitionList[LEAGUE_ES].isEmpty">
           <label for="contestLeague"><span class="icon"></span>{{getLocalizedText("spanish_league")}}</label>
         </span>
         <span class="data-element">
           <input id="contestPremiere" type="radio" value="LEAGUE_UK" name="competition"
-                 ng-class="{'disabled-radio': templatesFilteredList[leagueUK_val].length == 0 }"
-                 ng-value="leagueUK_val" ng-model="selectedCompetition"
-                 ng-disabled="templatesFilteredList[leagueUK_val].length == 0">
+                 ng-class="{'disabled-radio': templatesPerCompetitionList[LEAGUE_UK].isEmpty }"
+                 ng-value="LEAGUE_UK" ng-model="selectedCompetition"
+                 ng-disabled="templatesPerCompetitionList[LEAGUE_UK].isEmpty">
           <label for="contestPremiere"><span class="icon"></span>{{getLocalizedText("premier_league")}}</label>
         </span>
       </div>
     </div>
   </div>
 
+  <div class="create-contest-section-wrapper">
+    <div class="create-contest-section">
+      <div class="title">{{getLocalizedText("rivals")}}</div>
+      <div class="data-input-wrapper contest-style">
+        <span class="data-element">
+          <input id="contestHeadToHead" type="radio" value="headToHead" name="contestStyle"
+                 ng-value="STYLE_HEAD_TO_HEAD" ng-model="contestStyle"
+                 ng-class="{'disabled-radio': templatesPerStyle[STYLE_HEAD_TO_HEAD].isEmpty }"
+                 ng-disabled="templatesPerStyle[STYLE_HEAD_TO_HEAD].isEmpty">
+          <label for="contestHeadToHead"><span class="icon"></span>{{getLocalizedText("head_to_head")}}</label>
+        </span>
+        <span class="data-element">
+          <input id="contestOpen" type="radio" value="league" name="contestStyle"
+                 ng-value="STYLE_LEAGUE" ng-model="contestStyle"
+                 ng-class="{'disabled-radio': templatesPerStyle[STYLE_LEAGUE].isEmpty }"
+                 ng-disabled="templatesPerStyle[STYLE_LEAGUE].isEmpty">
+          <label for="contestOpen"><span class="icon"></span>{{getLocalizedText("league")}}
+            <select name="contestLeagueCountSelector" id="contestLeagueCountSelector"
+                    class="form-control contest-league-count-selector dropdown-toggle" ng-model="selectedLeaguePlayerCount">
+
+              <option ng-repeat="count in leaguePlayerCountList" id="option-contest-count-{{count}}"
+                      value="{{$index + 1}}" ng-value="count">{{count == -1? getLocalizedText("no_limit") : count}}</option>
+
+            </select>
+          </label>
+        </span>
+      </div>
+    </div>
+  </div>
+  
   <div class="create-contest-section-wrapper">
     <div class="create-contest-section">
       <div class="title">{{getLocalizedText("event")}}</div>
@@ -64,33 +102,7 @@
                   value="{{$index + 1}}" ng-value="template">{{template.name}}</option>
         </select>
       </div>
-    </div>
-  </div>
-
-  <teams-panel id="teamsPanelComp" panel-open="true" template-contest="selectedTemplate" button-text="getLocalizedText('matches_title')"></teams-panel>
-
-  <div class="create-contest-section-wrapper">
-    <div class="create-contest-section">
-      <div class="title">{{getLocalizedText("rivals")}}</div>
-      <div class="data-input-wrapper contest-style">
-        <span class="data-element">
-          <input id="contestHeadToHead" type="radio" value="headToHead" ng-value="STYLE_HEAD_TO_HEAD" ng-model="contestStyle" name="contestStyle" checked>
-          <label for="contestHeadToHead"><span class="icon"></span>{{getLocalizedText("head_to_head")}}</label>
-        </span>
-        <span class="data-element">
-          <input id="contestOpen" type="radio" value="league" ng-value="STYLE_LEAGUE" ng-model="contestStyle" name="contestStyle">
-          <label for="contestOpen"><span class="icon"></span>{{getLocalizedText("league")}}
-            <select name="contestLeagueCountSelector" id="contestLeagueCountSelector"
-                    class="form-control contest-league-count-selector dropdown-toggle" ng-model="selectedLeaguePlayerCount">
-
-              <option ng-repeat="count in leaguePlayerCountList" id="option-contest-count-{{count}}"
-                      value="{{$index + 1}}" ng-value="count">{{count == -1? getLocalizedText("no_limit") : count}}</option>
-
-            </select>
-          </label>
-        </span>
-      </div>
-    </div>
+    </div> 
   </div>
 
   <div class="create-contest-section-wrapper">
@@ -112,6 +124,9 @@
       </div>
     </div>
   </div>
+
+  <teams-panel id="teamsPanelComp" panel-open="true" template-contest="selectedTemplate" button-text="getLocalizedText('matches_title')"></teams-panel>
+  
   <div class="create-contest-section-wrapper large">
     <div class="create-contest-section" ng-if="selectedTemplate != null">
       <div class="title">Premios</div>

@@ -12,6 +12,7 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/models/money.dart';
 import 'package:webclient/models/prize.dart';
+import 'dart:math';
 
 @Component(
   selector: 'create-contest',
@@ -19,30 +20,29 @@ import 'package:webclient/models/prize.dart';
   useShadowDom: false
 )
 class CreateContestComp  {
-
-  String selectedCompetition;
-  String contestName;
-  String _contestType;
-  String contestStyle;
-
-  String get contestType => _contestType;
-  void set contestType(String val) {
-    _contestType = val;
-    updateDate();
+  
+  int MAX_LENGTH_CONTEST_NAME = 30;
+  String _contestName;
+  String get contestName => _contestName;
+  void set contestName(String name) {
+    _contestName = name.substring(0, min(MAX_LENGTH_CONTEST_NAME, name.length));
   }
 
   int selectedHour = 12;
   String selectedMinutesText = '00';
   DateTime selectedDate = null;
+  
+  static String S_TYPE_OFICIAL = "oficial";
+  static String S_TYPE_TRAINING = "training";
+  
+  String TYPE_OFICIAL = S_TYPE_OFICIAL;
+  String TYPE_TRAINING = S_TYPE_TRAINING;
 
-  String TYPE_OFICIAL = "oficial";
-  String TYPE_TRAINING = "training";
+  String STYLE_HEAD_TO_HEAD = Contest.TOURNAMENT_HEAD_TO_HEAD;
+  String STYLE_LEAGUE = Contest.TOURNAMENT_LEAGUE;
 
-  String STYLE_HEAD_TO_HEAD = "headToHead";
-  String STYLE_LEAGUE = "league";
-
-  String leagueES_val = Competition.LEAGUE_ES;
-  String leagueUK_val = Competition.LEAGUE_UK;
+  String LEAGUE_ES = Competition.LEAGUE_ES;
+  String LEAGUE_UK = Competition.LEAGUE_UK;
 
   List<Map> dayList = new List<Map>();
   List<int> hourList = new List<int>();
@@ -60,7 +60,7 @@ class CreateContestComp  {
     }
   }
   String get placeholderName => selectedTemplate != null? selectedTemplate.name : getLocalizedText("contest_name_placeholder");
-
+  
   String get comboDefaultText {
     if (printableTemplateList.length == 0) {
       return getLocalizedText("select_competition_first");
@@ -70,10 +70,7 @@ class CreateContestComp  {
 
   List<TemplateContest> emptyListAuxiliar = [];
   List<TemplateContest> get printableTemplateList {
-    if(templatesFilteredList.containsKey(selectedCompetition)) {
-      return templatesFilteredList[selectedCompetition];
-    }
-    return emptyListAuxiliar;
+    return contestStyle != null? templatesPerStyle[contestStyle] : emptyListAuxiliar;
   }
 
   // Esta sin completar el formulario?
@@ -93,24 +90,18 @@ class CreateContestComp  {
     _contestsService.getActiveTemplateContests()
       .then((templateContests) {
         _templateContests = templateContests;
-
+        
         selectedCompetition = null;
-        if(_templateContests.length > 0) {
-
-          templatesFilteredList.forEach( (String key, List<TemplateContest> list) {
-            list.clear();
-            list.addAll(_templateContests.where((t) => t.competitionType == key));
-            if (selectedCompetition == null && list.isNotEmpty) selectedCompetition = key;
-          });
-        }
-
+        _contestType = null;
+        updateTemplatesPerType();
+        
       });
   }
 
   num get prizeMultiplier => contestType == TYPE_OFICIAL ? _selectedTemplate.prizeMultiplier : 10;
 
   Money get prizePool => new Money.from(contestType == TYPE_OFICIAL ? Money.CURRENCY_GOLD : Money.CURRENCY_MANAGER, maxEntries * _selectedTemplate.entryFee.amount * prizeMultiplier);
-
+  
   String getLocalizedText(key) {
     return StringUtils.translate(key, "createcontest");
   }
@@ -152,6 +143,11 @@ class CreateContestComp  {
           _router.go('enter_contest', { "contestId": contestCreated.contestId, "parent": "create_contest", "contestEntryId": "none" });
         });
     }
+  }
+  
+  void updateAll() {
+    updateTemplatesPerType();
+    updateDate();
   }
 
   void updateDate() {
@@ -204,13 +200,118 @@ class CreateContestComp  {
     if (selectedHour < hourList[0]) selectedHour = hourList[0];
     if (selectedHour > hourList.last) selectedHour = hourList.last;
   }
-
-  TemplateContest _selectedTemplate;
-  Map<String, List<TemplateContest>> templatesFilteredList = {
+  
+  Map<String, List<TemplateContest>> templatesPerTypeList = {
+    S_TYPE_OFICIAL: [],
+    S_TYPE_TRAINING: []
+  };
+  void updateTemplatesPerType() {
+    templatesPerTypeList.forEach( (String key, List<TemplateContest> list) {
+      list.clear();
+      // Este filtra por tipo de torneo (real, virtual) 
+      list.addAll(_templateContests.where((t) => (key == S_TYPE_TRAINING) == t.isSimulation));
+      // Este permite usar los reales como virtuales y viceversa.
+      //list.addAll(_templateContests);
+    });
+    updateSelectedContestType();
+    updateTemplatesPerCompetition();
+  }
+  void updateSelectedContestType() {
+    if (_contestType != null && templatesPerTypeList[_contestType].isEmpty) {
+      _contestType = null;
+    }
+    if (_contestType == null) {
+      _contestType = templatesPerTypeList[S_TYPE_OFICIAL ].isNotEmpty? S_TYPE_OFICIAL : 
+                     templatesPerTypeList[S_TYPE_TRAINING].isNotEmpty? S_TYPE_TRAINING : 
+                     /*else*/ null;
+    }
+  }
+  String get contestType => _contestType;
+  void set contestType(String val) {
+    _contestType = val;
+    updateSelectedContestType();
+    updateTemplatesPerCompetition();
+  }
+  
+  
+  Map<String, List<TemplateContest>> templatesPerCompetitionList = {
     Competition.LEAGUE_ES: [],
     Competition.LEAGUE_UK: []
   };
+  void updateTemplatesPerCompetition() {
+    templatesPerCompetitionList.forEach( (String key, List<TemplateContest> list) {
+      list.clear();
+      if(contestType != null) {
+        list.addAll(templatesPerTypeList[contestType].where((t) => t.competitionType == key));
+      }
+    });
+    updateSelectedCompetition();
+    updateTemplatesPerStyle();
+  }
+  void updateSelectedCompetition() {
+    if (_selectedCompetition != null && templatesPerCompetitionList[_selectedCompetition].isEmpty) {
+      _selectedCompetition = null;
+    }
+    if (_selectedCompetition == null) {
+      _selectedCompetition = templatesPerCompetitionList[Competition.LEAGUE_ES].isNotEmpty? Competition.LEAGUE_ES : 
+                             templatesPerCompetitionList[Competition.LEAGUE_UK].isNotEmpty? Competition.LEAGUE_UK : 
+                             /*else*/ null; 
+    }
+  }
+  String get selectedCompetition => _selectedCompetition;
+  void set selectedCompetition(String val) {
+    _selectedCompetition = val;
+    updateSelectedCompetition();
+    updateTemplatesPerStyle();
+  }
+  
+  
+  Map<String, List<TemplateContest>> templatesPerStyle = {
+    Contest.TOURNAMENT_HEAD_TO_HEAD: [],
+    Contest.TOURNAMENT_LEAGUE: []
+  };
+  void updateTemplatesPerStyle() {
+    String h2h = TemplateContest.TOURNAMENT_HEAD_TO_HEAD;
+    templatesPerStyle.forEach( (String key, List<TemplateContest> list) {
+      list.clear();
+      if(selectedCompetition != null) {
+        list.addAll(templatesPerCompetitionList[selectedCompetition].where((t) => (t.tournamentType == h2h) == (h2h == key)));
+      }
+    });
+    updateSelectedStyle();
+    updateSelectedTemplate();
+  }
+  void updateSelectedStyle() {
+    if (_contestStyle != null && templatesPerStyle[_contestStyle].isEmpty) {
+      _contestStyle = null;
+    }
+    if (_contestStyle == null) {
+      _contestStyle = templatesPerStyle[Contest.TOURNAMENT_HEAD_TO_HEAD].isNotEmpty? Contest.TOURNAMENT_HEAD_TO_HEAD : 
+                      templatesPerStyle[Contest.TOURNAMENT_LEAGUE].isNotEmpty? Contest.TOURNAMENT_LEAGUE : 
+                     /*else*/ null;
+    }
+  }
+  String get contestStyle => _contestStyle;
+  void set contestStyle(String val) {
+    _contestStyle = val;
+    updateSelectedStyle();
+    updateSelectedTemplate();
+  }
+  void updateSelectedTemplate() {
+    if (selectedTemplate != null && !templatesPerStyle[_contestStyle].contains(selectedTemplate)) {
+      selectedTemplate = null;
+    }
+    if (selectedTemplate == null && _contestStyle != null) {
+      selectedTemplate = templatesPerStyle[_contestStyle].first;
+    }
+  }
+  
+  String _contestType;
+  String _contestStyle;
+  String _selectedCompetition;
+  //List<TemplateContest> _templatesFilteredList = [];
 
+  TemplateContest _selectedTemplate;
   List<TemplateContest> _templateContests;
   ContestsService _contestsService;
 

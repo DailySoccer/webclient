@@ -896,8 +896,10 @@ tc.put("packages/webclient/components/create_contest_comp.html", new HttpRespons
     <div class="create-contest-section">
       <div class="title">{{getLocalizedText("name")}}</div>
       <div class="data-input-wrapper contest-name">
-        <input id="contestNameInput" type="text" ng-model="contestName" placeholder="{{placeholderName}}" 
-               class="form-control ng-binding ng-pristine ng-touched" tabindex="1">
+        <input id="contestNameInput" type="text" ng-model="contestName" tabindex="1"
+               placeholder="{{placeholderName}}" maxlength="{{MAX_LENGTH_CONTEST_NAME}}"
+               class="form-control ng-binding ng-pristine ng-touched">
+        <span class="contest-name-length">{{MAX_LENGTH_CONTEST_NAME - contestName.length}}</span>
       </div>
     </div>
   </div>
@@ -2148,9 +2150,9 @@ tc.put("packages/webclient/components/social/facebook_share_comp.html", new Http
 tc.put("packages/webclient/components/social/friends_bar_comp.html", new HttpResponse(200, r"""<div class="friends-bar-wrapper">
   <div class="friend-element-wrapper" ng-repeat="user in fbUsers">
     <img class="friend-picture" ng-src="{{user.profileImage}}">
-    <span class="friend-name">{{user.nickName}}</span>
+    <span class="friend-name" max-text-width="{width: nameWidth, text: user.nickName}"></span>
     <span class="friend-manager-level"><span class="amount">{{user.managerLevel}}</span></span>
-    <button class="challenge-friend" ng-click="onChallenge({'user': user})" ng-if="showChallenge">Retar</button>
+    <button class="challenge-friend" ng-click="onChallenge({'user': user})" ng-if="showChallenge">{{challengeText}}</button>
   </div>
 </div>"""));
 tc.put("packages/webclient/components/social/social_share_comp.html", new HttpResponse(200, r"""<div class="social-share-wrapper" id="{{wraperId}}">
@@ -2317,7 +2319,7 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
     <p class="important-info" ng-if="isModeCreated">{{getLocalizedText("created")}}</p>
     <p class="important-info" ng-if="isModeEdited">{{getLocalizedText("edited")}}</p>
     <p class="important-info" ng-if="isModeSwapped">{{getLocalizedText("swapped")}}</p>
-    <h2 ng-click="onInviteFriends()" class="invite-friends">{{getLocalizedText("invite_text")}}</h2>
+    <h2 ng-if="showInviteButton" ng-click="onInviteFriends()" class="invite-friends">{{getLocalizedText("invite_text")}}</h2>
     <p class="complementary-info">{{getLocalizedText("tip")}}</p>
   </div>
   

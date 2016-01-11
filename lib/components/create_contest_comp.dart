@@ -13,6 +13,7 @@ import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/models/money.dart';
 import 'package:webclient/models/prize.dart';
 import 'dart:math';
+import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
   selector: 'create-contest',
@@ -96,6 +97,7 @@ class CreateContestComp  {
         updateTemplatesPerType();
         
       });
+    GameMetrics.logEvent(GameMetrics.CREATE_CONTEST);
   }
 
   num get prizeMultiplier => contestType == TYPE_OFICIAL ? _selectedTemplate.prizeMultiplier : 10;
@@ -140,6 +142,7 @@ class CreateContestComp  {
       List<String> soccerPlayers = [];
       _contestsService.createContest(contest, soccerPlayers)
         .then((Contest contestCreated) {
+          GameMetrics.logEvent(GameMetrics.CREATE_CONTEST_CREATED);
           _router.go('enter_contest', { "contestId": contestCreated.contestId, "parent": "create_contest", "contestEntryId": "none" });
         });
     }

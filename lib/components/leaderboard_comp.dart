@@ -9,6 +9,7 @@ import 'package:webclient/models/user.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/achievement.dart';
 import 'package:webclient/services/facebook_service.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 
 @Component(
@@ -119,7 +120,7 @@ class LeaderboardComp implements ShadowRootAware{
   }
   
   void tabChange(String tab) {
-
+    
     //Cambiamos el activo del tab
     _rootElement.querySelectorAll("li").classes.remove('active');
     _rootElement.querySelector("#" + tab.replaceAll("content", "tab")).classes.add("active");
@@ -141,12 +142,15 @@ class LeaderboardComp implements ShadowRootAware{
     var section = _routeProvider.parameters["section"];
     switch(section) {
       case "points":
+        GameMetrics.logEvent(GameMetrics.LEADERBOARD, {'value': 'trueskill'});
         tabChange('points-content');
       break;
       case "money":
+        GameMetrics.logEvent(GameMetrics.LEADERBOARD, {'value': 'money'});
         tabChange('money-content');
       break;
       case "achievements":
+        GameMetrics.logEvent(GameMetrics.ACHIEVEMENTS);
         tabChange('achievements-content');
       break;
     }

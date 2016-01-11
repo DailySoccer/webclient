@@ -25,6 +25,7 @@ import 'package:webclient/models/user.dart';
 import 'package:webclient/models/money.dart';
 import 'package:webclient/services/tutorial_service.dart';
 import 'dart:math';
+import 'package:webclient/services/datetime_service.dart';
 
 @Component(
     selector: 'enter-contest',
@@ -116,11 +117,11 @@ class EnterContestComp implements DetachAware {
   bool contestInfoFirstTimeActivation = false;  // Optimizacion para no compilar el contest_info hasta que no sea visible la primera vez
 
   num get playerManagerLevel {
-      num result = _profileService.isLoggedIn ? _profileService.user.managerLevel : 0;
-      if (contest != null) {
-        result = (contest.simulation) ? User.MAX_MANAGER_LEVEL : min(result, contest.maxManagerLevel);
-      }
-      return result;
+    num result = _profileService.isLoggedIn ? _profileService.user.managerLevel : 0;
+    if (contest != null) {
+      result = (contest.simulation) ? User.MAX_MANAGER_LEVEL : min(result, contest.maxManagerLevel);
+    }
+    return result;
   }
 
   int get playerGold => _profileService.isLoggedIn ? _profileService.user.Gold: 0;
@@ -200,8 +201,6 @@ class EnterContestComp implements DetachAware {
 
     _tutorialService.triggerEnter("enter_contest", component: this);
 
-    GameMetrics.logEvent(GameMetrics.ENTER_CONTEST);
-
     Future refreshContest = isCreatingContest
                               ? _contestsService.refreshMyCreateContest(contestId)
                               : editingContestEntry
@@ -212,6 +211,9 @@ class EnterContestComp implements DetachAware {
         loadingService.isLoading = false;
 
         contest = _contestsService.lastContest;
+
+        GameMetrics.logEvent(GameMetrics.ENTER_CONTEST, {"type": contest.isSimulation? 'virtual' : 'oficial', 
+                                                         "created": contest.isAuthor(_profileService.user)});
 
         if (_profileService.isLoggedIn && !contest.canEnter(_profileService.user) && !editingContestEntry) {
           cannotEnterMessageRedirect();
@@ -638,11 +640,33 @@ class EnterContestComp implements DetachAware {
     else {
         _contestsService.addContestEntry(contest.contestId, formationId, lineupSlots.map((player) => player["id"]).toList())
           .then((contestId) {
-            GameMetrics.logEvent(GameMetrics.TEAM_CREATED);
+
+            num managerLevel = playerManagerLevel;
+            Iterable boughtPlayers = lineupSlots.where((c) => c["instanceSoccerPlayer"].moneyToBuy(contest, managerLevel).amount > 0);
+            boughtPlayers.forEach( (c) {
+              num cost = c["instanceSoccerPlayer"].moneyToBuy(contest, managerLevel).amount;
+              GameMetrics.logEvent(GameMetrics.PLAYER_BOUGHT, {"value": cost, "name": c["instanceSoccerPlayer"].soccerPlayer.name});
+            });
+
             GameMetrics.identifyMixpanel(_profileService.user.email);
-            GameMetrics.peopleSet({"Last Team Created": new DateTime.now()});
-            GameMetrics.peopleSet({"Last Team Created (${contest.competitionType})": new DateTime.now()});
-            GameMetrics.logEvent(GameMetrics.ENTRY_FEE, {"value": contest.entryFee.toString()});
+            GameMetrics.logEvent(GameMetrics.TEAM_CREATED, {"type": contest.isSimulation? 'virtual' : 'oficial', 
+                                                            "is created by user": contest.isAuthor(_profileService.user),
+                                                            "is custom contest": contest.isCustomContest() || contest.isAuthor(_profileService.user),
+                                                            "team created date": DateTimeService.formatDateShort(DateTimeService.now),
+                                                            "team created time": DateTimeService.formatDateTimeShort(DateTimeService.now),
+                                                            "contest start date": DateTimeService.formatDateShort(contest.startDate),
+                                                            "contest start time": DateTimeService.formatDateTimeShort(contest.startDate),
+                                                            "num jugadores": contest.contestEntries.length,
+                                                            "fee count": contest.entryFee.amount,
+                                                            "fee currency": contest.entryFee.currencySymbol,
+                                                            "prize count": contest.prize.prizePool.amount,
+                                                            "prize currency": contest.prize.prizePool.currencySymbol,
+                                                            "prize type": contest.prize.prizeType,
+                                                            "players bought": boughtPlayers.length});
+            GameMetrics.peopleSet({"Last Team Created": DateTimeService.formatDateTimeLong(new DateTime.now())});
+            GameMetrics.peopleSet({"Last Team Created (${contest.competitionType})": DateTimeService.formatDateTimeLong(new DateTime.now())});
+            GameMetrics.logEvent(GameMetrics.ENTRY_FEE, {"value": contest.entryFee.toStringWithCurrency()});
+
             _teamConfirmed = true;
 
             if (isCreatingContest) {

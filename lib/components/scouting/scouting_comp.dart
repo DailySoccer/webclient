@@ -11,6 +11,7 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/soccer_player_service.dart';
 import 'package:webclient/models/competition.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
     selector: 'scouting',
@@ -47,6 +48,7 @@ class ScoutingComp implements DetachAware {
   ScoutingComp(this._routeProvider, this._router, this.loadingService, this._profileService, this._soccerPlayerService) {
     loadData();
     thereIsNewFavorites = false;
+    GameMetrics.logEvent(GameMetrics.SCOUTING);
   }
 
   void loadData() {

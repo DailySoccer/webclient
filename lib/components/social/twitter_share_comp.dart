@@ -3,6 +3,7 @@ library twitter_share_comp;
 import 'package:angular/angular.dart';
 import 'package:webclient/utils/fblogin.dart';
 import 'package:webclient/utils/js_utils.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
   selector: 'twitter-share',
@@ -76,6 +77,7 @@ class TwitterShareComp {
   
   void onTweet() {
     if (sharingInfo['dartCallback'] != null) sharingInfo['dartCallback']();
+    GameMetrics.logEvent(GameMetrics.SHARE_REQUEST_TWITTER);
   }
   void onFollow() {
   }

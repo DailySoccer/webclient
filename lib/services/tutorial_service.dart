@@ -16,6 +16,7 @@ import 'package:webclient/tutorial/tutorial_iniciacion.dart';
 import 'package:webclient/services/tooltip_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/components/backdrop_comp.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 @Injectable()
 class TutorialService {
@@ -115,6 +116,10 @@ class TutorialService {
   void skipTutorial({String routePathLogged: 'home', String routePathNotLogged: 'join'}) {
     _activated = false;
     configureSkipComponent();
+    
+    if (!CurrentTutorial.isCompleted) {
+      GameMetrics.logEvent(GameMetrics.TUTORIAL_CANCELED);
+    }
 
     window.localStorage[CurrentTutorial.name] = CurrentTutorial.CurrentStepId;
 
@@ -122,6 +127,7 @@ class TutorialService {
     CurrentTutorial.skipTutorial();
     enableElementEvents('main-menu-f2p');
     enableElementEvents('footer');
+    
 
     /*
     // Resto de funciones de saltar tutorial

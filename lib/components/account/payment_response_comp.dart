@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/services/payment_service.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
     selector: 'payment-response',
@@ -26,6 +27,7 @@ class PaymentResponseComp implements ShadowRootAware {
     descriptionText = result == 'success'
         ? getLocalizedText("resultokdesc")
         : getLocalizedText("resultnookdesc");
+    if (result == 'success') GameMetrics.logEvent(GameMetrics.GOLD_BOUGHT);
   }
 
   @override void onShadowRoot(emulatedRoot) {

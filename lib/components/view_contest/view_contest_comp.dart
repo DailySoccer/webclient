@@ -75,8 +75,9 @@ class ViewContestComp implements DetachAware {
         if (_contestsService.lastContest.isLive) {
           _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE, updateLive);
           GameMetrics.logEvent(GameMetrics.LIVE_CONTEST_VISITED);
-        }
-        else {
+        } else if (_contestsService.lastContest.isHistory) {
+          GameMetrics.logEvent(GameMetrics.VIEW_HISTORY);
+        } else {
           GameMetrics.logEvent(GameMetrics.VIEW_CONTEST);
         }
       })

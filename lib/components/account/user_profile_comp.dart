@@ -6,6 +6,7 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/leaderboard_service.dart';
 import 'package:webclient/models/user.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
     selector: 'user-profile',
@@ -71,6 +72,7 @@ class UserProfileComp {
 
       loadingService.isLoading = false;
     });
+    GameMetrics.logEvent(GameMetrics.USER_PROFILE);
   }
 
   String get rankingPointsPosition {

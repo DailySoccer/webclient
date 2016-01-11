@@ -523,7 +523,7 @@ class WebClientApp extends Module {
 
   void _preEnterMycontest(RoutePreEnterEvent event, Router router, {int visibility}) {
     _preEnterPage(event, router,visibility:visibility);
-    if (event.parameters["section"]) {
+    if (event.parameters["section"] == "null") {
       //event.parameters["section"] = "live";
       router.go(event.route.name, {"section":'live'});
     }

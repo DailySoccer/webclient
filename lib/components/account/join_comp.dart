@@ -264,7 +264,23 @@ class JoinComp implements ShadowRootAware {
         Logger.root.severe("join_comp: onAction: $action");
     }
   }
+  
+  Map<String, String> _errorMap = null;
 
+  Map<String, String> get errorMap {
+    if (_errorMap == null) {
+      _errorMap = {
+        ERROR_CREATING_YOUR_ACCOUNT: getLocalizedText('invalidnick'),//"An error has occurred while creating your account.",
+        ERROR_NICKNAME_TAKEN: getLocalizedText('nicknametaken'),//"Nickname already taken.",
+        ERROR_EMAIL_TAKEN: getLocalizedText('emailtaken'),//"Email address already taken.",
+        ERROR_CHECK_EMAIL_SPELLING: getLocalizedText('invalidemail'),//"Something went wrong, check the spelling on your email address.",
+        ERROR_PASSWORD_TOO_SHORT: getLocalizedText('passrequires'),//"Password is too short.",
+        "_ERROR_DEFAULT_": getLocalizedText('defaulterror')//"An error has occurred. Please, try again later."
+      };
+    }
+    return _errorMap;
+  }
+/*
   Map<String, String> errorMap = {
     ERROR_CREATING_YOUR_ACCOUNT: "An error has occurred while creating your account.",
     ERROR_NICKNAME_TAKEN: "Nickname already taken.",
@@ -272,7 +288,7 @@ class JoinComp implements ShadowRootAware {
     ERROR_CHECK_EMAIL_SPELLING: "Something went wrong, check the spelling on your email address.",
     ERROR_PASSWORD_TOO_SHORT: "Password is too short.",
     "_ERROR_DEFAULT_": "An error has occurred. Please, try again later."
-  };
+  };*/
 
   String _showMsgError(String errorCode) {
     String keyError = errorMap.keys.firstWhere( (key) => errorCode.contains(key), orElse: () => "_ERROR_DEFAULT_" );

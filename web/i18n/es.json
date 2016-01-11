@@ -59,7 +59,10 @@
       "buttonsignup"                    : "REGÍSTRATE",
       "buttoncancel"                    : "CANCELAR",
       "registered"                      : "¿Ya estás registrado?",
-      "loginhere"                       : "¡Accede desde aquí!"
+      "loginhere"                       : "¡Accede desde aquí!",
+      "defaulterror"                    : "Ha ocurrido un error. Por favor, inténtalo de nuevo más tarde.",
+      "nicknametaken"                   : "Ese nombre ya ha sido registrado",
+      "emailtaken"                      : "Ese email ya ha sido registrado"
     }
     ,"login"                            :
     {
@@ -68,7 +71,7 @@
       "email"                           : "Correo electrónico",
       "pass"                            : "Contraseña",
       "loginerror"                      : "ERROR: El correo electrónico o la contraseña no son válidos. Por favor, revisa los datos.",
-      "defaulterror"                    : "Ha ocurrido un error. Porfavor, intentalo de nuevo mas tarde.",
+      "defaulterror"                    : "Ha ocurrido un error. Por favor, inténtalo de nuevo más tarde.",
       "forgotpass"                      : "¿Olvidaste tu contraseña?",
       "buttonlogin"                     : "CONTINUAR",
       "buttoncancel"                    : "CANCELAR",

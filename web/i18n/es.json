@@ -68,6 +68,7 @@
       "email"                           : "Correo electrónico",
       "pass"                            : "Contraseña",
       "loginerror"                      : "ERROR: El correo electrónico o la contraseña no son válidos. Por favor, revisa los datos.",
+      "defaulterror"                    : "Ha ocurrido un error. Porfavor, intentalo de nuevo mas tarde.",
       "forgotpass"                      : "¿Olvidaste tu contraseña?",
       "buttonlogin"                     : "CONTINUAR",
       "buttoncancel"                    : "CANCELAR",

@@ -34,9 +34,9 @@ class LoginComp implements ShadowRootAware {
   bool get enabledSubmit => StringUtils.isValidEmail(emailOrUsername) && password.isNotEmpty && _enabledSubmit;
 
   String GetLocalizedText(key) {
-      String str = config.translate(key, group:"login");
-      return str;
-    }
+    String str = config.translate(key, group:"login");
+    return str;
+  }
 
   LoginComp(this._router, this._profileService, this.loadingService, this._rootElement, this._scrDet) {
     _fbLogin = new FBLogin(_router, _profileService, () => isModal ? ModalComp.close() : _router.go(PATH_IF_SUCCESS, {}));
@@ -103,10 +103,17 @@ class LoginComp implements ShadowRootAware {
     }
   }
 
-  Map<String, String> errorMap = {
-    ERROR_WRONG_EMAIL_OR_PASSWORD: "Wrong email or password.",
-    "_ERROR_DEFAULT_": "An error has occurred. Please, try again later."
-  };
+  Map<String, String> _errorMap = null;
+
+  Map<String, String> get errorMap {
+    if (_errorMap == null) {
+      _errorMap = {
+        ERROR_WRONG_EMAIL_OR_PASSWORD: GetLocalizedText("loginerror"),
+        "_ERROR_DEFAULT_": GetLocalizedText("defaulterror")
+      };
+    }
+    return _errorMap;
+  }
 
   String _showMsgError(String errorCode) {
     String keyError = errorMap.keys.firstWhere( (key) => errorCode.contains(key), orElse: () => "_ERROR_DEFAULT_" );

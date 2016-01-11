@@ -49,14 +49,14 @@ class FacebookService {
     return _buildShareMap('created_contest', "$_rootUrl#/enter_contest/lobby/${contestId}/none");
   }
 
-  static Map leaderboardGold() {
-    Map shareMap = _buildShareMap('leadeboard_gold', "$_rootUrl#/leaderboard/money/");
+  static Map leaderboardGold(String userId) {
+    Map shareMap = _buildShareMap('leadeboard_gold', "$_rootUrl#/leaderboard/money/$userId");
     shareMap['selector-prefix'] = '${shareMap['selector-prefix']}_gold';
     return shareMap;
   }
 
-  static Map leaderboardTrueskill() {
-    Map shareMap = _buildShareMap('leadeboard_trueskill', "$_rootUrl#/leaderboard/points/");
+  static Map leaderboardTrueskill(String userId)  {
+    Map shareMap = _buildShareMap('leadeboard_trueskill', "$_rootUrl#/leaderboard/points/$userId");
     shareMap['selector-prefix'] = '${shareMap['selector-prefix']}_trueskill';
     return shareMap;
   }

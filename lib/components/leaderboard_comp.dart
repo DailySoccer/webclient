@@ -27,7 +27,10 @@ class LeaderboardComp implements ShadowRootAware{
     
   LoadingService loadingService;
 
-  bool isThePlayer(id) => id == _profileService.user.userId/*get del singleton*/;
+  String userId = null;
+
+  bool isThePlayer(id) => id == userId/*get del singleton*/;
+  bool get showShare => userId == _profileService.user.userId; 
 
   int get achievementsEarned => Achievement.AVAILABLES.where( (achievement) => _profileService.user.hasAchievement(achievement["id"]) ).length;
 
@@ -47,17 +50,17 @@ class LeaderboardComp implements ShadowRootAware{
 
   Map _sharingInfoGold = null;
   Map get sharingInfoGold {
-    if (_sharingInfoGold == null) {
-      _sharingInfoGold = FacebookService.leaderboardGold();
+    if (_sharingInfoGold == null && userId != null) {
+      _sharingInfoGold = FacebookService.leaderboardGold(userId);
     }
-    return _sharingInfoGold;
+    return showShare? _sharingInfoGold : null;
   }
   Map _sharingInfoTrueSkill = null;
   Map get sharingInfoTrueSkill {
-    if (_sharingInfoTrueSkill == null) {
-      _sharingInfoTrueSkill = FacebookService.leaderboardTrueskill();
+    if (_sharingInfoTrueSkill == null && userId != null) {
+      _sharingInfoTrueSkill = FacebookService.leaderboardTrueskill(userId);
     }
-    return _sharingInfoTrueSkill;
+    return showShare? _sharingInfoTrueSkill : null;
   }
   
   String getLocalizedText(key, {group: "leaderboard", Map substitutions}) {
@@ -66,6 +69,11 @@ class LeaderboardComp implements ShadowRootAware{
 
   LeaderboardComp (LeaderboardService leaderboardService, this.loadingService, this._profileService, this._router, this._routeProvider, this._rootElement) {
     loadingService.isLoading = true;
+
+    userId = _routeProvider.parameters.containsKey("userId") ? 
+                      _routeProvider.parameters['userId'] :
+                      _profileService.user.userId;
+    
     leaderboardService.getUsers()
       .then((List<User> users) {
         List<User> pointsUserListTmp = new List<User>.from(users);
@@ -140,6 +148,7 @@ class LeaderboardComp implements ShadowRootAware{
   @override
   void onShadowRoot(ShadowRoot shadowRoot) {
     var section = _routeProvider.parameters["section"];
+    
     switch(section) {
       case "points":
         GameMetrics.logEvent(GameMetrics.LEADERBOARD, {'value': 'trueskill'});

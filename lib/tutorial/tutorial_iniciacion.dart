@@ -336,7 +336,7 @@ class TutorialIniciacion extends Tutorial {
                 // Enhorabuena, has ganado tu primer torneo!
                 await openModal( text: () => getLocalizedText("msg-16") );
 
-                // Esta vez hemos hecho la alineación por ti
+                // Ya estás preparado...
                 await openModal( text: () => getLocalizedText("msg-17") );
 
                 if (!isCompleted) {

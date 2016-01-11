@@ -46,6 +46,7 @@ class ContestsService {
     // TODO: Actualmente un contest recién creado lo deberíamos haber recibido en la propia query de la creación
     Contest contest = getContestById(contestId);
     if (contest != null) {
+      lastContest = contest;
       completer.complete(true);
     }
     else {
@@ -242,7 +243,7 @@ class ContestsService {
   void _initActiveContests(List<Contest> contests) {
     int userLevel = _profileService.isLoggedIn ? _profileService.user.managerLevel.toInt() : 0;
     int userTrueSkill = _profileService.isLoggedIn ? _profileService.user.trueSkill : 0;
-    
+
     activeContests = contests.where((contest) => contest.hasLevel(userLevel, userTrueSkill)).toList();
     activeContests.forEach((contest) => registerContest(contest));
 

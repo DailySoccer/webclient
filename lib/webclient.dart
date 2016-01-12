@@ -551,17 +551,17 @@ class WebClientApp extends Module {
 
     event.allowEnter(_waitingjQueryReady(() {
       bool bEnter = true;
-      TutorialService tutorialService = TutorialService.Instance;
 
       if ((visibility == _ONLY_WHEN_LOGGED_IN && !ProfileService.instance.isLoggedIn) ||
-          (visibility == _ONLY_WHEN_LOGGED_OUT && ProfileService.instance.isLoggedIn) /*||
-          (tutorialService != null && !tutorialService.isValidTrigger(event.route.name))*/) {
-        tutorialService.skipTutorial();
-
+          (visibility == _ONLY_WHEN_LOGGED_OUT && ProfileService.instance.isLoggedIn)) {
         bEnter = false;
       }
 
       if (!bEnter) {
+        if (TutorialService.isActivated) {
+          TutorialService.Instance.skipTutorial();
+        }
+
         router.go("home", {}, replace:true);
         /*
           if (ProfileService.instance.isLoggedIn) {

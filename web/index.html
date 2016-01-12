@@ -257,7 +257,7 @@
          callback();
        }
      }
-
+     
      window.fbAsyncInit = function() {
        FB.init({
          appId      : '865176766847011',
@@ -266,16 +266,18 @@
          //frictionlessRequests : true,
          version    : 'v2.5'
        });
+       FB.getLoginStatus(function (response) {
+         console.log(response);
+       })
      };
 
      (function(d, s, id){
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) {return;}
         js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+        js.src = "https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.5";
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
-
     </script>
     <script>
       window.twitterShare = window.twitterShare || function(event) {

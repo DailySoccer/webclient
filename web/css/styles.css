@@ -13080,6 +13080,7 @@ main-menu-f2p .beta-label {
 }
 #mainMenu #desktopMenu .links-options .mainLink {
   display: inline-block;
+  vertical-align: middle;
 }
 #mainMenu #desktopMenu .links-options .mainLink a {
   padding: 23px 5px;

@@ -244,10 +244,15 @@ class ProfileService {
   Future<List<User>> refreshFriendList() {
     Completer<List<User>> completer = new Completer<List<User>>();
     FBLogin.friendList(user.facebookID).then((list) {
-        getFacebookProfiles(list).then( (List<User> users) {
-          completer.complete(users);
-          _friendList = users;
-        });
+        if (list != null && list.length != 0) {
+          if (list.length != _friendList.length || 
+              list.any( (id) => !_friendList.any( (u) => u.userId == id)) ) {
+            getFacebookProfiles(list).then( (List<User> users) {
+              _friendList = users;
+              completer.complete(users);
+            });
+          }
+        }
       })
       .catchError((error) => completer.completeError(error));
     

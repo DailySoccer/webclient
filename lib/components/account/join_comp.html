@@ -89,8 +89,12 @@
           <!-- Facebook stuff-->
           <div  class="user-form-field">
             <div class="fb-button-wrapper">
-              <fb:login-button scope="public_profile,email,user_friends" size="large" onlogin="jsLoginFB()">
-              </fb:login-button>
+              <div class="fb-login-button" data-size="xlarge" data-max-rows="1" 
+                   data-scope="public_profile,email,user_friends"
+                   data-show-faces="true" onlogin="jsLoginFB()" ng-show="!isFacebookConnected"></div>
+              <div class="fb-login-button" data-size="xlarge"
+                   data-scope="public_profile,email,user_friends"
+                   onlogin="jsLoginFB()" ng-show="isFacebookConnected"></div>
             </div>
           </div>
           <!-- -->

@@ -104,6 +104,7 @@ class JoinComp implements ShadowRootAware {
 
     passwordError = _rootElement.querySelector("#passwordError")
         ..parent.style.display = 'none';
+    _fbLogin.refreshConnectedState();
     //_scrDet.scrollTo('.panel-heading', offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
   }
 
@@ -294,6 +295,8 @@ class JoinComp implements ShadowRootAware {
     String keyError = errorMap.keys.firstWhere( (key) => errorCode.contains(key), orElse: () => "_ERROR_DEFAULT_" );
     return errorMap[keyError];
   }
+
+  bool get isFacebookConnected => _fbLogin.isConnected;
 
   FBLogin _fbLogin;
 

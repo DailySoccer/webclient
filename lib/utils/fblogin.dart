@@ -36,7 +36,7 @@ class FBLogin {
     }
     else {
       JsUtils.runJavascript(null, "facebookLogin", [(js.JsObject loginResponse) {
-        if (loginResponse["status"]=="connected") {
+        if (loginResponse["status"] == "connected") {
           loginCallback(loginResponse);
         }
       }]);
@@ -45,7 +45,7 @@ class FBLogin {
   
   static void share(Map info) {
     JsUtils.runJavascript(null, "facebookShare", 
-        [{'description'   : info.containsKey('description') ?  info['description']  : '',
+        [{'description'   : info.containsKey('description')  ? info['description']  : '',
           'imageUrl'      : info.containsKey('image') ?        info['image']        : '',
           'caption'       : info.containsKey('caption') ?      info['caption']      : '',
           'url'           : info.containsKey('url') ?          info['url']          : 'jugar.epiceleven.com',
@@ -121,6 +121,13 @@ class FBLogin {
     
     return completer.future;
   }
+  
+  void refreshConnectedState() {
+    JsUtils.runJavascript(null, "getLoginStatus", [(r) => _isConnected = r["status"] == "connected" ], "FB");
+  }
+
+  bool _isConnected = false;
+  bool get isConnected => _isConnected; 
   
   static Map <String, Map> _profileImageCache = {};
   Router _router;

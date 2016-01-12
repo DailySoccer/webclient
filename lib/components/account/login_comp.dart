@@ -34,8 +34,7 @@ class LoginComp implements ShadowRootAware {
   bool get enabledSubmit => StringUtils.isValidEmail(emailOrUsername) && password.isNotEmpty && _enabledSubmit;
 
   String GetLocalizedText(key) {
-    String str = config.translate(key, group:"login");
-    return str;
+    return config.translate(key, group:"login");
   }
 
   LoginComp(this._router, this._profileService, this.loadingService, this._rootElement, this._scrDet) {
@@ -46,6 +45,7 @@ class LoginComp implements ShadowRootAware {
     _loginErrorLabel = _rootElement.querySelector("#loginErrorLabel");
     _loginErrorSection = _rootElement.querySelector("#loginErrorSection");
     _loginErrorSection.style.display = 'none';
+    _fbLogin.refreshConnectedState();
     //_scrDet.scrollTo('.panel-heading', offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
   }
 
@@ -120,6 +120,7 @@ class LoginComp implements ShadowRootAware {
     return errorMap[keyError];
   }
 
+  bool get isFacebookConnected => _fbLogin.isConnected;
 
   FBLogin _fbLogin;
 

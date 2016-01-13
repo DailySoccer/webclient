@@ -604,7 +604,8 @@
       "text-lobby"                      : "Puedes participar en todos los torneos que quieras de La Liga BBVA, Barclays Premier League y UEFA Champions League.",
       "text-entercontest"               : "Elije 11 jugadores de la lista sin pasarte del presupuesto.",
       "text-viewcontestentry"           : "Ve a “<b>Mis Concursos</b>” para editar tus alineaciones, ver a tu equipo puntuando en directo o para ver tu histórico de concursos. <br> <br> <p class=\"subtitle\">Recuerda: puedes jugar a todos los concursos que quieras y elegir tantas alineaciones como quieras.</p>",
-      "next"                            : "Continuar"
+      "next"                            : "Continuar",
+      "end"                             : "Terminar"
     }
     ,"tutorial_iniciacion"              :
     {
@@ -645,8 +646,7 @@
       "msg-13"                          : "Aquí puedes ver los puntos conseguidos por tus jugadores.",
       "msg-14"                          : "Esta es la ventana de resultados. Como puedes ver, has logrado la primera posición. Haz clic para continuar.",
       "msg-15"                          : "Fíjate, uno de tus jugadores acaba de conseguir sus primeros puntos.",
-      "msg-16"                          : "<span class='modal-body-title'>¡Enhorabuena, has ganado tu primer torneo!</span><img class=\"capital-icon\" src=\"images/TutorialManagerLevelUp.png\"><span class='modal-body-text'> Has conseguido 50 puntos de mánager y has subido tu nivel de mánager.</span>",
-      "msg-17"                          : "<span class='modal-body-title'>Ya estás preparado. </span><span class='modal-body-text'>Regístrate ahora y consigue tus primeras 10 monedas de oro para comenzar tu carrera como mánager.</span><img class=\"capital-icon\" src=\"images/icon-BuyGold1.png\">"
+      "msg-16"                          : "<span class='modal-body-title'>¡Enhorabuena, has terminado el tutorial!</span><span class='modal-body-text'> Si no estas registrado, hazlo ahora y conseguiras 10 monedas de oro y tu primer nivel de manager</span><img class=\"capital-icon\" src=\"images/TutorialManagerLevelUp.png\"><strong> +</strong><img class=\"capital-icon\" src=\"images/icon-BuyGold1.png\">"
     }
     , "tutorial_entrenamiento"          :
     {

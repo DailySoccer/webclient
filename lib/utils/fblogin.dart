@@ -24,7 +24,7 @@ class FBLogin {
   void loginFB() {
     //js.JsObject fb = js.context["FB"];
     //fb.callMethod("getLoginStatus", [onGetLoginStatus]);
-    JsUtils.runJavascript(null, "getLoginStatus", [onGetLoginStatus], "FB");
+    JsUtils.runJavascript(null, "facebookLoginStatus", [onGetLoginStatus]);
   }
 
   void onGetLoginStatus(statusResponse) {
@@ -123,7 +123,7 @@ class FBLogin {
   }
   
   void refreshConnectedState() {
-    JsUtils.runJavascript(null, "getLoginStatus", [(r) => _isConnected = r["status"] == "connected" ], "FB");
+    JsUtils.runJavascript(null, "facebookLoginStatus", [(r) => _isConnected = r["status"] == "connected" ]);
   }
 
   bool _isConnected = false;

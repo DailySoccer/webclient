@@ -145,39 +145,45 @@
       // https://developers.facebook.com/docs/javascript/examples
 
       function facebookLogin(callback) {
-        console.log("js facebook login");
-        FB.login(callback, {scope: 'email, user_likes, user_friends'});
+        waitForFacebook(function() {
+          console.log("js facebook login");
+          FB.login(callback, {scope: 'email, public_profile, user_friends'});
+        });
       }
 
       function facebookProfileInfo(callback) {
-        FB.api('/me', {fields: 'id, name, email'},
-           function(response) {
-             if (response && !response.error) {
-               response['error'] = false;
+        waitForFacebook(function() {
+          FB.api('/me', {fields: 'id, name, email'},
+             function(response) {
+               if (response && !response.error) {
+                 response['error'] = false;
+               }
+               callback(response);
              }
-             callback(response);
-           }
-        );
+          );
+        });
       }
 
       function facebookProfilePhoto(facebookId, callback) {
-        FB.api('/' + facebookId + '/picture',
-           function(response) {
-             if (response && !response.error) {
-               callback({ error: false,
-                          imageUrl: response.data.url,
-                          isDefault: response.data.is_silhouette
-                         });
-             } else {
-               callback({error: response.error});
+        waitForFacebook(function() {
+            FB.api('/' + facebookId + '/picture',
+             function(response) {
+               if (response && !response.error) {
+                 callback({ error: false,
+                            imageUrl: response.data.url,
+                            isDefault: response.data.is_silhouette
+                           });
+               } else {
+                 callback({error: response.error});
+               }
              }
-           }
-        );
+           );
+        });
       }
 
       function facebookFriends(facebookId, callback) {
 
-        waitForFacebookAuthResponse(function() {
+        waitForFacebook(function() {
 
           FB.api('/' + facebookId + '/friends',
               function (response) {
@@ -196,16 +202,18 @@
       }
 
       function facebookShare(params) {
-        dartCallback = params.dartCallback || function() {};
-        FB.ui({ method: 'share',
-                name: 'Facebook Dialogs',
-                href: params.url || $(location).attr('href'),
-                link: params.url || $(location).attr('href'),
-                picture: params.imageUrl,
-                caption: params.caption || '',
-                description: params.description || '',
-                title: params.title
-              }, function(response) { dartCallback(); });
+        waitForFacebook(function() {
+          dartCallback = params.dartCallback || function() {};
+          FB.ui({ method: 'share',
+                  name: 'Facebook Dialogs',
+                  href: params.url || $(location).attr('href'),
+                  link: params.url || $(location).attr('href'),
+                  picture: params.imageUrl,
+                  caption: params.caption || '',
+                  description: params.description || '',
+                  title: params.title
+                }, function(response) { dartCallback(); });
+        });
       }
 
       function onjQueryReady(dartCallback) {
@@ -243,38 +251,57 @@
 
     <!-- Facebook Stuff -->
     <script>
-     function waitForFacebookAuthResponse(callback) {
-       if (FB.getAuthResponse() == null) {
-         var onAuthResponse;
-
-         onAuthResponse = function() {
-           FB.Event.unsubscribe('auth.authResponseChange', onAuthResponse);
-           callback();
-         }
-
-         FB.Event.subscribe('auth.authResponseChange', onAuthResponse);
-       } else {
-         callback();
-       }
-     }
+      function waitForFacebook(callback) {
+        var timesWait = 0;
+        var tryCall;
+        
+        tryCall = function () {
+          if (fbIsInit === false) {
+            setTimeout(function() { 
+              timesWait += 1;
+              if (timesWait < 100) {
+                tryCall(callback);
+              } else {
+                console.error("Wait for facebook timeout");
+              }
+            }, 100);
+          } else {
+            callback();
+          }
+        };
+        tryCall();
+      }
      
-     window.fbAsyncInit = function() {
-       FB.init({
-         appId      : '865176766847011',
-         //appId      : '1043008439063842', // TestAPP
-         xfbml      : true,
-         //frictionlessRequests : true,
-         version    : 'v2.5'
-       });
-       FB.getLoginStatus(function (response) {});
-     };
+      var fbIsInit = false;
+      window.fbAsyncInit = function() {
+        FB.init({
+          //appId      : '865176766847011',
+          appId      : '1043008439063842', // TestAPP
+          xfbml      : true,
+          status     : true,
+          frictionlessRequests : true,
+          version    : 'v2.5'
+        });
+        var a;
+        a = function () {
+          FB.getLoginStatus(function (response) {
+            if (response.authResponse === undefined) {
+              setTimeout(a, 100);
+            } else {
+              fbIsInit = true;
+              FB.XFBML.parse();
+            }
+          }, true);
+        }
+        a();
+      };
      
-     (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v2.5";
-        fjs.parentNode.insertBefore(js, fjs);
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v2.5";
+         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     </script>
     <script>

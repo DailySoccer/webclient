@@ -145,12 +145,13 @@ class JoinComp implements ShadowRootAware {
     else {
       passwordElement.classes.add('not-valid');
     }
+    validateRePassword();
   }
 
   void validateRePassword() {
     rePasswordElement.classes.removeAll(['valid', 'not-valid']);
     //Validación de la confirmación del password
-    if (password == rePassword) {
+    if (password == rePassword && password.length >= MIN_PASSWORD_LENGTH) {
       rePasswordElement.classes.add('valid');
     }
     else {

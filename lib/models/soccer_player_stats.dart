@@ -6,6 +6,8 @@ import 'package:webclient/services/contest_references.dart';
 import 'package:webclient/utils/string_utils.dart';
 
 class SoccerPlayerStats {
+  static DateTime SEASON_DATE_START = new DateTime(2015, 8);
+
   DateTime startDate;
   SoccerTeam opponentTeam;
   String optaCompetitionId;
@@ -57,4 +59,5 @@ class SoccerPlayerStats {
 
   bool hasPlayed() => (playedMinutes > 0) || (fantasyPoints != 0);
   bool hasPlayedInCompetition(String competitionId) => (optaCompetitionId == competitionId) && hasPlayed();
+  bool isCurrentSeason(String competitionId) => hasPlayedInCompetition(competitionId) && startDate.isAfter(SEASON_DATE_START);
 }

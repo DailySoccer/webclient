@@ -81,13 +81,13 @@ class JoinComp implements ShadowRootAware {
               .replaceAll("@MIN_NICKNAME_LENGTH", MIN_NICKNAME_LENGTH.toString())
               .replaceAll("@MAX_NICKNAME_LENGTH", MAX_NICKNAME_LENGTH.toString())
               .replaceAll("@MIN_PASSWORD_LENGTH", MIN_PASSWORD_LENGTH.toString());
-
     return str;
   }
 
 
   JoinComp(this._router, this._routeProvider, this._profileService, this.loadingService, this._rootElement, this._scrDet) {
     _fbLogin = new FBLogin(_router, _profileService, () => isModal ? ModalComp.close() : _router.go(PATH_IF_SUCCESS, {}));
+    FBLogin.parseXFBML(".fb-login-button");
   }
 
   void onShadowRoot(emulatedRoot) {

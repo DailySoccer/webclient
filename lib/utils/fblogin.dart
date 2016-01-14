@@ -122,12 +122,18 @@ class FBLogin {
     return completer.future;
   }
   
+  static void parseXFBML(String cssSelector) {
+    JsUtils.runJavascript(null, "facebookParseXFBML", [cssSelector]);
+  }
+  
   void refreshConnectedState() {
-    JsUtils.runJavascript(null, "facebookLoginStatus", [(r) => _isConnected = r["status"] == "connected" ]);
+    JsUtils.runJavascript(null, "facebookLoginStatus", [(r) => _state = r["status"]]);
   }
 
-  bool _isConnected = false;
-  bool get isConnected => _isConnected; 
+  String _state = null;
+  String get state => _state;
+
+  bool get isConnected => _state == "connected";
   
   static Map <String, Map> _profileImageCache = {};
   Router _router;

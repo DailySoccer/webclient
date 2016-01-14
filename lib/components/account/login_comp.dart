@@ -39,6 +39,7 @@ class LoginComp implements ShadowRootAware {
 
   LoginComp(this._router, this._profileService, this.loadingService, this._rootElement, this._scrDet) {
     _fbLogin = new FBLogin(_router, _profileService, () => isModal ? ModalComp.close() : _router.go(PATH_IF_SUCCESS, {}));
+    FBLogin.parseXFBML(".fb-login-button");
   }
 
   @override void onShadowRoot(emulatedRoot) {
@@ -120,7 +121,7 @@ class LoginComp implements ShadowRootAware {
     return errorMap[keyError];
   }
 
-  bool get isFacebookConnected => _fbLogin.isConnected;
+  bool get isFacebookConnected => _fbLogin.state == "connected";
 
   FBLogin _fbLogin;
 

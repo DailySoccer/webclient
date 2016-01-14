@@ -164,7 +164,7 @@
           );
         });
       }
-
+      
       function facebookProfilePhoto(facebookId, callback) {
         waitForFacebook(function() {
             FB.api('/' + facebookId + '/picture',
@@ -215,6 +215,24 @@
                   title: params.title
                 }, function(response) { dartCallback(); });
         });
+      }
+      
+      function facebookParseXFBML(cssSelector) {
+        var parse;
+        var trys = 0;
+        parse = function () {
+          var xfbmlElements = document.querySelectorAll(cssSelector);
+          if (xfbmlElements.length == 0) {
+            trys++;
+            if (trys < 100) {
+              setTimeout(parse, 100);
+            }
+          } else {
+            FB.XFBML.parse();
+          }
+        }
+        
+        waitForFacebook(function() { parse(); });
       }
 
       function onjQueryReady(dartCallback) {
@@ -289,7 +307,7 @@
           xfbml      : true,
           status     : true,
           frictionlessRequests : true,
-          version    : 'v2.2'
+          version    : 'v2.5'
         });
         var a;
         a = function () {

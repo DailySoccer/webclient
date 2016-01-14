@@ -78,7 +78,7 @@ class ScoutingComp implements DetachAware {
               "matchId" :  instance.soccerTeam.templateSoccerTeamId,
               "matchEventName": instance.soccerTeam.name.toUpperCase(),
               "remainingMatchTime": "-",
-              "fantasyPoints": instance.soccerPlayer.fantasyPoints,
+              "fantasyPoints": instance.soccerPlayer.getFantasyPointsForCompetition(Competition.LEAGUE_UK_ID),
               "playedMatches": instance.soccerPlayer.getPlayedMatchesForCompetition(Competition.LEAGUE_UK_ID),
               "salary": instance.salary
             });
@@ -114,7 +114,7 @@ class ScoutingComp implements DetachAware {
               "matchId" :  instance.soccerTeam.templateSoccerTeamId,
               "matchEventName": instance.soccerTeam.name.toUpperCase(),
               "remainingMatchTime": "-",
-              "fantasyPoints": instance.soccerPlayer.fantasyPoints,
+              "fantasyPoints": instance.soccerPlayer.getFantasyPointsForCompetition(Competition.LEAGUE_ES_ID),
               "playedMatches": instance.soccerPlayer.getPlayedMatchesForCompetition(Competition.LEAGUE_ES_ID),
               "salary": instance.salary
             });

@@ -609,7 +609,7 @@
     }
     ,"tutorial_iniciacion"              :
     {
-      "msg-01"                          : "<span class='modal-body-title'>Bienvenido a Epic Eleven.</span><span class='modal-body-text'> Haz tu equipo ideal alineando futbolistas de la Liga o la Premier y enfréntate en torneos contra otros futbolistas.</span>",
+      "msg-01"                          : "<span class='modal-body-title'>Bienvenido a Epic Eleven.</span><span class='modal-body-text'> Haz tu equipo ideal alineando futbolistas de la Liga o la Premier y enfréntate en torneos contra otros usuarios.</span>",
       "msg-02"                          : "<span class='modal-body-text'>Comienza eligiendo un torneo oficial. Participar en los torneos oficiales cuesta oro, pero no te preocupes al registrate recibirás 10 monedas de oro.</span>",
       "msg-02a"                         : "Selecciona este torneo",
       "msg-02b"                         : "<span class='modal-body-text'>Los torneos oficiales se basan en partidos de la vida real.</span>",

@@ -166,6 +166,7 @@ class CreateContestComp  {
 
     if (_selectedTemplate == null) return;
     DateTime tStart = _selectedTemplate.startDate;
+    selectedDate = selectedDate.subtract(new Duration(hours: selectedDate.hour, minutes: selectedDate.minute, seconds: selectedDate.second, milliseconds: selectedDate.millisecond));
 
     dayList.forEach( (d) => d['enabled'] = !d['date'].isAfter(tStart) );
   }

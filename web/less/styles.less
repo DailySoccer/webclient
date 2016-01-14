@@ -86,7 +86,19 @@ html, body {
 	
 	text-rendering: optimizeLegibility !important;
 	-webkit-font-smoothing: antialiased !important;
+}
 
+::-webkit-scrollbar {
+	-webkit-appearance: none;
+	width: 12px;
+}
+::-webkit-scrollbar-track {
+	background-color: rgba(240,240,240, 1);
+}
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background-color: rgba(156, 156, 156, .6);
+	-webkit-box-shadow: inset 0px 0px 0px 2px rgba(240, 240, 240, 1);
 }
 
 // Forzamos a que siempre aparezca la scrollbar vertical para que no haya saltos

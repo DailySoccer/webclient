@@ -37,7 +37,9 @@ class FacebookShareComp {
   @NgOneWay("parameters-by-map")
   void set info(Map allInfo) { _info = allInfo; }
   
-  FacebookShareComp();
+  FacebookShareComp() {
+    FBLogin.parseXFBML('.facebook-like-xfbml');
+  }
   
   void shareOnFB() {
     FBLogin.share(_info);

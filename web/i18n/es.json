@@ -272,7 +272,7 @@
       "error-managerlevel-invalid-generic"  : "No cumples las condiciones de Mánager Level necesarias.",
       "error-trueskill-invalid-title"   : "Nivel de Habilidad Inválido",
       "error-trueskill-invalid-generic" : "No cumples las condiciones de Nivel de Habilidad necesarias.",
-      "errormaxplayerssameteamtitle"    : "Jugadores del mismo equipo",
+      "errormaxplayerssameteamtitle"    : "futbolistas del mismo equipo",
       "errormaxplayerssameteamgeneric"  : "No es posible...",
       "erroruserbalancenegativetitle"   : "No tienes Oro suficiente",
       "erroruserbalancenegativegeneric" : "No tienes Oro suficiente para entrar a este concurso. Por favor, compra ORO para poder continuar",
@@ -283,7 +283,7 @@
       "alert-no-gold-title"             : "¡No hay Oro!",
       "alert-no-energy-message"         : "No tienes ENERGÍA para entrar en el torneo",
       "alert-no-gold-message"           : "No tienes ORO para entrar en el torneo",
-      "alert-no-gold-to-buy-message"    : "Tu Nivel de Mánager es insuficiente y no tienes el oro necesario para alinear este jugador",
+      "alert-no-gold-to-buy-message"    : "Tu Nivel de Mánager es insuficiente y no tienes el oro necesario para alinear este futbolista",
       "resource-gold"                   : "ORO",
       "resource-energy"                 : "ENERGÍA",
       "buy-gold-button"                 : "IR A LA TIENDA",
@@ -295,7 +295,7 @@
     ,"lineupselector"                   :
     {
       "wastedsalarycap"                 : "<strong>Has gastado más presupuesto del permitido</strong><br> Por favor, cambia la alineación para no superar el límite.",
-      "maxplayersteam"                  : "<strong>Tienes demasiados jugadores del mismo equipo.</strong><br>No superes el límite de @MAX_PLAYERS_SAME_TEAM jugadores.",
+      "maxplayersteam"                  : "<strong>Tienes demasiados futbolistas del mismo equipo.</strong><br>No superes el límite de @MAX_PLAYERS_SAME_TEAM futbolistas.",
       "not-enough-resources"            : "<strong>¡ATENCIÓN! Algo está fallando...</strong><br> Te falta @RESOURCE para entrar en este torneo.",
       "add"                             : "AÑADIR ",
       "formation"                       : "Formación",
@@ -314,12 +314,12 @@
       "dfp"                             : "DFP",
       "numMatchesAbrev"                 : "PJ.",
       "salary"                          : "Salario",
-      "search-player"                   : "Buscar jugador...",
-      "players"                         : "Jugadores",
-      "empty-favorites"                 : "No tienes jugadores favoritos.",
-      "empty-filtered-favorites"        : "No tienes jugadores favoritos que cumplan las condiciones de filtrado.",
-      "go-scouting-tip"                 : "Puedes elegir jugadores favoritos en el <a href='/#/scouting'>Ojeador.</a>",
-      "empty-filtered"                  : "No tienes jugadores que cumplan las condiciones de filtrado."
+      "search-player"                   : "Buscar futbolista...",
+      "players"                         : "Futbolistas",
+      "empty-favorites"                 : "No tienes futbolistas favoritos.",
+      "empty-filtered-favorites"        : "No tienes futbolistas favoritos que cumplan las condiciones de filtrado.",
+      "go-scouting-tip"                 : "Puedes elegir futbolistas favoritos en el <a href='/#/scouting'>Ojeador.</a>",
+      "empty-filtered"                  : "No tienes futbolistas que cumplan las condiciones de filtrado."
     }
     ,"soccerplayerpositions"            :
     {
@@ -556,7 +556,7 @@
       "skill"                           : "Puntos",
       "prizes2"                         : "PREMIOS",
       "contenders2"                     : "CONCURSANTES",
-      "rulestip"                        : "Elige un equipo de 11 jugadores de los siguientes encuentros.",
+      "rulestip"                        : "Elige un equipo de 11 futbolistas de los siguientes encuentros.",
       "winnertakesall"                  : "El ganador de lo lleva todo"
     }
     ,"prizes"                           :
@@ -602,32 +602,32 @@
       "title-entercontest"              : "SELECCIONA TU ALINEACIÓN",
       "title-viewcontestentry"          : "BIENVENIDO A EPIC ELEVEN",
       "text-lobby"                      : "Puedes participar en todos los torneos que quieras de La Liga BBVA, Barclays Premier League y UEFA Champions League.",
-      "text-entercontest"               : "Elije 11 jugadores de la lista sin pasarte del presupuesto.",
+      "text-entercontest"               : "Elije 11 futbolistas de la lista sin pasarte del presupuesto.",
       "text-viewcontestentry"           : "Ve a “<b>Mis Concursos</b>” para editar tus alineaciones, ver a tu equipo puntuando en directo o para ver tu histórico de concursos. <br> <br> <p class=\"subtitle\">Recuerda: puedes jugar a todos los concursos que quieras y elegir tantas alineaciones como quieras.</p>",
       "next"                            : "Continuar",
       "end"                             : "Terminar"
     }
     ,"tutorial_iniciacion"              :
     {
-      "msg-01"                          : "<span class='modal-body-title'>Bienvenido a Epic Eleven.</span><span class='modal-body-text'> Haz tu equipo ideal alineando futbolistas de la Liga o la Premier y enfréntate en torneos contra otros jugadores.</span>",
+      "msg-01"                          : "<span class='modal-body-title'>Bienvenido a Epic Eleven.</span><span class='modal-body-text'> Haz tu equipo ideal alineando futbolistas de la Liga o la Premier y enfréntate en torneos contra otros futbolistas.</span>",
       "msg-02"                          : "<span class='modal-body-text'>Comienza eligiendo un torneo oficial. Participar en los torneos oficiales cuesta oro, pero no te preocupes al registrate recibirás 10 monedas de oro.</span>",
       "msg-02a"                         : "Selecciona este torneo",
       "msg-02b"                         : "<span class='modal-body-text'>Los torneos oficiales se basan en partidos de la vida real.</span>",
-      "msg-02c"                         : "<span class='modal-body-text'>Elige tu alineación ideal entre todos los jugadores que participarán en esos partidos.</span>",
+      "msg-02c"                         : "<span class='modal-body-text'>Elige tu alineación ideal entre todos los futbolistas que participarán en esos partidos.</span>",
       "msg-02d"                         : "Esta es la lista de partidos de este torneo.",
 
       "msg-02e"                         : "Aquí puedes desplegar la lista de formaciones",
       "msg-02f"                         : "Estas son las formaciones disponibles, por defecto está seleccionada la 4-4-2",
       "msg-02g"                         : "Selecciona una formación 4-3-3",
-      "msg-02h"                         : "Al cambiar de formación, cambia el número de jugadores por posición.",
-      "msg-02i"                         : "Por último tenemos la lista de jugadores disponibles para el torneo.",
+      "msg-02h"                         : "Al cambiar de formación, cambia el número de futbolistas por posición.",
+      "msg-02i"                         : "Por último tenemos la lista de futbolistas disponibles para el torneo.",
 
-      "msg-03"                          : "Añade este jugador a tu alineación",
-      "msg-03a"                         : "Bien, ya has añadido tu primer jugador",
-      "msg-03b"                         : "Cuando añades un jugador, su salario se descuenta de tu presupuesto.",
-      "msg-03c"                         : "Cada jugador, además de su salario, requiere un nivel de mánager.",
+      "msg-03"                          : "Añade este futbolista a tu alineación",
+      "msg-03a"                         : "Bien, ya has añadido tu primer futbolista",
+      "msg-03b"                         : "Cuando añades un futbolista, su salario se descuenta de tu presupuesto.",
+      "msg-03c"                         : "Cada futbolista, además de su salario, requiere un nivel de mánager.",
       "msg-03d"                         : "Si no tienes nivel suficiente, puedes alinearlos pagando oro.",
-      "msg-03e"                         : "Intenta seleccionar un jugador marcado en rojo",
+      "msg-03e"                         : "Intenta seleccionar un futbolista marcado en rojo",
       "msg-03f"                         : "<span class='modal-body-text'>Necesitas subir tu nivel de mánager compitiendo en torneos virtuales.</span>",
       "msg-04a"                         : "<span class='modal-body-text'>Puedes participar en torneos virtuales siempre que tengas energía.</span>",
       "msg-04"                          : "<span class='modal-body-text'>Participa en los torneos virtuales para ganar puntos de mánager, que harán subir tu nivel de mánager.</span>",
@@ -641,11 +641,11 @@
       "msg-10b"                         : "Compra una recarga de energía, esta vez es gratis.",
       "msg-10c"                         : "Púlsalo para completar tu entrada en el torneo.",
       "msg-11"                          : "<span class='modal-body-text'> Acabas de apuntarte a un torneo virtual. Los Torneos virtuales se resuelven de manera inmediata en su hora predefinida.</span>",
-      "msg-12"                          : "<span class='modal-body-text'>Vamos a ver los resultados. Aqui podrás ver, una vez acabado el torneo, la puntuación de tus jugadores, las alineaciones de los rivales y tu clasificación frente a ellos.</span>",
+      "msg-12"                          : "<span class='modal-body-text'>Vamos a ver los resultados. Aqui podrás ver, una vez acabado el torneo, la puntuación de tus futbolistas, las alineaciones de los rivales y tu clasificación frente a ellos.</span>",
 
-      "msg-13"                          : "Aquí puedes ver los puntos conseguidos por tus jugadores.",
+      "msg-13"                          : "Aquí puedes ver los puntos conseguidos por tus futbolistas.",
       "msg-14"                          : "Esta es la ventana de resultados. Como puedes ver, has logrado la primera posición. Haz clic para continuar.",
-      "msg-15"                          : "Fíjate, uno de tus jugadores acaba de conseguir sus primeros puntos.",
+      "msg-15"                          : "Fíjate, uno de tus futbolistas acaba de conseguir sus primeros puntos.",
       "msg-16"                          : "<span class='modal-body-title'>¡Enhorabuena, has terminado el tutorial!</span><span class='modal-body-text'> Si no estas registrado, hazlo ahora y conseguiras 10 monedas de oro y tu primer nivel de manager</span><img class=\"capital-icon\" src=\"images/TutorialManagerLevelUp.png\"><strong> +</strong><img class=\"capital-icon\" src=\"images/icon-BuyGold1.png\">"
     }
     , "tutorial_entrenamiento"          :
@@ -654,7 +654,7 @@
       "title-entercontest"              : "[ENTRENAMIENTO] SELECCIONA TU ALINEACIÓN",
       "title-viewcontestentry"          : "[ENTRENAMIENTO] BIENVENIDO A EPIC ELEVEN",
       "text-lobby"                      : "Puedes participar en todos los torneos que quieras de La Liga BBVA, Barclays Premier League y UEFA Champions League.",
-      "text-entercontest"               : "Elije 11 jugadores de la lista sin pasarte del presupuesto.",
+      "text-entercontest"               : "Elije 11 futbolistas de la lista sin pasarte del presupuesto.",
       "text-viewcontestentry"           : "Ve a “<b>Mis Concursos</b>” para editar tus alineaciones, ver a tu equipo puntuando en directo o para ver tu histórico de concursos. <br> <br> <p class=\"subtitle\">Recuerda: puedes jugar a todos los concursos que quieras y elegir tantas alineaciones como quieras.</p>"
     }
     ,"tutorial_oficial"                 :
@@ -663,7 +663,7 @@
       "title-entercontest"              : "[OFICIAL] SELECCIONA TU ALINEACIÓN",
       "title-viewcontestentry"          : "[OFICIAL] BIENVENIDO A EPIC ELEVEN",
       "text-lobby"                      : "Puedes participar en todos los torneos que quieras de La Liga BBVA, Barclays Premier League y UEFA Champions League.",
-      "text-entercontest"               : "Elije 11 jugadores de la lista sin pasarte del presupuesto.",
+      "text-entercontest"               : "Elije 11 futbolistas de la lista sin pasarte del presupuesto.",
       "text-viewcontestentry"           : "Ve a “<b>Mis Concursos</b>” para editar tus alineaciones, ver a tu equipo puntuando en directo o para ver tu histórico de concursos. <br> <br> <p class=\"subtitle\">Recuerda: puedes jugar a todos los concursos que quieras y elegir tantas alineaciones como quieras.</p>"
     }
     ,"restricted"                       :
@@ -717,7 +717,7 @@
     {
       "name"                            : "TIENDA",
       "goldshopdescription"             : "Compra Oro y accede a <strong>Torneos Oficiales</strong>",
-      "trainerpointsshopdescription"    : "Aumenta tu Nivel de mánager y ficha a los <strong>mejores jugadores</strong>",
+      "trainerpointsshopdescription"    : "Aumenta tu Nivel de mánager y ficha a los <strong>mejores futbolistas</strong>",
       "energyshopdescription"           : "Recárgate de energía para acceder a <strong>Torneos Virtuales</strong>",
       "free"                            : "GRATIS",
       "mostpopularimagesource"          : "images/icon-mas-popular.png",
@@ -783,7 +783,7 @@
 
       "manager_level_up_hastag"         : "EpicEleven",
       "manager_level_up_title"          : "¡He subido de Nivel de Mánager!",
-      "manager_level_up_description"    : "Ahora puedo jugar con mejores jugadores en Epic Eleven. ¿Crees que puedes derrotarme?",
+      "manager_level_up_description"    : "Ahora puedo jugar con mejores futbolistas en Epic Eleven. ¿Crees que puedes derrotarme?",
       "manager_level_up_img"            : "social/ManagerLevel@MANAGER_LEVEL.jpg",
 
       "created_contest_hastag"          : "EpicEleven",
@@ -905,7 +905,7 @@
       "point1title"                     : "<span class=\"help-point\">1</span> Elige un torneo",
       "point1content"                   : "<img class=\"capital-icon\" src=\"images/iconTrophyGold.png\"><br><strong>Torneos oficiales</strong><br>Cuestan y dan oro y se juegan cuando se celebran los partidos reales asociados<br><img class=\"capital-icon\" src=\"images/iconTrainerBlue.png\"><br><strong>Torneos Virtuales</strong><br>Cuestan energía y dan Mánager Points. Comienzan a la hora anunciada",
       "point2title"                     : "<span class=\"help-point\">2</span> Haz tu equipo",
-      "point2content"                   : "<strong>A continuación, selecciona los 11 jugadores de tu equipo sin pasarte del límite salarial. Recuerda:</strong><br><br><br>No puedes escoger a más de 4 jugadores del mismo equipo.<br>Puedes cambiar tu alineación hasta la hora de comienzo del torneo",
+      "point2content"                   : "<strong>A continuación, selecciona los 11 futbolistas de tu equipo sin pasarte del límite salarial. Recuerda:</strong><br><br><br>No puedes escoger a más de 4 futbolistas del mismo equipo.<br>Puedes cambiar tu alineación hasta la hora de comienzo del torneo",
       "point3title"                     : "<span class=\"help-point\">3</span> Puntúa y gana",
       "point3content"                   : "<strong>En los torneos oficiales, sigue la evolución de tu equipo</strong> en tiempo real cuando hayan comenzado los partidos asociados al torneo. Una vez hayan terminado, puedes consultar el resultado en \"Mis torneos\"",
       "point3content2"                  : "<strong>Los torneos virtuales se resuelven de forma automática en pocos segundos</strong>",
@@ -920,7 +920,7 @@
       "point2title"                     : "<span class=\"help-point\">2</span> Configura el torneo",
       "point2content"                   : "Elige entre las diferentes opciones que ofrecemos: torneos oficiales o virtuales, Liga o Premier, duelo o formato liga…",
       "point3title"                     : "<span class=\"help-point\">3</span> Elige tu equipo",
-      "point3content"                   : "<strong>A continuación, selecciona los 11 jugadores de tu equipo sin pasarte del límite salarial. Recuerda:</strong><br><br><br>No puedes escoger a más de 4 jugadores del mismo equipo.<br>Puedes cambiar tu alineación hasta la hora de comienzo del torneo",
+      "point3content"                   : "<strong>A continuación, selecciona los 11 futbolistas de tu equipo sin pasarte del límite salarial. Recuerda:</strong><br><br><br>No puedes escoger a más de 4 futbolistas del mismo equipo.<br>Puedes cambiar tu alineación hasta la hora de comienzo del torneo",
       "point4title"                     : "<span class=\"help-point\">4</span> INVITA A TUS AMIGOS",
       "point4content"                   : "Haz clic en “Invitar amigos” y comparte el enlace de tu torneo",
       "button-back"                     : "Volver"
@@ -950,9 +950,9 @@
       "10-title"                         : "10. Partidos Suspendidos",
       "10-text"                          : "<p>Las reglas que se refieren a partidos que hayan sido suspendidos tienen un tratamiento determinado en función del tipo de torneo. Se considera que un partido ha quedado suspendido cuando queda sin concluir, pero con perspectivas de finalizarse en el futuro. Como mínimo, las estadísticas recopiladas antes de la finalización del periodo del torneo serán tenidas en cuenta entre los partidos.</p>",
       "11-title"                        : "11. Futbolistas en proceso de negociación",
-      "11-text"                         : "<p>Los futbolistas inmersos en procesos de negociación pueden afectar al desarrollo de los torneos que ya hayan sido planificados teniendo en cuenta a estos futbolistas en sus antiguos equipos. Los listados de jugadores de los equipos en Epic Eleven se actualizan una vez al día (por la noche). Hay que tener en cuenta que los torneos se crean con un adelanto de 5 a 6 días previos al partido, por lo que los jugadores que estén en proceso de negociación pueden no estar disponibles para torneos que incluyan un partido con su equipo nuevo, pero no con su antiguo equipo. También hay que tener en cuenta que, en algunos casos, un jugador que se ha seleccionado ya no esté disponible para un torneo que vaya a disputar su antiguo equipo ni su nuevo equipo. En este caso, el usuario deberá seleccionar un suplente o será acreditado con cero puntos para este jugador en cuestión.</p><p>Ten en cuenta que, el mismo día que un jugador es objeto de negociación, aún puede aparecer en el listado de jugadores de su antiguo equipo. Si la negociación se está produciendo, precisamente, con el equipo rival del jugador en negociaciones en el mismo partido en el que estás participando, todavía podrás recibir puntos por su participación en la competición. Estos puntos no se podrán reflejar con exactitud durante la puntuación en vivo, pero se tendrán en cuenta en el momento en que finalice el partido. Asimismo, ten en cuenta que la liquidación del torneo puede sufrir retrasos con el fin de asegurar la máxima exactitud.</p><p>En casos muy raros, un jugador se traspasa lo suficientemente temprano en el día como para poder jugar un partido para su nuevo equipo esa misma jornada. Si se traspasa desde un equipo que juega un partido tarde a un equipo que va a jugar un partido temprano, podrás seleccionar este jugador para el juego que tenga lugar de manera tardía aun sabiendo que el traspaso se ha realizado de facto antes del partido. Si este fuera el caso, se te asignarán cero puntos por su desempeño.</p>",
+      "11-text"                         : "<p>Los futbolistas inmersos en procesos de negociación pueden afectar al desarrollo de los torneos que ya hayan sido planificados teniendo en cuenta a estos futbolistas en sus antiguos equipos. Los listados de futbolistas de los equipos en Epic Eleven se actualizan una vez al día (por la noche). Hay que tener en cuenta que los torneos se crean con un adelanto de 5 a 6 días previos al partido, por lo que los futbolistas que estén en proceso de negociación pueden no estar disponibles para torneos que incluyan un partido con su equipo nuevo, pero no con su antiguo equipo. También hay que tener en cuenta que, en algunos casos, un futbolista que se ha seleccionado ya no esté disponible para un torneo que vaya a disputar su antiguo equipo ni su nuevo equipo. En este caso, el usuario deberá seleccionar un suplente o será acreditado con cero puntos para este futbolista en cuestión.</p><p>Ten en cuenta que, el mismo día que un futbolista es objeto de negociación, aún puede aparecer en el listado de futbolistas de su antiguo equipo. Si la negociación se está produciendo, precisamente, con el equipo rival del futbolista en negociaciones en el mismo partido en el que estás participando, todavía podrás recibir puntos por su participación en la competición. Estos puntos no se podrán reflejar con exactitud durante la puntuación en vivo, pero se tendrán en cuenta en el momento en que finalice el partido. Asimismo, ten en cuenta que la liquidación del torneo puede sufrir retrasos con el fin de asegurar la máxima exactitud.</p><p>En casos muy raros, un futbolista se traspasa lo suficientemente temprano en el día como para poder jugar un partido para su nuevo equipo esa misma jornada. Si se traspasa desde un equipo que juega un partido tarde a un equipo que va a jugar un partido temprano, podrás seleccionar este futbolista para el juego que tenga lugar de manera tardía aun sabiendo que el traspaso se ha realizado de facto antes del partido. Si este fuera el caso, se te asignarán cero puntos por su desempeño.</p>",
       "12-title"                        : "12. Las revisiones de puntuación",
-      "12-text"                         : "<p>Durante el partido recibimos las puntuaciones en directo desde nuestro proveedor de Estadísticas, Opta. Al finalizar el juego, nos envía el documento final con las estadísticas completas del partido. Una vez recibidas y confirmadas las estadísticas de todos los partidos de la jornada, comenzamos a gestionar la liquidación de todas las participaciones. Sin embargo, en contadas ocasiones, las ligas y estadísticas revisadas por el proveedor sufren alguna modificación posterior a la publicación del cuadro de puntuación final. En caso de que esto ocurra, no se actualizará la puntuación del jugador en Epic Eleven. Ten en cuenta que esta situación no es la misma que un caso en que una corrección deba hacerse después del cierre debido a un problema con la fuente de datos o al proceso de resolución.</p>",
+      "12-text"                         : "<p>Durante el partido recibimos las puntuaciones en directo desde nuestro proveedor de Estadísticas, Opta. Al finalizar el juego, nos envía el documento final con las estadísticas completas del partido. Una vez recibidas y confirmadas las estadísticas de todos los partidos de la jornada, comenzamos a gestionar la liquidación de todas las participaciones. Sin embargo, en contadas ocasiones, las ligas y estadísticas revisadas por el proveedor sufren alguna modificación posterior a la publicación del cuadro de puntuación final. En caso de que esto ocurra, no se actualizará la puntuación del futbolista en Epic Eleven. Ten en cuenta que esta situación no es la misma que un caso en que una corrección deba hacerse después del cierre debido a un problema con la fuente de datos o al proceso de resolución.</p>",
       "13-title"                        : "13. Servicio de Acceso y Edición de Problemas",
       "13-text"                         : "<p>Aunque tratamos de asegurar que Epic Eleven funciona sin problemas en todo momento, al igual que cualquier servicio online, en ocasiones podemos experimentar períodos de interrupción o rendimiento lento. A veces, se producen problemas para acceder al servicio, para editar alineaciones o para entrar en nuevos torneos. Si no puedes acceder al servicio, por favor, infórmanos de los problemas escribiendo a nuestro correo electrónico <a href='mailto:support@epiceleven.com'>support@epiceleven.com</a>.</p>",
       "14-title"                        : "14. Legalidad",
@@ -1102,7 +1102,7 @@
       "point-8-title"                   : "Notificaciones automáticas",
       "point-8-content"                 : "<p>De vez en cuando, es posible que le enviemos notificaciones automáticas a través de nuestras aplicaciones móviles para hacerle llegar actualizaciones de juegos, puntuaciones altas y otras notificaciones relacionadas con el servicio que pueden ser importantes para usted. En cualquier momento puede optar por dejar de recibir este tipo de notificaciones desactivándolas en la configuración a nivel dispositivo.</p>",
       "point-9-title"                   : "Recopilación de datos de juegos",
-      "point-9-content"                 : "<p>Cada vez que usted participa en nuestros juegos recopilamos datos sobre todas sus interacciones con el juego y con los otros participantes del juego a través de archivos de registro del servidor. Esta información puede estar asociada con su identificación (ID) de jugador, su dirección de protocolo de Internet (IP, por sus siglas en inglés) o la identificación de su dispositivo con el fin de prestar nuestros Servicios y mejorarlos. Estos datos se almacenan en Amazon Web Services.</p>",
+      "point-9-content"                 : "<p>Cada vez que usted participa en nuestros juegos recopilamos datos sobre todas sus interacciones con el juego y con los otros participantes del juego a través de archivos de registro del servidor. Esta información puede estar asociada con su identificación (ID) de futbolista, su dirección de protocolo de Internet (IP, por sus siglas en inglés) o la identificación de su dispositivo con el fin de prestar nuestros Servicios y mejorarlos. Estos datos se almacenan en Amazon Web Services.</p>",
       "point-10-title"                  : "Recopilación de otra información",
       "point-10-content"                : "<p>También podemos obtener información a través de (1) su acceso y participación en foros del Servicio, (2) su participación en encuestas relacionadas al Servicio o (3) su participación en un sorteo o un concurso a través del Servicio.<br><br>Podemos ofrecerle la oportunidad de participar en sorteos o concursos a través de nuestro Servicio. Si participa, le pediremos que nos proporcione determinada información personal. La participación en estos sorteos y concursos es voluntaria y, por lo tanto, puede decidir revelar o no esta información. La información solicitada normalmente incluye información de contacto (como nombre y dirección de envío) e información demográfica (como el código postal).<br>Usamos esta información para notificar a los ganadores y sobre los premios, supervisar el tráfico o personalizar el Servicio. Podemos usar un proveedor de servicios externo para llevar a cabo estos sorteos o concursos; dicha empresa tiene prohibido usar la información personal de los usuarios para cualquier otro fin. </p>",
       "point-11-title"                  : "Tecnologías de rastreo",

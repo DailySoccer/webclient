@@ -137,10 +137,14 @@ class EnterContestComp implements DetachAware {
       _userList = contest.contestEntries.map( (contestEntry) => contestEntry.user).toList();
       List<User> friendList = _profileService.friendList;
       
+      // Añadimos primero en la lista los amigos
       _orderedList = _userList.where((u) => friendList.any(
               (friend) => friend.facebookID == u.facebookID)).toList();
-      _orderedList.addAll( _userList.where((u) => !friendList.any(
-              (friend) => friend.facebookID == u.facebookID)).toList());
+      // Despues añadimos los que no son amigos y no son el propio jugador (para editar alineación)
+      _orderedList.addAll( _userList.where((u) => 
+            !friendList.any((friend) => friend.facebookID == u.facebookID) 
+            && u.facebookID != _profileService.user.facebookID
+          ).toList());
       
     }
     return _orderedList;

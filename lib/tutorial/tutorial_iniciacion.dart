@@ -334,10 +334,10 @@ class TutorialIniciacion extends Tutorial {
                 liveContest.updateLive();
 
                 // Enhorabuena, has ganado tu primer torneo!
-                await openModal( text: () => getLocalizedText("msg-16") );
+                await openModal( text: () => getLocalizedText("msg-16"), onOk: StringUtils.translate("end", "tutorial") );
 
                 // Ya estás preparado...
-                await openModal( text: () => getLocalizedText("msg-17") );
+               // await openModal( text: () => getLocalizedText("msg-17") );
 
                 if (!isCompleted) {
                   CurrentStepId = Tutorial.STEP_END;

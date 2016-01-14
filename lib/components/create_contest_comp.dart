@@ -160,7 +160,10 @@ class CreateContestComp  {
 
   void updateDayList() {
     if (_contestType == TYPE_OFICIAL) {
-      dayList.forEach( (d) => d['enabled'] = true );
+      if (_selectedTemplate != null) {
+        selectedDate = _selectedTemplate.startDate;
+      }
+      dayList.forEach( (d) => d['enabled'] = _selectedTemplate != null? _isSameDay(d['date'], selectedDate) : false );
       return;
     }
 
@@ -189,13 +192,7 @@ class CreateContestComp  {
 
     DateTime tStart = _selectedTemplate.startDate;
 
-    bool isStartDay(DateTime day) {
-      return (tStart.day == day.day &&
-              tStart.month == day.month &&
-              tStart.year == day.year);
-    }
-
-    int maxHour = isStartDay(selectedDate)? _selectedTemplate.startDate.hour : 24;
+    int maxHour = _isSameDay(tStart, selectedDate)? _selectedTemplate.startDate.hour : 24;
     int minHour = selectedDate == dayList[0]['date']? DateTimeService.now.hour + 1 : 1;
 
     hourList.clear();
@@ -308,6 +305,12 @@ class CreateContestComp  {
     if (selectedTemplate == null && _contestStyle != null) {
       selectedTemplate = templatesPerStyle[_contestStyle].first;
     }
+  }
+
+  bool _isSameDay(DateTime day1, DateTime day2) {
+    return (day1.day == day2.day &&
+            day1.month == day2.month &&
+            day1.year == day2.year);
   }
   
   String _contestType;

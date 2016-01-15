@@ -2,6 +2,7 @@ library facebook_share_comp;
 
 import 'package:angular/angular.dart';
 import 'package:webclient/utils/fblogin.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
   selector: 'facebook-share',
@@ -36,10 +37,13 @@ class FacebookShareComp {
   @NgOneWay("parameters-by-map")
   void set info(Map allInfo) { _info = allInfo; }
   
-  FacebookShareComp();
+  FacebookShareComp() {
+    FBLogin.parseXFBML('.facebook-like-xfbml');
+  }
   
   void shareOnFB() {
     FBLogin.share(_info);
+    GameMetrics.logEvent(GameMetrics.SHARE_REQUEST_FB);
   }
   
   Map _info = {};

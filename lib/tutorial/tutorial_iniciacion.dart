@@ -16,6 +16,7 @@ import 'package:webclient/models/contest_entry.dart';
 import 'dart:html';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/models/instance_soccer_player.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 class TutorialIniciacion extends Tutorial {
   static String NAME = "TUTORIAL_INICIACION";
@@ -108,6 +109,9 @@ class TutorialIniciacion extends Tutorial {
       Tutorial.STEP_BEGIN: new TutorialStep(
             triggers: {
               'lobby': () async {
+                
+                GameMetrics.logEvent(GameMetrics.TUTORIAL_STARTED);
+                
                 // Bienvenido a Epic Eleven
                 await openModal( text: () => getLocalizedText("msg-01") );
 
@@ -130,6 +134,9 @@ class TutorialIniciacion extends Tutorial {
       STEP_1: new TutorialStep(
             triggers: {
               'enter_contest' : () async {
+                
+                GameMetrics.logEvent(GameMetrics.TUTORIAL_STEP_TEAM_SELECTION);
+                
                 EnterContestComp enterContest = context;
                 enterContest.fieldPosFilter = FieldPos.FORWARD;
                 Map data = { 'formation' :  ContestEntry.FORMATION_442, 'lineupSlots' : oficialFantasyTeam};
@@ -218,6 +225,9 @@ class TutorialIniciacion extends Tutorial {
         STEP_2: new TutorialStep(
             triggers: {
               'lobby': () async {
+                
+                GameMetrics.logEvent(GameMetrics.TUTORIAL_STEP_LOBBY_TRAINING);
+                
                 // Puedes participar en torneos de entrenamiento
                 await openModal( text: () => getLocalizedText("msg-04") );
 
@@ -324,13 +334,16 @@ class TutorialIniciacion extends Tutorial {
                 liveContest.updateLive();
 
                 // Enhorabuena, has ganado tu primer torneo!
-                await openModal( text: () => getLocalizedText("msg-16") );
+                await openModal( text: () => getLocalizedText("msg-16"), onOk: StringUtils.translate("end", "tutorial") );
 
-                // Esta vez hemos hecho la alineación por ti
-                await openModal( text: () => getLocalizedText("msg-17") );
+                // Ya estás preparado...
+               // await openModal( text: () => getLocalizedText("msg-17") );
 
                 if (!isCompleted) {
                   CurrentStepId = Tutorial.STEP_END;
+                  
+                  GameMetrics.logEvent(GameMetrics.TUTORIAL_COMPLETED);
+                  
                   TutorialService.Instance.skipTutorial();
                 }
               }

@@ -41,6 +41,8 @@ import 'package:webclient/utils/max_text_width.dart';
 
 import 'package:webclient/components/navigation/main_menu_f2p_comp.dart';
 import 'package:webclient/components/navigation/footer_comp.dart';
+import 'package:webclient/components/navigation/xs_not_available_screen_comp.dart';
+
 import 'package:webclient/components/flash_messages_comp.dart';
 import 'package:webclient/components/modal_comp.dart';
 import 'package:webclient/components/paginator_comp.dart';
@@ -162,6 +164,10 @@ class WebClientApp extends Module {
     bind(SocialShareComp);
     bind(FriendsBarComp);
 
+    bind(MainMenuF2PComp);
+    bind(FooterComp);
+    bind(XsNotAvailableScreenComp);
+    
     bind(NgBindHtmlUnsafeDirective);
     bind(MaxTextWidthDirective);
     bind(FormAutofillDecorator);
@@ -169,8 +175,6 @@ class WebClientApp extends Module {
     bind(LimitToDot);
     bind(TranslateDecorator);
     bind(TranslateFormatter);
-    bind(MainMenuF2PComp);
-    bind(FooterComp);
     bind(FlashMessageComp);
     bind(ModalComp);
     bind(LoginComp);
@@ -444,7 +448,12 @@ class WebClientApp extends Module {
         viewHtml: '''<simple-promo-viewer></simple-promo-viewer>'''
       )
       ,'leaderboard': ngRoute(
-        path: '/leaderboard/:section/',
+        path: '/leaderboard/:section',
+        preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+        viewHtml: '''<leaderboard></leaderboard>'''
+      )
+      ,'leaderboardUserId': ngRoute(
+        path: '/leaderboard/:section/:userId',
         preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
         viewHtml: '''<leaderboard></leaderboard>'''
       )
@@ -523,7 +532,7 @@ class WebClientApp extends Module {
 
   void _preEnterMycontest(RoutePreEnterEvent event, Router router, {int visibility}) {
     _preEnterPage(event, router,visibility:visibility);
-    if (event.parameters["section"]) {
+    if (event.parameters["section"] == "null") {
       //event.parameters["section"] = "live";
       router.go(event.route.name, {"section":'live'});
     }
@@ -546,17 +555,17 @@ class WebClientApp extends Module {
 
     event.allowEnter(_waitingjQueryReady(() {
       bool bEnter = true;
-      TutorialService tutorialService = TutorialService.Instance;
 
       if ((visibility == _ONLY_WHEN_LOGGED_IN && !ProfileService.instance.isLoggedIn) ||
-          (visibility == _ONLY_WHEN_LOGGED_OUT && ProfileService.instance.isLoggedIn) /*||
-          (tutorialService != null && !tutorialService.isValidTrigger(event.route.name))*/) {
-        tutorialService.skipTutorial();
-
+          (visibility == _ONLY_WHEN_LOGGED_OUT && ProfileService.instance.isLoggedIn)) {
         bEnter = false;
       }
 
       if (!bEnter) {
+        if (TutorialService.isActivated) {
+          TutorialService.Instance.skipTutorial();
+        }
+
         router.go("home", {}, replace:true);
         /*
           if (ProfileService.instance.isLoggedIn) {

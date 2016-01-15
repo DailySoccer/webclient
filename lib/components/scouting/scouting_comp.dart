@@ -11,6 +11,7 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/soccer_player_service.dart';
 import 'package:webclient/models/competition.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
     selector: 'scouting',
@@ -47,6 +48,7 @@ class ScoutingComp implements DetachAware {
   ScoutingComp(this._routeProvider, this._router, this.loadingService, this._profileService, this._soccerPlayerService) {
     loadData();
     thereIsNewFavorites = false;
+    GameMetrics.logEvent(GameMetrics.SCOUTING);
   }
 
   void loadData() {
@@ -76,7 +78,7 @@ class ScoutingComp implements DetachAware {
               "matchId" :  instance.soccerTeam.templateSoccerTeamId,
               "matchEventName": instance.soccerTeam.name.toUpperCase(),
               "remainingMatchTime": "-",
-              "fantasyPoints": instance.soccerPlayer.fantasyPoints,
+              "fantasyPoints": instance.soccerPlayer.getFantasyPointsForCompetition(Competition.LEAGUE_UK_ID),
               "playedMatches": instance.soccerPlayer.getPlayedMatchesForCompetition(Competition.LEAGUE_UK_ID),
               "salary": instance.salary
             });
@@ -112,7 +114,7 @@ class ScoutingComp implements DetachAware {
               "matchId" :  instance.soccerTeam.templateSoccerTeamId,
               "matchEventName": instance.soccerTeam.name.toUpperCase(),
               "remainingMatchTime": "-",
-              "fantasyPoints": instance.soccerPlayer.fantasyPoints,
+              "fantasyPoints": instance.soccerPlayer.getFantasyPointsForCompetition(Competition.LEAGUE_ES_ID),
               "playedMatches": instance.soccerPlayer.getPlayedMatchesForCompetition(Competition.LEAGUE_ES_ID),
               "salary": instance.salary
             });

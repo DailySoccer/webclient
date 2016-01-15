@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/tutorial/tutorial_iniciacion.dart';
 import 'package:webclient/services/tutorial_service.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
     selector: 'tutorials-comp',
@@ -17,6 +18,7 @@ class TutorialsComp {
   }
   
   void goTutorial(String tutorial) {
+    GameMetrics.logEvent(GameMetrics.TUTORIAL_FROM_HELP, {'value': tutorial});
     _tutorialService.restart(tutorial);
   }
   

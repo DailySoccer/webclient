@@ -24,7 +24,7 @@ class FBLogin {
   void loginFB() {
     //js.JsObject fb = js.context["FB"];
     //fb.callMethod("getLoginStatus", [onGetLoginStatus]);
-    JsUtils.runJavascript(null, "getLoginStatus", [onGetLoginStatus], "FB");
+    JsUtils.runJavascript(null, "facebookLoginStatus", [onGetLoginStatus]);
   }
 
   void onGetLoginStatus(statusResponse) {
@@ -36,7 +36,7 @@ class FBLogin {
     }
     else {
       JsUtils.runJavascript(null, "facebookLogin", [(js.JsObject loginResponse) {
-        if (loginResponse["status"]=="connected") {
+        if (loginResponse["status"] == "connected") {
           loginCallback(loginResponse);
         }
       }]);
@@ -45,7 +45,7 @@ class FBLogin {
   
   static void share(Map info) {
     JsUtils.runJavascript(null, "facebookShare", 
-        [{'description'   : info.containsKey('description') ?  info['description']  : '',
+        [{'description'   : info.containsKey('description')  ? info['description']  : '',
           'imageUrl'      : info.containsKey('image') ?        info['image']        : '',
           'caption'       : info.containsKey('caption') ?      info['caption']      : '',
           'url'           : info.containsKey('url') ?          info['url']          : 'jugar.epiceleven.com',
@@ -121,6 +121,19 @@ class FBLogin {
     
     return completer.future;
   }
+  
+  static void parseXFBML(String cssSelector) {
+    JsUtils.runJavascript(null, "facebookParseXFBML", [cssSelector]);
+  }
+  
+  void refreshConnectedState() {
+    JsUtils.runJavascript(null, "facebookLoginStatus", [(r) => _state = r["status"]]);
+  }
+
+  String _state = null;
+  String get state => _state;
+
+  bool get isConnected => _state == "connected";
   
   static Map <String, Map> _profileImageCache = {};
   Router _router;

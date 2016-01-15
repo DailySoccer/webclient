@@ -17,11 +17,11 @@ class Money {
   // http://www.xe.com/symbols.php
   static Map<String, String> currentSymbolMap = {
     USD : "\$",
-    JPY : "¥",
+    JPY : "E",
     EUR : "€",
     GBP : "£",
-    CHF : "CHF",
-    AUD : "\$",
+    CHF : "M",
+    AUD : "G",
     CAD : "\$"
   };
 
@@ -31,6 +31,7 @@ class Money {
   // TODO: Existen contests con entryFee en Euros, mostramos únicamente Dollars...
   String toString() => "${StringUtils.parsePrize(amount)}";
   String toStringWithCurrency() => "${StringUtils.parsePrize(amount)}${currentSymbolMap[currencyUnit]}";
+  String get currencySymbol => currentSymbolMap[currencyUnit];
   // String toString() => "${currentSymbolMap[currencyUnit]}${StringUtils.parsePrize(amount)}";
 
   int toInt() => amount.toInt();

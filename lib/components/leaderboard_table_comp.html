@@ -12,7 +12,7 @@
       <span class="leaderboard-column leaderboard-table-position">{{element['position']}} </span>
       <span class="leaderboard-column leaderboard-table-name">{{element['name']}} </span>
       <span class="leaderboard-column leaderboard-table-hint">
-        <social-share parameters-by-map="sharingInfo" show-like="false" inline ng-if="isThePlayer(element['id'])"></social-share>
+        <social-share parameters-by-map="sharingInfo" show-like="false" inline ng-if="isThePlayer(element['id']) && sharingInfo != null"></social-share>
       </span>
       <span class="leaderboard-column leaderboard-table-skillpoints">{{element['points']}} </span>
     </div>

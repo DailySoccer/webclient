@@ -14,6 +14,7 @@ import 'dart:html';
 import 'package:webclient/tutorial/tutorial_iniciacion.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/components/account/notifications_comp.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
   selector: 'home',
@@ -160,6 +161,7 @@ class HomeComp  {
 
   void onBlogClick() {
     if (!isBlogTileEnabled) return;
+    GameMetrics.logEvent(GameMetrics.TRAINERS_SCHOOL);
     window.open("http://halftime.epiceleven.com", "HalfTime");
   }
 

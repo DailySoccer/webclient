@@ -148,6 +148,7 @@ class ViewContestEntryComp {
   }
   
   void onChallenge(user) {
+    GameMetrics.logEvent(GameMetrics.FRIEND_BAR_CHALLENGE);
     onInviteFriends();
   }
 

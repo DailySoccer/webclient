@@ -81,13 +81,13 @@ class JoinComp implements ShadowRootAware {
               .replaceAll("@MIN_NICKNAME_LENGTH", MIN_NICKNAME_LENGTH.toString())
               .replaceAll("@MAX_NICKNAME_LENGTH", MAX_NICKNAME_LENGTH.toString())
               .replaceAll("@MIN_PASSWORD_LENGTH", MIN_PASSWORD_LENGTH.toString());
-
     return str;
   }
 
 
   JoinComp(this._router, this._routeProvider, this._profileService, this.loadingService, this._rootElement, this._scrDet) {
     _fbLogin = new FBLogin(_router, _profileService, () => isModal ? ModalComp.close() : _router.go(PATH_IF_SUCCESS, {}));
+    FBLogin.parseXFBML(".fb-login-button");
   }
 
   void onShadowRoot(emulatedRoot) {
@@ -104,6 +104,7 @@ class JoinComp implements ShadowRootAware {
 
     passwordError = _rootElement.querySelector("#passwordError")
         ..parent.style.display = 'none';
+    _fbLogin.refreshConnectedState();
     //_scrDet.scrollTo('.panel-heading', offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
   }
 
@@ -144,12 +145,13 @@ class JoinComp implements ShadowRootAware {
     else {
       passwordElement.classes.add('not-valid');
     }
+    validateRePassword();
   }
 
   void validateRePassword() {
     rePasswordElement.classes.removeAll(['valid', 'not-valid']);
     //Validación de la confirmación del password
-    if (password == rePassword) {
+    if (password == rePassword && password.length >= MIN_PASSWORD_LENGTH) {
       rePasswordElement.classes.add('valid');
     }
     else {
@@ -264,7 +266,23 @@ class JoinComp implements ShadowRootAware {
         Logger.root.severe("join_comp: onAction: $action");
     }
   }
+  
+  Map<String, String> _errorMap = null;
 
+  Map<String, String> get errorMap {
+    if (_errorMap == null) {
+      _errorMap = {
+        ERROR_CREATING_YOUR_ACCOUNT: getLocalizedText('invalidnick'),//"An error has occurred while creating your account.",
+        ERROR_NICKNAME_TAKEN: getLocalizedText('nicknametaken'),//"Nickname already taken.",
+        ERROR_EMAIL_TAKEN: getLocalizedText('emailtaken'),//"Email address already taken.",
+        ERROR_CHECK_EMAIL_SPELLING: getLocalizedText('invalidemail'),//"Something went wrong, check the spelling on your email address.",
+        ERROR_PASSWORD_TOO_SHORT: getLocalizedText('passrequires'),//"Password is too short.",
+        "_ERROR_DEFAULT_": getLocalizedText('defaulterror')//"An error has occurred. Please, try again later."
+      };
+    }
+    return _errorMap;
+  }
+/*
   Map<String, String> errorMap = {
     ERROR_CREATING_YOUR_ACCOUNT: "An error has occurred while creating your account.",
     ERROR_NICKNAME_TAKEN: "Nickname already taken.",
@@ -272,12 +290,14 @@ class JoinComp implements ShadowRootAware {
     ERROR_CHECK_EMAIL_SPELLING: "Something went wrong, check the spelling on your email address.",
     ERROR_PASSWORD_TOO_SHORT: "Password is too short.",
     "_ERROR_DEFAULT_": "An error has occurred. Please, try again later."
-  };
+  };*/
 
   String _showMsgError(String errorCode) {
     String keyError = errorMap.keys.firstWhere( (key) => errorCode.contains(key), orElse: () => "_ERROR_DEFAULT_" );
     return errorMap[keyError];
   }
+
+  bool get isFacebookConnected => _fbLogin.isConnected;
 
   FBLogin _fbLogin;
 

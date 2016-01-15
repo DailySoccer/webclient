@@ -10,6 +10,7 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/components/achievement_comp.dart';
 import 'package:webclient/services/facebook_service.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
     selector: 'notifications',
@@ -37,6 +38,7 @@ class NotificationsComp {
       ].map((jsonMap) => new UserNotification.fromJsonObject(jsonMap) ).toList();
     }
     */
+    GameMetrics.logEvent(GameMetrics.NOTIFICATIONS);
 
     ProfileService.instance.refreshUserProfile().then( (_) => refreshNotifications() );
   }

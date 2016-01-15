@@ -14,6 +14,8 @@ import 'package:webclient/services/server_error.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/models/user.dart';
+import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/services/datetime_service.dart';
 
 @Component(
     selector: 'shop-comp',
@@ -76,15 +78,19 @@ class ShopComp implements DetachAware{
           energyProducts.add(eProduct);
         }
     });
-
+    
+    GameMetrics.logEvent(GameMetrics.SHOP_ENTERED);
     _tutorialService.triggerEnter("shop", component: this, activateIfNeeded: false);
   }
 
   void buyGold(String id) {
+    Map product = energyProducts.firstWhere((product) => product["id"] == id, orElse: () => {});
+    GameMetrics.logEvent(GameMetrics.REQUEST_BUY_GOLD, {'value': product["quantity"], 
+                                                          'date': DateTimeService.formatDateTimeLong(DateTimeService.now)});
+    
     _catalogService.buyProduct(id)
       .then( (_) {
         if (window.localStorage.containsKey("add_gold_success")) {
-
           window.location.assign(window.localStorage["add_gold_success"]);
         }
         else {
@@ -112,6 +118,7 @@ class ShopComp implements DetachAware{
               ModalComp.close();
               window.location.assign(window.localStorage["add_energy_success"]);
             }
+            GameMetrics.logEvent(GameMetrics.ENERGY_BOUGHT, {'value':(product["id"] == "ENERGY_ALL")? 10 : 1});
           })
           .catchError((ServerError error) {
               String keyError = errorMap.keys.firstWhere( (key) => error.responseError.contains(key), orElse: () => "_ERROR_DEFAULT_" );

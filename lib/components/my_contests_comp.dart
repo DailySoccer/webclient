@@ -12,6 +12,7 @@ import 'package:webclient/services/server_error.dart';
 import 'dart:async';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/tutorial_service.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
   selector: 'my-contests',
@@ -114,6 +115,17 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
   }
 
   void gotoSection(String section) {
+    /*switch (section) {
+      case "live":
+        GameMetrics.logEvent(GameMetrics.MY_CONTEST_LIVE);
+      break;
+      case "upcoming":
+        GameMetrics.logEvent(GameMetrics.MY_CONTEST_UPCOMING);
+      break;
+      case "history":
+        GameMetrics.logEvent(GameMetrics.MY_CONTEST_HISTORY);
+      break;
+    }*/
     _router.go('my_contests', {'section':section});
   }
 

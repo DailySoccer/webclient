@@ -31,15 +31,12 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     });
   }
 
-  String get watchCurrentVersion => HostServer.CURRENT_VERSION.isNotEmpty ? HostServer.CURRENT_VERSION : null;
-
   @override void set scope(Scope theScope) {
     _scope = theScope;
   }
 
   @override void onShadowRoot(emulatedRoot) {
     _scope.watch("profileService.info", _monitorChanges, canChangeModel: false);
-    _scope.watch("::watchCurrentVersion", _monitorChanges, canChangeModel: false);
     _streamListener = _scrDet.mediaScreenWidth.listen(onScreenWidthChange);
   }
 

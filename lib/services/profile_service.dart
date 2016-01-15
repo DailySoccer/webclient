@@ -17,13 +17,16 @@ import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/components/achievement_comp.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/utils/fblogin.dart';
+import 'package:webclient/utils/host_server.dart';
 
 @Injectable()
 class ProfileService {
 
   User user = null;
   bool get isLoggedIn => user != null;
-  String get info => isLoggedIn ? user.mainMenuInfo : "";
+
+  String get currentVersion => HostServer.CURRENT_VERSION;
+  String get info => isLoggedIn ? "${user.mainMenuInfo}:$currentVersion" : "$currentVersion";
 
   bool get isWelcoming => !_hasDoneLogin;
 
@@ -132,7 +135,7 @@ class ProfileService {
   }
 
   Map _setProfile(String theSessionToken, Map jsonMap, bool bSave) {
-    
+
     if (theSessionToken != null && jsonMap != null) {
       user = new User.fromJsonObject(jsonMap);
       refreshFriendList();
@@ -245,7 +248,7 @@ class ProfileService {
     Completer<List<User>> completer = new Completer<List<User>>();
     FBLogin.friendList(user.facebookID).then((list) {
         if (list != null && list.length != 0) {
-          if (list.length != _friendList.length || 
+          if (list.length != _friendList.length ||
               list.any( (id) => !_friendList.any( (u) => u.userId == id)) ) {
             getFacebookProfiles(list).then( (List<User> users) {
               _friendList = users;
@@ -255,13 +258,13 @@ class ProfileService {
         }
       })
       .catchError((error) => completer.completeError(error));
-    
+
     return completer.future;
   }
-  
+
   List<User> _friendList = [];
   List<User> get friendList => user == null? [] : _friendList;
-  
+
   bool _wasLoggedInForTriggerPopUp = false;
 
   bool get _hasDoneLogin => window.localStorage.containsKey('user');

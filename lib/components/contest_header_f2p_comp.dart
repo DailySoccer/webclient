@@ -44,6 +44,10 @@ class ContestHeaderF2PComp implements DetachAware, ShadowRootAware {
     }
   }
 
+  // Indica el nivel de información que se quiere mostrar (por defecto, si empty mostrará el estado en el que se encuentre el contest)
+  @NgAttr('view-state')
+  String viewState;
+
   bool isInsideModal = false;
   @NgAttr('modal')
   void set setModal(String value) {
@@ -66,7 +70,7 @@ class ContestHeaderF2PComp implements DetachAware, ShadowRootAware {
   void set setContestId(String value) {
     if (value != null) {
       contest = _contestsService.getContestById(value);
-      
+
       _refreshHeader();
       _refreshCountdownDate();
     }
@@ -75,11 +79,15 @@ class ContestHeaderF2PComp implements DetachAware, ShadowRootAware {
   String getLocalizedText(key) {
     return StringUtils.translate(key, "contestheader");
   }
-  
+
   String get fbTitle => FacebookService.titleByContest(contest, _profileService.user.userId);
   String get fbDescription => FacebookService.descriptionByContest(contest, _profileService.user.userId);
   String get fbPhoto => FacebookService.imageByContest(contest, _profileService.user.userId);
   String get fbCaption => FacebookService.captionByContest(contest, _profileService.user.userId);
+
+  bool get viewActive   => viewState == null  ? ((contest != null) ? contest.isActive : false)  : (viewState == "ACTIVE");
+  bool get viewLive     => viewState == null  ? ((contest != null) ? contest.isLive : false)    : (viewState == "LIVE");
+  bool get viewHistory  => viewState == null  ? ((contest != null) ? contest.isHistory : false) : (viewState == "HISTORY");
 
   ContestHeaderF2PComp(this._router, this._routeProvider, this._profileService, this.scrDet, this._contestsService, this._rootElement) {
     _count = new Timer.periodic(new Duration(seconds: 1), (Timer timer) => _refreshCountdownDate());
@@ -114,7 +122,7 @@ class ContestHeaderF2PComp implements DetachAware, ShadowRootAware {
     ContestEntry mainContestEntry = contest.getContestEntryWithUser(_profileService.user.userId);
 
     // En los contest Históricos tendremos la posición registrada en el propio ContestEntry
-    if (contest.isHistory) {
+    if (viewHistory) {
       return (mainContestEntry.position >= 0) ? "${mainContestEntry.position + 1}" : "-";
     }
 
@@ -123,18 +131,18 @@ class ContestHeaderF2PComp implements DetachAware, ShadowRootAware {
 
   Money getPrizeToShow() {
     // En los contest Históricos tendremos la posición registrada en el propio ContestEntry
-    if (contest.isHistory || contest.isLive) {
+    if (viewHistory || viewLive) {
       return getMyPrize(contest);
     }
 
     return contest.prizePool;
   }
-  
+
   Money getMyPrize(Contest contest) {
     ContestEntry mainContestEntry = contest.getContestEntryWithUser(_profileService.user.userId);
     return mainContestEntry.prize;
   }
-  
+
   void _refreshCountdownDate() {
     if (contest == null) {
       return;
@@ -193,7 +201,7 @@ class ContestHeaderF2PComp implements DetachAware, ShadowRootAware {
     }
   }
 
-  
+
   String get inviteUrl => "${window.location.toString().split("#")[0]}#/enter_contest/lobby/${contest.contestId}/none";
 
   Map _sharingInfo = {};
@@ -211,14 +219,14 @@ class ContestHeaderF2PComp implements DetachAware, ShadowRootAware {
       }
       _sharingInfo['selector-prefix'] = '${_sharingInfo['selector-prefix']}_contestHeader';
     }
-    
+
     return _sharingInfo;
   }
 
   bool userIsRegistered() {
     return _profileService.isLoggedIn && contest.containsContestEntryWithUser(_profileService.user.userId);
   }
-  
+
   Router _router;
   RouteProvider _routeProvider;
   ContestsService _contestsService;

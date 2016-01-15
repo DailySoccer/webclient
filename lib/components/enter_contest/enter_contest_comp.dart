@@ -128,7 +128,7 @@ class EnterContestComp implements DetachAware {
   int get playerEnergy => _profileService.isLoggedIn ? _profileService.user.Energy : 0;
 
   List<String> lineupAlertList = [];
-  
+
   List<User> _userList = [];
   List<User> _orderedList = [];
   List<User> get filteredFriendList {
@@ -136,20 +136,20 @@ class EnterContestComp implements DetachAware {
     if (_userList.length != contest.contestEntries.length) {
       _userList = contest.contestEntries.map( (contestEntry) => contestEntry.user).toList();
       List<User> friendList = _profileService.friendList;
-      
+
       // Añadimos primero en la lista los amigos
       _orderedList = _userList.where((u) => friendList.any(
               (friend) => friend.facebookID == u.facebookID)).toList();
       // Despues añadimos los que no son amigos y no son el propio jugador (para editar alineación)
-      _orderedList.addAll( _userList.where((u) => 
-            !friendList.any((friend) => friend.facebookID == u.facebookID) 
-            && u.facebookID != _profileService.user.facebookID
+      _orderedList.addAll( _userList.where((u) =>
+            !friendList.any((friend) => friend.facebookID == u.facebookID)
+            && (!_profileService.isLoggedIn || u.facebookID != _profileService.user.facebookID)
           ).toList());
-      
+
     }
     return _orderedList;
   }
-  
+
   Map<String, Map> errorMap;
 
   String getLocalizedText(key, {substitutions: null}) {
@@ -216,7 +216,7 @@ class EnterContestComp implements DetachAware {
 
         contest = _contestsService.lastContest;
 
-        GameMetrics.logEvent(GameMetrics.ENTER_CONTEST, {"type": contest.isSimulation? 'virtual' : 'oficial', 
+        GameMetrics.logEvent(GameMetrics.ENTER_CONTEST, {"type": contest.isSimulation? 'virtual' : 'oficial',
                                                          "created": contest.isAuthor(_profileService.user)});
 
         if (_profileService.isLoggedIn && !contest.canEnter(_profileService.user) && !editingContestEntry) {
@@ -269,7 +269,11 @@ class EnterContestComp implements DetachAware {
     int userLevel = _profileService.isLoggedIn ? _profileService.user.managerLevel.toInt() : 0;
     int userTrueSkill = _profileService.isLoggedIn ? _profileService.user.trueSkill : 0;
 
-    if (contest.isFull) {
+    if (contest.isLive || contest.isHistory) {
+      title = contest.isLive ? "¡Torneo Jugándose!" : "¡Torneo Terminado!";
+      description = "No es posible participar en el torneo seleccionado";
+    }
+    else if (contest.isFull) {
       title = "¡Torneo lleno!";
       description = "No quedan plazas disponibles para participar en el torneo seleccionado";
     } else if (!contest.hasManagerLevel(userLevel)) {
@@ -653,7 +657,7 @@ class EnterContestComp implements DetachAware {
             });
 
             GameMetrics.identifyMixpanel(_profileService.user.email);
-            GameMetrics.logEvent(GameMetrics.TEAM_CREATED, {"type": contest.isSimulation? 'virtual' : 'oficial', 
+            GameMetrics.logEvent(GameMetrics.TEAM_CREATED, {"type": contest.isSimulation? 'virtual' : 'oficial',
                                                             "is created by user": contest.isAuthor(_profileService.user),
                                                             "is custom contest": contest.isCustomContest() || contest.isAuthor(_profileService.user),
                                                             "team created date": DateTimeService.formatDateShort(DateTimeService.now),

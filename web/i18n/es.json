@@ -1178,5 +1178,10 @@
       "aditional-achievements"          : "Has ganado @NUM_ACHIEVEMENTS logros más...",
       "go-notifications"                : "Ir a notificaciones"
     }
+    ,"XsNotAvailable"                   :
+    {
+      "title"                           : "No disponible para dispositivos móviles",
+      "body"                            : "Utiliza un ordenador de sobremesa o amplia la ventana de tu navegador."
+    }
   }
 }

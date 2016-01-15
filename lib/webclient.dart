@@ -41,6 +41,8 @@ import 'package:webclient/utils/max_text_width.dart';
 
 import 'package:webclient/components/navigation/main_menu_f2p_comp.dart';
 import 'package:webclient/components/navigation/footer_comp.dart';
+import 'package:webclient/components/navigation/xs_not_available_screen_comp.dart';
+
 import 'package:webclient/components/flash_messages_comp.dart';
 import 'package:webclient/components/modal_comp.dart';
 import 'package:webclient/components/paginator_comp.dart';
@@ -162,6 +164,10 @@ class WebClientApp extends Module {
     bind(SocialShareComp);
     bind(FriendsBarComp);
 
+    bind(MainMenuF2PComp);
+    bind(FooterComp);
+    bind(XsNotAvailableScreenComp);
+    
     bind(NgBindHtmlUnsafeDirective);
     bind(MaxTextWidthDirective);
     bind(FormAutofillDecorator);
@@ -169,8 +175,6 @@ class WebClientApp extends Module {
     bind(LimitToDot);
     bind(TranslateDecorator);
     bind(TranslateFormatter);
-    bind(MainMenuF2PComp);
-    bind(FooterComp);
     bind(FlashMessageComp);
     bind(ModalComp);
     bind(LoginComp);

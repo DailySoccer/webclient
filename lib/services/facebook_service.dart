@@ -46,7 +46,7 @@ class FacebookService {
   }
 
   static Map createdContest(String contestId) {
-    return _buildShareMap('created_contest', "$_rootUrl#/enter_contest/lobby/${contestId}/none");
+    return _buildShareMap('created_contest', "$_rootUrl#/sec/${contestId}");
   }
 
   static Map leaderboardGold(String userId) {

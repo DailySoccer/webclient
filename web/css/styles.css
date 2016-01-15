@@ -25420,6 +25420,41 @@ fieldset[disabled] .friends-bar-wrapper .friend-element-wrapper .challenge-frien
     <span class="friend-manager-level">{{user.managerLevel}}</span>
     <button class="challenge-friend">Retar</button>
 */
+.xs-not-available-screen {
+  display: none;
+}
+@media (max-width: 767px) {
+  .xs-not-available-screen {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #0a2938;
+    z-index: 100000;
+    padding: 100px 20px 0 20px;
+    padding-top: 20vh;
+    text-align: center;
+  }
+  .xs-not-available-screen h1 {
+    font-family: 'Exo', sans-serif;
+    font-weight: 600;
+    font-size: 18pt;
+    color: #59add5;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+    margin: 40px 0 20px 0;
+    margin: 10vh 0 5vh 0;
+  }
+  .xs-not-available-screen p {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 12pt;
+    color: #ffffff;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  }
+}
 /*************************************************
 Si hay que añadir nuevas banderas, ir a la siguiente url
 url: http://flag-sprites.com/es_ES/;

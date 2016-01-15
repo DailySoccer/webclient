@@ -5,6 +5,8 @@ import 'package:logging/logging.dart';
 
 class HostServer {
 
+  static String CURRENT_VERSION = "";
+
   // Global que apunta al servidor Host. Obligatorio usarla cuando vas a hacer una llamada al servidor
   static String get url {
 

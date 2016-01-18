@@ -9,6 +9,7 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:intl/intl.dart';
+import 'package:webclient/utils/host_server.dart';
 
 @Component(
     selector: 'main-menu-f2p',
@@ -16,7 +17,7 @@ import 'package:intl/intl.dart';
     exportExpressions: const ["profileService.user"])
 class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
   ProfileService profileService;
-  
+
   bool betaOn = true;
 
   MainMenuF2PComp(
@@ -85,7 +86,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     <nav id="mainMenu" class="${navClass}" role="navigation">
       ${innerHtml}
     </nav>
-    <span class='beta-label'>${StringUtils.translate('beta', 'mainmenu')}</span>
+    <span class='beta-label'>${StringUtils.translate('beta', 'mainmenu')} <small>${HostServer.CURRENT_VERSION}</small></span>
     ''';
 
     _rootElement.setInnerHtml(finalHtml, treeSanitizer: NULL_TREE_SANITIZER);
@@ -305,7 +306,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     }
     return profileService.user.profileImage;
   }
-  
+
   String get _energyTimeLeft {
     if (!profileService.isLoggedIn) {
       return "";

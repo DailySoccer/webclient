@@ -494,6 +494,8 @@ class DailySoccerServer implements ServerService {
       }
       else {
         _currentVersion = serverVersion;
+
+        HostServer.CURRENT_VERSION = _currentVersion;
       }
     }
   }

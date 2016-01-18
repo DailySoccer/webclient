@@ -68,26 +68,28 @@ social-share {
 	}
 }
 
-social-share[inline] {
-	height: 35px;
+@media (min-width: @screen-sm-min) {
+	social-share[inline] {
+		height: 35px;
 
-	.social-share-wrapper {
+		.social-share-wrapper {
 
-		facebook-share,
-		.facebook-share-wrapper { 
-			display: inline-block; 
-			margin-bottom: 0; 
+			facebook-share,
+			.facebook-share-wrapper { 
+				display: inline-block; 
+				margin-bottom: 0; 
+			}
+
+			twitter-share,
+			.twitter-share-wrapper  { 
+				display: inline-block; 
+				margin-top: 0; 
+			}
+
+			.facebook-share-wrapper .facebook-share-button { 
+				margin-bottom: 0; 
+			}
 		}
 
-		twitter-share,
-		.twitter-share-wrapper  { 
-			display: inline-block; 
-			margin-top: 0; 
-		}
-
-		.facebook-share-wrapper .facebook-share-button { 
-			margin-bottom: 0; 
-		}
 	}
-
 }

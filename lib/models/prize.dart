@@ -37,7 +37,7 @@ class Prize {
     values = _calculateValues();
 
     // TODO: Premios como "enteros"
-    values.forEach((money) => money.amount = money.amount.toInt());
+    // values.forEach((money) => money.amount = money.amount.toInt());
   }
 
   Prize.fromJsonObject(Map jsonMap) {

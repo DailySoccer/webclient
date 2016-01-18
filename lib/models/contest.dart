@@ -315,7 +315,7 @@ class Contest {
     }
 
     // TODO: Premios como "enteros"
-    _prizePool.amount = _prizePool.toInt();
+    // _prizePool.amount = _prizePool.toInt();
 
     _prizeMin = new Money.from(prizeCurrency, minEntries * entryFee.amount * prizeMultiplier);
 

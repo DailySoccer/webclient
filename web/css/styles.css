@@ -18965,7 +18965,7 @@ lineup-selector {
 }
 @media (max-width: 767px) {
   #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-name {
-    padding-top: 15px;
+    padding-top: 20px;
     padding-bottom: 5px;
   }
 }

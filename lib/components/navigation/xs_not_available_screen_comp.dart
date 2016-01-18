@@ -2,6 +2,7 @@ library xs_not_available_screen_comp;
 
 import 'package:angular/angular.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/utils/host_server.dart';
 
 @Component(
     selector: 'xs-not-available-screen',
@@ -15,4 +16,6 @@ class XsNotAvailableScreenComp {
   String getLocalizedText(key, [Map substitutions]) {
     return StringUtils.translate(key, "XsNotAvailable", substitutions);
   }
+  
+  bool get show => HostServer.isProd;
 }

@@ -12901,13 +12901,13 @@ main-menu-f2p .beta-label {
     margin-top: 15px;
     margin-right: 0;
   }
-  #mainMenu #toggleSlideMenu .icon-bar {
-    background-color: #ffffff;
-    height: 3px;
-  }
   #mainMenu #toggleSlideMenu:hover,
   #mainMenu #toggleSlideMenu:focus {
     background-color: transparent;
+  }
+  #mainMenu #toggleSlideMenu .icon-bar {
+    background-color: #ffffff;
+    height: 3px;
   }
   #mainMenu #backdrop {
     background-color: #000000;
@@ -13035,6 +13035,9 @@ main-menu-f2p .beta-label {
   #mainMenu #menuSlide ul.dropdown-menu > li > a:focus {
     color: #000000;
     background-color: #dcdcdc;
+  }
+  #mainMenu .open > #desktopUserMenu.dropdown-menu {
+    display: none;
   }
 }
 #mainMenu #desktopMenu {

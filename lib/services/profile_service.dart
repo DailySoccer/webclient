@@ -249,7 +249,7 @@ class ProfileService {
     FBLogin.friendList(user.facebookID).then((list) {
         if (list != null && list.length != 0) {
           if (list.length != _friendList.length ||
-              list.any( (id) => !_friendList.any( (u) => u.userId == id)) ) {
+              list.any( (id) => !_friendList.any( (u) => u.facebookID == id)) ) {
             getFacebookProfiles(list).then( (List<User> users) {
               _friendList = users;
               completer.complete(users);

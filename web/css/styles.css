@@ -24350,7 +24350,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 #notificationsComp .notification-list-wrapper .notification .main-info {
   position: relative;
   float: left;
-  width: 33.33333333%;
+  width: 100%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
@@ -24358,6 +24358,12 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
   text-align: center;
   height: 130px;
   display: table;
+}
+@media (min-width: 768px) {
+  #notificationsComp .notification-list-wrapper .notification .main-info {
+    float: left;
+    width: 33.33333333%;
+  }
 }
 #notificationsComp .notification-list-wrapper .notification .main-info .wrapper {
   display: table-cell;
@@ -24389,12 +24395,18 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 #notificationsComp .notification-list-wrapper .notification .additional-info {
   position: relative;
   float: left;
-  width: 66.66666667%;
+  width: 100%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
   display: table;
   height: 130px;
+}
+@media (min-width: 768px) {
+  #notificationsComp .notification-list-wrapper .notification .additional-info {
+    float: left;
+    width: 66.66666667%;
+  }
 }
 #notificationsComp .notification-list-wrapper .notification .additional-info .wrapper {
   display: table-cell;
@@ -24427,6 +24439,12 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
   top: 15px;
   right: 15px;
   cursor: pointer;
+  content: " ";
+  background-image: url("../images/alertCloseButton.png");
+  width: 23px;
+  height: 23px;
+  display: inline-block;
+  vertical-align: middle;
 }
 #notificationsComp .notification-list-wrapper .uncommon {
   background-image: url("../images/achievementNotificationBg.jpg");
@@ -24488,6 +24506,59 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
   color: #434343;
   text-transform: uppercase;
   text-shadow: 1px 1px 1px rgba(67, 67, 67, 0.004);
+}
+@media (max-width: 767px) {
+  #notificationsComp .notification-list-wrapper {
+    padding: 5px 10px;
+  }
+  #notificationsComp .notification-list-wrapper .notification .main-info {
+    height: 70px;
+  }
+  #notificationsComp .notification-list-wrapper .notification .main-info .wrapper {
+    padding-right: 30px;
+  }
+  #notificationsComp .notification-list-wrapper .notification .main-info .wrapper .name {
+    padding: 0;
+  }
+  #notificationsComp .notification-list-wrapper .notification .main-info .wrapper .date {
+    font-size: 9pt;
+    padding: 0;
+  }
+  #notificationsComp .notification-list-wrapper .notification .additional-info {
+    height: auto;
+    padding: 10px 15px;
+  }
+  #notificationsComp .notification-list-wrapper .notification .additional-info .description {
+    padding: 0;
+  }
+  #notificationsComp .notification-list-wrapper .notification .additional-info .button-wrapper {
+    margin-top: 10px;
+    margin-left: 0px;
+    height: auto;
+  }
+  #notificationsComp .notification-list-wrapper .notification .additional-info .button-wrapper social-share {
+    display: block;
+  }
+  #notificationsComp .notification-list-wrapper .notification .additional-info .button-wrapper .social-share-wrapper {
+    margin: 10px 0px 10px -10px;
+  }
+  #notificationsComp .notification-list-wrapper .close-button {
+    content: " ";
+    background-image: url("../images/alertCloseButtonLight.png");
+    width: 23px;
+    height: 23px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  #notificationsComp .notification-list-wrapper .uncommon .main-info .wrapper {
+    padding-right: 0px;
+  }
+  #notificationsComp .notification-list-wrapper .uncommon .main-info .wrapper .name {
+    font-size: 18pt;
+  }
+  #notificationsComp .notification-list-wrapper .uncommon .additional-info .button-wrapper .social-share-wrapper {
+    margin: 10px 0;
+  }
 }
 #alertRoot.achievementEarned .panel {
   background-image: url("../images/BgModalesEspeciales.jpg");

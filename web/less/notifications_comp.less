@@ -43,7 +43,8 @@
 			}
 
 			.main-info {
-				.make-xs-column(4);
+				.make-sm-column(4);
+				.make-xs-column(12);
 				background-color: @blueDark;
 				text-align: center;
 				height: @cell-height;
@@ -72,7 +73,8 @@
 			}
 
 			.additional-info {
-				.make-xs-column(8);
+				.make-sm-column(8);
+				.make-xs-column(12);
 				display: table;
 				height: @cell-height;
 
@@ -108,6 +110,7 @@
 			top: 15px;
 			right: 15px;
 			cursor: pointer;
+			.addIcon("alertCloseButton.png", 23px, 23px);
 		}
 
 		.uncommon {
@@ -150,6 +153,73 @@
 		}
 	}
 	
+}
+
+@media (max-width: @screen-xs-max) {
+	
+	#notificationsComp {
+
+		.notification-list-wrapper {
+			padding: 5px 10px;
+
+			.notification {
+				
+				.main-info {
+					height: 70px;
+					.wrapper {
+						padding-right: 30px;
+						.name {	
+							padding: 0;
+						}
+						.date {
+							font-size: 9pt;
+							padding: 0;
+						}
+					}
+				}
+
+				.additional-info {
+					height: auto;
+					padding: 10px 15px;
+
+					.description {
+						padding: 0;
+					}
+
+					.button-wrapper {
+						margin-top:  10px;
+						margin-left: 0px;
+						height: auto;
+						//.container(0);
+						
+						social-share {
+							display: block;
+						}
+						.social-share-wrapper {
+							margin: 10px 0px 10px -10px;
+						}
+						
+					}
+				}
+			}
+			
+			.close-button {
+				.addIcon("alertCloseButtonLight.png", 23px, 23px);
+			}
+			.uncommon {
+				.main-info .wrapper {
+					padding-right: 0px;
+					.name {	
+						font-size: 18pt;
+					}
+				}
+				.additional-info .button-wrapper .social-share-wrapper {
+					margin: 10px 0;
+				}
+			}
+		}
+
+	}
 }
 
 

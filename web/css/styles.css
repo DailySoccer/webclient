@@ -18808,6 +18808,13 @@ lineup-selector {
   background-repeat: no-repeat;
   background-position: center center;
 }
+@media (max-width: 767px) {
+  #leaderboard-wrapper .leaderboard-tabs .leaderboard-tab:before {
+    margin: 0px auto;
+    position: relative;
+    display: block;
+  }
+}
 #leaderboard-wrapper .leaderboard-tabs .top-money-tab:before {
   content: " ";
   background-image: url("../images/icon-Ranking-Monedas.png");
@@ -18839,6 +18846,13 @@ lineup-selector {
     text-shadow: none;
     background-color: transparent;
     border: 0;
+  }
+}
+@media (max-width: 767px) {
+  #leaderboard-wrapper .leaderboard-tabs .leaderboard-tab:before {
+    margin: 0px auto;
+    position: relative;
+    display: block;
   }
 }
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table {
@@ -18904,6 +18918,21 @@ lineup-selector {
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-column social-share {
   height: 20px;
 }
+#leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-name-hint-wrapper {
+  float: left;
+  width: 50%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 0;
+}
+@media (min-width: 768px) {
+  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-name-hint-wrapper {
+    float: left;
+    width: 75%;
+  }
+}
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-position {
   float: left;
   width: 16.66666667%;
@@ -18920,33 +18949,72 @@ lineup-selector {
 }
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-name {
   float: left;
-  width: 50%;
+  width: 100%;
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  padding-left: 0;
+  padding-right: 0;
 }
 @media (min-width: 768px) {
   #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-name {
     float: left;
-    width: 33.33333333%;
+    width: 50%;
+  }
+}
+@media (max-width: 767px) {
+  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-name {
+    padding-top: 15px;
+    padding-bottom: 5px;
   }
 }
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint {
+  float: left;
+  width: 100%;
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-}
-@media (max-width: 767px) {
-  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint {
-    display: none !important;
-  }
+  padding-left: 0;
+  padding-right: 0;
 }
 @media (min-width: 768px) {
   #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint {
     float: left;
-    width: 41.66666667%;
+    width: 50%;
+  }
+}
+@media (max-width: 767px) {
+  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint.empty {
+    display: none !important;
+  }
+}
+@media (max-width: 767px) {
+  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint {
+    padding-top: 5px;
+    padding-bottom: 0px;
+  }
+}
+@media (max-width: 767px) {
+  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint social-share[inline] {
+    height: 35px;
+  }
+  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint social-share[inline] .social-share-wrapper {
+    margin-left: -10px;
+  }
+  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint social-share[inline] .social-share-wrapper facebook-share,
+  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint social-share[inline] .social-share-wrapper .facebook-share-wrapper {
+    display: inline-block;
+    margin-bottom: 0;
+  }
+  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint social-share[inline] .social-share-wrapper twitter-share,
+  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint social-share[inline] .social-share-wrapper .twitter-share-wrapper {
+    display: inline-block;
+    margin-top: 0;
+  }
+  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint social-share[inline] .social-share-wrapper .facebook-share-wrapper .facebook-share-button {
+    margin-bottom: 0;
   }
 }
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-skillpoints {

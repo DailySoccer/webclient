@@ -314,6 +314,9 @@ class Contest {
       _prizePool = new Money.from(prizeCurrency, (numEntries < minEntries ? minEntries : numEntries) * entryFee.amount * prizeMultiplier);
     }
 
+    // TODO: Premios como "enteros"
+    _prizePool.amount = _prizePool.toInt();
+
     _prizeMin = new Money.from(prizeCurrency, minEntries * entryFee.amount * prizeMultiplier);
 
     // print("Contest: id($contestId) name($name) currentUserIds($currentUserIds) templateContestId($templateContestId)");

@@ -35,6 +35,9 @@ class Prize {
     entries = (contest.numEntries < contest.minEntries) ? contest.minEntries : contest.numEntries;
     prizePool = contest.prizePool; //getPool(contest.entryFee, entries, contest.prizeMultiplier);
     values = _calculateValues();
+
+    // TODO: Premios como "enteros"
+    values.forEach((money) => money.amount = money.amount.toInt());
   }
 
   Prize.fromJsonObject(Map jsonMap) {

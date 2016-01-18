@@ -7,11 +7,15 @@
 		height: 58px;
 		background-color: @tramaBlue;
 		padding: 20px 0 0 10px;
-		.hidden-xs();
+		@media (max-width: @screen-xs-max) {
+			margin: 0 -10px;
+		}
+		//.hidden-xs();
 		span {
 			.exo_bold(14pt, @greyDark);
 			padding: 0 10px 0 0;
 			.hidden-sm();
+			.hidden-xs();
 		}
 		.button-filter-position {
 			.btn-default();
@@ -34,6 +38,9 @@
 					background-color: @white;
 					color: @greyUltraDark;
 				}
+			}
+			&.all {
+				.hidden-xs();
 			}
 		}
 		.button-filter-favorites {
@@ -79,7 +86,7 @@
 	.name-player-input-filter {
 		.form-control();
 		@media (max-width: @screen-xs-max) {
-			margin: 10px 0 15px;
+			margin: 10px 0px 15px 0px;
 			border: 1px solid @greyLight;
 			border-radius: 4px;
 		}

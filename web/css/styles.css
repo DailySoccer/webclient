@@ -23031,6 +23031,20 @@ users-list#usersList > .epic-tooltip {
     width: 50%;
   }
 }
+@media (max-width: 767px) {
+  #createContest .create-contest-section-wrapper {
+    height: 190px;
+  }
+  #createContest .create-contest-section-wrapper.event-section {
+    height: 130px;
+  }
+  #createContest .create-contest-section-wrapper.name-section {
+    height: 130px;
+  }
+  #createContest .create-contest-section-wrapper.date-section {
+    height: 140px;
+  }
+}
 #createContest .create-contest-section-wrapper.large {
   position: relative;
   min-height: 1px;
@@ -23090,13 +23104,19 @@ users-list#usersList > .epic-tooltip {
   margin-left: 20px;
 }
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .data-element {
-  position: relative;
   float: left;
-  width: 50%;
+  width: 100%;
+  position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
   padding: 0;
+}
+@media (min-width: 768px) {
+  #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .data-element {
+    float: left;
+    width: 50%;
+  }
 }
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .data-element input[type="radio"] {
   display: none;
@@ -23142,13 +23162,19 @@ users-list#usersList > .epic-tooltip {
   text-shadow: 1px 1px 1px rgba(67, 67, 67, 0.004);
 }
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .data-element {
-  position: relative;
   float: left;
-  width: 33.33333333%;
+  width: 100%;
+  position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
   padding: 0 15px 0 0;
+}
+@media (min-width: 768px) {
+  #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .data-element {
+    float: left;
+    width: 33.33333333%;
+  }
 }
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .data-element .entry-fee-values-wrapper {
   border: 1px solid transparent;

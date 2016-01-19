@@ -8,6 +8,22 @@
 		.make-sm-column(6);
 		.make-xs-column(12);
 		height: 130px;
+		
+		@media (max-width: @screen-xs-max) {
+			height: 190px;
+			
+			&.event-section {
+				height: 130px;
+			}
+			&.name-section {
+				height: 130px;
+			}
+			&.date-section {
+				height: 140px;
+			}
+		
+		}
+		
 		padding: 2px;
 		position: relative;
 		
@@ -36,7 +52,8 @@
 			.data-input-wrapper {
 
 				.data-element {
-					.make-xs-column(6);
+					.make-xs-column(12);
+					.make-sm-column(6);
 					padding: 0;
 					
 					input[type="radio"] {
@@ -81,7 +98,8 @@
 					.opensans_normal(12pt, @greyUltraDark);
 					
 					.data-element {
-						.make-xs-column(4);
+						.make-xs-column(12);
+						.make-sm-column(4);
 						padding: 0 15px 0 0;
 
 						.entry-fee-values-wrapper {

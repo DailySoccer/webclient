@@ -122,7 +122,7 @@ class ContestsService {
           _profileService.updateProfileFromJson(jsonMap["profile"]);
         }
 
-        Logger.root.info("response: " + jsonMap.toString());
+        // Logger.root.info("response: " + jsonMap.toString());
       });
   }
 

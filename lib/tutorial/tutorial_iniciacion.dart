@@ -17,6 +17,7 @@ import 'dart:html';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/models/instance_soccer_player.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/services/screen_detector_service.dart';
 
 class TutorialIniciacion extends Tutorial {
   static String NAME = "TUTORIAL_INICIACION";
@@ -30,10 +31,10 @@ class TutorialIniciacion extends Tutorial {
 
   DateTime currentDate = new DateTime.now();
 
-  TutorialIniciacion(Router router, ProfileService profileService) : super(router, profileService) {
+  TutorialIniciacion(Router router, ProfileService profileService, this._scrDet) : super(router, profileService) {
     getContentJson(PATH + "instance_soccer_players.json").then((list) {
       InstanceSoccerPlayerList = list;
-
+      
       Map<String, String> forwards = {
         "56260898c1f5fbc410f998b1": "Adnane Tighadouini",
         "5625d0edc1f5fbc410e6ee06": "Adrián",
@@ -149,10 +150,12 @@ class TutorialIniciacion extends Tutorial {
                 await openModal( text: () => getLocalizedText("msg-02c") );
 
                 if (!isCompleted) {
-
-                  // Esta es la lista de partidos de este torneo.
-                  await onClick( [new ToolTip("matches-filter", tipText: getLocalizedText("msg-02d"), highlight: true, position: ToolTip.POSITION_TOP)] );
-
+                  
+                  if(_scrDet.isNotXsScreen) {
+                    // Esta es la lista de partidos de este torneo.
+                    await onClick( [new ToolTip("matches-filter", tipText: getLocalizedText("msg-02d"), highlight: true, position: ToolTip.POSITION_TOP)] );
+                  }
+                  
                   clearTooltips();
                   querySelector(".lineup-formation-selector-wrapper").click();
 
@@ -175,6 +178,8 @@ class TutorialIniciacion extends Tutorial {
                 // Al cambiar de formación, cambia el número
                 await onClick( [new ToolTip(".enter-contest-lineup-wrapper", tipText: getLocalizedText("msg-02h"), highlight: true, position: ToolTip.POSITION_TOP)] );
 
+                querySelector(".lineup-selector-slot.posDEL").click();
+                
                 // Esta es la lista de jugadores disponibles
                 await onClick( [new ToolTip(".enter-contest-soccer-players-wrapper", tipText: getLocalizedText("msg-02i"), highlight: true, position: ToolTip.POSITION_TOP)] );
 
@@ -193,6 +198,8 @@ class TutorialIniciacion extends Tutorial {
                 // Cuando añades un jugador su salario (".enter-contest-total-salary")
                 await onClick( [new ToolTip(".enter-contest-lineup-wrapper", tipText: getLocalizedText("msg-03b"), highlight: true, position: ToolTip.POSITION_TOP)] );
 
+                querySelectorAll(".lineup-selector-slot.posDEL")[1].click();
+                
                 // Cada jugador además de su salario
                 await onClick( [new ToolTip("$soccerPlayer1 .column-manager-level", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-03c"), highlight: true, position: ToolTip.POSITION_BOTTOM, tipId: 'soccerManagerLevel')] );
 
@@ -263,6 +270,8 @@ class TutorialIniciacion extends Tutorial {
                 // Esta vez hemos hecho la alineación por ti
                 await openModal( text: () => getLocalizedText("msg-08") );
 
+                querySelectorAll(".lineup-selector-slot.posDEL")[1].click();
+                
                 // Añade un delantero
                 showTooltips([
                   new ToolTip("$soccerPlayer2 .action-button", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-09"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
@@ -323,7 +332,9 @@ class TutorialIniciacion extends Tutorial {
                 if (!isCompleted) {
                   // Aquí podrás ver los puntos conseguidos por tus jugadores
                   await onClick( [new ToolTip("fantasy-team", tipText: getLocalizedText("msg-13"), highlight: true, position: ToolTip.POSITION_TOP)] );
-
+                  
+                  if (_scrDet.isXsScreen) querySelector("#usersListTab").click();
+                  
                   // Aquí puedes ver tu puntuación frente a los rivales
                   await onClick( [new ToolTip("#usersList", tipText: getLocalizedText("msg-14"), highlight: true, position: ToolTip.POSITION_TOP)]);
                 }
@@ -631,6 +642,7 @@ class TutorialIniciacion extends Tutorial {
   List SoccerPlayerList = [];
   List FantasyTeam = [];
   List<List> LiveMatchEventsList = [];
+  ScreenDetectorService _scrDet;
 
   int liveStep = 0;
 

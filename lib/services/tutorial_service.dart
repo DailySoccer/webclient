@@ -17,6 +17,7 @@ import 'package:webclient/services/tooltip_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/components/backdrop_comp.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/services/screen_detector_service.dart';
 
 @Injectable()
 class TutorialService {
@@ -29,11 +30,11 @@ class TutorialService {
   Tutorial CurrentTutorial;
   TutorialStep get CurrentStep => CurrentTutorial != null ? CurrentTutorial.CurrentStep : null;
 
-  TutorialService(this._router, this._profileService, this._ttservice) {
+  TutorialService(this._router, this._profileService, this._ttservice, this._scrDet) {
     _instance = this;
 
     _availables = [
-      new TutorialIniciacion(this._router, _profileService),
+      new TutorialIniciacion(this._router, _profileService, _scrDet),
     ];
 
     // Incluir los tutoriales que no se hayan terminado
@@ -193,4 +194,5 @@ class TutorialService {
 
   static TutorialService _instance;
   ToolTipService _ttservice;
+  ScreenDetectorService _scrDet;
 }

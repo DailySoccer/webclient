@@ -13251,6 +13251,11 @@ main-menu-f2p .beta-label {
   height: 50px;
   position: relative;
 }
+@media (max-width: 767px) {
+  #mainMenu #desktopMenu .stats-commons {
+    width: 63px;
+  }
+}
 #mainMenu #desktopMenu .stats-commons img {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -13345,6 +13350,11 @@ main-menu-f2p .beta-label {
 				}
 				cursor: pointer;*/
 }
+@media (max-width: 767px) {
+  #mainMenu #desktopMenu .fixed-user-stats .energy {
+    width: 63px;
+  }
+}
 #mainMenu #desktopMenu .fixed-user-stats .energy img {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -13393,6 +13403,11 @@ main-menu-f2p .beta-label {
 				.count {
 					position: relative;
 				}*/
+}
+@media (max-width: 767px) {
+  #mainMenu #desktopMenu .fixed-user-stats .manager-points {
+    width: 63px;
+  }
 }
 #mainMenu #desktopMenu .fixed-user-stats .manager-points img {
   -webkit-user-select: none;
@@ -13464,6 +13479,11 @@ main-menu-f2p .beta-label {
   color: #fa9c19;
   cursor: pointer;
 }
+@media (max-width: 767px) {
+  #mainMenu #desktopMenu .fixed-user-stats .coins {
+    width: 63px;
+  }
+}
 #mainMenu #desktopMenu .fixed-user-stats .coins img {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -13534,6 +13554,11 @@ main-menu-f2p .beta-label {
 					padding: 0px;
 					width: 230px;					
 				}*/
+}
+@media (max-width: 767px) {
+  #mainMenu #desktopMenu .fixed-user-stats .profile {
+    width: 63px;
+  }
 }
 #mainMenu #desktopMenu .fixed-user-stats .profile img {
   -webkit-user-select: none;
@@ -18920,7 +18945,7 @@ lineup-selector {
 }
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-name-hint-wrapper {
   float: left;
-  width: 50%;
+  width: 58.33333333%;
   position: relative;
   min-height: 1px;
   padding-left: 15px;
@@ -19013,17 +19038,23 @@ lineup-selector {
     display: inline-block;
     margin-top: 0;
   }
+  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint social-share[inline] .social-share-wrapper twitter-share .twitter-share-button,
+  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint social-share[inline] .social-share-wrapper .twitter-share-wrapper .twitter-share-button {
+    margin: 0;
+  }
   #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint social-share[inline] .social-share-wrapper .facebook-share-wrapper .facebook-share-button {
     margin-bottom: 0;
+    margin-left: 0;
   }
 }
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-skillpoints {
   float: left;
-  width: 33.33333333%;
+  width: 25%;
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  padding-left: 5px;
   text-align: right;
 }
 @media (min-width: 768px) {

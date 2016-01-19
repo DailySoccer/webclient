@@ -128,7 +128,7 @@ class ViewContestEntryComp {
       });
   }
   
-  String get inviteUrl => "${window.location.toString().split("#")[0]}#/enter_contest/lobby/${contest.contestId}/none";
+  String get inviteUrl => "${window.location.toString().split("#")[0]}#/sec/${contest.contestId}";
 
   void onInviteFriends() {
     if (_shareContent == null) {

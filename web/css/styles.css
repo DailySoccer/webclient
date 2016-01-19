@@ -18132,7 +18132,7 @@ textarea.soccer-players-filter .name-player-input-filter {
     border-radius: 4px;
   }
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   matches-filter {
     min-height: 60px;
     display: block;

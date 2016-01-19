@@ -238,6 +238,14 @@
 			.exo_light(24pt, @blueDark);
 			padding-bottom: 0;
 		}
+		@media (max-width: @screen-xs-max) {
+			.exo_bold(14pt, @blueDark);
+			margin-top: 10px;
+			&.large {
+				.exo_light(18pt, @blueDark);
+				padding-bottom: 0;
+			}
+		}
 	}
 	.achievment-earned-icon-wrapper {
 		display: block;

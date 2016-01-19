@@ -9541,6 +9541,11 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
 #addFundsContent .panel .panel-body {
   font-size: 10pt;
 }
+@media (max-width: 767px) {
+  #addFundsContent .panel .panel-body {
+    padding: 15px 5%;
+  }
+}
 #transactionHistoryRoot .transaction-date-col {
   float: left;
   width: 33.33333333%;
@@ -19316,6 +19321,11 @@ button.panel .panel-heading button.close {
 .panel .panel-body {
   padding: 15px 12%;
 }
+@media (max-width: 767px) {
+  .panel .panel-body {
+    padding: 15px 5%;
+  }
+}
 .panel .panel-body .form-description {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
@@ -20422,6 +20432,16 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   text-transform: uppercase;
   text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
 }
+@media (max-width: 767px) {
+  #alertRoot.noGold .alert-content-title {
+    font-family: 'Exo', sans-serif;
+    font-weight: 600;
+    font-size: 13pt;
+    color: #214a5f;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+  }
+}
 #alertRoot.noGold .gold-needed-icon-wrapper {
   display: block;
   position: relative;
@@ -20480,6 +20500,16 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   text-transform: uppercase;
   text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   margin-bottom: 20px;
+}
+@media (max-width: 767px) {
+  #alertRoot.noGold .alert-content-subtitle {
+    font-family: 'Exo', sans-serif;
+    font-weight: 300;
+    font-size: 12pt;
+    color: #214a5f;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+  }
 }
 #alertRoot.cannotEnter .panel .panel-body {
   padding: 15px 20px;
@@ -22157,12 +22187,21 @@ fieldset[disabled] .info-complete-bar .invite-friends {
   background-color: #fa9c19;
   text-align: center;
   line-height: 1.2;
+  white-space: normal;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
-  font-size: 14pt;
+  font-size: 13pt;
   color: #ffffff;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   pointer-events: all;
+}
+@media (max-width: 767px) {
+  .epic-tooltip {
+    max-width: 300px;
+    width: 300px;
+    min-width: 200px;
+    margin-left: -150px;
+  }
 }
 .epic-tooltip:after {
   content: "";
@@ -22244,6 +22283,12 @@ fieldset[disabled] .info-complete-bar .invite-friends {
   bottom: -85px;
   width: 410px;
 }
+@media (max-width: 767px) {
+  #soccerManagerLevel.epic-tooltip.bottom {
+    bottom: -105px;
+    width: 280px;
+  }
+}
 #soccerManagerLevel.epic-tooltip.bottom.rightArrow {
   right: -35px;
 }
@@ -22258,11 +22303,47 @@ fieldset[disabled] .info-complete-bar .invite-friends {
   width: 320px;
   top: -85px;
 }
+@media (max-width: 767px) {
+  #continueButton.epic-tooltip.top {
+    left: -10px;
+  }
+  #continueButton.epic-tooltip.top:after {
+    left: auto;
+    right: 50px;
+  }
+}
 #usersList .epic-tooltip.top {
   margin-left: -160px;
 }
+@media (max-width: 767px) {
+  #usersList .epic-tooltip.top {
+    margin-left: -150px;
+  }
+}
 .contestSlot .action-section .epic-tooltip.rightArrow {
   right: 10px;
+}
+@media (max-width: 767px) {
+  .contestSlot .action-section .epic-tooltip.rightArrow {
+    right: -10px;
+  }
+}
+#enterContest .soccer-players-list-slot .column-action .action-button .epic-tooltip.bottom {
+  bottom: -80px;
+  right: 0px;
+}
+#enterContest .soccer-players-list-slot .column-action .action-button .epic-tooltip.bottom:after {
+  right: 10px;
+}
+@media (max-width: 991px) {
+  #enterContest .soccer-players-list-slot .column-action .action-button .epic-tooltip.bottom {
+    left: auto;
+  }
+}
+@media (max-width: 767px) {
+  #enterContest .soccer-players-list-slot .column-action .action-button .epic-tooltip.bottom:after {
+    right: 10px;
+  }
 }
 #enterContest .enter-contest-lineup-wrapper .epic-tooltip.top {
   width: 320px;
@@ -22281,6 +22362,11 @@ fieldset[disabled] .info-complete-bar .invite-friends {
 }
 #soccerPlayerRedStyle.epic-tooltip.top {
   top: -80px;
+}
+@media (max-width: 767px) {
+  #soccerPlayerRedStyle.epic-tooltip.top {
+    top: -70px;
+  }
 }
 .tutorial.global-enter-contest .close-contest,
 .tutorial.global-live-contest .close-contest {
@@ -22308,6 +22394,52 @@ fieldset[disabled] .info-complete-bar .invite-friends {
   max-width: 450px;
   margin: 0px auto 20px auto;
 }
+.modal-dialog .panel-body .tut-title .modal-body-title {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 20pt;
+  color: #214a5f;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+  text-transform: none;
+  display: block;
+  max-width: 400px;
+  margin: 0px auto 20px auto;
+}
+@media (max-width: 767px) {
+  .modal-dialog .panel-body .tut-title .modal-body-title {
+    font-family: 'Exo', sans-serif;
+    font-weight: 300;
+    font-size: 16pt;
+    color: #214a5f;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+  }
+}
+.modal-dialog .panel-body .tut-title .modal-body-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
+  color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
+  display: block;
+  max-width: 450px;
+  margin: 0px auto 20px auto;
+}
+@media (max-width: 767px) {
+  .modal-dialog .panel-body .tut-title .modal-body-text {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 11pt;
+    color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
+  }
+}
+@media (max-width: 767px) {
+  .modal-dialog .panel-body .tut-title .capital-icon {
+    width: 85px;
+  }
+}
 .modal-dialog .modal-content .panel {
   background-color: #ecf0f1;
 }
@@ -22323,12 +22455,29 @@ users-list#usersList > .epic-tooltip {
 #energyTip {
   bottom: -135px;
 }
+@media (max-width: 767px) {
+  #energyTip.rightArrow {
+    right: -188px;
+  }
+  #energyTip.rightArrow:after {
+    right: auto;
+    left: 75px;
+  }
+}
 #alertBox .panel > .epic-tooltip {
   bottom: -70px;
   width: 320px;
 }
 .entry-fee-box > .epic-tooltip {
   top: -85px;
+}
+@media (max-width: 767px) {
+  .entry-fee-box > .epic-tooltip {
+    margin-left: -70px;
+  }
+  .entry-fee-box > .epic-tooltip:after {
+    left: 65px;
+  }
 }
 .soccer-player-row[data-id='56260840c1f5fbc410f99549'] > .epic-tooltip {
   top: -95px;
@@ -24693,6 +24842,26 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
   text-transform: uppercase;
   text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   padding-bottom: 0;
+}
+@media (max-width: 767px) {
+  #alertRoot.achievementEarned .alert-content-title {
+    font-family: 'Exo', sans-serif;
+    font-weight: 600;
+    font-size: 14pt;
+    color: #214a5f;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+    margin-top: 10px;
+  }
+  #alertRoot.achievementEarned .alert-content-title.large {
+    font-family: 'Exo', sans-serif;
+    font-weight: 300;
+    font-size: 18pt;
+    color: #214a5f;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+    padding-bottom: 0;
+  }
 }
 #alertRoot.achievementEarned .achievment-earned-icon-wrapper {
   display: block;

@@ -5673,8 +5673,8 @@ scoring-rules:after,
 #energyshopComp .products-wrapper:after,
 .fantasy-team-list .soccer-player-row:before,
 .fantasy-team-list .soccer-player-row:after,
-.statistic:before,
-.statistic:after,
+.soccer-player-statistics:before,
+.soccer-player-statistics:after,
 #rootFooter:before,
 #rootFooter:after,
 #rootFooter .sub-footer-wrapper .sub-footer:before,
@@ -5821,7 +5821,7 @@ scoring-rules:after,
 #energyshopComp .content:after,
 #energyshopComp .products-wrapper:after,
 .fantasy-team-list .soccer-player-row:after,
-.statistic:after,
+.soccer-player-statistics:after,
 #rootFooter:after,
 #rootFooter .sub-footer-wrapper .sub-footer:after,
 .contest-id-bar:after,
@@ -12007,20 +12007,40 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff606060', endColorstr='#ff555555', GradientType=0);
 }
-.statistic {
+.soccer-player-statistics {
   margin-left: 0;
   margin-right: 0;
+}
+.statistic {
+  float: left;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 0;
   line-height: 30px;
   background-color: #f8f8f8;
   border-width: 1px;
   border-style: none none solid none;
   border-color: #ffffff;
   border-radius: 0px;
+  /*.stat-points{
+		.make-xs-column(2);
+		.exo_bold(12pt, @greyDark);
+		text-align: right;
+	}*/
+}
+@media (min-width: 768px) {
+  .statistic {
+    float: left;
+    width: 50%;
+  }
 }
 .statistic .stat-times {
   position: relative;
   float: left;
-  width: 8.33333333%;
+  width: 16.66666667%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
@@ -12045,30 +12065,17 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   border-radius: 0px;
   position: relative;
   float: left;
-  width: 75%;
+  width: 83.33333333%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  padding-left: 10px;
+  padding-right: 0px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
   color: #777777;
   text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
-}
-.statistic .stat-points {
-  position: relative;
-  float: left;
-  width: 16.66666667%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  font-family: 'Exo', sans-serif;
-  font-weight: 600;
-  font-size: 12pt;
-  color: #777777;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
-  text-align: right;
 }
 @media (min-width: 768px) {
   footer {
@@ -22929,7 +22936,7 @@ users-list#usersList > .epic-tooltip {
 #homeRoot #energyshopComp .content,
 #homeRoot #energyshopComp .products-wrapper,
 #homeRoot .fantasy-team-list .soccer-player-row,
-#homeRoot .statistic,
+#homeRoot .soccer-player-statistics,
 #homeRoot #rootFooter,
 #homeRoot #rootFooter .sub-footer-wrapper .sub-footer,
 #homeRoot .contest-id-bar,
@@ -24166,7 +24173,7 @@ fieldset[disabled] #helpInfo .button-back {
 }
 .tutorial-row .tutorial-tile {
   float: left;
-  width: 100%;
+  width: 83.33333333%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
@@ -24179,6 +24186,14 @@ fieldset[disabled] #helpInfo .button-back {
   .tutorial-row .tutorial-tile {
     float: left;
     width: 33.33333333%;
+  }
+}
+@media (max-width: 767px) {
+  .tutorial-row .tutorial-tile {
+    margin-left: 8.33333333%;
+    margin-right: 8.33333333%;
+    margin-top: 20px;
+    padding-top: 20px;
   }
 }
 .tutorial-row .tutorial-tile .tutorial-title {
@@ -24384,6 +24399,12 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 }
 .tutorial-row .tutorial-tile + .tutorial-tile {
   border-left: 1px solid #0a2938;
+}
+@media (max-width: 767px) {
+  .tutorial-row .tutorial-tile + .tutorial-tile {
+    border-left: none;
+    border-top: 1px solid #0a2938;
+  }
 }
 #achievement-list-wrapper {
   padding: 20px 10px;

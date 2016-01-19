@@ -9,7 +9,7 @@ import 'package:webclient/utils/string_utils.dart';
     useShadowDom: false)
 class TeamsFilterComp {
   List<dynamic> _teamList = [];
-  bool isTeamsPanelOpen = true;
+  bool isTeamsPanelOpen = false;
 
   @NgTwoWay("selected-option")
   String get selectedOption => _selectedOption;

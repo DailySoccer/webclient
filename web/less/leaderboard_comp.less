@@ -85,6 +85,11 @@
 			margin-right: 10px;
 			background-repeat: no-repeat;
 			background-position: center center;
+			@media (max-width: @screen-xs-max) {
+				margin: 0px auto;
+				position: relative;
+				display: block;
+			}
 		}
 		.top-money-tab:before {
 			.addIcon('icon-Ranking-Monedas.png', 32px, 50px);
@@ -95,10 +100,16 @@
 		.achievements-tab:before {
 			.addIcon('achivements-icon.png', 33px, 50px);
 		}
-		
 		.leaderboard-tab {
 			@media (max-width: @screen-xs-max) {
 				.text-hide();
+			}
+		}
+		.leaderboard-tab:before {
+			@media (max-width: @screen-xs-max) {
+				margin: 0px auto;
+				position: relative;
+				display: block;
 			}
 		}
 		
@@ -144,23 +155,69 @@
 					height: 20px;
 				}
 			}
+			.leaderboard-name-hint-wrapper {
+				.make-xs-column(6);
+				.make-sm-column(9);
+				padding: 0;
+			}
 			
 			.leaderboard-table-position {
-					.make-xs-column(2);
-					.make-sm-column(1);
+				.make-xs-column(2);
+				.make-sm-column(1);
 			}
 			.leaderboard-table-name {
-					.make-xs-column(6);
-					.make-sm-column(4);
+				.make-xs-column(12);
+				.make-sm-column(6);
+				padding-left: 0;
+				padding-right: 0;
+				@media (max-width: @screen-xs-max) {
+					padding-top: 20px;
+					padding-bottom: 5px;
+				}
 			}
 			.leaderboard-table-hint {
+				.make-xs-column(12);
+				.make-sm-column(6);
+				padding-left: 0;
+				padding-right: 0;
+				&.empty {
 					.hidden-xs();
-					.make-sm-column(5);
+				}
+				@media (max-width: @screen-xs-max) {
+					padding-top: 5px;
+					padding-bottom: 0px;
+				}
+				
+				@media (max-width: @screen-xs-max) {
+					social-share[inline] {
+						height: 35px;
+
+						.social-share-wrapper {
+							margin-left: -10px;
+							facebook-share,
+							.facebook-share-wrapper { 
+								display: inline-block; 
+								margin-bottom: 0;
+							}
+
+							twitter-share,
+							.twitter-share-wrapper  { 
+								display: inline-block; 
+								margin-top: 0; 
+							}
+
+							.facebook-share-wrapper .facebook-share-button { 
+								margin-bottom: 0; 
+							}
+						}
+
+					}
+				}
 			}
 			.leaderboard-table-skillpoints {
-					.make-xs-column(4);
-					.make-sm-column(2);
-					text-align: right;
+				.make-xs-column(4);
+				.make-sm-column(2);
+				text-align: right;
 			}
 			
 		}

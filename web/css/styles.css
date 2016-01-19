@@ -14661,21 +14661,23 @@ social-share {
 social-share twitter-share {
   margin-top: 7px;
 }
-social-share[inline] {
-  height: 35px;
-}
-social-share[inline] .social-share-wrapper facebook-share,
-social-share[inline] .social-share-wrapper .facebook-share-wrapper {
-  display: inline-block;
-  margin-bottom: 0;
-}
-social-share[inline] .social-share-wrapper twitter-share,
-social-share[inline] .social-share-wrapper .twitter-share-wrapper {
-  display: inline-block;
-  margin-top: 0;
-}
-social-share[inline] .social-share-wrapper .facebook-share-wrapper .facebook-share-button {
-  margin-bottom: 0;
+@media (min-width: 768px) {
+  social-share[inline] {
+    height: 35px;
+  }
+  social-share[inline] .social-share-wrapper facebook-share,
+  social-share[inline] .social-share-wrapper .facebook-share-wrapper {
+    display: inline-block;
+    margin-bottom: 0;
+  }
+  social-share[inline] .social-share-wrapper twitter-share,
+  social-share[inline] .social-share-wrapper .twitter-share-wrapper {
+    display: inline-block;
+    margin-top: 0;
+  }
+  social-share[inline] .social-share-wrapper .facebook-share-wrapper .facebook-share-button {
+    margin-bottom: 0;
+  }
 }
 #modalSoccerPlayerStats {
   background-color: #777777;
@@ -17662,7 +17664,7 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
 }
 @media (max-width: 767px) {
   .soccer-players-filter .filter-by-position {
-    display: none !important;
+    margin: 0 -10px;
   }
 }
 .soccer-players-filter .filter-by-position span {
@@ -17675,6 +17677,11 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
   padding: 0 10px 0 0;
 }
 @media (min-width: 768px) and (max-width: 991px) {
+  .soccer-players-filter .filter-by-position span {
+    display: none !important;
+  }
+}
+@media (max-width: 767px) {
   .soccer-players-filter .filter-by-position span {
     display: none !important;
   }
@@ -17848,6 +17855,11 @@ fieldset[disabled] .soccer-players-filter .filter-by-position .button-filter-pos
 .soccer-players-filter .filter-by-position .button-filter-position.active:hover {
   background-color: #ffffff;
   color: #434343;
+}
+@media (max-width: 767px) {
+  .soccer-players-filter .filter-by-position .button-filter-position.all {
+    display: none !important;
+  }
 }
 .soccer-players-filter .filter-by-position .button-filter-favorites {
   color: #333333;
@@ -18090,7 +18102,7 @@ textarea.soccer-players-filter .name-player-input-filter {
 }
 @media (max-width: 767px) {
   .soccer-players-filter .name-player-input-filter {
-    margin: 10px 0 15px;
+    margin: 10px 0px 15px 0px;
     border: 1px solid #dcdcdc;
     border-radius: 4px;
   }
@@ -18796,6 +18808,13 @@ lineup-selector {
   background-repeat: no-repeat;
   background-position: center center;
 }
+@media (max-width: 767px) {
+  #leaderboard-wrapper .leaderboard-tabs .leaderboard-tab:before {
+    margin: 0px auto;
+    position: relative;
+    display: block;
+  }
+}
 #leaderboard-wrapper .leaderboard-tabs .top-money-tab:before {
   content: " ";
   background-image: url("../images/icon-Ranking-Monedas.png");
@@ -18827,6 +18846,13 @@ lineup-selector {
     text-shadow: none;
     background-color: transparent;
     border: 0;
+  }
+}
+@media (max-width: 767px) {
+  #leaderboard-wrapper .leaderboard-tabs .leaderboard-tab:before {
+    margin: 0px auto;
+    position: relative;
+    display: block;
   }
 }
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table {
@@ -18892,6 +18918,21 @@ lineup-selector {
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-column social-share {
   height: 20px;
 }
+#leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-name-hint-wrapper {
+  float: left;
+  width: 50%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 0;
+}
+@media (min-width: 768px) {
+  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-name-hint-wrapper {
+    float: left;
+    width: 75%;
+  }
+}
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-position {
   float: left;
   width: 16.66666667%;
@@ -18908,33 +18949,72 @@ lineup-selector {
 }
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-name {
   float: left;
-  width: 50%;
+  width: 100%;
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  padding-left: 0;
+  padding-right: 0;
 }
 @media (min-width: 768px) {
   #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-name {
     float: left;
-    width: 33.33333333%;
+    width: 50%;
+  }
+}
+@media (max-width: 767px) {
+  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-name {
+    padding-top: 20px;
+    padding-bottom: 5px;
   }
 }
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint {
+  float: left;
+  width: 100%;
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-}
-@media (max-width: 767px) {
-  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint {
-    display: none !important;
-  }
+  padding-left: 0;
+  padding-right: 0;
 }
 @media (min-width: 768px) {
   #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint {
     float: left;
-    width: 41.66666667%;
+    width: 50%;
+  }
+}
+@media (max-width: 767px) {
+  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint.empty {
+    display: none !important;
+  }
+}
+@media (max-width: 767px) {
+  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint {
+    padding-top: 5px;
+    padding-bottom: 0px;
+  }
+}
+@media (max-width: 767px) {
+  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint social-share[inline] {
+    height: 35px;
+  }
+  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint social-share[inline] .social-share-wrapper {
+    margin-left: -10px;
+  }
+  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint social-share[inline] .social-share-wrapper facebook-share,
+  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint social-share[inline] .social-share-wrapper .facebook-share-wrapper {
+    display: inline-block;
+    margin-bottom: 0;
+  }
+  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint social-share[inline] .social-share-wrapper twitter-share,
+  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint social-share[inline] .social-share-wrapper .twitter-share-wrapper {
+    display: inline-block;
+    margin-top: 0;
+  }
+  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint social-share[inline] .social-share-wrapper .facebook-share-wrapper .facebook-share-button {
+    margin-bottom: 0;
   }
 }
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-skillpoints {

@@ -30,6 +30,12 @@ class SoccerPlayersFilterComp implements AttachAware {
   void set onlyFavorites(bool value) {
     _onlyFavorites = value;
   }
+  
+  @NgOneWay('show-on-xs')
+  void set showOnXs(bool value) {
+    _showOnXs = value;
+  }
+  bool get showFilterByPosition => _showOnXs || scrDet.isNotXsScreen;
 
   String getLocalizedText(key, {group: "soccerplayerpositions"}) {
     return StringUtils.translate(key, group);
@@ -54,16 +60,21 @@ class SoccerPlayersFilterComp implements AttachAware {
       // Tentativamente vamos a empezar con los delanteros en desktop
       //_fieldPosFilter = new FieldPos("FORWARD");
     }
+    scrDet.mediaScreenWidth.listen((msg) { 
+      if (msg == "xs" && _fieldPosFilter == null) {
+        _fieldPosFilter = new FieldPos(getLocalizedText("goalkeeper"));
+      }
+    });
   }
   
   void switchFavorites() {
     onlyFavorites = !onlyFavorites;
   }
 
-  String getClassForFieldPos(FieldPos fieldPos) => fieldPos == fieldPosFilter? "active" : "";
+  bool isActiveFieldPos(FieldPos fieldPos) => fieldPos == fieldPosFilter;
   String getTextForFieldPos(FieldPos fieldPos)  => fieldPos == null? StringUtils.translate("all", "soccerplayerpositions") : fieldPos.abrevName;
 
   FieldPos _fieldPosFilter;
-  String _nameFilter;
+  bool _showOnXs = false;
   bool _onlyFavorites;
 }

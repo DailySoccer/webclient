@@ -3,7 +3,7 @@
        ng-class="{'toggleOff': !isTeamsPanelOpen, 'toggleOn': isTeamsPanelOpen }"  data-toggle="collapse" 
        data-target="#teamsFilterWrapper{{idSufix}}">{{buttonText}}</div>
 </div>
-<div id="teamsFilterWrapper{{idSufix}}" class="teams-filter-wrapper collapse in">
+<div id="teamsFilterWrapper{{idSufix}}" class="teams-filter-wrapper collapse">
   <div id="teamsFilterButtons" class="teams-filter-buttons">
     <div class="teams-filter-wrapper" ng-repeat="team in teamList" >
       <button class="btn btn-default button-filter-team" ng-bind-html="teamHTML(team)" id="team-{{team.id}}"

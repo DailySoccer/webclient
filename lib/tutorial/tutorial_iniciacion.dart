@@ -34,7 +34,7 @@ class TutorialIniciacion extends Tutorial {
   TutorialIniciacion(Router router, ProfileService profileService, this._scrDet) : super(router, profileService) {
     getContentJson(PATH + "instance_soccer_players.json").then((list) {
       InstanceSoccerPlayerList = list;
-      
+
       Map<String, String> forwards = {
         "56260898c1f5fbc410f998b1": "Adnane Tighadouini",
         "5625d0edc1f5fbc410e6ee06": "Adrián",
@@ -84,7 +84,7 @@ class TutorialIniciacion extends Tutorial {
       "get_instance_soccer_player_info": (url, postData) => getContentJson(PATH + "stats-player-03.json"),
       "add_contest_entry": (url, postData) { CurrentStepId = STEP_4; return addContestEntry(postData); },
       "buy_product": (String url, postData) {
-        profileService.user.energyBalance.amount = User.MAX_ENERGY;
+        profileService.user.energyBalance.amount = (url.contains("ENERGY_1")) ? 1 : User.MAX_ENERGY;
         profileService.user.goldBalance.amount = 0;
         return emptyContent();
       }
@@ -110,9 +110,9 @@ class TutorialIniciacion extends Tutorial {
       Tutorial.STEP_BEGIN: new TutorialStep(
             triggers: {
               'lobby': () async {
-                
+
                 GameMetrics.logEvent(GameMetrics.TUTORIAL_STARTED);
-                
+
                 // Bienvenido a Epic Eleven
                 await openModal( text: () => getLocalizedText("msg-01") );
 
@@ -135,9 +135,9 @@ class TutorialIniciacion extends Tutorial {
       STEP_1: new TutorialStep(
             triggers: {
               'enter_contest' : () async {
-                
+
                 GameMetrics.logEvent(GameMetrics.TUTORIAL_STEP_TEAM_SELECTION);
-                
+
                 EnterContestComp enterContest = context;
                 enterContest.fieldPosFilter = FieldPos.FORWARD;
                 Map data = { 'formation' :  ContestEntry.FORMATION_442, 'lineupSlots' : oficialFantasyTeam};
@@ -150,12 +150,12 @@ class TutorialIniciacion extends Tutorial {
                 await openModal( text: () => getLocalizedText("msg-02c") );
 
                 if (!isCompleted) {
-                  
+
                   if(_scrDet.isNotXsScreen) {
                     // Esta es la lista de partidos de este torneo.
                     await onClick( [new ToolTip("matches-filter", tipText: getLocalizedText("msg-02d"), highlight: true, position: ToolTip.POSITION_TOP)] );
                   }
-                  
+
                   clearTooltips();
                   querySelector(".lineup-formation-selector-wrapper").click();
 
@@ -179,7 +179,7 @@ class TutorialIniciacion extends Tutorial {
                 await onClick( [new ToolTip(".enter-contest-lineup-wrapper", tipText: getLocalizedText("msg-02h"), highlight: true, position: ToolTip.POSITION_TOP)] );
 
                 querySelector(".lineup-selector-slot.posDEL").click();
-                
+
                 // Esta es la lista de jugadores disponibles
                 await onClick( [new ToolTip(".enter-contest-soccer-players-wrapper", tipText: getLocalizedText("msg-02i"), highlight: true, position: ToolTip.POSITION_TOP)] );
 
@@ -199,7 +199,7 @@ class TutorialIniciacion extends Tutorial {
                 await onClick( [new ToolTip(".enter-contest-lineup-wrapper", tipText: getLocalizedText("msg-03b"), highlight: true, position: ToolTip.POSITION_TOP)] );
 
                 querySelectorAll(".lineup-selector-slot.posDEL")[1].click();
-                
+
                 // Cada jugador además de su salario
                 await onClick( [new ToolTip("$soccerPlayer1 .column-manager-level", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-03c"), highlight: true, position: ToolTip.POSITION_BOTTOM, tipId: 'soccerManagerLevel')] );
 
@@ -232,9 +232,9 @@ class TutorialIniciacion extends Tutorial {
         STEP_2: new TutorialStep(
             triggers: {
               'lobby': () async {
-                
+
                 GameMetrics.logEvent(GameMetrics.TUTORIAL_STEP_LOBBY_TRAINING);
-                
+
                 // Puedes participar en torneos de entrenamiento
                 await openModal( text: () => getLocalizedText("msg-04") );
 
@@ -271,7 +271,7 @@ class TutorialIniciacion extends Tutorial {
                 await openModal( text: () => getLocalizedText("msg-08") );
 
                 querySelectorAll(".lineup-selector-slot.posDEL")[1].click();
-                
+
                 // Añade un delantero
                 showTooltips([
                   new ToolTip("$soccerPlayer2 .action-button", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-09"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
@@ -318,6 +318,9 @@ class TutorialIniciacion extends Tutorial {
         STEP_4: new TutorialStep(
             triggers: {
               'view_contest_entry': () async {
+                // Actualizamos la energía disponible con el gasto producido al entrar en el torneo
+                profileService.user.energyBalance.amount -= 1;
+
                 // Enhorabuena. Acabas de apuntarte a un torneo de práctica.
                 await openModal( text: () => getLocalizedText("msg-11") );
 
@@ -332,9 +335,9 @@ class TutorialIniciacion extends Tutorial {
                 if (!isCompleted) {
                   // Aquí podrás ver los puntos conseguidos por tus jugadores
                   await onClick( [new ToolTip("fantasy-team", tipText: getLocalizedText("msg-13"), highlight: true, position: ToolTip.POSITION_TOP)] );
-                  
+
                   if (_scrDet.isXsScreen) querySelector("#usersListTab").click();
-                  
+
                   // Aquí puedes ver tu puntuación frente a los rivales
                   await onClick( [new ToolTip("#usersList", tipText: getLocalizedText("msg-14"), highlight: true, position: ToolTip.POSITION_TOP)]);
                 }
@@ -352,9 +355,9 @@ class TutorialIniciacion extends Tutorial {
 
                 if (!isCompleted) {
                   CurrentStepId = Tutorial.STEP_END;
-                  
+
                   GameMetrics.logEvent(GameMetrics.TUTORIAL_COMPLETED);
-                  
+
                   TutorialService.Instance.skipTutorial();
                 }
               }
@@ -481,8 +484,8 @@ class TutorialIniciacion extends Tutorial {
         "instanceSoccerPlayers": InstanceSoccerPlayerWithFilteredForwardsList,
         "maxEntries": 10,
         "salaryCap": 70000,
-        "entryFee": "JPY 3",
-        "prizeMultiplier": 3.3333,
+        "entryFee": "JPY 1",
+        "prizeMultiplier": 10.0,
         "prizeType": "TOP_3_GET_PRIZES",
         "startDate": currentDate.add(new Duration(minutes: 60)).millisecondsSinceEpoch,
         "optaCompetitionId": "23",
@@ -501,8 +504,8 @@ class TutorialIniciacion extends Tutorial {
         "instanceSoccerPlayers": InstanceSoccerPlayerList,
         "maxEntries": 10,
         "salaryCap": 70000,
-        "entryFee": "JPY 3",
-        "prizeMultiplier": 3.3333,
+        "entryFee": "JPY 1",
+        "prizeMultiplier": 10.0,
         "prizeType": "TOP_3_GET_PRIZES",
         "startDate": currentDate.add(new Duration(minutes: 60)).millisecondsSinceEpoch,
         "optaCompetitionId": "23",
@@ -522,8 +525,8 @@ class TutorialIniciacion extends Tutorial {
         "minEntries": 5,
         "maxEntries": 10,
         "salaryCap": 70000,
-        "entryFee": "JPY 3",
-        "prizeMultiplier": 3.33,
+        "entryFee": "JPY 1",
+        "prizeMultiplier": 10.0,
         "prizeType": "TOP_3_GET_PRIZES",
         "startDate": currentDate.add(new Duration(minutes: 60)).millisecondsSinceEpoch,
         "optaCompetitionId": "23",

@@ -111,7 +111,7 @@ class EnterContestComp implements DetachAware {
   bool isNegativeBalance = false;
 
   bool get isInvalidFantasyTeam => lineupSlots.any((player) => player == null) || playersInSameTeamInvalid || isNegativeBalance;
-  bool get editingContestEntry => contestEntryId != "none" || (contest != null && _profileService.isLoggedIn && contest.userIsRegistered(_profileService.user.userId));
+  bool get editingContestEntry => contestEntryId != "none";
   bool get isCreatingContest => _parent.contains("create_contest");
 
   bool contestInfoFirstTimeActivation = false;  // Optimizacion para no compilar el contest_info hasta que no sea visible la primera vez
@@ -212,42 +212,22 @@ class EnterContestComp implements DetachAware {
                                 : _contestsService.refreshActiveContest(contestId);
     refreshContest
       .then((_) {
-        loadingService.isLoading = false;
-
         contest = _contestsService.lastContest;
 
-        GameMetrics.logEvent(GameMetrics.ENTER_CONTEST, {"type": contest.isSimulation? 'virtual' : 'oficial',
-                                                         "created": contest.isAuthor(_profileService.user)});
+        // FIX: Si no estoy editando, pero sí que estoy inscrito en el torneo hay que actualizar el contestEntryId (para indicar que realmente es una edición)
+        // Esta situación se puede producir cuando alguien comparte un link con un usuario, en un torneo en el que está inscrito
+        if (!editingContestEntry && _profileService.isLoggedIn && contest.userIsRegistered(_profileService.user.userId)) {
+          contestEntryId = contest.getContestEntryWithUser(_profileService.user.userId).contestEntryId;
 
-        if (_profileService.isLoggedIn && !contest.canEnter(_profileService.user) && !editingContestEntry) {
-          cannotEnterMessageRedirect();
-          return;
-        }
-
-        if (!_profileService.isLoggedIn && contest.isFull) {
-          cannotEnterMessageRedirect();
-          return;
-        }
-
-        availableSalary = contest.salaryCap;
-        // Comprobamos si estamos en salario negativo
-        isNegativeBalance = availableSalary < 0;
-        initAllSoccerPlayers();
-
-        // Si nos viene el torneo para editar la alineación
-        if (editingContestEntry) {
-          ContestEntry contestEntry = contest.getContestEntry(contestEntryId);
-          if (contestEntry != null) {
-            formationId = contestEntry.formation;
-            // Insertamos en el lineup el jugador
-            contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
-              addSoccerPlayerToLineup(instanceSoccerPlayer.id);
-            });
-          }
+          // Tenemos que pedir al servidor los datos ampliados (con nuestra alineación)
+          _contestsService.refreshMyActiveContest(contestId)
+          .then((_) {
+            contest = _contestsService.lastContest;
+            refreshInfoFromContest();
+          });
         }
         else {
-          // TODO: ¿Únicamente restauramos el contestEntry anteriormente registrado si estamos creando uno nuevo?
-          restoreContestEntry();
+          refreshInfoFromContest();
         }
       })
       .catchError((ServerError error) {
@@ -261,6 +241,44 @@ class EnterContestComp implements DetachAware {
       }, test: (error) => error is ServerError);
 
     subscribeToLeaveEvent();
+  }
+
+  void refreshInfoFromContest() {
+    loadingService.isLoading = false;
+
+    GameMetrics.logEvent(GameMetrics.ENTER_CONTEST, {"type": contest.isSimulation? 'virtual' : 'oficial',
+                                                     "created": contest.isAuthor(_profileService.user)});
+
+    if (_profileService.isLoggedIn && !contest.canEnter(_profileService.user) && !editingContestEntry) {
+      cannotEnterMessageRedirect();
+      return;
+    }
+
+    if (!_profileService.isLoggedIn && contest.isFull) {
+      cannotEnterMessageRedirect();
+      return;
+    }
+
+    availableSalary = contest.salaryCap;
+    // Comprobamos si estamos en salario negativo
+    isNegativeBalance = availableSalary < 0;
+    initAllSoccerPlayers();
+
+    // Si nos viene el torneo para editar la alineación
+    if (editingContestEntry) {
+      ContestEntry contestEntry = contest.getContestEntry(contestEntryId);
+      if (contestEntry != null) {
+        formationId = contestEntry.formation;
+        // Insertamos en el lineup el jugador
+        contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
+          addSoccerPlayerToLineup(instanceSoccerPlayer.id);
+        });
+      }
+    }
+    else {
+      // TODO: ¿Únicamente restauramos el contestEntry anteriormente registrado si estamos creando uno nuevo?
+      restoreContestEntry();
+    }
   }
 
   void cannotEnterMessageRedirect() {

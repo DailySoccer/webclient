@@ -24,6 +24,9 @@ class LoggerExceptionHandler extends ExceptionHandler {
 
   static void setUpLogger() {
 
+    Set<int> errores = new Set();
+    int erroresNum = 0;
+
     // Todos los mensajes pasan por onRecord, decidimos dentro de suya que hacer
     Logger.root.level = Level.ALL;
 
@@ -52,8 +55,19 @@ class LoggerExceptionHandler extends ExceptionHandler {
         }
         catch(exc) {}
 
-        HttpRequest.postFormData("${HostServer.url}/log", {"message": "${r.message}", "level": "${r.level}", "email": "${userEmail}", "userAgent": "${userAgent}" })
-                   .catchError((error) => print(error));
+        // No repetimos los mensajes que enviamos al servidor
+        int hashCode = r.message.hashCode;
+        if (!errores.contains(hashCode)) {
+          errores.add(hashCode);
+
+          HttpRequest.postFormData("${HostServer.url}/log", {"message": "${r.message}", "level": "${r.level}", "email": "${userEmail}", "userAgent": "${userAgent}" })
+                     .catchError((error) => print(error));
+        }
+        else if (++erroresNum > 1000) {
+          // Limpiamos los errores antiguos. Los nuevos los volveremos a enviar...
+          errores.clear();
+          erroresNum = 0;
+        }
       }
     });
   }

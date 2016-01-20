@@ -239,14 +239,21 @@
 	#gradient.vertical(@greyHeaderLight, @greyHeaderDark, 49%, 51%);
 }
 
+.soccer-player-statistics {
+	.make-row(0);
+}
+
 // Estilos de las estadísticas (compartido para todas sus versiones)
 .statistic {
-	.make-row(0);
+	.make-xs-column(12);
+	.make-sm-column(6);
+	padding: 0;
 	line-height: 30px;
 	background-color: @greyUltraLight;
 	.make-border(1px, none none solid none, @white, 0px);
+	
 	.stat-times {
-		.make-xs-column(1);
+		.make-xs-column(2);
 		text-align: center;
 		padding-left: 0;
 		padding-right: 0;
@@ -259,12 +266,14 @@
 	}
 	.stat-name {
 		.make-border(1px, none solid none solid, @white, 0px);
-		.make-xs-column(9);
+		.make-xs-column(10);
+		padding-left: 10px;
+		padding-right: 0px;
 		.opensans_normal(10pt, @greyDark);
 	}
-	.stat-points{
+	/*.stat-points{
 		.make-xs-column(2);
 		.exo_bold(12pt, @greyDark);
 		text-align: right;
-	}
+	}*/
 }

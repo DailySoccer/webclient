@@ -193,12 +193,21 @@
 	.make-row(0);
 
 	.tutorial-tile {
-		.make-xs-column(12);
+		.make-xs-column(10);
 		.make-sm-column(4);
 		text-align: center;
 		display: inline-block;
 		position: relative;
 		margin-top: 40px;
+		
+		
+		@media (max-width: @screen-xs-max) {
+			margin-left: 8.33333333%;
+			margin-right: 8.33333333%;
+			margin-top: 20px;
+			padding-top: 20px;
+		}
+		
 		.tutorial-title {
 			.exo_light(20pt, @blueUltraDark);
 			padding: 0 20px;
@@ -234,5 +243,10 @@
 
 	.tutorial-tile + .tutorial-tile {
 		border-left: 1px solid @blueUltraDark;
+		
+		@media (max-width: @screen-xs-max) {
+			border-left: none;
+			border-top: 1px solid @blueUltraDark;
+		}
 	}
 }

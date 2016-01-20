@@ -144,8 +144,8 @@
 			}
 		}
 		label::after {
-            .create-glyph("\E080", 9pt);
-            float: right;
+			.create-glyph("\E080", 9pt);
+			float: right;
 		}
 		.toggle ~ div {
 			.opensans_normal(10pt, @greyDark);
@@ -202,11 +202,14 @@
 		display: block;
 	}
     
-    .panel .panel-heading .panel-title {
-        text-transform: uppercase;   
-    }
-    .panel .panel-body {
-        font-size: 10pt; 
-    }
+	.panel .panel-heading .panel-title {
+		text-transform: uppercase;   
+	}
+	.panel .panel-body {
+		font-size: 10pt; 
+		@media (max-width: @screen-xs-max) {
+			padding: 15px 5%;
+		}
+	}
 }
 

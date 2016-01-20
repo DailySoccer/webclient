@@ -3,7 +3,7 @@
   <!-- header title -->
   <div class="default-section-header">{{getLocalizedText('create_contest')}}</div>
 
-  <div class="create-contest-section-wrapper">
+  <div class="create-contest-section-wrapper name-section">
     <div class="create-contest-section">
       <div class="title">{{getLocalizedText("name")}}</div>
       <div class="data-input-wrapper contest-name">
@@ -89,7 +89,7 @@
     </div>
   </div>
   
-  <div class="create-contest-section-wrapper">
+  <div class="create-contest-section-wrapper event-section">
     <div class="create-contest-section">
       <div class="title">{{getLocalizedText("event")}}</div>
       <div class="data-input-wrapper contest-template">
@@ -105,7 +105,7 @@
     </div> 
   </div>
 
-  <div class="create-contest-section-wrapper">
+  <div class="create-contest-section-wrapper date-section">
     <div class="create-contest-section">
       <div class="title">{{getLocalizedText("date")}}<span class="annotation" ng-if="contestType == TYPE_OFICIAL">{{getLocalizedText("fixed_hour_warning")}}</span></div>
       <div class="data-input-wrapper date">

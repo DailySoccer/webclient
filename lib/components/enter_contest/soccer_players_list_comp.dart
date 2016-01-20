@@ -126,7 +126,10 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
           // Quiza nos mandan quitar un portero pero estamos filtrando por defensas....
           if (elem != null) {
             Money moneyToBuy = soccerPlayer['instanceSoccerPlayer'].moneyToBuy(contest, managerLevel);
-            elem.setInnerHtml(_getActionButton(!lineupFilter.contains(soccerPlayer), moneyToBuy), treeSanitizer: NULL_TREE_SANITIZER);
+            bool addButton = !lineupFilter.contains(soccerPlayer);
+            elem.setInnerHtml(_getActionButton(addButton, moneyToBuy), treeSanitizer: NULL_TREE_SANITIZER);
+            elem.classes.removeAll(['add', 'remove']);
+            elem.classes.add(addButton? 'add' : 'remove');
           }
         }
       }
@@ -249,7 +252,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
           <div class="column-salary">\$${StringUtils.parseSalary(slot["salary"])}</div>
           <div class="column-manager-level"><span class="manager-level-needed">${soccerPlayer.level}</span></div>
         </div>
-        <div class="column-action" id="soccerPlayerAction${slot["intId"]}">
+        <div class="column-action ${addButton? 'add': 'remove'}" id="soccerPlayerAction${slot["intId"]}">
           ${strAddButton}
         </div>
       </div>

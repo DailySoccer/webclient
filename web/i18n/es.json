@@ -758,7 +758,7 @@
 
       "contest_inscription_hastag"      : "EpicEleven",
       "contest_inscription_title"       : "¡Acabo de inscribirme en un torneo!",
-      "contest_inscription_description" : "Me he apuntado a este torneo, date prisa y unete.",
+      "contest_inscription_description" : "Me he apuntado a este torneo, date prisa y únete.",
       "contest_inscription_img"         : "social/InscribirseTorneo.jpg",
 
       "contest_win_hastag"              : "EpicEleven",
@@ -788,7 +788,7 @@
 
       "created_contest_hastag"          : "EpicEleven",
       "created_contest_title"           : "Torneo creado",
-      "created_contest_description"     : "He creado un torneo en Epic Eleven, apuntate e intententa ganarme.",
+      "created_contest_description"     : "He creado un torneo en Epic Eleven, apúntate e intenta ganarme.",
       "created_contest_img"             : "social/CreaTorneo.jpg",
 
       "leadeboard_gold_hastag"          : "EpicEleven",
@@ -932,7 +932,7 @@
       "1-title"                         : "1. Torneos Oficiales",
       "1-text"                          : "<p>Los torneos oficiales permiten al usuario elegir una alineacion de 11 futbolistas entre un subconjunto de los futbolistas que participan en los partidos predefinidos para el torneo. La composición del subcojunto de futbolistas estará determinada por el nivel del torneo.</p> El conjunto de partidos ofrecido en cada torneo corresponde a los partidos de la proxima jornada de La Liga y La Premier.</p><p>Durante el torneo, recibimos informacion en tiempo real de todas las acciones que realizan los futbolistas en los distintos partidos. En función de esa información real, evaluamos el desempeño de los futbolistas y les vamos otrorgando, en tiempo real, una puntuanción en puntos Fantasy. Si el futbolista no participa en el partido, no obtendrá puntos Fantasy. Una vez terminados todos los partidos del torneo se obtiene el resultado sumando los puntos conseguidos por todos los futbolistas alineados.</p><p>Para poder participar en los torneos oficiales, el usuario debera tener tanto oro disponible como requiera el torneo</p><p>Los torneos oficiales otorgan como premio oro y se contabilizan para el ranking de habilidad.</p> <p>Los torneos oficiales estaran disponibles antes de una jornada de La liga o La Premier y comenzarán cuando lo haga el primer partido de su correspondiente jornada.</p>",
       "2-title"                         : "2. Torneos Virtuales",
-      "2-text"                          : "<p>Los torneos virtuales permiten al usuario elgir una alineación de 11 futbolistas, entre todos los futbolistas que participan en los partidos predefinidos para el torneo.</p><p>Los conjuntos de partidos ofrecidos en los distintos torneos están basados en partidos del pasado y, mediante un algoritmo de simulación basado en las estadísticas <strong>actuales</strong> de los futbolistas, se asignan puntos Fantasy a cada uno de ellos y se obtiene un resultado sumando los puntos conseguidos por todos ellos.</p><p>Para poder participar en los torneos virtuales, el usuario deberá tener tanta energía disponible como requiera el torneo.</p><p>Los torneos virtuales otorgan como premio puntos de mánager.</p><p>Los torneos virtuales estarán disponibles todos los días de la semana.</p>",
+      "2-text"                          : "<p>Los torneos virtuales permiten al usuario elegir una alineación de 11 futbolistas, entre todos los futbolistas que participan en los partidos predefinidos para el torneo.</p><p>Los conjuntos de partidos ofrecidos en los distintos torneos están basados en partidos del pasado y, mediante un algoritmo de simulación basado en las estadísticas <strong>actuales</strong> de los futbolistas, se asignan puntos Fantasy a cada uno de ellos y se obtiene un resultado sumando los puntos conseguidos por todos ellos.</p><p>Para poder participar en los torneos virtuales, el usuario deberá tener tanta energía disponible como requiera el torneo.</p><p>Los torneos virtuales otorgan como premio puntos de mánager.</p><p>Los torneos virtuales estarán disponibles todos los días de la semana.</p>",
       "3-title"                         : "3. Puntos y Nivel de mánager",
       "3-text"                          : "<p>El nivel de mánager de un usuario determina el precio de los futbolistas que puede alinear en los torneos oficiales. Cuanto mayor sea el nivel de mánager de un usuario, mejores futbolistas podrá alinear en los torneos oficiales sin tener que usar oro. Además, el coste en oro de los futbolistas cuyo nivel sea mayor que el nivel de mánager del usuario se vera reducido.</p><p>Si el usuario deja de disputar torneos virtuales durante dos días consecutivos, empezará a perder nivel de mánager, incluso si se cancelan. Cuantos más días esté sin participar en torneos, mayor será su pérdida de nivel de mánager.</p><p>El nivel de mánager se consigue ganado puntos de mánager en los torneos virtuales.</p>",
       "4-title"                         : "4. Alineaciones",

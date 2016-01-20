@@ -35,6 +35,10 @@
 	border-left: 0px none transparent;
 }
 */
+.tutorial .column-action.remove,
+.tutorial .action-button.remove {
+	pointer-events: none;
+}
 
 .epic-tooltip {
 	position: absolute;
@@ -46,8 +50,16 @@
   background-color: @orange;
   text-align: center;
   line-height: 1.2;
-	.opensans_normal(14pt, @white);
+	white-space: normal;
+	.opensans_normal(13pt, @white);
 	pointer-events: all;
+	
+	@media (max-width: @screen-xs-max) {
+		max-width: 300px;
+		width: 300px;
+  	min-width: 200px;
+  	margin-left: -150px;
+	}
 	
 	@verticalArrowSize: 15px;
 	@horizontalArrowSize: 12px;
@@ -139,6 +151,10 @@
 #soccerManagerLevel.epic-tooltip.bottom {
 	bottom: -85px;
 	width: 410px;
+	@media (max-width: @screen-xs-max) {
+		bottom: -105px;
+		width: 280px;
+	}
 	
 	&.rightArrow {
 		right: -35px;
@@ -156,16 +172,48 @@
 		white-space: normal;
 		width: 320px;
 		top: -85px;
+		
+		@media (max-width: @screen-xs-max) {
+			left: -10px;
+			&:after {
+				left: auto;
+			  right: 50px;
+			}
+		}
+		
 	}
 }
 
 #usersList .epic-tooltip.top {
 	margin-left: -160px;
+	@media (max-width: @screen-xs-max) {
+		margin-left: -150px;
+	}
 }
 
 .contestSlot .action-section .epic-tooltip.rightArrow {
 	right: 10px;
+	@media (max-width: @screen-xs-max) {
+		right: -10px;
+	}
 }
+
+#enterContest .soccer-players-list-slot  .column-action .action-button .epic-tooltip.bottom  {
+	bottom: -80px;
+	right: 0px;
+	&:after {
+		right: 10px;
+	}
+	@media (max-width: @screen-sm-max) {
+		left: auto;
+	}
+	@media (max-width: @screen-xs-max) {
+		&:after {
+			right: 10px;
+		}
+	}
+}
+
 #enterContest .enter-contest-lineup-wrapper .epic-tooltip.top {
 	//margin-left: -180px;
 	width: 320px;
@@ -186,12 +234,17 @@
 
 #soccerPlayerRedStyle.epic-tooltip.top {
 	top: -80px;
+	@media (max-width: @screen-xs-max) {
+		top: -70px;
+	}
 }
 
 .tutorial.global-enter-contest .close-contest,
 .tutorial.global-live-contest .close-contest {
 	display: none;
 }
+
+
 
 .modal-dialog .panel-body .tut-title .modal-body-title {
 	//.opensans_normal(20pt, @blueDark);
@@ -207,6 +260,35 @@
 	display: block;
 	max-width: 450px;
 	margin: 0px auto 20px auto;
+}
+
+.modal-dialog .panel-body .tut-title {
+	.modal-body-title {
+		//.opensans_normal(20pt, @blueDark);
+		.exo_light(20pt, @blueDark);
+		@media (max-width: @screen-xs-max) {
+			.exo_light(16pt, @blueDark);
+		}
+
+		text-transform: none;
+		display: block;
+		max-width: 400px;
+		margin: 0px auto 20px auto;
+	}
+	.modal-body-text {
+		.opensans_normal(12pt, @greyDark);
+		@media (max-width: @screen-xs-max) {
+			.opensans_normal(11pt, @greyDark);
+		}
+		display: block;
+		max-width: 450px;
+		margin: 0px auto 20px auto;
+	}
+	.capital-icon {
+		@media (max-width: @screen-xs-max) {
+			width: 85px;
+		}
+	}
 }
 
 .modal-dialog .modal-content .panel {
@@ -227,6 +309,16 @@ users-list#usersList > .epic-tooltip {
 
 #energyTip {
 	bottom: -135px;
+	
+	@media (max-width: @screen-xs-max) {
+		&.rightArrow {
+			right: -188px;
+			&:after {
+				right: auto;
+				left: 75px;
+			}
+		}
+	}
 }
 
 #alertBox .panel > .epic-tooltip {
@@ -236,6 +328,12 @@ users-list#usersList > .epic-tooltip {
 
 .entry-fee-box > .epic-tooltip {
 	top: -85px;
+	@media (max-width: @screen-xs-max) {
+		margin-left: -70px;
+		&:after {
+			left: 65px;
+		}
+	}
 }
 .soccer-player-row[data-id='56260840c1f5fbc410f99549'] > .epic-tooltip {
 	top: -95px;

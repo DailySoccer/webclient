@@ -5673,8 +5673,8 @@ scoring-rules:after,
 #energyshopComp .products-wrapper:after,
 .fantasy-team-list .soccer-player-row:before,
 .fantasy-team-list .soccer-player-row:after,
-.statistic:before,
-.statistic:after,
+.soccer-player-statistics:before,
+.soccer-player-statistics:after,
 #rootFooter:before,
 #rootFooter:after,
 #rootFooter .sub-footer-wrapper .sub-footer:before,
@@ -5821,7 +5821,7 @@ scoring-rules:after,
 #energyshopComp .content:after,
 #energyshopComp .products-wrapper:after,
 .fantasy-team-list .soccer-player-row:after,
-.statistic:after,
+.soccer-player-statistics:after,
 #rootFooter:after,
 #rootFooter .sub-footer-wrapper .sub-footer:after,
 .contest-id-bar:after,
@@ -9541,6 +9541,11 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
 #addFundsContent .panel .panel-body {
   font-size: 10pt;
 }
+@media (max-width: 767px) {
+  #addFundsContent .panel .panel-body {
+    padding: 15px 5%;
+  }
+}
 #transactionHistoryRoot .transaction-date-col {
   float: left;
   width: 33.33333333%;
@@ -12002,20 +12007,40 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff606060', endColorstr='#ff555555', GradientType=0);
 }
-.statistic {
+.soccer-player-statistics {
   margin-left: 0;
   margin-right: 0;
+}
+.statistic {
+  float: left;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 0;
   line-height: 30px;
   background-color: #f8f8f8;
   border-width: 1px;
   border-style: none none solid none;
   border-color: #ffffff;
   border-radius: 0px;
+  /*.stat-points{
+		.make-xs-column(2);
+		.exo_bold(12pt, @greyDark);
+		text-align: right;
+	}*/
+}
+@media (min-width: 768px) {
+  .statistic {
+    float: left;
+    width: 50%;
+  }
 }
 .statistic .stat-times {
   position: relative;
   float: left;
-  width: 8.33333333%;
+  width: 16.66666667%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
@@ -12040,30 +12065,17 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   border-radius: 0px;
   position: relative;
   float: left;
-  width: 75%;
+  width: 83.33333333%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  padding-left: 10px;
+  padding-right: 0px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 10pt;
   color: #777777;
   text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
-}
-.statistic .stat-points {
-  position: relative;
-  float: left;
-  width: 16.66666667%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  font-family: 'Exo', sans-serif;
-  font-weight: 600;
-  font-size: 12pt;
-  color: #777777;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
-  text-align: right;
 }
 @media (min-width: 768px) {
   footer {
@@ -13251,6 +13263,11 @@ main-menu-f2p .beta-label {
   height: 50px;
   position: relative;
 }
+@media (max-width: 767px) {
+  #mainMenu #desktopMenu .stats-commons {
+    width: 63px;
+  }
+}
 #mainMenu #desktopMenu .stats-commons img {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -13345,6 +13362,11 @@ main-menu-f2p .beta-label {
 				}
 				cursor: pointer;*/
 }
+@media (max-width: 767px) {
+  #mainMenu #desktopMenu .fixed-user-stats .energy {
+    width: 63px;
+  }
+}
 #mainMenu #desktopMenu .fixed-user-stats .energy img {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -13393,6 +13415,11 @@ main-menu-f2p .beta-label {
 				.count {
 					position: relative;
 				}*/
+}
+@media (max-width: 767px) {
+  #mainMenu #desktopMenu .fixed-user-stats .manager-points {
+    width: 63px;
+  }
 }
 #mainMenu #desktopMenu .fixed-user-stats .manager-points img {
   -webkit-user-select: none;
@@ -13464,6 +13491,11 @@ main-menu-f2p .beta-label {
   color: #fa9c19;
   cursor: pointer;
 }
+@media (max-width: 767px) {
+  #mainMenu #desktopMenu .fixed-user-stats .coins {
+    width: 63px;
+  }
+}
 #mainMenu #desktopMenu .fixed-user-stats .coins img {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -13534,6 +13566,11 @@ main-menu-f2p .beta-label {
 					padding: 0px;
 					width: 230px;					
 				}*/
+}
+@media (max-width: 767px) {
+  #mainMenu #desktopMenu .fixed-user-stats .profile {
+    width: 63px;
+  }
 }
 #mainMenu #desktopMenu .fixed-user-stats .profile img {
   -webkit-user-select: none;
@@ -18107,7 +18144,7 @@ textarea.soccer-players-filter .name-player-input-filter {
     border-radius: 4px;
   }
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   matches-filter {
     min-height: 60px;
     display: block;
@@ -18920,7 +18957,7 @@ lineup-selector {
 }
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-name-hint-wrapper {
   float: left;
-  width: 50%;
+  width: 58.33333333%;
   position: relative;
   min-height: 1px;
   padding-left: 15px;
@@ -19013,17 +19050,23 @@ lineup-selector {
     display: inline-block;
     margin-top: 0;
   }
+  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint social-share[inline] .social-share-wrapper twitter-share .twitter-share-button,
+  #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint social-share[inline] .social-share-wrapper .twitter-share-wrapper .twitter-share-button {
+    margin: 0;
+  }
   #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-hint social-share[inline] .social-share-wrapper .facebook-share-wrapper .facebook-share-button {
     margin-bottom: 0;
+    margin-left: 0;
   }
 }
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-element .leaderboard-table-skillpoints {
   float: left;
-  width: 33.33333333%;
+  width: 25%;
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  padding-left: 5px;
   text-align: right;
 }
 @media (min-width: 768px) {
@@ -19284,6 +19327,11 @@ button.panel .panel-heading button.close {
 }
 .panel .panel-body {
   padding: 15px 12%;
+}
+@media (max-width: 767px) {
+  .panel .panel-body {
+    padding: 15px 5%;
+  }
 }
 .panel .panel-body .form-description {
   font-family: 'Open Sans', sans-serif;
@@ -20391,6 +20439,16 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   text-transform: uppercase;
   text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
 }
+@media (max-width: 767px) {
+  #alertRoot.noGold .alert-content-title {
+    font-family: 'Exo', sans-serif;
+    font-weight: 600;
+    font-size: 13pt;
+    color: #214a5f;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+  }
+}
 #alertRoot.noGold .gold-needed-icon-wrapper {
   display: block;
   position: relative;
@@ -20449,6 +20507,16 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   text-transform: uppercase;
   text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   margin-bottom: 20px;
+}
+@media (max-width: 767px) {
+  #alertRoot.noGold .alert-content-subtitle {
+    font-family: 'Exo', sans-serif;
+    font-weight: 300;
+    font-size: 12pt;
+    color: #214a5f;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+  }
 }
 #alertRoot.cannotEnter .panel .panel-body {
   padding: 15px 20px;
@@ -22116,6 +22184,10 @@ fieldset[disabled] .info-complete-bar .invite-friends {
 	border-left: 0px none transparent;
 }
 */
+.tutorial .column-action.remove,
+.tutorial .action-button.remove {
+  pointer-events: none;
+}
 .epic-tooltip {
   position: absolute;
   margin-bottom: 5px;
@@ -22126,12 +22198,21 @@ fieldset[disabled] .info-complete-bar .invite-friends {
   background-color: #fa9c19;
   text-align: center;
   line-height: 1.2;
+  white-space: normal;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
-  font-size: 14pt;
+  font-size: 13pt;
   color: #ffffff;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   pointer-events: all;
+}
+@media (max-width: 767px) {
+  .epic-tooltip {
+    max-width: 300px;
+    width: 300px;
+    min-width: 200px;
+    margin-left: -150px;
+  }
 }
 .epic-tooltip:after {
   content: "";
@@ -22213,6 +22294,12 @@ fieldset[disabled] .info-complete-bar .invite-friends {
   bottom: -85px;
   width: 410px;
 }
+@media (max-width: 767px) {
+  #soccerManagerLevel.epic-tooltip.bottom {
+    bottom: -105px;
+    width: 280px;
+  }
+}
 #soccerManagerLevel.epic-tooltip.bottom.rightArrow {
   right: -35px;
 }
@@ -22227,11 +22314,47 @@ fieldset[disabled] .info-complete-bar .invite-friends {
   width: 320px;
   top: -85px;
 }
+@media (max-width: 767px) {
+  #continueButton.epic-tooltip.top {
+    left: -10px;
+  }
+  #continueButton.epic-tooltip.top:after {
+    left: auto;
+    right: 50px;
+  }
+}
 #usersList .epic-tooltip.top {
   margin-left: -160px;
 }
+@media (max-width: 767px) {
+  #usersList .epic-tooltip.top {
+    margin-left: -150px;
+  }
+}
 .contestSlot .action-section .epic-tooltip.rightArrow {
   right: 10px;
+}
+@media (max-width: 767px) {
+  .contestSlot .action-section .epic-tooltip.rightArrow {
+    right: -10px;
+  }
+}
+#enterContest .soccer-players-list-slot .column-action .action-button .epic-tooltip.bottom {
+  bottom: -80px;
+  right: 0px;
+}
+#enterContest .soccer-players-list-slot .column-action .action-button .epic-tooltip.bottom:after {
+  right: 10px;
+}
+@media (max-width: 991px) {
+  #enterContest .soccer-players-list-slot .column-action .action-button .epic-tooltip.bottom {
+    left: auto;
+  }
+}
+@media (max-width: 767px) {
+  #enterContest .soccer-players-list-slot .column-action .action-button .epic-tooltip.bottom:after {
+    right: 10px;
+  }
 }
 #enterContest .enter-contest-lineup-wrapper .epic-tooltip.top {
   width: 320px;
@@ -22250,6 +22373,11 @@ fieldset[disabled] .info-complete-bar .invite-friends {
 }
 #soccerPlayerRedStyle.epic-tooltip.top {
   top: -80px;
+}
+@media (max-width: 767px) {
+  #soccerPlayerRedStyle.epic-tooltip.top {
+    top: -70px;
+  }
 }
 .tutorial.global-enter-contest .close-contest,
 .tutorial.global-live-contest .close-contest {
@@ -22277,6 +22405,52 @@ fieldset[disabled] .info-complete-bar .invite-friends {
   max-width: 450px;
   margin: 0px auto 20px auto;
 }
+.modal-dialog .panel-body .tut-title .modal-body-title {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 20pt;
+  color: #214a5f;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+  text-transform: none;
+  display: block;
+  max-width: 400px;
+  margin: 0px auto 20px auto;
+}
+@media (max-width: 767px) {
+  .modal-dialog .panel-body .tut-title .modal-body-title {
+    font-family: 'Exo', sans-serif;
+    font-weight: 300;
+    font-size: 16pt;
+    color: #214a5f;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+  }
+}
+.modal-dialog .panel-body .tut-title .modal-body-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
+  color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
+  display: block;
+  max-width: 450px;
+  margin: 0px auto 20px auto;
+}
+@media (max-width: 767px) {
+  .modal-dialog .panel-body .tut-title .modal-body-text {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 11pt;
+    color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
+  }
+}
+@media (max-width: 767px) {
+  .modal-dialog .panel-body .tut-title .capital-icon {
+    width: 85px;
+  }
+}
 .modal-dialog .modal-content .panel {
   background-color: #ecf0f1;
 }
@@ -22292,12 +22466,29 @@ users-list#usersList > .epic-tooltip {
 #energyTip {
   bottom: -135px;
 }
+@media (max-width: 767px) {
+  #energyTip.rightArrow {
+    right: -188px;
+  }
+  #energyTip.rightArrow:after {
+    right: auto;
+    left: 75px;
+  }
+}
 #alertBox .panel > .epic-tooltip {
   bottom: -70px;
   width: 320px;
 }
 .entry-fee-box > .epic-tooltip {
   top: -85px;
+}
+@media (max-width: 767px) {
+  .entry-fee-box > .epic-tooltip {
+    margin-left: -70px;
+  }
+  .entry-fee-box > .epic-tooltip:after {
+    left: 65px;
+  }
 }
 .soccer-player-row[data-id='56260840c1f5fbc410f99549'] > .epic-tooltip {
   top: -95px;
@@ -22746,7 +22937,7 @@ users-list#usersList > .epic-tooltip {
 #homeRoot #energyshopComp .content,
 #homeRoot #energyshopComp .products-wrapper,
 #homeRoot .fantasy-team-list .soccer-player-row,
-#homeRoot .statistic,
+#homeRoot .soccer-player-statistics,
 #homeRoot #rootFooter,
 #homeRoot #rootFooter .sub-footer-wrapper .sub-footer,
 #homeRoot .contest-id-bar,
@@ -22848,6 +23039,20 @@ users-list#usersList > .epic-tooltip {
     width: 50%;
   }
 }
+@media (max-width: 767px) {
+  #createContest .create-contest-section-wrapper {
+    height: 190px;
+  }
+  #createContest .create-contest-section-wrapper.event-section {
+    height: 130px;
+  }
+  #createContest .create-contest-section-wrapper.name-section {
+    height: 130px;
+  }
+  #createContest .create-contest-section-wrapper.date-section {
+    height: 140px;
+  }
+}
 #createContest .create-contest-section-wrapper.large {
   position: relative;
   min-height: 1px;
@@ -22907,13 +23112,19 @@ users-list#usersList > .epic-tooltip {
   margin-left: 20px;
 }
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .data-element {
-  position: relative;
   float: left;
-  width: 50%;
+  width: 100%;
+  position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
   padding: 0;
+}
+@media (min-width: 768px) {
+  #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .data-element {
+    float: left;
+    width: 50%;
+  }
 }
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .data-element input[type="radio"] {
   display: none;
@@ -22959,13 +23170,19 @@ users-list#usersList > .epic-tooltip {
   text-shadow: 1px 1px 1px rgba(67, 67, 67, 0.004);
 }
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .data-element {
-  position: relative;
   float: left;
-  width: 33.33333333%;
+  width: 100%;
+  position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
   padding: 0 15px 0 0;
+}
+@media (min-width: 768px) {
+  #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .data-element {
+    float: left;
+    width: 33.33333333%;
+  }
 }
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper.entry-fee .data-element .entry-fee-values-wrapper {
   border: 1px solid transparent;
@@ -23957,7 +24174,7 @@ fieldset[disabled] #helpInfo .button-back {
 }
 .tutorial-row .tutorial-tile {
   float: left;
-  width: 100%;
+  width: 83.33333333%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
@@ -23970,6 +24187,14 @@ fieldset[disabled] #helpInfo .button-back {
   .tutorial-row .tutorial-tile {
     float: left;
     width: 33.33333333%;
+  }
+}
+@media (max-width: 767px) {
+  .tutorial-row .tutorial-tile {
+    margin-left: 8.33333333%;
+    margin-right: 8.33333333%;
+    margin-top: 20px;
+    padding-top: 20px;
   }
 }
 .tutorial-row .tutorial-tile .tutorial-title {
@@ -24175,6 +24400,12 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 }
 .tutorial-row .tutorial-tile + .tutorial-tile {
   border-left: 1px solid #0a2938;
+}
+@media (max-width: 767px) {
+  .tutorial-row .tutorial-tile + .tutorial-tile {
+    border-left: none;
+    border-top: 1px solid #0a2938;
+  }
 }
 #achievement-list-wrapper {
   padding: 20px 10px;
@@ -24662,6 +24893,26 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
   text-transform: uppercase;
   text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   padding-bottom: 0;
+}
+@media (max-width: 767px) {
+  #alertRoot.achievementEarned .alert-content-title {
+    font-family: 'Exo', sans-serif;
+    font-weight: 600;
+    font-size: 14pt;
+    color: #214a5f;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+    margin-top: 10px;
+  }
+  #alertRoot.achievementEarned .alert-content-title.large {
+    font-family: 'Exo', sans-serif;
+    font-weight: 300;
+    font-size: 18pt;
+    color: #214a5f;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+    padding-bottom: 0;
+  }
 }
 #alertRoot.achievementEarned .achievment-earned-icon-wrapper {
   display: block;

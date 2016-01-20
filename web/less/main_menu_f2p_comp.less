@@ -378,6 +378,9 @@ main-menu-f2p when (@beta) {
 			border-left: 1px solid fade(@greyBlue, 50%);
 			height: 50px;
 			position: relative;
+			@media (max-width: @screen-xs-max) {
+				width: 63px;
+			}
 			
 			img {
 				.user-select(none);

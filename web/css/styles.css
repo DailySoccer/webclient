@@ -22184,6 +22184,7 @@ fieldset[disabled] .info-complete-bar .invite-friends {
 	border-left: 0px none transparent;
 }
 */
+.tutorial .column-action.remove,
 .tutorial .action-button.remove {
   pointer-events: none;
 }

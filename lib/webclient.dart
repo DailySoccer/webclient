@@ -167,7 +167,7 @@ class WebClientApp extends Module {
     bind(MainMenuF2PComp);
     bind(FooterComp);
     bind(XsNotAvailableScreenComp);
-    
+
     bind(NgBindHtmlUnsafeDirective);
     bind(MaxTextWidthDirective);
     bind(FormAutofillDecorator);
@@ -435,7 +435,7 @@ class WebClientApp extends Module {
       ,'sec': ngRoute( // shortcutRoute - sec: Short Enter Contest
           path: '/sec/:contestId',
           preEnter: (RoutePreEnterEvent e) => _preEnterShortEnterContest(e, router, visibility: _ALWAYS),
-          viewHtml: '<enter-contest></enter-contest>'
+          viewHtml: ''
       )
       ,'view_contest_entry': ngRoute(
           path: '/view_contest_entry/:parent/:viewContestEntryMode/:contestId',

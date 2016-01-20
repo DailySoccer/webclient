@@ -24,6 +24,7 @@ class TeamsFilterComp {
     _teamList.clear();
     _teamList.add({"id": _ALL_MATCHES, "name": getLocalizedText("all-teams"), "shortName": ''});
 
+    teams.sort((team1, team2) => team1["name"].compareTo(team2["name"]));
     _teamList.addAll(teams);
   }
 

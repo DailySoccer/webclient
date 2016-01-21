@@ -453,11 +453,6 @@ class WebClientApp extends Module {
         preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
         viewHtml: '''<leaderboard></leaderboard>'''
       )
-      /*,'leaderboardUserId': ngRoute(
-        path: '/leaderboard/:section/:userId',
-        preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-        viewHtml: '''<leaderboard></leaderboard>'''
-      )*/
       ,'create_contest': ngRoute(
         path: '/create_contest',
         preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),

@@ -30,7 +30,8 @@ class LeaderboardComp implements ShadowRootAware{
   String userId = null;
 
   bool isThePlayer(id) => id == userId/*get del singleton*/;
-  bool get showShare => userId == _profileService.user.userId; 
+  bool get isLoggedPlayer => _profileService.user != null && userId == _profileService.user.userId; 
+  bool get showShare => isLoggedPlayer; 
 
   int get achievementsEarned => Achievement.AVAILABLES.where( (achievement) => _profileService.user.hasAchievement(achievement["id"]) ).length;
 
@@ -124,7 +125,11 @@ class LeaderboardComp implements ShadowRootAware{
   }
   */
   void gotoSection(String section) {
-    _router.go('leaderboard', {'section':section});
+    if (isLoggedPlayer) {
+      _router.go('leaderboard', {'section':section});
+    } else {
+      _router.go('leaderboardUserId', {'section':section, 'userId': userId});
+    }
   }
   
   void tabChange(String tab) {

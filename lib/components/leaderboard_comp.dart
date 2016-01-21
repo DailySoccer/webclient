@@ -33,7 +33,7 @@ class LeaderboardComp implements ShadowRootAware{
   bool get isLoggedPlayer => _profileService.user != null && userId == _profileService.user.userId; 
   bool get showShare => isLoggedPlayer;
   User userShown = null;
-
+  
   int get achievementsEarned => Achievement.AVAILABLES.where( (achievement) => userShown != null? userShown.hasAchievement(achievement["id"]) : false).length;
 
   String get pointsColumnName => getLocalizedText("trueskill");

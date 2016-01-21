@@ -50,13 +50,13 @@ class FacebookService {
   }
 
   static Map leaderboardGold(String userId) {
-    Map shareMap = _buildShareMap('leadeboard_gold', "$_rootUrl#/leaderboard/money/$userId");
+    Map shareMap = _buildShareMap('leadeboard_gold', "$_rootUrl#/slm/$userId");
     shareMap['selector-prefix'] = '${shareMap['selector-prefix']}_gold';
     return shareMap;
   }
 
   static Map leaderboardTrueskill(String userId)  {
-    Map shareMap = _buildShareMap('leadeboard_trueskill', "$_rootUrl#/leaderboard/points/$userId");
+    Map shareMap = _buildShareMap('leadeboard_trueskill', "$_rootUrl#/slp/$userId");
     shareMap['selector-prefix'] = '${shareMap['selector-prefix']}_trueskill';
     return shareMap;
   }
@@ -73,9 +73,9 @@ class FacebookService {
         };
   }
 
-  static Map winAchievement(achievementId) {
+  static Map winAchievement(achievementId, String userId) {
     Achievement achievement = Achievement.getAchievementWithKey(achievementId);
-    Map shareMap = _buildShareMap('win_achievement', _rootUrl, substitutions: {
+    Map shareMap = _buildShareMap('win_achievement', "$_rootUrl#/sla/$userId", substitutions: {
                                                           'ACHIEV_NAME' : achievement.name, 
                                                           'ACHIEV_IMG_KEY' : achievement.shareImage
                                                        });

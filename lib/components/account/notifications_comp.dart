@@ -94,7 +94,7 @@ class NotificationsComp {
     switch(notification['type']) {
       case UserNotification.ACHIEVEMENT_EARNED:
         if (!sharingInfoCache.containsKey(id)) {
-          sharingInfoCache[id] = FacebookService.winAchievement(notification['info']['achievement']);
+          sharingInfoCache[id] = FacebookService.winAchievement(notification['info']['achievement'], _profileService.user.userId);
           sharingInfoCache[id]['selector-prefix'] = '${sharingInfoCache[id]['selector-prefix']}$id';
         }
         sharingMap = sharingInfoCache[id];

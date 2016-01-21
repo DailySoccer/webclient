@@ -71,15 +71,19 @@ class LeaderboardComp implements ShadowRootAware{
 
   LeaderboardComp (LeaderboardService leaderboardService, this.loadingService, this._profileService, this._router, this._routeProvider, this._rootElement) {
     loadingService.isLoading = true;
-    userId = '';
-    if (_routeProvider.parameters.containsKey("userId") && _routeProvider.parameters['userId'] != 'null' && _routeProvider.parameters['userId'] != 'me') {
-      userId = _routeProvider.parameters['userId'];
-    } else if(_profileService.isLoggedIn){
+    userId = 'null';
+    if (_routeProvider.parameters.containsKey("userId")) {
+      if (_routeProvider.parameters['userId'] != 'me') {
+        userId = _routeProvider.parameters['userId'];
+      } else if (_profileService.isLoggedIn) {
+        userId = _profileService.user.userId;
+      }
+    } else if(_profileService.isLoggedIn) {
       userId = _profileService.user.userId;
     }
 
 
-    if (userId != '') leaderboardService.getUsers()
+    leaderboardService.getUsers()
       .then((List<User> users) {
         List<User> pointsUserListTmp = new List<User>.from(users);
         List<User> moneyUserListTmp = new List<User>.from(users);

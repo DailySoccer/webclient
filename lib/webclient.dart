@@ -453,6 +453,21 @@ class WebClientApp extends Module {
         preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
         viewHtml: '''<leaderboard></leaderboard>'''
       )
+      ,'slp': ngRoute(
+        path: '/slp/:userId',
+        preEnter: (RoutePreEnterEvent e) => _preEnterLeaderboard(e, router, visibility: _ALWAYS, section: 'points'),
+        viewHtml: ''
+      )
+      ,'slm': ngRoute(
+        path: '/slm/:userId',
+        preEnter: (RoutePreEnterEvent e) => _preEnterLeaderboard(e, router, visibility: _ALWAYS, section: 'money'),
+        viewHtml: ''
+      )
+      ,'sla': ngRoute(
+        path: '/sla/:userId',
+        preEnter: (RoutePreEnterEvent e) => _preEnterLeaderboard(e, router, visibility: _ALWAYS, section: 'achievements'),
+        viewHtml: ''
+      )
       ,'create_contest': ngRoute(
         path: '/create_contest',
         preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
@@ -540,6 +555,11 @@ class WebClientApp extends Module {
     } else {
       router.go("home", {}, replace:true);
     }
+  }
+
+  void _preEnterLeaderboard(RoutePreEnterEvent event, Router router, {int visibility, String section: 'points'}) {
+    String userId = event.parameters.containsKey("userId") ? event.parameters['userId'] : 'me';
+    router.go('leaderboard', { "section": section, "userId": userId });
   }
 
   void _preEnterPage(RoutePreEnterEvent event, Router router, {int visibility}) {

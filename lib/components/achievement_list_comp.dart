@@ -4,6 +4,7 @@ import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:webclient/models/achievement.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/models/user.dart';
 
 
 @Component(
@@ -18,8 +19,12 @@ class AchievementListComp {
 /*
   LoadingService loadingService;
 */
+  @NgOneWay("user")
+  void set user(User userShown) {
+    _userShown = userShown;
+  }
 
-  bool achievementEarned(achievementKey) => profileService.isLoggedIn && profileService.user.hasAchievement(achievementKey);
+  bool achievementEarned(achievementKey) => _userShown != null? _userShown.hasAchievement(achievementKey) : false;
 
   AchievementListComp ( this.profileService /*, this.loadingService*/) {
   /*  
@@ -38,4 +43,6 @@ class AchievementListComp {
   }
   
   List<Achievement> achievementList = Achievement.AVAILABLES.map( (achievementMap) => new Achievement.fromJsonObject(achievementMap)).toList();
+  
+  User _userShown = null;
 }

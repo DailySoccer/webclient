@@ -31,9 +31,10 @@ class LeaderboardComp implements ShadowRootAware{
 
   bool isThePlayer(id) => id == userId/*get del singleton*/;
   bool get isLoggedPlayer => _profileService.user != null && userId == _profileService.user.userId; 
-  bool get showShare => isLoggedPlayer; 
+  bool get showShare => isLoggedPlayer;
+  User userShown = null;
 
-  int get achievementsEarned => Achievement.AVAILABLES.where( (achievement) => _profileService.user.hasAchievement(achievement["id"]) ).length;
+  int get achievementsEarned => Achievement.AVAILABLES.where( (achievement) => userShown != null? userShown.hasAchievement(achievement["id"]) : false).length;
 
   String get pointsColumnName => getLocalizedText("trueskill");
   String get moneyColumnName => getLocalizedText("gold");
@@ -75,6 +76,7 @@ class LeaderboardComp implements ShadowRootAware{
                       _routeProvider.parameters['userId'] :
                       _profileService.user.userId;
     
+    
     leaderboardService.getUsers()
       .then((List<User> users) {
         List<User> pointsUserListTmp = new List<User>.from(users);
@@ -113,6 +115,7 @@ class LeaderboardComp implements ShadowRootAware{
         });
 
         loadingService.isLoading = false;
+        userShown = isLoggedPlayer? _profileService.user : users.firstWhere( (u) => isThePlayer(u.userId));
         //print("Users: ${users.length}");
       });
   }

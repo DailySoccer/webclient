@@ -103,6 +103,11 @@ class ViewContestComp implements DetachAware {
       : _contestsService.refreshLiveMatchEvents(templateContestId: _contestsService.lastContest.templateContestId))
         .then((_) {
           updatedDate = DateTimeService.now;
+
+          // Actualizar al usuario principal (al que destacamos)
+          if (!_profileService.isLoggedIn || !contest.containsContestEntryWithUser(_profileService.user.userId)) {
+            mainPlayer = contest.contestEntriesOrderByPoints.first;
+          }
         })
         .catchError((ServerError error) {
           _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);

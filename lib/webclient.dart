@@ -404,12 +404,12 @@ class WebClientApp extends Module {
       )
       ,'live_contest': ngRoute(
           path: '/live_contest/:parent/:contestId',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<view-contest></view-contest>'
       )
       ,'history_contest': ngRoute(
           path: '/history_contest/:parent/:contestId',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<view-contest></view-contest>'
       )
       ,'enter_contest': ngRoute(

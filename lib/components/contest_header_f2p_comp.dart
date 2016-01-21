@@ -119,20 +119,30 @@ class ContestHeaderF2PComp implements DetachAware, ShadowRootAware {
 
 
   String printableMyPosition() {
-    ContestEntry mainContestEntry = contest.getContestEntryWithUser(_profileService.user.userId);
+    String result = "-";
 
-    // En los contest Históricos tendremos la posición registrada en el propio ContestEntry
-    if (viewHistory) {
-      return (mainContestEntry.position >= 0) ? "${mainContestEntry.position + 1}" : "-";
+    if (_profileService.isLoggedIn && contest.containsContestEntryWithUser(_profileService.user.userId)) {
+      ContestEntry mainContestEntry = contest.getContestEntryWithUser(_profileService.user.userId);
+
+      // En los contest Históricos tendremos la posición registrada en el propio ContestEntry
+      if (viewHistory) {
+        result = (mainContestEntry.position >= 0) ? "${mainContestEntry.position + 1}" : "-";
+      }
+      else {
+        result = "${contest.getUserPosition(mainContestEntry)}";
+      }
     }
 
-    return "${contest.getUserPosition(mainContestEntry)}";
+    return result;
   }
 
   Money getPrizeToShow() {
     // En los contest Históricos tendremos la posición registrada en el propio ContestEntry
     if (viewHistory || viewLive) {
-      return getMyPrize(contest);
+      // El usuario tendría que estar participando en el torneo
+      if (_profileService.isLoggedIn && contest.containsContestEntryWithUser(_profileService.user.userId)) {
+        return getMyPrize(contest);
+      }
     }
 
     return contest.prizePool;

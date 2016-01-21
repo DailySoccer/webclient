@@ -59,7 +59,13 @@ class ViewContestComp implements DetachAware {
       .then((_) {
         loadingService.isLoading = false;
         contest = _contestsService.lastContest;
-        mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
+
+        if (_profileService.isLoggedIn && contest.containsContestEntryWithUser(_profileService.user.userId)) {
+          mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
+        }
+        else {
+          mainPlayer = contest.contestEntriesOrderByPoints.first;
+        }
 
         // En el caso de los tipos de torneo 1vs1 el oponente se autoselecciona
         if(contest.tournamentType == Contest.TOURNAMENT_HEAD_TO_HEAD) {

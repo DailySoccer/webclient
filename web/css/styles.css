@@ -18921,6 +18921,9 @@ lineup-selector {
   text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   background-color: #ffffff;
 }
+#leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-data {
+  background-color: #dcdcdc;
+}
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-data .leaderboard-table-element {
   margin-bottom: 2px;
   font-family: 'Exo', sans-serif;

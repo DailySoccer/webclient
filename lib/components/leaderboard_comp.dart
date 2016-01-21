@@ -19,26 +19,26 @@ import 'package:webclient/utils/game_metrics.dart';
 )
 
 class LeaderboardComp implements ShadowRootAware{
-  
+
   int USERS_TO_SHOW = 7;
 
   String playerPointsHint = '';
   String playerMoneyHint = '';
-    
+
   LoadingService loadingService;
 
   String userId = null;
 
   bool isThePlayer(id) => id == userId/*get del singleton*/;
-  bool get isLoggedPlayer => _profileService.user != null && userId == _profileService.user.userId; 
+  bool get isLoggedPlayer => _profileService.user != null && userId == _profileService.user.userId;
   bool get showShare => isLoggedPlayer;
   User userShown = null;
-  
+
   int get achievementsEarned => Achievement.AVAILABLES.where( (achievement) => userShown != null? userShown.hasAchievement(achievement["id"]) : false).length;
 
   String get pointsColumnName => getLocalizedText("trueskill");
   String get moneyColumnName => getLocalizedText("gold");
-  
+
   String get trueskillTabTitle    => getLocalizedText("trueskill_tab",    substitutions: {"PLAYER_POSITION": playerPointsInfo['position']});
   String get goldTabTitle         => getLocalizedText("gold_tab",         substitutions: {"PLAYER_POSITION": playerMoneyInfo['position']});
   String get achievementsTabTitle => getLocalizedText("achievements_tab", substitutions: {"PLAYER_ACHIEVEMENTS": achievementsEarned,
@@ -46,7 +46,7 @@ class LeaderboardComp implements ShadowRootAware{
 
   List<Map> pointsUserList;
   List<Map> moneyUserList;
-  
+
   Map playerPointsInfo = {'position':'_', 'id':'', 'name': '', 'points': ' '};
   Map playerMoneyInfo = {'position':'_', 'id':'', 'name': '', 'points': '\$ '};
 
@@ -64,7 +64,7 @@ class LeaderboardComp implements ShadowRootAware{
     }
     return showShare? _sharingInfoTrueSkill : null;
   }
-  
+
   String getLocalizedText(key, {group: "leaderboard", Map substitutions}) {
     return StringUtils.translate(key, group, substitutions);
   }
@@ -72,13 +72,13 @@ class LeaderboardComp implements ShadowRootAware{
   LeaderboardComp (LeaderboardService leaderboardService, this.loadingService, this._profileService, this._router, this._routeProvider, this._rootElement) {
     loadingService.isLoading = true;
     userId = '';
-    if (_routeProvider.parameters.containsKey("userId") && _routeProvider.parameters['userId'] != 'null') {
+    if (_routeProvider.parameters.containsKey("userId") && _routeProvider.parameters['userId'] != 'null' && _routeProvider.parameters['userId'] != 'me') {
       userId = _routeProvider.parameters['userId'];
-    } else if(_profileService.user != null){
+    } else if(_profileService.isLoggedIn){
       userId = _profileService.user.userId;
     }
-    
-    
+
+
     if (userId != '') leaderboardService.getUsers()
       .then((List<User> users) {
         List<User> pointsUserListTmp = new List<User>.from(users);
@@ -121,13 +121,13 @@ class LeaderboardComp implements ShadowRootAware{
   void gotoSection(String section) {
     _router.go('leaderboard', {'section':section, 'userId': userId});
   }
-  
+
   void tabChange(String tab) {
-    
+
     //Cambiamos el activo del tab
     _rootElement.querySelectorAll("li").classes.remove('active');
     _rootElement.querySelector("#" + tab.replaceAll("content", "tab")).classes.add("active");
-    
+
     //Cambiamos el active del tab-pane
     querySelectorAll(".tab-pane").classes.remove("active");
     querySelector("#" + tab).classes.add("active");
@@ -136,14 +136,14 @@ class LeaderboardComp implements ShadowRootAware{
     allContentTab.forEach((element) => element.classes.remove('active'));
 
     Element contentTab = document.querySelector("#" + tab);
-    contentTab.classes.add("active");   
+    contentTab.classes.add("active");
   }
-  
- 
+
+
   @override
   void onShadowRoot(ShadowRoot shadowRoot) {
     var section = _routeProvider.parameters["section"];
-    
+
     switch(section) {
       case "points":
         GameMetrics.logEvent(GameMetrics.LEADERBOARD, {'value': 'trueskill'});
@@ -159,11 +159,11 @@ class LeaderboardComp implements ShadowRootAware{
       break;
     }
   }
-  
+
   Router _router;
   RouteProvider _routeProvider;
   ProfileService _profileService;
   Element _rootElement;
- 
+
 
 }

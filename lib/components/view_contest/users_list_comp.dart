@@ -30,7 +30,7 @@ class UsersListComp {
   }
 
   bool get isViewContestEntryMode => _routeProvider.route.name.contains("view_contest_entry");
-  bool isMainPlayer(var user) => _profileService.user.userId == user["id"];
+  bool isMainPlayer(var user) => _profileService.isLoggedIn && (_profileService.user.userId == user["id"]);
 
   String getPrize(int index) => (_contest != null) ? _contest.getPrize(index) : "";
 
@@ -64,7 +64,7 @@ class UsersListComp {
       onRowClick({"contestEntry":user["contestEntry"]});
     }
   }
-  
+
   Contest _contest;
   List<ContestEntry> _contestEntries;
   RouteProvider _routeProvider;

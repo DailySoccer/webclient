@@ -94,8 +94,8 @@ class UserProfileComp {
   void goBuyGold() {
     _router.go('shop', {});
   }
-  void goLeaderboard() {
-    _router.go('leaderboard', {});
+  void goLeaderboard() { 
+    _router.go('leaderboard', {'section': 'points', 'userId': _profileManager.user.userId});
   }
 
   ProfileService _profileManager;

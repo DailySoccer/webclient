@@ -71,13 +71,15 @@ class LeaderboardComp implements ShadowRootAware{
 
   LeaderboardComp (LeaderboardService leaderboardService, this.loadingService, this._profileService, this._router, this._routeProvider, this._rootElement) {
     loadingService.isLoading = true;
-
-    userId = _routeProvider.parameters.containsKey("userId") ? 
-                      _routeProvider.parameters['userId'] :
-                      _profileService.user.userId;
+    userId = '';
+    if (_routeProvider.parameters.containsKey("userId") && _routeProvider.parameters['userId'] != 'null') {
+      userId = _routeProvider.parameters['userId'];
+    } else if(_profileService.user != null){
+      userId = _profileService.user.userId;
+    }
     
     
-    leaderboardService.getUsers()
+    if (userId != '') leaderboardService.getUsers()
       .then((List<User> users) {
         List<User> pointsUserListTmp = new List<User>.from(users);
         List<User> moneyUserListTmp = new List<User>.from(users);
@@ -95,28 +97,17 @@ class LeaderboardComp implements ShadowRootAware{
 
         i = 1;
         moneyUserList = moneyUserListTmp.map((User u) => {
-          'position': i++,
-          'id': u.userId,
-          'name': u.nickName,
-          'points': u.earnedMoney
+            'position': i++,
+            'id': u.userId,
+            'name': u.nickName,
+            'points': u.earnedMoney
           }).toList();
 
-        playerPointsInfo = pointsUserList.firstWhere( (u) => isThePlayer(u['id']), orElse: () => {
-          'position': pointsUserList.length,
-          'id': "<unknown>",
-          'name': "<unknown>",
-          'points': 0
-        });
-        playerMoneyInfo = moneyUserList.firstWhere( (u) => isThePlayer(u['id']), orElse: () => {
-          'position': pointsUserList.length,
-          'id': "<unknown>",
-          'name': "<unknown>",
-          'points': 0
-        });
+        playerPointsInfo = pointsUserList.firstWhere( (u) => isThePlayer(u['id']), orElse: () => pointsUserList.first);
+        playerMoneyInfo = moneyUserList.firstWhere( (u) => isThePlayer(u['id']), orElse: () => moneyUserList.first);
+        userShown = isLoggedPlayer? _profileService.user : users.firstWhere( (u) => isThePlayer(u.userId), orElse: () => users.first);
 
         loadingService.isLoading = false;
-        userShown = isLoggedPlayer? _profileService.user : users.firstWhere( (u) => isThePlayer(u.userId));
-        //print("Users: ${users.length}");
       });
   }
 
@@ -128,11 +119,7 @@ class LeaderboardComp implements ShadowRootAware{
   }
   */
   void gotoSection(String section) {
-    if (isLoggedPlayer) {
-      _router.go('leaderboard', {'section':section});
-    } else {
-      _router.go('leaderboardUserId', {'section':section, 'userId': userId});
-    }
+    _router.go('leaderboard', {'section':section, 'userId': userId});
   }
   
   void tabChange(String tab) {

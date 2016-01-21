@@ -51,7 +51,7 @@ class StringUtils {
     for (int i=0; i<pairs.length; i++) {
         String pair = pairs[i];
         List<String> keyValue = pair.split(":");
-        result.addAll({keyValue[0]:keyValue[1]});
+        result.addAll({keyValue[0].trim():keyValue[1].trim()});
     }
     return result;
   }

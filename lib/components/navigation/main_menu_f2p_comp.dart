@@ -152,8 +152,8 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     } else {
       String paramString = event.currentTarget.attributes["params"];
       if (paramString != null) {
-        _router.go(
-            destination, StringUtils.stringToMap(paramString.toString()));
+        Map paramMap = StringUtils.stringToMap(paramString.toString());
+        _router.go(destination, paramMap);
       } else {
         _router.go(destination, {});
       }
@@ -448,7 +448,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
         ret = '''<a id="menuMyContests"  destination="my_contests" params="section:live">${StringUtils.translate("mycontest",     "mainmenu")}</a>''';
         break;
       case "leaderboard":
-        ret = '''<a id="menuLeaderboard" destination="leaderboard" params="section:points">                      ${StringUtils.translate("leaderboard",   "mainmenu")}</a>''';
+        ret = '''<a id="menuLeaderboard" destination="leaderboard" params="section:points, userId:${profileService.user.userId}"> ${StringUtils.translate("leaderboard",   "mainmenu")}</a>''';
         break;
       case "notifications":
         ret = '''<a id="menuNotifications" destination="notifications">                  ${StringUtils.translate("notifications", "mainmenu")}${_notificationsCountCode}</a>''';

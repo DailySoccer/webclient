@@ -418,8 +418,9 @@ class WebClientApp extends Module {
           viewHtml: '<enter-contest></enter-contest>',
           mount: {
             'soccer_player_stats': ngRoute(
-              path: '/soccer_player_stats/:instanceSoccerPlayerId/selectable/:selectable',
-              viewHtml: '<soccer-player-stats></soccer-player-stats>')
+                path: '/soccer_player_stats/:instanceSoccerPlayerId/selectable/:selectable',
+                viewHtml: '<soccer-player-stats></soccer-player-stats>'
+            )
             ,'login': ngRoute(
                 path: '/login',
                 preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
@@ -448,15 +449,15 @@ class WebClientApp extends Module {
         viewHtml: '''<simple-promo-viewer></simple-promo-viewer>'''
       )
       ,'leaderboard': ngRoute(
-        path: '/leaderboard/:section',
-        preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
-        viewHtml: '''<leaderboard></leaderboard>'''
-      )
-      ,'leaderboardUserId': ngRoute(
         path: '/leaderboard/:section/:userId',
         preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
         viewHtml: '''<leaderboard></leaderboard>'''
       )
+      /*,'leaderboardUserId': ngRoute(
+        path: '/leaderboard/:section/:userId',
+        preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+        viewHtml: '''<leaderboard></leaderboard>'''
+      )*/
       ,'create_contest': ngRoute(
         path: '/create_contest',
         preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),

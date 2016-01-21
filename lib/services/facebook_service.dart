@@ -28,7 +28,7 @@ class FacebookService {
   }
 
   static Map historyContest(Contest contest, int position) {
-    String url = "$_rootUrl#/history_contest/my_contests/${contest.contestId}";
+    String url = "$_rootUrl#/shc/${contest.contestId}";
     if (position == 0) {
       return _buildShareMap('contest_win', url);
     } else {
@@ -37,7 +37,7 @@ class FacebookService {
   }
 
   static Map liveContest(String contestId) {
-    return _buildShareMap('contest_live', "$_rootUrl#/live_contest/my_contests/${contestId}");
+    return _buildShareMap('contest_live', "$_rootUrl#/slc/${contestId}");
   }
 
   static Map managerLevelUp(int managerLevel) {

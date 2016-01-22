@@ -55,9 +55,9 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
 
   num get numLiveContests => _numLiveContests;
 
-  bool get hasLiveContests    => numLiveContests > 0;
-  bool get hasWaitingContests => contestsService.hasWaitingContests;
-  bool get hasHistoryContests => contestsService.hasHistoryContests;
+  bool get hasLiveContests    => numLiveContests > 0 || loadingService.isLoading;
+  bool get hasWaitingContests => contestsService.hasWaitingContests || loadingService.isLoading;
+  bool get hasHistoryContests => contestsService.hasHistoryContests || loadingService.isLoading;
 
   int get totalHistoryContestsWinner => contestsService.historyContests.fold(0, (prev, contest) => (contest.getContestEntryWithUser(_profileService.user.userId).position == 0) ? prev+1 : prev);
   int get totalHistoryContestsPrizes => contestsService.historyContests.fold(0, (prev, contest) => prev + contest.getContestEntryWithUser(_profileService.user.userId).prize);
@@ -150,9 +150,10 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
                     : TAB_HISTORY;
 
     // Mostramos "cargando..." si no tenemos contests (no se ha entrado anteriormente o está vacío)
-    loadingService.isLoading =  (_tabSelected == TAB_WAITING && !contestsService.hasWaitingContests) ||
+    loadingService.isLoading = true;
+    /*loadingService.isLoading =  (_tabSelected == TAB_WAITING && !contestsService.hasWaitingContests) ||
                                 (_tabSelected == TAB_LIVE && !contestsService.hasLiveContests) ||
-                                (_tabSelected == TAB_HISTORY && !contestsService.hasHistoryContests);
+                                (_tabSelected == TAB_HISTORY && !contestsService.hasHistoryContests);*/
     _refreshMyContests();
   }
 

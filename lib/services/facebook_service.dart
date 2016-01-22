@@ -28,20 +28,20 @@ class FacebookService {
   }
 
   static Map historyContest(Contest contest, int position) {
-    String url = "$_rootUrl#/history_contest/my_contests/${contest.contestId}";
+    String url = "$_rootUrl#/shc/${contest.contestId}";
     if (position == 0) {
       return _buildShareMap('contest_win', url);
     } else {
-      return _buildShareMap('contest_history', url, substitutions: {'USER_POS': '$position'});
+      return _buildShareMap('contest_history', url, substitutions: {'USER_POS': '${position + 1}'});
     }
   }
 
   static Map liveContest(String contestId) {
-    return _buildShareMap('contest_live', "$_rootUrl#/live_contest/my_contests/${contestId}");
+    return _buildShareMap('contest_live', "$_rootUrl#/slc/${contestId}");
   }
 
-  static Map managerLevelUp(int managerLevel) {
-    Map shareMap = _buildShareMap('manager_level_up', _rootUrl, substitutions: {'MANAGER_LEVEL': managerLevel});
+  static Map managerLevelUp(int managerLevel, String userId) {
+    Map shareMap = _buildShareMap('manager_level_up', "$_rootUrl#/sla/$userId", substitutions: {'MANAGER_LEVEL': managerLevel});
     return shareMap;
   }
 
@@ -50,13 +50,13 @@ class FacebookService {
   }
 
   static Map leaderboardGold(String userId) {
-    Map shareMap = _buildShareMap('leadeboard_gold', "$_rootUrl#/leaderboard/money/$userId");
+    Map shareMap = _buildShareMap('leadeboard_gold', "$_rootUrl#/slm/$userId");
     shareMap['selector-prefix'] = '${shareMap['selector-prefix']}_gold';
     return shareMap;
   }
 
   static Map leaderboardTrueskill(String userId)  {
-    Map shareMap = _buildShareMap('leadeboard_trueskill', "$_rootUrl#/leaderboard/points/$userId");
+    Map shareMap = _buildShareMap('leadeboard_trueskill', "$_rootUrl#/slp/$userId");
     shareMap['selector-prefix'] = '${shareMap['selector-prefix']}_trueskill';
     return shareMap;
   }
@@ -73,9 +73,9 @@ class FacebookService {
         };
   }
 
-  static Map winAchievement(achievementId) {
+  static Map winAchievement(achievementId, String userId) {
     Achievement achievement = Achievement.getAchievementWithKey(achievementId);
-    Map shareMap = _buildShareMap('win_achievement', _rootUrl, substitutions: {
+    Map shareMap = _buildShareMap('win_achievement', "$_rootUrl#/sla/$userId", substitutions: {
                                                           'ACHIEV_NAME' : achievement.name, 
                                                           'ACHIEV_IMG_KEY' : achievement.shareImage
                                                        });

@@ -55,6 +55,7 @@ class HomeComp  {
             this.loadingService, this._refreshTimersService, this._promosService,
             TutorialService tutorialService) {
     loadingService.isLoading = true;
+    //contestTileHTML = isContestTileEnabled ? defaultPromo['html'] : defaultPromoWithTutorial['html'];
     _refreshMyContests();
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
     _profileService.triggerNotificationsPopUp(_router);
@@ -71,6 +72,7 @@ class HomeComp  {
   void _refreshMyContests() {
     if (!userIsLogged) {
       loadingService.isLoading = false;
+      refreshContestTileHTML();
       return;
     }
     // Parallel processing using the Future API
@@ -83,11 +85,11 @@ class HomeComp  {
         numRealHistoryContests = contestsService.historyContests.length - numVirtualHistoryContests;
         numLiveContests = contestsService.liveContests.length;
         numUpcomingContests = contestsService.waitingContests.length;
+        refreshContestTileHTML();
       })
       .catchError((ServerError error) {
         _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
       }, test: (error) => error is ServerError);
-
   }
 
   Map defaultPromo = {  'url' : '' // EJ: "#/enter_contest/lobby/564cb79ad4c6c22fa0407f5d/none"
@@ -117,21 +119,40 @@ class HomeComp  {
                         ,'codeName' : '404'
                       };
 
-  String get contestTileHTML {
+  
+  void refreshContestTileHTML() {
     Element tile = querySelector("#contestTile .tile");
-    if(tile == null) return defaultPromo['html'];
-
+    if(tile == null) {
+      _contestTileHTML = '';
+      return;
+    }
+    
     List<Map> promos = this._promosService.promos != null? this._promosService.promos : [];
     String promoCodeName = isContestTileEnabled? PROMO_CODE_NAME_LOGIN : PROMO_CODE_NAME_LOGOFF;
     currentPromo = promos.firstWhere((promo) => promo['codeName'] == promoCodeName,
         orElse: () => isContestTileEnabled ? defaultPromoWithTutorial : defaultPromo);
 
-    tile.style.backgroundImage = "url('${currentPromo['imageDesktop']}')";
-    return currentPromo['html'];
+    if (tile.style.backgroundImage != "url('${currentPromo['imageDesktop']}')") { 
+      tile.style.backgroundImage = "url('${currentPromo['imageDesktop']}')";
+    }
+    _contestTileHTML = currentPromo['html'];
+  }
+  
+  String _contestTileHTML = '';
+  
+  String get contestTileHTML {
+    if (_contestTileHTML == '') {
+      refreshContestTileHTML();
+    }
+    return _contestTileHTML;
   }
 
   void onContestsClick() {
-    _promosService.gotoPromo(currentPromo, defaultUrl: 'lobby');
+    if (_contestTileHTML == '') {
+      _router.go('lobby', {});
+    } else {
+      _promosService.gotoPromo(currentPromo, defaultUrl: 'lobby');
+    }
   }
 
   void onScoutingClick() {

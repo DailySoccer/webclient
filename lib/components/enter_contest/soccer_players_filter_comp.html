@@ -5,7 +5,7 @@
     <button class="button-filter-position" ng-click="fieldPosFilter = fieldPos"
             ng-repeat="fieldPos in posFilterList" ng-bind-html="getTextForFieldPos(fieldPos)" 
             ng-class="{'active': isActiveFieldPos(fieldPos), 'all': fieldPos == null}"></button>
-    <button class="button-filter-favorites" ng-click="switchFavorites()"
+    <button class="button-filter-favorites" ng-click="switchFavorites()" ng-if="showFavoritesButton"
             ng-class="{'active': onlyFavorites}"></button>
   </div>
 

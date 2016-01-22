@@ -94,14 +94,14 @@ class NotificationsComp {
     switch(notification['type']) {
       case UserNotification.ACHIEVEMENT_EARNED:
         if (!sharingInfoCache.containsKey(id)) {
-          sharingInfoCache[id] = FacebookService.winAchievement(notification['info']['achievement']);
+          sharingInfoCache[id] = FacebookService.winAchievement(notification['info']['achievement'], _profileService.user.userId);
           sharingInfoCache[id]['selector-prefix'] = '${sharingInfoCache[id]['selector-prefix']}$id';
         }
         sharingMap = sharingInfoCache[id];
       break;
       case UserNotification.MANAGER_LEVEL_UP:
         if (!sharingInfoCache.containsKey(id)) {
-          sharingInfoCache[id] = FacebookService.managerLevelUp(int.parse(notification['info']['level']));
+          sharingInfoCache[id] = FacebookService.managerLevelUp(int.parse(notification['info']['level']), _profileService.user.userId);
           sharingInfoCache[id]['selector-prefix'] = '${sharingInfoCache[id]['selector-prefix']}$id';
         }
         sharingMap = sharingInfoCache[id];

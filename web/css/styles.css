@@ -18921,6 +18921,9 @@ lineup-selector {
   text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   background-color: #ffffff;
 }
+#leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-data {
+  background-color: #dcdcdc;
+}
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-data .leaderboard-table-element {
   margin-bottom: 2px;
   font-family: 'Exo', sans-serif;
@@ -21538,6 +21541,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
 .global-view-contest-entry #mainWrapper.wrapper-content-container,
 .global-live-contest #mainWrapper.wrapper-content-container {
   background-color: #ffffff;
+  max-width: 970px;
 }
 .separator-bar {
   background-image: -webkit-linear-gradient(top, #1a3949 49%, #0f2630 51%);

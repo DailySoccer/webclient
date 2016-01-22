@@ -404,13 +404,23 @@ class WebClientApp extends Module {
       )
       ,'live_contest': ngRoute(
           path: '/live_contest/:parent/:contestId',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<view-contest></view-contest>'
+      )
+      ,'slc': ngRoute(
+          path: '/slc/:contestId',
+          preEnter: (RoutePreEnterEvent e) => _preEnterShortLiveContest(e, router, visibility: _ALWAYS),
+          viewHtml: ''
       )
       ,'history_contest': ngRoute(
           path: '/history_contest/:parent/:contestId',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<view-contest></view-contest>'
+      )
+      ,'shc': ngRoute(
+          path: '/shc/:contestId',
+          preEnter: (RoutePreEnterEvent e) => _preEnterShortHistoryContest(e, router, visibility: _ALWAYS),
+          viewHtml: ''
       )
       ,'enter_contest': ngRoute(
           path: '/enter_contest/:parent/:contestId/:contestEntryId',
@@ -418,8 +428,9 @@ class WebClientApp extends Module {
           viewHtml: '<enter-contest></enter-contest>',
           mount: {
             'soccer_player_stats': ngRoute(
-              path: '/soccer_player_stats/:instanceSoccerPlayerId/selectable/:selectable',
-              viewHtml: '<soccer-player-stats></soccer-player-stats>')
+                path: '/soccer_player_stats/:instanceSoccerPlayerId/selectable/:selectable',
+                viewHtml: '<soccer-player-stats></soccer-player-stats>'
+            )
             ,'login': ngRoute(
                 path: '/login',
                 preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
@@ -448,14 +459,24 @@ class WebClientApp extends Module {
         viewHtml: '''<simple-promo-viewer></simple-promo-viewer>'''
       )
       ,'leaderboard': ngRoute(
-        path: '/leaderboard/:section',
-        preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+        path: '/leaderboard/:section/:userId',
+        preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
         viewHtml: '''<leaderboard></leaderboard>'''
       )
-      ,'leaderboardUserId': ngRoute(
-        path: '/leaderboard/:section/:userId',
-        preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
-        viewHtml: '''<leaderboard></leaderboard>'''
+      ,'slp': ngRoute(
+        path: '/slp/:userId',
+        preEnter: (RoutePreEnterEvent e) => _preEnterShortLeaderboard(e, router, visibility: _ALWAYS, section: 'points'),
+        viewHtml: ''
+      )
+      ,'slm': ngRoute(
+        path: '/slm/:userId',
+        preEnter: (RoutePreEnterEvent e) => _preEnterShortLeaderboard(e, router, visibility: _ALWAYS, section: 'money'),
+        viewHtml: ''
+      )
+      ,'sla': ngRoute(
+        path: '/sla/:userId',
+        preEnter: (RoutePreEnterEvent e) => _preEnterShortLeaderboard(e, router, visibility: _ALWAYS, section: 'achievements'),
+        viewHtml: ''
       )
       ,'create_contest': ngRoute(
         path: '/create_contest',
@@ -546,6 +567,27 @@ class WebClientApp extends Module {
     }
   }
 
+  void _preEnterShortLeaderboard(RoutePreEnterEvent event, Router router, {int visibility, String section: 'points'}) {
+    String userId = event.parameters.containsKey("userId") ? event.parameters['userId'] : 'me';
+    router.go('leaderboard', { "section": section, "userId": userId });
+  }
+
+  void _preEnterShortHistoryContest(RoutePreEnterEvent event, Router router, {int visibility}) {
+    if (event.parameters.containsKey("contestId")) {
+      router.go('history_contest', { "contestId": event.parameters["contestId"], "parent": "my_contests" });
+    } else {
+      router.go("home", {}, replace:true);
+    }
+  }
+
+  void _preEnterShortLiveContest(RoutePreEnterEvent event, Router router, {int visibility}) {
+    if (event.parameters.containsKey("contestId")) {
+      router.go('live_contest', { "contestId": event.parameters["contestId"], "parent": "my_contests" });
+    } else {
+      router.go("home", {}, replace:true);
+    }
+  }
+
   void _preEnterPage(RoutePreEnterEvent event, Router router, {int visibility}) {
 
     LoadingService.disable();
@@ -561,11 +603,12 @@ class WebClientApp extends Module {
         bEnter = false;
       }
 
-      if (!bEnter) {
-        if (TutorialService.isActivated) {
-          TutorialService.Instance.skipTutorial();
-        }
+      // Si el tutorial está activo y la ruta no está permitida, nos salimos del tutorial...
+      if (TutorialService.isActivated && !TutorialService.Instance.CurrentStep.hasTrigger(event.route.name)) {
+        TutorialService.Instance.skipTutorial();
+      }
 
+      if (!bEnter) {
         router.go("home", {}, replace:true);
         /*
           if (ProfileService.instance.isLoggedIn) {

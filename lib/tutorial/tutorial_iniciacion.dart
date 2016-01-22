@@ -119,7 +119,7 @@ class TutorialIniciacion extends Tutorial {
                 // Comienza eligiendo un torneo oficial
                 await openModal( text: () => getLocalizedText("msg-02") );
 
-                if (!isCompleted) {
+                if (isActive) {
                   CurrentStepId = STEP_1;
 
                   // Selecciona este torneo
@@ -149,7 +149,7 @@ class TutorialIniciacion extends Tutorial {
                 // Elige tu alineación ideal entre todos
                 await openModal( text: () => getLocalizedText("msg-02c") );
 
-                if (!isCompleted) {
+                if (isActive) {
 
                   if(_scrDet.isNotXsScreen) {
                     // Esta es la lista de partidos de este torneo.
@@ -178,7 +178,9 @@ class TutorialIniciacion extends Tutorial {
                 // Al cambiar de formación, cambia el número
                 await onClick( [new ToolTip(".enter-contest-lineup-wrapper", tipText: getLocalizedText("msg-02h"), highlight: true, position: ToolTip.POSITION_TOP)] );
 
-                querySelector(".lineup-selector-slot.posDEL").click();
+                if (isActive) {
+                  querySelector(".lineup-selector-slot.posDEL").click();
+                }
 
                 // Esta es la lista de jugadores disponibles
                 await onClick( [new ToolTip(".enter-contest-soccer-players-wrapper", tipText: getLocalizedText("msg-02i"), highlight: true, position: ToolTip.POSITION_TOP)] );
@@ -198,7 +200,9 @@ class TutorialIniciacion extends Tutorial {
                 // Cuando añades un jugador su salario (".enter-contest-total-salary")
                 await onClick( [new ToolTip(".enter-contest-lineup-wrapper", tipText: getLocalizedText("msg-03b"), highlight: true, position: ToolTip.POSITION_TOP)] );
 
-                querySelectorAll(".lineup-selector-slot.posDEL")[1].click();
+                if (isActive) {
+                  querySelectorAll(".lineup-selector-slot.posDEL")[1].click();
+                }
 
                 // Cada jugador además de su salario
                 await onClick( [new ToolTip("$soccerPlayer1 .column-manager-level", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-03c"), highlight: true, position: ToolTip.POSITION_BOTTOM, tipId: 'soccerManagerLevel')] );
@@ -270,7 +274,9 @@ class TutorialIniciacion extends Tutorial {
                 // Esta vez hemos hecho la alineación por ti
                 await openModal( text: () => getLocalizedText("msg-08") );
 
-                querySelectorAll(".lineup-selector-slot.posDEL")[1].click();
+                if (isActive) {
+                  querySelectorAll(".lineup-selector-slot.posDEL")[1].click();
+                }
 
                 // Añade un delantero
                 showTooltips([
@@ -327,6 +333,9 @@ class TutorialIniciacion extends Tutorial {
                 if (!isCompleted) {
                   router.go('live_contest', {"contestId": TrainingContestInstance["_id"], "parent": "my_contests"});
                 }
+              },
+              // FIX: Para permitir a webclient/_preEnterPage continuar el tutorial
+              'live_contest': () async {
               },
               'view_contest': () async {
                 // Ésta es la pantalla de simulación

@@ -85,8 +85,8 @@ class EditPersonalDataComp implements ShadowRootAware{
 
   dynamic get userData => _profileManager.user;
 
-  String getLocalizedText(key) {
-    return StringUtils.translate(key, "editprofile");
+  String getLocalizedText(key, {Map sustitutions: null}) {
+    return StringUtils.translate(key, "editprofile", sustitutions);
   }
 
   EditPersonalDataComp(this._profileManager, this.loadingService, this._router);
@@ -145,11 +145,11 @@ class EditPersonalDataComp implements ShadowRootAware{
     // Verificación del password
     if ( ! (editedPassword == '' && editedRepeatPassword == '') 
       && (editedPassword != editedRepeatPassword || editedPassword.length < MIN_PASSWORD_LENGTH)) {
-      if (editedPassword != editedRepeatPassword) {
-        passwordErrorText = "Passwords don't match.";
+      if (editedPassword.length < MIN_PASSWORD_LENGTH) {
+        passwordErrorText = getLocalizedText('passwordshort', sustitutions: {'MIN_PASSWORD_LENGTH': MIN_PASSWORD_LENGTH});//"Password must be at least ${MIN_PASSWORD_LENGTH} characters long.";
         retorno = false;
-      } else if (editedPassword.length < MIN_PASSWORD_LENGTH) {
-        passwordErrorText = "Password must be at least ${MIN_PASSWORD_LENGTH} characters long.";
+      } else if (editedPassword != editedRepeatPassword) {
+        passwordErrorText = getLocalizedText('passwordnotmatch');//"Passwords don't match.";
         retorno = false;
       }
     }
@@ -161,7 +161,7 @@ class EditPersonalDataComp implements ShadowRootAware{
     emailErrorText = "";
     
     if (!valid) {
-      emailErrorText = "Email is not valid.";
+      emailErrorText = getLocalizedText('emailnotvalid');//"Email is not valid.";
     }
     return valid;
   }
@@ -171,7 +171,7 @@ class EditPersonalDataComp implements ShadowRootAware{
     nicknameErrorText = "";
     
     if (!valid) {
-      nicknameErrorText = "Username must be at least ${MIN_NICKNAME_LENGTH} characters long.";
+      nicknameErrorText = getLocalizedText('nicknameerrortext', sustitutions: {'MIN_NICKNAME_LENGTH': MIN_NICKNAME_LENGTH});//"Username must be at least ${MIN_NICKNAME_LENGTH} characters long.";
     }
     return valid;
   }

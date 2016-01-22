@@ -132,7 +132,11 @@
       "gamenotifications"                             : "NOTIFICACIONES DE JUEGO",
       "transfernotifications"                         : "TRANSFERENCIA DE JUGADORES PROPIAS",
       "buttonsave"                      : "GUARDAR",
-      "buttoncancel"                    : "CANCELAR"
+      "buttoncancel"                    : "CANCELAR",
+      "passwordnotmatch"                : "Las contraseñas no coinciden.",
+      "passwordshort"                   : "La contraseña debe tener al menos @MIN_PASSWORD_LENGTH caracteres.",
+      "emailnotvalid"                   : "El correo electrónico no es válido.",
+      "nicknameerrortext"               : "El nombre de usuario debe tener al menos @MIN_NICKNAME_LENGTH caracteres."
     }
     ,"paymentresponse"                  :
     {

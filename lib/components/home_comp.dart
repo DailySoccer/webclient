@@ -150,8 +150,9 @@ class HomeComp  {
   void onContestsClick() {
     if (_contestTileHTML == '') {
       _router.go('lobby', {});
+    } else {
+      _promosService.gotoPromo(currentPromo, defaultUrl: 'lobby');
     }
-    _promosService.gotoPromo(currentPromo, defaultUrl: 'lobby');
   }
 
   void onScoutingClick() {

@@ -40,8 +40,8 @@ class FacebookService {
     return _buildShareMap('contest_live', "$_rootUrl#/slc/${contestId}");
   }
 
-  static Map managerLevelUp(int managerLevel) {
-    Map shareMap = _buildShareMap('manager_level_up', _rootUrl, substitutions: {'MANAGER_LEVEL': managerLevel});
+  static Map managerLevelUp(int managerLevel, String userId) {
+    Map shareMap = _buildShareMap('manager_level_up', "$_rootUrl#/sla/$userId", substitutions: {'MANAGER_LEVEL': managerLevel});
     return shareMap;
   }
 

@@ -55,6 +55,7 @@ class HomeComp  {
             this.loadingService, this._refreshTimersService, this._promosService,
             TutorialService tutorialService) {
     loadingService.isLoading = true;
+    contestTileHTML = isContestTileEnabled ? defaultPromo['html'] : defaultPromoWithTutorial['html'];
     _refreshMyContests();
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
     _profileService.triggerNotificationsPopUp(_router);
@@ -69,6 +70,7 @@ class HomeComp  {
   }
 
   void _refreshMyContests() {
+    refreshContestTileHTML();
     if (!userIsLogged) {
       loadingService.isLoading = false;
       return;
@@ -87,7 +89,6 @@ class HomeComp  {
       .catchError((ServerError error) {
         _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
       }, test: (error) => error is ServerError);
-
   }
 
   Map defaultPromo = {  'url' : '' // EJ: "#/enter_contest/lobby/564cb79ad4c6c22fa0407f5d/none"
@@ -117,18 +118,26 @@ class HomeComp  {
                         ,'codeName' : '404'
                       };
 
-  String get contestTileHTML {
+  
+  void refreshContestTileHTML() {
     Element tile = querySelector("#contestTile .tile");
-    if(tile == null) return defaultPromo['html'];
-
+    if(tile == null) {
+      contestTileHTML = isContestTileEnabled ? defaultPromo['html'] : defaultPromoWithTutorial['html'];
+      return;
+    }
+    
     List<Map> promos = this._promosService.promos != null? this._promosService.promos : [];
     String promoCodeName = isContestTileEnabled? PROMO_CODE_NAME_LOGIN : PROMO_CODE_NAME_LOGOFF;
     currentPromo = promos.firstWhere((promo) => promo['codeName'] == promoCodeName,
         orElse: () => isContestTileEnabled ? defaultPromoWithTutorial : defaultPromo);
 
-    tile.style.backgroundImage = "url('${currentPromo['imageDesktop']}')";
-    return currentPromo['html'];
+    if (tile.style.backgroundImage != "url('${currentPromo['imageDesktop']}')") { 
+      tile.style.backgroundImage = "url('${currentPromo['imageDesktop']}')";
+    }
+    contestTileHTML = currentPromo['html'];
   }
+  
+  String contestTileHTML = '';
 
   void onContestsClick() {
     _promosService.gotoPromo(currentPromo, defaultUrl: 'lobby');

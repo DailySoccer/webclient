@@ -408,7 +408,7 @@ class TutorialIniciacion extends Tutorial {
 
   Future addContestEntry(Map postData) {
     FantasyTeam = JSON.decode(postData["soccerTeam"]);
-    return emptyContent();
+    return new Future.value({'contestId': "TRAINING-56331d69d4c6912cf152f201"});
   }
 
   String getLocalizedText(key, {String context: "tutorial_iniciacion"}) {

@@ -149,6 +149,8 @@ class EnterContestComp implements DetachAware {
     }
     return _orderedList;
   }
+  
+  bool get userIsLoggedIn => _profileService.isLoggedIn;
 
   Map<String, Map> errorMap;
 

@@ -57,7 +57,7 @@
                 <!-- Este es el desplegable para el movil -->
                 <matches-filter contest="contest" selected-option="matchFilter" ng-if="scrDet.isXsScreen"></matches-filter>
 
-                <soccer-players-filter name-filter="nameFilter" field-pos-filter="fieldPosFilter" only-favorites="onlyFavorites"></soccer-players-filter>
+                <soccer-players-filter name-filter="nameFilter" field-pos-filter="fieldPosFilter" only-favorites="onlyFavorites" show-favorites-button="userIsLoggedIn"></soccer-players-filter>
 
                 <soccer-players-list soccer-players="allSoccerPlayers"
                                      lineup-filter="lineupSlots"

@@ -32,7 +32,7 @@ class FacebookService {
     if (position == 0) {
       return _buildShareMap('contest_win', url);
     } else {
-      return _buildShareMap('contest_history', url, substitutions: {'USER_POS': '$position'});
+      return _buildShareMap('contest_history', url, substitutions: {'USER_POS': '${position + 1}'});
     }
   }
 

@@ -603,11 +603,12 @@ class WebClientApp extends Module {
         bEnter = false;
       }
 
-      if (!bEnter) {
-        if (TutorialService.isActivated) {
-          TutorialService.Instance.skipTutorial();
-        }
+      // Si el tutorial está activo y la ruta no está permitida, nos salimos del tutorial...
+      if (TutorialService.isActivated && !TutorialService.Instance.CurrentStep.hasTrigger(event.route.name)) {
+        TutorialService.Instance.skipTutorial();
+      }
 
+      if (!bEnter) {
         router.go("home", {}, replace:true);
         /*
           if (ProfileService.instance.isLoggedIn) {

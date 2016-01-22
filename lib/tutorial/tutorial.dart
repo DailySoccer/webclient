@@ -39,6 +39,9 @@ abstract class Tutorial {
   bool get isCompleted => CurrentStepId == STEP_END;
   String get name;
 
+  String transitionAllowed = '';
+  bool isTransitionAllowed(String transition) => transitionAllowed == transition;
+
   void skipTutorial() { CurrentStepId = STEP_END; }
 
   Tutorial(this.router, this.profileService);
@@ -106,13 +109,16 @@ abstract class Tutorial {
     ToolTipService.instance.clear();
   }
 
-  Future onClick(List<ToolTip> tooltips) {
+  Future onClick(List<ToolTip> tooltips, {transition: ''}) {
     if (isCompleted)
       return new Future.value(true);
 
     Completer completer = new Completer();
 
+    transitionAllowed = transition;
+
     tooltips.first.onHide.listen( (_) {
+      transitionAllowed = '';
       completer.complete(true);
     } );
 

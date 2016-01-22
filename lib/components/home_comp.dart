@@ -55,7 +55,7 @@ class HomeComp  {
             this.loadingService, this._refreshTimersService, this._promosService,
             TutorialService tutorialService) {
     loadingService.isLoading = true;
-    contestTileHTML = isContestTileEnabled ? defaultPromo['html'] : defaultPromoWithTutorial['html'];
+    //contestTileHTML = isContestTileEnabled ? defaultPromo['html'] : defaultPromoWithTutorial['html'];
     _refreshMyContests();
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
     _profileService.triggerNotificationsPopUp(_router);
@@ -70,9 +70,9 @@ class HomeComp  {
   }
 
   void _refreshMyContests() {
-    refreshContestTileHTML();
     if (!userIsLogged) {
       loadingService.isLoading = false;
+      refreshContestTileHTML();
       return;
     }
     // Parallel processing using the Future API
@@ -85,6 +85,7 @@ class HomeComp  {
         numRealHistoryContests = contestsService.historyContests.length - numVirtualHistoryContests;
         numLiveContests = contestsService.liveContests.length;
         numUpcomingContests = contestsService.waitingContests.length;
+        refreshContestTileHTML();
       })
       .catchError((ServerError error) {
         _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
@@ -122,7 +123,7 @@ class HomeComp  {
   void refreshContestTileHTML() {
     Element tile = querySelector("#contestTile .tile");
     if(tile == null) {
-      contestTileHTML = isContestTileEnabled ? defaultPromo['html'] : defaultPromoWithTutorial['html'];
+      _contestTileHTML = '';
       return;
     }
     
@@ -134,12 +135,22 @@ class HomeComp  {
     if (tile.style.backgroundImage != "url('${currentPromo['imageDesktop']}')") { 
       tile.style.backgroundImage = "url('${currentPromo['imageDesktop']}')";
     }
-    contestTileHTML = currentPromo['html'];
+    _contestTileHTML = currentPromo['html'];
   }
   
-  String contestTileHTML = '';
+  String _contestTileHTML = '';
+  
+  String get contestTileHTML {
+    if (_contestTileHTML == '') {
+      refreshContestTileHTML();
+    }
+    return _contestTileHTML;
+  }
 
   void onContestsClick() {
+    if (_contestTileHTML == '') {
+      _router.go('lobby', {});
+    }
     _promosService.gotoPromo(currentPromo, defaultUrl: 'lobby');
   }
 

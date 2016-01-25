@@ -28,11 +28,9 @@ class FriendsBarComp {
   
   @NgOneWay('show-challenge')
   bool showChallenge = true;
-  
-  String get pictureUrl => pro.user.profileImage;
+
   String get challengeText => StringUtils.translate("challenge", "facebook_service");
   
-  FriendsBarComp(this.pro);
+  FriendsBarComp();
   
-  ProfileService pro;
 }

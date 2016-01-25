@@ -18743,6 +18743,60 @@ lineup-selector {
 #leaderboard-wrapper {
   padding-bottom: 40px;
 }
+#leaderboard-wrapper .default-section-header .header-title {
+  float: left;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  #leaderboard-wrapper .default-section-header .header-title {
+    float: left;
+    width: 75%;
+  }
+}
+@media (max-width: 767px) {
+  #leaderboard-wrapper .default-section-header .header-title {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+#leaderboard-wrapper .default-section-header friend-info.visited-user {
+  float: left;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 0px 5px;
+  margin: -20px 0;
+}
+@media (min-width: 768px) {
+  #leaderboard-wrapper .default-section-header friend-info.visited-user {
+    float: left;
+    width: 25%;
+  }
+}
+@media (max-width: 767px) {
+  #leaderboard-wrapper .default-section-header friend-info.visited-user {
+    padding: 5px 5px 0 5px;
+    margin: 0px;
+  }
+  #leaderboard-wrapper .default-section-header friend-info.visited-user .friend-element-wrapper {
+    margin: 0px;
+    text-align: left;
+  }
+  #leaderboard-wrapper .default-section-header friend-info.visited-user .friend-element-wrapper .friend-picture {
+    display: none;
+  }
+  #leaderboard-wrapper .default-section-header friend-info.visited-user .friend-element-wrapper .friend-name {
+    padding: 5px 10px;
+    margin: 0;
+    display: inline-block;
+  }
+}
 #leaderboard-wrapper #leaderboard-header-wrapper {
   display: block;
   background-color: #ecf0f1;
@@ -25669,12 +25723,28 @@ textareateams-filter .teams-filter-wrapper .teams-selector-filter {
     width: 20%;
   }
 }
-.friends-bar-wrapper .friend-element-wrapper .friend-picture {
+.friends-bar-wrapper .friend-element-wrapper + .friend-element-wrapper {
+  border-left: 1px solid #dcdcdc;
+}
+@media (max-width: 767px) {
+  .friends-bar-wrapper .friend-element-wrapper + .friend-element-wrapper + .friend-element-wrapper + .friend-element-wrapper {
+    display: none !important;
+  }
+}
+.friend-element-wrapper {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #000000;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+}
+.friend-element-wrapper .friend-picture {
   width: 50px;
   height: 50px;
   margin: 5px auto;
 }
-.friends-bar-wrapper .friend-element-wrapper .friend-name {
+.friend-element-wrapper .friend-name {
   background-color: #afd3e4;
   border-radius: 100px;
   color: #434343;
@@ -25682,14 +25752,14 @@ textareateams-filter .teams-filter-wrapper .teams-selector-filter {
   margin: 3px;
   padding: 2px 5px;
 }
-.friends-bar-wrapper .friend-element-wrapper .friend-manager-level {
+.friend-element-wrapper .friend-manager-level {
   display: inline-block;
   position: relative;
   width: 40px;
   height: 30px;
   vertical-align: bottom;
 }
-.friends-bar-wrapper .friend-element-wrapper .friend-manager-level .amount {
+.friend-element-wrapper .friend-manager-level .amount {
   position: absolute;
   display: inline-block;
   left: 0;
@@ -25706,7 +25776,7 @@ textareateams-filter .teams-filter-wrapper .teams-selector-filter {
   min-height: 18px;
   line-height: 18px;
 }
-.friends-bar-wrapper .friend-element-wrapper .friend-manager-level:before {
+.friend-element-wrapper .friend-manager-level:before {
   content: " ";
   background-image: url("../images/icon-star-lg.png");
   width: 27px;
@@ -25717,7 +25787,7 @@ textareateams-filter .teams-filter-wrapper .teams-selector-filter {
   left: 5px;
   top: 0;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend {
+.friend-element-wrapper .challenge-friend {
   color: #333333;
   background-color: #ffffff;
   border-color: #cccccc;
@@ -25757,64 +25827,64 @@ textareateams-filter .teams-filter-wrapper .teams-selector-filter {
   padding: 5px 3px;
   vertical-align: bottom;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:hover,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:focus,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:active,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.active,
-.open .dropdown-toggle.friends-bar-wrapper .friend-element-wrapper .challenge-friend {
+.friend-element-wrapper .challenge-friend:hover,
+.friend-element-wrapper .challenge-friend:focus,
+.friend-element-wrapper .challenge-friend:active,
+.friend-element-wrapper .challenge-friend.active,
+.open .dropdown-toggle.friend-element-wrapper .challenge-friend {
   color: #333333;
   background-color: #ebebeb;
   border-color: #adadad;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:active,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.active,
-.open .dropdown-toggle.friends-bar-wrapper .friend-element-wrapper .challenge-friend {
+.friend-element-wrapper .challenge-friend:active,
+.friend-element-wrapper .challenge-friend.active,
+.open .dropdown-toggle.friend-element-wrapper .challenge-friend {
   background-image: none;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.disabled,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend[disabled],
-fieldset[disabled] .friends-bar-wrapper .friend-element-wrapper .challenge-friend,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.disabled:hover,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend[disabled]:hover,
-fieldset[disabled] .friends-bar-wrapper .friend-element-wrapper .challenge-friend:hover,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.disabled:focus,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend[disabled]:focus,
-fieldset[disabled] .friends-bar-wrapper .friend-element-wrapper .challenge-friend:focus,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.disabled:active,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend[disabled]:active,
-fieldset[disabled] .friends-bar-wrapper .friend-element-wrapper .challenge-friend:active,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.disabled.active,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend[disabled].active,
-fieldset[disabled] .friends-bar-wrapper .friend-element-wrapper .challenge-friend.active {
+.friend-element-wrapper .challenge-friend.disabled,
+.friend-element-wrapper .challenge-friend[disabled],
+fieldset[disabled] .friend-element-wrapper .challenge-friend,
+.friend-element-wrapper .challenge-friend.disabled:hover,
+.friend-element-wrapper .challenge-friend[disabled]:hover,
+fieldset[disabled] .friend-element-wrapper .challenge-friend:hover,
+.friend-element-wrapper .challenge-friend.disabled:focus,
+.friend-element-wrapper .challenge-friend[disabled]:focus,
+fieldset[disabled] .friend-element-wrapper .challenge-friend:focus,
+.friend-element-wrapper .challenge-friend.disabled:active,
+.friend-element-wrapper .challenge-friend[disabled]:active,
+fieldset[disabled] .friend-element-wrapper .challenge-friend:active,
+.friend-element-wrapper .challenge-friend.disabled.active,
+.friend-element-wrapper .challenge-friend[disabled].active,
+fieldset[disabled] .friend-element-wrapper .challenge-friend.active {
   background-color: #ffffff;
   border-color: #cccccc;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend .badge {
+.friend-element-wrapper .challenge-friend .badge {
   color: #ffffff;
   background-color: #333333;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:focus,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:active:focus,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.active:focus {
+.friend-element-wrapper .challenge-friend:focus,
+.friend-element-wrapper .challenge-friend:active:focus,
+.friend-element-wrapper .challenge-friend.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:hover,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:focus {
+.friend-element-wrapper .challenge-friend:hover,
+.friend-element-wrapper .challenge-friend:focus {
   color: #333333;
   text-decoration: none;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:active,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.active {
+.friend-element-wrapper .challenge-friend:active,
+.friend-element-wrapper .challenge-friend.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.disabled,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend[disabled],
-fieldset[disabled] .friends-bar-wrapper .friend-element-wrapper .challenge-friend {
+.friend-element-wrapper .challenge-friend.disabled,
+.friend-element-wrapper .challenge-friend[disabled],
+fieldset[disabled] .friend-element-wrapper .challenge-friend {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -25822,62 +25892,54 @@ fieldset[disabled] .friends-bar-wrapper .friend-element-wrapper .challenge-frien
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:active,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.active {
+.friend-element-wrapper .challenge-friend:active,
+.friend-element-wrapper .challenge-friend.active {
   box-shadow: none;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:active:focus,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.active:focus {
+.friend-element-wrapper .challenge-friend:active:focus,
+.friend-element-wrapper .challenge-friend.active:focus {
   color: #ffffff;
   background-color: #82c1df;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:active:hover,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.active:hover {
+.friend-element-wrapper .challenge-friend:active:hover,
+.friend-element-wrapper .challenge-friend.active:hover {
   color: #ffffff;
   background-color: #82c1df;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:focus {
+.friend-element-wrapper .challenge-friend:focus {
   background-color: #59add5;
   color: #ffffff;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:hover {
+.friend-element-wrapper .challenge-friend:hover {
   background-color: #6db7da;
   outline: none !important;
   color: #ffffff;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:hover:focus {
+.friend-element-wrapper .challenge-friend:hover:focus {
   background-color: #59add5;
   color: #ffffff;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:active,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.active {
+.friend-element-wrapper .challenge-friend:active,
+.friend-element-wrapper .challenge-friend.active {
   box-shadow: none;
   background-color: #59add5;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:hover {
+.friend-element-wrapper .challenge-friend:hover {
   background-color: #6db7da;
   outline: none !important;
   color: #ffffff;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.disabled,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend[disabled],
-fieldset[disabled] .friends-bar-wrapper .friend-element-wrapper .challenge-friend {
+.friend-element-wrapper .challenge-friend.disabled,
+.friend-element-wrapper .challenge-friend[disabled],
+fieldset[disabled] .friend-element-wrapper .challenge-friend {
   background-color: #82c1df;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.close {
+.friend-element-wrapper .challenge-friend.close {
   background-color: #59add5;
   outline: none !important;
   color: #ffffff;
-}
-.friends-bar-wrapper .friend-element-wrapper + .friend-element-wrapper {
-  border-left: 1px solid #dcdcdc;
-}
-@media (max-width: 767px) {
-  .friends-bar-wrapper .friend-element-wrapper + .friend-element-wrapper + .friend-element-wrapper + .friend-element-wrapper {
-    display: none !important;
-  }
 }
 /*
     <img class="friend-picture" ng-src="{{user.profileImage}}">

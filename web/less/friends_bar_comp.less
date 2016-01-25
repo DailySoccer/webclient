@@ -8,60 +8,10 @@
 	@media (min-width: @screen-sm-max) {
 		padding: 0 15%;
 	}
-	
 	.friend-element-wrapper {
 		.make-xs-column(4); // 5 columnas
 		.make-sm-column(2.4); // 5 columnas
 		padding: 5px 5px;
-		
-		.friend-picture {
-			width: 50px;
-			height: 50px;
-			margin: 5px auto; 
-		}
-		.friend-name {
-			background-color: @blueMenu;
-			border-radius: 100px;
-			color: @greyUltraDark;
-			display: block;
-			margin: 3px;
-			padding: 2px 5px;
-		}
-		.friend-manager-level {
-			display: inline-block;
-			position: relative;
-			width: 40px;
-			height: 30px;
-			vertical-align: bottom;
-			
-			.amount {
-				position: absolute;
-				display: inline-block;
-				left: 0;
-				top: 10px;
-				background-color: @blueLight;
-				border-radius: 100px;
-				.opensans_bold(10pt, @black);
-				border: 1px solid @black;
-				min-width: 18px;
-				min-height: 18px;
-				line-height: 18px;
-			}
-			&:before {
-				.addIcon("icon-star-lg.png", 27px, 27px);
-				position: absolute;
-				display: inline-block;
-				left: 5px;
-				top: 0;
-			}
-		}
-		.challenge-friend {
-			.btn-default();
-			.exo_bold(10pt, @white);
-			padding: 5px 3px;
-			vertical-align: bottom;
-		}
-		
 	}
 	
 	.friend-element-wrapper + .friend-element-wrapper {
@@ -72,6 +22,60 @@
 	}
 }
 
+
+.friend-element-wrapper {
+	text-align: center;
+	.opensans_normal(10pt, @black);
+
+	.friend-picture {
+		width: 50px;
+		height: 50px;
+		margin: 5px auto; 
+	}
+	.friend-name {
+		background-color: @blueMenu;
+		border-radius: 100px;
+		color: @greyUltraDark;
+		display: block;
+		margin: 3px;
+		padding: 2px 5px;
+	}
+	.friend-manager-level {
+		display: inline-block;
+		position: relative;
+		width: 40px;
+		height: 30px;
+		vertical-align: bottom;
+
+		.amount {
+			position: absolute;
+			display: inline-block;
+			left: 0;
+			top: 10px;
+			background-color: @blueLight;
+			border-radius: 100px;
+			.opensans_bold(10pt, @black);
+			border: 1px solid @black;
+			min-width: 18px;
+			min-height: 18px;
+			line-height: 18px;
+		}
+		&:before {
+			.addIcon("icon-star-lg.png", 27px, 27px);
+			position: absolute;
+			display: inline-block;
+			left: 5px;
+			top: 0;
+		}
+	}
+	.challenge-friend {
+		.btn-default();
+		.exo_bold(10pt, @white);
+		padding: 5px 3px;
+		vertical-align: bottom;
+	}
+
+}
 /*
     <img class="friend-picture" ng-src="{{user.profileImage}}">
     <span class="friend-name">{{user.nickName}}</span>

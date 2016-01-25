@@ -7618,13 +7618,23 @@ scoring-rules:after,
   .contests-list-f2p-root .contestSlot .conditions-section .condition-box-commons {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    font-size: 14pt;
+    font-size: 12pt;
     color: #777777;
     text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
     border-radius: 5px;
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
-    padding: 5px 10px 8px 10px;
+    padding: 5px 5px 8px 10px;
     top: -5px;
+  }
+}
+@media (min-width: 992px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .condition-box-commons {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14pt;
+    color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
+    padding-right: 10px;
   }
 }
 .contests-list-f2p-root .contestSlot .conditions-section .condition-box-commons img {
@@ -7682,13 +7692,23 @@ scoring-rules:after,
   .contests-list-f2p-root .contestSlot .conditions-section .player-position {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    font-size: 14pt;
+    font-size: 12pt;
     color: #777777;
     text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
     border-radius: 5px;
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
-    padding: 5px 10px 8px 10px;
+    padding: 5px 5px 8px 10px;
     top: -5px;
+  }
+}
+@media (min-width: 992px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .player-position {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14pt;
+    color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
+    padding-right: 10px;
   }
 }
 .contests-list-f2p-root .contestSlot .conditions-section .player-position img {
@@ -7758,13 +7778,23 @@ scoring-rules:after,
   .contests-list-f2p-root .contestSlot .conditions-section .entry-fee-box {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    font-size: 14pt;
+    font-size: 12pt;
     color: #777777;
     text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
     border-radius: 5px;
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
-    padding: 5px 10px 8px 10px;
+    padding: 5px 5px 8px 10px;
     top: -5px;
+  }
+}
+@media (min-width: 992px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .entry-fee-box {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14pt;
+    color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
+    padding-right: 10px;
   }
 }
 .contests-list-f2p-root .contestSlot .conditions-section .entry-fee-box img {
@@ -7828,13 +7858,23 @@ scoring-rules:after,
   .contests-list-f2p-root .contestSlot .conditions-section .prize-box {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    font-size: 14pt;
+    font-size: 12pt;
     color: #777777;
     text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
     border-radius: 5px;
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
-    padding: 5px 10px 8px 10px;
+    padding: 5px 5px 8px 10px;
     top: -5px;
+  }
+}
+@media (min-width: 992px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .prize-box {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14pt;
+    color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
+    padding-right: 10px;
   }
 }
 .contests-list-f2p-root .contestSlot .conditions-section .prize-box img {
@@ -7892,13 +7932,23 @@ scoring-rules:after,
   .contests-list-f2p-root .contestSlot .conditions-section .points-box {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    font-size: 14pt;
+    font-size: 12pt;
     color: #777777;
     text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
     border-radius: 5px;
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
-    padding: 5px 10px 8px 10px;
+    padding: 5px 5px 8px 10px;
     top: -5px;
+  }
+}
+@media (min-width: 992px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .points-box {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14pt;
+    color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
+    padding-right: 10px;
   }
 }
 .contests-list-f2p-root .contestSlot .conditions-section .points-box img {
@@ -11555,6 +11605,7 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   height: 45px;
   padding-top: 5px;
+  margin-right: 155px;
 }
 .fantasy-team-header .nickname-view-contest-entry-mode {
   font-family: 'Exo', sans-serif;
@@ -11610,6 +11661,7 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
 .fantasy-team-header .edit-team {
   float: right !important;
   margin: 20px 5px 0 0;
+  width: 150px;
 }
 .fantasy-team-header .edit-team .btn-edit-team {
   color: #333333;
@@ -11866,6 +11918,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   color: #777777;
   text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   display: block;
+  line-height: 18px;
 }
 .fantasy-team-list .fantasy-team-slot .column-primary-info .match-event-name {
   font-family: 'Open Sans', sans-serif;
@@ -11873,6 +11926,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-size: 9pt;
   color: #59add5;
   text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  line-height: 17px;
 }
 .fantasy-team-list .fantasy-team-slot .column-primary-info .remaining-match-time {
   font-family: 'Open Sans', sans-serif;
@@ -12877,7 +12931,7 @@ main-menu-f2p .beta-label {
   #mainMenu .dropdown-menu {
     position: relative;
     top: -4px;
-    left: 10px;
+    left: -105px;
     padding: 0px;
   }
   #mainMenu .dropdown-menu > li > a {
@@ -18065,6 +18119,7 @@ fieldset[disabled] .soccer-players-filter .filter-by-position .button-filter-fav
   height: 17px;
   display: inline-block;
   vertical-align: middle;
+  background-repeat: no-repeat;
 }
 .soccer-players-filter .filter-by-position .button-filter-favorites.active {
   background-color: #ffffff;
@@ -18089,6 +18144,7 @@ fieldset[disabled] .soccer-players-filter .filter-by-position .button-filter-fav
   height: 17px;
   display: inline-block;
   vertical-align: middle;
+  background-repeat: no-repeat;
 }
 .soccer-players-filter .name-player-input-filter {
   display: block;

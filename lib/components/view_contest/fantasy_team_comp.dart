@@ -18,6 +18,8 @@ class FantasyTeamComp implements DetachAware {
 
     String get owner => isOpponent? "opponent" : "me";
 
+    int nameWidth = 105;
+  
     @NgOneWay("contest-entry")
     set contestEntry(ContestEntry value) {
 

@@ -140,11 +140,15 @@
 				background-color: @white;
 				
 				@media (min-width: @screen-sm-min) {
-					.opensans_bold(14pt, @greyDark);
+					.opensans_bold(12pt, @greyDark);
 					border-radius: 5px;
 					box-shadow: 1px 1px 7px rgba(0,0,0,0.5) inset;
-					padding: 5px 10px 8px 10px;
+					padding: 5px 5px 8px 10px;
 					top: -5px;
+				}
+				@media (min-width: @screen-md-min) {
+					.opensans_bold(14pt, @greyDark);
+					padding-right: 10px;
 				}
 				img {
 					vertical-align: top; 

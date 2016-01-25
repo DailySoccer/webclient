@@ -604,7 +604,7 @@ class WebClientApp extends Module {
       }
 
       // Si el tutorial está activo y la ruta no está permitida, nos salimos del tutorial...
-      if (TutorialService.isActivated && !TutorialService.Instance.CurrentStep.hasTrigger(event.route.name)) {
+      if (TutorialService.isActivated && !TutorialService.Instance.CurrentTutorial.isTransitionAllowed(event.route.name)) {
         TutorialService.Instance.skipTutorial();
       }
 

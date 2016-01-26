@@ -16416,6 +16416,7 @@ fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-add {
 }
 .enter-contest-actions-wrapper {
   clear: both;
+  position: relative;
   margin-left: -7.5;
   margin-right: -7.5;
   padding: 10px;
@@ -16935,6 +16936,9 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
     width: 58.33333333%;
   }
 }
+.enter-contest-lineup-wrapper {
+  position: relative;
+}
 @media (min-width: 768px) {
   .enter-contest-lineup-wrapper {
     position: relative;
@@ -16945,6 +16949,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
     padding: 10px 10px 0px 5px;
   }
   .enter-contest-lineup-wrapper .enter-contest-lineup {
+    position: relative;
     border-width: 1px;
     border-style: solid;
     border-color: #fa9c19;
@@ -18468,8 +18473,10 @@ lineup-selector {
   display: block;
   background-color: #ffffff;
   min-height: 463px;
+  position: relative;
 }
 .lineup-selector {
+  position: relative;
   border-width: 1px;
   border-style: solid none none none;
   border-color: #777777;
@@ -18489,6 +18496,7 @@ lineup-selector {
 }
 .lineup-selector .lineup-selector-slot {
   padding-left: 10px;
+  position: relative;
   cursor: pointer;
 }
 .lineup-selector .lineup-selector-slot:nth-last-child(2) {

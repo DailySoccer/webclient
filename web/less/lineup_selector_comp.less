@@ -3,9 +3,11 @@ lineup-selector {
 	display: block;
 	background-color: @white;
 	min-height: 463px;
+	position: relative;
 }
 
 .lineup-selector {
+	position: relative;
 	.make-border(1px, solid none none none, @greyDark);
 	@lineup-selector-gutter: 0px;	// Tiene que ser el mismo que soccer_players_list
 	@lineup-pos-selector-gutter: 10px;   // Nuevo para la posicion del jugador
@@ -17,6 +19,7 @@ lineup-selector {
 
 	.lineup-selector-slot {
 		padding-left: 10px;
+		position: relative;
 		// Heredamos los estilos de nuestro padre la lista soccer_players_list
 		&:extend(.soccer-players-list .soccer-players-list-slot);
 		&:nth-last-child(2){ 

@@ -198,17 +198,17 @@ class TutorialIniciacion extends Tutorial {
                 clearTooltips();
 
                 // Bien, ya has añadido tu primer jugador.
-                await onClick( [new ToolTip(".posDEL", tipId: 'playerAddedTip', tipText: getLocalizedText("msg-03a"), highlight: true, position: ToolTip.POSITION_TOP)] );
+                await onClick( [new ToolTip(".posDEL", tipId: 'playerAddedTip', tipText: getLocalizedText("msg-03a"), highlight: true, position: ToolTip.POSITION_TOP, scrollSelector: ".posDEL")] );
 
                 // Cuando añades un jugador su salario (".enter-contest-total-salary")
-                await onClick( [new ToolTip(".enter-contest-lineup-wrapper", tipText: getLocalizedText("msg-03b"), highlight: true, position: ToolTip.POSITION_TOP)] );
+                await onClick( [new ToolTip(".enter-contest-lineup-wrapper", tipText: getLocalizedText("msg-03b"), highlight: true, position: ToolTip.POSITION_TOP, scrollSelector: ".enter-contest-lineup-wrapper")] );
 
                 if (isActive) {
                   querySelectorAll(".lineup-selector-slot.posDEL")[1].click();
                 }
 
                 // Cada jugador además de su salario
-                await onClick( [new ToolTip("$soccerPlayer1 .column-manager-level", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-03c"), highlight: true, position: ToolTip.POSITION_BOTTOM, tipId: 'soccerManagerLevel')] );
+                await onClick( [new ToolTip("$soccerPlayer1 .column-manager-level", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-03c"), highlight: true, position: ToolTip.POSITION_BOTTOM, tipId: 'soccerManagerLevel', scrollSelector: ".enter-contest-soccer-players-wrapper")] );
 
                 // Los jugadores marcados en rojo
                 await onClick ( [new ToolTip("$soccerPlayer1", tipId: 'soccerPlayerRedStyle', tipText: getLocalizedText("msg-03d"), highlight: true, position: ToolTip.POSITION_TOP)] );
@@ -297,7 +297,7 @@ class TutorialIniciacion extends Tutorial {
                 clearTooltips();
 
                 // Una vez completada una alineación se activa el botón de Continuar
-                showTooltip(new ToolTip(".button-wrapper .btn-confirm-lineup-list", tipId: 'continueButton', tipText: getLocalizedText("msg-10"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true));
+                showTooltip(new ToolTip(".button-wrapper .btn-confirm-lineup-list", tipId: 'continueButton', tipText: getLocalizedText("msg-10"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true, scrollSelector: ".enter-contest-actions-wrapper.conclude-actions-wrapper"));
               },
 
               'alert-not-enough-resources': () async {
@@ -316,7 +316,7 @@ class TutorialIniciacion extends Tutorial {
 
                 // Compra una recarga de energía.
                 transitionEvaluate = (transition) => transition == 'enter_contest' && (profileService.user.energyBalance.amount > 0);
-                showTooltip(new ToolTip(".energy-layout", tipText: getLocalizedText("msg-10b"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true));
+                showTooltip(new ToolTip(".energy-layout", tipText: getLocalizedText("msg-10b"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true, scrollSelector: ".energy-layout"));
               },
             },
             serverCalls: serverCallsWhenVirtual
@@ -328,7 +328,7 @@ class TutorialIniciacion extends Tutorial {
 
                 // Púlsalo para completar tu entrada en el torneo.
                 transitionEvaluate = (transition) => transition == 'view_contest_entry';
-                showTooltip(new ToolTip(".button-wrapper .btn-confirm-lineup-list", tipId: 'continueButton', tipText: getLocalizedText("msg-10c"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true));
+                showTooltip(new ToolTip(".button-wrapper .btn-confirm-lineup-list", tipId: 'continueButton', tipText: getLocalizedText("msg-10c"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true, scrollSelector: ".enter-contest-actions-wrapper.conclude-actions-wrapper"));
               }
             },
             serverCalls: serverCallsWhenVirtual

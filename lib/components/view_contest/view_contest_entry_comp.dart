@@ -145,6 +145,8 @@ class ViewContestEntryComp {
                     aditionalClass: 'invite-friends-popup'
                  )
                  .then((resp){});
+    
+    querySelector(".share-url").focus();
   }
   
   void onChallenge(user) {

@@ -210,6 +210,15 @@ class ContestHeaderF2PComp implements DetachAware, ShadowRootAware {
       _rootElement.classes.add('rounded-borders');
     }
   }
+  
+  bool isCustomContest(Contest contest) {
+    return contest.isAuthor(_profileService.user);
+  }
+  
+  String authorImage() {
+    return _profileService.user.profileImage;
+  }
+  
 
 
   String get inviteUrl => "${window.location.toString().split("#")[0]}#/enter_contest/lobby/${contest.contestId}/none";

@@ -34,6 +34,7 @@
   <div class="tournament-and-type-section">
     <span class="{{getSourceFlag()}}"></span>
     <span class="contest-type {{getContestTypeIcon()}}"></span>
+    <div class="created-by-user" ng-if="isCustomContest(contest)"><img ng-src="{{authorImage()}}"></img></div>
   </div>
 
   <div class="close-contest" ng-switch="isInsideModal">

@@ -6183,17 +6183,24 @@ scoring-rules:after,
 .contest-header-f2p-wrapper .tournament-and-type-section {
   position: absolute;
   top: 0px;
+  left: 0px;
   width: 100%;
 }
 .contest-header-f2p-wrapper .tournament-and-type-section .flag {
-  position: absolute;
-  top: 11px;
-  left: 15px;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 4px 0 15px;
+  /*top: 11px;				
+			left: 15px;*/
 }
 .contest-header-f2p-wrapper .tournament-and-type-section .contest-type {
-  position: absolute;
-  top: -1px;
-  left: 35px;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: -1px 4px 4px 4px;
+  /*top: -1px;
+			left: 35px;*/
   width: 20px;
   height: 31px;
 }
@@ -6202,6 +6209,21 @@ scoring-rules:after,
 }
 .contest-header-f2p-wrapper .tournament-and-type-section .contest-type.train {
   background-image: url("../images/trainContest.png");
+}
+.contest-header-f2p-wrapper .tournament-and-type-section .created-by-user {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0px 4px;
+  /*top: 5px;
+			left: 70px;*/
+  width: 30px;
+  height: 30px;
+}
+.contest-header-f2p-wrapper .tournament-and-type-section .created-by-user img {
+  border-radius: 100000px;
+  width: 30px;
+  height: 30px;
 }
 .contest-header-f2p-wrapper .close-contest {
   position: absolute;

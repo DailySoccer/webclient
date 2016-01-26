@@ -288,29 +288,41 @@ class EnterContestComp implements DetachAware {
     String description = "";
     int userLevel = _profileService.isLoggedIn ? _profileService.user.managerLevel.toInt() : 0;
     int userTrueSkill = _profileService.isLoggedIn ? _profileService.user.trueSkill : 0;
-
+    //getLocalizedText("alert-no-energy-message_2", substitutions:{'ENERGY': playerEnergy})
     if (contest.isLive || contest.isHistory) {
-      title = contest.isLive ? "¡Torneo Jugándose!" : "¡Torneo Terminado!";
-      description = "No es posible participar en el torneo seleccionado";
+      title = contest.isLive ? getLocalizedText("cannot-enter-live-title") : getLocalizedText("cannot-enter-history-title");
+      description = getLocalizedText("cannot-enter-live-history-desc");
     }
     else if (contest.isFull) {
-      title = "¡Torneo lleno!";
-      description = "No quedan plazas disponibles para participar en el torneo seleccionado";
+      title = getLocalizedText("cannot-enter-full-title");
+      description = getLocalizedText("cannot-enter-full-desc");
     } else if (!contest.hasManagerLevel(userLevel)) {
       if (userLevel < contest.minManagerLevel ) {
-        title = "Nivel de manager bajo";
-        description = "Necesitas nivel de manager mayor que ${contest.minManagerLevel}, actualmente tienes $userLevel";
+        title = getLocalizedText("cannot-enter-min-manager-title");
+        description = getLocalizedText("cannot-enter-min-manager-desc", substitutions: {
+                                              'MIN_MANAGER_LEVEL': contest.minManagerLevel,
+                                              'USER_LEVEL': userLevel 
+                                            });
       } else {
-        title = "Nivel de manager alto";
-        description = "El máximo nivel de manager permitido es ${contest.maxManagerLevel}, actualmente tienes $userLevel";
+        title = getLocalizedText("cannot-enter-max-manager-title");
+        description = getLocalizedText("cannot-enter-max-manager-desc", substitutions: {
+                                              'MAX_MANAGER_LEVEL': contest.maxManagerLevel,
+                                              'USER_LEVEL': userLevel 
+                                            });
       }
     } else if (!contest.hasTrueSkill(userTrueSkill)) {
       if (userTrueSkill < contest.minTrueSkill ) {
-        title = "TrueSkill bajo";
-        description = "Necesitas nivel de TrueSkill mayor que ${contest.minTrueSkill}, actualmente tienes $userTrueSkill";
+        title = getLocalizedText("cannot-enter-min-trueskill-title");
+        description = getLocalizedText("cannot-enter-min-trueskill-desc", substitutions: {
+                                              'MIN_TRUESKILL': contest.minTrueSkill,
+                                              'USER_TRUESKILL': userTrueSkill 
+                                            });
       } else {
-        title = "TrueSkill alto";
-        description = "El máximo nivel de TrueSkill permitido es ${contest.maxTrueSkill}, actualmente tienes $userTrueSkill";
+        title = getLocalizedText("cannot-enter-max-trueskill-title");
+        description = getLocalizedText("cannot-enter-max-trueskill-desc", substitutions: {
+                                              'MAX_TRUESKILL': contest.maxTrueSkill,
+                                              'USER_TRUESKILL': userTrueSkill 
+                                            });
       }
     }
     modalShow(

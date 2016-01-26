@@ -294,7 +294,20 @@
       "buy-energy-button"               : "IR A LA TIENDA",
       "alert-user-gold-message"         : "Tienes actualmente: @MONEY",
       "alert-no-energy-message_1"       : "No tienes energía para entrar en este torneo",
-      "alert-no-energy-message_2"       : "Actualmente tienes: @ENERGY"
+      "alert-no-energy-message_2"       : "Actualmente tienes: @ENERGY",
+      "cannot-enter-live-title"         : "¡Torneo Jugándose!", 
+      "cannot-enter-history-title"      : "¡Torneo Terminado!", 
+      "cannot-enter-live-history-desc"  : "No es posible participar en el torneo seleccionado", 
+      "cannot-enter-full-title"         : "¡Torneo lleno!", 
+      "cannot-enter-full-desc"          : "No quedan plazas disponibles para participar en el torneo seleccionado", 
+      "cannot-enter-min-manager-title"  : "Nivel de manager bajo", 
+      "cannot-enter-min-manager-desc"   : "Necesitas nivel de manager mayor que @MIN_MANAGER_LEVEL, actualmente tienes @USER_LEVEL",
+      "cannot-enter-max-manager-title"  : "Nivel de manager alto", 
+      "cannot-enter-max-manager-desc"   : "El máximo nivel de manager permitido es @MAX_MANAGER_LEVEL, actualmente tienes @USER_LEVEL",
+      "cannot-enter-min-trueskill-title": "TrueSkill bajo", 
+      "cannot-enter-min-trueskill-desc" : "Necesitas nivel de TrueSkill mayor que @MIN_TRUESKILL, actualmente tienes @USER_TRUESKILL",
+      "cannot-enter-max-trueskill-title": "TrueSkill alto", 
+      "cannot-enter-max-trueskill-desc" : "El máximo nivel de TrueSkill permitido es @MAX_TRUESKILL, actualmente tienes @USER_TRUESKILL"
     }
     ,"lineupselector"                   :
     {

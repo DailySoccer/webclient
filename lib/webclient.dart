@@ -535,9 +535,14 @@ class WebClientApp extends Module {
     }
     else {
       JsUtils.runJavascript(null, "onjQueryReady", [() {
-        GameMetrics.logEvent(GameMetrics.PAGE_READY);
-        _jQueryReady = true;
-        completer.complete( cb() );
+
+        // Esperamos a que el tiempo esté OK
+        DateTimeService.waitingReady().then((_) {
+          GameMetrics.logEvent(GameMetrics.PAGE_READY);
+          _jQueryReady = true;
+          completer.complete( cb() );
+        });
+
       }]);
     }
     return completer.future;

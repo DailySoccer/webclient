@@ -6,6 +6,7 @@ import 'package:webclient/services/server_service.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'dart:async';
 
 @Injectable()
 class DateTimeService {
@@ -16,6 +17,24 @@ class DateTimeService {
 
   // Se considera que está OK si estamos en Producción o se ha recibido una respuesta del servidor (sobre si está activo el simulador)
   static bool get isReady => HostServer.isProd || (_instance != null && _instance._simulatorStateReceived);
+
+  static Future waitingReady() {
+    var completer = new Completer<bool>();
+
+    if (isReady) {
+      completer.complete( true );
+    }
+    else {
+      new Timer.periodic(new Duration(milliseconds: 30), (Timer t) {
+            if (isReady) {
+              t.cancel();
+              completer.complete( true );
+            }
+          });
+    }
+
+    return completer.future;
+  }
 
   DateTimeService(this._server, this._refreshTimersService) {
     if (_instance != null)

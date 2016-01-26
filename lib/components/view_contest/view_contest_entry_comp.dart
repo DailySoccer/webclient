@@ -129,7 +129,7 @@ class ViewContestEntryComp {
   }
   
   String get inviteUrl => "${window.location.toString().split("#")[0]}#/sec/${contest.contestId}";
-
+  
   void onInviteFriends() {
     if (_shareContent == null) {
       _shareContent = querySelector("#shareMethodsContent");
@@ -153,8 +153,8 @@ class ViewContestEntryComp {
   }
 
   void onShareTextareaFocus(Event e) {
-    TextAreaElement textarea = e.currentTarget;
-    textarea.setSelectionRange(0, inviteUrl.length);
+    InputElement inputText = e.currentTarget;
+    inputText.setSelectionRange(0, inviteUrl.length);
   }
   
   Map _sharingInfo = {};

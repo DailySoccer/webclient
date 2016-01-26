@@ -37,10 +37,10 @@ class User {
     } else {
       url = image['imageUrl'];
     }
-    
+
     return url;
   }
-  
+
   num managerLevel;
   int get pointsToNextLevel {
     int level = managerLevel.toInt();

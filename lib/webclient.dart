@@ -348,6 +348,8 @@ class WebClientApp extends Module {
           mount: {
             'response': ngRoute(
                 path: '/response/:result',
+                preEnter: (RoutePreEnterEvent e) => _preEnterPagePayment(e, router),
+                //preLeave: (RoutePreLeaveEvent e) => _preLeavePagePayment(e, router),
                 viewHtml: '<payment-response></payment-response>')
           }
 
@@ -492,7 +494,7 @@ class WebClientApp extends Module {
       )
       ,'howtocreatecontest': ngRoute(
           path: '/how-to-create-contest',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPagePayment(e, router),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<how-to-create-contest></how-to-create-contest>'
       )
       ,'terminus_info': ngRoute(
@@ -555,12 +557,23 @@ class WebClientApp extends Module {
   }
 
   void _preEnterPagePayment(RoutePreEnterEvent event, Router router) {
-    if (event.parameters["result"] == 'success' && window.localStorage.containsKey("add_funds_success")) {
-      window.location.assign(window.localStorage["add_funds_success"]);
+    if (event.parameters["result"] == 'success' && window.localStorage.containsKey("add_gold_success")) {
+      window.location.assign(window.localStorage["add_gold_success"]);
 
       event.allowEnter(_waitingjQueryReady(() {
         return false;
       }));
+    }
+  }
+
+  // TODO: No funciona la redirección "window.location"
+  void _preLeavePagePayment(RoutePreLeaveEvent event, Router router) {
+    if (window.localStorage.containsKey("add_gold_success")) {
+      window.location.assign(window.localStorage["add_gold_success"]);
+
+      event.allowLeave(_waitingjQueryReady(() {
+              return false;
+            }));
     }
   }
 

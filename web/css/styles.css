@@ -7401,17 +7401,24 @@ scoring-rules:after,
 .contests-list-f2p-root .contestSlot .tournament-and-type-section {
   position: absolute;
   top: 0px;
+  left: 0px;
   width: 100%;
 }
 .contests-list-f2p-root .contestSlot .tournament-and-type-section .flag {
-  position: absolute;
-  top: 11px;
-  left: 15px;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 4px 0 15px;
+  /*top: 11px;				
+				left: 15px;*/
 }
 .contests-list-f2p-root .contestSlot .tournament-and-type-section .contest-type {
-  position: absolute;
-  top: -1px;
-  left: 35px;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: -1px 4px 4px 4px;
+  /*top: -1px;
+				left: 35px;*/
   width: 20px;
   height: 31px;
 }
@@ -7422,9 +7429,12 @@ scoring-rules:after,
   background-image: url("../images/trainContest.png");
 }
 .contests-list-f2p-root .contestSlot .tournament-and-type-section .friends-in {
-  position: absolute;
-  top: 5px;
-  left: 70px;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0px 4px;
+  /*top: 5px;
+				left: 70px;*/
   width: 32px;
   height: 27px;
   background-image: url("../images/friendsIcon.png");
@@ -7446,6 +7456,21 @@ scoring-rules:after,
   right: -7px;
   display: block;
   padding: 0px 3px 0 3px;
+}
+.contests-list-f2p-root .contestSlot .tournament-and-type-section .created-by-user {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0px 4px;
+  /*top: 5px;
+				left: 70px;*/
+  width: 30px;
+  height: 30px;
+}
+.contests-list-f2p-root .contestSlot .tournament-and-type-section .created-by-user img {
+  border-radius: 100000px;
+  width: 30px;
+  height: 30px;
 }
 .contests-list-f2p-root .contestSlot .special-image-section {
   overflow: hidden;
@@ -22002,6 +22027,7 @@ fieldset[disabled] .info-complete-bar .invite-friends {
   padding-right: 15px;
   padding: 10px 10px;
   margin: 10px 0 20px 0;
+  text-align: center;
 }
 #shareMethodsContent.share-methods-modal-content {
   display: none;

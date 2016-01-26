@@ -49,9 +49,10 @@
       </div>
 
       <div class="tournament-and-type-section">
-        <span class="{{getSourceFlag(contest)}}"></span>
-        <span class="contest-type {{getContestTypeIcon(contest)}}"></span>
-        <span class="friends-in" ng-if="friendsCount(contest) > 0"><span class="count">{{friendsCount(contest)}}</span></span>
+        <div class="{{getSourceFlag(contest)}}"></div>
+        <div class="contest-type {{getContestTypeIcon(contest)}}"></div>
+        <div class="created-by-user" ng-if="isCustomContest(contest)"><img ng-src="{{authorImage()}}"></img></div>
+        <div class="friends-in" ng-if="friendsCount(contest) > 0"><span class="count">{{friendsCount(contest)}}</span></div>
       </div>
       
     </div>

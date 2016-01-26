@@ -224,6 +224,14 @@ class ContestsListF2PComp {
     return _friendsCountCache[contest.contestId]['friends'];
   }
   
+  bool isCustomContest(Contest contest) {
+    return contest.isAuthor(_profileService.user);
+  }
+  
+  String authorImage() {
+    return _profileService.user.profileImage;
+  }
+  
   /********* HANDLERS */
   void onRow(Contest contest) {
     if (onRowClick != null) {

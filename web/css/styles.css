@@ -23508,6 +23508,7 @@ users-list#usersList > .epic-tooltip {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  cursor: pointer;
   background-color: #ffffff;
   background: #ffffff url("../images/arrowDownBlack.png") no-repeat 95% 50%;
 }

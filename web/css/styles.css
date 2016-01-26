@@ -22000,7 +22000,7 @@ fieldset[disabled] .info-complete-bar .invite-friends {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  padding: 10px 0;
+  padding: 10px 10px;
   margin: 10px 0 20px 0;
 }
 #shareMethodsContent.share-methods-modal-content {

@@ -152,6 +152,11 @@ class ViewContestEntryComp {
     onInviteFriends();
   }
 
+  void onShareTextareaFocus(Event e) {
+    TextAreaElement textarea = e.currentTarget;
+    textarea.setSelectionRange(0, inviteUrl.length);
+  }
+  
   Map _sharingInfo = {};
   Map get sharingInfo {
     if (contest == null) return _sharingInfo;

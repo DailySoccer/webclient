@@ -52,3 +52,11 @@ Your default launch will look like this:
 The server uses CORS to allow the client to be executed in its own server (localhost:3000 or wherever). But you can also copy 
 the output of "pub build" to the backend/public folder and execute directly with the server serving the client as static files.
 
+Resolutions
+===========
+
+Minimum resolution width: 320px
+XS: < 768px
+SM: < 970px
+MD: > 970px
+

@@ -51,7 +51,7 @@
       <div class="tournament-and-type-section">
         <span class="{{getSourceFlag(contest)}}"></span>
         <span class="contest-type {{getContestTypeIcon(contest)}}"></span>
-        <span class="friends-in" ng-if="(!userIsRegistered(contest)) && friendsCount(contest) > 0"><span class="count">{{friendsCount(contest)}}</span></span>
+        <span class="friends-in" ng-if="friendsCount(contest) > 0"><span class="count">{{friendsCount(contest)}}</span></span>
       </div>
       
     </div>

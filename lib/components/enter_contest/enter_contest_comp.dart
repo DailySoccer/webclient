@@ -766,15 +766,19 @@ class EnterContestComp implements DetachAware {
 
   void _showMsgError(ServerError error) {
     String keyError = errorMap.keys.firstWhere( (key) => error.responseError.contains(key), orElse: () => "_ERROR_DEFAULT_" );
-    modalShow(
+    
+    if (keyError == ERROR_USER_BALANCE_NEGATIVE) {
+      alertNotEnoughResources();
+    } else {
+      modalShow(
         errorMap[keyError]["title"],
         (editingContestEntry && errorMap[keyError].containsKey("editing")) ? errorMap[keyError]["editing"] : errorMap[keyError]["generic"]
-    )
-    .then((resp) {
-      if (keyError == ERROR_CONTEST_NOT_ACTIVE) {
-        _router.go(_routeProvider.parameters["parent"], {});
-      }
-    });
+      ).then((resp) {
+        if (keyError == ERROR_CONTEST_NOT_ACTIVE) {
+          _router.go(_routeProvider.parameters["parent"], {});
+        }
+      });
+    }
   }
 
   void _verifyMaxPlayersInSameTeam() {

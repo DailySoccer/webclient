@@ -102,7 +102,7 @@ class ToolTip {
            String position: ToolTip.POSITION_TOP, String tipId: '',
            Duration delay: Duration.ZERO, Duration duration: Duration.ZERO,
            void onClickCb(Tooltip): null, bool allowClickOnElement: false,
-           String arrowPosition: null, String scrollSelector: ''}) {
+           String arrowPosition: null, String scrollSelector: '', int scrollOffset: -150}) {
     _cssSelector = cssSelector;
     _tipText = tipText;
     _highlight = highlight;
@@ -113,6 +113,7 @@ class ToolTip {
     _allowClickOnElement = allowClickOnElement;
     _arrowPosition = arrowPosition;
     _scrollCssSelector = scrollSelector;
+    _scrollOffset = scrollOffset;
 
     if (onClickCb != null) {
       _onClickCb = onClickCb;
@@ -175,7 +176,7 @@ class ToolTip {
       _onShow.add(this);
       _showAsSoonTimer.cancel();
       if (_scrollCssSelector != '') {
-        _scrDet.scrollTo(_scrollCssSelector , smooth: true, offset: -150);
+        _scrDet.scrollTo(_scrollCssSelector , smooth: true, offset: _scrollOffset);
       }
       
       if (_duration != null && _duration != Duration.ZERO) {
@@ -195,6 +196,7 @@ class ToolTip {
   bool _allowClickOnElement;
   String _arrowPosition;
   String _scrollCssSelector;
+  int _scrollOffset;
   ScreenDetectorService _scrDet;
 
   Element _theTip = null;

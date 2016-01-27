@@ -198,7 +198,7 @@ class TutorialIniciacion extends Tutorial {
                 clearTooltips();
 
                 // Bien, ya has añadido tu primer jugador.
-                await onClick( [new ToolTip(".posDEL", tipId: 'playerAddedTip', tipText: getLocalizedText("msg-03a"), highlight: true, position: ToolTip.POSITION_TOP, scrollSelector: ".posDEL")] );
+                await onClick( [new ToolTip(".posDEL", tipId: 'playerAddedTip', tipText: getLocalizedText("msg-03a"), highlight: true, position: ToolTip.POSITION_TOP, scrollSelector: ".posDEL", scrollOffset: 100)] );
 
                 // Cuando añades un jugador su salario (".enter-contest-total-salary")
                 await onClick( [new ToolTip(".enter-contest-lineup-wrapper", tipText: getLocalizedText("msg-03b"), highlight: true, position: ToolTip.POSITION_TOP, scrollSelector: ".enter-contest-lineup-wrapper")] );

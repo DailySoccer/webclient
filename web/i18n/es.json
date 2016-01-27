@@ -961,9 +961,9 @@
       "7-title"                         : "7. Salarios y coste de los futbolistas",
       "7-text"                          : "<p>Después de cada jornada, en función de los puntos Fantasy conseguidos, se actualizarán los salarios de los futbolistas. Como consecuencia de estas modificaciones de salario, los futbolistas podrán subir o bajar de nivel</p><p>En los torneos oficiales, el coste en oro de alinear futbolistas dependerá del nivel de mánager del usuario y de la cuantía de los premios a ganar en el torneo.</p>",
       "8-title"                         : "8. Cancelación de Torneos",
-      "8-text"                          : "<p>Todos los torneos tienen un número de participantes mínimo. Si no se alcanza este mínimo de participantes al inicio del torneo, éste será anulado. Por ejemplo, un duelo sin 2 competidores o un torneo tipo Liga con sólo 2 participantes no se celebrarán.</p><p>Si un torneo oficial es cancelado, el oro invertido en dicho torneo será devuelto al usuario. La energía invertida en un torneo virtual no se devolverá al usuario si se cancela el torneo.</p><p>Cuando un usuario crea un torneo, y ese torneo se cancela, el usuario que creo el torneo perderá todo el oro invertido en el mismo.</p><p>Epic Eleven también se reserva el derecho de cancelar los torneos a su criterio, sin ningún tipo de restricciones. Normalmente, esto se llevará a cabo sólo en los casos en los que creemos que, debido a problemas en el servicio o hechos que afecten a los eventos deportivos, no habría un impacto generalizado en la mayor parte de las competiciones.</p>",
-      "9-title"                        : "9. Términos de Uso y Privacidad",
-      "9-text"                         : "<p>Toda la información sobre bases legales está disponible en nuestros <a href=\"#/terminus_info\" target=\"_blank\">Términos de Uso</a> y nuestras <a href=\"#/policy_info\" target=\"_blank\">Políticas de Privacidad.</a>.</p>"
+      "8-text"                          : "<p>Todos los torneos tienen un número de participantes mínimo. Si no se alcanza este mínimo de participantes al inicio del torneo, éste será cancelado. Por ejemplo, un duelo sin 2 competidores o un torneo sin el número mínimo de participantes requerido no se celebrarán.</p><p>Si un torneo oficial es cancelado, el oro invertido en dicho torneo será devuelto al usuario. La energía invertida en un torneo virtual no se devolverá al usuario si se cancela el torneo.</p><p>Cuando un usuario crea un torneo, y ese torneo se cancela, el usuario que creo el torneo perderá todo el oro invertido en el mismo.</p><p>Epic Eleven también se reserva el derecho de cancelar los torneos a su criterio, sin ningún tipo de restricciones. Normalmente, esto se llevará a cabo sólo en los casos en los que creemos que, debido a problemas en el servicio o hechos que afecten a los eventos deportivos, no habría un impacto generalizado en la mayor parte de las competiciones.</p>",
+      "9-title"                         : "9. Términos de Uso y Privacidad",
+      "9-text"                          : "<p>Toda la información sobre bases legales está disponible en nuestros <a href=\"#/terminus_info\" target=\"_blank\">Términos de Uso</a> y nuestras <a href=\"#/policy_info\" target=\"_blank\">Políticas de Privacidad.</a>.</p>"
 
     }
     ,"tutorials"                        :
@@ -978,7 +978,7 @@
     ,"help"                             :
     {
       "title"                           : "Ayuda",
-      "tutorials"                       : "Tutoriales",
+      "tutorials"                       : "Tutorial",
       "how-it-works"                    : "Cómo funciona",
       "rules"                           : "Reglas"
     }

@@ -33,10 +33,13 @@ class FriendInfoComp {
   @NgOneWay('show-manager-level')
   bool showManagerLevel = true;
   
+  @NgOneWay('id-error')
+  bool idError = false;
+  
   String get challengeText => StringUtils.translate("challenge", "facebook_service");
-  String get profileImage => _fbUser != null? _fbUser.profileImage : "";
-  String get nickname => _fbUser != null? _fbUser.nickName : "";
-  String get managerLevel => _fbUser != null? "${_fbUser.managerLevel.toInt()}" : "-";
+  String get profileImage => idError ? '' : _fbUser != null? _fbUser.profileImage : "";
+  String get nickname => idError ? 'id desconocido' :_fbUser != null? _fbUser.nickName : "";
+  String get managerLevel => idError ? '-' :_fbUser != null? "${_fbUser.managerLevel.toInt()}" : "-";
   
   FriendInfoComp();
 }

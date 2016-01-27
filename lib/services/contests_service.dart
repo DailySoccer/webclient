@@ -50,7 +50,12 @@ class ContestsService {
       completer.complete(true);
     }
     else {
-      completer.completeError(false);
+      refreshActiveContest(contestId).then((_) {
+        completer.complete(true);
+      })
+      .catchError((_) {
+        completer.completeError(false);
+      });
     }
 
     return completer.future;

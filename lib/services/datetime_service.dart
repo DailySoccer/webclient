@@ -7,6 +7,8 @@ import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'dart:async';
+import 'dart:html';
+import 'package:logging/logging.dart';
 
 @Injectable()
 class DateTimeService {
@@ -22,13 +24,18 @@ class DateTimeService {
     var completer = new Completer<bool>();
 
     if (isReady) {
+      // Logger.root.info("DateTimeService.isReady!!");
       completer.complete( true );
     }
     else {
       new Timer.periodic(new Duration(milliseconds: 30), (Timer t) {
             if (isReady) {
+              // Logger.root.info("DateTimeService.isReady");
               t.cancel();
               completer.complete( true );
+            }
+            else {
+              // Logger.root.info("waiting DateTimeService.isReady...");
             }
           });
     }

@@ -9,6 +9,7 @@ import 'package:webclient/services/server_error.dart';
 import 'dart:async';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/utils/html_utils.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 class FBLogin {
 
@@ -78,7 +79,6 @@ class FBLogin {
   }
 
   static void loginCallback(loginResponse) {
-    
     getFacebookPermissions().then( (permissions) {
       if ( _checkPermissions(permissions) ) {
         serverLoginWithFB();
@@ -125,19 +125,17 @@ class FBLogin {
   }
   
   static void rerequestLoginModal() {
-    modalShow(
-              "",
+    modalShow("",
               '''
-                      <h1>Permisos denegados</h1>
-                      <p>Los siguientes permisos de facebook son necesarios para poder acceder a EpicElven</p>
-                      <ul>${NEEDED_PERMISSIONS.fold('', (prev, curr) => '$prev<li>$curr</li>')}</ul>
-                    '''
+                <h1>${StringUtils.translate('facebookReRequestTitle', 'login')}</h1>
+                <p>${StringUtils.translate('facebookReRequestText', 'login')}</p>
+              '''
+              // <ul>${NEEDED_PERMISSIONS.fold('', (prev, curr) => '$prev<li>$curr</li>')}</ul>
               , onBackdropClick: false
-              , onOk: "Vale"
-              , onCancel: "Cancelar"
+              , onOk: StringUtils.translate('facebookReRequestOk', 'login')
+              , onCancel: StringUtils.translate('facebookReRequestCancel', 'login')
               , aditionalClass: "facebook-rerequest-modal"
-            )
-            .then((ok) {
+            ).then((ok) {
               JsUtils.runJavascript(null, "facebookLoginReRequest", [(js.JsObject loginResponse) {
                 if (loginResponse["status"] == "connected") {
                   loginCallback(loginResponse);

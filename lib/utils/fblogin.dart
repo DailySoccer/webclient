@@ -135,7 +135,7 @@ class FBLogin {
               , onOk: StringUtils.translate('facebookReRequestOk', 'login')
               , onCancel: StringUtils.translate('facebookReRequestCancel', 'login')
               , aditionalClass: "facebook-rerequest-modal"
-            ).then((ok) {
+            ).then((_) {
               JsUtils.runJavascript(null, "facebookLoginReRequest", [(js.JsObject loginResponse) {
                 if (loginResponse["status"] == "connected") {
                   loginCallback(loginResponse);

@@ -20912,6 +20912,33 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
 .modal-open #modalRoot #welcomeRoot {
   display: block;
 }
+#alertRoot.facebook-rerequest-modal .panel {
+  border: 3px solid #ffffff;
+}
+#alertRoot.facebook-rerequest-modal h1 {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 21pt;
+  color: #214a5f;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+}
+#alertRoot.facebook-rerequest-modal p {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
+  color: #434343;
+  text-shadow: 1px 1px 1px rgba(67, 67, 67, 0.004);
+  padding: 10px 0 20px 0;
+}
+#alertRoot.facebook-rerequest-modal .autocentered-buttons-wrapper .button-box {
+  width: 50%;
+}
+#alertRoot.facebook-rerequest-modal .autocentered-buttons-wrapper .button-box .cancel-button,
+#alertRoot.facebook-rerequest-modal .autocentered-buttons-wrapper .button-box .ok-button {
+  text-transform: uppercase;
+  font-size: 12pt;
+}
 #usersList {
   float: left;
   width: 100%;

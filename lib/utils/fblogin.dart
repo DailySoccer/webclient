@@ -132,20 +132,18 @@ class FBLogin {
                       <p>Los siguientes permisos de facebook son necesarios para poder acceder a EpicElven</p>
                       <ul>${NEEDED_PERMISSIONS.fold('', (prev, curr) => '$prev<li>$curr</li>')}</ul>
                     '''
-              , onBackdropClick: true
+              , onBackdropClick: false
               , onOk: "Vale"
               , onCancel: "Cancelar"
               , aditionalClass: "facebook-rerequest-modal"
             )
             .then((ok) {
-              if (ok) {
-                JsUtils.runJavascript(null, "facebookLoginReRequest", [(js.JsObject loginResponse) {
-                  if (loginResponse["status"] == "connected") {
-                    loginCallback(loginResponse);
-                  }
-                }]);
-              }
-            }).catchError((_) => _router.go('home', {}));
+              JsUtils.runJavascript(null, "facebookLoginReRequest", [(js.JsObject loginResponse) {
+                if (loginResponse["status"] == "connected") {
+                  loginCallback(loginResponse);
+                }
+              }]);
+            });//.catchError((_) => _router.go('home', {}));
   }
   
   static Map profileImage(String facebookId) {

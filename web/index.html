@@ -152,13 +152,43 @@
           FB.login(callback, {scope: 'email, public_profile, user_friends'});
         });
       }
+      
+      function facebookLoginStatus(callback) {
+        waitForFacebook(function() {
+          FB.getLoginStatus(function (response) {
+            callback(response);
+          });
+        });
+      }
 
+      function facebookPermissions(callback) {
+        waitForFacebook(function() {
+          FB.api('/me/permissions', function (response) {
+            if (response && !response.error) {
+              response['error'] = false;
+            }
+            callback(response);
+          });
+        });
+      }
+
+      function facebookLoginReRequest(callback) {
+        waitForFacebook(function() {
+          console.log("js facebook rerequest");
+          FB.login(callback, {
+              scope: 'email, public_profile, user_friends',
+              auth_type: 'rerequest'
+            });
+        });
+      }
+      
       function facebookProfileInfo(callback) {
         waitForFacebook(function() {
           FB.api('/me', {fields: 'id, name, email'},
              function(response) {
                if (response && !response.error) {
                  response['error'] = false;
+                 response['accessToken'] = FB.getAccessToken();
                }
                callback(response);
              }
@@ -290,14 +320,6 @@
           }
         };
         tryCall();
-      }
-      
-      function facebookLoginStatus(callback) {
-        waitForFacebook(function() {
-          FB.getLoginStatus(function (response) {
-            callback(response);
-          });
-        });
       }
       
       var fbIsInit = false;

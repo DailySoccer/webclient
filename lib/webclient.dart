@@ -68,6 +68,7 @@ import 'package:webclient/components/social/facebook_share_comp.dart';
 import 'package:webclient/components/social/twitter_share_comp.dart';
 import 'package:webclient/components/social/social_share_comp.dart';
 import 'package:webclient/components/social/friends_bar_comp.dart';
+import 'package:webclient/components/social/friend_info_comp.dart';
 
 import 'package:webclient/components/account/login_comp.dart';
 import 'package:webclient/components/account/join_comp.dart';
@@ -163,6 +164,7 @@ class WebClientApp extends Module {
     bind(TwitterShareComp);
     bind(SocialShareComp);
     bind(FriendsBarComp);
+    bind(FriendInfoComp);
 
     bind(MainMenuF2PComp);
     bind(FooterComp);
@@ -346,6 +348,8 @@ class WebClientApp extends Module {
           mount: {
             'response': ngRoute(
                 path: '/response/:result',
+                preEnter: (RoutePreEnterEvent e) => _preEnterPagePayment(e, router),
+                //preLeave: (RoutePreLeaveEvent e) => _preLeavePagePayment(e, router),
                 viewHtml: '<payment-response></payment-response>')
           }
 
@@ -490,7 +494,7 @@ class WebClientApp extends Module {
       )
       ,'howtocreatecontest': ngRoute(
           path: '/how-to-create-contest',
-          preEnter: (RoutePreEnterEvent e) => _preEnterPagePayment(e, router),
+          preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<how-to-create-contest></how-to-create-contest>'
       )
       ,'terminus_info': ngRoute(
@@ -533,21 +537,43 @@ class WebClientApp extends Module {
     }
     else {
       JsUtils.runJavascript(null, "onjQueryReady", [() {
+
         GameMetrics.logEvent(GameMetrics.PAGE_READY);
         _jQueryReady = true;
         completer.complete( cb() );
+
+        /*
+        // Esperamos a que el tiempo esté OK
+        DateTimeService.waitingReady().then((_) {
+          GameMetrics.logEvent(GameMetrics.PAGE_READY);
+          _jQueryReady = true;
+          completer.complete( cb() );
+        });
+        */
+
       }]);
     }
     return completer.future;
   }
 
   void _preEnterPagePayment(RoutePreEnterEvent event, Router router) {
-    if (event.parameters["result"] == 'success' && window.localStorage.containsKey("add_funds_success")) {
-      window.location.assign(window.localStorage["add_funds_success"]);
+    if (event.parameters["result"] == 'success' && window.localStorage.containsKey("add_gold_success")) {
+      window.location.assign(window.localStorage["add_gold_success"]);
 
       event.allowEnter(_waitingjQueryReady(() {
         return false;
       }));
+    }
+  }
+
+  // TODO: No funciona la redirección "window.location"
+  void _preLeavePagePayment(RoutePreLeaveEvent event, Router router) {
+    if (window.localStorage.containsKey("add_gold_success")) {
+      window.location.assign(window.localStorage["add_gold_success"]);
+
+      event.allowLeave(_waitingjQueryReady(() {
+              return false;
+            }));
     }
   }
 
@@ -604,7 +630,7 @@ class WebClientApp extends Module {
       }
 
       // Si el tutorial está activo y la ruta no está permitida, nos salimos del tutorial...
-      if (TutorialService.isActivated && !TutorialService.Instance.CurrentStep.hasTrigger(event.route.name)) {
+      if (TutorialService.isActivated && !TutorialService.Instance.CurrentTutorial.isTransitionAllowed(event.route.name)) {
         TutorialService.Instance.skipTutorial();
       }
 

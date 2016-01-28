@@ -1,5 +1,40 @@
 #leaderboard-wrapper {
 
+	.default-section-header {
+		.header-title {
+			.make-xs-column(12);
+			.make-sm-column(9);
+			@media (max-width: @screen-xs-max) {
+				padding-left: 5px;
+				padding-right: 5px;
+			}
+		}
+
+		friend-info.visited-user {
+			.make-xs-column(12);
+			.make-sm-column(3);
+			padding: 0px 5px;
+			margin: -20px 0;
+			
+			@media (max-width: @screen-xs-max) {
+				padding: 5px 5px 0 5px;
+				margin: 0px;
+				.friend-element-wrapper {
+					margin: 0px;
+					text-align: left;
+					.friend-picture {
+						display: none;
+					}
+					.friend-name {
+						padding: 5px 10px;
+						margin: 0;
+						display: inline-block;
+					}
+				}
+			}
+		}
+	}
+	
   padding-bottom: 40px;
   
 	#leaderboard-header-wrapper {

@@ -33,15 +33,15 @@
 
 
     <div class="view-contest-entry-actions-wrapper">
-<!-- Nuevos Bottons Autocentrables-->
-  <div class="new-row">
-    <div class="autocentered-buttons-wrapper">
-      <div ng-if="scrDet.isXsScreen" class="button-box"><button type="button" class="ok-button" ng-click="goToParent()">{{getLocalizedText("backtocontests")}}</button></div>
-      <!--div class="button-box"  ng-if="isModeViewing || isModeEdited"><button type="button" class="cancel-button" ng-click="confirmContestCancellation()">{{getLocalizedText("cancel")}}</button></div-->
-      <div ng-if="!scrDet.isXsScreen" class="button-box ok"><button type="button" class="ok-button" ng-click="goToParent()">{{getLocalizedText("backtocontests")}}</button></div>
-    </div>
-  </div>
-<!-- End Nuevos Bottons Autocentrables-->
+    <!-- Nuevos Bottons Autocentrables-->
+      <div class="new-row">
+        <div class="autocentered-buttons-wrapper">
+          <div ng-if="scrDet.isXsScreen" class="button-box"><button type="button" class="ok-button" ng-click="goToParent()">{{getLocalizedText("backtocontests")}}</button></div>
+          <!--div class="button-box"  ng-if="isModeViewing || isModeEdited"><button type="button" class="cancel-button" ng-click="confirmContestCancellation()">{{getLocalizedText("cancel")}}</button></div-->
+          <div ng-if="!scrDet.isXsScreen" class="button-box ok"><button type="button" class="ok-button" ng-click="goToParent()">{{getLocalizedText("backtocontests")}}</button></div>
+        </div>
+      </div>
+    <!-- End Nuevos Bottons Autocentrables-->
 
 
       <!--Viejos Bottons
@@ -52,7 +52,6 @@
         <button type="button" class="btn-back-contest" ng-click="goToParent()">SAVE CHANGES</button>
       </div>
       End Viejos Bottons-->
-
 
     </div>
     <div class="clear-fix-bottom"></div>
@@ -66,7 +65,10 @@
     <div class="share-method">
       <p>o enviarlo por mail a los amigos que quieras.</p>
       <p class="important">Copia y envia este enlace a tus amigos</p>
-      <span class="share-url" ng-if="contest != null">{{inviteUrl}}</span>
+      <input class="share-url" type="text" ng-if="contest != null" rows="1" 
+             ng-keyup="onShareTextareaFocus($event)" ng-keydown="onShareTextareaFocus($event)" 
+             ng-mouseup="onShareTextareaFocus($event)" ng-click="onShareTextareaFocus($event)"
+             ng-focus="onShareTextareaFocus($event)" ng-model="inviteUrl" readonly autofocus>
     </div>
   </div>
   

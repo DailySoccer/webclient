@@ -26,6 +26,8 @@ abstract class Tutorial {
   static String OFICIAL_CONTESTS = "oficialContests";
   static String CREATING_CONTESTS = "creatingContests";
 
+  static bool ALLOWED_FALSE = false;
+
   static String KEY_POPUP = "popup";
   static String KEY_TOOLTIPS = "tooltips";
 
@@ -38,6 +40,10 @@ abstract class Tutorial {
   bool get isActive => !isCompleted;
   bool get isCompleted => CurrentStepId == STEP_END;
   String get name;
+
+  Function transitionEvaluate = (transition) => ALLOWED_FALSE;
+
+  bool isTransitionAllowed(String transition) => transitionEvaluate(transition);
 
   void skipTutorial() { CurrentStepId = STEP_END; }
 

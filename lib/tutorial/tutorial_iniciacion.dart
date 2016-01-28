@@ -110,6 +110,7 @@ class TutorialIniciacion extends Tutorial {
       Tutorial.STEP_BEGIN: new TutorialStep(
             triggers: {
               'lobby': () async {
+                transitionEvaluate = (transition) => Tutorial.ALLOWED_FALSE;
 
                 GameMetrics.logEvent(GameMetrics.TUTORIAL_STARTED);
 
@@ -123,6 +124,7 @@ class TutorialIniciacion extends Tutorial {
                   CurrentStepId = STEP_1;
 
                   // Selecciona este torneo
+                  transitionEvaluate = (transition) => transition == 'enter_contest';
                   showTooltips([
                     new ToolTip("#activeContestList .contestSlot .action-section", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-02a"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
                     new ToolTip("#activeContestList .contestSlot", highlight: true)
@@ -135,6 +137,7 @@ class TutorialIniciacion extends Tutorial {
       STEP_1: new TutorialStep(
             triggers: {
               'enter_contest' : () async {
+                transitionEvaluate = (transition) => Tutorial.ALLOWED_FALSE;
 
                 GameMetrics.logEvent(GameMetrics.TUTORIAL_STEP_TEAM_SELECTION);
 
@@ -195,17 +198,17 @@ class TutorialIniciacion extends Tutorial {
                 clearTooltips();
 
                 // Bien, ya has añadido tu primer jugador.
-                await onClick( [new ToolTip(".posDEL", tipId: 'playerAddedTip', tipText: getLocalizedText("msg-03a"), highlight: true, position: ToolTip.POSITION_TOP)] );
+                await onClick( [new ToolTip(".posDEL", tipId: 'playerAddedTip', tipText: getLocalizedText("msg-03a"), highlight: true, position: ToolTip.POSITION_TOP, scrollSelector: ".posDEL", scrollOffset: 100)] );
 
                 // Cuando añades un jugador su salario (".enter-contest-total-salary")
-                await onClick( [new ToolTip(".enter-contest-lineup-wrapper", tipText: getLocalizedText("msg-03b"), highlight: true, position: ToolTip.POSITION_TOP)] );
+                await onClick( [new ToolTip(".enter-contest-lineup-wrapper", tipText: getLocalizedText("msg-03b"), highlight: true, position: ToolTip.POSITION_TOP, scrollSelector: ".enter-contest-lineup-wrapper")] );
 
                 if (isActive) {
                   querySelectorAll(".lineup-selector-slot.posDEL")[1].click();
                 }
 
                 // Cada jugador además de su salario
-                await onClick( [new ToolTip("$soccerPlayer1 .column-manager-level", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-03c"), highlight: true, position: ToolTip.POSITION_BOTTOM, tipId: 'soccerManagerLevel')] );
+                await onClick( [new ToolTip("$soccerPlayer1 .column-manager-level", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-03c"), highlight: true, position: ToolTip.POSITION_BOTTOM, tipId: 'soccerManagerLevel', scrollSelector: ".enter-contest-soccer-players-wrapper")] );
 
                 // Los jugadores marcados en rojo
                 await onClick ( [new ToolTip("$soccerPlayer1", tipId: 'soccerPlayerRedStyle', tipText: getLocalizedText("msg-03d"), highlight: true, position: ToolTip.POSITION_TOP)] );
@@ -227,6 +230,8 @@ class TutorialIniciacion extends Tutorial {
 
                   if (!isCompleted) {
                     CurrentStepId = STEP_2;
+
+                    transitionEvaluate = (transition) => transition == 'lobby';
                     router.go("lobby", {});
                   }
               }
@@ -236,6 +241,7 @@ class TutorialIniciacion extends Tutorial {
         STEP_2: new TutorialStep(
             triggers: {
               'lobby': () async {
+                transitionEvaluate = (transition) => Tutorial.ALLOWED_FALSE;
 
                 GameMetrics.logEvent(GameMetrics.TUTORIAL_STEP_LOBBY_TRAINING);
 
@@ -257,12 +263,15 @@ class TutorialIniciacion extends Tutorial {
                 await onClick( [new ToolTip(".entry-fee-box", tipText: getLocalizedText("msg-05"), highlight: true, position: ToolTip.POSITION_TOP)] );
 
                 // Selecciona este torneo
+                transitionEvaluate = (transition) => transition == 'enter_contest';
                 showTooltips([
                   new ToolTip("#activeContestList .contestSlot .action-section", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-06"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
                   new ToolTip("#activeContestList .contestSlot", highlight: true)
                 ]);
               },
               'enter_contest' : () async {
+                transitionEvaluate = (transition) => Tutorial.ALLOWED_FALSE;
+
                 EnterContestComp enterContest = context;
                 enterContest.fieldPosFilter = FieldPos.FORWARD;
                 Map data = { 'formation' :  ContestEntry.FORMATION_442, 'lineupSlots' : virtualFantasyTeam};
@@ -288,11 +297,12 @@ class TutorialIniciacion extends Tutorial {
                 clearTooltips();
 
                 // Una vez completada una alineación se activa el botón de Continuar
-                showTooltip(new ToolTip(".button-wrapper .btn-confirm-lineup-list", tipId: 'continueButton', tipText: getLocalizedText("msg-10"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true));
+                showTooltip(new ToolTip(".button-wrapper .btn-confirm-lineup-list", tipId: 'continueButton', tipText: getLocalizedText("msg-10"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true, scrollSelector: ".enter-contest-actions-wrapper.conclude-actions-wrapper"));
               },
 
               'alert-not-enough-resources': () async {
                 clearTooltips();
+                transitionEvaluate = (transition) => transition == 'shop';
                 showTooltip(new ToolTip("#alertBox .panel", tipText: getLocalizedText("msg-10a"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true));
               },
 
@@ -305,7 +315,8 @@ class TutorialIniciacion extends Tutorial {
                 profileService.user.goldBalance.amount += 3;
 
                 // Compra una recarga de energía.
-                showTooltip(new ToolTip(".energy-layout", tipText: getLocalizedText("msg-10b"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true));
+                transitionEvaluate = (transition) => transition == 'enter_contest' && (profileService.user.energyBalance.amount > 0);
+                showTooltip(new ToolTip(".energy-layout", tipText: getLocalizedText("msg-10b"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true, scrollSelector: ".energy-layout"));
               },
             },
             serverCalls: serverCallsWhenVirtual
@@ -316,7 +327,8 @@ class TutorialIniciacion extends Tutorial {
                 clearTooltips();
 
                 // Púlsalo para completar tu entrada en el torneo.
-                showTooltip(new ToolTip(".button-wrapper .btn-confirm-lineup-list", tipId: 'continueButton', tipText: getLocalizedText("msg-10c"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true));
+                transitionEvaluate = (transition) => transition == 'view_contest_entry';
+                showTooltip(new ToolTip(".button-wrapper .btn-confirm-lineup-list", tipId: 'continueButton', tipText: getLocalizedText("msg-10c"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true, scrollSelector: ".enter-contest-actions-wrapper.conclude-actions-wrapper"));
               }
             },
             serverCalls: serverCallsWhenVirtual
@@ -324,6 +336,8 @@ class TutorialIniciacion extends Tutorial {
         STEP_4: new TutorialStep(
             triggers: {
               'view_contest_entry': () async {
+                transitionEvaluate = (transition) => Tutorial.ALLOWED_FALSE;
+
                 // Actualizamos la energía disponible con el gasto producido al entrar en el torneo
                 profileService.user.energyBalance.amount -= 1;
 
@@ -331,6 +345,7 @@ class TutorialIniciacion extends Tutorial {
                 await openModal( text: () => getLocalizedText("msg-11") );
 
                 if (!isCompleted) {
+                  transitionEvaluate = (transition) => transition == 'live_contest';
                   router.go('live_contest', {"contestId": TrainingContestInstance["_id"], "parent": "my_contests"});
                 }
               },
@@ -338,6 +353,8 @@ class TutorialIniciacion extends Tutorial {
               'live_contest': () async {
               },
               'view_contest': () async {
+                transitionEvaluate = (transition) => Tutorial.ALLOWED_FALSE;
+
                 // Ésta es la pantalla de simulación
                 await openModal( text: () => getLocalizedText("msg-12") );
 
@@ -381,6 +398,8 @@ class TutorialIniciacion extends Tutorial {
   void activate() {
     DateTimeService.setFakeDateTime(currentDate);
 
+    transitionEvaluate = (transition) => transition == 'lobby';
+
     CurrentStepId = Tutorial.STEP_BEGIN;
     changeUser(TutorialPlayer(energyBalance: "JPY 0.00", goldBalance: "AUD 0.00"));
 
@@ -408,7 +427,7 @@ class TutorialIniciacion extends Tutorial {
 
   Future addContestEntry(Map postData) {
     FantasyTeam = JSON.decode(postData["soccerTeam"]);
-    return emptyContent();
+    return new Future.value({'contestId': "TRAINING-56331d69d4c6912cf152f201"});
   }
 
   String getLocalizedText(key, {String context: "tutorial_iniciacion"}) {

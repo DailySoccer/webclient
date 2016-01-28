@@ -6183,17 +6183,24 @@ scoring-rules:after,
 .contest-header-f2p-wrapper .tournament-and-type-section {
   position: absolute;
   top: 0px;
+  left: 0px;
   width: 100%;
 }
 .contest-header-f2p-wrapper .tournament-and-type-section .flag {
-  position: absolute;
-  top: 11px;
-  left: 15px;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 4px 0 15px;
+  /*top: 11px;				
+			left: 15px;*/
 }
 .contest-header-f2p-wrapper .tournament-and-type-section .contest-type {
-  position: absolute;
-  top: -1px;
-  left: 35px;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: -1px 4px 4px 4px;
+  /*top: -1px;
+			left: 35px;*/
   width: 20px;
   height: 31px;
 }
@@ -6202,6 +6209,21 @@ scoring-rules:after,
 }
 .contest-header-f2p-wrapper .tournament-and-type-section .contest-type.train {
   background-image: url("../images/trainContest.png");
+}
+.contest-header-f2p-wrapper .tournament-and-type-section .created-by-user {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0px 4px;
+  /*top: 5px;
+			left: 70px;*/
+  width: 30px;
+  height: 30px;
+}
+.contest-header-f2p-wrapper .tournament-and-type-section .created-by-user img {
+  border-radius: 100000px;
+  width: 30px;
+  height: 30px;
 }
 .contest-header-f2p-wrapper .close-contest {
   position: absolute;
@@ -7401,17 +7423,24 @@ scoring-rules:after,
 .contests-list-f2p-root .contestSlot .tournament-and-type-section {
   position: absolute;
   top: 0px;
+  left: 0px;
   width: 100%;
 }
 .contests-list-f2p-root .contestSlot .tournament-and-type-section .flag {
-  position: absolute;
-  top: 11px;
-  left: 15px;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 4px 0 15px;
+  /*top: 11px;				
+				left: 15px;*/
 }
 .contests-list-f2p-root .contestSlot .tournament-and-type-section .contest-type {
-  position: absolute;
-  top: -1px;
-  left: 35px;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: -1px 4px 4px 4px;
+  /*top: -1px;
+				left: 35px;*/
   width: 20px;
   height: 31px;
 }
@@ -7422,9 +7451,12 @@ scoring-rules:after,
   background-image: url("../images/trainContest.png");
 }
 .contests-list-f2p-root .contestSlot .tournament-and-type-section .friends-in {
-  position: absolute;
-  top: 5px;
-  left: 70px;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0px 4px;
+  /*top: 5px;
+				left: 70px;*/
   width: 32px;
   height: 27px;
   background-image: url("../images/friendsIcon.png");
@@ -7446,6 +7478,21 @@ scoring-rules:after,
   right: -7px;
   display: block;
   padding: 0px 3px 0 3px;
+}
+.contests-list-f2p-root .contestSlot .tournament-and-type-section .created-by-user {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0px 4px;
+  /*top: 5px;
+				left: 70px;*/
+  width: 30px;
+  height: 30px;
+}
+.contests-list-f2p-root .contestSlot .tournament-and-type-section .created-by-user img {
+  border-radius: 100000px;
+  width: 30px;
+  height: 30px;
 }
 .contests-list-f2p-root .contestSlot .special-image-section {
   overflow: hidden;
@@ -7618,13 +7665,23 @@ scoring-rules:after,
   .contests-list-f2p-root .contestSlot .conditions-section .condition-box-commons {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    font-size: 14pt;
+    font-size: 12pt;
     color: #777777;
     text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
     border-radius: 5px;
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
-    padding: 5px 10px 8px 10px;
+    padding: 5px 5px 8px 10px;
     top: -5px;
+  }
+}
+@media (min-width: 992px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .condition-box-commons {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14pt;
+    color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
+    padding-right: 10px;
   }
 }
 .contests-list-f2p-root .contestSlot .conditions-section .condition-box-commons img {
@@ -7682,13 +7739,23 @@ scoring-rules:after,
   .contests-list-f2p-root .contestSlot .conditions-section .player-position {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    font-size: 14pt;
+    font-size: 12pt;
     color: #777777;
     text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
     border-radius: 5px;
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
-    padding: 5px 10px 8px 10px;
+    padding: 5px 5px 8px 10px;
     top: -5px;
+  }
+}
+@media (min-width: 992px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .player-position {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14pt;
+    color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
+    padding-right: 10px;
   }
 }
 .contests-list-f2p-root .contestSlot .conditions-section .player-position img {
@@ -7758,13 +7825,23 @@ scoring-rules:after,
   .contests-list-f2p-root .contestSlot .conditions-section .entry-fee-box {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    font-size: 14pt;
+    font-size: 12pt;
     color: #777777;
     text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
     border-radius: 5px;
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
-    padding: 5px 10px 8px 10px;
+    padding: 5px 5px 8px 10px;
     top: -5px;
+  }
+}
+@media (min-width: 992px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .entry-fee-box {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14pt;
+    color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
+    padding-right: 10px;
   }
 }
 .contests-list-f2p-root .contestSlot .conditions-section .entry-fee-box img {
@@ -7828,13 +7905,23 @@ scoring-rules:after,
   .contests-list-f2p-root .contestSlot .conditions-section .prize-box {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    font-size: 14pt;
+    font-size: 12pt;
     color: #777777;
     text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
     border-radius: 5px;
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
-    padding: 5px 10px 8px 10px;
+    padding: 5px 5px 8px 10px;
     top: -5px;
+  }
+}
+@media (min-width: 992px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .prize-box {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14pt;
+    color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
+    padding-right: 10px;
   }
 }
 .contests-list-f2p-root .contestSlot .conditions-section .prize-box img {
@@ -7892,13 +7979,23 @@ scoring-rules:after,
   .contests-list-f2p-root .contestSlot .conditions-section .points-box {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    font-size: 14pt;
+    font-size: 12pt;
     color: #777777;
     text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
     border-radius: 5px;
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
-    padding: 5px 10px 8px 10px;
+    padding: 5px 5px 8px 10px;
     top: -5px;
+  }
+}
+@media (min-width: 992px) {
+  .contests-list-f2p-root .contestSlot .conditions-section .points-box {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14pt;
+    color: #777777;
+    text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
+    padding-right: 10px;
   }
 }
 .contests-list-f2p-root .contestSlot .conditions-section .points-box img {
@@ -11555,6 +11652,7 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   height: 45px;
   padding-top: 5px;
+  margin-right: 155px;
 }
 .fantasy-team-header .nickname-view-contest-entry-mode {
   font-family: 'Exo', sans-serif;
@@ -11610,6 +11708,7 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
 .fantasy-team-header .edit-team {
   float: right !important;
   margin: 20px 5px 0 0;
+  width: 150px;
 }
 .fantasy-team-header .edit-team .btn-edit-team {
   color: #333333;
@@ -11866,6 +11965,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   color: #777777;
   text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
   display: block;
+  line-height: 18px;
 }
 .fantasy-team-list .fantasy-team-slot .column-primary-info .match-event-name {
   font-family: 'Open Sans', sans-serif;
@@ -11873,6 +11973,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-size: 9pt;
   color: #59add5;
   text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  line-height: 17px;
 }
 .fantasy-team-list .fantasy-team-slot .column-primary-info .remaining-match-time {
   font-family: 'Open Sans', sans-serif;
@@ -12877,7 +12978,7 @@ main-menu-f2p .beta-label {
   #mainMenu .dropdown-menu {
     position: relative;
     top: -4px;
-    left: 10px;
+    left: -105px;
     padding: 0px;
   }
   #mainMenu .dropdown-menu > li > a {
@@ -16315,6 +16416,7 @@ fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-add {
 }
 .enter-contest-actions-wrapper {
   clear: both;
+  position: relative;
   margin-left: -7.5;
   margin-right: -7.5;
   padding: 10px;
@@ -16834,6 +16936,9 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
     width: 58.33333333%;
   }
 }
+.enter-contest-lineup-wrapper {
+  position: relative;
+}
 @media (min-width: 768px) {
   .enter-contest-lineup-wrapper {
     position: relative;
@@ -16844,6 +16949,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
     padding: 10px 10px 0px 5px;
   }
   .enter-contest-lineup-wrapper .enter-contest-lineup {
+    position: relative;
     border-width: 1px;
     border-style: solid;
     border-color: #fa9c19;
@@ -17633,7 +17739,7 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
 }
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.add.coin-purchase {
   text-align: right;
-  width: 53px;
+  width: 60px;
   padding: 5px;
 }
 .soccer-players-list .soccer-players-list-slot .column-action .action-button .coins-to-buy:after {
@@ -18065,6 +18171,7 @@ fieldset[disabled] .soccer-players-filter .filter-by-position .button-filter-fav
   height: 17px;
   display: inline-block;
   vertical-align: middle;
+  background-repeat: no-repeat;
 }
 .soccer-players-filter .filter-by-position .button-filter-favorites.active {
   background-color: #ffffff;
@@ -18089,6 +18196,7 @@ fieldset[disabled] .soccer-players-filter .filter-by-position .button-filter-fav
   height: 17px;
   display: inline-block;
   vertical-align: middle;
+  background-repeat: no-repeat;
 }
 .soccer-players-filter .name-player-input-filter {
   display: block;
@@ -18365,8 +18473,10 @@ lineup-selector {
   display: block;
   background-color: #ffffff;
   min-height: 463px;
+  position: relative;
 }
 .lineup-selector {
+  position: relative;
   border-width: 1px;
   border-style: solid none none none;
   border-color: #777777;
@@ -18386,6 +18496,7 @@ lineup-selector {
 }
 .lineup-selector .lineup-selector-slot {
   padding-left: 10px;
+  position: relative;
   cursor: pointer;
 }
 .lineup-selector .lineup-selector-slot:nth-last-child(2) {
@@ -18686,6 +18797,60 @@ lineup-selector {
 }
 #leaderboard-wrapper {
   padding-bottom: 40px;
+}
+#leaderboard-wrapper .default-section-header .header-title {
+  float: left;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  #leaderboard-wrapper .default-section-header .header-title {
+    float: left;
+    width: 75%;
+  }
+}
+@media (max-width: 767px) {
+  #leaderboard-wrapper .default-section-header .header-title {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+#leaderboard-wrapper .default-section-header friend-info.visited-user {
+  float: left;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 0px 5px;
+  margin: -20px 0;
+}
+@media (min-width: 768px) {
+  #leaderboard-wrapper .default-section-header friend-info.visited-user {
+    float: left;
+    width: 25%;
+  }
+}
+@media (max-width: 767px) {
+  #leaderboard-wrapper .default-section-header friend-info.visited-user {
+    padding: 5px 5px 0 5px;
+    margin: 0px;
+  }
+  #leaderboard-wrapper .default-section-header friend-info.visited-user .friend-element-wrapper {
+    margin: 0px;
+    text-align: left;
+  }
+  #leaderboard-wrapper .default-section-header friend-info.visited-user .friend-element-wrapper .friend-picture {
+    display: none;
+  }
+  #leaderboard-wrapper .default-section-header friend-info.visited-user .friend-element-wrapper .friend-name {
+    padding: 5px 10px;
+    margin: 0;
+    display: inline-block;
+  }
 }
 #leaderboard-wrapper #leaderboard-header-wrapper {
   display: block;
@@ -21890,8 +22055,9 @@ fieldset[disabled] .info-complete-bar .invite-friends {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  padding: 10px 0;
+  padding: 10px 10px;
   margin: 10px 0 20px 0;
+  text-align: center;
 }
 #shareMethodsContent.share-methods-modal-content {
   display: none;
@@ -23350,6 +23516,7 @@ users-list#usersList > .epic-tooltip {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  cursor: pointer;
   background-color: #ffffff;
   background: #ffffff url("../images/arrowDownBlack.png") no-repeat 95% 50%;
 }
@@ -25613,12 +25780,28 @@ textareateams-filter .teams-filter-wrapper .teams-selector-filter {
     width: 20%;
   }
 }
-.friends-bar-wrapper .friend-element-wrapper .friend-picture {
+.friends-bar-wrapper .friend-element-wrapper + .friend-element-wrapper {
+  border-left: 1px solid #dcdcdc;
+}
+@media (max-width: 767px) {
+  .friends-bar-wrapper .friend-element-wrapper + .friend-element-wrapper + .friend-element-wrapper + .friend-element-wrapper {
+    display: none !important;
+  }
+}
+.friend-element-wrapper {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #000000;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+}
+.friend-element-wrapper .friend-picture {
   width: 50px;
   height: 50px;
   margin: 5px auto;
 }
-.friends-bar-wrapper .friend-element-wrapper .friend-name {
+.friend-element-wrapper .friend-name {
   background-color: #afd3e4;
   border-radius: 100px;
   color: #434343;
@@ -25626,14 +25809,14 @@ textareateams-filter .teams-filter-wrapper .teams-selector-filter {
   margin: 3px;
   padding: 2px 5px;
 }
-.friends-bar-wrapper .friend-element-wrapper .friend-manager-level {
+.friend-element-wrapper .friend-manager-level {
   display: inline-block;
   position: relative;
   width: 40px;
   height: 30px;
   vertical-align: bottom;
 }
-.friends-bar-wrapper .friend-element-wrapper .friend-manager-level .amount {
+.friend-element-wrapper .friend-manager-level .amount {
   position: absolute;
   display: inline-block;
   left: 0;
@@ -25650,7 +25833,7 @@ textareateams-filter .teams-filter-wrapper .teams-selector-filter {
   min-height: 18px;
   line-height: 18px;
 }
-.friends-bar-wrapper .friend-element-wrapper .friend-manager-level:before {
+.friend-element-wrapper .friend-manager-level:before {
   content: " ";
   background-image: url("../images/icon-star-lg.png");
   width: 27px;
@@ -25661,7 +25844,7 @@ textareateams-filter .teams-filter-wrapper .teams-selector-filter {
   left: 5px;
   top: 0;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend {
+.friend-element-wrapper .challenge-friend {
   color: #333333;
   background-color: #ffffff;
   border-color: #cccccc;
@@ -25701,64 +25884,64 @@ textareateams-filter .teams-filter-wrapper .teams-selector-filter {
   padding: 5px 3px;
   vertical-align: bottom;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:hover,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:focus,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:active,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.active,
-.open .dropdown-toggle.friends-bar-wrapper .friend-element-wrapper .challenge-friend {
+.friend-element-wrapper .challenge-friend:hover,
+.friend-element-wrapper .challenge-friend:focus,
+.friend-element-wrapper .challenge-friend:active,
+.friend-element-wrapper .challenge-friend.active,
+.open .dropdown-toggle.friend-element-wrapper .challenge-friend {
   color: #333333;
   background-color: #ebebeb;
   border-color: #adadad;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:active,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.active,
-.open .dropdown-toggle.friends-bar-wrapper .friend-element-wrapper .challenge-friend {
+.friend-element-wrapper .challenge-friend:active,
+.friend-element-wrapper .challenge-friend.active,
+.open .dropdown-toggle.friend-element-wrapper .challenge-friend {
   background-image: none;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.disabled,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend[disabled],
-fieldset[disabled] .friends-bar-wrapper .friend-element-wrapper .challenge-friend,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.disabled:hover,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend[disabled]:hover,
-fieldset[disabled] .friends-bar-wrapper .friend-element-wrapper .challenge-friend:hover,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.disabled:focus,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend[disabled]:focus,
-fieldset[disabled] .friends-bar-wrapper .friend-element-wrapper .challenge-friend:focus,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.disabled:active,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend[disabled]:active,
-fieldset[disabled] .friends-bar-wrapper .friend-element-wrapper .challenge-friend:active,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.disabled.active,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend[disabled].active,
-fieldset[disabled] .friends-bar-wrapper .friend-element-wrapper .challenge-friend.active {
+.friend-element-wrapper .challenge-friend.disabled,
+.friend-element-wrapper .challenge-friend[disabled],
+fieldset[disabled] .friend-element-wrapper .challenge-friend,
+.friend-element-wrapper .challenge-friend.disabled:hover,
+.friend-element-wrapper .challenge-friend[disabled]:hover,
+fieldset[disabled] .friend-element-wrapper .challenge-friend:hover,
+.friend-element-wrapper .challenge-friend.disabled:focus,
+.friend-element-wrapper .challenge-friend[disabled]:focus,
+fieldset[disabled] .friend-element-wrapper .challenge-friend:focus,
+.friend-element-wrapper .challenge-friend.disabled:active,
+.friend-element-wrapper .challenge-friend[disabled]:active,
+fieldset[disabled] .friend-element-wrapper .challenge-friend:active,
+.friend-element-wrapper .challenge-friend.disabled.active,
+.friend-element-wrapper .challenge-friend[disabled].active,
+fieldset[disabled] .friend-element-wrapper .challenge-friend.active {
   background-color: #ffffff;
   border-color: #cccccc;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend .badge {
+.friend-element-wrapper .challenge-friend .badge {
   color: #ffffff;
   background-color: #333333;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:focus,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:active:focus,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.active:focus {
+.friend-element-wrapper .challenge-friend:focus,
+.friend-element-wrapper .challenge-friend:active:focus,
+.friend-element-wrapper .challenge-friend.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:hover,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:focus {
+.friend-element-wrapper .challenge-friend:hover,
+.friend-element-wrapper .challenge-friend:focus {
   color: #333333;
   text-decoration: none;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:active,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.active {
+.friend-element-wrapper .challenge-friend:active,
+.friend-element-wrapper .challenge-friend.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.disabled,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend[disabled],
-fieldset[disabled] .friends-bar-wrapper .friend-element-wrapper .challenge-friend {
+.friend-element-wrapper .challenge-friend.disabled,
+.friend-element-wrapper .challenge-friend[disabled],
+fieldset[disabled] .friend-element-wrapper .challenge-friend {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -25766,62 +25949,54 @@ fieldset[disabled] .friends-bar-wrapper .friend-element-wrapper .challenge-frien
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:active,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.active {
+.friend-element-wrapper .challenge-friend:active,
+.friend-element-wrapper .challenge-friend.active {
   box-shadow: none;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:active:focus,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.active:focus {
+.friend-element-wrapper .challenge-friend:active:focus,
+.friend-element-wrapper .challenge-friend.active:focus {
   color: #ffffff;
   background-color: #82c1df;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:active:hover,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.active:hover {
+.friend-element-wrapper .challenge-friend:active:hover,
+.friend-element-wrapper .challenge-friend.active:hover {
   color: #ffffff;
   background-color: #82c1df;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:focus {
+.friend-element-wrapper .challenge-friend:focus {
   background-color: #59add5;
   color: #ffffff;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:hover {
+.friend-element-wrapper .challenge-friend:hover {
   background-color: #6db7da;
   outline: none !important;
   color: #ffffff;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:hover:focus {
+.friend-element-wrapper .challenge-friend:hover:focus {
   background-color: #59add5;
   color: #ffffff;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:active,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.active {
+.friend-element-wrapper .challenge-friend:active,
+.friend-element-wrapper .challenge-friend.active {
   box-shadow: none;
   background-color: #59add5;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend:hover {
+.friend-element-wrapper .challenge-friend:hover {
   background-color: #6db7da;
   outline: none !important;
   color: #ffffff;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.disabled,
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend[disabled],
-fieldset[disabled] .friends-bar-wrapper .friend-element-wrapper .challenge-friend {
+.friend-element-wrapper .challenge-friend.disabled,
+.friend-element-wrapper .challenge-friend[disabled],
+fieldset[disabled] .friend-element-wrapper .challenge-friend {
   background-color: #82c1df;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
-.friends-bar-wrapper .friend-element-wrapper .challenge-friend.close {
+.friend-element-wrapper .challenge-friend.close {
   background-color: #59add5;
   outline: none !important;
   color: #ffffff;
-}
-.friends-bar-wrapper .friend-element-wrapper + .friend-element-wrapper {
-  border-left: 1px solid #dcdcdc;
-}
-@media (max-width: 767px) {
-  .friends-bar-wrapper .friend-element-wrapper + .friend-element-wrapper + .friend-element-wrapper + .friend-element-wrapper {
-    display: none !important;
-  }
 }
 /*
     <img class="friend-picture" ng-src="{{user.profileImage}}">

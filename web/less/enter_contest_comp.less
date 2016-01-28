@@ -19,6 +19,7 @@
 
 .enter-contest-actions-wrapper {
 	clear: both;
+	position: relative;
 	.make-row(15);
 	padding: 10px;
 	
@@ -112,11 +113,13 @@
 }
 
 .enter-contest-lineup-wrapper {
+	position: relative;
 	@media (min-width: @screen-sm-min) {
 		.make-sm-column(5, 0);
 		.pull-right();
 		padding: 10px 10px 0px 5px;
 		.enter-contest-lineup {
+			position: relative;
 			.make-border(1px, solid, @orange, @globalBoxesRadius);
 			min-height: @recomended-control-height;
 			overflow: hidden;

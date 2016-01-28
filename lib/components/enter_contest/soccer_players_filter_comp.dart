@@ -37,12 +37,11 @@ class SoccerPlayersFilterComp implements AttachAware {
   }
   bool get showFilterByPosition => _showOnXs || scrDet.isNotXsScreen;
 
-  bool _showFavorites = true;
+  bool showFavorites = true;
   @NgOneWay('show-favorites-button')
   void set showFavoritesButton(bool fav) {
-    _showFavorites = fav;
+    showFavorites = fav;
   }
-  bool get showFavoritesButton => _showFavorites; 
 
   String getLocalizedText(key, {group: "soccerplayerpositions"}) {
     return StringUtils.translate(key, group);

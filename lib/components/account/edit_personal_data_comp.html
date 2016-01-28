@@ -12,7 +12,7 @@
           <input id="txtName" type="text" ng-model="editedFirstName" placeholder="{{getLocalizedText('name')}}" class="form-control"  tabindex="1">
         </div>
       </div>
-      <!-- Apelidos -->
+      <!-- Apellidos -->
       <div class="content-field">
         <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">{{getLocalizedText("lastname")}}</span></div>
         <div class="control-wrapper">
@@ -26,8 +26,8 @@
           <input id="txtNickName" type="text" ng-model="editedNickName" placeholder="{{getLocalizedText('username')}}" class="form-control" tabindex="3" autocapitalize="off">
         </div>
         <!-- Error de nickName -->
-        <div id="nickNameErrorContainer" class="content-field-block">
-          <div id="nickNameErrorLabel" class="err-text"></div>
+        <div id="nickNameErrorContainer" class="content-field-block errorDetected" ng-if="nicknameErrorText != ''">
+          <div id="nickNameErrorLabel" class="err-text">{{nicknameErrorText}}</div>
         </div>
       </div>
 
@@ -38,8 +38,8 @@
           <input id="txtEmail" type="email" ng-model="editedEmail" placeholder="{{getLocalizedText('mail')}}" class="form-control" tabindex="4" autocapitalize="off">
         </div>
         <!-- Error de mail -->
-        <div id="emailErrorContainer" class="content-field-block">
-          <div id="emailErrorLabel" class="err-text"></div>
+        <div id="emailErrorContainer" class="content-field-block errorDetected" ng-if="emailErrorText != ''">
+          <div id="emailErrorLabel" class="err-text">{{emailErrorText}}</div>
         </div>
       </div>
 
@@ -55,10 +55,10 @@
       <div class="content-field">
         <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="editedRepeatPassword" placeholder="{{getLocalizedText('repass')}}" class="form-control" tabindex="6" autocapitalize="off"></div>
       </div>
-
+      
       <!-- Error de contraseñas -->
-      <div id="passwordErrorContainer" class="content-field-block">
-        <div id="passwordErrorLabel" class="err-text"></div>
+      <div id="passwordErrorContainer" class="content-field-block errorDetected" ng-if="passwordErrorText != ''">
+        <div id="passwordErrorLabel" class="err-text">{{passwordErrorText}}</div>
         <!--  WTF: delete <div class="control-wrapper"><span id="lblPasswordIntructions" class="text-label">Asegúrate al menos que tiene 8 caracteres y que no contiene espacios</span></div> -->
       </div>
       <!-- Pais, Region y Ciudad
@@ -102,7 +102,7 @@
 
     <div class="save-changes-content">
       <div class="forms-wrapper-button">
-        <button id="btnSubmit" class="action-button-save" type="submit">{{getLocalizedText("buttonsave")}}</button>
+        <button id="btnSubmit" class="action-button-save" ng-disabled="!canSave" type="submit">{{getLocalizedText("buttonsave")}}</button>
       </div>
       <div class="forms-wrapper-button">
         <button id="btnSubmit" class="action-button-cancel" ng-click="exit($event)">{{getLocalizedText("buttoncancel")}}</button>

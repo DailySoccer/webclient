@@ -41,7 +41,7 @@ class FacebookService {
   }
 
   static Map managerLevelUp(int managerLevel, String userId) {
-    Map shareMap = _buildShareMap('manager_level_up', "$_rootUrl#/sla/$userId", substitutions: {'MANAGER_LEVEL': managerLevel});
+    Map shareMap = _buildShareMap('manager_level_up', "$_rootUrl#/sla/$userId", substitutions: {'MANAGER_LEVEL': managerLevel < 10? "0$managerLevel" : managerLevel });
     return shareMap;
   }
 

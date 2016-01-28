@@ -1,6 +1,10 @@
 <div id="leaderboard-wrapper">
 
-  <div class="default-section-header">{{getLocalizedText('title')}}</div>
+  <div class="default-section-header">
+    <div class="header-title">{{getLocalizedText('title')}}</div>
+    <friend-info class="visited-user" user="userShown" max-width="290" show-challenge="false" show-manager-level="false" ng-if="!isLoggedPlayer" id-error="userShown != null && userId != userShown.userId"></friend-info>
+    <!--div class="visited-user">{{visitedName}} <img ng-src="{{visitedPhoto}}"></img></div-->
+  </div>
 
   <ul id="#leaderboardTabs" class="leaderboard-tabs" role="tablist">
     <li id="points-tab" class="active"><a class="leaderboard-tab top-points-tab"   role="tab" data-toggle="tab" ng-click="gotoSection('points')">{{trueskillTabTitle}}</a></li>

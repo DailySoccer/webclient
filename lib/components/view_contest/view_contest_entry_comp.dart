@@ -129,7 +129,7 @@ class ViewContestEntryComp {
   }
   
   String get inviteUrl => "${window.location.toString().split("#")[0]}#/sec/${contest.contestId}";
-
+  
   void onInviteFriends() {
     if (_shareContent == null) {
       _shareContent = querySelector("#shareMethodsContent");
@@ -145,6 +145,8 @@ class ViewContestEntryComp {
                     aditionalClass: 'invite-friends-popup'
                  )
                  .then((resp){});
+    
+    querySelector(".share-url").focus();
   }
   
   void onChallenge(user) {
@@ -152,6 +154,11 @@ class ViewContestEntryComp {
     onInviteFriends();
   }
 
+  void onShareTextareaFocus(Event e) {
+    InputElement inputText = e.currentTarget;
+    inputText.setSelectionRange(0, inviteUrl.length);
+  }
+  
   Map _sharingInfo = {};
   Map get sharingInfo {
     if (contest == null) return _sharingInfo;

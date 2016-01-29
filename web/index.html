@@ -143,6 +143,28 @@
 
     <script src="js/jquery.min.js"></script>
     <script>
+    
+      function waitForFacebook(callback) {
+        var timesWait = 0;
+        var tryCall;
+        
+        tryCall = function () {
+          if (fbIsInit === false) {
+            setTimeout(function() { 
+              timesWait += 1;
+              if (timesWait < 100) {
+                tryCall(callback);
+              } else {
+                console.error("Wait for facebook timeout");
+              }
+            }, 100);
+          } else {
+            callback();
+          }
+        };
+        tryCall();
+      }
+    
       // facebook sdk
       // https://developers.facebook.com/docs/javascript/examples
 
@@ -301,26 +323,6 @@
 
     <!-- Facebook Stuff -->
     <script>
-      function waitForFacebook(callback) {
-        var timesWait = 0;
-        var tryCall;
-        
-        tryCall = function () {
-          if (fbIsInit === false) {
-            setTimeout(function() { 
-              timesWait += 1;
-              if (timesWait < 100) {
-                tryCall(callback);
-              } else {
-                console.error("Wait for facebook timeout");
-              }
-            }, 100);
-          } else {
-            callback();
-          }
-        };
-        tryCall();
-      }
       
       var fbIsInit = false;
       window.fbAsyncInit = function() {

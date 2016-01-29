@@ -143,6 +143,30 @@
 
     <script src="js/jquery.min.js"></script>
     <script>
+
+      
+      var fbIsInit = false;
+      function waitForFacebook(callback) {
+        var timesWait = 0;
+        var tryCall;
+        
+        tryCall = function () {
+          if (fbIsInit === false) {
+            setTimeout(function() { 
+              timesWait += 1;
+              if (timesWait < 100) {
+                tryCall(callback);
+              } else {
+                console.error("Wait for facebook timeout");
+              }
+            }, 100);
+          } else {
+            callback();
+          }
+        };
+        tryCall();
+      }
+    
       // facebook sdk
       // https://developers.facebook.com/docs/javascript/examples
 
@@ -152,13 +176,43 @@
           FB.login(callback, {scope: 'email, public_profile, user_friends'});
         });
       }
+      
+      function facebookLoginStatus(callback) {
+        waitForFacebook(function() {
+          FB.getLoginStatus(function (response) {
+            callback(response);
+          });
+        });
+      }
 
+      function facebookPermissions(callback) {
+        waitForFacebook(function() {
+          FB.api('/me/permissions', function (response) {
+            if (response && !response.error) {
+              response['error'] = false;
+            }
+            callback(response);
+          });
+        });
+      }
+
+      function facebookLoginReRequest(callback) {
+        waitForFacebook(function() {
+          console.log("js facebook rerequest");
+          FB.login(callback, {
+              scope: 'email, public_profile, user_friends',
+              auth_type: 'rerequest'
+            });
+        });
+      }
+      
       function facebookProfileInfo(callback) {
         waitForFacebook(function() {
           FB.api('/me', {fields: 'id, name, email'},
              function(response) {
                if (response && !response.error) {
                  response['error'] = false;
+                 response['accessToken'] = FB.getAccessToken();
                }
                callback(response);
              }
@@ -271,36 +325,7 @@
 
     <!-- Facebook Stuff -->
     <script>
-      function waitForFacebook(callback) {
-        var timesWait = 0;
-        var tryCall;
-        
-        tryCall = function () {
-          if (fbIsInit === false) {
-            setTimeout(function() { 
-              timesWait += 1;
-              if (timesWait < 100) {
-                tryCall(callback);
-              } else {
-                console.error("Wait for facebook timeout");
-              }
-            }, 100);
-          } else {
-            callback();
-          }
-        };
-        tryCall();
-      }
-      
-      function facebookLoginStatus(callback) {
-        waitForFacebook(function() {
-          FB.getLoginStatus(function (response) {
-            callback(response);
-          });
-        });
-      }
-      
-      var fbIsInit = false;
+    
       window.fbAsyncInit = function() {
         FB.init({
           appId      : '865176766847011',

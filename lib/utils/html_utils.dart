@@ -13,7 +13,7 @@ final NodeTreeSanitizer NULL_TREE_SANITIZER = new _NullTreeSanitizer();
 
 Future<bool> modalShow(String title, String content, {String modalSize: "lg",
     String onOk: null, String onCancel: null, bool closeButton: false,
-    type: 'alert', onBackdropClick: false, aditionalClass: "",
+    String type: 'alert', bool onBackdropClick: false, String aditionalClass: "",
     Element contentNode: null}) {
 
   String globalRootId = 'alertRoot';

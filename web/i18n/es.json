@@ -76,7 +76,11 @@
       "buttonlogin"                     : "CONTINUAR",
       "buttoncancel"                    : "CANCELAR",
       "unregistered"                    : "¿Aún no estás registrado?",
-      "signuphere"                      : "¡Regístrate aquí!"
+      "signuphere"                      : "¡Regístrate aquí!",
+      "facebookReRequestTitle"          : "Permisos insuficientes",
+      "facebookReRequestText"           : "Necesitamos que aceptes todos los permisos de Facebook pedidos para poder acceder a Epic Eleven.",
+      "facebookReRequestOk"             : "Reintentar",
+      "facebookReRequestCancel"         : "Cancelar"
     }
     ,"changepass"                       :
     {

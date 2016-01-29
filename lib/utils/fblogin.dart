@@ -8,13 +8,17 @@ import 'package:angular/angular.dart';
 import 'package:webclient/services/server_error.dart';
 import 'dart:async';
 import 'package:webclient/models/user.dart';
+import 'package:webclient/utils/html_utils.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 class FBLogin {
 
-  FBLogin(this._router, ProfileService _profileService, [this._onLogin]) {
+  FBLogin(Router router, ProfileService _profileService, [Function onLogin]) {
+    _router = router;
     _profileManager = _profileService;
+    _onLogin = onLogin;
     js.context['jsLoginFB'] = loginFB;
-
+    
     // Default action onLogin
     if (_onLogin == null) {
       _onLogin = () => _router.go("lobby", {});
@@ -28,19 +32,34 @@ class FBLogin {
   }
 
   void onGetLoginStatus(statusResponse) {
-    if (statusResponse["status"]=="connected") {
+    if (statusResponse["status"] == "connected") {
       loginCallback(statusResponse);
-    }
-    else if (statusResponse["status"] == 'not_authorized') {
+    } else if (statusResponse["status"] == 'not_authorized') {
       // El usuario no ha autorizado el uso de su facebook.
-    }
-    else {
+    } else {
       JsUtils.runJavascript(null, "facebookLogin", [(js.JsObject loginResponse) {
         if (loginResponse["status"] == "connected") {
           loginCallback(loginResponse);
         }
       }]);
     }
+  }
+  
+  static Future<Map> getFacebookPermissions() {
+    Completer<Map> completer = new Completer<Map>();
+    
+    JsUtils.runJavascript(null, "facebookPermissions", [(js.JsObject permissionsResponse) {
+      if (permissionsResponse["error"] == false) {
+        js.JsArray permissionsJS = permissionsResponse['data'];
+        Map permissions = {};
+        permissionsJS.forEach( (p) => permissions[p['permission']] = (p['status'] == 'granted') );
+        
+        completer.complete(permissions);
+      } else {
+        completer.completeError({});
+      }
+    }]);
+    return completer.future;  
   }
   
   static void share(Map info) {
@@ -59,27 +78,70 @@ class FBLogin {
           }]*/);
   }
 
-  void loginCallback(loginResponse) {
+  static void loginCallback(loginResponse) {
+    getFacebookPermissions().then( (permissions) {
+      if ( _checkPermissions(permissions) ) {
+        serverLoginWithFB();
+      } else {
+        // ERROR
+        rerequestLoginModal();
+      }
+    });
+  }
+  
+  static void serverLoginWithFB() {
+    profileInfo().then((info) {
+              String accessToken = info['accessToken'];
+              String email       = info['email'];
+              String id          = info['id'];
+              String name        = info['name'];
+              // LOGIN
+              _profileManager.facebookLogin(accessToken, id, name, email)
+                                    .then((_) => _onLogin())
+                                    .catchError((ServerError error) {
+                                        Logger.root.severe(error);
+                                     }, test: (error) => error is ServerError);
+            });
+  }
+  
+  static Future<Map> profileInfo() {
+    Completer<Map> completer = new Completer<Map>();
 
-    String accessToken = loginResponse["authResponse"]["accessToken"];
-    String email = null;
-    String id = null;
-    String name = null;
-    
     JsUtils.runJavascript(null, "facebookProfileInfo", [(js.JsObject profileInfoResponse) {
+      Map info = {};
       if (!profileInfoResponse["error"]) {
-        email = profileInfoResponse['email'];
-        id = profileInfoResponse['id'];
-        name = profileInfoResponse['name'];
+        info['accessToken'] = profileInfoResponse['accessToken'];
+        info['email']       = profileInfoResponse['email'];
+        info['id']          = profileInfoResponse['id'];
+        info['name']        = profileInfoResponse['name'];
+        
+        completer.complete(info);
+      } else {
+        completer.completeError({});
       }
       
-      // LOGIN
-      _profileManager.facebookLogin(accessToken, id, name, email)
-                            .then((_) => _onLogin())
-                            .catchError((ServerError error) {
-                                Logger.root.severe(error);
-                             }, test: (error) => error is ServerError);
     }]);
+    return completer.future;
+  }
+  
+  static void rerequestLoginModal() {
+    modalShow("",
+              '''
+                <h1>${StringUtils.translate('facebookReRequestTitle', 'login')}</h1>
+                <p>${StringUtils.translate('facebookReRequestText', 'login')}</p>
+              '''
+              // <ul>${NEEDED_PERMISSIONS.fold('', (prev, curr) => '$prev<li>$curr</li>')}</ul>
+              , onBackdropClick: false
+              , onOk: StringUtils.translate('facebookReRequestOk', 'login')
+              , onCancel: StringUtils.translate('facebookReRequestCancel', 'login')
+              , aditionalClass: "facebook-rerequest-modal"
+            ).then((_) {
+              JsUtils.runJavascript(null, "facebookLoginReRequest", [(js.JsObject loginResponse) {
+                if (loginResponse["status"] == "connected") {
+                  loginCallback(loginResponse);
+                }
+              }]);
+            });//.catchError((_) => _router.go('home', {}));
   }
   
   static Map profileImage(String facebookId) {
@@ -129,6 +191,10 @@ class FBLogin {
   void refreshConnectedState() {
     JsUtils.runJavascript(null, "facebookLoginStatus", [(r) => _state = r["status"]]);
   }
+  
+  static bool _checkPermissions(Map permissions) {
+    return NEEDED_PERMISSIONS.every( (p) => permissions[p]);
+  }
 
   String _state = null;
   String get state => _state;
@@ -136,7 +202,8 @@ class FBLogin {
   bool get isConnected => _state == "connected";
   
   static Map <String, Map> _profileImageCache = {};
-  Router _router;
+  static Router _router;
   static ProfileService _profileManager;
-  Function _onLogin;
+  static Function _onLogin;
+  static List<String> NEEDED_PERMISSIONS = ['email', 'user_friends', 'public_profile']; // user_friends, email, public_profile
 }

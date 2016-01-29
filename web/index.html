@@ -143,7 +143,9 @@
 
     <script src="js/jquery.min.js"></script>
     <script>
-    
+
+      
+      var fbIsInit = false;
       function waitForFacebook(callback) {
         var timesWait = 0;
         var tryCall;
@@ -323,8 +325,7 @@
 
     <!-- Facebook Stuff -->
     <script>
-      
-      var fbIsInit = false;
+    
       window.fbAsyncInit = function() {
         FB.init({
           appId      : '865176766847011',

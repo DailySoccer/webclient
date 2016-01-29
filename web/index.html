@@ -169,7 +169,6 @@
     
       // facebook sdk
       // https://developers.facebook.com/docs/javascript/examples
-
       function facebookLogin(callback) {
         waitForFacebook(function() {
           console.log("js facebook login");
@@ -275,19 +274,20 @@
       function facebookParseXFBML(cssSelector) {
         var parse;
         var trys = 0;
+        var fbCheck = false;
         parse = function () {
           var xfbmlElements = document.querySelectorAll(cssSelector);
-          if (xfbmlElements.length == 0) {
+          if (!fbCheck || xfbmlElements.length == 0 || xfbmlElements[0].children.length == 0) {
             trys++;
-            if (trys < 100) {
+            if (trys < 1000) {
               setTimeout(parse, 100);
             }
           } else {
             FB.XFBML.parse();
           }
         }
-        
-        waitForFacebook(function() { parse(); });
+        waitForFacebook(function() { fbCheck = true; });
+        parse();
       }
 
       function onjQueryReady(dartCallback) {
@@ -325,7 +325,6 @@
 
     <!-- Facebook Stuff -->
     <script>
-    
       window.fbAsyncInit = function() {
         FB.init({
           appId      : '865176766847011',

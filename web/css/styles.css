@@ -12111,6 +12111,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
 .soccer-player-statistics {
   margin-left: 0;
   margin-right: 0;
+  cursor: default;
 }
 .statistic {
   float: left;

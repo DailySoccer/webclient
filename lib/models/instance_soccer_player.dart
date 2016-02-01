@@ -67,11 +67,15 @@ class InstanceSoccerPlayer {
     soccerPlayer = references.getSoccerPlayerById(jsonMap["templateSoccerPlayerId"]);
     fieldPos = jsonMap.containsKey("fieldPos") ? new FieldPos(StringUtils.translate(jsonMap["fieldPos"].toString().toLowerCase(), "soccerplayerpositions")) : null;
     salary = jsonMap.containsKey("salary") ? jsonMap["salary"] : 0;
+
     soccerTeam = references.getSoccerTeamById(jsonMap["templateSoccerTeamId"]);
+    soccerTeam.addSoccerPlayer(soccerPlayer);
   }
 
   InstanceSoccerPlayer.init(String templateSoccerPlayerId, String templateSoccerTeamId, ContestReferences references) {
     soccerPlayer = references.getSoccerPlayerById(templateSoccerPlayerId);
+
     soccerTeam = references.getSoccerTeamById(templateSoccerTeamId);
+    soccerTeam.addSoccerPlayer(soccerPlayer);
   }
 }

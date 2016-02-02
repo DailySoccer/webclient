@@ -277,7 +277,7 @@
         var fbCheck = false;
         parse = function () {
           var xfbmlElements = document.querySelectorAll(cssSelector);
-          if (!fbCheck || xfbmlElements.length == 0 || xfbmlElements[0].children.length == 0) {
+          if (!fbCheck || xfbmlElements.length == 0) {
             trys++;
             if (trys < 1000) {
               setTimeout(parse, 100);

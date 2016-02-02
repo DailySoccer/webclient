@@ -56,7 +56,7 @@ Resolutions
 ===========
 
 - Minimum resolution width: 320px
-- XS: < 768px
-- SM: < 970px
-- MD: > 970px
+- XS: < 768px (Smartphone)
+- SM: < 970px (Tablet)
+- MD: > 970px (Desktop and big tablets [landscape])
 

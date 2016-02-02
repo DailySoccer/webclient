@@ -55,8 +55,8 @@ the output of "pub build" to the backend/public folder and execute directly with
 Resolutions
 ===========
 
-Minimum resolution width: 320px
-XS: < 768px
-SM: < 970px
-MD: > 970px
+- Minimum resolution width: 320px
+- XS: < 768px
+- SM: < 970px
+- MD: > 970px
 

@@ -21,7 +21,7 @@ import 'package:webclient/utils/game_metrics.dart';
   useShadowDom: false
 )
 class CreateContestComp  {
-  
+
   int MAX_LENGTH_CONTEST_NAME = 30;
   String _contestName;
   String get contestName => _contestName;
@@ -32,10 +32,10 @@ class CreateContestComp  {
   int selectedHour = 12;
   String selectedMinutesText = '00';
   DateTime selectedDate = null;
-  
+
   static String S_TYPE_OFICIAL = "oficial";
   static String S_TYPE_TRAINING = "training";
-  
+
   String TYPE_OFICIAL = S_TYPE_OFICIAL;
   String TYPE_TRAINING = S_TYPE_TRAINING;
 
@@ -61,7 +61,7 @@ class CreateContestComp  {
     }
   }
   String get placeholderName => selectedTemplate != null? selectedTemplate.name : getLocalizedText("contest_name_placeholder");
-  
+
   String get comboDefaultText {
     if (printableTemplateList.length == 0) {
       return getLocalizedText("select_competition_first");
@@ -91,19 +91,19 @@ class CreateContestComp  {
     _contestsService.getActiveTemplateContests()
       .then((templateContests) {
         _templateContests = templateContests;
-        
+
         selectedCompetition = null;
         _contestType = null;
         updateTemplatesPerType();
-        
+
       });
     GameMetrics.logEvent(GameMetrics.CREATE_CONTEST);
   }
 
-  num get prizeMultiplier => contestType == TYPE_OFICIAL ? _selectedTemplate.prizeMultiplier : 10;
+  num get prizeMultiplier => _selectedTemplate.prizeMultiplier;
 
   Money get prizePool => new Money.from(contestType == TYPE_OFICIAL ? Money.CURRENCY_GOLD : Money.CURRENCY_MANAGER, maxEntries * _selectedTemplate.entryFee.amount * prizeMultiplier);
-  
+
   String getLocalizedText(key) {
     return StringUtils.translate(key, "createcontest");
   }
@@ -147,7 +147,7 @@ class CreateContestComp  {
         });
     }
   }
-  
+
   void updateAll() {
     updateTemplatesPerType();
     updateDate();
@@ -201,7 +201,7 @@ class CreateContestComp  {
     if (selectedHour < hourList[0]) selectedHour = hourList[0];
     if (selectedHour > hourList.last) selectedHour = hourList.last;
   }
-  
+
   Map<String, List<TemplateContest>> templatesPerTypeList = {
     S_TYPE_OFICIAL: [],
     S_TYPE_TRAINING: []
@@ -209,7 +209,7 @@ class CreateContestComp  {
   void updateTemplatesPerType() {
     templatesPerTypeList.forEach( (String key, List<TemplateContest> list) {
       list.clear();
-      // Este filtra por tipo de torneo (real, virtual) 
+      // Este filtra por tipo de torneo (real, virtual)
       list.addAll(_templateContests.where((t) => (key == S_TYPE_TRAINING) == t.isSimulation));
       // Este permite usar los reales como virtuales y viceversa.
       //list.addAll(_templateContests);
@@ -222,8 +222,8 @@ class CreateContestComp  {
       _contestType = null;
     }
     if (_contestType == null) {
-      _contestType = templatesPerTypeList[S_TYPE_OFICIAL ].isNotEmpty? S_TYPE_OFICIAL : 
-                     templatesPerTypeList[S_TYPE_TRAINING].isNotEmpty? S_TYPE_TRAINING : 
+      _contestType = templatesPerTypeList[S_TYPE_OFICIAL ].isNotEmpty? S_TYPE_OFICIAL :
+                     templatesPerTypeList[S_TYPE_TRAINING].isNotEmpty? S_TYPE_TRAINING :
                      /*else*/ null;
     }
   }
@@ -233,8 +233,8 @@ class CreateContestComp  {
     updateSelectedContestType();
     updateTemplatesPerCompetition();
   }
-  
-  
+
+
   Map<String, List<TemplateContest>> templatesPerCompetitionList = {
     Competition.LEAGUE_ES: [],
     Competition.LEAGUE_UK: []
@@ -254,9 +254,9 @@ class CreateContestComp  {
       _selectedCompetition = null;
     }
     if (_selectedCompetition == null) {
-      _selectedCompetition = templatesPerCompetitionList[Competition.LEAGUE_ES].isNotEmpty? Competition.LEAGUE_ES : 
-                             templatesPerCompetitionList[Competition.LEAGUE_UK].isNotEmpty? Competition.LEAGUE_UK : 
-                             /*else*/ null; 
+      _selectedCompetition = templatesPerCompetitionList[Competition.LEAGUE_ES].isNotEmpty? Competition.LEAGUE_ES :
+                             templatesPerCompetitionList[Competition.LEAGUE_UK].isNotEmpty? Competition.LEAGUE_UK :
+                             /*else*/ null;
     }
   }
   String get selectedCompetition => _selectedCompetition;
@@ -265,8 +265,8 @@ class CreateContestComp  {
     updateSelectedCompetition();
     updateTemplatesPerStyle();
   }
-  
-  
+
+
   Map<String, List<TemplateContest>> templatesPerStyle = {
     Contest.TOURNAMENT_HEAD_TO_HEAD: [],
     Contest.TOURNAMENT_LEAGUE: []
@@ -287,8 +287,8 @@ class CreateContestComp  {
       _contestStyle = null;
     }
     if (_contestStyle == null) {
-      _contestStyle = templatesPerStyle[Contest.TOURNAMENT_HEAD_TO_HEAD].isNotEmpty? Contest.TOURNAMENT_HEAD_TO_HEAD : 
-                      templatesPerStyle[Contest.TOURNAMENT_LEAGUE].isNotEmpty? Contest.TOURNAMENT_LEAGUE : 
+      _contestStyle = templatesPerStyle[Contest.TOURNAMENT_HEAD_TO_HEAD].isNotEmpty? Contest.TOURNAMENT_HEAD_TO_HEAD :
+                      templatesPerStyle[Contest.TOURNAMENT_LEAGUE].isNotEmpty? Contest.TOURNAMENT_LEAGUE :
                      /*else*/ null;
     }
   }
@@ -312,7 +312,7 @@ class CreateContestComp  {
             day1.month == day2.month &&
             day1.year == day2.year);
   }
-  
+
   String _contestType;
   String _contestStyle;
   String _selectedCompetition;

@@ -50,7 +50,7 @@ class CreateContestComp  {
 
   List<int> leaguePlayerCountList = [5, 10, 15, 20, 50, -1];
   int selectedLeaguePlayerCount = 10;
-  int get maxEntries => (contestStyle == STYLE_HEAD_TO_HEAD) ? 2 : (selectedLeaguePlayerCount > 0) ? selectedLeaguePlayerCount : 100;
+  int get maxEntries => (contestStyle == STYLE_HEAD_TO_HEAD) ? 2 : selectedLeaguePlayerCount;
 
   TemplateContest get selectedTemplate => _selectedTemplate;
   void set selectedTemplate(TemplateContest val) {

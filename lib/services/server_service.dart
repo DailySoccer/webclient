@@ -56,6 +56,7 @@ abstract class ServerService {
   // Live Contests
   Future<Map> getLiveMatchEventsFromTemplateContest(String templateContestId);
   Future<Map> getLiveMatchEventsFromContest(String contestId);
+  Future<Map> getSoccerPlayersAvailablesToChange(String contestId);
 
   // Estadísticas SoccerPlayer
   Future<Map> getInstancePlayerInfo(String contestId, String instanceSoccerPlayerId);
@@ -257,6 +258,10 @@ class DailySoccerServer implements ServerService {
 
   Future<Map> getLiveMatchEventsFromContest(String contestId) {
     return _innerServerCall("${HostServer.url}/get_live_match_events/contest/$contestId");
+  }
+
+  Future<Map> getSoccerPlayersAvailablesToChange(String contestId) {
+    return _innerServerCall("${HostServer.url}/get_soccer_players_availables_to_change/$contestId");
   }
 
   Future<Map> getInstancePlayerInfo(String contestId, String instanceSoccerPlayerId) {

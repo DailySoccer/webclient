@@ -54,7 +54,7 @@ class ViewContestComp implements DetachAware {
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
 
   String get changingPlayerId => _changingPlayer != null? _changingPlayer.id : null;
-  
+
   String getLocalizedText(key) {
     return StringUtils.translate(key, "viewcontest");
   }
@@ -130,11 +130,11 @@ class ViewContestComp implements DetachAware {
           _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
         }, test: (error) => error is ServerError);
   }
-  
+
   void updateSoccerPlayerStates() {
     mainPlayer.instanceSoccerPlayers.forEach( (i) {
       MatchEvent match = contest.matchEvents.firstWhere( (m) => m.containsTeam(i.soccerTeam));
-      i.playState = match.isFinished ? InstanceSoccerPlayer.STATE_PLAYED  : 
+      i.playState = match.isFinished ? InstanceSoccerPlayer.STATE_PLAYED  :
                     match.isStarted  ? InstanceSoccerPlayer.STATE_PLAYING :
                             /*Else*/   InstanceSoccerPlayer.STATE_NOT_PLAYED;
     });
@@ -189,59 +189,64 @@ class ViewContestComp implements DetachAware {
 
   void onRequestChange(InstanceSoccerPlayer instanceSoccerPlayer) {
     isMakingChange = !isMakingChange;
-    
+
     if (isMakingChange) {
       int intId = 0;
-      allSoccerPlayers = new List<dynamic>();
+      //allSoccerPlayers = [];
       _changingPlayer = instanceSoccerPlayer;
-      
-      contest.instanceSoccerPlayers.forEach((templateSoccerId, instanceSoccerPlayer) {
-          if (mainPlayer != null && mainPlayer.isPurchased(instanceSoccerPlayer)) {
-            instanceSoccerPlayer.level = 0;
-          }
-  
-          MatchEvent matchEvent = instanceSoccerPlayer.soccerTeam.matchEvent;
-          SoccerTeam soccerTeam = instanceSoccerPlayer.soccerTeam;
-  
-          String shortNameTeamA = matchEvent.soccerTeamA.shortName;
-          String shortNameTeamB = matchEvent.soccerTeamB.shortName;
-  
-          var matchEventName = (instanceSoccerPlayer.soccerTeam.templateSoccerTeamId == matchEvent.soccerTeamA.templateSoccerTeamId)
-               ? "<strong>$shortNameTeamA</strong> - $shortNameTeamB"
-               : "$shortNameTeamA - <strong>$shortNameTeamB</strong>";
-  
-          if (instanceSoccerPlayer.soccerPlayer.name == null) {
-            print(instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId);
-          } else {
-            print(instanceSoccerPlayer.soccerPlayer.name);
-            allSoccerPlayers.add({
-              "instanceSoccerPlayer": instanceSoccerPlayer,
-              "id": instanceSoccerPlayer.id,
-              "intId": intId++,
-              "fieldPos": instanceSoccerPlayer.fieldPos,
-              "fieldPosSortOrder": instanceSoccerPlayer.fieldPos.sortOrder,
-              "fullName": instanceSoccerPlayer.soccerPlayer.name,
-              "fullNameNormalized": StringUtils.normalize(instanceSoccerPlayer.soccerPlayer.name).toUpperCase(),
-              "matchId" : matchEvent.templateMatchEventId,
-              "matchEventName": matchEventName,
-              "remainingMatchTime": "-",
-              "fantasyPoints": instanceSoccerPlayer.soccerPlayer.getFantasyPointsForCompetition(contest.optaCompetitionId),
-              "playedMatches": instanceSoccerPlayer.soccerPlayer.getPlayedMatchesForCompetition(contest.optaCompetitionId),
-              "salary": instanceSoccerPlayer.salary
-            });
-          }
-        });
-      updateFavorites();
+
+      _contestsService.getSoccerPlayersAvailablesToChange(contest.contestId)
+        .then((List<InstanceSoccerPlayer> instanceSoccerPlayers) {
+          allSoccerPlayers = [];
+
+          instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
+            if (mainPlayer != null && mainPlayer.isPurchased(instanceSoccerPlayer)) {
+              instanceSoccerPlayer.level = 0;
+            }
+
+            MatchEvent matchEvent = instanceSoccerPlayer.soccerTeam.matchEvent;
+            SoccerTeam soccerTeam = instanceSoccerPlayer.soccerTeam;
+
+            String shortNameTeamA = matchEvent.soccerTeamA.shortName;
+            String shortNameTeamB = matchEvent.soccerTeamB.shortName;
+
+            var matchEventName = (instanceSoccerPlayer.soccerTeam.templateSoccerTeamId == matchEvent.soccerTeamA.templateSoccerTeamId)
+                 ? "<strong>$shortNameTeamA</strong> - $shortNameTeamB"
+                 : "$shortNameTeamA - <strong>$shortNameTeamB</strong>";
+
+            if (instanceSoccerPlayer.soccerPlayer.name == null) {
+              print(instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId);
+            } else {
+              print(instanceSoccerPlayer.soccerPlayer.name);
+              allSoccerPlayers.add({
+                "instanceSoccerPlayer": instanceSoccerPlayer,
+                "id": instanceSoccerPlayer.id,
+                "intId": intId++,
+                "fieldPos": instanceSoccerPlayer.fieldPos,
+                "fieldPosSortOrder": instanceSoccerPlayer.fieldPos.sortOrder,
+                "fullName": instanceSoccerPlayer.soccerPlayer.name,
+                "fullNameNormalized": StringUtils.normalize(instanceSoccerPlayer.soccerPlayer.name).toUpperCase(),
+                "matchId" : matchEvent.templateMatchEventId,
+                "matchEventName": matchEventName,
+                "remainingMatchTime": "-",
+                "fantasyPoints": instanceSoccerPlayer.soccerPlayer.getFantasyPointsForCompetition(contest.optaCompetitionId),
+                "playedMatches": instanceSoccerPlayer.soccerPlayer.getPlayedMatchesForCompetition(contest.optaCompetitionId),
+                "salary": instanceSoccerPlayer.salary
+              });
+            }
+          });
+        updateFavorites();
+      });
     } else {
       _changingPlayer = null;
     }
-    
+
     if (_changingPlayer != null) {
       fieldPosFilter = _changingPlayer.fieldPos;
     }
     print("CLICKED: ${instanceSoccerPlayer.soccerPlayer.name}");
   }
-  
+
   void updateFavorites() {
     favoritesPlayers.clear();
     if (_profileService.isLoggedIn) {
@@ -250,7 +255,7 @@ class ViewContestComp implements DetachAware {
         ).where( (d) => d != null));
     }
   }
-  
+
   void onRowClick(String soccerPlayerId) {
     //print(soccerPlayerId);
   }
@@ -261,7 +266,7 @@ class ViewContestComp implements DetachAware {
     mainPlayer.instanceSoccerPlayers.removeWhere( (i) => i.id == _changingPlayer.id);
     mainPlayer.instanceSoccerPlayers.add(instanceSoccerPlayer);*/
   }
-  
+
   FlashMessagesService _flashMessage;
   RouteProvider _routeProvider;
   ProfileService _profileService;

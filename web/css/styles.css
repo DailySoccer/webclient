@@ -11916,12 +11916,15 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   -ms-user-select: none;
   user-select: none;
   cursor: pointer;
-  margin-top: 2px;
+  padding-top: 2px;
   padding-bottom: 2px;
   border-width: 1px;
   border-style: none none dotted none;
   border-color: #ff0000;
   border-radius: 0;
+}
+.fantasy-team-list .fantasy-team-slot.not-selected {
+  opacity: 0.3;
 }
 .fantasy-team-list .fantasy-team-slot .column-fieldpos {
   position: relative;
@@ -12039,7 +12042,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   line-height: 1;
   padding: 5px;
   padding-bottom: 4px;
-  margin-left: 10px;
+  margin-left: 5px;
 }
 .fantasy-team-list .fantasy-team-slot .column-score .change-btt:hover,
 .fantasy-team-list .fantasy-team-slot .column-score .change-btt:focus,

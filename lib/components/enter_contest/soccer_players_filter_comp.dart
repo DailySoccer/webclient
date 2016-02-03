@@ -46,6 +46,9 @@ class SoccerPlayersFilterComp implements AttachAware {
   @NgOneWay('show-title')
   bool showTitle = true;
 
+  @NgOneWay('position-filters-enabled')
+  bool positionFiltersEnabled = true;
+  
   String getLocalizedText(key, {group: "soccerplayerpositions"}) {
     return StringUtils.translate(key, group);
   }
@@ -85,5 +88,5 @@ class SoccerPlayersFilterComp implements AttachAware {
 
   FieldPos _fieldPosFilter;
   bool _showOnXs = false;
-  bool _onlyFavorites;
+  bool _onlyFavorites = false;
 }

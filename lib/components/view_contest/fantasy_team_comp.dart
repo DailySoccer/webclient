@@ -43,9 +43,12 @@ class FantasyTeamComp implements DetachAware {
 
     @NgOneWay("show-close-button")
     bool showCloseButton = false;
-    
+
     @NgOneWay("show-changes")
     bool showChanges = false;
+    
+    @NgOneWay("changing-soccer-id")
+    String changingSoccerId = null;
 
     @NgCallback('on-close')
     Function onClose;

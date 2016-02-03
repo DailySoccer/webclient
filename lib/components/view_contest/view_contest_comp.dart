@@ -41,7 +41,7 @@ class ViewContestComp implements DetachAware {
 
   String nameFilter;
   FieldPos fieldPosFilter;
-  bool onlyFavorites;
+  bool onlyFavorites = false;
   String matchFilter;
   List<dynamic> allSoccerPlayers;
   List<dynamic> favoritesPlayers = [];
@@ -53,6 +53,8 @@ class ViewContestComp implements DetachAware {
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
 
+  String get changingPlayerId => _changingPlayer != null? _changingPlayer.id : null;
+  
   String getLocalizedText(key) {
     return StringUtils.translate(key, "viewcontest");
   }
@@ -187,10 +189,11 @@ class ViewContestComp implements DetachAware {
 
   void onRequestChange(InstanceSoccerPlayer instanceSoccerPlayer) {
     isMakingChange = !isMakingChange;
-
+    
     if (isMakingChange) {
       int intId = 0;
       allSoccerPlayers = new List<dynamic>();
+      _changingPlayer = instanceSoccerPlayer;
       
       contest.instanceSoccerPlayers.forEach((templateSoccerId, instanceSoccerPlayer) {
           if (mainPlayer != null && mainPlayer.isPurchased(instanceSoccerPlayer)) {
@@ -229,6 +232,12 @@ class ViewContestComp implements DetachAware {
           }
         });
       updateFavorites();
+    } else {
+      _changingPlayer = null;
+    }
+    
+    if (_changingPlayer != null) {
+      fieldPosFilter = _changingPlayer.fieldPos;
     }
     print("CLICKED: ${instanceSoccerPlayer.soccerPlayer.name}");
   }
@@ -243,19 +252,14 @@ class ViewContestComp implements DetachAware {
   }
   
   void onRowClick(String soccerPlayerId) {
-    print(soccerPlayerId);
+    //print(soccerPlayerId);
   }
 
   void onSoccerPlayerActionButton(var soccerPlayer) {
-    print(soccerPlayer);
-    /*int indexOfPlayer = lineupSlots.indexOf(soccerPlayer);
-    if (indexOfPlayer != -1) {
-      onLineupSlotSelected(indexOfPlayer);  // Esto se encarga de quitarlo del lineup
-    }
-    else {
-      _tryToAddSoccerPlayerToLineup(soccerPlayer);
-    }
-    _verifyMaxPlayersInSameTeam();*/
+    //print(soccerPlayer);
+    /*InstanceSoccerPlayer instanceSoccerPlayer = soccerPlayer['instanceSoccerPlayer'];
+    mainPlayer.instanceSoccerPlayers.removeWhere( (i) => i.id == _changingPlayer.id);
+    mainPlayer.instanceSoccerPlayers.add(instanceSoccerPlayer);*/
   }
   
   FlashMessagesService _flashMessage;
@@ -264,5 +268,6 @@ class ViewContestComp implements DetachAware {
   RefreshTimersService _refreshTimersService;
   ContestsService _contestsService;
   TutorialService _tutorialService;
+  InstanceSoccerPlayer _changingPlayer;
 }
 

@@ -4,7 +4,8 @@
     <span ng-if="showTitle">{{getLocalizedText("players", group: "soccerplayerlist")}}</span>
     <button class="button-filter-position" ng-click="fieldPosFilter = fieldPos"
             ng-repeat="fieldPos in posFilterList" ng-bind-html="getTextForFieldPos(fieldPos)" 
-            ng-class="{'active': isActiveFieldPos(fieldPos), 'all': fieldPos == null}"></button>
+            ng-class="{'active': isActiveFieldPos(fieldPos), 'all': fieldPos == null}"
+            ng-show="positionFiltersEnabled"></button>
     <button class="button-filter-favorites" ng-click="switchFavorites()" ng-if="showFavorites"
             ng-class="{'active': onlyFavorites}"></button>
   </div>

@@ -34,7 +34,10 @@
           <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
           <span class="remaining-match-time" ng-if="!isViewContestEntryMode">{{slot.percentOfUsersThatOwn}}% {{getLocalizedText("owned")}}</span>
         </div>
-        <div class="column-score" ng-if="!isViewContestEntryMode"><span>{{slot.score}}</span></div>
+        <div class="column-score" ng-if="!isViewContestEntryMode">
+          <span>{{slot.score}}</span>
+          <button class="change-btt" ng-if="playerIsChangeable(slot)" ng-click="requestChange(slot)"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></button>
+        </div>
         <div class="column-salary" ng-if="isViewContestEntryMode">${{slot.salary}}</div>
       </div>
       <div id="statistic_{{owner}}_{{$index}}" class="soccer-player-statistics collapse" ng-if="!isViewContestEntryMode">

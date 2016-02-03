@@ -15,6 +15,10 @@ import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/server_error.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/tutorial_service.dart';
+import 'package:webclient/models/match_event.dart';
+import 'package:webclient/models/instance_soccer_player.dart';
+import 'package:webclient/models/field_pos.dart';
+import 'package:webclient/models/soccer_team.dart';
 
 @Component(
     selector: 'view-contest',
@@ -35,7 +39,16 @@ class ViewContestComp implements DetachAware {
   String contestId;
   Contest contest;
 
+  String nameFilter;
+  FieldPos fieldPosFilter;
+  bool onlyFavorites;
+  String matchFilter;
+  List<dynamic> allSoccerPlayers;
+  List<dynamic> favoritesPlayers = [];
+
   bool get isLive => _routeProvider.route.name.contains("live_contest");
+  bool get showChanges => contest != null ? contest.isLive : false;
+  bool isMakingChange = false;
 
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
@@ -66,6 +79,7 @@ class ViewContestComp implements DetachAware {
         else {
           mainPlayer = contest.contestEntriesOrderByPoints.first;
         }
+        updateSoccerPlayerStates();
 
         // En el caso de los tipos de torneo 1vs1 el oponente se autoselecciona
         if(contest.tournamentType == Contest.TOURNAMENT_HEAD_TO_HEAD) {
@@ -108,10 +122,20 @@ class ViewContestComp implements DetachAware {
           if (!_profileService.isLoggedIn || !contest.containsContestEntryWithUser(_profileService.user.userId)) {
             mainPlayer = contest.contestEntriesOrderByPoints.first;
           }
+          updateSoccerPlayerStates();
         })
         .catchError((ServerError error) {
           _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
         }, test: (error) => error is ServerError);
+  }
+  
+  void updateSoccerPlayerStates() {
+    mainPlayer.instanceSoccerPlayers.forEach( (i) {
+      MatchEvent match = contest.matchEvents.firstWhere( (m) => m.containsTeam(i.soccerTeam));
+      i.playState = match.isFinished ? InstanceSoccerPlayer.STATE_PLAYED  : 
+                    match.isStarted  ? InstanceSoccerPlayer.STATE_PLAYING :
+                            /*Else*/   InstanceSoccerPlayer.STATE_NOT_PLAYED;
+    });
   }
 
   void onUserClick(ContestEntry contestEntry, {preventViewOpponent: false}) {
@@ -161,6 +185,79 @@ class ViewContestComp implements DetachAware {
     }
   }
 
+  void onRequestChange(InstanceSoccerPlayer instanceSoccerPlayer) {
+    isMakingChange = !isMakingChange;
+
+    if (isMakingChange) {
+      int intId = 0;
+      allSoccerPlayers = new List<dynamic>();
+      
+      contest.instanceSoccerPlayers.forEach((templateSoccerId, instanceSoccerPlayer) {
+          if (mainPlayer != null && mainPlayer.isPurchased(instanceSoccerPlayer)) {
+            instanceSoccerPlayer.level = 0;
+          }
+  
+          MatchEvent matchEvent = instanceSoccerPlayer.soccerTeam.matchEvent;
+          SoccerTeam soccerTeam = instanceSoccerPlayer.soccerTeam;
+  
+          String shortNameTeamA = matchEvent.soccerTeamA.shortName;
+          String shortNameTeamB = matchEvent.soccerTeamB.shortName;
+  
+          var matchEventName = (instanceSoccerPlayer.soccerTeam.templateSoccerTeamId == matchEvent.soccerTeamA.templateSoccerTeamId)
+               ? "<strong>$shortNameTeamA</strong> - $shortNameTeamB"
+               : "$shortNameTeamA - <strong>$shortNameTeamB</strong>";
+  
+          if (instanceSoccerPlayer.soccerPlayer.name == null) {
+            print(instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId);
+          } else {
+            print(instanceSoccerPlayer.soccerPlayer.name);
+            allSoccerPlayers.add({
+              "instanceSoccerPlayer": instanceSoccerPlayer,
+              "id": instanceSoccerPlayer.id,
+              "intId": intId++,
+              "fieldPos": instanceSoccerPlayer.fieldPos,
+              "fieldPosSortOrder": instanceSoccerPlayer.fieldPos.sortOrder,
+              "fullName": instanceSoccerPlayer.soccerPlayer.name,
+              "fullNameNormalized": StringUtils.normalize(instanceSoccerPlayer.soccerPlayer.name).toUpperCase(),
+              "matchId" : matchEvent.templateMatchEventId,
+              "matchEventName": matchEventName,
+              "remainingMatchTime": "-",
+              "fantasyPoints": instanceSoccerPlayer.soccerPlayer.getFantasyPointsForCompetition(contest.optaCompetitionId),
+              "playedMatches": instanceSoccerPlayer.soccerPlayer.getPlayedMatchesForCompetition(contest.optaCompetitionId),
+              "salary": instanceSoccerPlayer.salary
+            });
+          }
+        });
+      updateFavorites();
+    }
+    print("CLICKED: ${instanceSoccerPlayer.soccerPlayer.name}");
+  }
+  
+  void updateFavorites() {
+    favoritesPlayers.clear();
+    if (_profileService.isLoggedIn) {
+      favoritesPlayers.addAll(_profileService.user.favorites.map((playerId) =>
+          allSoccerPlayers.firstWhere( (player) => player['id'] == playerId, orElse: () => null)
+        ).where( (d) => d != null));
+    }
+  }
+  
+  void onRowClick(String soccerPlayerId) {
+    print(soccerPlayerId);
+  }
+
+  void onSoccerPlayerActionButton(var soccerPlayer) {
+    print(soccerPlayer);
+    /*int indexOfPlayer = lineupSlots.indexOf(soccerPlayer);
+    if (indexOfPlayer != -1) {
+      onLineupSlotSelected(indexOfPlayer);  // Esto se encarga de quitarlo del lineup
+    }
+    else {
+      _tryToAddSoccerPlayerToLineup(soccerPlayer);
+    }
+    _verifyMaxPlayersInSameTeam();*/
+  }
+  
   FlashMessagesService _flashMessage;
   RouteProvider _routeProvider;
   ProfileService _profileService;

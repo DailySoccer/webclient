@@ -11941,7 +11941,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
 .fantasy-team-list .fantasy-team-slot .column-primary-info {
   position: relative;
   float: left;
-  width: 66.66666667%;
+  width: 62.5%;
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
@@ -11980,7 +11980,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
 .fantasy-team-list .fantasy-team-slot .column-score {
   position: relative;
   float: left;
-  width: 20.83333333%;
+  width: 25%;
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
@@ -12000,6 +12000,160 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
 }
 .fantasy-team-list .fantasy-team-slot .column-score .changed {
   background-color: #ffff00;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt {
+  background-color: #428bca;
+  border-color: #357ebd;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  background-color: #a1c931;
+  color: #ffffff;
+  outline: none !important;
+  font-size: 14pt;
+  vertical-align: baseline;
+  line-height: 1;
+  padding: 5px;
+  padding-bottom: 4px;
+  margin-left: 10px;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:hover,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:focus,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:active,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.active,
+.open .dropdown-toggle.fantasy-team-list .fantasy-team-slot .column-score .change-btt {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:active,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.active,
+.open .dropdown-toggle.fantasy-team-list .fantasy-team-slot .column-score .change-btt {
+  background-image: none;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.disabled,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt[disabled],
+fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-btt,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.disabled:hover,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt[disabled]:hover,
+fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-btt:hover,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.disabled:focus,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt[disabled]:focus,
+fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-btt:focus,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.disabled:active,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt[disabled]:active,
+fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-btt:active,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.disabled.active,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt[disabled].active,
+fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-btt.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt .badge {
+  color: #428bca;
+  background-color: #ffffff;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:focus,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:active:focus,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:hover,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:focus {
+  color: #333333;
+  text-decoration: none;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:active,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.disabled,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt[disabled],
+fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-btt {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:active,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.active {
+  box-shadow: none;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:active:focus,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:active:hover,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:hover:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:active,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.active {
+  box-shadow: none;
+  background-color: #a1c931;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.disabled,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt[disabled],
+fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-btt {
+  background-color: #b5d657;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.close {
+  background-color: #a1c931;
+  outline: none !important;
+  color: #ffffff;
 }
 .fantasy-team-list .fantasy-team-slot .column-salary {
   position: relative;
@@ -12799,6 +12953,26 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   clear: both;
   width: 100%;
   height: 15px;
+}
+.soccer-player-changes-list {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: 1px solid #434343;
+  border-radius: 10px;
+  padding: 0px;
+  overflow: hidden;
+  min-height: 533px;
+}
+@media (min-width: 768px) {
+  .soccer-player-changes-list {
+    float: left;
+    width: 50%;
+  }
+}
+.soccer-player-changes-list .soccer-players-list {
+  max-height: 401px;
 }
 #lobbyf2pRoot {
   background-color: #dcdcdc;

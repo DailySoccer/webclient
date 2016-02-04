@@ -19,6 +19,7 @@ import 'package:webclient/models/match_event.dart';
 import 'package:webclient/models/instance_soccer_player.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/models/soccer_team.dart';
+import 'package:logging/logging.dart';
 
 @Component(
     selector: 'view-contest',
@@ -193,7 +194,7 @@ class ViewContestComp implements DetachAware {
 
     if (isMakingChange) {
       int intId = 0;
-      
+
       _changingPlayer = requestedSoccerPlayer;
 
       //allSoccerPlayers = [];
@@ -202,19 +203,19 @@ class ViewContestComp implements DetachAware {
           .then((List<InstanceSoccerPlayer> instanceSoccerPlayers) {
               allSoccerPlayers = [];
               lineupSlots = [];
-              
+
               instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
                   if (mainPlayer != null && mainPlayer.isPurchased(instanceSoccerPlayer)) {
                     instanceSoccerPlayer.level = 0;
                   }
-                  
+
                   if (instanceSoccerPlayer.soccerPlayer.name == null) {
                     print(instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId);
                   } else {
                     print(instanceSoccerPlayer.soccerPlayer.name);
                     dynamic slot = _createSlot(instanceSoccerPlayer, intId++);
                     allSoccerPlayers.add(slot);
-                    
+
                     if (mainPlayer.instanceSoccerPlayers.firstWhere( (i) => i.id == instanceSoccerPlayer.id, orElse: () => null) != null) {
                       lineupSlots.add(slot);
                     }
@@ -232,7 +233,7 @@ class ViewContestComp implements DetachAware {
     }
     print("CLICKED: ${requestedSoccerPlayer.soccerPlayer.name}");
   }
-  
+
   Map _createSlot(InstanceSoccerPlayer instanceSoccerPlayer, int intId) {
     MatchEvent matchEvent = instanceSoccerPlayer.soccerTeam.matchEvent;
     //SoccerTeam soccerTeam = instanceSoccerPlayer.soccerTeam;
@@ -243,7 +244,7 @@ class ViewContestComp implements DetachAware {
     var matchEventName = (instanceSoccerPlayer.soccerTeam.templateSoccerTeamId == matchEvent.soccerTeamA.templateSoccerTeamId)
          ? "<strong>$shortNameTeamA</strong> - $shortNameTeamB"
          : "$shortNameTeamA - <strong>$shortNameTeamB</strong>";
-          
+
     return {  "instanceSoccerPlayer": instanceSoccerPlayer,
               "id": instanceSoccerPlayer.id,
               "intId": intId,
@@ -259,8 +260,8 @@ class ViewContestComp implements DetachAware {
               "salary": instanceSoccerPlayer.salary
             };
   }
-  
-  
+
+
   void updateFavorites() {
     favoritesPlayers.clear();
     if (_profileService.isLoggedIn) {
@@ -269,22 +270,32 @@ class ViewContestComp implements DetachAware {
         ).where( (d) => d != null));
     }
   }
-  
+
   void onRowClick(String soccerPlayerId) {
     //print(soccerPlayerId);
   }
 
   void onSoccerPlayerActionButton(var soccerPlayer) {
     //print(soccerPlayer);
-    
-    /*DEBUG LINE*///updatedDate.add(new Duration(seconds: 1));
-    
+
     InstanceSoccerPlayer instanceSoccerPlayer = soccerPlayer['instanceSoccerPlayer'];
-    mainPlayer.instanceSoccerPlayers.removeWhere( (i) => i.id == _changingPlayer.id);
-    mainPlayer.instanceSoccerPlayers.add(instanceSoccerPlayer);
+
+    _contestsService.changeSoccerPlayer(mainPlayer.contestEntryId, _changingPlayer.soccerPlayer.templateSoccerPlayerId, instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId)
+      .then((_) {
+        /*DEBUG LINE*///updatedDate.add(new Duration(seconds: 1));
+
+        /*
+        mainPlayer.instanceSoccerPlayers.removeWhere( (i) => i.id == _changingPlayer.id);
+        mainPlayer.instanceSoccerPlayers.add(instanceSoccerPlayer);
+         */
+        print ("onSoccerPlayerActionButton: Ok");
+      })
+      .catchError((ServerError error) {
+        Logger.root.info("Error: ${error.responseError}");
+      }, test: (error) => error is ServerError);
   }
-  
-  
+
+
   FlashMessagesService _flashMessage;
   RouteProvider _routeProvider;
   ProfileService _profileService;

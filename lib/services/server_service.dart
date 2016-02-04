@@ -51,6 +51,7 @@ abstract class ServerService {
   Future<Map> addContestEntry(String contestId, String formation, List<String> soccerPlayers);
   Future<Map> editContestEntry(String contestEntryId, String formation, List<String> soccerPlayers);
   Future<Map> cancelContestEntry(String contestEntryId);
+  Future<Map> changeSoccerPlayer(String contestEntryId, String soccerPlayerId, String soccerPlayerIdNew);
   Future<Map> getContestInfo(String contestId);
 
   // Live Contests
@@ -246,6 +247,10 @@ class DailySoccerServer implements ServerService {
 
   Future<Map> cancelContestEntry(String contestEntryId) {
     return _innerServerCall("${HostServer.url}/cancel_contest_entry", postData: {'contestEntryId': contestEntryId});
+  }
+
+  Future<Map> changeSoccerPlayer(String contestEntryId, String soccerPlayerId, String soccerPlayerIdNew) {
+    return _innerServerCall("${HostServer.url}/change_soccer_player", postData: {'contestEntryId': contestEntryId, 'soccerPlayerId': soccerPlayerId, 'soccerPlayerIdNew': soccerPlayerIdNew});
   }
 
   Future<Map> getContestInfo(String contestId) {

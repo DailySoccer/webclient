@@ -136,6 +136,13 @@ class ContestsService {
       });
   }
 
+  Future changeSoccerPlayer(String contestEntryId, String soccerPlayerId, String soccerPlayerIdNew) {
+    return _server.changeSoccerPlayer(contestEntryId, soccerPlayerId, soccerPlayerIdNew)
+      .then((jsonMap) {
+        // Logger.root.info("response: " + jsonMap.toString());
+      });
+  }
+
   Future refreshMyContests() {
     return _server.getMyContests()
         .then((jsonMap) {

@@ -19,7 +19,7 @@ import 'package:logging/logging.dart';
     exportExpressions: const ["lineupFilter"]
 )
 class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware {
-
+  
   static const String FILTER_POSITION = "FILTER_POSITION";
   static const String FILTER_NAME = "FILTER_NAME";
   static const String FILTER_MATCH = "FILTER_MATCH";
@@ -84,7 +84,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
   @NgOneWay("lineup-filter")
   void set setLineupFilter(List<dynamic> sp) {
-    if (sp == lineupFilter) {
+    if (sp == lineupFilter || sp == null) {
       return;
     }
 
@@ -216,7 +216,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
       if (_isVisibleWithFilters(slot, filterPosVal, filterMatchIdVal, filterNameVal)) {
         visibleItems++;
-        allHtml.write(_getHtmlForSlot(slot, !(lineupFilter.contains(slot))));
+        allHtml.write(_getHtmlForSlot(slot, lineupFilter.firstWhere( (s) => s['id'] == slot['id'], orElse: () => null) == null));
 
         // Logger.root.info("${slot["id"]}: ${slot["intId"]}: ${slot["fullName"]}");
       }

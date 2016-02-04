@@ -45,6 +45,7 @@ class ViewContestComp implements DetachAware {
   String matchFilter;
   List<dynamic> allSoccerPlayers;
   List<dynamic> favoritesPlayers = [];
+  List<dynamic> lineupSlots = [];
 
   bool get isLive => _routeProvider.route.name.contains("live_contest");
   bool get showChanges => contest != null ? contest.isLive : false;
@@ -187,56 +188,41 @@ class ViewContestComp implements DetachAware {
     }
   }
 
-  void onRequestChange(InstanceSoccerPlayer instanceSoccerPlayer) {
+  void onRequestChange(InstanceSoccerPlayer requestedSoccerPlayer) {
     isMakingChange = !isMakingChange;
 
     if (isMakingChange) {
       int intId = 0;
+      
+      _changingPlayer = requestedSoccerPlayer;
+
       //allSoccerPlayers = [];
-      _changingPlayer = instanceSoccerPlayer;
-
-      _contestsService.getSoccerPlayersAvailablesToChange(contest.contestId)
-        .then((List<InstanceSoccerPlayer> instanceSoccerPlayers) {
-          allSoccerPlayers = [];
-
-          instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
-            if (mainPlayer != null && mainPlayer.isPurchased(instanceSoccerPlayer)) {
-              instanceSoccerPlayer.level = 0;
-            }
-
-            MatchEvent matchEvent = instanceSoccerPlayer.soccerTeam.matchEvent;
-            SoccerTeam soccerTeam = instanceSoccerPlayer.soccerTeam;
-
-            String shortNameTeamA = matchEvent.soccerTeamA.shortName;
-            String shortNameTeamB = matchEvent.soccerTeamB.shortName;
-
-            var matchEventName = (instanceSoccerPlayer.soccerTeam.templateSoccerTeamId == matchEvent.soccerTeamA.templateSoccerTeamId)
-                 ? "<strong>$shortNameTeamA</strong> - $shortNameTeamB"
-                 : "$shortNameTeamA - <strong>$shortNameTeamB</strong>";
-
-            if (instanceSoccerPlayer.soccerPlayer.name == null) {
-              print(instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId);
-            } else {
-              print(instanceSoccerPlayer.soccerPlayer.name);
-              allSoccerPlayers.add({
-                "instanceSoccerPlayer": instanceSoccerPlayer,
-                "id": instanceSoccerPlayer.id,
-                "intId": intId++,
-                "fieldPos": instanceSoccerPlayer.fieldPos,
-                "fieldPosSortOrder": instanceSoccerPlayer.fieldPos.sortOrder,
-                "fullName": instanceSoccerPlayer.soccerPlayer.name,
-                "fullNameNormalized": StringUtils.normalize(instanceSoccerPlayer.soccerPlayer.name).toUpperCase(),
-                "matchId" : matchEvent.templateMatchEventId,
-                "matchEventName": matchEventName,
-                "remainingMatchTime": "-",
-                "fantasyPoints": instanceSoccerPlayer.soccerPlayer.getFantasyPointsForCompetition(contest.optaCompetitionId),
-                "playedMatches": instanceSoccerPlayer.soccerPlayer.getPlayedMatchesForCompetition(contest.optaCompetitionId),
-                "salary": instanceSoccerPlayer.salary
+      if (allSoccerPlayers == null) {
+        _contestsService.getSoccerPlayersAvailablesToChange(contest.contestId)
+          .then((List<InstanceSoccerPlayer> instanceSoccerPlayers) {
+              allSoccerPlayers = [];
+              lineupSlots = [];
+              
+              instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
+                  if (mainPlayer != null && mainPlayer.isPurchased(instanceSoccerPlayer)) {
+                    instanceSoccerPlayer.level = 0;
+                  }
+                  
+                  if (instanceSoccerPlayer.soccerPlayer.name == null) {
+                    print(instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId);
+                  } else {
+                    print(instanceSoccerPlayer.soccerPlayer.name);
+                    dynamic slot = _createSlot(instanceSoccerPlayer, intId++);
+                    allSoccerPlayers.add(slot);
+                    
+                    if (mainPlayer.instanceSoccerPlayers.firstWhere( (i) => i.id == instanceSoccerPlayer.id, orElse: () => null) != null) {
+                      lineupSlots.add(slot);
+                    }
+                  }
               });
-            }
-          });
-        updateFavorites();
-      });
+              updateFavorites();
+        });
+      }
     } else {
       _changingPlayer = null;
     }
@@ -244,9 +230,37 @@ class ViewContestComp implements DetachAware {
     if (_changingPlayer != null) {
       fieldPosFilter = _changingPlayer.fieldPos;
     }
-    print("CLICKED: ${instanceSoccerPlayer.soccerPlayer.name}");
+    print("CLICKED: ${requestedSoccerPlayer.soccerPlayer.name}");
   }
+  
+  Map _createSlot(InstanceSoccerPlayer instanceSoccerPlayer, int intId) {
+    MatchEvent matchEvent = instanceSoccerPlayer.soccerTeam.matchEvent;
+    //SoccerTeam soccerTeam = instanceSoccerPlayer.soccerTeam;
 
+    String shortNameTeamA = matchEvent.soccerTeamA.shortName;
+    String shortNameTeamB = matchEvent.soccerTeamB.shortName;
+
+    var matchEventName = (instanceSoccerPlayer.soccerTeam.templateSoccerTeamId == matchEvent.soccerTeamA.templateSoccerTeamId)
+         ? "<strong>$shortNameTeamA</strong> - $shortNameTeamB"
+         : "$shortNameTeamA - <strong>$shortNameTeamB</strong>";
+          
+    return {  "instanceSoccerPlayer": instanceSoccerPlayer,
+              "id": instanceSoccerPlayer.id,
+              "intId": intId,
+              "fieldPos": instanceSoccerPlayer.fieldPos,
+              "fieldPosSortOrder": instanceSoccerPlayer.fieldPos.sortOrder,
+              "fullName": instanceSoccerPlayer.soccerPlayer.name,
+              "fullNameNormalized": StringUtils.normalize(instanceSoccerPlayer.soccerPlayer.name).toUpperCase(),
+              "matchId" : matchEvent.templateMatchEventId,
+              "matchEventName": matchEventName,
+              "remainingMatchTime": "-",
+              "fantasyPoints": instanceSoccerPlayer.soccerPlayer.getFantasyPointsForCompetition(contest.optaCompetitionId),
+              "playedMatches": instanceSoccerPlayer.soccerPlayer.getPlayedMatchesForCompetition(contest.optaCompetitionId),
+              "salary": instanceSoccerPlayer.salary
+            };
+  }
+  
+  
   void updateFavorites() {
     favoritesPlayers.clear();
     if (_profileService.isLoggedIn) {
@@ -255,18 +269,22 @@ class ViewContestComp implements DetachAware {
         ).where( (d) => d != null));
     }
   }
-
+  
   void onRowClick(String soccerPlayerId) {
     //print(soccerPlayerId);
   }
 
   void onSoccerPlayerActionButton(var soccerPlayer) {
     //print(soccerPlayer);
-    /*InstanceSoccerPlayer instanceSoccerPlayer = soccerPlayer['instanceSoccerPlayer'];
+    
+    /*DEBUG LINE*///updatedDate.add(new Duration(seconds: 1));
+    
+    InstanceSoccerPlayer instanceSoccerPlayer = soccerPlayer['instanceSoccerPlayer'];
     mainPlayer.instanceSoccerPlayers.removeWhere( (i) => i.id == _changingPlayer.id);
-    mainPlayer.instanceSoccerPlayers.add(instanceSoccerPlayer);*/
+    mainPlayer.instanceSoccerPlayers.add(instanceSoccerPlayer);
   }
-
+  
+  
   FlashMessagesService _flashMessage;
   RouteProvider _routeProvider;
   ProfileService _profileService;

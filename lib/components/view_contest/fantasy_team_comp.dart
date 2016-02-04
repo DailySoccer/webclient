@@ -158,7 +158,9 @@ class FantasyTeamComp implements DetachAware {
 
         // Para el score refrescamos solo el texto y lanzamos una animacion (fade-in/out por ejemplo)
         Element scoreElement = _rootElement.querySelector("[data-id='${soccerPlayer.templateSoccerPlayerId}'] .column-score span");
-        Map slot = slots.firstWhere((slot) => slot['id'] == soccerPlayer.templateSoccerPlayerId);
+        Map slot = slots.firstWhere((slot) => 
+            slot['id'] == soccerPlayer.templateSoccerPlayerId
+            );
         slot["changeable"] = instanceSoccerPlayer.playState == InstanceSoccerPlayer.STATE_NOT_PLAYED 
                              || instanceSoccerPlayer.playState == InstanceSoccerPlayer.STATE_PLAYING;
 

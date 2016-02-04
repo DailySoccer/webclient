@@ -10,6 +10,7 @@ import 'dart:async';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 class FBLogin {
 
@@ -56,6 +57,7 @@ class FBLogin {
         
         completer.complete(permissions);
       } else {
+        Logger.root.severe (ProfileService.decorateLog("WTF - 8696 - RunJS - Facebook Get Permissions Error: " + permissionsResponse["error"]['message']));
         completer.completeError({});
       }
     }]);
@@ -84,6 +86,8 @@ class FBLogin {
         serverLoginWithFB();
       } else {
         // ERROR
+        GameMetrics.logEvent(GameMetrics.LOGIN_FB_PERMISSIONS_DENIED, permissions);
+        Logger.root.severe (ProfileService.decorateLog("WTF - 8695 - Facebook Permissions Insuficent: $permissions"));
         rerequestLoginModal();
       }
     });
@@ -117,6 +121,7 @@ class FBLogin {
         
         completer.complete(info);
       } else {
+        Logger.root.severe (ProfileService.decorateLog("WTF - 8692 - RunJS - Facebook Get Profile Info ${profileInfoResponse["error"]['message']}"));
         completer.completeError({});
       }
       
@@ -136,12 +141,16 @@ class FBLogin {
               , onCancel: StringUtils.translate('facebookReRequestCancel', 'login')
               , aditionalClass: "facebook-rerequest-modal"
             ).then((_) {
+              GameMetrics.logEvent(GameMetrics.LOGIN_FB_REREQUEST_ACCEPTED);
               JsUtils.runJavascript(null, "facebookLoginReRequest", [(js.JsObject loginResponse) {
                 if (loginResponse["status"] == "connected") {
                   loginCallback(loginResponse);
                 }
               }]);
-            });//.catchError((_) => _router.go('home', {}));
+            }).catchError((_) {
+              GameMetrics.logEvent(GameMetrics.LOGIN_FB_REREQUEST_REJECTED);
+              Logger.root.info(ProfileService.decorateLog("WTF - 8694 - Rejected Facebook Permissions ReRequest"));
+            });
   }
   
   static Map profileImage(String facebookId) {
@@ -160,7 +169,7 @@ class FBLogin {
             image['isDefault'] = profileInfoResponse['isDefault'];
             _profileImageCache[facebookId] = image;
           } else {
-            Logger.root.warning("WTF 3510");
+            Logger.root.warning (ProfileService.decorateLog("WTF - 3510 - RunJS - Facebook Get Profile Image '${profileInfoResponse["error"]['message']}'"));
           }
         }]);
     
@@ -176,7 +185,7 @@ class FBLogin {
             List<String> idList = new List<String>.from(profileInfoResponse['idList']);
             completer.complete(idList);
           } else {
-            Logger.root.warning("WTF 3511");
+            Logger.root.severe (ProfileService.decorateLog("WTF - 3511 - RunJS - Facebook Get Friends '${profileInfoResponse["error"]['message']}'"));
             completer.completeError(profileInfoResponse["error"]);
           }
         }]);

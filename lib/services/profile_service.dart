@@ -261,6 +261,20 @@ class ProfileService {
 
     return completer.future;
   }
+  
+  static String decorateLog(String text) {
+    ProfileService profile = ProfileService.instance;
+    if (profile != null){
+      if (profile.isLoggedIn) {
+        text = "$text [UserID: ${profile.user.userId}, FbId: ${profile.user.facebookID}]";
+      } else {
+        text = "$text [LoggedOff]";
+      }
+    } else {
+      text = "$text [ProfileService not instantiated]";
+    }
+    return text;
+  }
 
   List<User> _friendList = [];
   List<User> get friendList => user == null? [] : _friendList;

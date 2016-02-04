@@ -144,8 +144,26 @@
     <script src="js/jquery.min.js"></script>
     <script>
 
-      
+      window.serverLoggerInfo = window.serverLoggerInfo || function(text) {
+        if (typeof serverLoggerInfoCB !== "undefined" && serverLoggerInfoCB != null) {
+          serverLoggerInfoCB(text);
+        }
+      };
+
+      window.serverLoggerWarning = window.serverLoggerWarning || function(text) {
+        if (typeof serverLoggerWarningCB !== "undefined" && serverLoggerWarningCB != null) {
+          serverLoggerWarningCB(text);
+        }
+      };
+
+      window.serverLoggerServere = window.serverLoggerServere || function(text) {
+        if (typeof serverLoggerServereCB !== "undefined" && serverLoggerServereCB != null) {
+          serverLoggerServereCB(text);
+        }
+      };
+
       var fbIsInit = false;
+      var fbTimesWaitErrorLogged = false;
       function waitForFacebook(callback) {
         var timesWait = 0;
         var tryCall;
@@ -156,8 +174,15 @@
               timesWait += 1;
               if (timesWait < 100) {
                 tryCall(callback);
+                if (fbTimesWaitErrorLogged === true) {
+                  fbTimesWaitErrorLogged = false;
+                  serverLoggerInfo("JS - Wait for facebook worked after a timeout!!");
+                }
               } else {
-                console.error("Wait for facebook timeout");
+                if (fbTimesWaitErrorLogged === false) {
+                  serverLoggerServere("WTF - 8797 - JS - Wait for facebook timeout");
+                  fbTimesWaitErrorLogged = true;
+                }
               }
             }, 100);
           } else {
@@ -275,12 +300,16 @@
         var parse;
         var trys = 0;
         var fbCheck = false;
+        var msWaiting = 20;
         parse = function () {
           var xfbmlElements = document.querySelectorAll(cssSelector);
           if (!fbCheck || xfbmlElements.length == 0) {
             trys++;
-            if (trys < 1000) {
-              setTimeout(parse, 100);
+            if (trys < 500) {
+              setTimeout(parse, msWaiting);
+            } else {
+              serverLoggerServere("WTF - 8798 - JS - Parse XFBML made " + trys + 
+                                  " trys in " + (trys*msWaiting /1000) + " seconds and fail");
             }
           } else {
             FB.XFBML.parse();

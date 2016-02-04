@@ -105,6 +105,7 @@ import 'package:webclient/components/legalese_and_help/rules_comp.dart';
 import 'package:webclient/components/legalese_and_help/terminus_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/policy_info_comp.dart';
+import 'package:logging/logging.dart';
 
 //import 'package:webclient/components/account/add_funds_comp.dart';
 //import 'package:webclient/components/account/transaction_history_comp.dart';
@@ -231,6 +232,10 @@ class WebClientApp extends Module {
     bind(ScoutingComp);
     bind(ScoutingLeagueComp);
 
+    JsUtils.setJavascriptFunction('serverLoggerInfoCB',    (String text) => Logger.root.info   (ProfileService.decorateLog(text)) );
+    JsUtils.setJavascriptFunction('serverLoggerWarningCB', (String text) => Logger.root.warning(ProfileService.decorateLog(text)) );
+    JsUtils.setJavascriptFunction('serverLoggerServereCB', (String text) => Logger.root.severe (ProfileService.decorateLog(text)) );
+    
     //bind(AddFundsComp);
     //bind(TransactionHistoryComp);
     //bind(LandingPage1SlideComp);

@@ -273,7 +273,7 @@ class ProfileService {
     } else {
       text = "$text [ProfileService not instantiated]";
     }
-    return text;
+    return "$text [WebClient]";
   }
 
   List<User> _friendList = [];

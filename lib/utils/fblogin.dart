@@ -100,11 +100,14 @@ class FBLogin {
               String id          = info['id'];
               String name        = info['name'];
               // LOGIN
+              Logger.root.info (ProfileService.decorateLog("Server Login with Facebook"));
               _profileManager.facebookLogin(accessToken, id, name, email)
-                                    .then((_) => _onLogin())
-                                    .catchError((ServerError error) {
-                                        Logger.root.severe(error);
-                                     }, test: (error) => error is ServerError);
+                                    .then((_) {
+                                      Logger.root.info (ProfileService.decorateLog("Server Login with Facebook is OK"));
+                                      _onLogin();
+                                    }).catchError((ServerError error) {
+                                      Logger.root.severe(error);
+                                    }, test: (error) => error is ServerError);
             });
   }
   

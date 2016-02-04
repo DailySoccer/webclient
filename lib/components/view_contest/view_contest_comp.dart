@@ -121,6 +121,7 @@ class ViewContestComp implements DetachAware {
       : _contestsService.refreshLiveMatchEvents(templateContestId: _contestsService.lastContest.templateContestId))
         .then((_) {
           updatedDate = DateTimeService.now;
+          contest = _contestsService.lastContest;
 
           // Actualizar al usuario principal (al que destacamos)
           if (!_profileService.isLoggedIn || !contest.containsContestEntryWithUser(_profileService.user.userId)) {
@@ -134,12 +135,14 @@ class ViewContestComp implements DetachAware {
   }
 
   void updateSoccerPlayerStates() {
-    mainPlayer.instanceSoccerPlayers.forEach( (i) {
-      MatchEvent match = contest.matchEvents.firstWhere( (m) => m.containsTeam(i.soccerTeam));
-      i.playState = match.isFinished ? InstanceSoccerPlayer.STATE_PLAYED  :
-                    match.isStarted  ? InstanceSoccerPlayer.STATE_PLAYING :
-                            /*Else*/   InstanceSoccerPlayer.STATE_NOT_PLAYED;
-    });
+    mainPlayer.instanceSoccerPlayers.forEach( _updateSoccerPlayerState );
+  }
+  
+  void _updateSoccerPlayerState(InstanceSoccerPlayer i) {
+    MatchEvent match = contest.matchEvents.firstWhere( (m) => m.containsTeam(i.soccerTeam));
+    i.playState = match.isFinished ? InstanceSoccerPlayer.STATE_PLAYED  :
+                  match.isStarted  ? InstanceSoccerPlayer.STATE_PLAYING :
+                          /*Else*/   InstanceSoccerPlayer.STATE_NOT_PLAYED;
   }
 
   void onUserClick(ContestEntry contestEntry, {preventViewOpponent: false}) {
@@ -189,8 +192,13 @@ class ViewContestComp implements DetachAware {
     }
   }
 
-  void onRequestChange(InstanceSoccerPlayer requestedSoccerPlayer) {
-    isMakingChange = !isMakingChange;
+  void closePlayerChanges() => onRequestChange();
+  void onRequestChange([InstanceSoccerPlayer requestedSoccerPlayer = null]) {
+    if (requestedSoccerPlayer == null) {
+      isMakingChange = false;
+    } else {
+      isMakingChange = !isMakingChange;
+    }
 
     if (isMakingChange) {
       int intId = 0;
@@ -210,19 +218,20 @@ class ViewContestComp implements DetachAware {
                   }
 
                   if (instanceSoccerPlayer.soccerPlayer.name == null) {
-                    print(instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId);
+                    Logger.root.severe("Currently there isn't info about this soccer player: ${instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId}");
                   } else {
-                    print(instanceSoccerPlayer.soccerPlayer.name);
-                    dynamic slot = _createSlot(instanceSoccerPlayer, intId++);
-                    allSoccerPlayers.add(slot);
-
-                    if (mainPlayer.instanceSoccerPlayers.firstWhere( (i) => i.id == instanceSoccerPlayer.id, orElse: () => null) != null) {
-                      lineupSlots.add(slot);
+                    _updateSoccerPlayerState(instanceSoccerPlayer);
+                    if (instanceSoccerPlayer.playState == InstanceSoccerPlayer.STATE_NOT_PLAYED) {
+                      dynamic slot = _createSlot(instanceSoccerPlayer, intId++);
+                      allSoccerPlayers.add(slot);
                     }
                   }
               });
+              updateLineupSlots();
               updateFavorites();
         });
+      } else {
+        updateLineupSlots();
       }
     } else {
       _changingPlayer = null;
@@ -230,8 +239,8 @@ class ViewContestComp implements DetachAware {
 
     if (_changingPlayer != null) {
       fieldPosFilter = _changingPlayer.fieldPos;
+      print("CLICKED: ${requestedSoccerPlayer.soccerPlayer.name}");
     }
-    print("CLICKED: ${requestedSoccerPlayer.soccerPlayer.name}");
   }
 
   Map _createSlot(InstanceSoccerPlayer instanceSoccerPlayer, int intId) {
@@ -260,7 +269,24 @@ class ViewContestComp implements DetachAware {
               "salary": instanceSoccerPlayer.salary
             };
   }
+  
+  void updateSoccerPlayerSlots() {
+    allSoccerPlayers.removeWhere( (Map slot) {
+      InstanceSoccerPlayer instanceSoccerPlayer = slot['instanceSoccerPlayer'];
+      _updateSoccerPlayerState(instanceSoccerPlayer);
+      return instanceSoccerPlayer.playState != InstanceSoccerPlayer.STATE_NOT_PLAYED;
+    });
+  }
 
+  void updateLineupSlots() {
+    lineupSlots = [];
+    mainPlayer.instanceSoccerPlayers.forEach( (i) {
+        Map slot = allSoccerPlayers.firstWhere( (soccerPlayer) => soccerPlayer['id'] == i.id, orElse: () => null);
+        if(slot != null) {
+          lineupSlots.add(slot);
+        }
+    });
+  }
 
   void updateFavorites() {
     favoritesPlayers.clear();
@@ -280,39 +306,16 @@ class ViewContestComp implements DetachAware {
 
     InstanceSoccerPlayer instanceSoccerPlayer = soccerPlayer['instanceSoccerPlayer'];
 
-    _contestsService.changeSoccerPlayer(mainPlayer.contestEntryId, _changingPlayer.soccerPlayer.templateSoccerPlayerId, instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId)
+    _contestsService.changeSoccerPlayer(mainPlayer.contestEntryId, 
+            _changingPlayer.soccerPlayer.templateSoccerPlayerId, 
+            instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId)
       .then((_) {
-        /*DEBUG LINE*///updatedDate.add(new Duration(seconds: 1));
-
-        /*
-        mainPlayer.instanceSoccerPlayers.removeWhere( (i) => i.id == _changingPlayer.id);
-        mainPlayer.instanceSoccerPlayers.add(instanceSoccerPlayer);
-         */
+        closePlayerChanges();
       
-        /*
-         * TEST DE REFRESH CONTEST
-         * 
-        contest = _contestsService.lastContest;
-  
-        if (_profileService.isLoggedIn && contest.containsContestEntryWithUser(_profileService.user.userId)) {
-          mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
-        }
-        else {
-          mainPlayer = contest.contestEntriesOrderByPoints.first;
-        }
+        mainPlayer = _contestsService.lastContest.getContestEntryWithUser(_profileService.user.userId);
         updateSoccerPlayerStates();
-  
-        // En el caso de los tipos de torneo 1vs1 el oponente se autoselecciona
-        if(contest.tournamentType == Contest.TOURNAMENT_HEAD_TO_HEAD) {
-          selectedOpponent = contestEntries.firstWhere((contestEntry) => contestEntry.contestEntryId != mainPlayer.contestEntryId, orElse: () => null);
-          if (selectedOpponent != null) {
-            onUserClick(selectedOpponent, preventViewOpponent: true);
-          }
-        }
-  
-        updatedDate = DateTimeService.now;
-         */
-      
+        updateLive();
+        
         print ("onSoccerPlayerActionButton: Ok");
       })
       .catchError((ServerError error) {

@@ -139,6 +139,7 @@ class ContestsService {
   Future changeSoccerPlayer(String contestEntryId, String soccerPlayerId, String soccerPlayerIdNew) {
     return _server.changeSoccerPlayer(contestEntryId, soccerPlayerId, soccerPlayerIdNew)
       .then((jsonMap) {
+        registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
         // Logger.root.info("response: " + jsonMap.toString());
       });
   }

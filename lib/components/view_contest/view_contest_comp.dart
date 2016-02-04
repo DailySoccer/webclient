@@ -288,6 +288,31 @@ class ViewContestComp implements DetachAware {
         mainPlayer.instanceSoccerPlayers.removeWhere( (i) => i.id == _changingPlayer.id);
         mainPlayer.instanceSoccerPlayers.add(instanceSoccerPlayer);
          */
+      
+        /*
+         * TEST DE REFRESH CONTEST
+         * 
+        contest = _contestsService.lastContest;
+  
+        if (_profileService.isLoggedIn && contest.containsContestEntryWithUser(_profileService.user.userId)) {
+          mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
+        }
+        else {
+          mainPlayer = contest.contestEntriesOrderByPoints.first;
+        }
+        updateSoccerPlayerStates();
+  
+        // En el caso de los tipos de torneo 1vs1 el oponente se autoselecciona
+        if(contest.tournamentType == Contest.TOURNAMENT_HEAD_TO_HEAD) {
+          selectedOpponent = contestEntries.firstWhere((contestEntry) => contestEntry.contestEntryId != mainPlayer.contestEntryId, orElse: () => null);
+          if (selectedOpponent != null) {
+            onUserClick(selectedOpponent, preventViewOpponent: true);
+          }
+        }
+  
+        updatedDate = DateTimeService.now;
+         */
+      
         print ("onSoccerPlayerActionButton: Ok");
       })
       .catchError((ServerError error) {

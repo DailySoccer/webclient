@@ -13484,6 +13484,32 @@ main-menu-f2p .beta-label {
   background-image: url("../images/progress-bar-front.png");
   background-color: transparent;
 }
+#mainMenu #desktopMenu .fixed-user-stats .energy img {
+  margin-left: 3px;
+}
+#mainMenu #desktopMenu .fixed-user-stats .energy .energyCount {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #000000;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+  background-color: #a1c931;
+  border: 1px solid #0a2938;
+  border-radius: 10px;
+  width: 19px;
+  height: 19px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+#mainMenu #desktopMenu .fixed-user-stats .energy .time-left {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #a1c931;
+  text-shadow: 1px 1px 1px rgba(161, 201, 49, 0.004);
+  display: inline-block;
+}
 #mainMenu #desktopMenu .fixed-user-stats .manager-points {
   text-align: center;
   display: inline-block;

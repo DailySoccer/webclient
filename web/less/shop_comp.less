@@ -164,7 +164,6 @@
 				.energy-item {
 					.make-row(0);
 					padding-bottom: 20px;
-					border-bottom: 1px solid fade(@greyBlue, 50%);
 					
 					.item-title {
 						.make-row(0);
@@ -184,40 +183,40 @@
 						}
 						padding-bottom: 10px;
 					}
-
+					/*
 					.product+.product {
 						float: right;
-					}
+					}*/
 					.product {
-						.make-xs-column(5.5);
 						text-align: center;
 						padding: 0;
 						border: 1px solid @blueLight;
 						border-radius: 3px;
+						//margin-bottom: 20px;
+						margin: 0px 10px 30px 10px;
+ 						
 						.energy-description {
-							margin-top: 10px;
-							.opensans_normal(10pt, @white);
+							margin-top: 5px;
+							.opensans_bold(10pt, @white);
 							text-transform: uppercase;
 							text-align: center;
 						}
 						
 						.product-image {
-							margin: 10px 0 15px 0;
+							margin: 5px 0 10px 0;
 						}
 
 						.button-wrapper {
-							margin: -1px;
-							display: block;
-							padding: 0;
+							
 							.refill-button{
 								.btn-primary();
-								.make-xs-column(12);
-								border-top-right-radius: 0;
-								border-top-left-radius: 0;
-								padding: 5px;;
+								width: 100px;
+								padding: 3px;
+								margin-bottom: 10px;
 								margin-right: auto;
 								margin-left: auto;
 								display: block;
+								
 								.quantity {
 									.opensans_bold(14pt, @white);
 									vertical-align: middle;

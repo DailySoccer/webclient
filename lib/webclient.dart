@@ -351,6 +351,8 @@ class WebClientApp extends Module {
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<shop-comp></shop-comp>',
           mount: {
+            'buy': ngRoute(path: '/buy'),
+            
             'response': ngRoute(
                 path: '/response/:result',
                 preEnter: (RoutePreEnterEvent e) => _preEnterPagePayment(e, router),

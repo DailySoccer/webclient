@@ -874,7 +874,7 @@ class EnterContestComp implements DetachAware {
       // Registramos dónde tendría que navegar al tener éxito en "add_funds"
       window.localStorage[contest.entryFee.isEnergy ? "add_energy_success" : "add_gold_success"] = window.location.href;
 
-      _router.go(contest.entryFee.isEnergy ? 'shop' : 'shop', {});
+      _router.go('shop.buy', {});
     });
 
     _tutorialService.triggerEnter("alert-not-enough-resources");

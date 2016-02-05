@@ -191,9 +191,8 @@ class EnterContestComp implements DetachAware {
         "generic" : getLocalizedText("erroruserbalancenegativegeneric")
       },
       "ERROR_CONTEST_FULL": {
-          "title"   : getLocalizedText("errordefaulttitle"),
-          "generic" : getLocalizedText("errordefaultgeneric"),
-          "editing" : getLocalizedText("errordefaultediting")
+          "title"   : getLocalizedText("cannot-enter-full-title"),
+          "generic" : getLocalizedText("cannot-enter-full-desc"),
       },
       "_ERROR_DEFAULT_": {
           "title"   : getLocalizedText("errordefaulttitle"),
@@ -288,6 +287,24 @@ class EnterContestComp implements DetachAware {
     }
   }
 
+  void messageContestFull() {
+    String title = getLocalizedText("cannot-enter-full-title");
+    String description = getLocalizedText("cannot-enter-full-desc");
+    modalShow(
+          "",
+          '''
+            <div class="content-wrapper">
+              <h1 class="alert-content-title">$title</h1>
+              <h2 class="alert-content-subtitle">$description</h2>
+            </div>
+          '''
+          , onBackdropClick: true
+          , aditionalClass: "cannotEnter"
+        )
+        .then((_) => _router.go('lobby', {}))
+        .catchError((_) => _router.go('lobby', {}));
+  }
+  
   void cannotEnterMessageRedirect() {
     String title = "";
     String description = "";
@@ -787,8 +804,8 @@ class EnterContestComp implements DetachAware {
     if (keyError == ERROR_USER_BALANCE_NEGATIVE) {
       alertNotEnoughResources();
     } 
-    if (keyError == ERROR_CONTEST_FULL) {
-      cannotEnterMessageRedirect();
+    else if (keyError == ERROR_CONTEST_FULL) {
+      messageContestFull();
     }
     else {
       modalShow(

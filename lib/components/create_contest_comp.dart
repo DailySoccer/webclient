@@ -102,7 +102,8 @@ class CreateContestComp  {
 
   num get prizeMultiplier => _selectedTemplate.prizeMultiplier;
 
-  Money get prizePool => new Money.from(contestType == TYPE_OFICIAL ? Money.CURRENCY_GOLD : Money.CURRENCY_MANAGER, maxEntries * _selectedTemplate.entryFee.amount * prizeMultiplier);
+  // El premio que se muestra es "si se llena el torneo" (salvo en los torneos ilimitados, que se muestra su mínimo)
+  Money get prizePool => new Money.from(contestType == TYPE_OFICIAL ? Money.CURRENCY_GOLD : Money.CURRENCY_MANAGER, ((maxEntries > 0) ? maxEntries : 2) * _selectedTemplate.entryFee.amount * prizeMultiplier);
 
   String getLocalizedText(key) {
     return StringUtils.translate(key, "createcontest");

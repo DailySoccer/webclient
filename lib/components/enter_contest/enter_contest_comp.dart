@@ -36,6 +36,7 @@ class EnterContestComp implements DetachAware {
 
   static const String ERROR_RETRY_OP = "ERROR_RETRY_OP";
   static const String ERROR_CONTEST_NOT_ACTIVE = "ERROR_CONTEST_NOT_ACTIVE";
+  static const String ERROR_CONTEST_FULL = "ERROR_CONTEST_FULL";
   static const String ERROR_USER_ALREADY_INCLUDED = "ERROR_USER_ALREADY_INCLUDED";
   static const String ERROR_USER_BALANCE_NEGATIVE = "ERROR_USER_BALANCE_NEGATIVE";
   static const String ERROR_MAX_PLAYERS_SAME_TEAM = "ERROR_MAX_PLAYERS_SAME_TEAM";
@@ -44,7 +45,6 @@ class EnterContestComp implements DetachAware {
 
   // Errores de los que no tendríamos que informar
   static const String ERROR_CONTEST_INVALID = "ERROR_CONTEST_INVALID";
-  static const String ERROR_CONTEST_FULL = "ERROR_CONTEST_FULL";
   static const String ERROR_FANTASY_TEAM_INCOMPLETE = "ERROR_FANTASY_TEAM_INCOMPLETE";
   static const String ERROR_SALARYCAP_INVALID = "ERROR_SALARYCAP_INVALID";
   static const String ERROR_FORMATION_INVALID = "ERROR_FORMATION_INVALID";
@@ -189,6 +189,11 @@ class EnterContestComp implements DetachAware {
       ERROR_USER_BALANCE_NEGATIVE: {
         "title"   : getLocalizedText("erroruserbalancenegativetitle"),
         "generic" : getLocalizedText("erroruserbalancenegativegeneric")
+      },
+      "ERROR_CONTEST_FULL": {
+          "title"   : getLocalizedText("errordefaulttitle"),
+          "generic" : getLocalizedText("errordefaultgeneric"),
+          "editing" : getLocalizedText("errordefaultediting")
       },
       "_ERROR_DEFAULT_": {
           "title"   : getLocalizedText("errordefaulttitle"),
@@ -781,7 +786,11 @@ class EnterContestComp implements DetachAware {
     
     if (keyError == ERROR_USER_BALANCE_NEGATIVE) {
       alertNotEnoughResources();
-    } else {
+    } 
+    if (keyError == ERROR_CONTEST_FULL) {
+      cannotEnterMessageRedirect();
+    }
+    else {
       modalShow(
         errorMap[keyError]["title"],
         (editingContestEntry && errorMap[keyError].containsKey("editing")) ? errorMap[keyError]["editing"] : errorMap[keyError]["generic"]

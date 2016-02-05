@@ -1209,5 +1209,9 @@
       "title"                           : "No disponible para dispositivos móviles",
       "body"                            : "Muy pronto en todos los dispositivos"
     }
+    ,"serverError"                      :
+    {
+      "connection-error"                : "Error de conexión..."
+    }
   }
 }

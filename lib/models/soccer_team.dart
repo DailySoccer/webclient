@@ -9,6 +9,7 @@ class SoccerTeam {
   String name;
   String shortName;
   List<SoccerPlayer> soccerPlayers = new List<SoccerPlayer>();
+  Map<String, SoccerPlayer> soccerPlayersMap = new Map<String, SoccerPlayer>();
 
   // Partido en el que juega
   MatchEvent matchEvent;
@@ -40,10 +41,13 @@ class SoccerTeam {
   }
 
   SoccerPlayer findSoccerPlayer(String soccerPlayerId) {
-    return soccerPlayers.firstWhere( (soccer) => soccer.templateSoccerPlayerId == soccerPlayerId, orElse: () => null );
+    return soccerPlayersMap.containsKey(soccerPlayerId) ? soccerPlayersMap[soccerPlayerId] : null;
   }
 
   void addSoccerPlayer(SoccerPlayer soccerPlayer) {
-    soccerPlayers.add(soccerPlayer);
+    if (!soccerPlayersMap.containsKey(soccerPlayer.templateSoccerPlayerId)) {
+      soccerPlayersMap[soccerPlayer.templateSoccerPlayerId] = soccerPlayer;
+      soccerPlayers.add(soccerPlayer);
+    }
   }
 }

@@ -41,7 +41,8 @@ class LoggerExceptionHandler extends ExceptionHandler {
       }
 
       // Por convenio, si se quiere mandar un mensaje al servidor, basta usar el Logger.root con Level == SEVERE.
-      if (r.level >= Level.SEVERE) {
+      bool webClientNotify = (r.message != null) && r.message.contains("[WebClient]");
+      if (webClientNotify || r.level >= Level.SEVERE) {
 
         String userEmail = "unknown@email.com";
         String userAgent = "Unknown user agent";

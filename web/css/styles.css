@@ -12111,6 +12111,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
 .soccer-player-statistics {
   margin-left: 0;
   margin-right: 0;
+  cursor: default;
 }
 .statistic {
   float: left;
@@ -20938,6 +20939,63 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
 #alertRoot.facebook-rerequest-modal .autocentered-buttons-wrapper .button-box .ok-button {
   text-transform: uppercase;
   font-size: 12pt;
+}
+#loginBox,
+#joinRoot {
+  text-align: left;
+}
+#loginBox #signupbox,
+#joinRoot #signupbox {
+  margin-top: 40px;
+}
+#loginBox .form-description,
+#joinRoot .form-description {
+  text-align: left;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+  color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+}
+#loginBox .form-group,
+#joinRoot .form-group {
+  text-align: left;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+#loginBox #passAndRepassFieldsWrapper,
+#joinRoot #passAndRepassFieldsWrapper,
+#loginBox #mailAndNameFieldsWrapper,
+#joinRoot #mailAndNameFieldsWrapper,
+#loginBox #mailAndPassFieldsWrapper,
+#joinRoot #mailAndPassFieldsWrapper {
+  margin-bottom: 0;
+}
+#loginBox .fb-button-wrapper,
+#joinRoot .fb-button-wrapper {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0;
+  padding-right: 0;
+  text-align: left;
+  min-height: 60px;
+  float: none;
+}
+#loginBox .user-form-field.facebook-form-wrapper:after,
+#joinRoot .user-form-field.facebook-form-wrapper:after {
+  content: "";
+  width: 40px;
+  border-bottom: 2px solid #777777;
+  display: block;
+  clear: both;
+  margin-top: 20px;
+  margin-left: 2px;
+}
+#loginBox #nickNameInputGroup,
+#joinRoot #nickNameInputGroup {
+  margin-bottom: 10px;
 }
 #usersList {
   float: left;

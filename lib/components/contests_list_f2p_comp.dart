@@ -116,11 +116,11 @@ class ContestsListF2PComp {
   bool userIsRegistered(Contest contest) {
     return _profileService.isLoggedIn && contest.containsContestEntryWithUser(_profileService.user.userId);
   }
-  
-  String timeInfo(DateTime date) {
+   
+  String timeInfo(DateTime date, [bool shortIfPossible = true]) {
     // Avisamos 2 horas antes...
     int secondsLeft = timeLeft(date);
-    if (secondsLeft >= 0 && secondsLeft < SOON_SECONDS) {
+    if (secondsLeft >= 0 && secondsLeft < SOON_SECONDS && shortIfPossible) {
       int minutes = secondsLeft ~/ 60;
       int seconds = secondsLeft - (minutes * 60);
       
@@ -134,9 +134,9 @@ class ContestsListF2PComp {
     return DateTimeService.formatTimeShort(date);
   }
   
-  String dateInfo(DateTime date) {
+  String dateInfo(DateTime date, [bool shortIfPossible = true]) {
     // Avisamos cuando sea "Hoy"
-    if (DateTimeService.isToday(date)) {
+    if (DateTimeService.isToday(date) && shortIfPossible) {
       return getLocalizedText("today");
     }
     return DateTimeService.formatDateShort(date);

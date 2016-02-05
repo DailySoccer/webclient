@@ -36,6 +36,7 @@ class EnterContestComp implements DetachAware {
 
   static const String ERROR_RETRY_OP = "ERROR_RETRY_OP";
   static const String ERROR_CONTEST_NOT_ACTIVE = "ERROR_CONTEST_NOT_ACTIVE";
+  static const String ERROR_CONTEST_FULL = "ERROR_CONTEST_FULL";
   static const String ERROR_USER_ALREADY_INCLUDED = "ERROR_USER_ALREADY_INCLUDED";
   static const String ERROR_USER_BALANCE_NEGATIVE = "ERROR_USER_BALANCE_NEGATIVE";
   static const String ERROR_MAX_PLAYERS_SAME_TEAM = "ERROR_MAX_PLAYERS_SAME_TEAM";
@@ -44,7 +45,6 @@ class EnterContestComp implements DetachAware {
 
   // Errores de los que no tendríamos que informar
   static const String ERROR_CONTEST_INVALID = "ERROR_CONTEST_INVALID";
-  static const String ERROR_CONTEST_FULL = "ERROR_CONTEST_FULL";
   static const String ERROR_FANTASY_TEAM_INCOMPLETE = "ERROR_FANTASY_TEAM_INCOMPLETE";
   static const String ERROR_SALARYCAP_INVALID = "ERROR_SALARYCAP_INVALID";
   static const String ERROR_FORMATION_INVALID = "ERROR_FORMATION_INVALID";
@@ -190,6 +190,10 @@ class EnterContestComp implements DetachAware {
         "title"   : getLocalizedText("erroruserbalancenegativetitle"),
         "generic" : getLocalizedText("erroruserbalancenegativegeneric")
       },
+      "ERROR_CONTEST_FULL": {
+          "title"   : getLocalizedText("cannot-enter-full-title"),
+          "generic" : getLocalizedText("cannot-enter-full-desc"),
+      },
       "_ERROR_DEFAULT_": {
           "title"   : getLocalizedText("errordefaulttitle"),
           "generic" : getLocalizedText("errordefaultgeneric"),
@@ -283,6 +287,24 @@ class EnterContestComp implements DetachAware {
     }
   }
 
+  void messageContestFull() {
+    String title = getLocalizedText("cannot-enter-full-title");
+    String description = getLocalizedText("cannot-enter-full-desc");
+    modalShow(
+          "",
+          '''
+            <div class="content-wrapper">
+              <h1 class="alert-content-title">$title</h1>
+              <h2 class="alert-content-subtitle">$description</h2>
+            </div>
+          '''
+          , onBackdropClick: true
+          , aditionalClass: "cannotEnter"
+        )
+        .then((_) => _router.go('lobby', {}))
+        .catchError((_) => _router.go('lobby', {}));
+  }
+  
   void cannotEnterMessageRedirect() {
     String title = "";
     String description = "";
@@ -781,7 +803,11 @@ class EnterContestComp implements DetachAware {
     
     if (keyError == ERROR_USER_BALANCE_NEGATIVE) {
       alertNotEnoughResources();
-    } else {
+    } 
+    else if (keyError == ERROR_CONTEST_FULL) {
+      messageContestFull();
+    }
+    else {
       modalShow(
         errorMap[keyError]["title"],
         (editingContestEntry && errorMap[keyError].containsKey("editing")) ? errorMap[keyError]["editing"] : errorMap[keyError]["generic"]
@@ -874,7 +900,7 @@ class EnterContestComp implements DetachAware {
       // Registramos dónde tendría que navegar al tener éxito en "add_funds"
       window.localStorage[contest.entryFee.isEnergy ? "add_energy_success" : "add_gold_success"] = window.location.href;
 
-      _router.go(contest.entryFee.isEnergy ? 'shop' : 'shop', {});
+      _router.go('shop.buy', {});
     });
 
     _tutorialService.triggerEnter("alert-not-enough-resources");

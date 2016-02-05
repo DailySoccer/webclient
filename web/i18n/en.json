@@ -710,7 +710,7 @@
       "point4title"                     : "Play from anywhere",
       "point4description"               : "Es muy fácil jugar a Epic Eleven desde cualquier lugar y con cualquier dispositivo. Puedes seguir la evolución de tu alineación desde tu ordenador, tablet o smartphone con un diseño adaptado a cada dispositivo.",
       "button-play"                     : "Play Now"
-	}
+	  }
     ,"rules"                            :
     {
       "rules-title"                      : "Rules",
@@ -740,6 +740,10 @@
       "12-access-associated-issues-text" : "<p>Although we do our best to guarantee the correct performance of Epic Eleven at any time, we may experience cuts or slow performance due to unexpected problems that may arise in Epic Eleven or in the support provided by third parties for the Portal. Sometimes, the user may experience problems while accessing the service, editing lineups or entering new contests.</p><p>If you experience any problems accessing the service, please contact us vía <a href='mailto:support@epiceleven.com'>support@epiceleven.com</a>. If there were periods during which users were unable to access our services, to edit lineups or to perform any action, Epic Eleven will provide instructions to cancel any contest by email before the game starts.</p>",
       "13-contest-cancellation"          : "13. Contest cancellation",
       "13-contest-cancellation-text"     : "<p>Epic Eleven holds the right to cancel contests at discretion, without any restrictions. Usually this might be done in extreme situations, where an event might affect several contests in a negative way or even the real competitions, which in the end would affect Epic Eleven.</p>"
+    }
+    ,"serverError"                      :
+    {
+      "connection-error"                : "Connection error..."
     }
   }
 }

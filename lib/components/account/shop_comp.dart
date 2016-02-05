@@ -51,6 +51,11 @@ class ShopComp implements DetachAware{
       }
     };
 
+    // Si no viene con una solicitud de "buy", quitamos las cookies
+    if (!window.location.toString().contains("buy")) {
+      clearCookies();
+    }
+    
     _catalogService.getCatalog()
       .then((catalog) {
         for (Product info in catalog.where((g) => g.gained.isGold)) {
@@ -159,10 +164,14 @@ class ShopComp implements DetachAware{
    }
 
    void detach() {
-     window.localStorage.remove("add_funds_success");
-     window.localStorage.remove("add_gold_success");
-     window.localStorage.remove("add_energy_success");
-   }
+     clearCookies();
+  }
+   
+  void clearCookies() {
+    window.localStorage.remove("add_funds_success");
+    window.localStorage.remove("add_gold_success");
+    window.localStorage.remove("add_energy_success");
+  }
 
   bool get canBuyEnergy => _profileService.user.energyBalance.amount < User.MAX_ENERGY;
 

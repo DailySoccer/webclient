@@ -105,6 +105,7 @@ import 'package:webclient/components/legalese_and_help/rules_comp.dart';
 import 'package:webclient/components/legalese_and_help/terminus_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/policy_info_comp.dart';
+import 'package:logging/logging.dart';
 
 //import 'package:webclient/components/account/add_funds_comp.dart';
 //import 'package:webclient/components/account/transaction_history_comp.dart';
@@ -231,6 +232,10 @@ class WebClientApp extends Module {
     bind(ScoutingComp);
     bind(ScoutingLeagueComp);
 
+    JsUtils.setJavascriptFunction('serverLoggerInfoCB',    (String text) => Logger.root.info   (ProfileService.decorateLog(text)) );
+    JsUtils.setJavascriptFunction('serverLoggerWarningCB', (String text) => Logger.root.warning(ProfileService.decorateLog(text)) );
+    JsUtils.setJavascriptFunction('serverLoggerServereCB', (String text) => Logger.root.severe (ProfileService.decorateLog(text)) );
+    
     //bind(AddFundsComp);
     //bind(TransactionHistoryComp);
     //bind(LandingPage1SlideComp);
@@ -346,6 +351,8 @@ class WebClientApp extends Module {
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<shop-comp></shop-comp>',
           mount: {
+            'buy': ngRoute(path: '/buy'),
+            
             'response': ngRoute(
                 path: '/response/:result',
                 preEnter: (RoutePreEnterEvent e) => _preEnterPagePayment(e, router),
@@ -413,7 +420,7 @@ class WebClientApp extends Module {
       )
       ,'slc': ngRoute(
           path: '/slc/:contestId',
-          preEnter: (RoutePreEnterEvent e) => _preEnterShortLiveContest(e, router, visibility: _ALWAYS),
+          enter: (RouteEnterEvent e) => _enterShortLiveContest(e, router),
           viewHtml: ''
       )
       ,'history_contest': ngRoute(
@@ -423,7 +430,7 @@ class WebClientApp extends Module {
       )
       ,'shc': ngRoute(
           path: '/shc/:contestId',
-          preEnter: (RoutePreEnterEvent e) => _preEnterShortHistoryContest(e, router, visibility: _ALWAYS),
+          enter: (RouteEnterEvent e) => _enterShortHistoryContest(e, router),
           viewHtml: ''
       )
       ,'enter_contest': ngRoute(
@@ -449,7 +456,7 @@ class WebClientApp extends Module {
       )
       ,'sec': ngRoute( // shortcutRoute - sec: Short Enter Contest
           path: '/sec/:contestId',
-          preEnter: (RoutePreEnterEvent e) => _preEnterShortEnterContest(e, router, visibility: _ALWAYS),
+          enter: (RouteEnterEvent e) => _enterShortEnterContest(e, router),
           viewHtml: ''
       )
       ,'view_contest_entry': ngRoute(
@@ -469,17 +476,17 @@ class WebClientApp extends Module {
       )
       ,'slp': ngRoute(
         path: '/slp/:userId',
-        preEnter: (RoutePreEnterEvent e) => _preEnterShortLeaderboard(e, router, visibility: _ALWAYS, section: 'points'),
+        enter: (RouteEnterEvent e) => _enterShortLeaderboard(e, router, section: 'points'),
         viewHtml: ''
       )
       ,'slm': ngRoute(
         path: '/slm/:userId',
-        preEnter: (RoutePreEnterEvent e) => _preEnterShortLeaderboard(e, router, visibility: _ALWAYS, section: 'money'),
+        enter: (RouteEnterEvent e) => _enterShortLeaderboard(e, router, section: 'money'),
         viewHtml: ''
       )
       ,'sla': ngRoute(
         path: '/sla/:userId',
-        preEnter: (RoutePreEnterEvent e) => _preEnterShortLeaderboard(e, router, visibility: _ALWAYS, section: 'achievements'),
+        enter: (RouteEnterEvent e) => _enterShortLeaderboard(e, router, section: 'achievements'),
         viewHtml: ''
       )
       ,'create_contest': ngRoute(
@@ -530,29 +537,35 @@ class WebClientApp extends Module {
     });
   }
 
-  Future _waitingjQueryReady(Function cb) {
+  Future _waitingjQueryReady() {
     var completer = new Completer<bool>();
+
     if (_jQueryReady) {
-      completer.complete( cb() );
+      completer.complete();
     }
     else {
       JsUtils.runJavascript(null, "onjQueryReady", [() {
 
-        GameMetrics.logEvent(GameMetrics.PAGE_READY);
-        _jQueryReady = true;
-        completer.complete( cb() );
-
-        /*
         // Esperamos a que el tiempo esté OK
         DateTimeService.waitingReady().then((_) {
           GameMetrics.logEvent(GameMetrics.PAGE_READY);
           _jQueryReady = true;
-          completer.complete( cb() );
+          completer.complete();
         });
-        */
 
       }]);
-    }
+    };
+
+    return completer.future;
+  }
+
+  Future _waitingPageLoad(Function cb) {
+    var completer = new Completer<bool>();
+
+    Future.wait([DateTimeService.waitingReady(), _waitingjQueryReady()]).then((_) {
+      completer.complete( cb() );
+    });
+
     return completer.future;
   }
 
@@ -560,7 +573,7 @@ class WebClientApp extends Module {
     if (event.parameters["result"] == 'success' && window.localStorage.containsKey("add_gold_success")) {
       window.location.assign(window.localStorage["add_gold_success"]);
 
-      event.allowEnter(_waitingjQueryReady(() {
+      event.allowEnter(_waitingPageLoad(() {
         return false;
       }));
     }
@@ -571,7 +584,7 @@ class WebClientApp extends Module {
     if (window.localStorage.containsKey("add_gold_success")) {
       window.location.assign(window.localStorage["add_gold_success"]);
 
-      event.allowLeave(_waitingjQueryReady(() {
+      event.allowLeave(_waitingPageLoad(() {
               return false;
             }));
     }
@@ -582,10 +595,14 @@ class WebClientApp extends Module {
     if (event.parameters["section"] == "null") {
       //event.parameters["section"] = "live";
       router.go(event.route.name, {"section":'live'});
+
+      event.allowEnter(_waitingPageLoad(() {
+        return true;
+      }));
     }
   }
 
-  void _preEnterShortEnterContest(RoutePreEnterEvent event, Router router, {int visibility}) {
+  void _enterShortEnterContest(RouteEnterEvent event, Router router) {
     if (event.parameters.containsKey("contestId")) {
       router.go('enter_contest', { "contestId": event.parameters["contestId"], "parent": "lobby", "contestEntryId": "none" });
     } else {
@@ -593,20 +610,20 @@ class WebClientApp extends Module {
     }
   }
 
-  void _preEnterShortLeaderboard(RoutePreEnterEvent event, Router router, {int visibility, String section: 'points'}) {
+  void _enterShortLeaderboard(RouteEnterEvent event, Router router, {String section: 'points'}) {
     String userId = event.parameters.containsKey("userId") ? event.parameters['userId'] : 'me';
     router.go('leaderboard', { "section": section, "userId": userId });
   }
 
-  void _preEnterShortHistoryContest(RoutePreEnterEvent event, Router router, {int visibility}) {
+  void _enterShortHistoryContest(RouteEnterEvent event, Router router) {
     if (event.parameters.containsKey("contestId")) {
       router.go('history_contest', { "contestId": event.parameters["contestId"], "parent": "my_contests" });
     } else {
       router.go("home", {}, replace:true);
     }
-  }
+   }
 
-  void _preEnterShortLiveContest(RoutePreEnterEvent event, Router router, {int visibility}) {
+  void _enterShortLiveContest(RouteEnterEvent event, Router router) {
     if (event.parameters.containsKey("contestId")) {
       router.go('live_contest', { "contestId": event.parameters["contestId"], "parent": "my_contests" });
     } else {
@@ -621,7 +638,7 @@ class WebClientApp extends Module {
 
     _addBodyStyles(event.route.name);
 
-    event.allowEnter(_waitingjQueryReady(() {
+    event.allowEnter(_waitingPageLoad(() {
       bool bEnter = true;
 
       if ((visibility == _ONLY_WHEN_LOGGED_IN && !ProfileService.instance.isLoggedIn) ||

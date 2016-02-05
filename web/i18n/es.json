@@ -46,7 +46,8 @@
     ,"join"                             :
     {
       "title"                           : "REGÍSTRATE",
-      "description"                     : "¿No estás registrado aún? <br> Rellena ahora el formulario, y conseguirás 10 monedas de oro, y tu primer nivel de manager.",
+      "facebookdescription"             : "Regístrate con tu cuenta de Facebook<br> y podrás retar y jugar con tus amigos fácilmente.",
+      "clasicsignupdescription"         : "O rellena el siguiente formulario.",
       "nickrequires"                    : "Tu nombre debe tener entre @MIN_NICKNAME_LENGTH y @MAX_NICKNAME_LENGTH caracteres.",
       "nick"                            : "Nombre de usuario",
       "invalidnick"                     : "Nombre inválido.",
@@ -67,7 +68,8 @@
     ,"login"                            :
     {
       "title"                           : "ENTRAR",
-      "description"                     : "Introduce tu correo electrónico y contraseña",
+      "mailandpassword"                 : "O introduce tu correo y contraseña",
+      "enterwithfacebook"               : "Entra con tu cuenta de Facebook",
       "email"                           : "Correo electrónico",
       "pass"                            : "Contraseña",
       "loginerror"                      : "El correo electrónico o la contraseña no son válidos. Por favor, revisa los datos.",
@@ -1208,6 +1210,10 @@
     {
       "title"                           : "No disponible para dispositivos móviles",
       "body"                            : "Muy pronto en todos los dispositivos"
+    }
+    ,"serverError"                      :
+    {
+      "connection-error"                : "Error de conexión..."
     }
   }
 }

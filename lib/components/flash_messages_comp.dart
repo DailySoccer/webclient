@@ -6,6 +6,7 @@ import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'dart:async';
+import 'package:webclient/utils/string_utils.dart';
 
 
 @Component(selector: 'flash-messages',
@@ -116,7 +117,7 @@ class FlashMessageComp implements ShadowRootAware, ScopeAware {
   }
 
   void onServerError(Map aMsg) {
-    _serverGlobalMsgElement = _createGlobalMessageHtml("Connection error...", isErrorMsg: true);
+    _serverGlobalMsgElement = _createGlobalMessageHtml(StringUtils.translate('connection-error', 'serverError'), isErrorMsg: true);
   }
 
   Scope _scope;

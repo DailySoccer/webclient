@@ -13,27 +13,37 @@
 
       <div class="panel-body" >
 
+        <!--Facebook stuff-->
+        <div  class="user-form-field facebook-form-wrapper">
+          <div class="form-description">{{GetLocalizedText('enterwithfacebook')}}</div>
+          <div class="fb-button-wrapper">
+            <div class="fb-login-button" data-size="xlarge" onlogin="jsLoginFB()"
+                 data-scope="public_profile,email,user_friends"
+                 ng-show="isFacebookConnected"></div>
+            <div class="fb-login-button" data-size="xlarge" onlogin="jsLoginFB()"
+                 data-scope="public_profile,email,user_friends"
+                 data-show-faces="true" data-max-rows="1" ng-show="!isFacebookConnected"></div>
+          </div>
+        </div>
+        <!-- -->
+          
         <form id="loginForm" class="form-horizontal" ng-submit="onAction('SUBMIT')" role="form" formAutofillFix>
-          <div class="form-description">{{GetLocalizedText('description')}}</div>
+          <div class="form-description">{{GetLocalizedText('mailandpassword')}}</div>
 
           <!-- LOGIN FIELDS -->
-          <div class="user-form-field">
+          <div class="user-form-field" id="mailAndPassFieldsWrapper">
             <!-- MAIL -->
-            <div class="input-group  bottom-separation-10">
-              <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+            <div class="form-group">
               <input id="login-mail" ng-model="emailOrUsername" type="email" name="Email" placeholder="{{GetLocalizedText('email')}}" class="form-control" tabindex="1" autocapitalize="off" auto-focus>
             </div>
             <!-- PÂSSWORD -->
-            <div class="input-group">
-              <span class="input-group-addon"><div class="glyphicon glyphicon-lock"></div></span>
+            <div class="form-group">
               <input id="login-password" type="password" ng-model="password" name="password" placeholder="{{GetLocalizedText('pass')}}" class="form-control" tabindex="2" autocapitalize="off">
             </div>
-
             <!-- Error de login/pass -->
             <div id="loginErrorSection" class="new-row">
               <div id="loginErrorLabel" class="login-err-text">{{GetLocalizedText('loginerror')}}</div>
             </div>
-
           </div>
 
           <!-- REMEMBER PASS -->
@@ -58,18 +68,6 @@
             </div>
           </div>
 
-          <!--Facebook stuff-->
-          <div  class="user-form-field">
-            <div class="fb-button-wrapper">
-              <div class="fb-login-button" data-size="xlarge" onlogin="jsLoginFB()"
-                   data-scope="public_profile,email,user_friends"
-                   ng-show="isFacebookConnected"></div>
-              <div class="fb-login-button" data-size="xlarge" onlogin="jsLoginFB()"
-                   data-scope="public_profile,email,user_friends"
-                   data-show-faces="true" data-max-rows="1" ng-show="!isFacebookConnected"></div>
-            </div>
-          </div>
-          <!-- -->
 
         </form>
       </div>

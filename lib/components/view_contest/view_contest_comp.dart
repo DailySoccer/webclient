@@ -52,6 +52,8 @@ class ViewContestComp implements DetachAware {
   bool get showChanges => contest != null ? contest.isLive : false;
   bool isMakingChange = false;
 
+  String get salaryCap => contest.printableSalaryCap;
+
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
 
@@ -135,10 +137,10 @@ class ViewContestComp implements DetachAware {
   }
 
   void updateSoccerPlayerStates() {
-    mainPlayer.instanceSoccerPlayers.forEach( _updateSoccerPlayerState );
+    mainPlayer.instanceSoccerPlayers.forEach( _updateSingleSoccerPlayerState );
   }
   
-  void _updateSoccerPlayerState(InstanceSoccerPlayer i) {
+  void _updateSingleSoccerPlayerState(InstanceSoccerPlayer i) {
     MatchEvent match = contest.matchEvents.firstWhere( (m) => m.containsTeam(i.soccerTeam));
     i.playState = match.isFinished ? InstanceSoccerPlayer.STATE_PLAYED  :
                   match.isStarted  ? InstanceSoccerPlayer.STATE_PLAYING :
@@ -220,7 +222,7 @@ class ViewContestComp implements DetachAware {
                   if (instanceSoccerPlayer.soccerPlayer.name == null) {
                     Logger.root.severe("Currently there isn't info about this soccer player: ${instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId}");
                   } else {
-                    _updateSoccerPlayerState(instanceSoccerPlayer);
+                    _updateSingleSoccerPlayerState(instanceSoccerPlayer);
                     if (instanceSoccerPlayer.playState == InstanceSoccerPlayer.STATE_NOT_PLAYED) {
                       dynamic slot = _createSlot(instanceSoccerPlayer, intId++);
                       allSoccerPlayers.add(slot);
@@ -273,7 +275,7 @@ class ViewContestComp implements DetachAware {
   void updateSoccerPlayerSlots() {
     allSoccerPlayers.removeWhere( (Map slot) {
       InstanceSoccerPlayer instanceSoccerPlayer = slot['instanceSoccerPlayer'];
-      _updateSoccerPlayerState(instanceSoccerPlayer);
+      _updateSingleSoccerPlayerState(instanceSoccerPlayer);
       return instanceSoccerPlayer.playState != InstanceSoccerPlayer.STATE_NOT_PLAYED;
     });
   }
@@ -302,8 +304,6 @@ class ViewContestComp implements DetachAware {
   }
 
   void onSoccerPlayerActionButton(var soccerPlayer) {
-    //print(soccerPlayer);
-
     InstanceSoccerPlayer instanceSoccerPlayer = soccerPlayer['instanceSoccerPlayer'];
 
     _contestsService.changeSoccerPlayer(mainPlayer.contestEntryId, 

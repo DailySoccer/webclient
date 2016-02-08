@@ -19,7 +19,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
   ProfileService profileService;
 
   bool betaOn = true;
-
+  
   MainMenuF2PComp(
       this._router, this.profileService, this._scrDet, this._rootElement) {
     _router.onRouteStart.listen((RouteStartEvent event) {
@@ -28,6 +28,12 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
           _updateActiveElement(_router.activePath[0].name);
         }
       });
+    });
+    Timer timer = new Timer.periodic(new Duration(milliseconds: 500), (Timer t) {
+      DivElement energyTimeLeftElement = querySelector("#energyTimeLeft");
+      if (energyTimeLeftElement != null) {
+        energyTimeLeftElement.text = energyTimeLeftText;
+      }
     });
   }
 

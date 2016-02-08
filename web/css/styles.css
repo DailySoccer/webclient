@@ -13440,7 +13440,7 @@ main-menu-f2p .beta-label {
   height: 50px;
   position: relative;
   color: #a1c931;
-  padding-left: 5px;
+  padding-left: 2px;
   padding-right: 2px;
   cursor: pointer;
   /*.count {
@@ -13485,7 +13485,7 @@ main-menu-f2p .beta-label {
   background-color: transparent;
 }
 #mainMenu #desktopMenu .fixed-user-stats .energy img {
-  margin-left: 3px;
+  margin-left: 11px;
 }
 #mainMenu #desktopMenu .fixed-user-stats .energy .energyCount {
   font-family: 'Open Sans', sans-serif;
@@ -13500,7 +13500,7 @@ main-menu-f2p .beta-label {
   height: 19px;
   position: absolute;
   top: 10px;
-  left: 10px;
+  left: 14px;
 }
 #mainMenu #desktopMenu .fixed-user-stats .energy .time-left {
   font-family: 'Open Sans', sans-serif;

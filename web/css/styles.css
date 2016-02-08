@@ -13440,7 +13440,7 @@ main-menu-f2p .beta-label {
   height: 50px;
   position: relative;
   color: #a1c931;
-  padding-left: 5px;
+  padding-left: 2px;
   padding-right: 2px;
   cursor: pointer;
   /*.count {
@@ -13483,6 +13483,32 @@ main-menu-f2p .beta-label {
 #mainMenu #desktopMenu .fixed-user-stats .energy .progress .progress-bar {
   background-image: url("../images/progress-bar-front.png");
   background-color: transparent;
+}
+#mainMenu #desktopMenu .fixed-user-stats .energy img {
+  margin-left: 11px;
+}
+#mainMenu #desktopMenu .fixed-user-stats .energy .energyCount {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #000000;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+  background-color: #a1c931;
+  border: 1px solid #0a2938;
+  border-radius: 10px;
+  width: 19px;
+  height: 19px;
+  position: absolute;
+  top: 10px;
+  left: 14px;
+}
+#mainMenu #desktopMenu .fixed-user-stats .energy .time-left {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #a1c931;
+  text-shadow: 1px 1px 1px rgba(161, 201, 49, 0.004);
+  display: inline-block;
 }
 #mainMenu #desktopMenu .fixed-user-stats .manager-points {
   text-align: center;

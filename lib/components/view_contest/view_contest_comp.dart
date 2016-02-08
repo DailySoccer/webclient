@@ -43,13 +43,14 @@ class ViewContestComp implements DetachAware {
   String nameFilter;
   FieldPos fieldPosFilter;
   bool onlyFavorites = false;
+  int numChanges = 3;
   String matchFilter;
   List<dynamic> allSoccerPlayers;
   List<dynamic> favoritesPlayers = [];
   List<dynamic> lineupSlots = [];
 
   bool get isLive => _routeProvider.route.name.contains("live_contest");
-  bool get showChanges => contest != null ? contest.isLive : false;
+  bool get showChanges => contest != null? (contest.isLive && numChanges > 0) : false;
   bool isMakingChange = false;
 
   String get salaryCap => contest.printableSalaryCap;
@@ -58,6 +59,8 @@ class ViewContestComp implements DetachAware {
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
 
   String get changingPlayerId => _changingPlayer != null? _changingPlayer.id : null;
+  
+  int get userManagerLevel => _profileService.isLoggedIn? _profileService.user.managerLevel.toInt() : 0;
 
   String getLocalizedText(key) {
     return StringUtils.translate(key, "viewcontest");
@@ -305,25 +308,53 @@ class ViewContestComp implements DetachAware {
 
   void onSoccerPlayerActionButton(var soccerPlayer) {
     InstanceSoccerPlayer instanceSoccerPlayer = soccerPlayer['instanceSoccerPlayer'];
-
-    _contestsService.changeSoccerPlayer(mainPlayer.contestEntryId, 
-            _changingPlayer.soccerPlayer.templateSoccerPlayerId, 
-            instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId)
-      .then((_) {
-        closePlayerChanges();
+    
+    //Check Soccer team
+    String newSoccerTeamId = instanceSoccerPlayer.soccerPlayer.soccerTeam.templateSoccerTeamId;
+    
+    int sameTeamCount = mainPlayer.instanceSoccerPlayers.where((i) => i.soccerTeam.templateSoccerTeamId == newSoccerTeamId && i.id != _changingPlayer.id).length;
+    bool isSameTeamOk = sameTeamCount < 4;
+    
+    //Check Salary
+    int salary = remainingSalary + _changingPlayer.salary - instanceSoccerPlayer.salary;
+    bool isSalaryOk = salary >= 0;
+    
+    bool areAvailableChanges = numChanges > 0;
+    
+    if (isSameTeamOk && isSalaryOk && areAvailableChanges) {
       
-        mainPlayer = _contestsService.lastContest.getContestEntryWithUser(_profileService.user.userId);
-        updateSoccerPlayerStates();
-        updateLive();
-        
-        print ("onSoccerPlayerActionButton: Ok");
-      })
-      .catchError((ServerError error) {
-        Logger.root.info("Error: ${error.responseError}");
-      }, test: (error) => error is ServerError);
+      _contestsService.changeSoccerPlayer(mainPlayer.contestEntryId, 
+              _changingPlayer.soccerPlayer.templateSoccerPlayerId, 
+              instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId)
+        .then((_) {
+          closePlayerChanges();
+          numChanges--;
+          
+          mainPlayer = _contestsService.lastContest.getContestEntryWithUser(_profileService.user.userId);
+          updateSoccerPlayerStates();
+          updateLive();
+          
+          print ("onSoccerPlayerActionButton: Ok");
+        })
+        .catchError((ServerError error) {
+          Logger.root.info("Error: ${error.responseError}");
+        }, test: (error) => error is ServerError);
+      
+    } else {
+      if (!isSameTeamOk){
+        print("HAY DEMASAIDOS DEL MISMO EQUIPO");
+      } else if (!isSalaryOk) {
+        print("TE PASAS DEL SALARY");
+      } else if (!areAvailableChanges) {
+        print("NO HAY CAMBIOS DISPONIBLES");
+      }
+    }
   }
-
-
+  
+  int get maxSalary => contest != null ? contest.salaryCap : 0;
+  int get lineupCost => mainPlayer != null? mainPlayer.instanceSoccerPlayers.fold(0, (sum, i) => sum += i.salary) : 0;
+  int get remainingSalary => maxSalary - lineupCost;
+  
   FlashMessagesService _flashMessage;
   RouteProvider _routeProvider;
   ProfileService _profileService;

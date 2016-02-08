@@ -62,6 +62,9 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   String get matchFilter => _filterList[FILTER_MATCH];
   void   set matchFilter(String matchId) => _setFilter(FILTER_MATCH, matchId);
 
+  @NgOneWay("hide-lineup-players")
+  bool hideLineupPlayers = false;
+  
   void _setFilter(String key, dynamic valor) {
 
     // En movil no permitimos nunca poner el filtro vacio!
@@ -216,8 +219,10 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
       if (_isVisibleWithFilters(slot, filterPosVal, filterMatchIdVal, filterNameVal)) {
         visibleItems++;
-        allHtml.write(_getHtmlForSlot(slot, lineupFilter.firstWhere( (s) => s['id'] == slot['id'], orElse: () => null) == null));
-
+        bool isInLineup = lineupFilter.firstWhere( (s) => s['id'] == slot['id'], orElse: () => null) != null;
+        if (!(isInLineup && hideLineupPlayers)) {
+          allHtml.write(_getHtmlForSlot(slot, !isInLineup));
+        }
         // Logger.root.info("${slot["id"]}: ${slot["intId"]}: ${slot["fullName"]}");
       }
     }

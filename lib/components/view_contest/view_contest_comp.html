@@ -27,16 +27,16 @@
       <div class="soccer-player-changes-list" ng-show="isMakingChange">
         <soccer-players-filter show-on-xs="true"  position-filters-enabled="false" name-filter="nameFilter" 
                                field-pos-filter="fieldPosFilter" only-favorites="onlyFavorites"></soccer-players-filter>
-        <soccer-players-list soccer-players="allSoccerPlayers"
-                             lineup-filter="lineupSlots" manager-level="10" 
+        <soccer-players-list soccer-players="allSoccerPlayers" contest="contest"
+                             lineup-filter="lineupSlots" manager-level="userManagerLevel"
                              favorites-list="favoritesPlayers" only-favorites="onlyFavorites"
                              field-pos-filter="fieldPosFilter" name-filter="nameFilter" match-filter="matchFilter"
-                             on-row-click="onRowClick(soccerPlayerId)"
+                             on-row-click="onRowClick(soccerPlayerId)" hide-lineup-players="true"
                              on-action-click="onSoccerPlayerActionButton(soccerPlayer)"></soccer-players-list>
       </div>
     </div>
     <div class="contest-id-bar">
-      <div class="contest-id">ID: {{contest.contestId.toUpperCase()}}</div>
+      <div class="contest-id">CHANGES AVAILABLE: {{numChanges}} || SALARY: {{remainingSalary}} ({{lineupCost}}/{{maxSalary}}) || ID: {{contest.contestId.toUpperCase()}}</div>
     </div>
     <div class="clear-fix-bottom"></div>
   </div>

@@ -12799,6 +12799,206 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
 #lobbyf2pRoot {
   background-color: #dcdcdc;
 }
+lobbyf2p week-calendar {
+  clear: both;
+  display: block;
+}
+lobbyf2p week-calendar .week-calendar {
+  margin-top: 0;
+}
+.challenge-your-friends {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  display: block;
+  background-color: #ffffff;
+  padding: 10px 15px;
+}
+.challenge-your-friends .text {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 13pt;
+  color: #214a5f;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+  vertical-align: baseline;
+  margin-top: 5px;
+  margin-bottom: 2px;
+  display: inline-block;
+}
+.challenge-your-friends button {
+  background-color: #428bca;
+  border-color: #357ebd;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-weight: 400;
+  font-size: 10pt;
+  background-color: #a1c931;
+  outline: none !important;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  text-transform: uppercase;
+  float: right;
+  vertical-align: baseline;
+  padding: 7px 25px;
+}
+.challenge-your-friends button:hover,
+.challenge-your-friends button:focus,
+.challenge-your-friends button:active,
+.challenge-your-friends button.active,
+.open .dropdown-toggle.challenge-your-friends button {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+.challenge-your-friends button:active,
+.challenge-your-friends button.active,
+.open .dropdown-toggle.challenge-your-friends button {
+  background-image: none;
+}
+.challenge-your-friends button.disabled,
+.challenge-your-friends button[disabled],
+fieldset[disabled] .challenge-your-friends button,
+.challenge-your-friends button.disabled:hover,
+.challenge-your-friends button[disabled]:hover,
+fieldset[disabled] .challenge-your-friends button:hover,
+.challenge-your-friends button.disabled:focus,
+.challenge-your-friends button[disabled]:focus,
+fieldset[disabled] .challenge-your-friends button:focus,
+.challenge-your-friends button.disabled:active,
+.challenge-your-friends button[disabled]:active,
+fieldset[disabled] .challenge-your-friends button:active,
+.challenge-your-friends button.disabled.active,
+.challenge-your-friends button[disabled].active,
+fieldset[disabled] .challenge-your-friends button.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+.challenge-your-friends button .badge {
+  color: #428bca;
+  background-color: #ffffff;
+}
+.challenge-your-friends button:focus,
+.challenge-your-friends button:active:focus,
+.challenge-your-friends button.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.challenge-your-friends button:hover,
+.challenge-your-friends button:focus {
+  color: #333333;
+  text-decoration: none;
+}
+.challenge-your-friends button:active,
+.challenge-your-friends button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.challenge-your-friends button.disabled,
+.challenge-your-friends button[disabled],
+fieldset[disabled] .challenge-your-friends button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.challenge-your-friends button:active,
+.challenge-your-friends button.active {
+  box-shadow: none;
+}
+.challenge-your-friends button:active:focus,
+.challenge-your-friends button.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+.challenge-your-friends button:active:hover,
+.challenge-your-friends button.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+.challenge-your-friends button:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+.challenge-your-friends button:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+.challenge-your-friends button:hover:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+.challenge-your-friends button:active,
+.challenge-your-friends button.active {
+  box-shadow: none;
+  background-color: #a1c931;
+}
+.challenge-your-friends button:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+.challenge-your-friends button.disabled,
+.challenge-your-friends button[disabled],
+fieldset[disabled] .challenge-your-friends button {
+  background-color: #b5d657;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+.challenge-your-friends button.close {
+  background-color: #a1c931;
+  outline: none !important;
+  color: #ffffff;
+}
+.challenge-your-friends:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+@media (max-width: 768px) {
+  .challenge-your-friends {
+    text-align: center;
+  }
+  .challenge-your-friends .text {
+    display: none;
+  }
+  .challenge-your-friends button {
+    float: none;
+  }
+}
 main-menu-f2p {
   display: block;
   height: 70px;

@@ -592,6 +592,8 @@
     }
     ,"lobby"                            :
     {
+      "challengeyourfriendstext"        : "Crea tus propios torneos privados y reta a tus amigos",
+      "challengeyourfriendsbutton"      : "Reta a tus amigos",
       "nextcontest"                     : "PRÓXIMOS TORNEOS"
     }
     ,"mycontest"                        :

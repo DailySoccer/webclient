@@ -4,7 +4,7 @@
 
 #mainShopCompWrapper {
 	@item-height: 195;
-	@quantity-font-size: 15pt;
+	@quantity-font-size: 20pt;
 
 	.container-fluid();
 	padding: 0;
@@ -73,13 +73,17 @@
 						right: 0;
 						top: 0;
 						width: @price-widht;
-						text-align: center;
+						text-align: right;
 						height: 100%;
+						margin-right: 20px;
 
 						.gold-quantity{
 							.exo_light(@quantity-font-size, @blueUltraDark);
 							position: relative;
-							top: 15px;
+							top: 35px;
+							background-color: @white;
+							padding: 2px 5px;
+							border-radius: 6px;
 							&:after{
 								.gold();
 							}
@@ -92,7 +96,7 @@
 								position: absolute;
 								bottom: 15px;
 								width: @price-widht;
-								right: 15px;
+								right: 0px;
 
 								.price {									
 									.btn-primary();
@@ -116,13 +120,13 @@
 									.opensans_bold(15pt, @white);
 								}
 
-			              		.free-increment-desc {
+								.free-increment-desc {
 									display: block;
 									.opensans_bold(9pt, @white);
 									position: relative;
 									bottom: 4px;
-			              		}
-			              	}
+								}
+							}
 						}
 					}
 

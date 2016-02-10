@@ -20,6 +20,8 @@ import 'package:webclient/models/instance_soccer_player.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/models/soccer_team.dart';
 import 'package:logging/logging.dart';
+import 'dart:async';
+import 'package:webclient/utils/html_utils.dart';
 
 @Component(
     selector: 'view-contest',
@@ -54,6 +56,10 @@ class ViewContestComp implements DetachAware {
   bool isMakingChange = false;
 
   String get salaryCap => contest.printableSalaryCap;
+  
+  int get maxSalary => contest != null ? contest.salaryCap : 0;
+  int get lineupCost => mainPlayer != null? mainPlayer.instanceSoccerPlayers.fold(0, (sum, i) => sum += i.salary) : 0;
+  int get remainingSalary => maxSalary - lineupCost;
 
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
@@ -346,6 +352,11 @@ class ViewContestComp implements DetachAware {
         })
         .catchError((ServerError error) {
           Logger.root.info("Error: ${error.responseError}");
+          if (error.isRetryOpError) {
+            _retryOpTimer = new Timer(const Duration(seconds:3), () => onSoccerPlayerActionButton(soccerPlayer));
+          } else {
+            _showMsgError(error);
+          }
         }, test: (error) => error is ServerError);
       
     } else {
@@ -361,10 +372,87 @@ class ViewContestComp implements DetachAware {
     }
   }
   
-  int get maxSalary => contest != null ? contest.salaryCap : 0;
-  int get lineupCost => mainPlayer != null? mainPlayer.instanceSoccerPlayers.fold(0, (sum, i) => sum += i.salary) : 0;
-  int get remainingSalary => maxSalary - lineupCost;
+  /*
+  void _errorMakingChange(ServerError error, soccerPlayer) {
+    if (error.isRetryOpError) {
+      _retryOpTimer = new Timer(const Duration(seconds:3), () => onSoccerPlayerActionButton(soccerPlayer));
+    } else {
+      _showMsgError(error);
+    }
+  }
+
+  void _showMsgError(ServerError error) {
+    String keyError = errorMap.keys.firstWhere( (key) => error.responseError.contains(key), orElse: () => "_ERROR_DEFAULT_" );
+    
+    if (keyError == ERROR_USER_BALANCE_NEGATIVE) {
+      alertNotEnoughGold();
+    } else {
+      modalShow(
+        errorMap[keyError]["title"],
+        (editingContestEntry && errorMap[keyError].containsKey("editing")) ? errorMap[keyError]["editing"] : errorMap[keyError]["generic"]
+      ).then((resp) {
+        if (keyError == ERROR_CONTEST_NOT_ACTIVE) {
+          _router.go(_routeProvider.parameters["parent"], {});
+        }
+      });
+    }
+  }
+
+  static const String ERROR_RETRY_OP = "ERROR_RETRY_OP";
+  static const String ERROR_CONTEST_NOT_ACTIVE = "ERROR_CONTEST_NOT_ACTIVE";
+  static const String ERROR_USER_ALREADY_INCLUDED = "ERROR_USER_ALREADY_INCLUDED";
+  static const String ERROR_USER_BALANCE_NEGATIVE = "ERROR_USER_BALANCE_NEGATIVE";
+  static const String ERROR_MAX_PLAYERS_SAME_TEAM = "ERROR_MAX_PLAYERS_SAME_TEAM";
+  static const String ERROR_MANAGER_LEVEL_INVALID = "ERROR_MANAGER_LEVEL_INVALID";
+  static const String ERROR_TRUESKILL_INVALID = "ERROR_TRUESKILL_INVALID";
   
+  Map<String, Map> get errorMap => {
+      ERROR_MAX_PLAYERS_SAME_TEAM: {
+        "title"   : getLocalizedText("errormaxplayerssameteamtitle"),
+        "generic" : getLocalizedText("errormaxplayerssameteamgeneric"),
+      },
+      // TODO: Avisamos al usuario de que no dispone del dinero suficiente pero, cuando se integre la branch "paypal-ui", se le redirigirá a "añadir fondos"
+      ERROR_USER_BALANCE_NEGATIVE: {
+        "title"   : getLocalizedText("erroruserbalancenegativetitle"),
+        "generic" : getLocalizedText("erroruserbalancenegativegeneric")
+      },
+      "_ERROR_DEFAULT_": {
+          "title"   : getLocalizedText("errordefaulttitle"),
+          "generic" : getLocalizedText("errordefaultgeneric"),
+          "editing" : getLocalizedText("errordefaultediting")
+      },
+  };
+
+  void alertNotEnoughGold(coinsNeeded) {
+    (contest.entryFee.isEnergy ? modalShow(
+        ""
+        , '''
+          <div class="content-wrapper">
+            <h1 class="alert-content-title">${getLocalizedText("alert-no-gold-message")}</h1>
+            <div class="gold-needed-icon-wrapper">
+              <img class="gold-image" src="images/EpicCoinModales.png">
+              <span class="not-enough-resources-count">${coinsNeeded}</span>
+            </div>
+            <h2 class="alert-content-subtitle">${getLocalizedText('alert-user-gold-message', substitutions:{'MONEY': playerGold})}<span class="gold-icon-tiny"></span></h2>
+          </div>
+          '''
+        , onOk: getLocalizedText("buy-gold-button")
+        , onBackdropClick: true
+        , closeButton: false
+        , aditionalClass: "noGold"
+      )
+    .then((_) {
+      // Registramos dónde tendría que navegar al tener éxito en "add_funds"
+      window.localStorage[contest.entryFee.isEnergy ? "add_energy_success" : "add_gold_success"] = window.location.href;
+
+      _router.go(contest.entryFee.isEnergy ? 'shop' : 'shop', {});
+    });
+
+    _tutorialService.triggerEnter("alert-not-enough-resources");
+  }
+  */
+  
+  Timer _retryOpTimer;
   FlashMessagesService _flashMessage;
   RouteProvider _routeProvider;
   ProfileService _profileService;

@@ -61,18 +61,14 @@ class GameMetrics {
 
 
   static void aliasMixpanel(String email) {
-    if (JsUtils.existsContext("mixpanel")) {
-      if (!email.endsWith("test.com")) {
-        JsUtils.runJavascript(null, "alias", email, "mixpanel");
-      }
+    if (!email.endsWith("test.com") && JsUtils.existsContext("mixpanel")) {
+      JsUtils.runJavascript(null, "alias", email, "mixpanel");
     }
   }
 
   static void identifyMixpanel(String email) {
-    if (JsUtils.existsContext("mixpanel")) {
-      if (!email.endsWith("test.com")) {
-        JsUtils.runJavascript(null, "identify", email, "mixpanel");
-      }
+    if (!email.endsWith("test.com") && JsUtils.existsContext("mixpanel")) {
+      JsUtils.runJavascript(null, "identify", email, "mixpanel");
     }
   }
 
@@ -99,12 +95,10 @@ class GameMetrics {
     }
   }
 
-
+  // Google Track, NOT Mixpanel.
   static void trackConversion(bool remarketing_only) {
-    if (JsUtils.existsContext("mixpanel")) {
-      if (HostServer.isEpicEleven) {
-        JsUtils.runJavascript(null, "conversion", [remarketing_only]);
-      }
+    if (HostServer.isEpicEleven) {
+      JsUtils.runJavascript(null, "conversion", [remarketing_only]);
     }
   }
 }

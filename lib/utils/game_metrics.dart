@@ -61,38 +61,50 @@ class GameMetrics {
 
 
   static void aliasMixpanel(String email) {
-    if (!email.endsWith("test.com")) {
-      JsUtils.runJavascript(null, "alias", email, "mixpanel");
+    if (JsUtils.existsContext("mixpanel")) {
+      if (!email.endsWith("test.com")) {
+        JsUtils.runJavascript(null, "alias", email, "mixpanel");
+      }
     }
   }
 
   static void identifyMixpanel(String email) {
-    if (!email.endsWith("test.com")) {
-      JsUtils.runJavascript(null, "identify", email, "mixpanel");
+    if (JsUtils.existsContext("mixpanel")) {
+      if (!email.endsWith("test.com")) {
+        JsUtils.runJavascript(null, "identify", email, "mixpanel");
+      }
     }
   }
 
   static void logEvent(String eventName, [Map params]) {
-    if (params!=null && !params.isEmpty) {
-      JsUtils.runJavascript(null, "track", [eventName, params], "mixpanel");
-    }
-    else {
-      JsUtils.runJavascript(null, "track", eventName, "mixpanel");
+    if (JsUtils.existsContext("mixpanel")) {
+      if (params!=null && !params.isEmpty) {
+        JsUtils.runJavascript(null, "track", [eventName, params], "mixpanel");
+      }
+      else {
+        JsUtils.runJavascript(null, "track", eventName, "mixpanel");
+      }
     }
   }
 
   static void peopleSet(Map params) {
-    JsUtils.runJavascript(null, "set", params, ["mixpanel","people"]);
+    if (JsUtils.existsContext(["mixpanel","people"])) {
+      JsUtils.runJavascript(null, "set", params, ["mixpanel","people"]);
+    }
   }
 
   static void peopleCharge(double charge) {
-    JsUtils.runJavascript(null, "track_charge", charge, ["mixpanel","people"]);
+    if (JsUtils.existsContext(["mixpanel","people"])) {
+      JsUtils.runJavascript(null, "track_charge", charge, ["mixpanel","people"]);
+    }
   }
 
 
   static void trackConversion(bool remarketing_only) {
-    if (HostServer.isEpicEleven) {
-      JsUtils.runJavascript(null, "conversion", [remarketing_only]);
+    if (JsUtils.existsContext("mixpanel")) {
+      if (HostServer.isEpicEleven) {
+        JsUtils.runJavascript(null, "conversion", [remarketing_only]);
+      }
     }
   }
 }

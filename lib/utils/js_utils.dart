@@ -60,4 +60,30 @@ class JsUtils {
   static void setJavascriptFunction(String functionName, Function function) {
     js.context[functionName] = function;
   }
+  
+  static bool existsContext(dynamic contexto) {
+    dynamic jsContext = js.context;
+    bool exist = true;
+    
+    if (contexto != null) {
+      if (contexto is List) {
+        for (int i = 0; i < contexto.length; i++) {
+          exist = jsContext.hasProperty(contexto[i]);
+          if (!exist) { 
+            break;
+          } else {
+            jsContext = jsContext[contexto[i]];
+          }
+        }
+      } else {
+        exist = jsContext.hasProperty(contexto);
+      }
+    }
+    
+    return exist;
+  }
 }
+
+
+
+

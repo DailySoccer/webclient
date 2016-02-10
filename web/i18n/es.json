@@ -522,6 +522,7 @@
     }
     ,"viewcontest"                      :
     {
+      "alert-user-gold-message"         : "Tienes actualmente: @MONEY",
       "yourlineup"                      : "Tu alineación",
       "users"                           : "Usuarios",
       "opponent"                        : "Adversario"

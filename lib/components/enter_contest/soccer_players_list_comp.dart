@@ -65,6 +65,9 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   @NgOneWay("hide-lineup-players")
   bool hideLineupPlayers = false;
   
+  @NgOneWay("additional-gold-price")
+  Money additionalGoldPrice = new Money.zeroFrom(Money.CURRENCY_GOLD);
+  
   void _setFilter(String key, dynamic valor) {
 
     // En movil no permitimos nunca poner el filtro vacio!
@@ -241,6 +244,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   String _getHtmlForSlot(var slot, bool addButton) {
     InstanceSoccerPlayer soccerPlayer = slot['instanceSoccerPlayer'];
     Money moneyToBuy = slot['instanceSoccerPlayer'].moneyToBuy(contest, managerLevel);
+    moneyToBuy = moneyToBuy.plus(additionalGoldPrice);
     bool soccerPlayerIsAvailable = moneyToBuy.toInt() == 0;
     String strAddButton = _getActionButton(addButton, moneyToBuy);
 

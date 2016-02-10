@@ -22,6 +22,7 @@ import 'package:webclient/models/soccer_team.dart';
 import 'package:logging/logging.dart';
 import 'dart:async';
 import 'package:webclient/utils/html_utils.dart';
+import 'package:webclient/models/money.dart';
 
 @Component(
     selector: 'view-contest',
@@ -45,7 +46,24 @@ class ViewContestComp implements DetachAware {
   String nameFilter;
   FieldPos fieldPosFilter;
   bool onlyFavorites = false;
-  int numChanges = 3;
+  static const MAX_CHANGES = 3;
+  int numChanges = MAX_CHANGES;
+  static Money DEFAULT_PRICE =  new Money.from(Money.CURRENCY_GOLD, 0);
+  static List<Money> changesPrices = [ new Money.from(Money.CURRENCY_GOLD, 0), 
+                                       new Money.from(Money.CURRENCY_GOLD, 3), 
+                                       new Money.from(Money.CURRENCY_GOLD, 6), 
+                                       DEFAULT_PRICE
+                                      ];
+  
+  Money nextChangePrice() {
+    int pricesIndex = MAX_CHANGES - numChanges;
+    if (pricesIndex >= changesPrices.length || pricesIndex < 0) {
+      Logger.root.severe("WTF - 3535 - SoccerPlayer changes is requesting unknown change-price: index=$pricesIndex, MAX_CHANGES=$MAX_CHANGES, numChanges=$numChanges");
+      return DEFAULT_PRICE;
+    }
+    return changesPrices[MAX_CHANGES - numChanges];
+  }
+  
   String matchFilter;
   List<dynamic> allSoccerPlayers;
   List<dynamic> favoritesPlayers = [];
@@ -68,11 +86,11 @@ class ViewContestComp implements DetachAware {
   
   int get userManagerLevel => _profileService.isLoggedIn? _profileService.user.managerLevel.toInt() : 0;
 
-  String getLocalizedText(key) {
-    return StringUtils.translate(key, "viewcontest");
+  String getLocalizedText(key, {substitutions: null}) {
+    return StringUtils.translate(key, "viewcontest", substitutions);
   }
 
-  ViewContestComp(this._routeProvider, this.scrDet, this._refreshTimersService,
+  ViewContestComp(this._routeProvider, this._router, this.scrDet, this._refreshTimersService,
       this._contestsService, this._profileService, this._flashMessage, this.loadingService, this._tutorialService) {
     loadingService.isLoading = true;
     lastOpponentSelected = getLocalizedText("opponent");
@@ -326,8 +344,9 @@ class ViewContestComp implements DetachAware {
     bool isSalaryOk = salary >= 0;
     
     //Check gold
-    num goldCost = instanceSoccerPlayer.moneyToBuy(contest, _profileService.user.managerLevel).amount;
-    bool isGoldOk = _profileService.user.goldBalance.amount >= goldCost;
+    Money goldNeeded = instanceSoccerPlayer.moneyToBuy(contest, _profileService.user.managerLevel);
+    goldNeeded.plus(nextChangePrice());
+    bool isGoldOk = _profileService.user.goldBalance.amount >= goldNeeded.amount;
     
     //Check num changes availables
     bool areAvailableChanges = numChanges > 0;
@@ -355,7 +374,7 @@ class ViewContestComp implements DetachAware {
           if (error.isRetryOpError) {
             _retryOpTimer = new Timer(const Duration(seconds:3), () => onSoccerPlayerActionButton(soccerPlayer));
           } else {
-            _showMsgError(error);
+            _showMsgError(error, goldNeeded.amount);
           }
         }, test: (error) => error is ServerError);
       
@@ -371,25 +390,16 @@ class ViewContestComp implements DetachAware {
       }
     }
   }
-  
-  /*
-  void _errorMakingChange(ServerError error, soccerPlayer) {
-    if (error.isRetryOpError) {
-      _retryOpTimer = new Timer(const Duration(seconds:3), () => onSoccerPlayerActionButton(soccerPlayer));
-    } else {
-      _showMsgError(error);
-    }
-  }
 
-  void _showMsgError(ServerError error) {
+  void _showMsgError(ServerError error, int coinsNeeded) {
     String keyError = errorMap.keys.firstWhere( (key) => error.responseError.contains(key), orElse: () => "_ERROR_DEFAULT_" );
     
     if (keyError == ERROR_USER_BALANCE_NEGATIVE) {
-      alertNotEnoughGold();
+      alertNotEnoughGold(coinsNeeded);
     } else {
       modalShow(
         errorMap[keyError]["title"],
-        (editingContestEntry && errorMap[keyError].containsKey("editing")) ? errorMap[keyError]["editing"] : errorMap[keyError]["generic"]
+        errorMap[keyError]["generic"]
       ).then((resp) {
         if (keyError == ERROR_CONTEST_NOT_ACTIVE) {
           _router.go(_routeProvider.parameters["parent"], {});
@@ -418,13 +428,12 @@ class ViewContestComp implements DetachAware {
       },
       "_ERROR_DEFAULT_": {
           "title"   : getLocalizedText("errordefaulttitle"),
-          "generic" : getLocalizedText("errordefaultgeneric"),
-          "editing" : getLocalizedText("errordefaultediting")
+          "generic" : getLocalizedText("errordefaultgeneric")
       },
   };
 
   void alertNotEnoughGold(coinsNeeded) {
-    (contest.entryFee.isEnergy ? modalShow(
+    modalShow(
         ""
         , '''
           <div class="content-wrapper">
@@ -433,15 +442,14 @@ class ViewContestComp implements DetachAware {
               <img class="gold-image" src="images/EpicCoinModales.png">
               <span class="not-enough-resources-count">${coinsNeeded}</span>
             </div>
-            <h2 class="alert-content-subtitle">${getLocalizedText('alert-user-gold-message', substitutions:{'MONEY': playerGold})}<span class="gold-icon-tiny"></span></h2>
+            <h2 class="alert-content-subtitle">${getLocalizedText('alert-user-gold-message', substitutions:{'MONEY': _profileService.user.goldBalance.amount})}<span class="gold-icon-tiny"></span></h2>
           </div>
           '''
         , onOk: getLocalizedText("buy-gold-button")
         , onBackdropClick: true
         , closeButton: false
         , aditionalClass: "noGold"
-      )
-    .then((_) {
+    ).then((_) {
       // Registramos dónde tendría que navegar al tener éxito en "add_funds"
       window.localStorage[contest.entryFee.isEnergy ? "add_energy_success" : "add_gold_success"] = window.location.href;
 
@@ -450,8 +458,9 @@ class ViewContestComp implements DetachAware {
 
     _tutorialService.triggerEnter("alert-not-enough-resources");
   }
-  */
   
+
+  Router _router;
   Timer _retryOpTimer;
   FlashMessagesService _flashMessage;
   RouteProvider _routeProvider;

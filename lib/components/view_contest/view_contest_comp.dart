@@ -319,15 +319,22 @@ class ViewContestComp implements DetachAware {
     int salary = remainingSalary + _changingPlayer.salary - instanceSoccerPlayer.salary;
     bool isSalaryOk = salary >= 0;
     
+    //Check gold
+    num goldCost = instanceSoccerPlayer.moneyToBuy(contest, _profileService.user.managerLevel).amount;
+    bool isGoldOk = _profileService.user.goldBalance.amount >= goldCost;
+    
+    //Check num changes availables
     bool areAvailableChanges = numChanges > 0;
     
-    if (isSameTeamOk && isSalaryOk && areAvailableChanges) {
-      
+    if (isSameTeamOk && isSalaryOk && areAvailableChanges && isGoldOk) {
+      loadingService.isLoading = true;
       _contestsService.changeSoccerPlayer(mainPlayer.contestEntryId, 
               _changingPlayer.soccerPlayer.templateSoccerPlayerId, 
               instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId)
         .then((_) {
           closePlayerChanges();
+          
+          _profileService.user.goldBalance.amount -= instanceSoccerPlayer.moneyToBuy(contest, _profileService.user.managerLevel).amount;
           numChanges--;
           
           mainPlayer = _contestsService.lastContest.getContestEntryWithUser(_profileService.user.userId);
@@ -335,6 +342,7 @@ class ViewContestComp implements DetachAware {
           updateLive();
           
           print ("onSoccerPlayerActionButton: Ok");
+          loadingService.isLoading = false;
         })
         .catchError((ServerError error) {
           Logger.root.info("Error: ${error.responseError}");
@@ -347,6 +355,8 @@ class ViewContestComp implements DetachAware {
         print("TE PASAS DEL SALARY");
       } else if (!areAvailableChanges) {
         print("NO HAY CAMBIOS DISPONIBLES");
+      } else if (!isGoldOk) {
+        print("ORO INSUFICIENTE");
       }
     }
   }

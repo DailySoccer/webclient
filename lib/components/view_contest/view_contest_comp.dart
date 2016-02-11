@@ -65,6 +65,7 @@ class ViewContestComp implements DetachAware {
   int get maxSalary => contest != null ? contest.salaryCap : 0;
   int get lineupCost => mainPlayer != null? mainPlayer.instanceSoccerPlayers.fold(0, (sum, i) => sum += i.salary) : 0;
   int get remainingSalary => maxSalary - lineupCost;
+  int get remainingSalaryChangingPlayer => remainingSalary + _changingPlayer.salary;
 
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
@@ -250,6 +251,8 @@ class ViewContestComp implements DetachAware {
   void refreshAllSoccerPlayerList() {
     int intId = 0;
     allSoccerPlayers.clear();
+    int maxSalary = remainingSalaryChangingPlayer;
+    
     _allInstanceSoccerPlayers.forEach((instanceSoccerPlayer) {
         if (mainPlayer != null && mainPlayer.isPurchased(instanceSoccerPlayer)) {
           instanceSoccerPlayer.level = 0;
@@ -259,7 +262,8 @@ class ViewContestComp implements DetachAware {
           Logger.root.severe("Currently there isn't info about this soccer player: ${instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId}");
         } else {
           _updateSingleSoccerPlayerState(instanceSoccerPlayer);
-          if (instanceSoccerPlayer.playState == InstanceSoccerPlayer.STATE_NOT_PLAYED) {
+
+          if (instanceSoccerPlayer.playState == InstanceSoccerPlayer.STATE_NOT_PLAYED && maxSalary >= instanceSoccerPlayer.salary) {
             dynamic slot = _createSlot(instanceSoccerPlayer, intId++);
             allSoccerPlayers.add(slot);
           }
@@ -362,7 +366,7 @@ class ViewContestComp implements DetachAware {
                 '''
                 // <ul>${NEEDED_PERMISSIONS.fold('', (prev, curr) => '$prev<li>$curr</li>')}</ul>
                 , onBackdropClick: false
-                , onOk: getLocalizedText((goldNeeded.amount > 0)? 'change-player-modal-confirm' : 'change-player-modal-confirm0', substitutions: {'GOLD_COINS': goldNeeded.amount})
+                , onOk: getLocalizedText((goldNeeded.amount > 0)? 'change-player-modal-confirm' : 'change-player-modal-confirm0', substitutions: {'GOLD_COINS': goldNeeded.amount.toInt()})
                 , onCancel: getLocalizedText('change-player-modal-cancel')
                 , aditionalClass: "change-player-modal"
               ).then((_) {

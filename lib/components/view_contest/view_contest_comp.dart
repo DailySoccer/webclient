@@ -23,6 +23,7 @@ import 'package:logging/logging.dart';
 import 'dart:async';
 import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/models/money.dart';
+import 'package:webclient/components/modal_comp.dart';
 
 @Component(
     selector: 'view-contest',
@@ -335,7 +336,13 @@ class ViewContestComp implements DetachAware {
   }
 
   void onRowClick(String soccerPlayerId) {
-    //print(soccerPlayerId);
+    ModalComp.open(_router, "live_contest.soccer_player_stats", {
+        "instanceSoccerPlayerId": soccerPlayerId,
+        "selectable": true
+      }, (String soccerPlayerId) {
+        var soccerPlayer = allSoccerPlayers.firstWhere((soccerPlayer) => soccerPlayer["id"] == soccerPlayerId, orElse: () => null);
+        onSoccerPlayerActionButton(soccerPlayer);
+      });
   }
 
   void onSoccerPlayerActionButton(var soccerPlayer) {

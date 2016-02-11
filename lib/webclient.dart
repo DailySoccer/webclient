@@ -416,7 +416,13 @@ class WebClientApp extends Module {
       ,'live_contest': ngRoute(
           path: '/live_contest/:parent/:contestId',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-          viewHtml: '<view-contest></view-contest>'
+          viewHtml: '<view-contest></view-contest>',
+          mount: {
+            'soccer_player_stats': ngRoute(
+                path: '/soccer_player_stats/:instanceSoccerPlayerId/selectable/:selectable',
+                viewHtml: '<soccer-player-stats></soccer-player-stats>'
+            )
+          }
       )
       ,'slc': ngRoute(
           path: '/slc/:contestId',

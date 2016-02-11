@@ -367,31 +367,20 @@ class ViewContestComp implements DetachAware {
     bool areAvailableChanges = numChanges > 0;
     
     if (isSameTeamOk && isSalaryOk && areAvailableChanges && isGoldOk) {
-      loadingService.isLoading = true;
-      _contestsService.changeSoccerPlayer(mainPlayer.contestEntryId, 
-              _changingPlayer.soccerPlayer.templateSoccerPlayerId, 
-              instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId)
-        .then((_) {
-          closePlayerChanges();
-          
-          _profileService.user.goldBalance.amount -= instanceSoccerPlayer.moneyToBuy(contest, _profileService.user.managerLevel).amount;
-          numChanges--;
-          
-          mainPlayer = _contestsService.lastContest.getContestEntryWithUser(_profileService.user.userId);
-          updateSoccerPlayerStates();
-          updateLive();
-          
-          print ("onSoccerPlayerActionButton: Ok");
-          loadingService.isLoading = false;
-        })
-        .catchError((ServerError error) {
-          Logger.root.info("Error: ${error.responseError}");
-          if (error.isRetryOpError) {
-            _retryOpTimer = new Timer(const Duration(seconds:3), () => onSoccerPlayerActionButton(soccerPlayer));
-          } else {
-            _showMsgError(error, goldNeeded.amount);
-          }
-        }, test: (error) => error is ServerError);
+      
+      modalShow("",
+                '''
+                  <h1>${StringUtils.translate('facebookReRequestTitle', 'login')}</h1>
+                  <p>${StringUtils.translate('facebookReRequestText', 'login')}</p>
+                '''
+                // <ul>${NEEDED_PERMISSIONS.fold('', (prev, curr) => '$prev<li>$curr</li>')}</ul>
+                , onBackdropClick: false
+                , onOk: StringUtils.translate('facebookReRequestOk', 'login')
+                , onCancel: StringUtils.translate('facebookReRequestCancel', 'login')
+                , aditionalClass: "facebook-rerequest-modal"
+              ).then((_) {
+                _changeSoccerPlayer(soccerPlayer, goldNeeded);
+              })//.catchError((_) => closePlayerChanges());
       
     } else {
       if (!isSameTeamOk){
@@ -404,6 +393,36 @@ class ViewContestComp implements DetachAware {
         print("ORO INSUFICIENTE");
       }
     }
+  }
+  
+  void _changeSoccerPlayer(var soccerPlayer, Money goldNeeded) {
+    InstanceSoccerPlayer newSoccerPlayer = soccerPlayer['instanceSoccerPlayer'];
+    loadingService.isLoading = true;
+    
+    _contestsService.changeSoccerPlayer(mainPlayer.contestEntryId, 
+                  _changingPlayer.soccerPlayer.templateSoccerPlayerId, 
+                  newSoccerPlayer.soccerPlayer.templateSoccerPlayerId)
+            .then((_) {
+              closePlayerChanges();
+              
+              _profileService.user.goldBalance.amount -= newSoccerPlayer.moneyToBuy(contest, _profileService.user.managerLevel).amount;
+              numChanges--;
+              
+              mainPlayer = _contestsService.lastContest.getContestEntryWithUser(_profileService.user.userId);
+              updateSoccerPlayerStates();
+              updateLive();
+              
+              print ("onSoccerPlayerActionButton: Ok");
+              loadingService.isLoading = false;
+            })
+            .catchError((ServerError error) {
+              Logger.root.info("Error: ${error.responseError}");
+              if (error.isRetryOpError) {
+                _retryOpTimer = new Timer(const Duration(seconds:3), () => onSoccerPlayerActionButton(soccerPlayer));
+              } else {
+                _showMsgError(error, goldNeeded.amount);
+              }
+            }, test: (error) => error is ServerError);
   }
 
   void _showMsgError(ServerError error, int coinsNeeded) {

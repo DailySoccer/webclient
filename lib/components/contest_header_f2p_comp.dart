@@ -21,6 +21,7 @@ import 'package:webclient/services/facebook_service.dart';
 class ContestHeaderF2PComp implements DetachAware, ShadowRootAware {
 
   ScreenDetectorService scrDet;
+  bool showFilter = false;
 
   Map<String, String> info = {
     'description':      '',
@@ -34,6 +35,9 @@ class ContestHeaderF2PComp implements DetachAware, ShadowRootAware {
 
   Contest contest;
 
+  @NgTwoWay("match-filter")
+  String matchFilter = null;
+  
   @NgOneWayOneTime("contest")
   void set setContest(Contest value) {
     if (value != null) {
@@ -76,6 +80,11 @@ class ContestHeaderF2PComp implements DetachAware, ShadowRootAware {
     }
   }
 
+  @NgOneWay("show-filter")
+  void set setShowFilter(bool filter) {
+    showFilter = filter;
+  }
+  
   String getLocalizedText(key) {
     return StringUtils.translate(key, "contestheader");
   }

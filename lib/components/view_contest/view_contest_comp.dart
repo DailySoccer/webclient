@@ -240,26 +240,14 @@ class ViewContestComp implements DetachAware {
           .then((List<InstanceSoccerPlayer> instanceSoccerPlayers) {
               allSoccerPlayers = [];
               lineupSlots = [];
-
-              instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
-                  if (mainPlayer != null && mainPlayer.isPurchased(instanceSoccerPlayer)) {
-                    instanceSoccerPlayer.level = 0;
-                  }
-
-                  if (instanceSoccerPlayer.soccerPlayer.name == null) {
-                    Logger.root.severe("Currently there isn't info about this soccer player: ${instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId}");
-                  } else {
-                    _updateSingleSoccerPlayerState(instanceSoccerPlayer);
-                    if (instanceSoccerPlayer.playState == InstanceSoccerPlayer.STATE_NOT_PLAYED) {
-                      dynamic slot = _createSlot(instanceSoccerPlayer, intId++);
-                      allSoccerPlayers.add(slot);
-                    }
-                  }
-              });
+              _allInstanceSoccerPlayers = instanceSoccerPlayers;
+              
+              refreshAllSoccerPlayerList();
               updateLineupSlots();
               updateFavorites();
         });
       } else {
+        refreshAllSoccerPlayerList();
         updateLineupSlots();
       }
     } else {
@@ -270,6 +258,26 @@ class ViewContestComp implements DetachAware {
       fieldPosFilter = _changingPlayer.fieldPos;
       print("CLICKED: ${requestedSoccerPlayer.soccerPlayer.name}");
     }
+  }
+  
+  void refreshAllSoccerPlayerList() {
+    int intId = 0;
+    allSoccerPlayers.clear();
+    _allInstanceSoccerPlayers.forEach((instanceSoccerPlayer) {
+        if (mainPlayer != null && mainPlayer.isPurchased(instanceSoccerPlayer)) {
+          instanceSoccerPlayer.level = 0;
+        }
+
+        if (instanceSoccerPlayer.soccerPlayer.name == null) {
+          Logger.root.severe("Currently there isn't info about this soccer player: ${instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId}");
+        } else {
+          _updateSingleSoccerPlayerState(instanceSoccerPlayer);
+          if (instanceSoccerPlayer.playState == InstanceSoccerPlayer.STATE_NOT_PLAYED) {
+            dynamic slot = _createSlot(instanceSoccerPlayer, intId++);
+            allSoccerPlayers.add(slot);
+          }
+        }
+      });
   }
 
   Map _createSlot(InstanceSoccerPlayer instanceSoccerPlayer, int intId) {
@@ -469,5 +477,6 @@ class ViewContestComp implements DetachAware {
   ContestsService _contestsService;
   TutorialService _tutorialService;
   InstanceSoccerPlayer _changingPlayer;
+  List<InstanceSoccerPlayer> _allInstanceSoccerPlayers;
 }
 

@@ -523,10 +523,14 @@
     ,"viewcontest"                      :
     {
       "alert-user-gold-message"         : "Tienes actualmente: @MONEY",
+      "change-player-modal-no-gold"     : "Deseas cambiar a<br>@SOCCER_PLAYER1 por @SOCCER_PLAYER2 ?",
       "change-player-modal"             : "Deseas cambiar a<br>@SOCCER_PLAYER1 por @SOCCER_PLAYER2 ?",
       "change-player-modal-confirm0"    : "Confirmar",
       "change-player-modal-confirm"     : "<span class='coin'>@GOLD_COINS</span>",
       "change-player-modal-cancel"      : "Cancelar",
+      "alert-user-gold-message"         : "Tienes actualmente @MONEY",
+      "buy-gold-button"                 : "COMPRAR ORO",
+      "alert-no-gold-message"           : "No tienes ORO suficiente.",
       "yourlineup"                      : "Tu alineación",
       "users"                           : "Usuarios",
       "opponent"                        : "Adversario"

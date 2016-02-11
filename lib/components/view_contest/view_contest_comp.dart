@@ -346,7 +346,7 @@ class ViewContestComp implements DetachAware {
     
     //Check gold
     Money goldNeeded = instanceSoccerPlayer.moneyToBuy(contest, _profileService.user.managerLevel);
-    goldNeeded.plus(mainPlayer.changePrice());
+    goldNeeded = goldNeeded.plus(mainPlayer.changePrice());
     bool isGoldOk = _profileService.user.goldBalance.amount >= goldNeeded.amount;
     
     //Check num changes availables
@@ -377,7 +377,7 @@ class ViewContestComp implements DetachAware {
       } else if (!areAvailableChanges) {
         print("NO HAY CAMBIOS DISPONIBLES");
       } else if (!isGoldOk) {
-        print("ORO INSUFICIENTE");
+        alertNotEnoughGold(goldNeeded.amount.toInt());
       }
     }
   }
@@ -462,11 +462,11 @@ class ViewContestComp implements DetachAware {
               <img class="gold-image" src="images/EpicCoinModales.png">
               <span class="not-enough-resources-count">${coinsNeeded}</span>
             </div>
-            <h2 class="alert-content-subtitle">${getLocalizedText('alert-user-gold-message', substitutions:{'MONEY': _profileService.user.goldBalance.amount})}<span class="gold-icon-tiny"></span></h2>
+            <h2 class="alert-content-subtitle">${getLocalizedText('alert-user-gold-message', substitutions:{'MONEY': _profileService.user.goldBalance.amount.toInt()})}<span class="gold-icon-tiny"></span></h2>
           </div>
           '''
         , onOk: getLocalizedText("buy-gold-button")
-        , onBackdropClick: true
+        , onBackdropClick: false
         , closeButton: false
         , aditionalClass: "noGold"
     ).then((_) {

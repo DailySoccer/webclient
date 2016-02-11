@@ -47,23 +47,9 @@ class ViewContestComp implements DetachAware {
   String nameFilter;
   FieldPos fieldPosFilter;
   bool onlyFavorites = false;
-  static const MAX_CHANGES = 3;
-  int numChanges = MAX_CHANGES;
-  static Money DEFAULT_PRICE =  new Money.from(Money.CURRENCY_GOLD, 0);
-  static List<Money> changesPrices = [ new Money.from(Money.CURRENCY_GOLD, 0), 
-                                       new Money.from(Money.CURRENCY_GOLD, 3), 
-                                       new Money.from(Money.CURRENCY_GOLD, 6), 
-                                       DEFAULT_PRICE
-                                      ];
   
-  Money nextChangePrice() {
-    int pricesIndex = MAX_CHANGES - numChanges;
-    if (pricesIndex >= changesPrices.length || pricesIndex < 0) {
-      Logger.root.severe("WTF - 3535 - SoccerPlayer changes is requesting unknown change-price: index=$pricesIndex, MAX_CHANGES=$MAX_CHANGES, numChanges=$numChanges");
-      return DEFAULT_PRICE;
-    }
-    return changesPrices[MAX_CHANGES - numChanges];
-  }
+  int get numAvailableChanges => mainPlayer != null ? mainPlayer.numAvailableChanges : 0;
+  Money get changePrice => mainPlayer != null ? mainPlayer.changePrice() : ContestEntry.DEFAULT_PRICE;
   
   String matchFilter;
   List<dynamic> allSoccerPlayers;
@@ -71,7 +57,7 @@ class ViewContestComp implements DetachAware {
   List<dynamic> lineupSlots = [];
 
   bool get isLive => _routeProvider.route.name.contains("live_contest");
-  bool get showChanges => contest != null? (contest.isLive && numChanges > 0) : false;
+  bool get showChanges => contest != null? (contest.isLive && numAvailableChanges > 0) : false;
   bool isMakingChange = false;
 
   String get salaryCap => contest.printableSalaryCap;
@@ -360,11 +346,11 @@ class ViewContestComp implements DetachAware {
     
     //Check gold
     Money goldNeeded = instanceSoccerPlayer.moneyToBuy(contest, _profileService.user.managerLevel);
-    goldNeeded.plus(nextChangePrice());
+    goldNeeded.plus(mainPlayer.changePrice());
     bool isGoldOk = _profileService.user.goldBalance.amount >= goldNeeded.amount;
     
     //Check num changes availables
-    bool areAvailableChanges = numChanges > 0;
+    bool areAvailableChanges = numAvailableChanges > 0;
     
     if (isSameTeamOk && isSalaryOk && areAvailableChanges && isGoldOk) {
       
@@ -380,7 +366,7 @@ class ViewContestComp implements DetachAware {
                 , aditionalClass: "facebook-rerequest-modal"
               ).then((_) {
                 _changeSoccerPlayer(soccerPlayer, goldNeeded);
-              })//.catchError((_) => closePlayerChanges());
+              });//.catchError((_) => closePlayerChanges());
       
     } else {
       if (!isSameTeamOk){
@@ -406,7 +392,6 @@ class ViewContestComp implements DetachAware {
               closePlayerChanges();
               
               _profileService.user.goldBalance.amount -= newSoccerPlayer.moneyToBuy(contest, _profileService.user.managerLevel).amount;
-              numChanges--;
               
               mainPlayer = _contestsService.lastContest.getContestEntryWithUser(_profileService.user.userId);
               updateSoccerPlayerStates();

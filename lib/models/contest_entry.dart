@@ -6,8 +6,10 @@ import "package:webclient/models/contest.dart";
 import "package:webclient/models/instance_soccer_player.dart";
 import 'package:webclient/models/money.dart';
 import 'package:webclient/services/contest_references.dart';
+import 'package:logging/logging.dart';
 
 class ContestEntry {
+  static const num MAX_CHANGES = 3;
   static const String FORMATION_442 = "442";
   static const String FORMATION_352 = "352";
   static const String FORMATION_433 = "433";
@@ -22,10 +24,30 @@ class ContestEntry {
   String formation = FORMATION_442;
   List<InstanceSoccerPlayer> instanceSoccerPlayers = [];
   List<InstanceSoccerPlayer> soccerPlayersPurchased = [];
+  Map<String, String> soccerPlayersChanged = {};
 
+  num get numChanges => soccerPlayersChanged.length;
+  num get numAvailableChanges => MAX_CHANGES - numChanges;
+  
   int position;
   Money prize;
   int fantasyPoints;
+
+  static Money DEFAULT_PRICE =  new Money.from(Money.CURRENCY_GOLD, 0);
+  static List<Money> CHANGES_PRICE = [ new Money.from(Money.CURRENCY_GOLD, 0), 
+                                       new Money.from(Money.CURRENCY_GOLD, 3), 
+                                       new Money.from(Money.CURRENCY_GOLD, 6), 
+                                       DEFAULT_PRICE
+                                      ];
+  
+  Money changePrice() {
+    int pricesIndex = numChanges;
+    if (pricesIndex >= CHANGES_PRICE.length || pricesIndex < 0) {
+      Logger.root.severe("WTF - 3535 - SoccerPlayer changes is requesting unknown change-price: index=$pricesIndex, MAX_CHANGES=$MAX_CHANGES, numChanges=$numChanges");
+      return DEFAULT_PRICE;
+    }
+    return CHANGES_PRICE[pricesIndex];
+  }
 
   int get currentLivePoints => instanceSoccerPlayers != null ? instanceSoccerPlayers.fold(0, (prev, instanceSoccerPlayer) => prev + instanceSoccerPlayer.soccerPlayer.currentLivePoints ) : 0;
 
@@ -64,6 +86,10 @@ class ContestEntry {
 
     if (jsonMap.containsKey("playersPurchased") && jsonMap["playersPurchased"] != null) {
       soccerPlayersPurchased = jsonMap["playersPurchased"].map((soccerPlayerId) => theContest.getInstanceSoccerPlayer(soccerPlayerId)).toList();
+    }
+
+    if (jsonMap.containsKey("playersChanged") && jsonMap["playersChanged"] != null) {
+      jsonMap["playersChanged"].forEach((key, playerId) => soccerPlayersChanged[key] = playerId);
     }
 
     position = (jsonMap.containsKey("position")) ? jsonMap["position"] : 0;

@@ -33,11 +33,11 @@
                              field-pos-filter="fieldPosFilter" name-filter="nameFilter" match-filter="matchFilter"
                              on-row-click="onRowClick(soccerPlayerId)" hide-lineup-players="true"
                              on-action-click="onSoccerPlayerActionButton(soccerPlayer)"
-                             additional-gold-price="nextChangePrice()"></soccer-players-list>
+                             additional-gold-price="changePrice"></soccer-players-list>
       </div>
     </div>
     <div class="contest-id-bar">
-      <div class="contest-id">CHANGES AVAILABLE: {{numChanges}} || SALARY: {{remainingSalary}} ({{lineupCost}}/{{maxSalary}}) || ID: {{contest.contestId.toUpperCase()}}</div>
+      <div class="contest-id">CHANGES AVAILABLE: {{numAvailableChanges}} || SALARY: {{remainingSalary}} ({{lineupCost}}/{{maxSalary}}) || ID: {{contest.contestId.toUpperCase()}}</div>
     </div>
     <div class="clear-fix-bottom"></div>
   </div>

@@ -244,8 +244,8 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   String _getHtmlForSlot(var slot, bool addButton) {
     InstanceSoccerPlayer soccerPlayer = slot['instanceSoccerPlayer'];
     Money moneyToBuy = slot['instanceSoccerPlayer'].moneyToBuy(contest, managerLevel);
-    moneyToBuy = moneyToBuy.plus(additionalGoldPrice);
     bool soccerPlayerIsAvailable = moneyToBuy.toInt() == 0;
+    moneyToBuy = moneyToBuy.plus(additionalGoldPrice);
     String strAddButton = _getActionButton(addButton, moneyToBuy);
 
     return '''

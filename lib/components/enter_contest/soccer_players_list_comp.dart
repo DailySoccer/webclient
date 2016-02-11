@@ -222,11 +222,11 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
       if (_isVisibleWithFilters(slot, filterPosVal, filterMatchIdVal, filterNameVal)) {
         visibleItems++;
-        bool isInLineup = lineupFilter.firstWhere( (s) => s['id'] == slot['id'], orElse: () => null) != null;
+        
+        bool isInLineup = lineupFilter.contains(slot);
         if (!(isInLineup && hideLineupPlayers)) {
           allHtml.write(_getHtmlForSlot(slot, !isInLineup));
         }
-        // Logger.root.info("${slot["id"]}: ${slot["intId"]}: ${slot["fullName"]}");
       }
     }
 

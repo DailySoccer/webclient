@@ -17,6 +17,8 @@ class SoccerTeam {
   // Nº de goles marcados en el partido
   int score = -1;
 
+  bool get hasFullInformation => name != null;
+  
   SoccerTeam.referenceInit(this.templateSoccerTeamId);
 
   factory SoccerTeam.fromJsonObject(Map jsonMap, ContestReferences references) {

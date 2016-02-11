@@ -46,7 +46,8 @@ class ContestEntry {
 
   bool contains(SoccerPlayer soccerPlayer) => instanceSoccerPlayers.any( (elem) => elem.soccerPlayer.templateSoccerPlayerId == soccerPlayer.templateSoccerPlayerId );
 
-  bool isPurchased(InstanceSoccerPlayer soccerPlayer) => soccerPlayersPurchased != null && soccerPlayersPurchased.contains(soccerPlayer);
+  bool isPurchased(InstanceSoccerPlayer instanceSoccerPlayer) => soccerPlayersPurchased != null 
+      && soccerPlayersPurchased.any((instancePurchased) => instancePurchased.soccerPlayer.templateSoccerPlayerId == instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId);
 
   ContestEntry(this.contestEntryId, this.user, this.instanceSoccerPlayers);
 

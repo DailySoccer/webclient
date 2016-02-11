@@ -356,14 +356,15 @@ class ViewContestComp implements DetachAware {
       
       modalShow("",
                 '''
-                  <h1>${StringUtils.translate('facebookReRequestTitle', 'login')}</h1>
-                  <p>${StringUtils.translate('facebookReRequestText', 'login')}</p>
+                  <p>${getLocalizedText('change-player-modal', 
+                                        substitutions: {'SOCCER_PLAYER1': _changingPlayer.soccerPlayer.name, 
+                                                        'SOCCER_PLAYER2': instanceSoccerPlayer.soccerPlayer.name})}</p>
                 '''
                 // <ul>${NEEDED_PERMISSIONS.fold('', (prev, curr) => '$prev<li>$curr</li>')}</ul>
                 , onBackdropClick: false
-                , onOk: StringUtils.translate('facebookReRequestOk', 'login')
-                , onCancel: StringUtils.translate('facebookReRequestCancel', 'login')
-                , aditionalClass: "facebook-rerequest-modal"
+                , onOk: getLocalizedText((goldNeeded.amount > 0)? 'change-player-modal-confirm' : 'change-player-modal-confirm0', substitutions: {'GOLD_COINS': goldNeeded.amount})
+                , onCancel: getLocalizedText('change-player-modal-cancel')
+                , aditionalClass: "change-player-modal"
               ).then((_) {
                 _changeSoccerPlayer(soccerPlayer, goldNeeded);
               });//.catchError((_) => closePlayerChanges());

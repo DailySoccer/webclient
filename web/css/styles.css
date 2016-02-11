@@ -12977,6 +12977,33 @@ fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-b
 .soccer-player-changes-list .soccer-players-list {
   max-height: 401px;
 }
+#alertRoot.change-player-modal .modal-dialog {
+  margin-top: 20vh;
+  margin-bottom: 0;
+}
+#alertRoot.change-player-modal .modal-dialog .modal-content {
+  box-shadow: 0px;
+  border: 0px solid #FFFFFF;
+  background-color: transparent;
+}
+#alertRoot.change-player-modal .modal-dialog .modal-content .panel p {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14pt;
+  color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+}
+#alertRoot.change-player-modal .ok-button .coin:after {
+  content: '';
+  margin-left: 5px;
+  content: " ";
+  background-image: url("../images/icon-coin-xs.png");
+  width: 17px;
+  height: 17px;
+  display: inline-block;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+}
 #lobbyf2pRoot {
   background-color: #dcdcdc;
 }

@@ -39,3 +39,24 @@
 		max-height: 401px;
 	}
 }
+#alertRoot.change-player-modal {
+	.modal-dialog {
+		margin-top: 20vh;
+		margin-bottom: 0;
+		.modal-content {
+			box-shadow: 0px;
+			border: 0px solid #FFFFFF;
+			background-color: transparent;
+			
+			.panel p {
+				.opensans_normal(14pt, @blueDark);
+			}
+		}
+	}
+	.ok-button .coin:after {
+		content: '';
+		margin-left: 5px;
+		.addIcon("icon-coin-xs.png", 17px, 17px);
+		background-repeat: no-repeat;
+	}
+}

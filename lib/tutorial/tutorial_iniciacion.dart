@@ -110,25 +110,29 @@ class TutorialIniciacion extends Tutorial {
       Tutorial.STEP_BEGIN: new TutorialStep(
             triggers: {
               'lobby': () async {
-                transitionEvaluate = (transition) => Tutorial.ALLOWED_FALSE;
-
-                GameMetrics.logEvent(GameMetrics.TUTORIAL_STARTED);
-
-                // Bienvenido a Epic Eleven
-                await openModal( text: () => getLocalizedText("msg-01") );
-
-                // Comienza eligiendo un torneo oficial
-                await openModal( text: () => getLocalizedText("msg-02") );
-
-                if (isActive) {
-                  CurrentStepId = STEP_1;
-
-                  // Selecciona este torneo
-                  transitionEvaluate = (transition) => transition == 'enter_contest';
-                  showTooltips([
-                    new ToolTip("#activeContestList .contestSlot .action-section", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-02a"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
-                    new ToolTip("#activeContestList .contestSlot", highlight: true)
-                  ]);
+                  try {
+                    transitionEvaluate = (transition) => Tutorial.ALLOWED_FALSE;
+    
+                    GameMetrics.logEvent(GameMetrics.TUTORIAL_STARTED);
+    
+                    // Bienvenido a Epic Eleven
+                    await openModal( text: () => getLocalizedText("msg-01") );
+    
+                    // Comienza eligiendo un torneo oficial
+                    await openModal( text: () => getLocalizedText("msg-02") );
+    
+                    if (isActive) {
+                      CurrentStepId = STEP_1;
+    
+                      // Selecciona este torneo
+                      transitionEvaluate = (transition) => transition == 'enter_contest';
+                      showTooltips([
+                        new ToolTip("#activeContestList .contestSlot .action-section", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-02a"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
+                        new ToolTip("#activeContestList .contestSlot", highlight: true)
+                      ]);
+                    }
+                } catch (_) {
+                  print("Skip tutorial...");
                 }
               }
             },
@@ -137,103 +141,119 @@ class TutorialIniciacion extends Tutorial {
       STEP_1: new TutorialStep(
             triggers: {
               'enter_contest' : () async {
-                transitionEvaluate = (transition) => Tutorial.ALLOWED_FALSE;
-
-                GameMetrics.logEvent(GameMetrics.TUTORIAL_STEP_TEAM_SELECTION);
-
-                EnterContestComp enterContest = context;
-                enterContest.fieldPosFilter = FieldPos.FORWARD;
-                Map data = { 'formation' :  ContestEntry.FORMATION_442, 'lineupSlots' : oficialFantasyTeam};
-                enterContest.saveContestEntryFromJson(KeyLocalStorage, JSON.encode(data));
-
-                // Los torneos oficiales se basan en partidos
-                await openModal( text: () => getLocalizedText("msg-02b") );
-
-                // Elige tu alineación ideal entre todos
-                await openModal( text: () => getLocalizedText("msg-02c") );
-
-                if (isActive) {
-
-                  if(_scrDet.isNotXsScreen) {
-                    // Esta es la lista de partidos de este torneo.
-                    await onClick( [new ToolTip("matches-filter", tipText: getLocalizedText("msg-02d"), highlight: true, position: ToolTip.POSITION_TOP)] );
-                  }
-
-                  clearTooltips();
-                  querySelector(".lineup-formation-selector-wrapper").click();
-
-                  // Aquí puedes desplegar la lista de formaciones
-                  await onClick( [new ToolTip(".lineup-formation-selector-wrapper", tipId: "formationsPanelTip", tipText: getLocalizedText("msg-02e"), highlight: true, position: ToolTip.POSITION_TOP)] );
-
-                  // Éstas son las formaciones disponibles
-                  await onClick( [new ToolTip("#formationsPanelRoot", tipText: getLocalizedText("msg-02f"), highlight: true, position: ToolTip.POSITION_TOP)] );
-
-                  // Selecciona una formación
-                  showTooltips([
-                    new ToolTip("#formationsPanel .formation-element#formationElement433 label", tipId: 'formation443Tip',  tipText: getLocalizedText("msg-02g"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true),
-                    new ToolTip("#formationsPanel .formation-element#formationElement433", highlight: true)
-                  ]);
-                };
+                try {
+                  transitionEvaluate = (transition) => Tutorial.ALLOWED_FALSE;
+  
+                  GameMetrics.logEvent(GameMetrics.TUTORIAL_STEP_TEAM_SELECTION);
+  
+                  EnterContestComp enterContest = context;
+                  enterContest.fieldPosFilter = FieldPos.FORWARD;
+                  Map data = { 'formation' :  ContestEntry.FORMATION_442, 'lineupSlots' : oficialFantasyTeam};
+                  enterContest.saveContestEntryFromJson(KeyLocalStorage, JSON.encode(data));
+  
+                  // Los torneos oficiales se basan en partidos
+                  await openModal( text: () => getLocalizedText("msg-02b") );
+  
+                  // Elige tu alineación ideal entre todos
+                  await openModal( text: () => getLocalizedText("msg-02c") );
+  
+                  if (isActive) {
+  
+                    if(_scrDet.isNotXsScreen) {
+                      // Esta es la lista de partidos de este torneo.
+                      await onClick( [new ToolTip("matches-filter", tipText: getLocalizedText("msg-02d"), highlight: true, position: ToolTip.POSITION_TOP)] );
+                    }
+  
+                    clearTooltips();
+                    querySelector(".lineup-formation-selector-wrapper").click();
+  
+                    // Aquí puedes desplegar la lista de formaciones
+                    await onClick( [new ToolTip(".lineup-formation-selector-wrapper", tipId: "formationsPanelTip", tipText: getLocalizedText("msg-02e"), highlight: true, position: ToolTip.POSITION_TOP)] );
+  
+                    // Éstas son las formaciones disponibles
+                    await onClick( [new ToolTip("#formationsPanelRoot", tipText: getLocalizedText("msg-02f"), highlight: true, position: ToolTip.POSITION_TOP)] );
+  
+                    // Selecciona una formación
+                    showTooltips([
+                      new ToolTip("#formationsPanel .formation-element#formationElement433 label", tipId: 'formation443Tip',  tipText: getLocalizedText("msg-02g"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true),
+                      new ToolTip("#formationsPanel .formation-element#formationElement433", highlight: true)
+                    ]);
+                  };
+                } catch (_) {
+                  print("Skip tutorial...");
+                }
               },
               'formation-433': () async {
-                querySelector(".lineup-formation-selector-wrapper").click();
-
-                // Al cambiar de formación, cambia el número
-                await onClick( [new ToolTip(".enter-contest-lineup-wrapper", tipText: getLocalizedText("msg-02h"), highlight: true, position: ToolTip.POSITION_TOP)] );
-
-                if (isActive) {
-                  querySelector(".lineup-selector-slot.posDEL").click();
+                try {
+                  querySelector(".lineup-formation-selector-wrapper").click();
+  
+                  // Al cambiar de formación, cambia el número
+                  await onClick( [new ToolTip(".enter-contest-lineup-wrapper", tipText: getLocalizedText("msg-02h"), highlight: true, position: ToolTip.POSITION_TOP)] );
+  
+                  if (isActive) {
+                    querySelector(".lineup-selector-slot.posDEL").click();
+                  }
+  
+                  // Esta es la lista de jugadores disponibles
+                  await onClick( [new ToolTip(".enter-contest-soccer-players-wrapper", tipText: getLocalizedText("msg-02i"), highlight: true, position: ToolTip.POSITION_TOP)] );
+  
+                  // Añade este jugador a tu alineación.
+                  showTooltips([
+                    new ToolTip("$soccerPlayer0 .action-button", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-03"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
+                    new ToolTip("$soccerPlayer0", highlight: true)
+                  ]);
+                } catch (_) {
+                  print("Skip tutorial...");
                 }
-
-                // Esta es la lista de jugadores disponibles
-                await onClick( [new ToolTip(".enter-contest-soccer-players-wrapper", tipText: getLocalizedText("msg-02i"), highlight: true, position: ToolTip.POSITION_TOP)] );
-
-                // Añade este jugador a tu alineación.
-                showTooltips([
-                  new ToolTip("$soccerPlayer0 .action-button", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-03"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
-                  new ToolTip("$soccerPlayer0", highlight: true)
-                ]);
               },
               'lineup-9': () async {
-                clearTooltips();
-
-                // Bien, ya has añadido tu primer jugador.
-                await onClick( [new ToolTip(".posDEL", tipId: 'playerAddedTip', tipText: getLocalizedText("msg-03a"), highlight: true, position: ToolTip.POSITION_TOP, scrollSelector: ".posDEL", scrollOffset: 100)] );
-
-                // Cuando añades un jugador su salario (".enter-contest-total-salary")
-                await onClick( [new ToolTip(".enter-contest-lineup-wrapper", tipText: getLocalizedText("msg-03b"), highlight: true, position: ToolTip.POSITION_TOP, scrollSelector: ".enter-contest-lineup-wrapper")] );
-
-                if (isActive) {
-                  querySelectorAll(".lineup-selector-slot.posDEL")[1].click();
+                try {
+                  clearTooltips();
+  
+                  // Bien, ya has añadido tu primer jugador.
+                  await onClick( [new ToolTip(".posDEL", tipId: 'playerAddedTip', tipText: getLocalizedText("msg-03a"), highlight: true, position: ToolTip.POSITION_TOP, scrollSelector: ".posDEL", scrollOffset: 100)] );
+  
+                  // Cuando añades un jugador su salario (".enter-contest-total-salary")
+                  await onClick( [new ToolTip(".enter-contest-lineup-wrapper", tipText: getLocalizedText("msg-03b"), highlight: true, position: ToolTip.POSITION_TOP, scrollSelector: ".enter-contest-lineup-wrapper")] );
+  
+                  if (isActive) {
+                    querySelectorAll(".lineup-selector-slot.posDEL")[1].click();
+                  }
+  
+                  // Cada jugador además de su salario
+                  await onClick( [new ToolTip("$soccerPlayer1 .column-manager-level", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-03c"), highlight: true, position: ToolTip.POSITION_BOTTOM, tipId: 'soccerManagerLevel', scrollSelector: ".enter-contest-soccer-players-wrapper")] );
+  
+                  // Los jugadores marcados en rojo
+                  await onClick ( [new ToolTip("$soccerPlayer1", tipId: 'soccerPlayerRedStyle', tipText: getLocalizedText("msg-03d"), highlight: true, position: ToolTip.POSITION_TOP)] );
+  
+                  clearTooltips();
+  
+                  // Intenta seleccionar un jugador marcado en rojo.
+                  // showTooltip(new ToolTip("$soccerPlayer1", tipText: getLocalizedText("msg-11"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true));
+                  showTooltips([
+                    new ToolTip("$soccerPlayer1 .action-button", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-03e"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
+                    new ToolTip("$soccerPlayer1", highlight: true)
+                  ]);
+                } catch (_) {
+                  print("Skip tutorial...");
                 }
-
-                // Cada jugador además de su salario
-                await onClick( [new ToolTip("$soccerPlayer1 .column-manager-level", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-03c"), highlight: true, position: ToolTip.POSITION_BOTTOM, tipId: 'soccerManagerLevel', scrollSelector: ".enter-contest-soccer-players-wrapper")] );
-
-                // Los jugadores marcados en rojo
-                await onClick ( [new ToolTip("$soccerPlayer1", tipId: 'soccerPlayerRedStyle', tipText: getLocalizedText("msg-03d"), highlight: true, position: ToolTip.POSITION_TOP)] );
-
-                clearTooltips();
-
-                // Intenta seleccionar un jugador marcado en rojo.
-                // showTooltip(new ToolTip("$soccerPlayer1", tipText: getLocalizedText("msg-11"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true));
-                showTooltips([
-                  new ToolTip("$soccerPlayer1 .action-button", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-03e"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
-                  new ToolTip("$soccerPlayer1", highlight: true)
-                ]);
               },
               'alert-not-buy': () async {
-                  clearTooltips();
-
-                  // Necesitas subir tu nivel de manager compitiendo
-                  await openModal( text: () => getLocalizedText("msg-03f") );
-
-                  if (!isCompleted) {
-                    CurrentStepId = STEP_2;
-
-                    transitionEvaluate = (transition) => transition == 'lobby';
-                    router.go("lobby", {});
-                  }
+                  try {
+                    clearTooltips();
+  
+                    // Necesitas subir tu nivel de manager compitiendo
+                    await openModal( text: () => getLocalizedText("msg-03f") );
+  
+                    if (!isCompleted) {
+                      CurrentStepId = STEP_2;
+  
+                      transitionEvaluate = (transition) => transition == 'lobby';
+                      router.go("lobby", {});
+                    }
+                } catch (_) {
+                  print("Skip tutorial...");
+                }
               }
             },
             serverCalls: serverCallsWhenOficial
@@ -241,94 +261,118 @@ class TutorialIniciacion extends Tutorial {
         STEP_2: new TutorialStep(
             triggers: {
               'lobby': () async {
-                transitionEvaluate = (transition) => Tutorial.ALLOWED_FALSE;
-
-                GameMetrics.logEvent(GameMetrics.TUTORIAL_STEP_LOBBY_TRAINING);
-
-                // Puedes participar en torneos de entrenamiento
-                await openModal( text: () => getLocalizedText("msg-04") );
-
-                // Participa en los torneos de entrenamiento para ganar prestigio
-                await onClick( [
-                  new ToolTip(".fixed-user-stats .energy", tipId: 'energyTip', arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-04a"), highlight: true, position: ToolTip.POSITION_BOTTOM),
-                  new ToolTip("main-menu-f2p", highlight: true)
-                ] );
-
-                // TODO: Puede que el tutorial haya sido cancelado en el paso anterior, ¿cómo salirse del flujo normal sin "hacks"?
-                if (isActive) {
-                  TutorialService.Instance.disableElementEvents('main-menu-f2p');
+                try {
+                  transitionEvaluate = (transition) => Tutorial.ALLOWED_FALSE;
+  
+                  GameMetrics.logEvent(GameMetrics.TUTORIAL_STEP_LOBBY_TRAINING);
+  
+                  // Puedes participar en torneos de entrenamiento
+                  await openModal( text: () => getLocalizedText("msg-04") );
+  
+                  // Participa en los torneos de entrenamiento para ganar prestigio
+                  await onClick( [
+                    new ToolTip(".fixed-user-stats .energy", tipId: 'energyTip', arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-04a"), highlight: true, position: ToolTip.POSITION_BOTTOM),
+                    new ToolTip("main-menu-f2p", highlight: true)
+                  ] );
+  
+                  // TODO: Puede que el tutorial haya sido cancelado en el paso anterior, ¿cómo salirse del flujo normal sin "hacks"?
+                  if (isActive) {
+                    TutorialService.Instance.disableElementEvents('main-menu-f2p');
+                  }
+  
+                  // Cada torneo tiene un coste de energia.
+                  await onClick( [new ToolTip(".entry-fee-box", tipText: getLocalizedText("msg-05"), highlight: true, position: ToolTip.POSITION_TOP)] );
+  
+                  // Selecciona este torneo
+                  transitionEvaluate = (transition) => transition == 'enter_contest';
+                  showTooltips([
+                    new ToolTip("#activeContestList .contestSlot .action-section", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-06"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
+                    new ToolTip("#activeContestList .contestSlot", highlight: true)
+                  ]);
+                } catch (_) {
+                  print("Skip tutorial...");
                 }
-
-                // Cada torneo tiene un coste de energia.
-                await onClick( [new ToolTip(".entry-fee-box", tipText: getLocalizedText("msg-05"), highlight: true, position: ToolTip.POSITION_TOP)] );
-
-                // Selecciona este torneo
-                transitionEvaluate = (transition) => transition == 'enter_contest';
-                showTooltips([
-                  new ToolTip("#activeContestList .contestSlot .action-section", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-06"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
-                  new ToolTip("#activeContestList .contestSlot", highlight: true)
-                ]);
               },
               'enter_contest' : () async {
-                transitionEvaluate = (transition) => Tutorial.ALLOWED_FALSE;
-
-                EnterContestComp enterContest = context;
-                enterContest.fieldPosFilter = FieldPos.FORWARD;
-                Map data = { 'formation' :  ContestEntry.FORMATION_442, 'lineupSlots' : virtualFantasyTeam};
-                enterContest.saveContestEntryFromJson(KeyLocalStorage, JSON.encode(data));
-
-                // A diferencia de los torneos oficiales
-                await openModal( text: () => getLocalizedText("msg-07") );
-
-                // Esta vez hemos hecho la alineación por ti
-                await openModal( text: () => getLocalizedText("msg-08") );
-
-                if (isActive) {
-                  querySelectorAll(".lineup-selector-slot.posDEL")[1].click();
+                try {
+                  transitionEvaluate = (transition) => Tutorial.ALLOWED_FALSE;
+  
+                  EnterContestComp enterContest = context;
+                  enterContest.fieldPosFilter = FieldPos.FORWARD;
+                  Map data = { 'formation' :  ContestEntry.FORMATION_442, 'lineupSlots' : virtualFantasyTeam};
+                  enterContest.saveContestEntryFromJson(KeyLocalStorage, JSON.encode(data));
+  
+                  // A diferencia de los torneos oficiales
+                  await openModal( text: () => getLocalizedText("msg-07") );
+  
+                  // Esta vez hemos hecho la alineación por ti
+                  await openModal( text: () => getLocalizedText("msg-08") );
+  
+                  if (isActive) {
+                    querySelectorAll(".lineup-selector-slot.posDEL")[1].click();
+                  }
+  
+                  // Añade un delantero
+                  showTooltips([
+                    new ToolTip("$soccerPlayer2 .action-button", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-09"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
+                    new ToolTip("$soccerPlayer2", highlight: true)
+                  ]);
+                } catch (_) {
+                  print("Skip tutorial...");
                 }
-
-                // Añade un delantero
-                showTooltips([
-                  new ToolTip("$soccerPlayer2 .action-button", arrowPosition: ToolTip.POSITION_RIGHT, tipText: getLocalizedText("msg-09"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true),
-                  new ToolTip("$soccerPlayer2", highlight: true)
-                ]);
               },
               'lineup-11': () async {
-                clearTooltips();
-
-                // Una vez completada una alineación se activa el botón de Continuar
-                showTooltip(new ToolTip(".button-wrapper .btn-confirm-lineup-list", tipId: 'continueButton', tipText: getLocalizedText("msg-10"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true, scrollSelector: ".enter-contest-actions-wrapper.conclude-actions-wrapper"));
+                try {
+                  clearTooltips();
+  
+                  // Una vez completada una alineación se activa el botón de Continuar
+                  showTooltip(new ToolTip(".button-wrapper .btn-confirm-lineup-list", tipId: 'continueButton', tipText: getLocalizedText("msg-10"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true, scrollSelector: ".enter-contest-actions-wrapper.conclude-actions-wrapper"));
+                } catch (_) {
+                  print("Skip tutorial...");
+                }
               },
 
               'alert-not-enough-resources': () async {
-                clearTooltips();
-                transitionEvaluate = (transition) => transition == 'shop';
-                showTooltip(new ToolTip("#alertBox .panel", tipText: getLocalizedText("msg-10a"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true));
+                try {
+                  clearTooltips();
+                  transitionEvaluate = (transition) => transition == 'shop';
+                  showTooltip(new ToolTip("#alertBox .panel", tipText: getLocalizedText("msg-10a"), highlight: true, position: ToolTip.POSITION_BOTTOM, allowClickOnElement: true));
+                } catch (_) {
+                  print("Skip tutorial...");
+                }
               },
 
               'shop': () {
-                CurrentStepId = STEP_3;
-
-                clearTooltips();
-
-                // FIX !!!!
-                profileService.user.goldBalance.amount += 3;
-
-                // Compra una recarga de energía.
-                transitionEvaluate = (transition) => transition == 'enter_contest' && (profileService.user.energyBalance.amount > 0);
-                showTooltip(new ToolTip(".energy-layout", tipText: getLocalizedText("msg-10b"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true, scrollSelector: ".energy-layout"));
-              },
+                  try {
+                    CurrentStepId = STEP_3;
+    
+                    clearTooltips();
+    
+                    // FIX !!!!
+                    profileService.user.goldBalance.amount += 3;
+    
+                    // Compra una recarga de energía.
+                    transitionEvaluate = (transition) => transition == 'enter_contest' && (profileService.user.energyBalance.amount > 0);
+                    showTooltip(new ToolTip(".energy-layout", tipText: getLocalizedText("msg-10b"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true, scrollSelector: ".energy-layout"));
+                  } catch (_) {
+                    print("Skip tutorial...");
+                  }
+                },
             },
             serverCalls: serverCallsWhenVirtual
         ),
         STEP_3: new TutorialStep(
             triggers: {
               'enter_contest': () async {
-                clearTooltips();
-
-                // Púlsalo para completar tu entrada en el torneo.
-                transitionEvaluate = (transition) => transition == 'view_contest_entry';
-                showTooltip(new ToolTip(".button-wrapper .btn-confirm-lineup-list", tipId: 'continueButton', tipText: getLocalizedText("msg-10c"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true, scrollSelector: ".enter-contest-actions-wrapper.conclude-actions-wrapper"));
+                try {
+                  clearTooltips();
+  
+                  // Púlsalo para completar tu entrada en el torneo.
+                  transitionEvaluate = (transition) => transition == 'view_contest_entry';
+                  showTooltip(new ToolTip(".button-wrapper .btn-confirm-lineup-list", tipId: 'continueButton', tipText: getLocalizedText("msg-10c"), highlight: true, position: ToolTip.POSITION_TOP, allowClickOnElement: true, scrollSelector: ".enter-contest-actions-wrapper.conclude-actions-wrapper"));
+                } catch (_) {
+                  print("Skip tutorial...");
+                }
               }
             },
             serverCalls: serverCallsWhenVirtual
@@ -336,55 +380,63 @@ class TutorialIniciacion extends Tutorial {
         STEP_4: new TutorialStep(
             triggers: {
               'view_contest_entry': () async {
-                transitionEvaluate = (transition) => Tutorial.ALLOWED_FALSE;
-
-                // Actualizamos la energía disponible con el gasto producido al entrar en el torneo
-                profileService.user.energyBalance.amount -= 1;
-
-                // Enhorabuena. Acabas de apuntarte a un torneo de práctica.
-                await openModal( text: () => getLocalizedText("msg-11") );
-
-                if (!isCompleted) {
-                  transitionEvaluate = (transition) => transition == 'live_contest';
-                  router.go('live_contest', {"contestId": TrainingContestInstance["_id"], "parent": "my_contests"});
+                try {
+                  transitionEvaluate = (transition) => Tutorial.ALLOWED_FALSE;
+  
+                  // Actualizamos la energía disponible con el gasto producido al entrar en el torneo
+                  profileService.user.energyBalance.amount -= 1;
+  
+                  // Enhorabuena. Acabas de apuntarte a un torneo de práctica.
+                  await openModal( text: () => getLocalizedText("msg-11") );
+  
+                  if (!isCompleted) {
+                    transitionEvaluate = (transition) => transition == 'live_contest';
+                    router.go('live_contest', {"contestId": TrainingContestInstance["_id"], "parent": "my_contests"});
+                  }
+                } catch (_) {
+                  print("Skip tutorial...");
                 }
               },
               // FIX: Para permitir a webclient/_preEnterPage continuar el tutorial
               'live_contest': () async {
               },
               'view_contest': () async {
-                transitionEvaluate = (transition) => Tutorial.ALLOWED_FALSE;
-
-                // Ésta es la pantalla de simulación
-                await openModal( text: () => getLocalizedText("msg-12") );
-
-                if (!isCompleted) {
-                  // Aquí podrás ver los puntos conseguidos por tus jugadores
-                  await onClick( [new ToolTip("fantasy-team", tipText: getLocalizedText("msg-13"), highlight: true, position: ToolTip.POSITION_TOP)] );
-
-                  if (_scrDet.isXsScreen) querySelector("#usersListTab").click();
-
-                  // Aquí puedes ver tu puntuación frente a los rivales
-                  await onClick( [new ToolTip("#usersList", tipText: getLocalizedText("msg-14"), highlight: true, position: ToolTip.POSITION_TOP)]);
-                }
-
-                clearTooltips();
-
-                ViewContestComp liveContest = context;
-                liveContest.updateLive();
-
-                // Enhorabuena, has ganado tu primer torneo!
-                await openModal( text: () => getLocalizedText("msg-16"), onOk: StringUtils.translate("end", "tutorial") );
-
-                // Ya estás preparado...
-               // await openModal( text: () => getLocalizedText("msg-17") );
-
-                if (!isCompleted) {
-                  CurrentStepId = Tutorial.STEP_END;
-
-                  GameMetrics.logEvent(GameMetrics.TUTORIAL_COMPLETED);
-
-                  TutorialService.Instance.skipTutorial();
+                try {
+                  transitionEvaluate = (transition) => Tutorial.ALLOWED_FALSE;
+  
+                  // Ésta es la pantalla de simulación
+                  await openModal( text: () => getLocalizedText("msg-12") );
+  
+                  if (!isCompleted) {
+                    // Aquí podrás ver los puntos conseguidos por tus jugadores
+                    await onClick( [new ToolTip("fantasy-team", tipText: getLocalizedText("msg-13"), highlight: true, position: ToolTip.POSITION_TOP)] );
+  
+                    if (_scrDet.isXsScreen) querySelector("#usersListTab").click();
+  
+                    // Aquí puedes ver tu puntuación frente a los rivales
+                    await onClick( [new ToolTip("#usersList", tipText: getLocalizedText("msg-14"), highlight: true, position: ToolTip.POSITION_TOP)]);
+                  }
+  
+                  clearTooltips();
+  
+                  ViewContestComp liveContest = context;
+                  liveContest.updateLive();
+  
+                  // Enhorabuena, has ganado tu primer torneo!
+                  await openModal( text: () => getLocalizedText("msg-16"), onOk: StringUtils.translate("end", "tutorial") );
+  
+                  // Ya estás preparado...
+                 // await openModal( text: () => getLocalizedText("msg-17") );
+  
+                  if (!isCompleted) {
+                    CurrentStepId = Tutorial.STEP_END;
+  
+                    GameMetrics.logEvent(GameMetrics.TUTORIAL_COMPLETED);
+  
+                    TutorialService.Instance.skipTutorial();
+                  }
+                } catch (_) {
+                  print("Skip tutorial...");
                 }
               }
             },

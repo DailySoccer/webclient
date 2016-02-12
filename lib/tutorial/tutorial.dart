@@ -114,7 +114,7 @@ abstract class Tutorial {
 
   Future onClick(List<ToolTip> tooltips) {
     if (isCompleted)
-      return new Future.value(true);
+      return new Future.error(false);
 
     Completer completer = new Completer();
 

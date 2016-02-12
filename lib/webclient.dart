@@ -546,12 +546,9 @@ class WebClientApp extends Module {
     else {
       JsUtils.runJavascript(null, "onjQueryReady", [() {
 
-        // Esperamos a que el tiempo esté OK
-        DateTimeService.waitingReady().then((_) {
-          GameMetrics.logEvent(GameMetrics.PAGE_READY);
-          _jQueryReady = true;
-          completer.complete();
-        });
+        GameMetrics.logEvent(GameMetrics.PAGE_READY);
+        _jQueryReady = true;
+        completer.complete();
 
       }]);
     };
@@ -562,9 +559,14 @@ class WebClientApp extends Module {
   Future _waitingPageLoad(Function cb) {
     var completer = new Completer<bool>();
 
-    Future.wait([DateTimeService.waitingReady(), _waitingjQueryReady()]).then((_) {
+    if (_jQueryReady && DateTimeService.isReady) {
       completer.complete( cb() );
-    });
+    }
+    else {
+      Future.wait([DateTimeService.waitingReady(), _waitingjQueryReady()]).then((_) {
+        completer.complete( cb() );
+      });
+    }
 
     return completer.future;
   }
@@ -653,18 +655,6 @@ class WebClientApp extends Module {
 
       if (!bEnter) {
         router.go("home", {}, replace:true);
-        /*
-          if (ProfileService.instance.isLoggedIn) {
-            // Antes de redirigir al lobby, miramos que vengamos desde 0. Esto evita un flashazo en el que si estas
-            // por ejemplo en my_contest e intentas ir a la landing, se ve brevemente el lobby
-            if (router.activePath.isEmpty) {
-              router.go("lobby", {}, replace:true);
-            }
-          }
-          else {
-            router.go("landing_page", {}, replace: true);
-          }
-        */
       }
 
       window.scroll(0, 0);

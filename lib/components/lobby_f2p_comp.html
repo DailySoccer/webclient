@@ -1,5 +1,9 @@
 <div id="lobbyf2pRoot">
-
+  
+  <div class="challenge-your-friends" ng-if="showCreateContest">
+    <span class="text">{{getStaticLocalizedText("challengeyourfriendstext")}}</span>
+    <button ng-click="onCreateContestClick()">{{getStaticLocalizedText("challengeyourfriendsbutton")}}</button>
+  </div>
   <!-- Header de Promociones -->
   <simple-promo-f2p id="promosComponent" ng-show="scrDet.isNotXsScreen"></simple-promo-f2p>
 
@@ -13,8 +17,8 @@
                       on-row-click="onRowClick(contest)"
                       action-button-title="'>'">
   </contests-list-f2p>
-
+  
   <!-- Punto de insercion de nuestra ruta hija contest-info (modal) -->
   <ng-view  ng-show="!loadingService.isLoading"></ng-view>
-
+  
 </div>

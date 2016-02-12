@@ -12,6 +12,8 @@ import 'package:webclient/models/contest.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/services/tutorial_service.dart';
+import 'package:webclient/tutorial/tutorial_iniciacion.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Component(
   selector: 'lobbyf2p',
@@ -43,6 +45,10 @@ class LobbyF2PComp implements DetachAware {
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST, refreshActiveContest);
   }
 
+  String getStaticLocalizedText(key) {
+    return StringUtils.translate(key, "lobby");
+  }
+  
   // Rutina que refresca la lista de concursos
   void refreshActiveContest() {
     _contestsService.refreshActiveContests()
@@ -113,6 +119,13 @@ class LobbyF2PComp implements DetachAware {
 
   String _dayKey(DateTime date) {
     return DateTimeService.formatDateWithDayOfTheMonth(date);
+  }
+  
+  bool get showCreateContest => _profileService.isLoggedIn && TutorialService.Instance.isCompleted(TutorialIniciacion.NAME);
+  
+  void onCreateContestClick() {
+    if (!showCreateContest) return;
+    _router.go('create_contest', {});
   }
 
   Router _router;

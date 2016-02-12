@@ -29,7 +29,7 @@ class TutorialIniciacion extends Tutorial {
   String get PATH => "tutorial/iniciacion/";
   String get name => TutorialIniciacion.NAME;
 
-  DateTime currentDate = new DateTime.now();
+  DateTime get currentDate => DateTimeService.now;
 
   TutorialIniciacion(Router router, ProfileService profileService, this._scrDet) : super(router, profileService) {
     getContentJson(PATH + "instance_soccer_players.json").then((list) {

@@ -19,7 +19,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
   ProfileService profileService;
 
   bool betaOn = true;
-
+  
   MainMenuF2PComp(
       this._router, this.profileService, this._scrDet, this._rootElement) {
     _router.onRouteStart.listen((RouteStartEvent event) {
@@ -28,6 +28,12 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
           _updateActiveElement(_router.activePath[0].name);
         }
       });
+    });
+    Timer timer = new Timer.periodic(new Duration(milliseconds: 500), (Timer t) {
+      DivElement energyTimeLeftElement = querySelector("#energyTimeLeft");
+      if (energyTimeLeftElement != null) {
+        energyTimeLeftElement.text = energyTimeLeftText;
+      }
     });
   }
 
@@ -375,11 +381,13 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
         <ul class="fixed-user-stats">
           <li class="energy additive" destination="shop">
             <img src="images/icon-lightning-lg.png"> 
+            <span class="energyCount">${profileService.user.Energy}</span>    
             <div class="count">
-              <div class="progress">
-                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="${User.MAX_ENERGY}" style="width:${profileService.user.Energy * 100 / User.MAX_ENERGY}%"></div>
-              </div>            
-              <span class="plus">+</span></div>            
+              <div class="time-left" id="energyTimeLeft">${energyTimeLeftText}</div>
+              <!--div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="${User.MAX_ENERGY}" style="width:${profileService.user.Energy * 100 / User.MAX_ENERGY}%"></div>                  
+              </div-->
+              ${profileService.user.printableEnergyTimeLeft != ""? "<span class='plus'>+</span></div>" : ""}            
           </li>
 
           <li class="manager-points additive"> 
@@ -409,7 +417,15 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     </div>
     ''';
     }
-
+  
+  String get energyTimeLeftText {
+    String text = profileService.user.printableEnergyTimeLeft;
+    if (profileService.user.printableEnergyTimeLeft == "") {
+      text = "Completo";
+    }
+    return text;
+  }
+  
   String getUserMenuOptions(bool isDesktop) {
     if (isDesktop) {
       return '''        

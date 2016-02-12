@@ -10200,18 +10200,22 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   right: 0;
   top: 0;
   width: 125px;
-  text-align: center;
+  text-align: right;
   height: 100%;
+  margin-right: 20px;
 }
 #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .gold-quantity {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
-  font-size: 15pt;
+  font-size: 20pt;
   color: #0a2938;
   text-transform: uppercase;
   text-shadow: 1px 1px 1px rgba(10, 41, 56, 0.004);
   position: relative;
-  top: 15px;
+  top: 35px;
+  background-color: #ffffff;
+  padding: 2px 5px;
+  border-radius: 6px;
 }
 #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .gold-quantity:after {
   content: " ";
@@ -10228,7 +10232,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   position: absolute;
   bottom: 15px;
   width: 125px;
-  right: 15px;
+  right: 0px;
 }
 #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price {
   background-color: #428bca;
@@ -10455,7 +10459,10 @@ fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .cont
   margin-left: 0;
   margin-right: 0;
   padding-bottom: 20px;
-  border-bottom: 1px solid rgba(106, 133, 151, 0.5);
+  /*
+					.product+.product {
+						float: right;
+					}*/
 }
 #mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .item-title {
   margin-left: 0;
@@ -10490,25 +10497,17 @@ fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .cont
   padding: 0 0 0 8px;
   vertical-align: middle;
 }
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product + .product {
-  float: right;
-}
 #mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product {
-  position: relative;
-  float: left;
-  width: 45.83333333%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
   text-align: center;
   padding: 0;
   border: 1px solid #59add5;
   border-radius: 3px;
+  margin: 0px 10px 30px 10px;
 }
 #mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .energy-description {
-  margin-top: 10px;
+  margin-top: 5px;
   font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
+  font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
@@ -10516,12 +10515,7 @@ fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .cont
   text-align: center;
 }
 #mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .product-image {
-  margin: 10px 0 15px 0;
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper {
-  margin: -1px;
-  display: block;
-  padding: 0;
+  margin: 5px 0 10px 0;
 }
 #mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button {
   background-color: #428bca;
@@ -10556,15 +10550,9 @@ fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .cont
   background-color: #a1c931;
   color: #ffffff;
   outline: none !important;
-  position: relative;
-  float: left;
-  width: 100%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
-  padding: 5px;
+  width: 100px;
+  padding: 3px;
+  margin-bottom: 10px;
   margin-right: auto;
   margin-left: auto;
   display: block;
@@ -12815,6 +12803,206 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
 #lobbyf2pRoot {
   background-color: #dcdcdc;
 }
+lobbyf2p week-calendar {
+  clear: both;
+  display: block;
+}
+lobbyf2p week-calendar .week-calendar {
+  margin-top: 0;
+}
+.challenge-your-friends {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  display: block;
+  background-color: #ffffff;
+  padding: 10px 15px;
+}
+.challenge-your-friends .text {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 13pt;
+  color: #214a5f;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+  vertical-align: baseline;
+  margin-top: 5px;
+  margin-bottom: 2px;
+  display: inline-block;
+}
+.challenge-your-friends button {
+  background-color: #428bca;
+  border-color: #357ebd;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-weight: 400;
+  font-size: 10pt;
+  background-color: #a1c931;
+  outline: none !important;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  text-transform: uppercase;
+  float: right;
+  vertical-align: baseline;
+  padding: 7px 25px;
+}
+.challenge-your-friends button:hover,
+.challenge-your-friends button:focus,
+.challenge-your-friends button:active,
+.challenge-your-friends button.active,
+.open .dropdown-toggle.challenge-your-friends button {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+.challenge-your-friends button:active,
+.challenge-your-friends button.active,
+.open .dropdown-toggle.challenge-your-friends button {
+  background-image: none;
+}
+.challenge-your-friends button.disabled,
+.challenge-your-friends button[disabled],
+fieldset[disabled] .challenge-your-friends button,
+.challenge-your-friends button.disabled:hover,
+.challenge-your-friends button[disabled]:hover,
+fieldset[disabled] .challenge-your-friends button:hover,
+.challenge-your-friends button.disabled:focus,
+.challenge-your-friends button[disabled]:focus,
+fieldset[disabled] .challenge-your-friends button:focus,
+.challenge-your-friends button.disabled:active,
+.challenge-your-friends button[disabled]:active,
+fieldset[disabled] .challenge-your-friends button:active,
+.challenge-your-friends button.disabled.active,
+.challenge-your-friends button[disabled].active,
+fieldset[disabled] .challenge-your-friends button.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+.challenge-your-friends button .badge {
+  color: #428bca;
+  background-color: #ffffff;
+}
+.challenge-your-friends button:focus,
+.challenge-your-friends button:active:focus,
+.challenge-your-friends button.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.challenge-your-friends button:hover,
+.challenge-your-friends button:focus {
+  color: #333333;
+  text-decoration: none;
+}
+.challenge-your-friends button:active,
+.challenge-your-friends button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.challenge-your-friends button.disabled,
+.challenge-your-friends button[disabled],
+fieldset[disabled] .challenge-your-friends button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.challenge-your-friends button:active,
+.challenge-your-friends button.active {
+  box-shadow: none;
+}
+.challenge-your-friends button:active:focus,
+.challenge-your-friends button.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+.challenge-your-friends button:active:hover,
+.challenge-your-friends button.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+.challenge-your-friends button:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+.challenge-your-friends button:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+.challenge-your-friends button:hover:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+.challenge-your-friends button:active,
+.challenge-your-friends button.active {
+  box-shadow: none;
+  background-color: #a1c931;
+}
+.challenge-your-friends button:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+.challenge-your-friends button.disabled,
+.challenge-your-friends button[disabled],
+fieldset[disabled] .challenge-your-friends button {
+  background-color: #b5d657;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+.challenge-your-friends button.close {
+  background-color: #a1c931;
+  outline: none !important;
+  color: #ffffff;
+}
+.challenge-your-friends:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+@media (max-width: 768px) {
+  .challenge-your-friends {
+    text-align: center;
+  }
+  .challenge-your-friends .text {
+    display: none;
+  }
+  .challenge-your-friends button {
+    float: none;
+  }
+}
 main-menu-f2p {
   display: block;
   height: 70px;
@@ -13456,7 +13644,7 @@ main-menu-f2p .beta-label {
   height: 50px;
   position: relative;
   color: #a1c931;
-  padding-left: 5px;
+  padding-left: 2px;
   padding-right: 2px;
   cursor: pointer;
   /*.count {
@@ -13499,6 +13687,32 @@ main-menu-f2p .beta-label {
 #mainMenu #desktopMenu .fixed-user-stats .energy .progress .progress-bar {
   background-image: url("../images/progress-bar-front.png");
   background-color: transparent;
+}
+#mainMenu #desktopMenu .fixed-user-stats .energy img {
+  margin-left: 11px;
+}
+#mainMenu #desktopMenu .fixed-user-stats .energy .energyCount {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #000000;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+  background-color: #a1c931;
+  border: 1px solid #0a2938;
+  border-radius: 10px;
+  width: 19px;
+  height: 19px;
+  position: absolute;
+  top: 10px;
+  left: 14px;
+}
+#mainMenu #desktopMenu .fixed-user-stats .energy .time-left {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 9pt;
+  color: #a1c931;
+  text-shadow: 1px 1px 1px rgba(161, 201, 49, 0.004);
+  display: inline-block;
 }
 #mainMenu #desktopMenu .fixed-user-stats .manager-points {
   text-align: center;

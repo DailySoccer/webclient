@@ -41,6 +41,7 @@
               <div><img class="energy-icon" src="images/icon-FullEnergy.png"></div>
               <span>ENERGÍA</span>
             </div>
+            
             <div class="product" ng-repeat="energyItem in energyProducts">
               <div class="energy-description">{{energyItem.description}}</div>
               <img class="product-image" ng-src="{{energyItem.captionImage}}">
@@ -51,11 +52,11 @@
                   </button>
                 </div>
               </div>
-              
             </div>
+            
           </div>
           
-          <div class="energy-refill-counter">
+          <!--div class="energy-refill-counter">
             <div class="product">
               <img class="energy-icon" src="images/iconEnergyLevelUp.png">
               <div class="energy-description">{{timeLeft != '' ? getLocalizedText("refillable") :  getLocalizedText("no-refillable")}}</div>
@@ -65,7 +66,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div-->
         </div>
       </div>
     </div>

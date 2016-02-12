@@ -22,9 +22,14 @@ class LoginComp implements ShadowRootAware {
   static const String PATH_IF_SUCCESS = "home";
   static const String PATH_IF_FAIL = "home";
 
-  String emailOrUsername = "";
-  String password = "";
-  String rememberMe;
+  String get emailOrUsername {
+    TextInputElement input = document.querySelector("#login-mail");
+    return input != null? input.value : "";
+  }
+  String get password {
+    PasswordInputElement input = document.querySelector("#login-password");
+    return input != null? input.value : "";
+  }
 
   @NgOneWay("is-modal")
   bool isModal = false;

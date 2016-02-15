@@ -798,7 +798,7 @@
 
       "contest_live_hastag"             : "EpicEleven",
       "contest_live_title"              : "¡Sigue el torneo en directo!",
-      "contest_live_description"        : "Estoy jugando en un torneo de Epic Eleven, ¡fíjate en cómo lo estoy haciendo!",
+      "contest_live_description"        : "Estoy jugando en un torneo de Epic Eleven, ¡fíjate cómo voy!",
       "contest_live_img"                : "social/Live.jpg",
 
       "win_achievement_hastag"          : "EpicEleven",
@@ -808,7 +808,7 @@
 
       "manager_level_up_hastag"         : "EpicEleven",
       "manager_level_up_title"          : "¡He subido de Nivel de Mánager!",
-      "manager_level_up_description"    : "Ahora puedo jugar con mejores futbolistas en Epic Eleven. ¿Crees que puedes derrotarme?",
+      "manager_level_up_description"    : "Ahora puedo jugar con mejores futbolistas en Epic Eleven. ¿Podrás derrotarme?",
       "manager_level_up_img"            : "social/ManagerLevel@MANAGER_LEVEL.jpg",
 
       "created_contest_hastag"          : "EpicEleven",

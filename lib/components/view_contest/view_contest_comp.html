@@ -19,8 +19,8 @@
     </div>
     
     <div ng-switch-when="false">
-      <fantasy-team id="userFantasyTeam" contest-entry="mainPlayer" watch="updatedDate" is-opponent="false" show-changes="showChanges" 
-                    on-request-change="onRequestChange(instanceSoccerPlayer)" changing-soccer-id="changingPlayerId"></fantasy-team>
+      <fantasy-team id="userFantasyTeam" contest-entry="mainPlayer" watch="updatedDate" is-opponent="false" show-changes="showChanges" num-changes="numAvailableChanges"
+                    on-request-change="onRequestChange(instanceSoccerPlayer)" changing-soccer-id="changingPlayerId" available-salary="remainingSalaryChangingPlayer"></fantasy-team>
       <users-list id="usersList" ng-show="selectedOpponent == null && !isMakingChange" contest-entries="contestEntries" on-row-click="onUserClick(contestEntry)" watch="updatedDate"></users-list>
       <fantasy-team id="opponentFantasyTeam" contest-entry="selectedOpponent" is-opponent="true" ng-show="selectedOpponent != null && !isMakingChange"
                     show-close-button="true" on-close="selectedOpponent=null" watch="updatedDate"></fantasy-team>

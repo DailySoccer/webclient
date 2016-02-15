@@ -35,10 +35,72 @@
 			padding-right: 5px;
 		}
 	}
+	
+	/*
+.header-box {
+	min-width:70px;
+	height:70px;
+	border-radius:5px;
+	margin: 3px 3px 0px 3px;
+	
+	#gradient.vertical(@white, @blueUltraLight, 49%, 51%);
+	color: @greyUltraDark;
+
+	.title { 
+		display: block; 
+		text-align: center;
+		.exo_bold(11pt, @white);
+		padding-top: 5px;
+	}
+	.content {
+		display: block; 
+		text-align: center;
+		.exo_light(16pt);
+	}
+}*/
+	
+	.total-salary-box {	
+		text-align: center;
+		float: right;
+		background-color: @white;
+		line-height: 43px;
+		width: 198px;
+		margin: 3px 3px 0px 3px;
+		@media (max-width: @screen-sm-max) { 
+			width: 160px;
+		}
+
+		min-height: 70px;
+		.make-border(1px, solid, @white, @globalBoxesRadius);
+		.exo_bold(22pt, @greyDark);
+		margin-top: 3px;
+		overflow: hidden;
+		.total-salary-text {
+			background-color: @greyLight;
+			font-size: 9pt;
+			display: block;
+			line-height: 25px;
+		}
+		.total-salary-money {
+			.fadein-animation(400ms);
+		}
+		.red-numbers {
+			color: red;
+		}
+	}
+	
 	.user-nickname {
 		.exo_light(14pt, @white);
 		height: 45px; 
 		padding-top: 5px;
+		margin: 0 80px;
+		display: block;
+	}
+	.change-ordinal {
+		.exo_light(16pt, @white);
+		height: 45px; 
+		padding-top: 10px;
+		padding-left: 15px;
 		margin-right: 155px;
 	}
 	.nickname-view-contest-entry-mode {
@@ -96,6 +158,27 @@
 		}
 	}
 }
+
+.changes-box {
+	.make-xs-column(12);
+	background-color: @blueDark;
+	text-align: center;
+	padding: 3px;
+	
+	.title {
+		.opensans_normal(11pt, @white);
+		margin-right: 5px;
+		span {
+			margin-right: 5px;
+			vertical-align: middle;
+			margin-bottom: 2px;
+		}
+	}
+	.content {
+		.opensans_normal(11pt, @white);
+	}
+}
+
 /*
 .close-team {
 	.hidden-xs();
@@ -122,6 +205,7 @@
 }
 
 .fantasy-team-list {
+	.make-row(0px);	
 	min-height: 440px;
 	@fantasy-team-gutter: 0px; 		// Tiene que ser el mismo que soccer_players_list
 	
@@ -132,8 +216,8 @@
 	.fantasy-team-slot {
 		.user-select(none);
 		cursor: pointer;
-		padding-top: 2px;
-		padding-bottom: 2px;
+		padding-top: 1px;
+		padding-bottom: 1px;
 		.make-border(1px, none none dotted none, @red);
 		
 		&.not-selected {
@@ -201,7 +285,7 @@
 			padding-top: 10px;
 		}
 	}
-	.fantasy-team-slot:first-child { margin-top: 10px; }
+	.fantasy-team-slot:first-child { margin-top: 5px; }
  	.fantasy-team-slot:last-child {
  		@media (min-width: @screen-sm-min) {
  			border: none;

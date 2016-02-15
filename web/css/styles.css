@@ -5671,6 +5671,8 @@ scoring-rules:after,
 #energyshopComp .content:after,
 #energyshopComp .products-wrapper:before,
 #energyshopComp .products-wrapper:after,
+.fantasy-team-list:before,
+.fantasy-team-list:after,
 .fantasy-team-list .soccer-player-row:before,
 .fantasy-team-list .soccer-player-row:after,
 .soccer-player-statistics:before,
@@ -5820,6 +5822,7 @@ scoring-rules:after,
 #trainerPointsShopComp .products-wrapper:after,
 #energyshopComp .content:after,
 #energyshopComp .products-wrapper:after,
+.fantasy-team-list:after,
 .fantasy-team-list .soccer-player-row:after,
 .soccer-player-statistics:after,
 #rootFooter:after,
@@ -11538,6 +11541,28 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
   background-image: linear-gradient(to bottom, #fba61a 50%, #ec990e 50%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffba61a', endColorstr='#ffec990e', GradientType=0);
+  /*
+.header-box {
+	min-width:70px;
+	height:70px;
+	border-radius:5px;
+	margin: 3px 3px 0px 3px;
+	
+	#gradient.vertical(@white, @blueUltraLight, 49%, 51%);
+	color: @greyUltraDark;
+
+	.title { 
+		display: block; 
+		text-align: center;
+		.exo_bold(11pt, @white);
+		padding-top: 5px;
+	}
+	.content {
+		display: block; 
+		text-align: center;
+		.exo_light(16pt);
+	}
+}*/
   /*@media (min-width: @screen-sm-min) {
 		.border-top-radius(@globalBoxesRadius);
 	}*/
@@ -11631,6 +11656,80 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
   padding-left: 5px;
   padding-right: 5px;
 }
+.fantasy-team-header .total-salary-box {
+  text-align: center;
+  float: right;
+  background-color: #ffffff;
+  line-height: 43px;
+  width: 198px;
+  margin: 3px 3px 0px 3px;
+  min-height: 70px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ffffff;
+  border-radius: 8px;
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 22pt;
+  color: #777777;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
+  margin-top: 3px;
+  overflow: hidden;
+}
+@media (max-width: 991px) {
+  .fantasy-team-header .total-salary-box {
+    width: 160px;
+  }
+}
+.fantasy-team-header .total-salary-box .total-salary-text {
+  background-color: #dcdcdc;
+  font-size: 9pt;
+  display: block;
+  line-height: 25px;
+}
+.fantasy-team-header .total-salary-box .total-salary-money {
+  -webkit-animation: fadein-keyframes 400ms;
+  -moz-animation: fadein-keyframes 400ms;
+  -ms-animation: fadein-keyframes 400ms;
+  -o-animation: fadein-keyframes 400ms;
+  animation: fadein-keyframes 400ms;
+}
+@-webkit-keyframes fadein-keyframes {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadein-keyframes {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-o-keyframes fadein-keyframes {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadein-keyframes {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fantasy-team-header .total-salary-box .red-numbers {
+  color: red;
+}
 .fantasy-team-header .user-nickname {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
@@ -11640,6 +11739,19 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   height: 45px;
   padding-top: 5px;
+  margin: 0 80px;
+  display: block;
+}
+.fantasy-team-header .change-ordinal {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 16pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  height: 45px;
+  padding-top: 10px;
+  padding-left: 15px;
   margin-right: 155px;
 }
 .fantasy-team-header .nickname-view-contest-entry-mode {
@@ -11869,6 +11981,37 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
     padding-right: 0;
   }
 }
+.changes-box {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #214a5f;
+  text-align: center;
+  padding: 3px;
+}
+.changes-box .title {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  margin-right: 5px;
+}
+.changes-box .title span {
+  margin-right: 5px;
+  vertical-align: middle;
+  margin-bottom: 2px;
+}
+.changes-box .content {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+}
 /*
 .close-team {
 	.hidden-xs();
@@ -11903,6 +12046,8 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   }
 }
 .fantasy-team-list {
+  margin-left: 0px;
+  margin-right: 0px;
   min-height: 440px;
 }
 .fantasy-team-list .soccer-player-row {
@@ -11916,8 +12061,8 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   -ms-user-select: none;
   user-select: none;
   cursor: pointer;
-  padding-top: 2px;
-  padding-bottom: 2px;
+  padding-top: 1px;
+  padding-bottom: 1px;
   border-width: 1px;
   border-style: none none dotted none;
   border-color: #ff0000;
@@ -12174,7 +12319,7 @@ fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-b
   padding-top: 10px;
 }
 .fantasy-team-list .fantasy-team-slot:first-child {
-  margin-top: 10px;
+  margin-top: 5px;
 }
 .fantasy-team-list .fantasy-team-slot:last-child {
   margin-bottom: 3px;
@@ -23609,6 +23754,7 @@ users-list#usersList > .epic-tooltip {
 #homeRoot #trainerPointsShopComp .products-wrapper,
 #homeRoot #energyshopComp .content,
 #homeRoot #energyshopComp .products-wrapper,
+#homeRoot .fantasy-team-list,
 #homeRoot .fantasy-team-list .soccer-player-row,
 #homeRoot .soccer-player-statistics,
 #homeRoot #rootFooter,

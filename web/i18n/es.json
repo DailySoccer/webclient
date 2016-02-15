@@ -500,7 +500,10 @@
       "points"                          : "PUNTOS",
       "remainingtime"                   : "TIEMPO RESTANTE",
       "close"                           : "CERRAR",
-      "owned"                           : "SELECCIONADO"
+      "owned"                           : "SELECCIONADO",
+      "availablechanges"                : "Cambios disponibles",
+      "remainsalary"                    : "Salario restante",
+      "nthchange"                       : "@ORDINALº Cambio"
     }
     ,"teamspanel"                       :
     {

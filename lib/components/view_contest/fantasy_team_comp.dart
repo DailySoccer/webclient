@@ -47,26 +47,39 @@ class FantasyTeamComp implements DetachAware {
     @NgOneWay("show-changes")
     bool showChanges = false;
     
+    @NgOneWay("num-changes")
+    int numChanges = 0;
+    
     @NgOneWay("changing-soccer-id")
     String changingSoccerId = null;
+    
+    @NgOneWay("available-salary")
+    int availableSalary = 0;
 
     @NgCallback('on-close')
     Function onClose;
-    
+
     @NgCallback('on-request-change')
     Function onRequestChange;
+    
+    int get ordinalChange => (ContestEntry.MAX_CHANGES.toInt() - numChanges) + 1;
 
     String get userPosition =>  (_contestEntry != null) ? _contestEntry.contest.getUserPosition(_contestEntry).toString() : "-";
     String get userNickname =>  (_contestEntry != null) ? _contestEntry.user.nickName : "";
     String get userScore =>     (_contestEntry != null) ? StringUtils.parseFantasyPoints(_contestEntry.currentLivePoints) : "0";
     String get remainingTime => (_contestEntry != null) ? "${_contestEntry.percentLeft}%" : "-";
+    String get printableAvailableSalary => StringUtils.parseSalary(availableSalary);
 
     bool get isViewContestEntryMode => _routeProvider.route.name.contains("view_contest_entry");
 
-    String getLocalizedText(key) {
-      return StringUtils.translate(key, "fantasyteam");
+    String getLocalizedText(key, {substitutions: null}) {
+      return StringUtils.translate(key, "fantasyteam", substitutions);
     }
 
+    String formatCurrency(String amount) {
+      return StringUtils.formatCurrency(amount);
+    }
+    
     FantasyTeamComp(this._routeProvider, this._router, this._rootElement);
 
     void _refreshTeam() {

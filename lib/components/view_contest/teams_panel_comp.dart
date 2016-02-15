@@ -35,6 +35,9 @@ class TeamsPanelComp implements DetachAware {
 
   @NgOneWay("as-filter")
   void set setUseAsFilter(bool asFilter) {
+    if (useAsFilter != asFilter) {
+      matchFilter = null;
+    }
     useAsFilter = asFilter;
   }
 

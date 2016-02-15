@@ -143,8 +143,12 @@ class ViewContestComp implements DetachAware {
           // Actualizar al usuario principal (al que destacamos)
           if (!_profileService.isLoggedIn || !contest.containsContestEntryWithUser(_profileService.user.userId)) {
             mainPlayer = contest.contestEntriesOrderByPoints.first;
+          } else {
+            mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
           }
+          
           updateSoccerPlayerStates();
+          //loadingService.isLoading = false;
         })
         .catchError((ServerError error) {
           _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
@@ -181,7 +185,7 @@ class ViewContestComp implements DetachAware {
           }
           if(!preventViewOpponent) {
             tabChange('opponentFantasyTeam');
-         }
+          }
         break;
       }
 
@@ -396,13 +400,13 @@ class ViewContestComp implements DetachAware {
             .then((_) {
               closePlayerChanges();
               
-              _profileService.user.goldBalance.amount -= newSoccerPlayer.moneyToBuy(contest, _profileService.user.managerLevel).amount;
+              //_profileService.user.goldBalance.amount -= newSoccerPlayer.moneyToBuy(contest, _profileService.user.managerLevel).amount;
+
+              //mainPlayer = _contestsService.lastContest.getContestEntryWithUser(_profileService.user.userId);
+              // TODO: updateLive();
+              //new Timer(new Duration(milliseconds: 0), updateLive); // Esto funciona pero es sucio
               
-              mainPlayer = _contestsService.lastContest.getContestEntryWithUser(_profileService.user.userId);
-              updateSoccerPlayerStates();
-              updateLive();
-              
-              print ("onSoccerPlayerActionButton: Ok");
+              //print ("onSoccerPlayerActionButton: Ok");
               loadingService.isLoading = false;
             })
             .catchError((ServerError error) {

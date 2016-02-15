@@ -38,7 +38,7 @@ class ContestHeaderF2PComp implements DetachAware, ShadowRootAware {
   @NgTwoWay("match-filter")
   String matchFilter = null;
   
-  @NgOneWayOneTime("contest")
+  @NgOneWay("contest")
   void set setContest(Contest value) {
     if (value != null) {
       contest = value;

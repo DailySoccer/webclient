@@ -397,13 +397,8 @@ class ViewContestComp implements DetachAware {
                   _changingPlayer.soccerPlayer.templateSoccerPlayerId, 
                   newSoccerPlayer.soccerPlayer.templateSoccerPlayerId)
             .then((_) {
-              
               //_profileService.user.goldBalance.amount -= newSoccerPlayer.moneyToBuy(contest, _profileService.user.managerLevel).amount;
-
-              //mainPlayer = _contestsService.lastContest.getContestEntryWithUser(_profileService.user.userId);
-              // TODO: updateLive();
-              //new Timer(new Duration(milliseconds: 0), updateLive); // Esto funciona pero es sucio
-              
+              updateLive();
               //print ("onSoccerPlayerActionButton: Ok");
             })
             .catchError((ServerError error) {

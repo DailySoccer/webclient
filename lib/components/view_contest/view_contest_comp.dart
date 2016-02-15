@@ -429,23 +429,16 @@ class ViewContestComp implements DetachAware {
       modalShow(
         errorMap[keyError]["title"],
         errorMap[keyError]["generic"]
-      ).then((resp) {
-        if (keyError == ERROR_CONTEST_NOT_ACTIVE) {
-          _router.go(_routeProvider.parameters["parent"], {});
-        }
-      });
+      );
     }
   }
 
   static const String ERROR_RETRY_OP = "ERROR_RETRY_OP";
-  static const String ERROR_CONTEST_NOT_ACTIVE = "ERROR_CONTEST_NOT_ACTIVE";
   static const String ERROR_SOURCE_SOCCERPLAYER_INVALID = "ERROR_SOURCE_SOCCERPLAYER_INVALID";
   static const String ERROR_TARGET_SOCCERPLAYER_INVALID = "ERROR_TARGET_SOCCERPLAYER_INVALID";
-  static const String ERROR_USER_ALREADY_INCLUDED = "ERROR_USER_ALREADY_INCLUDED";
   static const String ERROR_USER_BALANCE_NEGATIVE = "ERROR_USER_BALANCE_NEGATIVE";
+  static const String ERROR_SALARYCAP_INVALID = "ERROR_SALARYCAP_INVALID";
   static const String ERROR_MAX_PLAYERS_SAME_TEAM = "ERROR_MAX_PLAYERS_SAME_TEAM";
-  static const String ERROR_MANAGER_LEVEL_INVALID = "ERROR_MANAGER_LEVEL_INVALID";
-  static const String ERROR_TRUESKILL_INVALID = "ERROR_TRUESKILL_INVALID";
   
   Map<String, Map> get errorMap => {
       ERROR_MAX_PLAYERS_SAME_TEAM: {
@@ -459,6 +452,10 @@ class ViewContestComp implements DetachAware {
       ERROR_TARGET_SOCCERPLAYER_INVALID: {
         "title"   : getLocalizedText("error-target-soccerplayer-invalid-title"),
         "generic" : getLocalizedText("error-target-soccerplayer-invalid-generic"),
+      },
+      ERROR_SALARYCAP_INVALID: {
+        "title"   : getLocalizedText("error-salarycap-invalid-title"),
+        "generic" : getLocalizedText("error-salarycap-invalid-generic"),
       },
       // TODO: Avisamos al usuario de que no dispone del dinero suficiente pero, cuando se integre la branch "paypal-ui", se le redirigirá a "añadir fondos"
       ERROR_USER_BALANCE_NEGATIVE: {

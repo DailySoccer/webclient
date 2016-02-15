@@ -543,6 +543,8 @@
       "error-source-soccerplayer-invalid-generic":  "No es posible realizar ese cambio",
       "error-target-soccerplayer-invalid-title":    "Futbolista inválido",
       "error-target-soccerplayer-invalid-generic":  "No es posible realizar ese cambio",
+      "error-salarycap-invalid-title"   : "Futbolista inválido",
+      "error-salarycap-invalid-generic" : "Has gastado más presupuesto del permitido",
       "errordefaulttitle"               : "Atención",
       "errordefaultgeneric"             : "Ha ocurrido un error. No puedes cambiar tu alineación en este momento. Inténtalo más tarde."
     }

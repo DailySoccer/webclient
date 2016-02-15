@@ -533,7 +533,18 @@
       "alert-no-gold-message"           : "No tienes ORO suficiente.",
       "yourlineup"                      : "Tu alineación",
       "users"                           : "Usuarios",
-      "opponent"                        : "Adversario"
+      "opponent"                        : "Adversario",
+      
+      "errormaxplayerssameteamtitle"    : "futbolistas del mismo equipo",
+      "errormaxplayerssameteamgeneric"  : "No es posible...",
+      "erroruserbalancenegativetitle"   : "No tienes Oro suficiente",
+      "erroruserbalancenegativegeneric" : "No tienes Oro suficiente para entrar a este concurso. Por favor, compra ORO para poder continuar",
+      "error-source-soccerplayer-invalid-title":    "Futbolista inválido",
+      "error-source-soccerplayer-invalid-generic":  "No es posible realizar ese cambio",
+      "error-target-soccerplayer-invalid-title":    "Futbolista inválido",
+      "error-target-soccerplayer-invalid-generic":  "No es posible realizar ese cambio",
+      "errordefaulttitle"               : "Atención",
+      "errordefaultgeneric"             : "Ha ocurrido un error. No puedes cambiar tu alineación en este momento. Inténtalo más tarde."
     }
     ,"viewcontestentry":
     {

@@ -148,7 +148,6 @@ class ViewContestComp implements DetachAware {
           }
           
           updateSoccerPlayerStates();
-          //loadingService.isLoading = false;
         })
         .catchError((ServerError error) {
           _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
@@ -398,7 +397,6 @@ class ViewContestComp implements DetachAware {
                   _changingPlayer.soccerPlayer.templateSoccerPlayerId, 
                   newSoccerPlayer.soccerPlayer.templateSoccerPlayerId)
             .then((_) {
-              closePlayerChanges();
               
               //_profileService.user.goldBalance.amount -= newSoccerPlayer.moneyToBuy(contest, _profileService.user.managerLevel).amount;
 
@@ -407,16 +405,19 @@ class ViewContestComp implements DetachAware {
               //new Timer(new Duration(milliseconds: 0), updateLive); // Esto funciona pero es sucio
               
               //print ("onSoccerPlayerActionButton: Ok");
-              loadingService.isLoading = false;
             })
             .catchError((ServerError error) {
               Logger.root.info("Error: ${error.responseError}");
               if (error.isRetryOpError) {
                 _retryOpTimer = new Timer(const Duration(seconds:3), () => onSoccerPlayerActionButton(soccerPlayer));
               } else {
-                _showMsgError(error, goldNeeded.amount);
+                _showMsgError(error, goldNeeded.amount.toInt());
               }
-            }, test: (error) => error is ServerError);
+            }, test: (error) => error is ServerError)
+            .whenComplete(() {
+              closePlayerChanges();
+              loadingService.isLoading = false;
+            });
   }
 
   void _showMsgError(ServerError error, int coinsNeeded) {
@@ -438,6 +439,8 @@ class ViewContestComp implements DetachAware {
 
   static const String ERROR_RETRY_OP = "ERROR_RETRY_OP";
   static const String ERROR_CONTEST_NOT_ACTIVE = "ERROR_CONTEST_NOT_ACTIVE";
+  static const String ERROR_SOURCE_SOCCERPLAYER_INVALID = "ERROR_SOURCE_SOCCERPLAYER_INVALID";
+  static const String ERROR_TARGET_SOCCERPLAYER_INVALID = "ERROR_TARGET_SOCCERPLAYER_INVALID";
   static const String ERROR_USER_ALREADY_INCLUDED = "ERROR_USER_ALREADY_INCLUDED";
   static const String ERROR_USER_BALANCE_NEGATIVE = "ERROR_USER_BALANCE_NEGATIVE";
   static const String ERROR_MAX_PLAYERS_SAME_TEAM = "ERROR_MAX_PLAYERS_SAME_TEAM";
@@ -448,6 +451,14 @@ class ViewContestComp implements DetachAware {
       ERROR_MAX_PLAYERS_SAME_TEAM: {
         "title"   : getLocalizedText("errormaxplayerssameteamtitle"),
         "generic" : getLocalizedText("errormaxplayerssameteamgeneric"),
+      },
+      ERROR_SOURCE_SOCCERPLAYER_INVALID: {
+        "title"   : getLocalizedText("error-source-soccerplayer-invalid-title"),
+        "generic" : getLocalizedText("error-source-soccerplayer-invalid-generic"),
+      },
+      ERROR_TARGET_SOCCERPLAYER_INVALID: {
+        "title"   : getLocalizedText("error-target-soccerplayer-invalid-title"),
+        "generic" : getLocalizedText("error-target-soccerplayer-invalid-generic"),
       },
       // TODO: Avisamos al usuario de que no dispone del dinero suficiente pero, cuando se integre la branch "paypal-ui", se le redirigirá a "añadir fondos"
       ERROR_USER_BALANCE_NEGATIVE: {

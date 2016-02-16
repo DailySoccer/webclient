@@ -11776,15 +11776,6 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   padding: 20px 0 0 10px;
 }
-.fantasy-team-header .total-remaining-matches-time {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 8pt;
-  color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  height: 45px;
-  padding-top: 5px;
-}
 .fantasy-team-header .close-team {
   cursor: pointer;
   position: absolute;
@@ -11995,35 +11986,72 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   }
 }
 .changes-box {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  height: 45px;
+  padding-top: 5px;
+  /*.make-xs-column(12);
+	background-color: @blueDark;
+	text-align: center;
+	padding: 3px;
+	
+	.title {
+		.opensans_normal(11pt, @white);
+		margin-right: 5px;
+		span {
+			margin-right: 5px;
+			vertical-align: middle;
+			margin-bottom: 2px;
+		}
+	}
+	.content {
+		.opensans_normal(11pt, @white);
+	}*/
+}
+@media (max-width: 767px) {
+  .changes-box {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 8pt;
+    color: #ffffff;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  }
+}
+.changes-box .glyphicon {
+  margin-right: 3px;
+  font-size: 12pt;
+}
+@media (max-width: 767px) {
+  .changes-box .glyphicon {
+    font-size: 10pt;
+  }
+}
+.total-remaining-matches-time {
   position: relative;
   float: left;
   width: 100%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  background-color: #214a5f;
+  background-color: #dcdcdc;
   text-align: center;
   padding: 3px;
-}
-.changes-box .title {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
-  font-size: 11pt;
-  color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  margin-right: 5px;
+  font-size: 10pt;
+  color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
+  height: 30px;
+  padding-top: 5px;
 }
-.changes-box .title span {
-  margin-right: 5px;
-  vertical-align: middle;
-  margin-bottom: 2px;
-}
-.changes-box .content {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 11pt;
-  color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+@media (max-width: 767px) {
+  .total-remaining-matches-time {
+    font-size: 8pt;
+    height: 25px;
+  }
 }
 /*
 .close-team {
@@ -13142,7 +13170,8 @@ fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-b
     font-size: 18pt;
     line-height: 36px;
   }
-  #viewContestRoot.making-change-state .changes-box {
+  #viewContestRoot.making-change-state .changes-box,
+  #viewContestRoot.making-change-state .total-remaining-matches-time {
     display: none;
   }
 }

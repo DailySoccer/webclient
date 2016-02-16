@@ -48,7 +48,7 @@
   </div>
   
   <div class="fantasy-team-list">
-    <div class="fantasy-team-slot" ng-repeat="slot in slots" ng-class="{'not-selected': changingSoccerId != null && slot['id'] != changingSoccerId}">
+    <div class="fantasy-team-slot" ng-repeat="slot in slots" ng-class="{'not-selected': changingSoccerId != null && slot['id'] != changingSoccerId, 'selected': changingSoccerId != null && slot['id'] == changingSoccerId}">
       <div class="soccer-player-row" data-toggle="collapse" data-target="#statistic_{{owner}}_{{$index}}" data-id="{{slot['id']}}">
         <div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div>
         <div class="column-primary-info">

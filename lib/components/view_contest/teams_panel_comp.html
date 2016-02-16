@@ -10,7 +10,7 @@
       <div class="teams-box" ng-repeat="match in matchEventsSorted" ng-show="!useAsFilter">
         <div class="teams-info" ng-bind-html="getMatchAndPeriodInfo($index)"></div>
       </div>
-      <matches-filter contest="contest" selected-option="matchFilter" ng-if="scrDet.isNotXsScreen && useAsFilter"></matches-filter>
+      <matches-filter contest="contest" selected-option="matchFilter" ng-if="useAsFilter"></matches-filter>
       <div class="bottom-border"></div>
     </div>
   </div>

@@ -11,6 +11,34 @@
 		.hidden-lg();
 		.tabs-navigation(3);
 	}
+	
+	@media (max-width: @screen-xs-max) {
+		&.making-change-state {
+			#userFantasyTeam .fantasy-team-header {
+				padding-top: 10px;
+				height: 65px;
+				background-image: none;
+				
+				.change-ordinal, 
+				.total-salary-text, 
+				.user-picture {
+					display: none;
+				}
+				.total-salary-box {
+					width: 96%;
+					min-height: 0px;
+					margin: 0 auto;
+					float: none;
+					background-color: @orange;
+					color: @white;
+					font-weight: normal;
+				}
+			}
+			.changes-box { 
+				display: none;
+			}
+		}
+	}
 }
  // barra supeior que muestra el id del partido
 .contest-id-bar{
@@ -58,5 +86,26 @@
 		margin-left: 5px;
 		.addIcon("icon-coin-xs.png", 17px, 17px);
 		background-repeat: no-repeat;
+	}
+}
+
+@media (max-width: @screen-xs-max) {
+	
+	.btn-cancel-player-selection {
+		.btn-cancel();
+		width: 96%;
+		text-transform: uppercase;
+		margin: 5px auto;
+		display: block;
+	}
+	
+	.soccer-player-changes-list {
+		clear: both;
+		border: 0px solid @greyUltraDark;
+		min-height: 0;
+		border-radius: 0px;
+		.soccer-players-list {
+			max-height: none;
+		}
 	}
 }

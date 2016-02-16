@@ -37,6 +37,16 @@
 	}
 	
 	/*
+	
+		
+		//@media (max-width: @screen-xs-max) {
+			//position: absolute;
+			//right: 0px;
+			//bottom: 0;
+			//left: 50px;
+			//padding: 0;
+		//}
+	
 .header-box {
 	min-width:70px;
 	height:70px;
@@ -292,6 +302,18 @@
  		} 
  		margin-bottom: 3px;
  	}
+}
+
+@media (max-width: @screen-xs-max) {
+	.fantasy-team-list {
+		min-height: 0px;
+		.fantasy-team-slot {
+				&.not-selected,
+				&.selected {
+					display: none;
+				}
+		}
+	}
 }
 
 .header-box {

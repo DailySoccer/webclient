@@ -537,6 +537,7 @@
       "yourlineup"                      : "Tu alineación",
       "users"                           : "Usuarios",
       "opponent"                        : "Adversario",
+      "buttoncancel"                    : "Cancelar",
       
       "errormaxplayerssameteamtitle"    : "futbolistas del mismo equipo",
       "errormaxplayerssameteamgeneric"  : "No es posible...",

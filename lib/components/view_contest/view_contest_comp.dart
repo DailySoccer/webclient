@@ -115,6 +115,7 @@ class ViewContestComp implements DetachAware {
         // Únicamente actualizamos los contests que estén en "live"
         if (_contestsService.lastContest.isLive) {
           _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE, updateLive);
+          _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE_CONTEST_ENTRIES, updateLiveContestEntries);
           GameMetrics.logEvent(GameMetrics.LIVE_CONTEST_VISITED);
         } else if (_contestsService.lastContest.isHistory) {
           GameMetrics.logEvent(GameMetrics.VIEW_HISTORY);
@@ -154,6 +155,21 @@ class ViewContestComp implements DetachAware {
         }, test: (error) => error is ServerError);
   }
 
+  void updateLiveContestEntries() {
+    // Actualizamos únicamente la lista de live contestEntries
+    _contestsService.refreshLiveContestEntries(_contestsService.lastContest.contestId)
+        .then((_) {
+          // Actualizamos el contestEntry del usuario seleccionado
+          if (selectedOpponent != null) {
+            selectedOpponent = contestEntries.firstWhere((contestEntry) => contestEntry.contestEntryId == selectedOpponent.contestEntryId, orElse: () => null);
+            isOpponentSelected = (selectedOpponent != null);
+          }
+        })
+        .catchError((ServerError error) {
+          _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
+        }, test: (error) => error is ServerError);
+  }
+  
   void updateSoccerPlayerStates() {
     mainPlayer.instanceSoccerPlayers.forEach( _updateSingleSoccerPlayerState );
   }

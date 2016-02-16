@@ -238,6 +238,13 @@ class ContestsService {
       });
   }
 
+  Future refreshLiveContestEntries(String contestId) {
+    return _server.getLiveContestEntries(contestId)
+      .then((jsonMap) {
+          lastContest.updateContestEntriesFromJsonObject(jsonMap);
+      });
+  }
+  
   Future getSoccerPlayersAvailablesToChange(String contestId) {
     var completer = new Completer();
 

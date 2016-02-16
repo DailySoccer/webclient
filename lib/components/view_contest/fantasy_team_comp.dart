@@ -63,6 +63,7 @@ class FantasyTeamComp implements DetachAware {
     Function onRequestChange;
     
     int get ordinalChange => (ContestEntry.MAX_CHANGES.toInt() - numChanges) + 1;
+    String get changeOrdinalText => getLocalizedText("nthchange", substitutions: {"ORDINAL": ordinalChange}); 
 
     String get userPosition =>  (_contestEntry != null) ? _contestEntry.contest.getUserPosition(_contestEntry).toString() : "-";
     String get userNickname =>  (_contestEntry != null) ? _contestEntry.user.nickName : "";

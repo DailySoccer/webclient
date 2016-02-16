@@ -241,7 +241,7 @@
 			padding-top: 10px;
 		}
 		.column-primary-info {
-			.make-xs-column(7.5, @fantasy-team-gutter);
+			.make-xs-column(7, @fantasy-team-gutter);
 
 			.soccer-player-name {
 				.opensans_bold(10pt, @greyDark);
@@ -260,19 +260,27 @@
 			}
 		}
 		.column-score {
-			.make-xs-column(3, @fantasy-team-gutter);
-			.exo_light(19pt, @blueLight);
+			.make-xs-column(3.5, @fantasy-team-gutter);
 			text-align: right;
 			padding-right: 10px;
+			
+			@media (max-width: @screen-xs-max) {
+				padding-right: 3px;
+				margin-top: 4px;
+			}
 			//margin-top: 5px;
 			background-color: @white;
 
 			// Metemos el texto en una caja para tener mejor control sobre
 			// el tamaño y que quede mejor la animacion de cambio
-			span {
+			> span {
 				border-radius: 6px;
 				transition: background-color linear 150ms;
 				//padding: 3px 10px 0px 10px;
+				.exo_light(19pt, @blueLight);
+				@media (max-width: @screen-xs-max) {
+					font-size: 15pt;
+				}
 			}
 
 			.changed {
@@ -280,12 +288,17 @@
 			}
 			.change-btt {
 				.btn-primary();
-				font-size: 14pt;
+				.exo_light(14pt, @white);
 				vertical-align: baseline;
 				line-height: 1;
 				padding: 5px;
 				padding-bottom: 4px;
 				margin-left: 5px;
+				@media (max-width: @screen-xs-max) {
+					margin-left: 2px;
+					padding: 4px 5px 3px 5px;
+					font-size: 13pt;
+				}
 			}
 		}
 		.column-salary {

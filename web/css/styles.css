@@ -11534,6 +11534,9 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
     text-align: center;
   }
 }
+.header-view-contest-entry-mode.fantasy-team-header .user-nickname {
+  margin: 0 160px 0 0;
+}
 #fantasyTeamRoot {
   background-color: #ffffff;
 }

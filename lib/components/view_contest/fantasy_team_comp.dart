@@ -72,7 +72,8 @@ class FantasyTeamComp implements DetachAware {
     String get printableAvailableSalary => StringUtils.parseSalary(availableSalary);
 
     bool get isViewContestEntryMode => _routeProvider.route.name.contains("view_contest_entry");
-
+    bool get isLive => _contestEntry != null ? _contestEntry.contest.isLive : false;
+    
     String getLocalizedText(key, {substitutions: null}) {
       return StringUtils.translate(key, "fantasyteam", substitutions);
     }

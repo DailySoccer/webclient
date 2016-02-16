@@ -44,7 +44,7 @@
     </div>
     
   </div>
-  <div class="total-remaining-matches-time" ng-if="!isViewContestEntryMode">{{getLocalizedText("remainingtime")}}: {{remainingTime}}</div>
+  <div class="total-remaining-matches-time" ng-if="isLive">{{getLocalizedText("remainingtime")}} {{remainingTime}}</div>
   
   
   <div class="fantasy-team-list">

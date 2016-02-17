@@ -11,6 +11,7 @@ class RefreshTimersService {
   static Map<String, int> timersDef = {
     'SECONDS_TO_REFRESH_CONTEST_LIST'         : 10
     ,'SECONDS_TO_REFRESH_LIVE'                : 10
+    ,'SECONDS_TO_REFRESH_LIVE_CONTEST_ENTRIES': 60
     ,'SECONDS_TO_REFRESH_MY_CONTESTS'         : 10
     ,'SECONDS_TO_UPDATE_SIMULATOR_STATE'      : 3
     ,'SECONDS_TO_UPDATE_PROMOS'               : 600
@@ -19,6 +20,7 @@ class RefreshTimersService {
 
   static const String SECONDS_TO_REFRESH_CONTEST_LIST         = "SECONDS_TO_REFRESH_CONTEST_LIST";
   static const String SECONDS_TO_REFRESH_LIVE                 = "SECONDS_TO_REFRESH_LIVE";
+  static const String SECONDS_TO_REFRESH_LIVE_CONTEST_ENTRIES = "SECONDS_TO_REFRESH_LIVE_CONTEST_ENTRIES";
   static const String SECONDS_TO_REFRESH_MY_CONTESTS          = "SECONDS_TO_REFRESH_MY_CONTESTS";
   static const String SECONDS_TO_UPDATE_SIMULATOR_STATE       = "SECONDS_TO_UPDATE_SIMULATOR_STATE";
   static const String SECONDS_TO_UPDATE_PROMOS                = "SECONDS_TO_UPDATE_PROMOS";

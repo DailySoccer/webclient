@@ -37,7 +37,7 @@ class MatchesFilterComp implements ShadowRootAware {
     matchEvents.clear();
     matchEvents.add({"id": _ALL_MATCHES, "texto": StringUtils.translate("all-matches", "matchesfilter"), "textoSelector": StringUtils.translate("allmatches", "matchesfilter")});
 
-    theContest.matchEvents.forEach((match) => _addMatchEvent(match));
+    theContest.matchEvents.where((MatchEvent match) => !match.isStarted && !match.isFinished).forEach((MatchEvent match) => _addMatchEvent(match));
     runAnimation();
   }
 

@@ -498,9 +498,12 @@
       "editlineup"                      : "EDITAR ALINEACIÓN",
       "pos"                             : "POS",
       "points"                          : "PUNTOS",
-      "remainingtime"                   : "TIEMPO RESTANTE",
+      "remainingtime"                   : "Tiempo restante:",
       "close"                           : "CERRAR",
-      "owned"                           : "SELECCIONADO"
+      "owned"                           : "SELECCIONADO",
+      "availablechanges"                : "Cambios disponibles",
+      "remainsalary"                    : "Salario restante",
+      "nthchange"                       : "@ORDINALº Cambio"
     }
     ,"teamspanel"                       :
     {
@@ -522,9 +525,32 @@
     }
     ,"viewcontest"                      :
     {
+      "alert-user-gold-message"         : "Tienes actualmente: @MONEY",
+      "change-player-modal-no-gold"     : "Deseas cambiar a<br>@SOCCER_PLAYER1 por @SOCCER_PLAYER2 ?",
+      "change-player-modal"             : "Deseas cambiar a<br>@SOCCER_PLAYER1 por @SOCCER_PLAYER2 ?",
+      "change-player-modal-confirm0"    : "Confirmar",
+      "change-player-modal-confirm"     : "<span class='coin'>@GOLD_COINS</span>",
+      "change-player-modal-cancel"      : "Cancelar",
+      "alert-user-gold-message"         : "Tienes actualmente @MONEY",
+      "buy-gold-button"                 : "COMPRAR ORO",
+      "alert-no-gold-message"           : "No tienes ORO suficiente.",
       "yourlineup"                      : "Tu alineación",
       "users"                           : "Usuarios",
-      "opponent"                        : "Adversario"
+      "opponent"                        : "Adversario",
+      "buttoncancel"                    : "Cancelar",
+      
+      "errormaxplayerssameteamtitle"    : "futbolistas del mismo equipo",
+      "errormaxplayerssameteamgeneric"  : "No es posible...",
+      "erroruserbalancenegativetitle"   : "No tienes Oro suficiente",
+      "erroruserbalancenegativegeneric" : "No tienes Oro suficiente para entrar a este concurso. Por favor, compra ORO para poder continuar",
+      "error-source-soccerplayer-invalid-title":    "Futbolista inválido",
+      "error-source-soccerplayer-invalid-generic":  "No es posible realizar ese cambio",
+      "error-target-soccerplayer-invalid-title":    "Futbolista inválido",
+      "error-target-soccerplayer-invalid-generic":  "No es posible realizar ese cambio",
+      "error-salarycap-invalid-title"   : "Futbolista inválido",
+      "error-salarycap-invalid-generic" : "Has gastado más presupuesto del permitido",
+      "errordefaulttitle"               : "Atención",
+      "errordefaultgeneric"             : "Ha ocurrido un error. No puedes cambiar tu alineación en este momento. Inténtalo más tarde."
     }
     ,"viewcontestentry":
     {

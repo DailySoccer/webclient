@@ -51,11 +51,14 @@ abstract class ServerService {
   Future<Map> addContestEntry(String contestId, String formation, List<String> soccerPlayers);
   Future<Map> editContestEntry(String contestEntryId, String formation, List<String> soccerPlayers);
   Future<Map> cancelContestEntry(String contestEntryId);
+  Future<Map> changeSoccerPlayer(String contestEntryId, String soccerPlayerId, String soccerPlayerIdNew);
   Future<Map> getContestInfo(String contestId);
 
   // Live Contests
   Future<Map> getLiveMatchEventsFromTemplateContest(String templateContestId);
   Future<Map> getLiveMatchEventsFromContest(String contestId);
+  Future<Map> getSoccerPlayersAvailablesToChange(String contestId);
+  Future<Map> getLiveContestEntries(String contestId);
 
   // Estadísticas SoccerPlayer
   Future<Map> getInstancePlayerInfo(String contestId, String instanceSoccerPlayerId);
@@ -247,6 +250,10 @@ class DailySoccerServer implements ServerService {
     return _innerServerCall("${HostServer.url}/cancel_contest_entry", postData: {'contestEntryId': contestEntryId});
   }
 
+  Future<Map> changeSoccerPlayer(String contestEntryId, String soccerPlayerId, String soccerPlayerIdNew) {
+    return _innerServerCall("${HostServer.url}/change_soccer_player", postData: {'contestEntryId': contestEntryId, 'soccerPlayerId': soccerPlayerId, 'soccerPlayerIdNew': soccerPlayerIdNew});
+  }
+
   Future<Map> getContestInfo(String contestId) {
     return _innerServerCall("${HostServer.url}/get_contest_info/$contestId");
   }
@@ -257,6 +264,14 @@ class DailySoccerServer implements ServerService {
 
   Future<Map> getLiveMatchEventsFromContest(String contestId) {
     return _innerServerCall("${HostServer.url}/get_live_match_events/contest/$contestId");
+  }
+
+  Future<Map> getSoccerPlayersAvailablesToChange(String contestId) {
+    return _innerServerCall("${HostServer.url}/get_soccer_players_availables_to_change/$contestId");
+  }
+  
+  Future<Map> getLiveContestEntries(String contestId) {
+    return _innerServerCall("${HostServer.url}/get_live_contest_entries/$contestId");
   }
 
   Future<Map> getInstancePlayerInfo(String contestId, String instanceSoccerPlayerId) {

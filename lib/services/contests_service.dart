@@ -10,6 +10,11 @@ import "package:webclient/models/contest.dart";
 import 'package:logging/logging.dart';
 import 'package:webclient/models/template_contest.dart';
 import 'package:webclient/models/user.dart';
+import 'package:webclient/services/contest_references.dart';
+import 'package:webclient/models/instance_soccer_player.dart';
+import 'package:webclient/models/soccer_player.dart';
+import 'package:webclient/models/soccer_team.dart';
+import 'package:webclient/models/match_event.dart';
 
 
 @Injectable()
@@ -131,6 +136,14 @@ class ContestsService {
       });
   }
 
+  Future changeSoccerPlayer(String contestEntryId, String soccerPlayerId, String soccerPlayerIdNew) {
+    return _server.changeSoccerPlayer(contestEntryId, soccerPlayerId, soccerPlayerIdNew)
+      .then((jsonMap) {
+        registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
+        // Logger.root.info("response: " + jsonMap.toString());
+      });
+  }
+
   Future refreshMyContests() {
     return _server.getMyContests()
         .then((jsonMap) {
@@ -223,6 +236,49 @@ class ContestsService {
                 .. updateLiveInfo(jsonMap);
           });
       });
+  }
+
+  Future refreshLiveContestEntries(String contestId) {
+    return _server.getLiveContestEntries(contestId)
+      .then((jsonMap) {
+          lastContest.updateContestEntriesFromJsonObject(jsonMap);
+      });
+  }
+  
+  Future getSoccerPlayersAvailablesToChange(String contestId) {
+    var completer = new Completer();
+
+    _server.getSoccerPlayersAvailablesToChange(contestId)
+        .then((jsonMap) {
+          ContestReferences contestReferences = new ContestReferences();
+          List<InstanceSoccerPlayer> instanceSoccerPlayers = [];
+
+          if (jsonMap.containsKey("instanceSoccerPlayers")) {
+            jsonMap["instanceSoccerPlayers"].forEach((jsonObject) {
+              instanceSoccerPlayers.add( new InstanceSoccerPlayer.initFromJsonObject(jsonObject, contestReferences) );
+            });
+          }
+
+          if (jsonMap.containsKey("soccer_players")) {
+            jsonMap["soccer_players"].map((jsonObject) => new SoccerPlayer.fromJsonObject(jsonObject, contestReferences)).toList();
+          }
+
+          if (jsonMap.containsKey("soccer_teams")) {
+            jsonMap["soccer_teams"].map((jsonObject) => new SoccerTeam.fromJsonObject(jsonObject, contestReferences)).toList();
+          }
+
+          if (jsonMap.containsKey("match_events")) {
+            jsonMap["match_events"].map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
+          }
+
+          if (jsonMap.containsKey("profile")) {
+            _profileService.updateProfileFromJson(jsonMap["profile"]);
+          }
+
+          completer.complete(instanceSoccerPlayers);
+      });
+
+    return completer.future;
   }
 
   Future<num> countMyLiveContests() {

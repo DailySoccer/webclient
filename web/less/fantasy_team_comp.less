@@ -3,6 +3,9 @@
 		margin-top: 70px;
 		text-align: center;
 	}
+	&.fantasy-team-header .user-nickname {
+		margin: 0 160px 0 0;
+	}
 }
 #fantasyTeamRoot {
 	background-color: @white;
@@ -35,20 +38,87 @@
 			padding-right: 5px;
 		}
 	}
+	
+	/*
+	
+		
+		//@media (max-width: @screen-xs-max) {
+			//position: absolute;
+			//right: 0px;
+			//bottom: 0;
+			//left: 50px;
+			//padding: 0;
+		//}
+	
+.header-box {
+	min-width:70px;
+	height:70px;
+	border-radius:5px;
+	margin: 3px 3px 0px 3px;
+	
+	#gradient.vertical(@white, @blueUltraLight, 49%, 51%);
+	color: @greyUltraDark;
+
+	.title { 
+		display: block; 
+		text-align: center;
+		.exo_bold(11pt, @white);
+		padding-top: 5px;
+	}
+	.content {
+		display: block; 
+		text-align: center;
+		.exo_light(16pt);
+	}
+}*/
+	
+	.total-salary-box {	
+		text-align: center;
+		float: right;
+		background-color: @white;
+		line-height: 43px;
+		width: 198px;
+		margin: 3px 3px 0px 3px;
+		@media (max-width: @screen-sm-max) { 
+			width: 160px;
+		}
+
+		min-height: 70px;
+		.make-border(1px, solid, @white, @globalBoxesRadius);
+		.exo_bold(22pt, @greyDark);
+		margin-top: 3px;
+		overflow: hidden;
+		.total-salary-text {
+			background-color: @greyLight;
+			font-size: 9pt;
+			display: block;
+			line-height: 25px;
+		}
+		.total-salary-money {
+			.fadein-animation(400ms);
+		}
+		.red-numbers {
+			color: red;
+		}
+	}
+	
 	.user-nickname {
 		.exo_light(14pt, @white);
 		height: 45px; 
 		padding-top: 5px;
+		margin: 0 80px;
+		display: block;
+	}
+	.change-ordinal {
+		.exo_light(16pt, @white);
+		height: 45px; 
+		padding-top: 10px;
+		padding-left: 15px;
 		margin-right: 155px;
 	}
 	.nickname-view-contest-entry-mode {
 		.exo_light(20pt, @white);
 		padding: 20px 0 0 10px;
-	}
-	.total-remaining-matches-time {
-		.opensans_normal(8pt, @white);
-		height: 45px; 
-		padding-top: 5px;
 	}
 
 	.close-team {
@@ -96,6 +166,54 @@
 		}
 	}
 }
+
+.changes-box {
+	.opensans_normal(10pt, @white);
+	@media (max-width: @screen-xs-max) {
+		.opensans_normal(8pt, @white);
+	}
+	height: 45px; 
+	padding-top: 5px;
+	.glyphicon {
+		margin-right: 3px;
+		font-size: 12pt;
+		@media (max-width: @screen-xs-max) {
+			font-size: 10pt;
+		}
+	}
+	/*.make-xs-column(12);
+	background-color: @blueDark;
+	text-align: center;
+	padding: 3px;
+	
+	.title {
+		.opensans_normal(11pt, @white);
+		margin-right: 5px;
+		span {
+			margin-right: 5px;
+			vertical-align: middle;
+			margin-bottom: 2px;
+		}
+	}
+	.content {
+		.opensans_normal(11pt, @white);
+	}*/
+}
+.total-remaining-matches-time {
+	.make-xs-column(12);
+	background-color: @greyLight;
+	text-align: center;
+	padding: 3px;
+	
+	.opensans_normal(10pt, @greyDark);
+	height: 30px;
+	padding-top: 5px;
+	@media (max-width: @screen-xs-max) {
+		font-size: 8pt;
+		height: 25px;
+	}
+}
+
 /*
 .close-team {
 	.hidden-xs();
@@ -122,6 +240,7 @@
 }
 
 .fantasy-team-list {
+	.make-row(0px);	
 	min-height: 440px;
 	@fantasy-team-gutter: 0px; 		// Tiene que ser el mismo que soccer_players_list
 	
@@ -132,10 +251,13 @@
 	.fantasy-team-slot {
 		.user-select(none);
 		cursor: pointer;
-		margin-top: 2px;
-		padding-bottom: 2px;
+		padding-top: 1px;
+		padding-bottom: 1px;
 		.make-border(1px, none none dotted none, @red);
 		
+		&.not-selected {
+			opacity: 0.3;
+		}
 		
 		.column-fieldpos {
 			.make-xs-column(1.5, @fantasy-team-gutter);
@@ -144,7 +266,7 @@
 			padding-top: 10px;
 		}
 		.column-primary-info {
-			.make-xs-column(8, @fantasy-team-gutter);
+			.make-xs-column(7, @fantasy-team-gutter);
 
 			.soccer-player-name {
 				.opensans_bold(10pt, @greyDark);
@@ -163,23 +285,45 @@
 			}
 		}
 		.column-score {
-			.make-xs-column(2.5, @fantasy-team-gutter);
-			.exo_light(19pt, @blueLight);
+			.make-xs-column(3.5, @fantasy-team-gutter);
 			text-align: right;
 			padding-right: 10px;
+			
+			@media (max-width: @screen-xs-max) {
+				padding-right: 3px;
+				margin-top: 4px;
+			}
 			//margin-top: 5px;
 			background-color: @white;
 
 			// Metemos el texto en una caja para tener mejor control sobre
 			// el tamaño y que quede mejor la animacion de cambio
-			span {
+			> span {
 				border-radius: 6px;
 				transition: background-color linear 150ms;
 				//padding: 3px 10px 0px 10px;
+				.exo_light(19pt, @blueLight);
+				@media (max-width: @screen-xs-max) {
+					font-size: 15pt;
+				}
 			}
 
 			.changed {
 				background-color: @yellow;
+			}
+			.change-btt {
+				.btn-primary();
+				.exo_light(14pt, @white);
+				vertical-align: baseline;
+				line-height: 1;
+				padding: 5px;
+				padding-bottom: 4px;
+				margin-left: 5px;
+				@media (max-width: @screen-xs-max) {
+					margin-left: 2px;
+					padding: 4px 5px 3px 5px;
+					font-size: 13pt;
+				}
 			}
 		}
 		.column-salary {
@@ -189,13 +333,25 @@
 			padding-top: 10px;
 		}
 	}
-	.fantasy-team-slot:first-child { margin-top: 10px; }
+	.fantasy-team-slot:first-child { margin-top: 5px; }
  	.fantasy-team-slot:last-child {
  		@media (min-width: @screen-sm-min) {
  			border: none;
  		} 
  		margin-bottom: 3px;
  	}
+}
+
+@media (max-width: @screen-xs-max) {
+	.fantasy-team-list {
+		min-height: 0px;
+		.fantasy-team-slot {
+				&.not-selected,
+				&.selected {
+					display: none;
+				}
+		}
+	}
 }
 
 .header-box {
@@ -208,7 +364,8 @@
 	color: @greyUltraDark;
 
 	.title { 
-		display: block; text-align: center;
+		display: block; 
+		text-align: center;
 		.exo_bold(11pt, @white);
 		padding-top: 5px;
 	}

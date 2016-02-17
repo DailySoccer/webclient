@@ -264,6 +264,14 @@ class Contest {
     return references.getContestById(jsonMap["_id"])._initFromJsonObject(jsonMap, references);
   }
 
+  void updateContestEntriesFromJsonObject(Map jsonMapRoot) {
+    contestEntries = jsonMapRoot["contest_entries"].map((jsonMap) => new ContestEntry.initFromJsonObject(jsonMap, _contestReferences, this) ).toList();
+    
+    if (jsonMapRoot.containsKey("soccer_players")) {
+      jsonMapRoot["soccer_players"].map((jsonObject) => new SoccerPlayer.fromJsonObject(jsonObject, _contestReferences)).toList();
+    }
+  }
+  
   /*
    * Inicializacion de los contenidos de un Contest
    */
@@ -319,6 +327,9 @@ class Contest {
 
     _prizeMin = new Money.from(prizeCurrency, minEntries * entryFee.amount * prizeMultiplier);
 
+    // Registramos las referencias usadas para inicializar el torneo
+    _contestReferences = references;
+    
     // print("Contest: id($contestId) name($name) currentUserIds($currentUserIds) templateContestId($templateContestId)");
     return this;
   }
@@ -370,4 +381,5 @@ class Contest {
   Prize _prize;
   Money _prizePool;
   Money _prizeMin;
+  ContestReferences _contestReferences;
 }

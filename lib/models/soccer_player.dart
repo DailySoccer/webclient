@@ -45,6 +45,8 @@ class SoccerPlayer {
   // Equipo en el que juega
   SoccerTeam soccerTeam;
 
+  bool get hasFullInformation => soccerTeam != null;
+  
   SoccerPlayer.referenceInit(this.templateSoccerPlayerId);
 
   factory SoccerPlayer.fromJsonObject(Map jsonMap, ContestReferences references) {

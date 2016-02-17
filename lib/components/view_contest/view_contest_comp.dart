@@ -494,7 +494,7 @@ class ViewContestComp implements DetachAware {
           '''
         , onOk: getLocalizedText("buy-gold-button")
         , onBackdropClick: false
-        , closeButton: false
+        , closeButton: true
         , aditionalClass: "noGold"
     ).then((_) {
       // Registramos dónde tendría que navegar al tener éxito en "add_funds"

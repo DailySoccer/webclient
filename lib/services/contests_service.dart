@@ -141,6 +141,10 @@ class ContestsService {
       .then((jsonMap) {
         registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
         // Logger.root.info("response: " + jsonMap.toString());
+        
+        if (jsonMap.containsKey("profile")) {
+          _profileService.updateProfileFromJson(jsonMap["profile"]);
+        }
       });
   }
 

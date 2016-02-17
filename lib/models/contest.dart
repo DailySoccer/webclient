@@ -267,6 +267,9 @@ class Contest {
   void updateContestEntriesFromJsonObject(Map jsonMapRoot) {
     contestEntries = jsonMapRoot["contest_entries"].map((jsonMap) => new ContestEntry.initFromJsonObject(jsonMap, _contestReferences, this) ).toList();
     
+    // FIX: ContestEntries: Puede que tengan alineaciones inválidas (por copiar una alineación en un torneo)
+    contestEntries.removeWhere( (contestEntry) => contestEntry.instanceSoccerPlayers.any( (instance) => instance == null) );
+    
     if (jsonMapRoot.containsKey("soccer_players")) {
       jsonMapRoot["soccer_players"].map((jsonObject) => new SoccerPlayer.fromJsonObject(jsonObject, _contestReferences)).toList();
     }
@@ -311,6 +314,10 @@ class Contest {
 
     // <FINAL> : Necesita acceso a los instanceSoccerPlayers
     contestEntries = jsonMap.containsKey("contestEntries") ? jsonMap["contestEntries"].map((jsonMap) => new ContestEntry.initFromJsonObject(jsonMap, references, this) ).toList() : [];
+    
+    // FIX: ContestEntries: Puede que tengan alineaciones inválidas (por copiar una alineación en un torneo)
+    contestEntries.removeWhere( (contestEntry) => contestEntry.instanceSoccerPlayers.any( (instance) => instance == null) );
+    
     numEntries = jsonMap.containsKey("numEntries") ? jsonMap["numEntries"] : contestEntries.length;
 
     String prizeCurrency = entryFee.isEnergy ? Money.CURRENCY_MANAGER : Money.CURRENCY_GOLD;

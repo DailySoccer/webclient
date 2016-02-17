@@ -130,6 +130,7 @@ class ViewContestComp implements DetachAware {
 
   void detach() {
     _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE);
+    _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE_CONTEST_ENTRIES);
   }
 
   void updateLive() {

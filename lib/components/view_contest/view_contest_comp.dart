@@ -85,6 +85,20 @@ class ViewContestComp implements DetachAware {
     lastOpponentSelected = getLocalizedText("opponent");
 
     contestId = _routeProvider.route.parameters['contestId'];
+    
+    // Si viene de un cambio... Registraremos el futbolista "antiguo" y el "nuevo"
+    _sourceSoccerPlayerIdToChange = _targetSoccerPlayerIdToChange = null;
+    
+    if (window.location.toString().contains("change")) {
+      Route routeChange = _router.findRoute("live_contest.change");
+      if (routeChange != null) {
+        _sourceSoccerPlayerIdToChange = routeChange.parameters['sourceSoccerPlayerId'];
+        _targetSoccerPlayerIdToChange = routeChange.parameters['targetSoccerPlayerId'];
+        Logger.root.info("Continue: Change: ${_sourceSoccerPlayerIdToChange} -> ${_targetSoccerPlayerIdToChange}");
+      }
+    }
+    
+    contestId = _routeProvider.route.parameters['contestId'];
 
     _tutorialService.triggerEnter("view_contest", component: this);
 
@@ -122,6 +136,14 @@ class ViewContestComp implements DetachAware {
           GameMetrics.logEvent(GameMetrics.VIEW_HISTORY);
         } else {
           GameMetrics.logEvent(GameMetrics.VIEW_CONTEST);
+        }
+        
+        if (_sourceSoccerPlayerIdToChange != null) {
+          InstanceSoccerPlayer instanceToSelect = mainPlayer.instanceSoccerPlayers.firstWhere((instance) => instance.soccerPlayer.templateSoccerPlayerId == _sourceSoccerPlayerIdToChange, orElse: () => null);
+          if (instanceToSelect != null) {
+            onRequestChange(instanceToSelect);
+          }
+          _sourceSoccerPlayerIdToChange = null;
         }
       })
       .catchError((ServerError error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW), test: (error) => error is ServerError);
@@ -254,6 +276,14 @@ class ViewContestComp implements DetachAware {
               refreshAllSoccerPlayerList();
               updateLineupSlots();
               updateFavorites();
+              
+              if (_targetSoccerPlayerIdToChange != null) {
+                InstanceSoccerPlayer instanceToSelect = _allInstanceSoccerPlayers.firstWhere((instance) => instance.soccerPlayer.templateSoccerPlayerId == _targetSoccerPlayerIdToChange, orElse: () => null);
+                if (instanceToSelect != null) {
+                  onChangeSoccerPlayer(instanceToSelect);
+                }
+                _targetSoccerPlayerIdToChange = null;
+              }
         });
       } else {
         refreshAllSoccerPlayerList();
@@ -357,20 +387,24 @@ class ViewContestComp implements DetachAware {
   }
 
   void onSoccerPlayerActionButton(var soccerPlayer) {
-    InstanceSoccerPlayer instanceSoccerPlayer = soccerPlayer['instanceSoccerPlayer'];
+    onChangeSoccerPlayer(soccerPlayer['instanceSoccerPlayer']);
+  }
+  
+  void onChangeSoccerPlayer(var instanceSoccerPlayer) {
+    _newSoccerPlayer = instanceSoccerPlayer;
     
     //Check Soccer team
-    String newSoccerTeamId = instanceSoccerPlayer.soccerPlayer.soccerTeam.templateSoccerTeamId;
+    String newSoccerTeamId = _newSoccerPlayer.soccerPlayer.soccerTeam.templateSoccerTeamId;
     
     int sameTeamCount = mainPlayer.instanceSoccerPlayers.where((i) => i.soccerTeam.templateSoccerTeamId == newSoccerTeamId && i.id != _changingPlayer.id).length;
     bool isSameTeamOk = sameTeamCount < 4;
     
     //Check Salary
-    int salary = remainingSalary + _changingPlayer.salary - instanceSoccerPlayer.salary;
+    int salary = remainingSalary + _changingPlayer.salary - _newSoccerPlayer.salary;
     bool isSalaryOk = salary >= 0;
     
     //Check gold
-    Money goldNeeded = instanceSoccerPlayer.moneyToBuy(contest, _profileService.user.managerLevel);
+    Money goldNeeded = _newSoccerPlayer.moneyToBuy(contest, _profileService.user.managerLevel);
     goldNeeded = goldNeeded.plus(mainPlayer.changePrice());
     bool isGoldOk = _profileService.user.goldBalance.amount >= goldNeeded.amount;
     
@@ -381,22 +415,22 @@ class ViewContestComp implements DetachAware {
       
       modalShow("",
                 '''
-                  <p>${getLocalizedText('change-player-modal', 
-                                        substitutions: {'SOCCER_PLAYER1': _changingPlayer.soccerPlayer.name, 
-                                                        'SOCCER_PLAYER2': instanceSoccerPlayer.soccerPlayer.name})}</p>
-                '''
+                <p>${getLocalizedText('change-player-modal', 
+                                      substitutions: {'SOCCER_PLAYER1': _changingPlayer.soccerPlayer.name, 
+                                                      'SOCCER_PLAYER2': _newSoccerPlayer.soccerPlayer.name})}</p>
+              '''
                 // <ul>${NEEDED_PERMISSIONS.fold('', (prev, curr) => '$prev<li>$curr</li>')}</ul>
                 , onBackdropClick: false
                 , onOk: getLocalizedText((goldNeeded.amount > 0)? 'change-player-modal-confirm' : 'change-player-modal-confirm0', substitutions: {'GOLD_COINS': goldNeeded.amount.toInt()})
                 , onCancel: getLocalizedText('change-player-modal-cancel')
                 , aditionalClass: "change-player-modal"
               ).then((_) {
-                _changeSoccerPlayer(soccerPlayer, goldNeeded);
+                _changeSoccerPlayer(_newSoccerPlayer, goldNeeded);
               });//.catchError((_) => closePlayerChanges());
       
     } else {
       if (!isSameTeamOk){
-        print("HAY DEMASAIDOS DEL MISMO EQUIPO");
+        print("HAY DEMASIADOS DEL MISMO EQUIPO");
       } else if (!isSalaryOk) {
         print("TE PASAS DEL SALARY");
       } else if (!areAvailableChanges) {
@@ -407,8 +441,8 @@ class ViewContestComp implements DetachAware {
     }
   }
   
-  void _changeSoccerPlayer(var soccerPlayer, Money goldNeeded) {
-    InstanceSoccerPlayer newSoccerPlayer = soccerPlayer['instanceSoccerPlayer'];
+  void _changeSoccerPlayer(var instanceSoccerPlayer, Money goldNeeded) {
+    InstanceSoccerPlayer newSoccerPlayer = instanceSoccerPlayer;
     loadingService.isLoading = true;
     
     _contestsService.changeSoccerPlayer(mainPlayer.contestEntryId, 
@@ -422,7 +456,7 @@ class ViewContestComp implements DetachAware {
             .catchError((ServerError error) {
               Logger.root.info("Error: ${error.responseError}");
               if (error.isRetryOpError) {
-                _retryOpTimer = new Timer(const Duration(seconds:3), () => onSoccerPlayerActionButton(soccerPlayer));
+                _retryOpTimer = new Timer(const Duration(seconds:3), () => onChangeSoccerPlayer(newSoccerPlayer));
               } else {
                 _showMsgError(error, goldNeeded.amount.toInt());
               }
@@ -503,7 +537,9 @@ class ViewContestComp implements DetachAware {
       //   Necesitamos ejecutar la transición "dentro" de angular (en caso contrario, se produce una excepción)
       _turnZone.run(() {
         // Registramos dónde tendría que navegar al tener éxito en "add_funds"
-        window.localStorage[contest.entryFee.isEnergy ? "add_energy_success" : "add_gold_success"] = window.location.href;
+        String hash = "#/live_contest/my_contests/${contestId}/change/${_changingPlayer.soccerPlayer.templateSoccerPlayerId}/${_newSoccerPlayer.soccerPlayer.templateSoccerPlayerId}";
+        String url = "${window.location.origin}${window.location.pathname}$hash";
+        window.localStorage["add_gold_success"] = url;
         _router.go('shop.buy', {});
       });
     });
@@ -522,6 +558,10 @@ class ViewContestComp implements DetachAware {
   ContestsService _contestsService;
   TutorialService _tutorialService;
   InstanceSoccerPlayer _changingPlayer;
+  InstanceSoccerPlayer _newSoccerPlayer;
   List<InstanceSoccerPlayer> _allInstanceSoccerPlayers;
+  
+  String _sourceSoccerPlayerIdToChange;
+  String _targetSoccerPlayerIdToChange;
 }
 

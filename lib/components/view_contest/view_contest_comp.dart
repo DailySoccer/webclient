@@ -66,6 +66,7 @@ class ViewContestComp implements DetachAware {
   int get lineupCost => mainPlayer != null? mainPlayer.instanceSoccerPlayers.fold(0, (sum, i) => sum += i.salary) : 0;
   int get remainingSalary => maxSalary - lineupCost;
   int get remainingSalaryChangingPlayer => remainingSalary + (_changingPlayer == null? 0 : _changingPlayer.salary);
+  int get changingSalaryPlayer => (_changingPlayer == null? 0 : _changingPlayer.salary);
 
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;

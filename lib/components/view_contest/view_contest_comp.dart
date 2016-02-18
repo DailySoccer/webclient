@@ -79,7 +79,7 @@ class ViewContestComp implements DetachAware {
     return StringUtils.translate(key, "viewcontest", substitutions);
   }
 
-  ViewContestComp(this._routeProvider, this._router, this.scrDet, this._refreshTimersService,
+  ViewContestComp(this._turnZone, this._routeProvider, this._router, this.scrDet, this._refreshTimersService,
       this._contestsService, this._profileService, this._flashMessage, this.loadingService, this._tutorialService) {
     loadingService.isLoading = true;
     lastOpponentSelected = getLocalizedText("opponent");
@@ -499,16 +499,20 @@ class ViewContestComp implements DetachAware {
         , closeButton: true
         , aditionalClass: "noGold"
     ).then((_) {
-      // Registramos dónde tendría que navegar al tener éxito en "add_funds"
-      window.localStorage[contest.entryFee.isEnergy ? "add_energy_success" : "add_gold_success"] = window.location.href;
-
-      _router.go(contest.entryFee.isEnergy ? 'shop' : 'shop', {});
+      // La lista de futbolistas ("soccer_players_list") se muestra "fuera" de angular ("runOutsideAngular")
+      //   Necesitamos ejecutar la transición "dentro" de angular (en caso contrario, se produce una excepción)
+      _turnZone.run(() {
+        // Registramos dónde tendría que navegar al tener éxito en "add_funds"
+        window.localStorage[contest.entryFee.isEnergy ? "add_energy_success" : "add_gold_success"] = window.location.href;
+        _router.go('shop.buy', {});
+      });
     });
 
     _tutorialService.triggerEnter("alert-not-enough-resources");
   }
   
 
+  VmTurnZone _turnZone;
   Router _router;
   Timer _retryOpTimer;
   FlashMessagesService _flashMessage;

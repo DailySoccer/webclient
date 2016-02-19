@@ -57,7 +57,7 @@ class ViewContestComp implements DetachAware {
   List<dynamic> lineupSlots = [];
 
   bool get isLive => _routeProvider.route.name.contains("live_contest");
-  bool get showChanges => contest != null? (contest.isLive && numAvailableChanges > 0) : false;
+  bool get showChanges => contest != null? (contest.isLive && numAvailableChanges > 0 && _profileService.isLoggedIn && contest.containsContestEntryWithUser(_profileService.user.userId)) : false;
   bool isMakingChange = false;
 
   String get salaryCap => contest.printableSalaryCap;

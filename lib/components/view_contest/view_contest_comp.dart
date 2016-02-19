@@ -426,7 +426,8 @@ class ViewContestComp implements DetachAware {
                 , aditionalClass: "change-player-modal"
               ).then((_) {
                 _changeSoccerPlayer(_newSoccerPlayer, goldNeeded);
-              });//.catchError((_) => closePlayerChanges());
+              })
+              .catchError((_) {});
       
     } else {
       if (!isSameTeamOk){

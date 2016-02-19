@@ -77,6 +77,10 @@ class MatchEvent {
     period = jsonMap["period"];
     minutesPlayed = jsonMap["minutesPlayed"];
   }
+  
+  bool containsTeam(SoccerTeam team) {
+    return team.templateSoccerTeamId == soccerTeamA.templateSoccerTeamId || team.templateSoccerTeamId == soccerTeamB.templateSoccerTeamId;
+  }
 
   void _updateFantasyPoints(Map<String, Map> soccerFantasyPoints) {
     [soccerTeamA, soccerTeamB].forEach((team) => team.soccerPlayers.forEach((soccerPlayer) {

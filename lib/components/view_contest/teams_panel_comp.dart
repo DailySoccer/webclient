@@ -24,6 +24,7 @@ class TeamsPanelComp implements DetachAware {
   ScreenDetectorService scrDet;
   bool isShown = false;
   bool isTeamsPanelOpen = false;
+  bool useAsFilter = false;
   
   String _buttonText = getLocalizedText("showmatches");
   @NgOneWay("button-text")
@@ -32,6 +33,16 @@ class TeamsPanelComp implements DetachAware {
   }
   String get buttonText => _buttonText;
 
+  @NgOneWay("as-filter")
+  void set setUseAsFilter(bool asFilter) {
+    if (useAsFilter != asFilter) {
+      matchFilter = null;
+    }
+    useAsFilter = asFilter;
+  }
+
+  @NgTwoWay("selected-option")
+  String matchFilter = null;
 
   @NgOneWay("panel-open")
   void set isPanelOpen(bool b) {

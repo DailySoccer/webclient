@@ -1,4 +1,5 @@
 .soccer-players-filter {
+	.make-row(0);
 	@media (max-width: @screen-xs-max) {
 		padding: 0 10px;
 	}
@@ -8,7 +9,9 @@
 		background-color: @tramaBlue;
 		padding: 20px 0 0 10px;
 		@media (max-width: @screen-xs-max) {
-			margin: 0 -10px;
+			margin: 0;
+			padding: 0;
+			height: 0;
 		}
 		//.hidden-xs();
 		span {
@@ -81,12 +84,23 @@
 					background-repeat: no-repeat;
 				}
 			}
+			
+			@media (max-width: @screen-xs-max) {
+				margin: 5px 0;
+				.make-xs-column(2);
+				float: right;
+				padding-left: 0;
+				padding-right: 0;
+			}
 		}
+		
 	}
 
 	// Por nombre de jugador
 	.name-player-input-filter {
 		.form-control();
+		.make-xs-column(9);
+		.make-sm-column(12);
 		@media (max-width: @screen-xs-max) {
 			margin: 10px 0px 15px 0px;
 			border: 1px solid @greyLight;

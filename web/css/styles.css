@@ -5671,6 +5671,8 @@ scoring-rules:after,
 #energyshopComp .content:after,
 #energyshopComp .products-wrapper:before,
 #energyshopComp .products-wrapper:after,
+.fantasy-team-list:before,
+.fantasy-team-list:after,
 .fantasy-team-list .soccer-player-row:before,
 .fantasy-team-list .soccer-player-row:after,
 .soccer-player-statistics:before,
@@ -5709,6 +5711,8 @@ scoring-rules:after,
 .soccer-player-list-header-table:after,
 .soccer-players-list .soccer-players-list-slot:before,
 .soccer-players-list .soccer-players-list-slot:after,
+.soccer-players-filter:before,
+.soccer-players-filter:after,
 .lineup-selector .lineup-formation-selector-wrapper:before,
 .lineup-selector .lineup-formation-selector-wrapper:after,
 .lineup-selector #formationsPanelRoot .formations-container:before,
@@ -5820,6 +5824,7 @@ scoring-rules:after,
 #trainerPointsShopComp .products-wrapper:after,
 #energyshopComp .content:after,
 #energyshopComp .products-wrapper:after,
+.fantasy-team-list:after,
 .fantasy-team-list .soccer-player-row:after,
 .soccer-player-statistics:after,
 #rootFooter:after,
@@ -5839,6 +5844,7 @@ scoring-rules:after,
 .enter-contest-actions-wrapper .bottom-content:after,
 .soccer-player-list-header-table:after,
 .soccer-players-list .soccer-players-list-slot:after,
+.soccer-players-filter:after,
 .lineup-selector .lineup-formation-selector-wrapper:after,
 .lineup-selector #formationsPanelRoot .formations-container:after,
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table:after,
@@ -11528,6 +11534,9 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
     text-align: center;
   }
 }
+.header-view-contest-entry-mode.fantasy-team-header .user-nickname {
+  margin: 0 160px 0 0;
+}
 #fantasyTeamRoot {
   background-color: #ffffff;
 }
@@ -11538,6 +11547,38 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
   background-image: linear-gradient(to bottom, #fba61a 50%, #ec990e 50%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffba61a', endColorstr='#ffec990e', GradientType=0);
+  /*
+	
+		
+		//@media (max-width: @screen-xs-max) {
+			//position: absolute;
+			//right: 0px;
+			//bottom: 0;
+			//left: 50px;
+			//padding: 0;
+		//}
+	
+.header-box {
+	min-width:70px;
+	height:70px;
+	border-radius:5px;
+	margin: 3px 3px 0px 3px;
+	
+	#gradient.vertical(@white, @blueUltraLight, 49%, 51%);
+	color: @greyUltraDark;
+
+	.title { 
+		display: block; 
+		text-align: center;
+		.exo_bold(11pt, @white);
+		padding-top: 5px;
+	}
+	.content {
+		display: block; 
+		text-align: center;
+		.exo_light(16pt);
+	}
+}*/
   /*@media (min-width: @screen-sm-min) {
 		.border-top-radius(@globalBoxesRadius);
 	}*/
@@ -11631,6 +11672,80 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
   padding-left: 5px;
   padding-right: 5px;
 }
+.fantasy-team-header .total-salary-box {
+  text-align: center;
+  float: right;
+  background-color: #ffffff;
+  line-height: 43px;
+  width: 198px;
+  margin: 3px 3px 0px 3px;
+  min-height: 70px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ffffff;
+  border-radius: 8px;
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 22pt;
+  color: #777777;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
+  margin-top: 3px;
+  overflow: hidden;
+}
+@media (max-width: 991px) {
+  .fantasy-team-header .total-salary-box {
+    width: 160px;
+  }
+}
+.fantasy-team-header .total-salary-box .total-salary-text {
+  background-color: #dcdcdc;
+  font-size: 9pt;
+  display: block;
+  line-height: 25px;
+}
+.fantasy-team-header .total-salary-box .total-salary-money {
+  -webkit-animation: fadein-keyframes 400ms;
+  -moz-animation: fadein-keyframes 400ms;
+  -ms-animation: fadein-keyframes 400ms;
+  -o-animation: fadein-keyframes 400ms;
+  animation: fadein-keyframes 400ms;
+}
+@-webkit-keyframes fadein-keyframes {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadein-keyframes {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-o-keyframes fadein-keyframes {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadein-keyframes {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fantasy-team-header .total-salary-box .red-numbers {
+  color: red;
+}
 .fantasy-team-header .user-nickname {
   font-family: 'Exo', sans-serif;
   font-weight: 300;
@@ -11640,6 +11755,19 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   height: 45px;
   padding-top: 5px;
+  margin: 0 80px;
+  display: block;
+}
+.fantasy-team-header .change-ordinal {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 16pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  height: 45px;
+  padding-top: 10px;
+  padding-left: 15px;
   margin-right: 155px;
 }
 .fantasy-team-header .nickname-view-contest-entry-mode {
@@ -11650,15 +11778,6 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
   text-transform: uppercase;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   padding: 20px 0 0 10px;
-}
-.fantasy-team-header .total-remaining-matches-time {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 8pt;
-  color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  height: 45px;
-  padding-top: 5px;
 }
 .fantasy-team-header .close-team {
   cursor: pointer;
@@ -11869,6 +11988,74 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
     padding-right: 0;
   }
 }
+.changes-box {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  height: 45px;
+  padding-top: 5px;
+  /*.make-xs-column(12);
+	background-color: @blueDark;
+	text-align: center;
+	padding: 3px;
+	
+	.title {
+		.opensans_normal(11pt, @white);
+		margin-right: 5px;
+		span {
+			margin-right: 5px;
+			vertical-align: middle;
+			margin-bottom: 2px;
+		}
+	}
+	.content {
+		.opensans_normal(11pt, @white);
+	}*/
+}
+@media (max-width: 767px) {
+  .changes-box {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 8pt;
+    color: #ffffff;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  }
+}
+.changes-box .glyphicon {
+  margin-right: 3px;
+  font-size: 12pt;
+}
+@media (max-width: 767px) {
+  .changes-box .glyphicon {
+    font-size: 10pt;
+  }
+}
+.total-remaining-matches-time {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #dcdcdc;
+  text-align: center;
+  padding: 3px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
+  height: 30px;
+  padding-top: 5px;
+}
+@media (max-width: 767px) {
+  .total-remaining-matches-time {
+    font-size: 8pt;
+    height: 25px;
+  }
+}
 /*
 .close-team {
 	.hidden-xs();
@@ -11903,6 +12090,8 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   }
 }
 .fantasy-team-list {
+  margin-left: 0px;
+  margin-right: 0px;
   min-height: 440px;
 }
 .fantasy-team-list .soccer-player-row {
@@ -11916,12 +12105,15 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   -ms-user-select: none;
   user-select: none;
   cursor: pointer;
-  margin-top: 2px;
-  padding-bottom: 2px;
+  padding-top: 1px;
+  padding-bottom: 1px;
   border-width: 1px;
   border-style: none none dotted none;
   border-color: #ff0000;
   border-radius: 0;
+}
+.fantasy-team-list .fantasy-team-slot.not-selected {
+  opacity: 0.3;
 }
 .fantasy-team-list .fantasy-team-slot .column-fieldpos {
   position: relative;
@@ -11941,7 +12133,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
 .fantasy-team-list .fantasy-team-slot .column-primary-info {
   position: relative;
   float: left;
-  width: 66.66666667%;
+  width: 58.33333333%;
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
@@ -11980,26 +12172,201 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
 .fantasy-team-list .fantasy-team-slot .column-score {
   position: relative;
   float: left;
-  width: 20.83333333%;
+  width: 29.16666667%;
   min-height: 1px;
   padding-left: 0px;
   padding-right: 0px;
+  text-align: right;
+  padding-right: 10px;
+  background-color: #ffffff;
+}
+@media (max-width: 767px) {
+  .fantasy-team-list .fantasy-team-slot .column-score {
+    padding-right: 3px;
+    margin-top: 4px;
+  }
+}
+.fantasy-team-list .fantasy-team-slot .column-score > span {
+  border-radius: 6px;
+  transition: background-color linear 150ms;
   font-family: 'Exo', sans-serif;
   font-weight: 300;
   font-size: 19pt;
   color: #59add5;
   text-transform: uppercase;
   text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
-  text-align: right;
-  padding-right: 10px;
-  background-color: #ffffff;
 }
-.fantasy-team-list .fantasy-team-slot .column-score span {
-  border-radius: 6px;
-  transition: background-color linear 150ms;
+@media (max-width: 767px) {
+  .fantasy-team-list .fantasy-team-slot .column-score > span {
+    font-size: 15pt;
+  }
 }
 .fantasy-team-list .fantasy-team-slot .column-score .changed {
   background-color: #ffff00;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt {
+  background-color: #428bca;
+  border-color: #357ebd;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  background-color: #a1c931;
+  outline: none !important;
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 14pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  vertical-align: baseline;
+  line-height: 1;
+  padding: 5px;
+  padding-bottom: 4px;
+  margin-left: 5px;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:hover,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:focus,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:active,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.active,
+.open .dropdown-toggle.fantasy-team-list .fantasy-team-slot .column-score .change-btt {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:active,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.active,
+.open .dropdown-toggle.fantasy-team-list .fantasy-team-slot .column-score .change-btt {
+  background-image: none;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.disabled,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt[disabled],
+fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-btt,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.disabled:hover,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt[disabled]:hover,
+fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-btt:hover,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.disabled:focus,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt[disabled]:focus,
+fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-btt:focus,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.disabled:active,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt[disabled]:active,
+fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-btt:active,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.disabled.active,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt[disabled].active,
+fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-btt.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt .badge {
+  color: #428bca;
+  background-color: #ffffff;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:focus,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:active:focus,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:hover,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:focus {
+  color: #333333;
+  text-decoration: none;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:active,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.disabled,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt[disabled],
+fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-btt {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:active,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.active {
+  box-shadow: none;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:active:focus,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:active:hover,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:hover:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:active,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.active {
+  box-shadow: none;
+  background-color: #a1c931;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.disabled,
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt[disabled],
+fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-btt {
+  background-color: #b5d657;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+.fantasy-team-list .fantasy-team-slot .column-score .change-btt.close {
+  background-color: #a1c931;
+  outline: none !important;
+  color: #ffffff;
+}
+@media (max-width: 767px) {
+  .fantasy-team-list .fantasy-team-slot .column-score .change-btt {
+    margin-left: 2px;
+    padding: 4px 5px 3px 5px;
+    font-size: 13pt;
+  }
 }
 .fantasy-team-list .fantasy-team-slot .column-salary {
   position: relative;
@@ -12017,7 +12384,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   padding-top: 10px;
 }
 .fantasy-team-list .fantasy-team-slot:first-child {
-  margin-top: 10px;
+  margin-top: 5px;
 }
 .fantasy-team-list .fantasy-team-slot:last-child {
   margin-bottom: 3px;
@@ -12025,6 +12392,15 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
 @media (min-width: 768px) {
   .fantasy-team-list .fantasy-team-slot:last-child {
     border: none;
+  }
+}
+@media (max-width: 767px) {
+  .fantasy-team-list {
+    min-height: 0px;
+  }
+  .fantasy-team-list .fantasy-team-slot.not-selected,
+  .fantasy-team-list .fantasy-team-slot.selected {
+    display: none;
   }
 }
 .header-box {
@@ -12775,6 +13151,33 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
 #viewContestRoot .view-contest-tabs .active {
   background-color: #214a5f;
 }
+@media (max-width: 767px) {
+  #viewContestRoot.making-change-state #userFantasyTeam .fantasy-team-header {
+    padding-top: 10px;
+    height: 50px;
+    background-image: none;
+  }
+  #viewContestRoot.making-change-state #userFantasyTeam .fantasy-team-header .change-ordinal,
+  #viewContestRoot.making-change-state #userFantasyTeam .fantasy-team-header .total-salary-text,
+  #viewContestRoot.making-change-state #userFantasyTeam .fantasy-team-header .user-picture {
+    display: none;
+  }
+  #viewContestRoot.making-change-state #userFantasyTeam .fantasy-team-header .total-salary-box {
+    width: 96%;
+    min-height: 0px;
+    margin: 0 auto;
+    float: none;
+    background-color: #fa9c19;
+    color: #ffffff;
+    font-weight: normal;
+    font-size: 18pt;
+    line-height: 36px;
+  }
+  #viewContestRoot.making-change-state .changes-box,
+  #viewContestRoot.making-change-state .total-remaining-matches-time {
+    display: none;
+  }
+}
 .contest-id-bar {
   margin-left: 0;
   margin-right: 0;
@@ -12799,6 +13202,178 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   clear: both;
   width: 100%;
   height: 15px;
+}
+.soccer-player-changes-list {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: 1px solid #434343;
+  border-radius: 10px;
+  padding: 0px;
+  overflow: hidden;
+  min-height: 533px;
+}
+@media (min-width: 768px) {
+  .soccer-player-changes-list {
+    float: left;
+    width: 50%;
+  }
+}
+.soccer-player-changes-list .soccer-players-list {
+  max-height: 401px;
+}
+#alertRoot.change-player-modal .modal-dialog {
+  margin-top: 20vh;
+  margin-bottom: 0;
+}
+#alertRoot.change-player-modal .modal-dialog .modal-content {
+  box-shadow: 0px;
+  border: 0px solid #FFFFFF;
+  background-color: transparent;
+}
+#alertRoot.change-player-modal .modal-dialog .modal-content .panel p {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14pt;
+  color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+}
+#alertRoot.change-player-modal .ok-button .coin:after {
+  content: '';
+  margin-left: 5px;
+  content: " ";
+  background-image: url("../images/icon-coin-xs.png");
+  width: 17px;
+  height: 17px;
+  display: inline-block;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+}
+@media (max-width: 767px) {
+  .btn-cancel-player-selection {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-width: 0;
+    -webkit-transition: All 0.08s ease-out;
+    -moz-transition: All 0.08s ease-out;
+    -ms-transition: All 0.08s ease-out;
+    -o-transition: All 0.08s ease-out;
+    transition: All 0.08s ease-out;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 10pt;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+    background-color: #afafaf;
+    color: #ffffff;
+    outline: none !important;
+    width: 96%;
+    text-transform: uppercase;
+    margin: 5px auto;
+    display: block;
+  }
+  .btn-cancel-player-selection:focus,
+  .btn-cancel-player-selection:active:focus,
+  .btn-cancel-player-selection.active:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
+  .btn-cancel-player-selection:hover,
+  .btn-cancel-player-selection:focus {
+    color: #333333;
+    text-decoration: none;
+  }
+  .btn-cancel-player-selection:active,
+  .btn-cancel-player-selection.active {
+    outline: 0;
+    background-image: none;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  }
+  .btn-cancel-player-selection.disabled,
+  .btn-cancel-player-selection[disabled],
+  fieldset[disabled] .btn-cancel-player-selection {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .btn-cancel-player-selection:active,
+  .btn-cancel-player-selection.active {
+    box-shadow: none;
+  }
+  .btn-cancel-player-selection:active:focus,
+  .btn-cancel-player-selection.active:focus {
+    color: #ffffff;
+    background-color: #c9c9c9;
+  }
+  .btn-cancel-player-selection:active:hover,
+  .btn-cancel-player-selection.active:hover {
+    color: #ffffff;
+    background-color: #c9c9c9;
+  }
+  .btn-cancel-player-selection:focus {
+    background-color: #afafaf;
+    color: #ffffff;
+  }
+  .btn-cancel-player-selection:hover {
+    background-color: #bcbcbc;
+    outline: none !important;
+    color: #ffffff;
+  }
+  .btn-cancel-player-selection:hover:focus {
+    background-color: #afafaf;
+    color: #ffffff;
+  }
+  .btn-cancel-player-selection:active,
+  .btn-cancel-player-selection.active {
+    box-shadow: none;
+    background-color: #afafaf;
+  }
+  .btn-cancel-player-selection:hover {
+    background-color: #bcbcbc;
+    outline: none !important;
+    color: #ffffff;
+  }
+  .btn-cancel-player-selection.disabled,
+  .btn-cancel-player-selection[disabled],
+  fieldset[disabled] .btn-cancel-player-selection {
+    background-color: #c9c9c9;
+    color: #ebebeb;
+    cursor: not-allowed !important;
+  }
+  .btn-cancel-player-selection.close {
+    background-color: #afafaf;
+    outline: none !important;
+    color: #ffffff;
+  }
+  .soccer-player-changes-list {
+    clear: both;
+    border: 0px solid #434343;
+    min-height: 0;
+    border-radius: 0px;
+  }
+  .soccer-player-changes-list .soccer-players-list {
+    max-height: none;
+  }
 }
 #lobbyf2pRoot {
   background-color: #dcdcdc;
@@ -18010,6 +18585,10 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
 .soccer-players-list .empty-info-wrapper .empty-info .go-scouting a {
   text-decoration: none;
 }
+.soccer-players-filter {
+  margin-left: 0;
+  margin-right: 0;
+}
 @media (max-width: 767px) {
   .soccer-players-filter {
     padding: 0 10px;
@@ -18022,7 +18601,9 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
 }
 @media (max-width: 767px) {
   .soccer-players-filter .filter-by-position {
-    margin: 0 -10px;
+    margin: 0;
+    padding: 0;
+    height: 0;
   }
 }
 .soccer-players-filter .filter-by-position span {
@@ -18413,6 +18994,20 @@ fieldset[disabled] .soccer-players-filter .filter-by-position .button-filter-fav
   vertical-align: middle;
   background-repeat: no-repeat;
 }
+@media (max-width: 767px) {
+  .soccer-players-filter .filter-by-position .button-filter-favorites {
+    margin: 5px 0;
+    position: relative;
+    float: left;
+    width: 16.66666667%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    float: right;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
 .soccer-players-filter .name-player-input-filter {
   display: block;
   width: 100%;
@@ -18429,6 +19024,12 @@ fieldset[disabled] .soccer-players-filter .filter-by-position .button-filter-fav
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  float: left;
+  width: 75%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
   border: none;
   border-radius: 0;
   padding-left: 30px;
@@ -18459,6 +19060,12 @@ fieldset[disabled] .soccer-players-filter .name-player-input-filter {
 }
 textarea.soccer-players-filter .name-player-input-filter {
   height: auto;
+}
+@media (min-width: 768px) {
+  .soccer-players-filter .name-player-input-filter {
+    float: left;
+    width: 100%;
+  }
 }
 @media (max-width: 767px) {
   .soccer-players-filter .name-player-input-filter {
@@ -23405,6 +24012,7 @@ users-list#usersList > .epic-tooltip {
 #homeRoot #trainerPointsShopComp .products-wrapper,
 #homeRoot #energyshopComp .content,
 #homeRoot #energyshopComp .products-wrapper,
+#homeRoot .fantasy-team-list,
 #homeRoot .fantasy-team-list .soccer-player-row,
 #homeRoot .soccer-player-statistics,
 #homeRoot #rootFooter,
@@ -23424,6 +24032,7 @@ users-list#usersList > .epic-tooltip {
 #homeRoot .enter-contest-actions-wrapper .bottom-content,
 #homeRoot .soccer-player-list-header-table,
 #homeRoot .soccer-players-list .soccer-players-list-slot,
+#homeRoot .soccer-players-filter,
 #homeRoot .lineup-selector .lineup-formation-selector-wrapper,
 #homeRoot .lineup-selector #formationsPanelRoot .formations-container,
 #homeRoot #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table,

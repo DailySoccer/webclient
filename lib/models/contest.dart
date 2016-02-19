@@ -264,6 +264,17 @@ class Contest {
     return references.getContestById(jsonMap["_id"])._initFromJsonObject(jsonMap, references);
   }
 
+  void updateContestEntriesFromJsonObject(Map jsonMapRoot) {
+    contestEntries = jsonMapRoot["contest_entries"].map((jsonMap) => new ContestEntry.initFromJsonObject(jsonMap, _contestReferences, this) ).toList();
+    
+    // FIX: ContestEntries: Puede que tengan alineaciones inválidas (por copiar una alineación en un torneo)
+    // contestEntries.removeWhere( (contestEntry) => contestEntry.instanceSoccerPlayers.any( (instance) => instance == null) );
+    
+    if (jsonMapRoot.containsKey("soccer_players")) {
+      jsonMapRoot["soccer_players"].map((jsonObject) => new SoccerPlayer.fromJsonObject(jsonObject, _contestReferences)).toList();
+    }
+  }
+  
   /*
    * Inicializacion de los contenidos de un Contest
    */
@@ -303,6 +314,10 @@ class Contest {
 
     // <FINAL> : Necesita acceso a los instanceSoccerPlayers
     contestEntries = jsonMap.containsKey("contestEntries") ? jsonMap["contestEntries"].map((jsonMap) => new ContestEntry.initFromJsonObject(jsonMap, references, this) ).toList() : [];
+    
+    // FIX: ContestEntries: Puede que tengan alineaciones inválidas (por copiar una alineación en un torneo)
+    // contestEntries.removeWhere( (contestEntry) => contestEntry.instanceSoccerPlayers.any( (instance) => instance == null) );
+    
     numEntries = jsonMap.containsKey("numEntries") ? jsonMap["numEntries"] : contestEntries.length;
 
     String prizeCurrency = entryFee.isEnergy ? Money.CURRENCY_MANAGER : Money.CURRENCY_GOLD;
@@ -319,6 +334,9 @@ class Contest {
 
     _prizeMin = new Money.from(prizeCurrency, minEntries * entryFee.amount * prizeMultiplier);
 
+    // Registramos las referencias usadas para inicializar el torneo
+    _contestReferences = references;
+    
     // print("Contest: id($contestId) name($name) currentUserIds($currentUserIds) templateContestId($templateContestId)");
     return this;
   }
@@ -370,4 +388,5 @@ class Contest {
   Prize _prize;
   Money _prizePool;
   Money _prizeMin;
+  ContestReferences _contestReferences;
 }

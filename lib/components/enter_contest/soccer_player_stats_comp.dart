@@ -104,7 +104,13 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
     var contestId = routeProvider.route.parent.parameters.containsKey("contestId") ? routeProvider.route.parent.parameters["contestId"] : null;
     if (contestId != null) {
       var instanceSoccerPlayerId = routeProvider.route.parameters['instanceSoccerPlayerId'];
-      collectSoccerPlayerInfo(_soccerPlayerService.getInstanceSoccerPlayer(contestId, instanceSoccerPlayerId));
+      
+      // Optimizacion: Tenemos un instance con la información necesaria?
+      InstanceSoccerPlayer instance = _soccerPlayerService.getInstanceSoccerPlayer(contestId, instanceSoccerPlayerId);
+      if (instance.hasFullInformation) {
+        collectSoccerPlayerInfo(instance);
+      }
+      
       refreshInstancePlayerInfo = _soccerPlayerService.refreshInstancePlayerInfo(contestId, instanceSoccerPlayerId);
     }
     else {

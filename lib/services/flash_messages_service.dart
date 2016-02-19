@@ -40,7 +40,7 @@ class FlashMessagesService {
   error(String text, {context: CONTEXT_GLOBAL})    => _addFlashMessage(new FlashMessage(context, TYPE_ERROR, text));
 
   _addFlashMessage(FlashMessage message) {
-    flashMessages.add(message);
+    // flashMessages.add(message);
   }
 
   addGlobalMessage(String text, int visibilitySeconds) => _addGlobalMessage(new GlobalMessage(text, visibilitySeconds));

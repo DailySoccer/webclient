@@ -19,7 +19,7 @@ import 'package:logging/logging.dart';
     exportExpressions: const ["lineupFilter"]
 )
 class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware {
-
+  
   static const String FILTER_POSITION = "FILTER_POSITION";
   static const String FILTER_NAME = "FILTER_NAME";
   static const String FILTER_MATCH = "FILTER_MATCH";
@@ -62,6 +62,12 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   String get matchFilter => _filterList[FILTER_MATCH];
   void   set matchFilter(String matchId) => _setFilter(FILTER_MATCH, matchId);
 
+  @NgOneWay("hide-lineup-players")
+  bool hideLineupPlayers = false;
+  
+  @NgOneWay("additional-gold-price")
+  Money additionalGoldPrice = new Money.zeroFrom(Money.CURRENCY_GOLD);
+  
   void _setFilter(String key, dynamic valor) {
 
     // En movil no permitimos nunca poner el filtro vacio!
@@ -84,7 +90,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
   @NgOneWay("lineup-filter")
   void set setLineupFilter(List<dynamic> sp) {
-    if (sp == lineupFilter) {
+    if (sp == lineupFilter || sp == null) {
       return;
     }
 
@@ -216,9 +222,11 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
       if (_isVisibleWithFilters(slot, filterPosVal, filterMatchIdVal, filterNameVal)) {
         visibleItems++;
-        allHtml.write(_getHtmlForSlot(slot, !(lineupFilter.contains(slot))));
-
-        // Logger.root.info("${slot["id"]}: ${slot["intId"]}: ${slot["fullName"]}");
+        
+        bool isInLineup = lineupFilter.contains(slot);
+        if (!(isInLineup && hideLineupPlayers)) {
+          allHtml.write(_getHtmlForSlot(slot, !isInLineup));
+        }
       }
     }
 
@@ -237,6 +245,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     InstanceSoccerPlayer soccerPlayer = slot['instanceSoccerPlayer'];
     Money moneyToBuy = slot['instanceSoccerPlayer'].moneyToBuy(contest, managerLevel);
     bool soccerPlayerIsAvailable = moneyToBuy.toInt() == 0;
+    moneyToBuy = moneyToBuy.plus(additionalGoldPrice);
     String strAddButton = _getActionButton(addButton, moneyToBuy);
 
     return '''

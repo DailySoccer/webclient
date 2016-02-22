@@ -53,7 +53,7 @@ class TwitterShareComp {
   @NgOneWay("parameters-by-map")
   void set info(Map allInfo) {
     sharingInfo = allInfo;
-    updateButtons();
+    //updateButtons();
   }
   
   TwitterShareComp() {
@@ -70,6 +70,14 @@ class TwitterShareComp {
             'via': "Epiceleven",
             'selector-prefix': sharingInfo['selector-prefix']
           });
+    }
+  }
+  
+  String get intentTweetParams {
+    if(sharingInfo['url'] != null && sharingInfo['hashtag'] != null && sharingInfo['description'] != null) {
+      return "hashtags=${sharingInfo['hashtag']}&text=${Uri.encodeFull('${sharingInfo['title']} ${sharingInfo['description']}')}&url=${Uri.encodeFull(sharingInfo['url'])}&via=Epiceleven";
+    } else {
+      return "";
     }
   }
 

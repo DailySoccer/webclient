@@ -296,7 +296,12 @@
         });
       }
       
+      var facebookParseXFBMLActiveSelectors = [];
+      
       function facebookParseXFBML(cssSelector) {
+        if (facebookParseXFBMLActiveSelectors.indexOf(cssSelector) == -1) return;
+        facebookParseXFBMLActiveSelectors.push(cssSelector);
+        
         var parse;
         var trys = 0;
         var fbCheck = false;
@@ -313,6 +318,7 @@
             }
           } else {
             FB.XFBML.parse();
+            facebookParseXFBMLActiveSelectors.splice(facebookParseXFBMLActiveSelectors.indexOf(cssSelector),1);
           }
         }
         waitForFacebook(function() { fbCheck = true; });

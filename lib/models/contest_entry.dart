@@ -24,7 +24,7 @@ class ContestEntry {
   String formation = FORMATION_442;
   List<InstanceSoccerPlayer> instanceSoccerPlayers = [];
   List<InstanceSoccerPlayer> soccerPlayersPurchased = [];
-  Map<String, String> soccerPlayersChanged = {};
+  List<String> soccerPlayersChanged = [];
 
   num get numChanges => soccerPlayersChanged.length;
   num get numAvailableChanges => MAX_CHANGES - numChanges;
@@ -88,8 +88,8 @@ class ContestEntry {
       soccerPlayersPurchased = jsonMap["playersPurchased"].map((soccerPlayerId) => theContest.getInstanceSoccerPlayer(soccerPlayerId)).toList();
     }
 
-    if (jsonMap.containsKey("playersChanged") && jsonMap["playersChanged"] != null) {
-      jsonMap["playersChanged"].forEach((key, playerId) => soccerPlayersChanged[key] = playerId);
+    if (jsonMap.containsKey("substitutions") && jsonMap["substitutions"] != null) {
+      jsonMap["substitutions"].forEach((substitution) => soccerPlayersChanged.add("${substitution['source']} => ${substitution['target']}"));
     }
 
     position = (jsonMap.containsKey("position")) ? jsonMap["position"] : 0;

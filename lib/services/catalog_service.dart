@@ -69,6 +69,15 @@ class CatalogService {
     return completer.future;
   }
 
+  List<Product> specialOffers() {
+    return [
+        new Product.initFromJsonObject({"productId": "GOLD_SPECIAL_1", "name": "offer_gold_1", "price": "EUR 0.99", "gained": "AUD 15.00",    "free": "AUD 0.00", "imageUrl": "images/icon-BuyGold1.png", "mostPopular": "true"}),
+        new Product.initFromJsonObject({"productId": "GOLD_SPECIAL_2", "name": "offer_gold_2", "price": "EUR 1.99", "gained": "AUD 150.00",   "free": "AUD 0.00", "imageUrl": "images/icon-BuyGold2.png", "mostPopular": "true"}),
+        new Product.initFromJsonObject({"productId": "GOLD_SPECIAL_3", "name": "offer_gold_3", "price": "EUR 2.99", "gained": "AUD 1500.00",  "free": "AUD 0.00", "imageUrl": "images/icon-BuyGold3.png", "mostPopular": "true"}),
+        new Product.initFromJsonObject({"productId": "GOLD_SPECIAL_4", "name": "offer_gold_4", "price": "EUR 3.99", "gained": "AUD 15000.00", "free": "AUD 0.00", "imageUrl": "images/icon-BuyGold4.png", "mostPopular": "true"})
+      ];
+  }
+  
   ServerService _server;
   ProfileService _profileService;
   PaymentService _paymentService;

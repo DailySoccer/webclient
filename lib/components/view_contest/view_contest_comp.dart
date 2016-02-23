@@ -288,6 +288,7 @@ class ViewContestComp implements DetachAware {
       } else {
         refreshAllSoccerPlayerList();
         updateLineupSlots();
+        updateFavorites();
       }
     } else {
       _changingPlayer = null;

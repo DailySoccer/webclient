@@ -299,7 +299,7 @@
       var facebookParseXFBMLActiveSelectors = [];
       
       function facebookParseXFBML(cssSelector) {
-        if (facebookParseXFBMLActiveSelectors.indexOf(cssSelector) == -1) return;
+        if (facebookParseXFBMLActiveSelectors.indexOf(cssSelector) != -1) return;
         facebookParseXFBMLActiveSelectors.push(cssSelector);
         
         var parse;
@@ -457,7 +457,7 @@
         t._e = []; t.ready = function(f) {t._e.push(f);};
         return t;
       }(document, "script", "twitter-wjs"));
-
+      
       twttr.ready(function (twttr) {
         // Now bind our custom intent events
         twttr.events.bind('tweet', window.twitterShare);

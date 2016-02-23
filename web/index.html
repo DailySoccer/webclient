@@ -299,7 +299,9 @@
       var facebookParseXFBMLActiveSelectors = [];
       
       function facebookParseXFBML(cssSelector) {
-        if (facebookParseXFBMLActiveSelectors.indexOf(cssSelector) != -1) return;
+        if (facebookParseXFBMLActiveSelectors.indexOf(cssSelector) != -1) {
+          return;
+        }
         facebookParseXFBMLActiveSelectors.push(cssSelector);
         
         var parse;

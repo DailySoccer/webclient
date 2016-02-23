@@ -12,6 +12,14 @@
 			margin: 0;
 			padding: 0;
 			height: 0;
+			&.position-filters-enabled {
+				padding: 20px 0 0 10px;
+				height: 58px;
+				margin: 0 -10px;
+				.button-filter-favorites {
+					margin: -10px 10px 0 15px;
+				}
+			}
 		}
 		//.hidden-xs();
 		span {
@@ -95,7 +103,7 @@
 		}
 		
 	}
-
+	
 	// Por nombre de jugador
 	.name-player-input-filter {
 		.form-control();
@@ -110,5 +118,12 @@
 		border-radius: 0;
 		padding-left: 30px;
 		background: url('../images/searchIcon.png') no-repeat 10px center;	
+	}
+
+	&.position-filters-enabled {
+		.name-player-input-filter {
+			.make-xs-column(12);
+			padding-left: 30px;
+		}
 	}
 }

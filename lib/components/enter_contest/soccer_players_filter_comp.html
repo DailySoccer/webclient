@@ -1,6 +1,6 @@
-<div class="soccer-players-filter">
+<div class="soccer-players-filter" ng-class="{'position-filters-enabled': positionFiltersEnabled}">
 
-  <div class="filter-by-position" ng-if="showFilterByPosition">
+  <div class="filter-by-position" ng-class="{'position-filters-enabled': positionFiltersEnabled}" ng-if="showFilterByPosition">
     <span ng-if="showTitle">{{getLocalizedText("players", group: "soccerplayerlist")}}</span>
     <button class="button-filter-position" ng-click="fieldPosFilter = fieldPos"
             ng-repeat="fieldPos in posFilterList" ng-bind-html="getTextForFieldPos(fieldPos)" 

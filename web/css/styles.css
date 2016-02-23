@@ -18633,6 +18633,14 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
     padding: 0;
     height: 0;
   }
+  .soccer-players-filter .filter-by-position.position-filters-enabled {
+    padding: 20px 0 0 10px;
+    height: 58px;
+    margin: 0 -10px;
+  }
+  .soccer-players-filter .filter-by-position.position-filters-enabled .button-filter-favorites {
+    margin: -10px 10px 0 15px;
+  }
 }
 .soccer-players-filter .filter-by-position span {
   font-family: 'Exo', sans-serif;
@@ -19101,6 +19109,15 @@ textarea.soccer-players-filter .name-player-input-filter {
     border: 1px solid #dcdcdc;
     border-radius: 4px;
   }
+}
+.soccer-players-filter.position-filters-enabled .name-player-input-filter {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 30px;
 }
 @media (min-width: 768px) {
   matches-filter {

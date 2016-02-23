@@ -23,6 +23,7 @@ facebook-share,
 		}
 		margin: 0 10px;
 		min-width: 80px;
+		cursor: pointer;
 	}
 	.facebook-like {
 		display: inline-block;
@@ -46,8 +47,25 @@ twitter-share,
 	.twitter-share-button-wrapper { display: inline-block; }
 	
 	.twitter-share-button {
+		cursor: pointer;
+		text-align: left;
 		margin: 0 10px;
-		min-width: 80px;
+		min-width: 67px;
+		height: 20px;
+		.opensans_bold(8pt, @white);
+		background-color: @blueTwitter;
+		padding: 2px 7px 2px 7px;
+		display: inline-block;
+		border-radius: 2px;
+		text-transform: none;
+		img {
+			width: 12px;
+			height: 12px;
+			vertical-align: middle;
+			margin-right: 5px;
+			margin-top: -1px;
+		}
+		vertical-align: middle;
 	}
 	.twitter-follow-button {
 		//margin-left: 5px;

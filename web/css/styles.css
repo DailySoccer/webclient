@@ -15530,12 +15530,12 @@ facebook-share .facebook-share-button,
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  cursor: pointer;
   line-height: 8pt;
   vertical-align: middle;
   height: 20px;
   margin: 0 10px;
   min-width: 80px;
+  cursor: pointer;
 }
 facebook-share .facebook-share-button img,
 .facebook-share-wrapper .facebook-share-button img {
@@ -15569,8 +15569,30 @@ twitter-share .twitter-share-button-wrapper,
 }
 twitter-share .twitter-share-button,
 .twitter-share-wrapper .twitter-share-button {
+  cursor: pointer;
+  text-align: left;
   margin: 0 10px;
-  min-width: 80px;
+  min-width: 67px;
+  height: 20px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  background-color: #55acee;
+  padding: 2px 7px 2px 7px;
+  display: inline-block;
+  border-radius: 2px;
+  text-transform: none;
+  vertical-align: middle;
+}
+twitter-share .twitter-share-button img,
+.twitter-share-wrapper .twitter-share-button img {
+  width: 12px;
+  height: 12px;
+  vertical-align: middle;
+  margin-right: 5px;
+  margin-top: -1px;
 }
 twitter-share .twitter-share-2,
 .twitter-share-wrapper .twitter-share-2 {
@@ -25882,6 +25904,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 }
 #notificationsComp .notification-list-wrapper .uncommon .additional-info .button-wrapper {
   margin-top: 0;
+  margin-left: 0;
 }
 #notificationsComp .notification-list-wrapper .uncommon .additional-info .button-wrapper .btn-primary {
   display: none !important;

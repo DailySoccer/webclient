@@ -224,14 +224,17 @@
 .input-validation(@glyphCode, @size, @color) {
 	.create-glyph(@glyphCode, @size, @color);
 	.fadein-animation(0.5s);
-	position: absolute;
-	top: 5px;
-	margin-left: 5px;
-	opacity: 1px;
+	position: relative;
+	//top: 5px;
+	//margin-left: 5px;
+	//opacity: 1px;
 }
+#signupbox .form-horizontal .user-form-field .form-group.valid:after,
 .valid:after {
 	.input-validation("\e013", 12pt, @green);
 }
+
+#signupbox .form-horizontal .user-form-field .form-group.not-valid:after, 
 .not-valid:after {
 	.input-validation("\e014", 12pt, @red);
 }
@@ -492,6 +495,22 @@
 		text-align: left;
 		margin-left: 0px;
 		margin-right: 0px;
+		.make-row(0);
+		
+		input.form-control {
+			.make-xs-column(11);
+			float: none;
+			display: inline-block;
+		}
+		
+		&.not-valid:after,
+		&.valid:after,
+		&:after {
+			.make-xs-column(1);
+			float: none;
+			display: inline-block;
+			padding-left: 8px;
+		}
 	}
 	#passAndRepassFieldsWrapper,
 	#mailAndNameFieldsWrapper,

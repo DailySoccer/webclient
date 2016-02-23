@@ -75,7 +75,7 @@ class TwitterShareComp {
   
   String get intentTweetParams {
     if(sharingInfo['url'] != null && sharingInfo['hashtag'] != null && sharingInfo['description'] != null) {
-      return "hashtags=${sharingInfo['hashtag']}&text=${Uri.encodeFull('${sharingInfo['title']} ${sharingInfo['description']}')}&url=${Uri.encodeFull(sharingInfo['url'])}&via=Epiceleven";
+      return "hashtags=${sharingInfo['hashtag']}&text=${Uri.encodeComponent('${sharingInfo['title']} ${sharingInfo['description']}')}&url=${Uri.encodeComponent(sharingInfo['url'])}&via=Epiceleven";
     } else {
       return "";
     }

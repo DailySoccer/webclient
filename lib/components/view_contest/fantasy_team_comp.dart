@@ -232,6 +232,10 @@ class FantasyTeamComp implements DetachAware {
       return showChanges && slot['changeable'];
     }
     
+    bool playerIsChanging(Map slot) {
+      return changingSoccerId != null && slot['id'] == changingSoccerId;
+    }
+    
     void requestChange(Map slot) {
       InstanceSoccerPlayer player = _contestEntry.instanceSoccerPlayers.firstWhere( (i) => i.id == slot["id"]);
       onRequestChange({'instanceSoccerPlayer': player});

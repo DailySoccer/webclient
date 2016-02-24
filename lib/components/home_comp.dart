@@ -21,7 +21,7 @@ import 'package:webclient/utils/game_metrics.dart';
   templateUrl: 'packages/webclient/components/home_comp.html',
   useShadowDom: false
 )
-class HomeComp  {
+class HomeComp implements DetachAware {
 
   ContestsService contestsService;
   LoadingService loadingService;
@@ -56,7 +56,6 @@ class HomeComp  {
             TutorialService tutorialService) {
     loadingService.isLoading = true;
     //contestTileHTML = isContestTileEnabled ? defaultPromo['html'] : defaultPromoWithTutorial['html'];
-    _refreshMyContests();
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
     _profileService.triggerNotificationsPopUp(_router);
   }
@@ -191,6 +190,9 @@ class HomeComp  {
     _router.go('help_info', {});
   }
 
+  void detach() {
+    _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS);
+  }
 
   ProfileService _profileService;
   Router _router;

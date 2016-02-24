@@ -5733,6 +5733,10 @@ scoring-rules:after,
 #welcomeRoot:after,
 #welcomeRoot .panel .panel-body .panel-description:before,
 #welcomeRoot .panel .panel-body .panel-description:after,
+#loginBox .form-group:before,
+#loginBox .form-group:after,
+#joinRoot .form-group:before,
+#joinRoot .form-group:after,
 #usersListRoot .user-row:before,
 #usersListRoot .user-row:after,
 #usersListRoot .users-table-header:before,
@@ -5855,6 +5859,8 @@ scoring-rules:after,
 .panel .form-horizontal:after,
 #welcomeRoot:after,
 #welcomeRoot .panel .panel-body .panel-description:after,
+#loginBox .form-group:after,
+#joinRoot .form-group:after,
 #usersListRoot .user-row:after,
 #usersListRoot .users-table-header:after,
 .profile-content:after,
@@ -15530,12 +15536,12 @@ facebook-share .facebook-share-button,
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  cursor: pointer;
   line-height: 8pt;
   vertical-align: middle;
   height: 20px;
   margin: 0 10px;
   min-width: 80px;
+  cursor: pointer;
 }
 facebook-share .facebook-share-button img,
 .facebook-share-wrapper .facebook-share-button img {
@@ -15569,8 +15575,30 @@ twitter-share .twitter-share-button-wrapper,
 }
 twitter-share .twitter-share-button,
 .twitter-share-wrapper .twitter-share-button {
+  cursor: pointer;
+  text-align: left;
   margin: 0 10px;
-  min-width: 80px;
+  min-width: 67px;
+  height: 20px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  background-color: #55acee;
+  padding: 2px 7px 2px 7px;
+  display: inline-block;
+  border-radius: 2px;
+  text-transform: none;
+  vertical-align: middle;
+}
+twitter-share .twitter-share-button img,
+.twitter-share-wrapper .twitter-share-button img {
+  width: 12px;
+  height: 12px;
+  vertical-align: middle;
+  margin-right: 5px;
+  margin-top: -1px;
 }
 twitter-share .twitter-share-2,
 .twitter-share-wrapper .twitter-share-2 {
@@ -18605,6 +18633,14 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
     padding: 0;
     height: 0;
   }
+  .soccer-players-filter .filter-by-position.position-filters-enabled {
+    padding: 20px 0 0 10px;
+    height: 58px;
+    margin: 0 -10px;
+  }
+  .soccer-players-filter .filter-by-position.position-filters-enabled .button-filter-favorites {
+    margin: -10px 10px 0 15px;
+  }
 }
 .soccer-players-filter .filter-by-position span {
   font-family: 'Exo', sans-serif;
@@ -19073,6 +19109,15 @@ textarea.soccer-players-filter .name-player-input-filter {
     border: 1px solid #dcdcdc;
     border-radius: 4px;
   }
+}
+.soccer-players-filter.position-filters-enabled .name-player-input-filter {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-left: 30px;
 }
 @media (min-width: 768px) {
   matches-filter {
@@ -21245,6 +21290,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   outline: none !important;
   color: #ffffff;
 }
+#signupbox .form-horizontal .user-form-field .form-group.valid:after,
 .valid:after {
   font-family: 'Glyphicons Halflings';
   content: "\e013";
@@ -21255,10 +21301,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   -ms-animation: fadein-keyframes 0.5s;
   -o-animation: fadein-keyframes 0.5s;
   animation: fadein-keyframes 0.5s;
-  position: absolute;
-  top: 5px;
-  margin-left: 5px;
-  opacity: 1px;
+  position: relative;
 }
 @-webkit-keyframes fadein-keyframes {
   from {
@@ -21292,6 +21335,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
     opacity: 1;
   }
 }
+#signupbox .form-horizontal .user-form-field .form-group.not-valid:after,
 .not-valid:after {
   font-family: 'Glyphicons Halflings';
   content: "\e014";
@@ -21302,10 +21346,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   -ms-animation: fadein-keyframes 0.5s;
   -o-animation: fadein-keyframes 0.5s;
   animation: fadein-keyframes 0.5s;
-  position: absolute;
-  top: 5px;
-  margin-left: 5px;
-  opacity: 1px;
+  position: relative;
 }
 @-webkit-keyframes fadein-keyframes {
   from {
@@ -21783,6 +21824,35 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   text-align: left;
   margin-left: 0px;
   margin-right: 0px;
+  margin-left: 0;
+  margin-right: 0;
+}
+#loginBox .form-group input.form-control,
+#joinRoot .form-group input.form-control {
+  position: relative;
+  float: left;
+  width: 91.66666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  float: none;
+  display: inline-block;
+}
+#loginBox .form-group.not-valid:after,
+#joinRoot .form-group.not-valid:after,
+#loginBox .form-group.valid:after,
+#joinRoot .form-group.valid:after,
+#loginBox .form-group:after,
+#joinRoot .form-group:after {
+  position: relative;
+  float: left;
+  width: 8.33333333%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  float: none;
+  display: inline-block;
+  padding-left: 8px;
 }
 #loginBox #passAndRepassFieldsWrapper,
 #joinRoot #passAndRepassFieldsWrapper,
@@ -24043,6 +24113,8 @@ users-list#usersList > .epic-tooltip {
 #homeRoot .panel .form-horizontal,
 #homeRoot #welcomeRoot,
 #homeRoot #welcomeRoot .panel .panel-body .panel-description,
+#homeRoot #loginBox .form-group,
+#homeRoot #joinRoot .form-group,
 #homeRoot #usersListRoot .user-row,
 #homeRoot #usersListRoot .users-table-header,
 #homeRoot .profile-content,
@@ -25882,6 +25954,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 }
 #notificationsComp .notification-list-wrapper .uncommon .additional-info .button-wrapper {
   margin-top: 0;
+  margin-left: 0;
 }
 #notificationsComp .notification-list-wrapper .uncommon .additional-info .button-wrapper .btn-primary {
   display: none !important;

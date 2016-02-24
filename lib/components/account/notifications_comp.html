@@ -22,7 +22,7 @@
           <div class="description">{{notification.description}}</div>
           <div class="button-wrapper" ng-show="notification.link.name != '' || shareEnabled(notification)">
             <button class="btn-primary" ng-if="notification.link.name != ''" ng-click="goToLink(notification.link.url)">{{notification.link.name}}</button>
-            <social-share parameters-by-map="sharingInfo(notification)" show-like="false" inline ng-show="shareEnabled(notification)"></social-share>
+            <social-share parameters-by-map="sharingInfo(notification)" show-like="false" inline ng-if="shareEnabled(notification)"></social-share>
           </div>
         </div>
       </div>

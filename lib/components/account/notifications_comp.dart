@@ -54,6 +54,10 @@ class NotificationsComp {
       "date" : DateTimeService.formatDateWithDayOfTheMonth(notification.createdAt).toUpperCase()
     }).toList();
 
+    //Refresh Sharing Info Cache
+    sharingInfoCache = {};
+    notificationList.forEach( sharingInfo );
+    
     /*
     notificationList = [
       {"id": '0', "type" : UserNotification.ACHIEVEMENT_EARNED,   "info" : {"date": "10 Nov. 2015", "link": "http://127.0.0.1:3030/webclient/web/index.html#/leaderboard", "achievementKey" : "WON_1_VIRTUAL_CONTEST"}},

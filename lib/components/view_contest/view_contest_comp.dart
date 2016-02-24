@@ -288,6 +288,7 @@ class ViewContestComp implements DetachAware {
       } else {
         refreshAllSoccerPlayerList();
         updateLineupSlots();
+        updateFavorites();
       }
     } else {
       _changingPlayer = null;
@@ -302,7 +303,6 @@ class ViewContestComp implements DetachAware {
   void refreshAllSoccerPlayerList() {
     int intId = 0;
     allSoccerPlayers.clear();
-    int maxSalary = remainingSalaryChangingPlayer;
     
     _allInstanceSoccerPlayers.forEach((instanceSoccerPlayer) {
         if (mainPlayer != null && mainPlayer.isPurchased(instanceSoccerPlayer)) {
@@ -314,12 +314,21 @@ class ViewContestComp implements DetachAware {
         } else {
           _updateSingleSoccerPlayerState(instanceSoccerPlayer);
 
-          if (instanceSoccerPlayer.playState == InstanceSoccerPlayer.STATE_NOT_PLAYED && maxSalary >= instanceSoccerPlayer.salary) {
+          if (_showSoccerPlayer(instanceSoccerPlayer)) {
             dynamic slot = _createSlot(instanceSoccerPlayer, intId++);
             allSoccerPlayers.add(slot);
           }
         }
       });
+  }
+  
+  bool _showSoccerPlayer(InstanceSoccerPlayer instanceSoccerPlayer) {
+    if (instanceSoccerPlayer.playState == InstanceSoccerPlayer.STATE_NOT_PLAYED && remainingSalaryChangingPlayer >= instanceSoccerPlayer.salary) {
+      String newSoccerTeamId = instanceSoccerPlayer.soccerPlayer.soccerTeam.templateSoccerTeamId;
+      int sameTeamCount = mainPlayer.instanceSoccerPlayers.where((i) => i.soccerTeam.templateSoccerTeamId == newSoccerTeamId && i.id != _changingPlayer.id).length;
+      return sameTeamCount < 4;
+    }
+    return false;
   }
 
   Map _createSlot(InstanceSoccerPlayer instanceSoccerPlayer, int intId) {
@@ -431,7 +440,8 @@ class ViewContestComp implements DetachAware {
       
     } else {
       if (!isSameTeamOk){
-        print("HAY DEMASIADOS DEL MISMO EQUIPO");
+        alertTooMuchSameTeam();
+        //print("HAY DEMASIADOS DEL MISMO EQUIPO");
       } else if (!isSalaryOk) {
         print("TE PASAS DEL SALARY");
       } else if (!areAvailableChanges) {
@@ -515,6 +525,18 @@ class ViewContestComp implements DetachAware {
           "generic" : getLocalizedText("errordefaultgeneric")
       },
   };
+  
+  void alertTooMuchSameTeam() {
+    modalShow("",
+              '''
+                <p>${getLocalizedText('alert-too-much-same-team')}</p>
+              '''
+              // <ul>${NEEDED_PERMISSIONS.fold('', (prev, curr) => '$prev<li>$curr</li>')}</ul>
+              , onBackdropClick: false
+              , onOk: getLocalizedText("alert-too-much-same-team-ok")
+              , aditionalClass: "change-player-modal"
+            );//.then((_) {    }).catchError((_) {});
+  }
 
   void alertNotEnoughGold(coinsNeeded) {
     modalShow(

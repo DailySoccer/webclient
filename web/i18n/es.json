@@ -534,6 +534,8 @@
       "alert-user-gold-message"         : "Tienes actualmente @MONEY",
       "buy-gold-button"                 : "COMPRAR ORO",
       "alert-no-gold-message"           : "No tienes ORO suficiente.",
+      "alert-too-much-same-team"        : "Tienes demasiados jugadores del mismo equipo. El número máximo de jugadores del mismo equipo son 4.",
+      "alert-too-much-same-team-ok"     : "Ok",
       "yourlineup"                      : "Tu alineación",
       "users"                           : "Usuarios",
       "opponent"                        : "Adversario",

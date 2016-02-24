@@ -58,7 +58,7 @@
         </div>
         <div class="column-score" ng-if="!isViewContestEntryMode">
           <span>{{slot.score}}</span>
-          <button class="change-btt" ng-if="playerIsChangeable(slot)" ng-disabled="changingSoccerId != null && slot['id'] != changingSoccerId" ng-click="requestChange(slot)"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></button>
+          <button class="change-btt" ng-if="playerIsChangeable(slot) || playerIsChanging(slot)" ng-disabled="changingSoccerId != null && slot['id'] != changingSoccerId" ng-click="requestChange(slot)"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></button>
         </div>
         <div class="column-salary" ng-if="isViewContestEntryMode">${{slot.salary}}</div>
       </div>

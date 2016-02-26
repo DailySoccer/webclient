@@ -35,8 +35,8 @@ class ContestEntry {
 
   static Money DEFAULT_PRICE =  new Money.from(Money.CURRENCY_GOLD, 0);
   static List<Money> CHANGES_PRICE = [ new Money.from(Money.CURRENCY_GOLD, 0), 
-                                       new Money.from(Money.CURRENCY_GOLD, 3), 
-                                       new Money.from(Money.CURRENCY_GOLD, 6), 
+                                       new Money.from(Money.CURRENCY_GOLD, 0), 
+                                       new Money.from(Money.CURRENCY_GOLD, 0), 
                                        DEFAULT_PRICE
                                       ];
   

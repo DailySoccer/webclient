@@ -69,7 +69,7 @@ class FBLogin {
         [{'description'   : info.containsKey('description')  ? info['description']  : '',
           'imageUrl'      : info.containsKey('image') ?        info['image']        : '',
           'caption'       : info.containsKey('caption') ?      info['caption']      : '',
-          'url'           : info.containsKey('url') ?          info['url']          : 'jugar.epiceleven.com',
+          'url'           : info.containsKey('url') ?          info['url']          : 'futbolcuatro.epiceleven.com',
           'title'         : info.containsKey('title') ?        info['title']        : null,
           'dartCallback'  : info.containsKey('dartCallback') ? info['dartCallback'] : () => null
         }]

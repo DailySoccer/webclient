@@ -27,6 +27,7 @@ import 'package:webclient/services/tutorial_service.dart';
 import 'dart:math';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/utils/game_info.dart';
+import 'package:logging/logging.dart';
 
 @Component(
     selector: 'enter-contest',
@@ -251,17 +252,23 @@ class EnterContestComp implements DetachAware {
   }
 
   void refreshInfoFromContest() {
+    
+    Logger.root.info("RefreshInfoFromContest");
+
     loadingService.isLoading = false;
 
     GameMetrics.logEvent(GameMetrics.ENTER_CONTEST, {"type": contest.isSimulation? 'virtual' : 'oficial',
                                                      "created": contest.isAuthor(_profileService.user)});
 
+    Logger.root.info("RefreshInfoFromContest -> Metrics done");
     if (_profileService.isLoggedIn && !contest.canEnter(_profileService.user) && !editingContestEntry) {
+      Logger.root.info("RefreshInfoFromContest -> return 1");
       cannotEnterMessageRedirect();
       return;
     }
 
     if (!_profileService.isLoggedIn && contest.isFull) {
+      Logger.root.info("RefreshInfoFromContest -> return 2");
       cannotEnterMessageRedirect();
       return;
     }
@@ -271,8 +278,11 @@ class EnterContestComp implements DetachAware {
     isNegativeBalance = availableSalary < 0;
     initAllSoccerPlayers();
 
+    Logger.root.info("RefreshInfoFromContest -> inited all soc players");
+    
     // Si nos viene el torneo para editar la alineación
     if (editingContestEntry) {
+      Logger.root.info("RefreshInfoFromContest -> Editing, no deberia entrar por aqui creando el lineup");
       ContestEntry contestEntry = contest.getContestEntry(contestEntryId);
       if (contestEntry != null) {
         formationId = contestEntry.formation;
@@ -283,6 +293,7 @@ class EnterContestComp implements DetachAware {
       }
     }
     else {
+      Logger.root.info("RefreshInfoFromContest -> Restore contest entry");
       // TODO: ¿Únicamente restauramos el contestEntry anteriormente registrado si estamos creando uno nuevo?
       restoreContestEntry();
     }
@@ -412,12 +423,14 @@ class EnterContestComp implements DetachAware {
 
   void tabChange(String tab) {
 
+    Logger.root.info("Tab change");
     if (!contestInfoFirstTimeActivation && tab == "contest-info-tab-content") {
       contestInfoFirstTimeActivation = true;
     }
 
     querySelectorAll("#enter-contest-wrapper .tab-pane").classes.remove('active');
     querySelector("#${tab}").classes.add("active");
+    Logger.root.info("Tab change End");
   }
 
   void onLineupSlotSelected(int slotIndex) {

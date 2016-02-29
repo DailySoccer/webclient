@@ -14,6 +14,7 @@ import 'package:webclient/components/modal_comp.dart';
 import 'package:webclient/services/server_error.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:logging/logging.dart';
 
 @Component(
   selector: 'contest-info',
@@ -34,6 +35,7 @@ class ContestInfoComp implements DetachAware {
 
   ContestInfoComp(ScreenDetectorService scrDet, RouteProvider routeProvider, this.loadingService, this._router, this._contestsService, this._profileService, this._flashMessage) {
 
+    Logger.root.info("ContestInfoComp --> constructor");
     _streamListener = scrDet.mediaScreenWidth.listen(onScreenWidthChange);
 
     isModal = (_router.activePath.length > 0) && (_router.activePath.first.name == 'lobby');
@@ -51,15 +53,19 @@ class ContestInfoComp implements DetachAware {
       'prizes'          : []
     };
 
+    Logger.root.info("ContestInfoComp --> constructor 1");
     contestId = routeProvider.route.parameters['contestId'];
 
     loadingService.isLoading = true;
 
+    Logger.root.info("ContestInfoComp --> constructor 2");
     _contestsService.refreshContestInfo(contestId)
       .then((_) {
+        Logger.root.info("ContestInfoComp --> refresh contest info");
         updateContestInfo();
       })
       .catchError((ServerError error) {
+        Logger.root.info("ContestInfoComp --> ERROR REFRESH CONTEST");
         _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
       }, test: (error) => error is ServerError);
   }
@@ -76,6 +82,7 @@ class ContestInfoComp implements DetachAware {
   }
 
   void updateContestInfo() {
+    Logger.root.info("ContestInfoComp --> updateContestInfo");
 
     loadingService.isLoading = false;
 
@@ -89,6 +96,8 @@ class ContestInfoComp implements DetachAware {
       });
     }
 
+    Logger.root.info("ContestInfoComp --> updateContestInfo 1");
+    
     currentInfoData["name"]           = contest.name;
     currentInfoData["description"]    = contest.description;
     currentInfoData["entry"]          = contest.entryFee.toString();
@@ -124,6 +133,7 @@ class ContestInfoComp implements DetachAware {
   }
 
   void enterContest() {
+    Logger.root.info("ContestInfoComp --> enterContest");
     _router.go('enter_contest', { "contestId": contestId, "parent": "lobby", "contestEntryId": "none" });
   }
 
@@ -132,12 +142,14 @@ class ContestInfoComp implements DetachAware {
   }
 
   void tabChange(String tab) {
+    Logger.root.info("ContestInfoComp --> tabChange");
     querySelectorAll(".tab-pane").classes.remove('active');
 
     Element contentTab = querySelector("#" + tab);
     if (contentTab != null) {
       contentTab.classes.add("active");
     }
+    Logger.root.info("ContestInfoComp --> tabChange end");
   }
 
   var _streamListener;

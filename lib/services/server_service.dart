@@ -440,11 +440,15 @@ class DailySoccerServer implements ServerService {
         })
         .catchError((error) {
 
+          Logger.root.info("CallLoopVersionError: ${error.toString()}");
           _checkServerVersion(error);
 
           ServerError serverError = new ServerError.fromHttpResponse(error);
 
+          Logger.root.info("CallLoopVersionServerError: ${serverError.toString()}");
+          
           if (serverError.isConnectionError || serverError.isServerNotFoundError) {
+            Logger.root.info("CallLoopVersionServerError: C:${serverError.isConnectionError} || Serv!Found:${serverError.isServerNotFoundError}");
             _notify(ON_ERROR, {ServerService.URL: url, ServerService.TIMES: retryTimes, ServerService.SECONDS_TO_RETRY: 3});
 
             Logger.root.severe("_innerServerCall error: $error, url: $url, retry: $retryTimes");
@@ -457,10 +461,12 @@ class DailySoccerServer implements ServerService {
             }
           }
           else if (serverError.isServerExceptionError) {
-            // Si se ha producido una excepcion en el servidor, navegaremos a la landing/lobby para forzar "limpieza" en el cliente
+            Logger.root.info("CallLoopVersionServerError: serverError.isServerExceptionError");
+                        // Si se ha producido una excepcion en el servidor, navegaremos a la landing/lobby para forzar "limpieza" en el cliente
             window.location.assign(Uri.parse(window.location.toString()).path);
           }
           else {
+            Logger.root.info("CallLoopVersionServerError: Else");
             _processError(serverError, url, completer);
           }
         });
@@ -520,12 +526,14 @@ class DailySoccerServer implements ServerService {
   // Cuando se produce una actualizacion del servidor, forzamos una recarga de la pagina en el cliente para asegurarnos
   // de que siempre tenemos la ultima version
   void _checkServerVersion(var httpResponse) {
-
+    
     var serverVersion = httpResponse.headers("release-version");
-
+    
     if (serverVersion != null) {
       if (_currentVersion != null && _currentVersion != serverVersion) {
+        Logger.root.info("INCOHERENT VERSION ==> VERSIONES ::::::  CURRENT: $_currentVersion |||| SERVER: $serverVersion");
         if (serverVersion!="devel") {
+          Logger.root.info("RELOAD LOCATION ==> VERSIONES ::::::  CURRENT: $_currentVersion |||| SERVER: $serverVersion");
           window.location.reload();
         }
       }

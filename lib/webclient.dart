@@ -651,7 +651,9 @@ class WebClientApp extends Module {
 
   void _preEnterPage(RoutePreEnterEvent event, Router router, {int visibility}) {
 
+    Logger.root.info("Preenter --> page");
     LoadingService.disable();
+    Logger.root.info("Preenter --> Context: ${event.path}");
     DailySoccerServer.startContext(event.path);
 
     _addBodyStyles(event.route.name);
@@ -663,11 +665,15 @@ class WebClientApp extends Module {
           (visibility == _ONLY_WHEN_LOGGED_OUT && ProfileService.instance.isLoggedIn)) {
         bEnter = false;
       }
+      Logger.root.info("Preenter --> Evaluation bEnter (${visibility == _ONLY_WHEN_LOGGED_IN} && ${!ProfileService.instance.isLoggedIn}) || (${visibility == _ONLY_WHEN_LOGGED_OUT} && ${ProfileService.instance.isLoggedIn})");
 
       // Si el tutorial está activo y la ruta no está permitida, nos salimos del tutorial...
       if (TutorialService.isActivated && !TutorialService.Instance.CurrentTutorial.isTransitionAllowed(event.route.name)) {
+        Logger.root.info("Preenter --> Skiping Tutorial");
         TutorialService.Instance.skipTutorial();
       }
+      
+      Logger.root.info("Preenter --> Allow: ${bEnter}");
 
       if (!bEnter) {
         router.go("home", {}, replace:true);

@@ -1517,11 +1517,11 @@ tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", ne
   <div class="default-section-header">{{getLocalizedText('title')}}</div>
 
   <!-- Nav tabs -->
-  <!--ul class="help-info-tabs" role="tablist">
+  <ul class="help-info-tabs" role="tablist">
     <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('tutorial-content')">{{getLocalizedText('tutorials')}}</a></li>
     <li><a role="tab" data-toggle="tab" ng-click="tabChange('how-works-content')">{{getLocalizedText('how-it-works')}}</a></li>
     <li><a role="tab" data-toggle="tab" ng-click="tabChange('rules-scores-content')">{{getLocalizedText('rules')}}</a></li>
-  </ul-->
+  </ul>
 
   <div class="tab-pane active" id="tutorial-content">
     <div class="block-light">
@@ -1529,19 +1529,19 @@ tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", ne
     </div>
   </div>
 
-  <!--div class="tab-pane" id="how-works-content">
+  <div class="tab-pane" id="how-works-content">
     <how-it-works></how-it-works>
-  </div-->
+  </div>
   
-  <!--div class="tab-pane" id="rules-scores-content">
+  <div class="tab-pane" id="rules-scores-content">
     <!--div class="block-dark">
       <div class="title">SCORING AND RULES</div>
       <div class="scores-wrapper">
         <scoring-rules></scoring-rules>
       </div>
     </div-->
-    <!--rules-comp></rules-comp>
-  </div-->
+    <rules-comp></rules-comp>
+  </div>
 
 </div>
 <ng-view></ng-view>
@@ -1884,14 +1884,15 @@ tc.put("packages/webclient/components/legalese_and_help/tutorials_comp.html", ne
     <!--p class="tutorial-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p-->
     <button type="button" class="button-go-tutorial" ng-click="goTutorial(tutorialIniciacionName)">{{getLocalizedText("go-tutorial")}}</button>
   </div>
-  <!--div class="tutorial-tile">
-    <h1 class="tutorial-title">{{getLocalizedText("rankings")}}</h1>
-    <span class="incoming">{{getLocalizedText("incoming")}}</span>
-  </div-->
   <div class="tutorial-tile">
-    <h1 class="tutorial-title">{{getLocalizedText("how-to-play")}}</h1>
+    <h1 class="tutorial-title">{{getLocalizedText("rankings")}}</h1>
     <!--p class="tutorial-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p-->
-    <button type="button" class="button-go-tutorial" ng-click="goToHowToPlay()">{{getLocalizedText("go-to-help")}}</button>
+    <span class="incoming">{{getLocalizedText("incoming")}}</span>
+  </div>
+  <div class="tutorial-tile">
+    <h1 class="tutorial-title">{{getLocalizedText("how-to-create-contest")}}</h1>
+    <!--p class="tutorial-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p-->
+    <button type="button" class="button-go-tutorial" ng-click="goToPage('howtocreatecontest')">{{getLocalizedText("go-to-help")}}</button>
   </div>
 </div>"""));
 tc.put("packages/webclient/components/lobby_f2p_comp.html", new HttpResponse(200, r"""<div id="lobbyf2pRoot">
@@ -2161,7 +2162,7 @@ tc.put("packages/webclient/components/social/facebook_share_comp.html", new Http
     <img src="images/iconFacebook.png"/> Compartir
   </div>
   <div class="facebook-like"  ng-show="showLike">
-    <fb:like class="facebook-like-xfbml" href="https://www.facebook.com/Futbolcuatro" layout="button_count" action="like" />
+    <fb:like class="facebook-like-xfbml" href="https://www.facebook.com/epicelevenfantasy" layout="button_count" action="like" />
   </div>
 </div>"""));
 tc.put("packages/webclient/components/social/friend_info_comp.html", new HttpResponse(200, r"""<div class="friend-element-wrapper">
@@ -2181,7 +2182,7 @@ tc.put("packages/webclient/components/social/twitter_share_comp.html", new HttpR
   <a class="twitter-share-button-wrapper" target="_blank" ng-href="https://twitter.com/intent/tweet?{{intentTweetParams}}" ng-click="onTweet()">
     <span class="twitter-share-button"><img src="images/twitterTransparentBG.png">Tweet</span>
   </a>
-  <a class="twitter-share-button-wrapper" target="_blank" ng-href="https://twitter.com/intent/follow?screen_name=Futbol_cuatro" ng-click="onFollow()" ng-if="showLike">
+  <a class="twitter-share-button-wrapper" target="_blank" ng-href="https://twitter.com/intent/follow?screen_name=epiceleven" ng-click="onFollow()" ng-if="showLike">
     <span class="twitter-share-button"><img src="images/twitterTransparentBG.png">Follow</span>
   </a>
   <!--div id="twitterShareButton" class="twitter-share-button-wrapper"></div-->
@@ -2267,7 +2268,7 @@ tc.put("packages/webclient/components/view_contest/fantasy_team_comp.html", new 
         </div>
         <div class="column-score" ng-if="!isViewContestEntryMode">
           <span>{{slot.score}}</span>
-          <button class="change-btt" ng-if="playerIsChangeable(slot) || playerIsChanging(slot)" ng-disabled="changingSoccerId != null && slot['id'] != changingSoccerId" ng-click="requestChange(slot)"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></button>
+          <button class="change-btt" ng-if="playerIsChangeable(slot)" ng-disabled="changingSoccerId != null && slot['id'] != changingSoccerId" ng-click="requestChange(slot)"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></button>
         </div>
         <div class="column-salary" ng-if="isViewContestEntryMode">${{slot.salary}}</div>
       </div>

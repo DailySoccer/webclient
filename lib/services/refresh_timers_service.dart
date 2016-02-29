@@ -33,18 +33,20 @@ class RefreshTimersService {
   }
 
   Timer addRefreshTimer(String name, Function updateFunction, [String timerName] ) {
-
-    Timer timer = new Timer.periodic(new Duration(seconds: (timerName == null) ? timersDef[name] : timersDef[timerName]), (Timer t) {
-      if (!isRefreshLocked(name)) {
-        updateFunction();
-      }
-    });
     if (_timers.containsKey(name) && _timers[name].isActive) {
         Logger.root.warning("Timer: $name cancelled");
         _timers[name].cancel();
     }
-
-    _timers[name] = timer;
+    
+    /*Timer timer = new Timer.periodic(new Duration(seconds: (timerName == null) ? timersDef[name] : timersDef[timerName]), (Timer t) {
+      if (!isRefreshLocked(name)) {
+        updateFunction();
+      }
+    });*/
+    
+    Timer timer = updateTimer(name, updateFunction, timerName);
+    
+    //_timers[name] = timer;
 
     // Realizamos la primera llamada a la función solicitada
     updateFunction();
@@ -68,6 +70,17 @@ class RefreshTimersService {
     }
   }
 
+  Timer updateTimer(String name, Function updateFunction, [String timerName]) {
+    _timers[name] = new Timer(new Duration(seconds: (timerName == null) ? timersDef[name] : timersDef[timerName]), () {
+      if (!isRefreshLocked(name)) {
+        updateFunction();
+      }
+      updateTimer(name, updateFunction, timerName);
+    });
+    
+    return _timers[name];
+  }
+  
   Map<String, Timer> _timers = {};
   bool _focus = true;
 }

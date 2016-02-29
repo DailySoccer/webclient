@@ -26,6 +26,8 @@ class RefreshTimersService {
   static const String SECONDS_TO_UPDATE_SIMULATOR_STATE       = "SECONDS_TO_UPDATE_SIMULATOR_STATE";
   static const String SECONDS_TO_UPDATE_PROMOS                = "SECONDS_TO_UPDATE_PROMOS";
   static const String SECONDS_TO_REFRESH_PROMOS               = "SECONDS_TO_REFRESH_PROMOS";
+  
+  static const int SECONDS_TO_CHECK_FOCUS = 1;
 
   RefreshTimersService() {
     window.onBlur.listen( (_) => _focus = false );
@@ -71,7 +73,7 @@ class RefreshTimersService {
   }
 
   Timer updateTimer(String name, Function updateFunction, [String timerName]) {
-    _timers[name] = new Timer(new Duration(seconds: (timerName == null) ? timersDef[name] : timersDef[timerName]), () {
+    _timers[name] = new Timer(new Duration(seconds: !_focus? SECONDS_TO_CHECK_FOCUS : (timerName == null) ? timersDef[name] : timersDef[timerName]), () {
       if (!isRefreshLocked(name)) {
         updateFunction();
       }

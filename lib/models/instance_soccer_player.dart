@@ -20,12 +20,12 @@ class InstanceSoccerPlayer {
     5600, 5700, 5800, 5900, 6000, 6200, 6400, 6700, 7500, 8000, 13000
     ];
 
-  static List<int> LEVEL_PRICE = [
-    0, 7, 16, 28, 43, 74, 135, 228, 350, 534, 903
+  static List<num> LEVEL_BASE = [
+    0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.7, 0.8, 0.9, 1.0
     ];
-
+  
   static List<num> LEVEL_MULTIPLIER = [
-    0, 0.04378283713, 0.05429071804, 0.06654991243, 0.08143607706, 0.09894921191, 0.1204028021,  0.1457968476,  0.1760070053,  0.2127845884
+    0, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512
     ];
 
   SoccerPlayer soccerPlayer;
@@ -50,12 +50,8 @@ class InstanceSoccerPlayer {
   Money moneyToBuy(Contest contest, num managerLevel) {
     Money result = new Money.from(Money.CURRENCY_GOLD, 0);
     if (managerLevel < level) {
-      num prize = contest.prizeMin.amount - contest.entryFee.amount;
-      num sum = 0;
-      for (int i=managerLevel.toInt(); i<level; i++) {
-        sum += LEVEL_MULTIPLIER[i] * prize;
-      }
-      result.amount = (contest.entryFee.amount + sum).round();
+      result.amount = contest.entryFee.amount * LEVEL_BASE[managerLevel.toInt()] * LEVEL_MULTIPLIER[level - managerLevel.toInt()];
+      result.amount = (result.amount).round();
     }
     return result;
   }

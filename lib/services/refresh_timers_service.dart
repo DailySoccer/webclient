@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/services/tutorial_service.dart';
+import 'dart:html';
 
 @Injectable()
 class RefreshTimersService {
@@ -26,16 +27,18 @@ class RefreshTimersService {
   static const String SECONDS_TO_UPDATE_PROMOS                = "SECONDS_TO_UPDATE_PROMOS";
   static const String SECONDS_TO_REFRESH_PROMOS               = "SECONDS_TO_REFRESH_PROMOS";
 
-  RefreshTimersService();
+  RefreshTimersService() {
+    window.onBlur.listen( (_) => _focus = false );
+    window.onFocus.listen( (_) => _focus = true );
+  }
 
- Timer addRefreshTimer(String name, Function updateFunction, [String timerName] ) {
+  Timer addRefreshTimer(String name, Function updateFunction, [String timerName] ) {
 
     Timer timer = new Timer.periodic(new Duration(seconds: (timerName == null) ? timersDef[name] : timersDef[timerName]), (Timer t) {
       if (!isRefreshLocked(name)) {
         updateFunction();
       }
     });
-
     if (_timers.containsKey(name) && _timers[name].isActive) {
         Logger.root.warning("Timer: $name cancelled");
         _timers[name].cancel();
@@ -53,7 +56,7 @@ class RefreshTimersService {
     return timer;
   }
 
-  bool isRefreshLocked(String name) => TutorialService.isActivated && TutorialService.Instance.isRefreshTimerLocked(name);
+  bool isRefreshLocked(String name) => (TutorialService.isActivated && TutorialService.Instance.isRefreshTimerLocked(name)) || !_focus;
 
   void cancelTimer(String name) {
     if (TutorialService.isActivated) {
@@ -66,4 +69,5 @@ class RefreshTimersService {
   }
 
   Map<String, Timer> _timers = {};
+  bool _focus = true;
 }

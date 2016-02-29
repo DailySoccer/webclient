@@ -9,6 +9,7 @@ import 'package:webclient/utils/host_server.dart';
 import 'dart:html';
 import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/models/contest.dart';
+import 'package:webclient/models/competition.dart';
 
 
 abstract class ServerService {
@@ -283,6 +284,12 @@ class DailySoccerServer implements ServerService {
   }
 
   Future<Map> getSoccerPlayersByCompetition(String competitionId) {
+    if (competitionId == Competition.LEAGUE_ES_ID) {
+      return _innerServerCall("${HostServer.url}/get_soccer_players_by_competition_${Competition.LEAGUE_ES_ID}");
+    }
+    else if (competitionId == Competition.LEAGUE_UK_ID) {
+      return _innerServerCall("${HostServer.url}/get_soccer_players_by_competition_${Competition.LEAGUE_UK_ID}");
+    }
     return _innerServerCall("${HostServer.url}/get_soccer_players_by_competition/$competitionId");
   }
 

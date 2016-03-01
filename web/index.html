@@ -241,8 +241,9 @@
       // facebook sdk
       // https://developers.facebook.com/docs/javascript/examples
       function facebookLogin(callback) {
+        console.log(" - FB REQUEST => Login");
 				facebookConnectPlugin.login(["public_profile", "email", "user_friends"],
-						callback,
+						function (info ) { console.log(" - FB REQUEST => Login r:" + info); callback(info); },
 						function (error) { console.log("" + error) });
         /*
         waitForFacebook(function() {
@@ -253,8 +254,9 @@
       }
       
       function facebookLoginStatus(callback) {
+        console.log(" - FB REQUEST => LoginStatus");
         facebookConnectPlugin.getLoginStatus(
-            callback,
+            function (info ) { console.log(" - FB REQUEST => LoginStatus r:" + info); callback(info); },
             function (error) { console.log("" + error) });
         /*
         waitForFacebook(function() {
@@ -266,10 +268,19 @@
       }
 
       function facebookPermissions(callback) {
+        console.log(" - FB REQUEST => Permissions");
         facebookConnectPlugin.api('/me/permissions', 
             ["public_profile", "email", "user_friends"], 
-            callback,
-            function (error) { console.log("" + error) });
+            function (response) { 
+              if (response && !response.error) {
+                response['error'] = false;
+              }
+              console.log(" - FB REQUEST => Permissions r:" + response); 
+              callback(response);
+            },
+            function (error) { 
+              console.log("" + error) }
+            );
         /*
         waitForFacebook(function() {
           FB.api('/me/permissions', function (response) {
@@ -283,6 +294,7 @@
       }
 
       function facebookLoginReRequest(callback) {
+        console.log(" - FB REQUEST => LoginReRequest");
         waitForFacebook(function() {
           console.log("js facebook rerequest");
           FB.login(callback, {
@@ -293,13 +305,29 @@
       }
       
       function facebookProfileInfo(callback) {
-        facebookConnectPlugin.api('/me', {fields: 'id, name, email'}, 
+        console.log(" - FB REQUEST => ProfileInfo");
+        facebookConnectPlugin.api('/me', ["public_profile", "email", "user_friends"], 
             function(response) {
                if (response && !response.error) {
                  response['error'] = false;
-                 response['accessToken'] = FB.getAccessToken();
+                 
+                 facebookConnectPlugin.getAccessToken(function(token) {
+                        response['accessToken'] = token;
+                        console.log(" - FB REQUEST => ProfileInfo r:");
+                        console.log(response);
+                        callback(response);
+                     }, function(err) {
+                        response['error'] = true;
+                        response['errorInfo'] = err;
+                        console.log(" - FB REQUEST => ProfileInfo r:");
+                        console.log(response);
+                        callback(response);
+                     });
+               } else {
+                 console.log(" - FB REQUEST => ProfileInfo r:");
+                 console.log(response);
+                 callback(response);
                }
-               callback(response);
              },
             function (error) { console.log("" + error) });
         /*

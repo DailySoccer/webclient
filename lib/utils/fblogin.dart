@@ -57,16 +57,26 @@ class FBLogin {
     Completer<Map> completer = new Completer<Map>();
     
     JsUtils.runJavascript(null, "facebookPermissions", [(js.JsObject permissionsResponse) {
+      print(" - FB REQUEST => Permissions CB ${permissionsResponse["error"]}");
       if (permissionsResponse["error"] == false) {
+        print(" - FB REQUEST => Permissions 1");
         js.JsArray permissionsJS = permissionsResponse['data'];
+        print(" - FB REQUEST => Permissions 2");
         Map permissions = {};
-        permissionsJS.forEach( (p) => permissions[p['permission']] = (p['status'] == 'granted') );
+        print(" - FB REQUEST => Permissions 3");
+        permissionsJS.forEach( (p) {
+          print(" - FB REQUEST => Permissions CB ${p['permission']} - ${p['status']}");
+          permissions[p['permission']] = (p['status'] == 'granted');
+        });
+        print(" - FB REQUEST => Permissions 4");
         
         completer.complete(permissions);
       } else {
+        print(" - FB REQUEST => Permissions -1");
         Logger.root.severe (ProfileService.decorateLog("WTF - 8696 - RunJS - Facebook Get Permissions Error: " + permissionsResponse["error"]['message']));
         completer.completeError({});
       }
+      print(" - FB REQUEST => Permissions END");
     }]);
     return completer.future;  
   }
@@ -89,10 +99,13 @@ class FBLogin {
 
   static void loginCallback(loginResponse) {
     getFacebookPermissions().then( (permissions) {
+      print(" - FB REQUEST => Permissions Then ${permissions.toString()}");
       if ( _checkPermissions(permissions) ) {
+        print(" - FB REQUEST => Permissions Checked");
         serverLoginWithFB();
       } else {
         // ERROR
+        print(" - FB REQUEST => Permissions Check ERROR");
         GameMetrics.logEvent(GameMetrics.LOGIN_FB_PERMISSIONS_DENIED, permissions);
         Logger.root.severe (ProfileService.decorateLog("WTF - 8695 - Facebook Permissions Insuficent: $permissions"));
         rerequestLoginModal();
@@ -101,11 +114,14 @@ class FBLogin {
   }
   
   static void serverLoginWithFB() {
+    print(" - FB REQUEST => ProfileInfoRequest");
     profileInfo().then((info) {
               String accessToken = info['accessToken'];
               String email       = info['email'];
               String id          = info['id'];
               String name        = info['name'];
+              print(" - FB REQUEST => ProfileInfoRequest Then: accessToken => $accessToken || email => $email || id => $id || name => $name ");
+                     
               // LOGIN
               Logger.root.info (ProfileService.decorateLog("Server Login with Facebook"));
               _profileManager.facebookLogin(accessToken, id, name, email)
@@ -123,9 +139,12 @@ class FBLogin {
   
   static Future<Map> profileInfo() {
     Completer<Map> completer = new Completer<Map>();
+    print(" - FB REQUEST => ProfileInfoRequest In");
     
     JsUtils.runJavascript(null, "facebookProfileInfo", [(js.JsObject profileInfoResponse) {
       Map info = {};
+      print(" - FB REQUEST => ProfileInfoRequest CB");
+      print(" - FB REQUEST => ProfileInfoRequest ${profileInfoResponse["error"]}");
       if (!profileInfoResponse["error"]) {
         info['accessToken'] = profileInfoResponse['accessToken'];
         info['email']       = profileInfoResponse['email'];
@@ -138,6 +157,8 @@ class FBLogin {
         image['isDefault']  = profileInfoResponse['picture']['data']['is_silhouette'];
         
         _profileImageCache[info['id']] = image;
+        print(" - FB REQUEST => ProfileInfoRequest ${profileInfoResponse["accessToken"]}, ${profileInfoResponse["email"]}, ${profileInfoResponse["id"]}, ${profileInfoResponse["name"]}");
+
         
         completer.complete(info);
       } else {
@@ -235,7 +256,11 @@ class FBLogin {
   }
   
   static bool _checkPermissions(Map permissions) {
-    return NEEDED_PERMISSIONS.every( (p) => permissions[p]);
+    return NEEDED_PERMISSIONS.every( (p) {
+
+      print(" - FB REQUEST => Permissions Check ${p} -> ${permissions[p]}");
+      return permissions[p];
+    });
   }
 
   String _state = null;

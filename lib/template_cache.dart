@@ -314,12 +314,13 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
         <div  class="user-form-field facebook-form-wrapper">
           <div class="form-description">{{GetLocalizedText('enterwithfacebook')}}</div>
           <div class="fb-button-wrapper">
-            <div class="fb-login-button" data-size="xlarge" onlogin="jsLoginFB()"
+            <!--div class="fb-login-button" data-size="xlarge" onlogin="jsLoginFB()"
                  data-scope="public_profile,email,user_friends"
                  ng-show="isFacebookConnected"></div>
             <div class="fb-login-button" data-size="xlarge" onlogin="jsLoginFB()"
                  data-scope="public_profile,email,user_friends"
-                 data-show-faces="true" data-max-rows="1" ng-show="!isFacebookConnected"></div>
+                 data-show-faces="true" data-max-rows="1" ng-show="!isFacebookConnected"></div-->
+            <button class="fb-login-button-smartphone" ng-click="makeFacebookLogin()"> FB Login </button>
           </div>
         </div>
         <!-- -->

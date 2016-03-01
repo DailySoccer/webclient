@@ -12,6 +12,7 @@
   -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!--meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *"-->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <meta property="og:url"          content="http://futbolcuatro.epiceleven.com/" />
@@ -150,6 +151,7 @@
     </div>
 
     <script src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="cordova.js"></script>
     <script>
 
       window.serverLoggerInfo = window.serverLoggerInfo || function(text) {
@@ -169,6 +171,42 @@
           serverLoggerServereCB(text);
         }
       };
+      /*
+      var app = {
+        // Application Constructor
+        initialize: function() {
+            this.bindEvents();
+        },
+        // Bind Event Listeners
+        //
+        // Bind any events that are required on startup. Common events are:
+        // 'load', 'deviceready', 'offline', and 'online'.
+        bindEvents: function() {
+            document.addEventListener('deviceready', this.onDeviceReady, false);
+        },
+        // deviceready Event Handler
+        //
+        // The scope of 'this' is the event. In order to call the 'receivedEvent'
+        // function, we must explicitly call 'app.receivedEvent(...);'
+        onDeviceReady: function() {
+            app.receivedEvent('deviceready');
+        },
+        // Update DOM on a Received Event
+        receivedEvent: function(id) {
+            var parentElement = document.getElementById(id);
+            var listeningElement = parentElement.querySelector('.listening');
+            var receivedElement = parentElement.querySelector('.received');
+
+            listeningElement.setAttribute('style', 'display:none;');
+            receivedElement.setAttribute('style', 'display:block;');
+
+            console.log('Received Event: ' + id);
+        }
+      };
+		
+			app.initialize();
+			*/
+
 
       var fbIsInit = false;
       var fbTimesWaitErrorLogged = false;
@@ -203,21 +241,36 @@
       // facebook sdk
       // https://developers.facebook.com/docs/javascript/examples
       function facebookLogin(callback) {
+				facebookConnectPlugin.login(["public_profile", "email", "user_friends"],
+						callback,
+						function (error) { console.log("" + error) });
+        /*
         waitForFacebook(function() {
           console.log("js facebook login");
           FB.login(callback, {scope: 'email, public_profile, user_friends'});
         });
+        */
       }
       
       function facebookLoginStatus(callback) {
+        facebookConnectPlugin.getLoginStatus(
+            callback,
+            function (error) { console.log("" + error) });
+        /*
         waitForFacebook(function() {
           FB.getLoginStatus(function (response) {
             callback(response);
           });
         });
+        */
       }
 
       function facebookPermissions(callback) {
+        facebookConnectPlugin.api('/me/permissions', 
+            ["public_profile", "email", "user_friends"], 
+            callback,
+            function (error) { console.log("" + error) });
+        /*
         waitForFacebook(function() {
           FB.api('/me/permissions', function (response) {
             if (response && !response.error) {
@@ -226,6 +279,7 @@
             callback(response);
           });
         });
+        */
       }
 
       function facebookLoginReRequest(callback) {
@@ -239,6 +293,16 @@
       }
       
       function facebookProfileInfo(callback) {
+        facebookConnectPlugin.api('/me', {fields: 'id, name, email'}, 
+            function(response) {
+               if (response && !response.error) {
+                 response['error'] = false;
+                 response['accessToken'] = FB.getAccessToken();
+               }
+               callback(response);
+             },
+            function (error) { console.log("" + error) });
+        /*
         waitForFacebook(function() {
           FB.api('/me', {fields: 'picture, id, name, email'},
              function(response) {
@@ -250,6 +314,7 @@
              }
           );
         });
+        */
       }
       
       function facebookProfilePhoto(facebookId, callback) {
@@ -375,7 +440,7 @@
 
     <!-- Facebook Stuff -->
     <script>
-      window.fbAsyncInit = function() {
+      /*window.fbAsyncInit = function() {
         FB.init({
           appId      : '1684730951797091',
           // appId    : '1043008439063842', // TestAPP
@@ -404,7 +469,7 @@
          js = d.createElement(s); js.id = id;
          js.src = "https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v2.5";
          fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
+      }(document, 'script', 'facebook-jssdk'));*/
     </script>
     <script>
       window.twitterShare = window.twitterShare || function(event) {

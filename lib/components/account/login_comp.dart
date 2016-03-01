@@ -127,6 +127,10 @@ class LoginComp implements ShadowRootAware {
   }
 
   bool get isFacebookConnected => _fbLogin.state == "connected";
+  
+  void makeFacebookLogin() {
+    _fbLogin.loginFB();
+  }
 
   FBLogin _fbLogin;
 

@@ -29,7 +29,14 @@ class FBLogin {
   void loginFB() {
     //js.JsObject fb = js.context["FB"];
     //fb.callMethod("getLoginStatus", [onGetLoginStatus]);
+    
+    
     JsUtils.runJavascript(null, "facebookLoginStatus", [onGetLoginStatus]);
+    /*JsUtils.runJavascript(null, "facebookLogin", [(js.JsObject loginResponse) {
+          if (loginResponse["status"] == "connected") {
+            loginCallback(loginResponse);
+          }
+        }]);*/
   }
 
   void onGetLoginStatus(statusResponse) {
@@ -116,7 +123,7 @@ class FBLogin {
   
   static Future<Map> profileInfo() {
     Completer<Map> completer = new Completer<Map>();
-
+    
     JsUtils.runJavascript(null, "facebookProfileInfo", [(js.JsObject profileInfoResponse) {
       Map info = {};
       if (!profileInfoResponse["error"]) {

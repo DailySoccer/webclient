@@ -121,6 +121,13 @@ class FBLogin {
         info['email']       = profileInfoResponse['email'];
         info['id']          = profileInfoResponse['id'];
         info['name']        = profileInfoResponse['name'];
+        info['picture']     = profileInfoResponse['picture'];
+        
+        Map image = {};
+        image['imageUrl']   = profileInfoResponse['picture']['data']['url'];
+        image['isDefault']  = profileInfoResponse['picture']['data']['is_silhouette'];
+        
+        _profileImageCache[info['id']] = image;
         
         completer.complete(info);
       } else {
@@ -157,7 +164,7 @@ class FBLogin {
   }
   
   static Map profileImage(String facebookId) {
-    Map defaultImage = { 'isDefault' : true, 'url': null };
+    Map defaultImage = { 'isDefault' : true, 'imageUrl': null };
     if (facebookId == null || facebookId == '') return defaultImage;
 
     if (_profileImageCache.containsKey(facebookId)) {
@@ -185,7 +192,20 @@ class FBLogin {
     
     JsUtils.runJavascript(null, "facebookFriends", [facebookId, (js.JsObject profileInfoResponse) {
           if (profileInfoResponse["error"] == false) {
-            List<String> idList = new List<String>.from(profileInfoResponse['idList']);
+            
+            List<String> idList = new List<String>();
+            int length = profileInfoResponse['friendsInfo']['length'];
+            
+            for (int i = 0; i < length; i++) {
+              var currentFriend = profileInfoResponse['friendsInfo'][i];
+              idList.add(currentFriend['id']);
+
+              _profileImageCache[currentFriend['id']] = { 
+                      'imageUrl'  : currentFriend['image']['url'],
+                      'isDefault' : currentFriend['image']['isDefault']
+                    };
+            }
+            
             completer.complete(idList);
           } else {
             Logger.root.severe (ProfileService.decorateLog("WTF - 3511 - RunJS - Facebook Get Friends '${profileInfoResponse["error"]['message']}'"));

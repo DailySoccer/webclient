@@ -41,10 +41,13 @@ class FBLogin {
 
   void onGetLoginStatus(statusResponse) {
     if (statusResponse["status"] == "connected") {
+      print(" - FB EVAL => CONNECTED");
       loginCallback(statusResponse);
     } else if (statusResponse["status"] == 'not_authorized') {
+      print(" - FB EVAL => NOT AUTH");
       // El usuario no ha autorizado el uso de su facebook.
     } else {
+      print(" - FB EVAL => CONNECTED AND AUTH");
       JsUtils.runJavascript(null, "facebookLogin", [(js.JsObject loginResponse) {
         if (loginResponse["status"] == "connected") {
           loginCallback(loginResponse);
@@ -146,20 +149,22 @@ class FBLogin {
       print(" - FB REQUEST => ProfileInfoRequest CB");
       print(" - FB REQUEST => ProfileInfoRequest ${profileInfoResponse["error"]}");
       if (!profileInfoResponse["error"]) {
+        print(" - FB REQUEST => ProfileInfoRequest 1");
         info['accessToken'] = profileInfoResponse['accessToken'];
         info['email']       = profileInfoResponse['email'];
         info['id']          = profileInfoResponse['id'];
         info['name']        = profileInfoResponse['name'];
         info['picture']     = profileInfoResponse['picture'];
-        
+
+        print(" - FB REQUEST => ProfileInfoRequest 2");
         Map image = {};
         image['imageUrl']   = profileInfoResponse['picture']['data']['url'];
         image['isDefault']  = profileInfoResponse['picture']['data']['is_silhouette'];
-        
+
+        print(" - FB REQUEST => ProfileInfoRequest 3");
         _profileImageCache[info['id']] = image;
         print(" - FB REQUEST => ProfileInfoRequest ${profileInfoResponse["accessToken"]}, ${profileInfoResponse["email"]}, ${profileInfoResponse["id"]}, ${profileInfoResponse["name"]}");
 
-        
         completer.complete(info);
       } else {
         Logger.root.severe (ProfileService.decorateLog("WTF - 8692 - RunJS - Facebook Get Profile Info ${profileInfoResponse["error"]['message']}"));

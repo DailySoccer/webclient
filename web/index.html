@@ -274,7 +274,7 @@
         console.log(" - FB REQUEST => Login");
 				facebookConnectPlugin.login(["public_profile", "email", "user_friends"],
 						function (info ) { console.log(" - FB REQUEST => Login r:" + info); callback(info); },
-						function (error) { console.log("" + error) });
+						function (error) { console.log(error) });
         /*
         waitForFacebook(function() {
           console.log("js facebook login");
@@ -287,7 +287,7 @@
         console.log(" - FB REQUEST => LoginStatus");
         facebookConnectPlugin.getLoginStatus(
             function (info ) { console.log(" - FB REQUEST => LoginStatus r:" + info); callback(info); },
-            function (error) { console.log("" + error) });
+            function (error) { console.log(error) });
         /*
         waitForFacebook(function() {
           FB.getLoginStatus(function (response) {
@@ -309,7 +309,7 @@
               callback(response);
             },
             function (error) { 
-              console.log("" + error) }
+              console.log(error) }
             );
         /*
         waitForFacebook(function() {
@@ -337,7 +337,7 @@
       
       function facebookProfileInfo(callback) {
         console.log(" - FB REQUEST => ProfileInfo");
-        facebookConnectPlugin.api('/me', ["public_profile", "email", "user_friends"], 
+        facebookConnectPlugin.api('/me?fields=picture,id,name,email', ["public_profile", "email", "user_friends"], 
             function(response) {
                if (response && !response.error) {
                  response['error'] = false;
@@ -353,7 +353,7 @@
                  callback(response);
                }
              },
-            function (error) { console.log("" + error) });
+            function (error) { console.log(error) });
         /*
         waitForFacebook(function() {
           FB.api('/me', {fields: 'picture, id, name, email'},

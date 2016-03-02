@@ -201,11 +201,23 @@ class FBLogin {
     if (_profileImageCache.containsKey(facebookId)) {
       return _profileImageCache[facebookId];
     }
+    print("====================================");
+    print("====================================");
     
     _profileImageCache[facebookId] = defaultImage;
     JsUtils.runJavascript(null, "facebookProfilePhoto", [facebookId, (js.JsObject profileInfoResponse) {
           Map image = {};
+          print("====================================");
+          print("====================================");
+          
+          print(profileInfoResponse);
+          print(profileInfoResponse["error"]);
+          
           if (profileInfoResponse["error"] == false) {
+            
+            print(profileInfoResponse['imageUrl']);
+            print(profileInfoResponse['isDefault']);
+            
             image['imageUrl'] = profileInfoResponse['imageUrl'];
             image['isDefault'] = profileInfoResponse['isDefault'];
             _profileImageCache[facebookId] = image;

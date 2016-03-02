@@ -408,25 +408,31 @@
 
       function facebookFriends(facebookId, callback) {
         console.log(" - FB REQUEST => ProfileFriends");
-        facebookConnectPlugin.api('/me/friends', ["public_profile", "email", "user_friends"], 
+        facebookConnectPlugin.api('/me/friends?fields=picture,id', ["public_profile", "email", "user_friends"], 
             function(response) {
               console.log(" - FRIENDS RESPONSE:");
               console.log(response);
               if (response && !response.error) {
-                var idList = [];
+                var friendsInfo = [];
                 for(var i = 0; i < response.data.length; i++) {
-                  idList[i] = response.data[i].id;
+                  friendsInfo[i] = { 'id': response.data[i].id,
+                                     'image': {
+                                         'url' : response.data[i]['picture']['data']['url'],
+                                         'isDefault': response.data[i]['picture']['data']['is_silhouette']
+                                       }
+                                    };
                 }
-                callback({ error: false, idList: idList });
+                callback({ error: false,
+                           friendsInfo: friendsInfo });
               } else {
                 callback({ error: response.error });
               }
              },
-            function (error) { console.log("" + error) });
+            function (error) { console.log(error) });
         /*
         waitForFacebook(function() {
 
-          FB.api('/' + facebookId + '/friends?fields=picture, id',
+          FB.api('/' + facebookId + '/friends?fields=picture,id',
               function (response) {
                 if (response && !response.error) {
                   var friendsInfo = [];

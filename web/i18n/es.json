@@ -663,7 +663,7 @@
     ,"tutorial_iniciacion"              :
     {
       "msg-01"                          : "<span class='modal-body-title'>Bienvenido a Epic Eleven.</span><span class='modal-body-text'> Haz tu equipo ideal alineando futbolistas de la Liga o la Premier y enfréntate en torneos contra otros usuarios.</span>",
-      "msg-02"                          : "<span class='modal-body-text'>Comienza eligiendo un torneo oficial. Participar en los torneos oficiales cuesta oro, pero no te preocupes al registrate recibirás 10 monedas de oro.</span>",
+      "msg-02"                          : "<span class='modal-body-text'>Comienza eligiendo un torneo oficial. Participar en los torneos oficiales cuesta oro, pero no te preocupes al registrate recibirás 15 monedas de oro.</span>",
       "msg-02a"                         : "Selecciona este torneo",
       "msg-02b"                         : "<span class='modal-body-text'>Los torneos oficiales se basan en partidos de la vida real.</span>",
       "msg-02c"                         : "<span class='modal-body-text'>Elige tu alineación ideal entre todos los futbolistas que participarán en esos partidos.</span>",
@@ -699,7 +699,7 @@
       "msg-13"                          : "Aquí puedes ver los puntos conseguidos por tus futbolistas.",
       "msg-14"                          : "Esta es la ventana de resultados. Como puedes ver, has logrado la primera posición. Haz clic para continuar.",
       "msg-15"                          : "Fíjate, uno de tus futbolistas acaba de conseguir sus primeros puntos.",
-      "msg-16"                          : "<span class='modal-body-title'>¡Enhorabuena, has terminado el tutorial!</span><span class='modal-body-text'> Si no estas registrado, hazlo ahora y conseguiras 10 monedas de oro y tu primer nivel de manager</span><img class=\"capital-icon\" src=\"images/TutorialManagerLevelUp.png\"><strong> +</strong><img class=\"capital-icon\" src=\"images/icon-BuyGold1.png\">"
+      "msg-16"                          : "<span class='modal-body-title'>¡Enhorabuena, has terminado el tutorial!</span><span class='modal-body-text'> Si no estas registrado, hazlo ahora y conseguiras 15 monedas de oro y tu primer nivel de manager</span><img class=\"capital-icon\" src=\"images/TutorialManagerLevelUp.png\"><strong> +</strong><img class=\"capital-icon\" src=\"images/icon-BuyGold1.png\">"
     }
     , "tutorial_entrenamiento"          :
     {
@@ -997,7 +997,7 @@
       "7-title"                         : "7. Habilidad y Clasificaciones",
       "7-text"                          : "<p>Existen dos clasificaciones de usuarios en Epic Eleven: Habilidad y Oro.</p><p>La clasificación por habilidad ordena a los jugadores según los puntos de habilidad que obtengan. Dichos puntos de habilidad se asignan dependiendo de la posición en la que quede el usuario en los torneos <strong>oficiales</strong> que dispute. Los Puntos de Habilidad actuales del usuario se muestran debajo de la imagen del perfil, en la esquina superior derecha de la pantalla.</p><p>La clasificación de oro ordena a los jugadores según el oro que han ganado compitiendo en torneos oficiales. El oro comprado en la tienda no cuenta para la clasificación.</p>",        
       "8-title"                         : "8. Salarios y coste de los futbolistas",
-      "8-text"                          : "<p>Después de cada jornada, en función de los puntos Fantasy conseguidos, se actualizarán los salarios de los futbolistas. Como consecuencia de estas modificaciones de salario, los futbolistas podrán subir o bajar de nivel</p><p>En los torneos oficiales, el coste en oro de alinear futbolistas dependerá del nivel de mánager del usuario y de la cuantía de los premios a ganar en el torneo.</p>",
+      "8-text"                          : "<p>Después de cada jornada, en función de los puntos Fantasy conseguidos, se actualizarán los salarios de los futbolistas. Como consecuencia de estas modificaciones de salario, los futbolistas podrán subir o bajar de nivel</p><p>En los torneos oficiales, el coste en oro de alinear futbolistas dependerá del nivel de mánager del usuario y del precio de la entrada al torneo.</p>",
       "9-title"                         : "9. Cancelación de Torneos",
       "9-text"                          : "<p>Todos los torneos tienen un número de participantes mínimo. Si no se alcanza este mínimo de participantes al inicio del torneo, éste será cancelado. Por ejemplo, un duelo sin 2 competidores o un torneo sin el número mínimo de participantes requerido no se celebrarán.</p><p>Si un torneo oficial es cancelado, el oro invertido en dicho torneo será devuelto al usuario. La energía invertida en un torneo virtual no se devolverá al usuario si se cancela el torneo.</p><p>Cuando un usuario crea un torneo, y ese torneo se cancela, el usuario que creo el torneo perderá todo el oro invertido en el mismo.</p><p>Epic Eleven también se reserva el derecho de cancelar los torneos a su criterio, sin ningún tipo de restricciones. Normalmente, esto se llevará a cabo sólo en los casos en los que creemos que, debido a problemas en el servicio o hechos que afecten a los eventos deportivos, no habría un impacto generalizado en la mayor parte de las competiciones.</p>",
       "10-title"                        : "10. Términos de Uso y Privacidad",

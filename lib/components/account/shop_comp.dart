@@ -76,7 +76,7 @@ class ShopComp implements DetachAware{
           eProduct["info"]         = info;
           eProduct["id"]           = info.id;
           eProduct["description"]  = getLocalizedText(info.name);
-          eProduct["captionImage"] = info.imageUrl ;
+          eProduct["captionImage"] = info.imageUrl;
           eProduct["price"]        = info.price.toString();
           eProduct["quantity"]     = info.gained.amount.toInt().toString();
           eProduct["purchasable"]  = true;
@@ -90,9 +90,11 @@ class ShopComp implements DetachAware{
 
   void buyGold(String id) {
     Map product = energyProducts.firstWhere((product) => product["id"] == id, orElse: () => {});
-    GameMetrics.logEvent(GameMetrics.REQUEST_BUY_GOLD, {'value': product["quantity"], 
-                                                          'date': DateTimeService.formatDateTimeLong(DateTimeService.now)});
-    
+    GameMetrics.logEvent(GameMetrics.REQUEST_BUY_GOLD, {'id': product["id"],
+                                                        'price': product["price"],
+                                                        'quantity': product["quantity"], 
+                                                        'date' : DateTimeService.formatDateTimeLong(DateTimeService.now)});
+
     _catalogService.buyProduct(id)
       .then( (_) {
         if (window.localStorage.containsKey("add_gold_success")) {
@@ -123,7 +125,7 @@ class ShopComp implements DetachAware{
               ModalComp.close();
               window.location.assign(window.localStorage["add_energy_success"]);
             }
-            GameMetrics.logEvent(GameMetrics.ENERGY_BOUGHT, {'value':(product["id"] == "ENERGY_ALL")? 10 : 1});
+            GameMetrics.logEvent(GameMetrics.ENERGY_BOUGHT, {'quantity':(product["id"] == "ENERGY_ALL")? 10 : 1});
           })
           .catchError((ServerError error) {
               String keyError = errorMap.keys.firstWhere( (key) => error.responseError.contains(key), orElse: () => "_ERROR_DEFAULT_" );

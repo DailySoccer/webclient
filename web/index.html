@@ -442,7 +442,7 @@
       var epicStoreIsInit = false;
       
       var epicStore = {
-        afterInit = function (callback) {
+        afterInit: function (callback) {
           var tryCall;
           tryCall = function (callback) {
             if (epicStoreIsInit === false) {
@@ -459,7 +459,7 @@
           };
           tryCall(callback);
         },
-        registerConsumable = function(productList) {
+        registerConsumable: function(productList) {
           for (var i = 0; i < productList.length; i++) {
             store.register({
                 id:    productList[i]['id'],
@@ -473,7 +473,7 @@
           }
           store.refresh();
         },
-        buyConsumable = function(id) {
+        buyConsumable: function(id) {
           console.log("Request to get " + id + "!");
           store.order(id);
         }

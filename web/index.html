@@ -157,7 +157,7 @@
       var fbIsInit = false;
 
       document.addEventListener('deviceready', function () {
-        console.log(" # DEVICE READY EVENT");
+        console.log(" # DEVICE READY EVENT - FB");
         fbIsInit = true;
       }, false);
         
@@ -207,7 +207,7 @@
             listeningElement.setAttribute('style', 'display:none;');
             receivedElement.setAttribute('style', 'display:block;');
 
-            console.log('Received Event: ' + id);
+            //console.log('Received Event: ' + id);
         }
       };
 		
@@ -222,112 +222,73 @@
                 
         tryCall = function (callback) {
           if (fbIsInit === false) {
-            console.log(" # RETRY");
+            //console.log(" # RETRY");
             setTimeout(function() { tryCall(callback); }, 100);
           } else {
-            console.log(" # PRE-CALL");
+            //console.log(" # PRE-CALL");
             facebookConnectPlugin.getLoginStatus(
                 function (status) {
-                  console.log(" # CALLING");
+                  //console.log(" # CALLING");
                   callback();
                 }, function (error) {
-                  console.log(error);
+                  //console.log(error);
                 }
             );
-            //callback();
           }
         };
         tryCall(callback);
-        
-        /*
-        var timesWait = 0;
-        var tryCall;
-        
-        tryCall = function () {
-          if (fbIsInit === false) {
-            setTimeout(function() { 
-              timesWait += 1;
-              if (timesWait < 100) {
-                tryCall(callback);
-                if (fbTimesWaitErrorLogged === true) {
-                  fbTimesWaitErrorLogged = false;
-                  serverLoggerInfo("JS - Wait for facebook worked after a timeout!!");
-                }
-              } else {
-                if (fbTimesWaitErrorLogged === false) {
-                  serverLoggerServere("WTF - 8797 - JS - Wait for facebook timeout");
-                  fbTimesWaitErrorLogged = true;
-                }
-              }
-            }, 100);
-          } else {
-            callback();
-          }
-        };
-        tryCall();
-        */
       }
     
       // facebook sdk
       // https://developers.facebook.com/docs/javascript/examples
       function facebookLogin(callback) {
-        console.log(" - FB REQUEST => Login");
+        //console.log(" - FB REQUEST => Login");
 				facebookConnectPlugin.login(["public_profile", "email", "user_friends"],
-						function (info ) { console.log(" - FB REQUEST => Login r:" + info); callback(info); },
-						function (error) { console.log(error) });
-        /*
-        waitForFacebook(function() {
-          console.log("js facebook login");
-          FB.login(callback, {scope: 'email, public_profile, user_friends'});
-        });
-        */
+						function (info ) { 
+				      //console.log(" - FB REQUEST => Login r:" + info); 
+				      callback(info); 
+				    },
+						function (error) { 
+				      console.log(error) 
+				    }
+				  );
       }
       
       function facebookLoginStatus(callback) {
-        console.log(" - FB REQUEST => LoginStatus");
+        //console.log(" - FB REQUEST => LoginStatus");
         facebookConnectPlugin.getLoginStatus(
-            function (info ) { console.log(" - FB REQUEST => LoginStatus r:" + info); callback(info); },
-            function (error) { console.log(error) });
-        /*
-        waitForFacebook(function() {
-          FB.getLoginStatus(function (response) {
-            callback(response);
-          });
-        });
-        */
+            function (info ) { 
+              //console.log(" - FB REQUEST => LoginStatus r:" + info); 
+              callback(info); 
+            },
+            function (error) { 
+              console.log(error) 
+            }
+          );
       }
 
       function facebookPermissions(callback) {
-        console.log(" - FB REQUEST => Permissions");
+        //console.log(" - FB REQUEST => Permissions");
         facebookConnectPlugin.api('/me/permissions', 
             ["public_profile", "email", "user_friends"], 
             function (response) { 
               if (response && !response.error) {
                 response['error'] = false;
               }
-              console.log(" - FB REQUEST => Permissions r:" + response); 
+              //console.log(" - FB REQUEST => Permissions r:" + response); 
               callback(response);
             },
             function (error) { 
-              console.log(error) }
-            );
-        /*
-        waitForFacebook(function() {
-          FB.api('/me/permissions', function (response) {
-            if (response && !response.error) {
-              response['error'] = false;
+              console.log(error)
             }
-            callback(response);
-          });
-        });
-        */
+          );
       }
 
       function facebookLoginReRequest(callback) {
         //TODO: NO CONTEMPLADO
-        console.log(" - FB REQUEST => LoginReRequest");
+        //console.log(" - FB REQUEST => LoginReRequest");
         waitForFacebook(function() {
-          console.log("js facebook rerequest");
+          //console.log("js facebook rerequest");
           FB.login(callback, {
               scope: 'email, public_profile, user_friends',
               auth_type: 'rerequest'
@@ -336,7 +297,7 @@
       }
       
       function facebookProfileInfo(callback) {
-        console.log(" - FB REQUEST => ProfileInfo");
+        //console.log(" - FB REQUEST => ProfileInfo");
         facebookConnectPlugin.api('/me?fields=picture,id,name,email', ["public_profile", "email", "user_friends"], 
             function(response) {
                if (response && !response.error) {
@@ -354,28 +315,15 @@
                }
              },
             function (error) { console.log(error) });
-        /*
-        waitForFacebook(function() {
-          FB.api('/me', {fields: 'picture, id, name, email'},
-             function(response) {
-               if (response && !response.error) {
-                 response['error'] = false;
-                 response['accessToken'] = FB.getAccessToken();
-               }
-               callback(response);
-             }
-          );
-        });
-        */
       }
       
       function facebookProfilePhoto(facebookId, callback) {
-        console.log(" - FB REQUEST => ProfilePhoto  ::: " + '/' + facebookId + '/picture?redirect=false' );
+        //console.log(" - FB REQUEST => ProfilePhoto  ::: " + '/' + facebookId + '/picture?redirect=false' );
         waitForFacebook( function() {
           facebookConnectPlugin.api('/' + facebookId + '/picture?redirect=false', ["public_profile"],
               function(response) {
-                console.log(" - PROFILE PHOTO RESPONSE:");
-                console.log(response);
+                //console.log(" - PROFILE PHOTO RESPONSE:");
+                //console.log(response);
                 if (response && !response.error) {
                   callback({ error: false,
                              imageUrl: response.data.url,
@@ -387,31 +335,14 @@
               },
               function (error) { callback({error: response.error}); });
         });
-        
-        /*
-        waitForFacebook(function() {
-            FB.api('/' + facebookId + '/picture',
-             function(response) {
-               if (response && !response.error) {
-                 callback({ error: false,
-                            imageUrl: response.data.url,
-                            isDefault: response.data.is_silhouette
-                           });
-               } else {
-                 callback({error: response.error});
-               }
-             }
-           );
-        });
-        */
       }
 
       function facebookFriends(facebookId, callback) {
-        console.log(" - FB REQUEST => ProfileFriends");
+        //console.log(" - FB REQUEST => ProfileFriends");
         facebookConnectPlugin.api('/me/friends?fields=picture,id', ["public_profile", "email", "user_friends"], 
             function(response) {
-              console.log(" - FRIENDS RESPONSE:");
-              console.log(response);
+              //console.log(" - FRIENDS RESPONSE:");
+              //console.log(response);
               if (response && !response.error) {
                 var friendsInfo = [];
                 for(var i = 0; i < response.data.length; i++) {
@@ -429,29 +360,6 @@
               }
              },
             function (error) { console.log(error) });
-        /*
-        waitForFacebook(function() {
-
-          FB.api('/' + facebookId + '/friends?fields=picture,id',
-              function (response) {
-                if (response && !response.error) {
-                  var friendsInfo = [];
-                  for(var i = 0; i < response.data.length; i++) {
-                    friendsInfo[i] = { 'id': response.data[i].id,
-                                       'image': {
-                                           'url' : response.data[i]['picture']['data']['url'],
-                                           'isDefault': response.data[i]['picture']['data']['is_silhouette']
-                                         }
-                                      };
-                  }
-                  callback({ error: false,
-                             friendsInfo: friendsInfo });
-                } else {
-                  callback({ error: response.error });
-                }
-              });
-        });
-        */
       }
 
       function facebookShare(params) {
@@ -469,21 +377,6 @@
             },
             function (response) { dartCallback(); },
             function (response) { alert(JSON.stringify(response)) });
-        
-        /*
-        waitForFacebook(function() {
-          dartCallback = params.dartCallback || function() {};
-          FB.ui({ method: 'share',
-                  name: 'Facebook Dialogs',
-                  href: params.url || $(location).attr('href'),
-                  link: params.url || $(location).attr('href'),
-                  picture: params.imageUrl,
-                  caption: params.caption || '',
-                  description: params.description || '',
-                  title: params.title
-                }, function(response) { dartCallback(); });
-        });
-        */
       }
       
       var facebookParseXFBMLActiveSelectors = [];
@@ -540,6 +433,82 @@
                                         );
         }
       }
+      
+      
+      /**
+      STORE
+      **/
+
+      var epicStoreIsInit = false;
+      
+      var epicStore = {
+        afterInit = function (callback) {
+          var tryCall;
+          tryCall = function (callback) {
+            if (epicStoreIsInit === false) {
+              setTimeout(function() { tryCall(callback); }, 100);
+            } else {
+              facebookConnectPlugin.getLoginStatus(
+                function (status) {
+                  callback();
+                }, function (error) {
+                  window.serverLoggerServere(error);
+                }
+              );
+            }
+          };
+          tryCall(callback);
+        },
+        registerConsumable = function(productList) {
+          for (var i = 0; i < productList.length; i++) {
+            store.register({
+                id:    productList[i]['id'],
+                alias: productList[i]['name'],
+                type:  store.CONSUMABLE
+            });
+            store.when(productList[i]['alias']).approved(function (order) {
+              console.log("You got an " + productList[i]['alias'] + "!");
+              order.finish();
+            });
+          }
+          store.refresh();
+        },
+        buyConsumable = function(id) {
+          console.log("Request to get " + id + "!");
+          store.order(id);
+        }
+      };
+
+      document.addEventListener('deviceready', function () {
+        console.log(" # DEVICE READY EVENT - SHOP");
+        /*store.ready(function() {
+          store.order('nonconsumable1');
+        });*/
+        if (!window.store) {
+          window.serverLoggerServere('Store not available');
+          return;
+        }
+        
+        /* use when configure CSS
+        var platform = device.platform.toLowerCase();
+        document.getElementsByTagName('body')[0].className = platform;
+        */
+        
+        store.verbosity = store.DEBUG;
+        
+        // Enable remote receipt validation
+        // store.validator = "https://api.fovea.cc:1982/check-purchase";
+        
+        // Log all errors
+        store.error(function(error) {
+          window.serverLoggerServere('Store Error => ' + error.code + ': ' + error.message);
+        });
+        
+        store.ready(function() {
+          console.log("STORE READY");  
+        });
+      }, false);
+      
     </script>
 
     <!-- Script principal. Sera substituido por main.dart.js en el transformer -->

@@ -6,6 +6,7 @@ import 'package:angular/angular.dart';
 import "package:webclient/services/server_service.dart";
 import "package:webclient/services/profile_service.dart";
 import 'package:webclient/utils/host_server.dart';
+import 'package:webclient/utils/js_utils.dart';
 
 @Injectable()
 class PaymentService {
@@ -15,12 +16,14 @@ class PaymentService {
   PaymentService(this._profileService, this._server);
 
   void expressCheckoutWithPaypal({String productId, int amount}) {
-    if (amount != null) {
+    /*if (amount != null) {
       window.location.assign(PAYPAL_APPROVAL_PAYMENT_URL + "/${_profileService.user.userId}" + "/$amount");
     }
     else {
       window.location.assign(PAYPAL_APPROVAL_BUY_URL + "/${_profileService.user.userId}" + "/$productId");
-    }
+    }*/
+
+    JsUtils.runJavascript(null, "buyConsumable", [productId], 'epicStore');
   }
 
   Future<Map> withdrawFunds(int amount) {

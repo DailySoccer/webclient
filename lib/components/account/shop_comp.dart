@@ -17,6 +17,7 @@ import 'package:webclient/models/user.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/utils/game_info.dart';
+import 'package:webclient/utils/js_utils.dart';
 
 @Component(
     selector: 'shop-comp',
@@ -44,7 +45,7 @@ class ShopComp implements DetachAware{
   ShopComp(this._flashMessage, this._profileService, this._catalogService, this._tutorialService) {
     goldProducts = [];
     energyProducts = [];
-
+    
     errorMap = {
       "_ERROR_DEFAULT_": {
           "title"   : getLocalizedText("errordefaulttitle"),
@@ -70,7 +71,10 @@ class ShopComp implements DetachAware{
           gProduct["isMostPopular"]  = info.mostPopular;
           gProduct["purchasable"]    = true;
           goldProducts.add(gProduct);
+          
         }
+        
+        JsUtils.runJavascript(null, "registerConsumable", [goldProducts], 'epicStore');
 
         for (Product info in catalog.where((e) => e.gained.isEnergy)) {
           Map eProduct = {};

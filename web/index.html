@@ -245,7 +245,7 @@
       
       function facebookProfileInfo(callback) {
         waitForFacebook(function() {
-          FB.api('/me', {fields: 'id, name, email'},
+          FB.api('/me', {fields: 'picture, id, name, email'},
              function(response) {
                if (response && !response.error) {
                  response['error'] = false;
@@ -278,15 +278,20 @@
 
         waitForFacebook(function() {
 
-          FB.api('/' + facebookId + '/friends',
+          FB.api('/' + facebookId + '/friends?fields=picture, id',
               function (response) {
                 if (response && !response.error) {
-                  var idList = [];
+                  var friendsInfo = [];
                   for(var i = 0; i < response.data.length; i++) {
-                    idList[i] = response.data[i].id;
+                    friendsInfo[i] = { 'id': response.data[i].id,
+                                       'image': {
+                                           'url' : response.data[i]['picture']['data']['url'],
+                                           'isDefault': response.data[i]['picture']['data']['is_silhouette']
+                                         }
+                                      };
                   }
                   callback({ error: false,
-                             idList: idList });
+                             friendsInfo: friendsInfo });
                 } else {
                   callback({error: response.error});
                 }

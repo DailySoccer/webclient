@@ -137,8 +137,13 @@ class ProfileService {
   Map _setProfile(String theSessionToken, Map jsonMap, bool bSave) {
 
     if (theSessionToken != null && jsonMap != null) {
+      String oldFacebookId = user != null ? user.facebookID : null; 
       user = new User.fromJsonObject(jsonMap);
-      refreshFriendList();
+      
+      if (user.facebookID != oldFacebookId) {
+        refreshFriendList();
+      }
+      
       GameMetrics.identifyMixpanel(user.email);
       GameMetrics.peopleSet({"\$email": user.email, "\$last_login": new DateTime.now()});
     }

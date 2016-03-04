@@ -67,7 +67,7 @@ class TwitterShareComp {
             'text': '${sharingInfo['title']} ${sharingInfo['description']}',
             'hashtags': sharingInfo['hashtag'],
             'url': sharingInfo['url'],
-            'via': "Epiceleven",
+            'via': "Futbol_cuatro",
             'selector-prefix': sharingInfo['selector-prefix']
           });
     }
@@ -75,7 +75,7 @@ class TwitterShareComp {
   
   String get intentTweetParams {
     if(sharingInfo['url'] != null && sharingInfo['hashtag'] != null && sharingInfo['description'] != null) {
-      return "hashtags=${sharingInfo['hashtag']}&text=${Uri.encodeComponent('${sharingInfo['title']} ${sharingInfo['description']}')}&url=${Uri.encodeComponent(sharingInfo['url'])}&via=Epiceleven";
+      return "hashtags=${sharingInfo['hashtag']}&text=${Uri.encodeComponent('${sharingInfo['title']} ${sharingInfo['description']}')}&url=${Uri.encodeComponent(sharingInfo['url'])}&via=Futbol_cuatro";
     } else {
       return "";
     }

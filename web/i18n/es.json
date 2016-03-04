@@ -809,47 +809,47 @@
     {
       "challenge"                       : "Retar",
 
-      "contest_inscription_hastag"      : "EpicEleven",
+      "contest_inscription_hastag"      : "FantasyCuatro",
       "contest_inscription_title"       : "¡Acabo de inscribirme en un torneo!",
       "contest_inscription_description" : "Me he apuntado a este torneo, date prisa y únete.",
       "contest_inscription_img"         : "social/InscribirseTorneo.jpg",
 
-      "contest_win_hastag"              : "EpicEleven",
+      "contest_win_hastag"              : "FantasyCuatro",
       "contest_win_title"               : "He ganado",
       "contest_win_description"         : "¡He ganado un torneo en Epic Eleven!",
       "contest_win_img"                 : "social/TorenoGanado.jpg",
 
-      "contest_history_hastag"          : "EpicEleven",
+      "contest_history_hastag"          : "FantasyCuatro",
       "contest_history_title"           : "Resultado",
       "contest_history_description"     : "¡He quedado @USER_POS! Juega conmigo en Epic Eleven y demuestra si puedes superarme.",
       "contest_history_img"             : "social/ClasifTorneoTerminado.jpg",
 
-      "contest_live_hastag"             : "EpicEleven",
+      "contest_live_hastag"             : "FantasyCuatro",
       "contest_live_title"              : "¡Sigue el torneo en directo!",
       "contest_live_description"        : "Estoy jugando en un torneo de Epic Eleven, ¡fíjate cómo voy!",
       "contest_live_img"                : "social/Live.jpg",
 
-      "win_achievement_hastag"          : "EpicEleven",
+      "win_achievement_hastag"          : "FantasyCuatro",
       "win_achievement_title"           : "Logro Conseguido",
       "win_achievement_description"     : "¡He conseguido el Logro @ACHIEV_NAME!",
       "win_achievement_img"             : "social/@ACHIEV_IMG_KEY",
 
-      "manager_level_up_hastag"         : "EpicEleven",
+      "manager_level_up_hastag"         : "FantasyCuatro",
       "manager_level_up_title"          : "¡He subido de Nivel de Mánager!",
       "manager_level_up_description"    : "Ahora puedo alinear mejores futbolistas. ¿Podrás ganarme?",
       "manager_level_up_img"            : "social/ManagerLevel@MANAGER_LEVEL.jpg",
 
-      "created_contest_hastag"          : "EpicEleven",
+      "created_contest_hastag"          : "FantasyCuatro",
       "created_contest_title"           : "Torneo creado",
       "created_contest_description"     : "He creado un torneo en Epic Eleven, apúntate e intenta ganarme.",
       "created_contest_img"             : "social/CreaTorneo.jpg",
 
-      "leadeboard_gold_hastag"          : "EpicEleven",
+      "leadeboard_gold_hastag"          : "FantasyCuatro",
       "leadeboard_gold_title"           : "Leaderboard Oro",
       "leadeboard_gold_description"     : "¡Mira cómo me va en las clasificaciones!",
       "leadeboard_gold_img"             : "social/ClasifORO.jpg",
 
-      "leadeboard_trueskill_hastag"     : "EpicEleven",
+      "leadeboard_trueskill_hastag"     : "FantasyCuatro",
       "leadeboard_trueskill_title"      : "Leaderboard TrueSkill",
       "leadeboard_trueskill_description": "¡Mira cómo me va en las clasificaciones!",
       "leadeboard_trueskill_img"        : "social/ClasifTrueSkill.jpg"

@@ -75,6 +75,11 @@ class ProfileService {
                       .then((jsonMap) => _setProfile(_sessionToken, jsonMap, true));
   }
 
+  Future<Map> updateProfile() {
+    return _server.getUserProfile()
+                      .then((jsonMap) => updateProfileFromJson(jsonMap));
+  }
+
   Future<List<User>> getFacebookProfiles(List<String> facebookIds) {
     return _server.getFacebookProfiles(facebookIds)
                       .then((jsonMap) {

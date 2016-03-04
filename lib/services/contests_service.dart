@@ -77,6 +77,9 @@ class ContestsService {
     return _server.getActiveContests()
       .then((jsonMap) {
         _initActiveContests(Contest.loadContestsFromJsonObject(jsonMap));
+        
+        // Actualización del UserProfile
+        _profileService.updateProfile();
       });
   }
 
@@ -102,6 +105,10 @@ class ContestsService {
         if (jsonMap.containsKey("profile")) {
           _profileService.updateProfileFromJson(jsonMap["profile"]);
         }
+        else {
+          // Actualización del UserProfile
+          _profileService.updateProfile();
+        }
         return contestId;
       });
   }
@@ -120,6 +127,10 @@ class ContestsService {
         if (jsonMap.containsKey("profile")) {
           _profileService.updateProfileFromJson(jsonMap["profile"]);
         }
+        else {
+          // Actualización del UserProfile
+          _profileService.updateProfile();
+        }
 
         Logger.root.info("response: " + jsonMap.toString());
       });
@@ -130,6 +141,10 @@ class ContestsService {
       .then((jsonMap) {
         if (jsonMap.containsKey("profile")) {
           _profileService.updateProfileFromJson(jsonMap["profile"]);
+        }
+        else {
+          // Actualización del UserProfile
+          _profileService.updateProfile();
         }
 
         // Logger.root.info("response: " + jsonMap.toString());
@@ -145,6 +160,10 @@ class ContestsService {
         if (jsonMap.containsKey("profile")) {
           _profileService.updateProfileFromJson(jsonMap["profile"]);
         }
+        else {
+          // Actualización del UserProfile
+          _profileService.updateProfile();
+        }
       });
   }
 
@@ -157,7 +176,10 @@ class ContestsService {
           if (jsonMap.containsKey("profile")) {
             _profileService.updateProfileFromJson(jsonMap["profile"]);
           }
-
+          else {
+            // Actualización del UserProfile
+            _profileService.updateProfile();
+          }
         });
   }
 
@@ -170,6 +192,10 @@ class ContestsService {
 
           if (jsonMap.containsKey("profile")) {
             _profileService.updateProfileFromJson(jsonMap["profile"]);
+          }
+          else {
+            // Actualización del UserProfile
+            _profileService.updateProfile();
           }
         });
   }
@@ -184,6 +210,10 @@ class ContestsService {
           if (jsonMap.containsKey("profile")) {
             _profileService.updateProfileFromJson(jsonMap["profile"]);
           }
+          else {
+            // Actualización del UserProfile
+            _profileService.updateProfile();
+          }
         });
   }
 
@@ -196,6 +226,10 @@ class ContestsService {
 
           if (jsonMap.containsKey("profile")) {
             _profileService.updateProfileFromJson(jsonMap["profile"]);
+          }
+          else {
+            // Actualización del UserProfile
+            _profileService.updateProfile();
           }
         });
   }
@@ -277,6 +311,10 @@ class ContestsService {
 
           if (jsonMap.containsKey("profile")) {
             _profileService.updateProfileFromJson(jsonMap["profile"]);
+          }
+          else {
+            // Actualización del UserProfile
+            _profileService.updateProfile();
           }
 
           completer.complete(instanceSoccerPlayers);

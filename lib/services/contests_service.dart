@@ -79,7 +79,8 @@ class ContestsService {
         _initActiveContests(Contest.loadContestsFromJsonObject(jsonMap));
         
         // Actualización del UserProfile
-        _profileService.updateProfile();
+        if (_profileService.isLoggedIn)
+          _profileService.updateProfile();
       });
   }
 
@@ -107,7 +108,8 @@ class ContestsService {
         }
         else {
           // Actualización del UserProfile
-          _profileService.updateProfile();
+          if (_profileService.isLoggedIn)
+            _profileService.updateProfile();
         }
         return contestId;
       });
@@ -144,7 +146,8 @@ class ContestsService {
         }
         else {
           // Actualización del UserProfile
-          _profileService.updateProfile();
+          if (_profileService.isLoggedIn)
+            _profileService.updateProfile();
         }
 
         // Logger.root.info("response: " + jsonMap.toString());
@@ -178,7 +181,8 @@ class ContestsService {
           }
           else {
             // Actualización del UserProfile
-            _profileService.updateProfile();
+            if (_profileService.isLoggedIn)
+              _profileService.updateProfile();
           }
         });
   }
@@ -195,7 +199,8 @@ class ContestsService {
           }
           else {
             // Actualización del UserProfile
-            _profileService.updateProfile();
+            if (_profileService.isLoggedIn)
+              _profileService.updateProfile();
           }
         });
   }
@@ -212,7 +217,8 @@ class ContestsService {
           }
           else {
             // Actualización del UserProfile
-            _profileService.updateProfile();
+            if (_profileService.isLoggedIn)
+              _profileService.updateProfile();
           }
         });
   }
@@ -229,7 +235,8 @@ class ContestsService {
           }
           else {
             // Actualización del UserProfile
-            _profileService.updateProfile();
+            if (_profileService.isLoggedIn)
+              _profileService.updateProfile();
           }
         });
   }
@@ -314,7 +321,8 @@ class ContestsService {
           }
           else {
             // Actualización del UserProfile
-            _profileService.updateProfile();
+            if (_profileService.isLoggedIn)
+              _profileService.updateProfile();
           }
 
           completer.complete(instanceSoccerPlayers);

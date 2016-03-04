@@ -76,6 +76,9 @@ class ProfileService {
   }
 
   Future<Map> updateProfile() {
+    if (TutorialService.isActivated) {
+      return new Future.value({});
+    }
     return _server.getUserProfile()
                       .then((jsonMap) => updateProfileFromJson(jsonMap));
   }

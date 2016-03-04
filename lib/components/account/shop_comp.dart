@@ -89,7 +89,7 @@ class ShopComp implements DetachAware{
   }
 
   void buyGold(String id) {
-    Map product = energyProducts.firstWhere((product) => product["id"] == id, orElse: () => {});
+    Map product = goldProducts.firstWhere((product) => product["id"] == id, orElse: () => {});
     GameMetrics.logEvent(GameMetrics.REQUEST_BUY_GOLD, {'id': product["id"],
                                                         'price': product["price"],
                                                         'quantity': product["quantity"], 

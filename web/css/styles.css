@@ -24153,7 +24153,7 @@ users-list#usersList > .epic-tooltip {
 @media (min-width: 768px) {
   #tutorialListRoot .tutorial-tile-wrapper {
     float: left;
-    width: 33.33333333%;
+    width: 50%;
   }
 }
 #tutorialListRoot .tutorial-tile-wrapper .tile {
@@ -25319,6 +25319,9 @@ fieldset[disabled] #helpInfo .button-back {
   outline: none !important;
   color: #ffffff;
 }
+#tutorial-content .block-light {
+  border-top: 40px solid #59add5;
+}
 .tutorial-row {
   margin-left: 0;
   margin-right: 0;
@@ -25337,7 +25340,7 @@ fieldset[disabled] #helpInfo .button-back {
 @media (min-width: 768px) {
   .tutorial-row .tutorial-tile {
     float: left;
-    width: 33.33333333%;
+    width: 50%;
   }
 }
 @media (max-width: 767px) {

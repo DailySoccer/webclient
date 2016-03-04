@@ -5,6 +5,7 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/tutorial/tutorial_iniciacion.dart';
 import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'dart:html';
 
 @Component(
     selector: 'tutorials-comp',
@@ -24,6 +25,10 @@ class TutorialsComp {
   
   void goToPage(String page) {
     _router.go(page, {});
+  }
+  
+  void goToHowToPlay() {
+    window.open("http://www.futbolcuatro.com/ayuda/", "Como jugar a Futbol Cuatro");
   }
   
   String get tutorialIniciacionName => TutorialIniciacion.NAME;

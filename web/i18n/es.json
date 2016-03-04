@@ -1006,12 +1006,12 @@
     }
     ,"tutorials"                        :
     {
-      "go-tutorial"                     : "Ir al tutorial",
+      "go-tutorial"                     : "Empezar",
       "go-to-help"                      : "Ver Ayuda",
       "incoming"                        : "Próximamente",
-      "learn-to-play"                   : "Aprende a jugar a epic eleven",
+      "learn-to-play"                   : "Tutorial",
       "rankings"                        : "Clasificaciones",
-      "how-to-create-contest"           : "Como crear torneos"
+      "how-to-play"                     : "Como Jugar"
     }
     ,"help"                             :
     {

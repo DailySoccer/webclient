@@ -41,7 +41,7 @@ class HomeComp implements DetachAware {
   bool get isUpcomingTileEnabled => isMyContestTilesEnabled;
   bool get isLiveTileEnabled => isMyContestTilesEnabled;
   bool get isHistoryTileEnabled => isMyContestTilesEnabled;
-  bool get isBlogTileEnabled => false;
+  bool get isBlogTileEnabled => true;
   bool get isHowItWorksEnabled => true;
   String get CreateContestTileText => !userIsLogged? getLocalizedText('create_contest_text_nolog') :
                                             !tutorialIsDone? getLocalizedText('create_contest_text_notut') :
@@ -182,7 +182,8 @@ class HomeComp implements DetachAware {
   void onBlogClick() {
     if (!isBlogTileEnabled) return;
     GameMetrics.logEvent(GameMetrics.TRAINERS_SCHOOL);
-    window.open("http://halftime.epiceleven.com", "HalfTime");
+    // window.open("http://halftime.epiceleven.com", "HalfTime");
+    window.open("http://www.futbolcuatro.com/foros/", "Foro Fútbol Cuatro");
   }
 
   void onHowItWorksClick() {

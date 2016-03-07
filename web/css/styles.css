@@ -12484,6 +12484,9 @@ fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-b
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff606060', endColorstr='#ff555555', GradientType=0);
 }
+.opponent-team-gradient .user-nickname {
+  margin: 0 130px 0 80px;
+}
 .soccer-player-statistics {
   margin-left: 0;
   margin-right: 0;

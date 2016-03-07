@@ -218,6 +218,9 @@ String trimStringToPx(Element elem, int maxWidthAllowed) {
     var displayOriginal = elem.style.display;
     Map OriginalStyle = {};
     String OriginalDisplay = elem.style.display;
+    String width = elem.style.width;
+    elem.style.width = "auto";
+      
     // Si el elemento es display:block, no lo puedo usar para cambiarle el ancho. Por siacaso guardo su display original
     elem.style.setProperty("display", "inline-block");
 
@@ -228,7 +231,9 @@ String trimStringToPx(Element elem, int maxWidthAllowed) {
 
     //restauro el display del elemento
     elem.style.setProperty("display", OriginalStyle["display"]);
-
+    
+    elem.style.width = width;
+    
     return result;
   }
 

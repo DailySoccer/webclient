@@ -21995,6 +21995,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   padding-left: 2px;
   padding-right: 2px;
   text-align: left;
+  display: block;
 }
 #usersListRoot .user-row .name-view-contest-entry-mode {
   position: relative;
@@ -22068,6 +22069,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   padding-left: 2px;
   padding-right: 2px;
   text-align: left;
+  display: inline-block;
 }
 #usersListRoot .users-table-header .name-view-contest-entry-mode {
   position: relative;
@@ -23965,6 +23967,7 @@ users-list#usersList > .epic-tooltip {
   color: #ffffff;
   text-transform: uppercase;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  line-height: 45px;
 }
 #homeRoot #contestTile.home-tile-wrapper .tile .tile-title:after {
   width: 85px;

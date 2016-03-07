@@ -187,7 +187,8 @@ class HomeComp implements DetachAware {
 
   void onHowItWorksClick() {
     if (!isHowItWorksEnabled) return;
-    _router.go('help_info', {});
+    // _router.go('help_info', {});
+    window.open("http://www.futbolcuatro.com/ayuda/", "Como jugar a Futbol Cuatro");
   }
 
   void detach() {

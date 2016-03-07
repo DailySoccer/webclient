@@ -663,7 +663,7 @@
     ,"tutorial_iniciacion"              :
     {
       "msg-01"                          : "<span class='modal-body-title'>Bienvenido a Fútbol Cuatro.</span><span class='modal-body-text'> Haz tu equipo ideal alineando futbolistas de la Liga o la Premier y enfréntate en torneos contra otros usuarios.</span>",
-      "msg-02"                          : "<span class='modal-body-text'>Comienza eligiendo un torneo oficial. Participar en los torneos oficiales cuesta oro, pero no te preocupes al registrate recibirás 15 monedas de oro.</span>",
+      "msg-02"                          : "<span class='modal-body-text'>Comienza eligiendo un torneo oficial. Participar en los torneos oficiales cuesta oro, pero no te preocupes al registrarte recibirás 15 monedas de oro.</span>",
       "msg-02a"                         : "Selecciona este torneo",
       "msg-02b"                         : "<span class='modal-body-text'>Los torneos oficiales se basan en partidos de la vida real.</span>",
       "msg-02c"                         : "<span class='modal-body-text'>Elige tu alineación ideal entre todos los futbolistas que participarán en esos partidos.</span>",
@@ -693,13 +693,13 @@
       "msg-10a"                         : "Si no tienes energía, siempre podrás comprarla en la tienda.",
       "msg-10b"                         : "Compra una recarga de energía, esta vez es gratis.",
       "msg-10c"                         : "Púlsalo para completar tu entrada en el torneo.",
-      "msg-11"                          : "<span class='modal-body-text'> Acabas de apuntarte a un torneo virtual. Los Torneos virtuales se resuelven de manera inmediata en su hora predefinida.</span>",
+      "msg-11"                          : "<span class='modal-body-text'> Acabas de apuntarte a un torneo virtual. Los torneos virtuales se resuelven de manera inmediata en su hora predefinida.</span>",
       "msg-12"                          : "<span class='modal-body-text'>Vamos a ver los resultados. Aquí podrás ver, una vez acabado el torneo, la puntuación de tus futbolistas, las alineaciones de los rivales y tu clasificación frente a ellos.</span>",
 
       "msg-13"                          : "Aquí puedes ver los puntos conseguidos por tus futbolistas.",
       "msg-14"                          : "Esta es la ventana de resultados. Como puedes ver, has logrado la primera posición. Haz clic para continuar.",
       "msg-15"                          : "Fíjate, uno de tus futbolistas acaba de conseguir sus primeros puntos.",
-      "msg-16"                          : "<span class='modal-body-title'>¡Enhorabuena, has terminado el tutorial!</span><span class='modal-body-text'> Si no estas registrado, hazlo ahora y conseguiras 15 monedas de oro y tu primer nivel de manager</span><img class=\"capital-icon\" src=\"images/TutorialManagerLevelUp.png\"><strong> +</strong><img class=\"capital-icon\" src=\"images/icon-BuyGold1.png\">"
+      "msg-16"                          : "<span class='modal-body-title'>¡Enhorabuena, has terminado el tutorial!</span><span class='modal-body-text'> Si no estas registrado, hazlo ahora y conseguirás 15 monedas de oro y tu primer nivel de manager</span><img class=\"capital-icon\" src=\"images/TutorialManagerLevelUp.png\"><strong> +</strong><img class=\"capital-icon\" src=\"images/icon-BuyGold1.png\">"
     }
     , "tutorial_entrenamiento"          :
     {

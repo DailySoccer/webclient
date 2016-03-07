@@ -107,7 +107,7 @@ class HomeComp implements DetachAware {
                         ,'imageXs' : 'images/ht_ModuloTorneoBG.jpg'  // Not used
                         ,'imageDesktop' : 'images/ht_ModuloTorneoBG.jpg'
                         ,'html' : '''  
-                            <span class="tile-title"><strong>Torneos Futbol</strong> Cuatro</span>
+                            <span class="tile-title"><strong>Torneos Fútbol</strong> Cuatro</span>
                             <div class="tile-info">
                               <span class="promo-description">Entra a la lista de torneos para empezar a jugar</span>
                             </div>

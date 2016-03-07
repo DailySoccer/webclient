@@ -41,7 +41,7 @@ class HomeComp implements DetachAware {
   bool get isUpcomingTileEnabled => isMyContestTilesEnabled;
   bool get isLiveTileEnabled => isMyContestTilesEnabled;
   bool get isHistoryTileEnabled => isMyContestTilesEnabled;
-  bool get isBlogTileEnabled => true;
+  bool get isBlogTileEnabled => false;
   bool get isHowItWorksEnabled => true;
   String get CreateContestTileText => !userIsLogged? getLocalizedText('create_contest_text_nolog') :
                                             !tutorialIsDone? getLocalizedText('create_contest_text_notut') :

@@ -27,7 +27,7 @@ class MaxTextWidthDirective{
 
   @NgOneWay('max-text-width')
   set value(Map val) {
-    if (val != null)  {
+    if (val != null && (val['width'] != maxWidth || val['text'] != originalText))  {
       maxWidth = val['width'];
       originalText = val['text'];
       updateWidth(max(element.offsetWidth - 15, maxWidth));

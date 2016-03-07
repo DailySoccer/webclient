@@ -9,21 +9,21 @@
       <div class="content-field">
         <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">{{getLocalizedText("name")}}</span></div>
         <div class="control-wrapper">
-          <input id="txtName" type="text" ng-model="editedFirstName" placeholder="{{getLocalizedText('name')}}" class="form-control"  tabindex="1">
+          <input id="txtName" type="text" maxlength="{{MAX_NAME_LENGTH}}" ng-model="editedFirstName" placeholder="{{getLocalizedText('name')}}" class="form-control"  tabindex="1">
         </div>
       </div>
       <!-- Apellidos -->
       <div class="content-field">
         <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">{{getLocalizedText("lastname")}}</span></div>
         <div class="control-wrapper">
-          <input id="txtLastName" type="text" ng-model="editedLastName" placeholder="{{getLocalizedText('lastname')}}" class="form-control" tabindex="2">
+          <input id="txtLastName" type="text" maxlength="{{MAX_SURNAME_LENGTH}}"ng-model="editedLastName" placeholder="{{getLocalizedText('lastname')}}" class="form-control" tabindex="2">
         </div>
       </div>
       <!-- Nickname -->
       <div class="content-field">
         <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">{{getLocalizedText("username")}}</span></div>
         <div class="control-wrapper">
-          <input id="txtNickName" type="text" ng-model="editedNickName" placeholder="{{getLocalizedText('username')}}" class="form-control" tabindex="3" autocapitalize="off">
+          <input id="txtNickName" type="text" maxlength="{{MAX_NICKNAME_LENGTH}}" ng-model="editedNickName" placeholder="{{getLocalizedText('username')}}" class="form-control" tabindex="3" autocapitalize="off">
         </div>
         <!-- Error de nickName -->
         <div id="nickNameErrorContainer" class="content-field-block errorDetected" ng-if="nicknameErrorText != ''">

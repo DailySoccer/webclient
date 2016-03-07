@@ -67,7 +67,7 @@ class FooterComp implements ShadowRootAware {
           </div>
           '''}
   
-          <div class="copyright">© Copyright 2016 Futbol Cuatro</div>
+          <div class="copyright">© Copyright 2016 Fútbol Cuatro</div>
           ${_scrDet.isXsScreen ? '' : '''
           <div class="social">
             <a target="_blank" href="https://www.facebook.com/Futbolcuatro/"><img src="images/facebook.png"/></a>

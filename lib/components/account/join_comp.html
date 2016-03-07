@@ -28,7 +28,7 @@
 
         <form id="signupForm" class="form-horizontal" ng-submit="onAction('SUBMIT')" role="form" formAutofillFix>
           <div class="form-description" ng-bind-html="getLocalizedText('clasicsignupdescription')"></div>
-        
+          
           <!-- NICKNAME  -->
           <div class="user-form-field" id="mailAndNameFieldsWrapper">
             <!-- Description -->
@@ -73,8 +73,12 @@
             <div class="new-row">
               <div id="passwordError" class="join-err-text">{{getLocalizedText("invalidpass")}}</div>
             </div>
+            <div class="acceptTermsAndConditionsWrapper">
+              <input id="acceptTermsAndConditions" name="acceptTermsAndConditions" type="checkbox" ng-model="theAcceptTnC" tabindex="5">
+              <label for="acceptTermsAndConditions" class="termsAndConditionsText">Acepto los <a href="http://www.futbolcuatro.com/terminos-de-uso/">Términos de uso, Condiciones de compra</a> y la <a href="http://www.futbolcuatro.com/politica-de-privacidad/">Política de privacidad</a>.</label>
+            </div>
           </div>
-
+            
           <!-- GOTO LOGIN -->
           <div class="user-form-field">
             <div class="small-text">{{getLocalizedText("registered")}} <a id="gotoLoginLink" ng-click="onAction('LOGIN', $event)"> {{getLocalizedText("loginhere")}}</a></div>

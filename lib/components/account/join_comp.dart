@@ -31,11 +31,13 @@ class JoinComp implements ShadowRootAware {
   String nickName   = "";
   String password   = "";
   String rePassword   = "";
+  bool acceptTnC   = false;
 
   Element nickNameElement;
   Element emailElement;
   Element passwordElement;
   Element rePasswordElement;
+  Element acceptTnCElement;
 
   Element nicknameError;
   Element emailError;
@@ -73,8 +75,13 @@ class JoinComp implements ShadowRootAware {
     rePassword = value;
     validateRePassword();
   }
+  
+  bool get theAcceptTnC => acceptTnC;
+  void set theAcceptTnC (bool value) {
+    acceptTnC = value;
+  }
 
-  bool get enabledSubmit => nickName.length >= MIN_NICKNAME_LENGTH && StringUtils.isValidEmail(email) && password.length >= MIN_PASSWORD_LENGTH && password == rePassword && _enabledSubmit;
+  bool get enabledSubmit => nickName.length >= MIN_NICKNAME_LENGTH && StringUtils.isValidEmail(email) && password.length >= MIN_PASSWORD_LENGTH && password == rePassword && acceptTnC && _enabledSubmit;
 
   String getLocalizedText(key) {
     String str = StringUtils.translate(key, "join")
@@ -95,6 +102,7 @@ class JoinComp implements ShadowRootAware {
     emailElement      = _rootElement.querySelector("#emailInputGroup");
     passwordElement   = _rootElement.querySelector("#passwordInputGroup");
     rePasswordElement = _rootElement.querySelector("#rePasswordInputGroup");
+    acceptTnCElement  = _rootElement.querySelector("#acceptTermsAndConditions");
 
     nicknameError = _rootElement.querySelector("#nickNameError")
         ..parent.style.display = 'none';

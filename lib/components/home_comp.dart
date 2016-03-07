@@ -107,9 +107,9 @@ class HomeComp implements DetachAware {
                         ,'imageXs' : 'images/ht_ModuloTorneoBG.jpg'  // Not used
                         ,'imageDesktop' : 'images/ht_ModuloTorneoBG.jpg'
                         ,'html' : '''  
-                            <span class="tile-title"><strong>Torneos Epic</strong> Eleven</span>
+                            <span class="tile-title"><strong>Torneos Fútbol</strong> Cuatro</span>
                             <div class="tile-info">
-                             <span class="promo-description">Entra a la lista de torneos para empezar a jugar</span>
+                              <span class="promo-description">Entra a la lista de torneos para empezar a jugar</span>
                             </div>
                                  '''
                         ,'text' : 'The promo you are trying to access is not available'
@@ -182,12 +182,14 @@ class HomeComp implements DetachAware {
   void onBlogClick() {
     if (!isBlogTileEnabled) return;
     GameMetrics.logEvent(GameMetrics.TRAINERS_SCHOOL);
-    window.open("http://halftime.epiceleven.com", "HalfTime");
+    // window.open("http://halftime.epiceleven.com", "HalfTime");
+    window.open("http://www.futbolcuatro.com/foros/", "Foro Fútbol Cuatro");
   }
 
   void onHowItWorksClick() {
     if (!isHowItWorksEnabled) return;
-    _router.go('help_info', {});
+    // _router.go('help_info', {});
+    window.open("http://www.futbolcuatro.com/ayuda/", "Como jugar a Futbol Cuatro");
   }
 
   void detach() {

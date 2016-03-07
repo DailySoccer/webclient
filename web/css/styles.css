@@ -21995,6 +21995,8 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   padding-left: 2px;
   padding-right: 2px;
   text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
 }
 #usersListRoot .user-row .name-view-contest-entry-mode {
   position: relative;

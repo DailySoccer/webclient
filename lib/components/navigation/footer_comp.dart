@@ -52,7 +52,7 @@ class FooterComp implements ShadowRootAware {
             <!--a class="goto-link" id="footerLegal" destination="legal_info">         <span class="sub-footer-legal-link">${StringUtils.translate("legal", "footer")}</span></a-->
             <a class="goto-link" id="footerTermsOfUse" target="_blank" href="http://www.futbolcuatro.com/terminos-de-uso/"> <span class="sub-footer-terms-link">${StringUtils.translate("terms", "footer")}</span></a>
             <a class="goto-link" id="footerPrivacyPolicy" target="_blank" href="http://www.futbolcuatro.com/politica-de-privacidad/"><span class="sub-footer-policy-link">${StringUtils.translate("privacy", "footer")}</span></a>
-            <a class="goto-link" id="footerBlog" target="_blank" href="http://halftime.epiceleven.com"><span class="sub-footer-blog-link">BLOG</span></a>
+            <!--a class="goto-link" id="footerBlog" target="_blank" href="http://halftime.epiceleven.com"><span class="sub-footer-blog-link">BLOG</span></a-->
           </div>
   
           <!--

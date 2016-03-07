@@ -44,7 +44,7 @@ class FooterComp implements ShadowRootAware {
         <div class="sub-footer">
   
           <div class="logo-wrapper">
-            <a destination="home"><img src="images/logoLobbyFooter.png" alt="EPIC ELEVEN"></img></a> <span class="footer-count">&nbsp;</span>
+            <a destination="home"><img src="images/logoLobbyFooter.png" alt="FÚTBOL CUATRO"></img></a> <span class="footer-count">&nbsp;</span>
           </div>
   
           <div class="data-wrapper">
@@ -67,7 +67,7 @@ class FooterComp implements ShadowRootAware {
           </div>
           '''}
   
-          <div class="copyright">© Copyright 2015 Epic Eleven</div>
+          <div class="copyright">© Copyright 2016 Futbol Cuatro</div>
           ${_scrDet.isXsScreen ? '' : '''
           <div class="social">
             <a target="_blank" href="https://www.facebook.com/Futbolcuatro/"><img src="images/facebook.png"/></a>

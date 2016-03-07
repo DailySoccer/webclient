@@ -5737,6 +5737,10 @@ scoring-rules:after,
 #loginBox .form-group:after,
 #joinRoot .form-group:before,
 #joinRoot .form-group:after,
+#loginBox .acceptTermsAndConditionsWrapper:before,
+#loginBox .acceptTermsAndConditionsWrapper:after,
+#joinRoot .acceptTermsAndConditionsWrapper:before,
+#joinRoot .acceptTermsAndConditionsWrapper:after,
 #usersListRoot .user-row:before,
 #usersListRoot .user-row:after,
 #usersListRoot .users-table-header:before,
@@ -5861,6 +5865,8 @@ scoring-rules:after,
 #welcomeRoot .panel .panel-body .panel-description:after,
 #loginBox .form-group:after,
 #joinRoot .form-group:after,
+#loginBox .acceptTermsAndConditionsWrapper:after,
+#joinRoot .acceptTermsAndConditionsWrapper:after,
 #usersListRoot .user-row:after,
 #usersListRoot .users-table-header:after,
 .profile-content:after,
@@ -21888,6 +21894,45 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
 #joinRoot #nickNameInputGroup {
   margin-bottom: 10px;
 }
+#loginBox .acceptTermsAndConditionsWrapper,
+#joinRoot .acceptTermsAndConditionsWrapper {
+  margin-left: 0;
+  margin-right: 0;
+  padding-bottom: 10px;
+}
+#loginBox .acceptTermsAndConditionsWrapper #acceptTermsAndConditions,
+#joinRoot .acceptTermsAndConditionsWrapper #acceptTermsAndConditions {
+  display: inline-block;
+  position: relative;
+  float: left;
+  width: 8.33333333%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: left;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
+  color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
+  margin-top: 0;
+}
+#loginBox .acceptTermsAndConditionsWrapper .termsAndConditionsText,
+#joinRoot .acceptTermsAndConditionsWrapper .termsAndConditionsText {
+  position: relative;
+  float: left;
+  width: 83.33333333%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: left;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
+  color: #777777;
+  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
+  padding-left: 0;
+}
 #usersList {
   float: left;
   width: 100%;
@@ -24115,6 +24160,8 @@ users-list#usersList > .epic-tooltip {
 #homeRoot #welcomeRoot .panel .panel-body .panel-description,
 #homeRoot #loginBox .form-group,
 #homeRoot #joinRoot .form-group,
+#homeRoot #loginBox .acceptTermsAndConditionsWrapper,
+#homeRoot #joinRoot .acceptTermsAndConditionsWrapper,
 #homeRoot #usersListRoot .user-row,
 #homeRoot #usersListRoot .users-table-header,
 #homeRoot .profile-content,

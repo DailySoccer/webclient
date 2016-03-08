@@ -44,11 +44,11 @@ class FooterComp implements ShadowRootAware {
         <div class="sub-footer">
   
           <div class="logo-wrapper">
-            <a destination="home"><img src="images/logoLobbyFooter.png" alt="FÚTBOL CUATRO"></img></a> <span class="footer-count">&nbsp;</span>
+            <footer-a class="clickable" destination="home"><img src="images/logoLobbyFooter.png" alt="FÚTBOL CUATRO"></img></footer-a> <span class="footer-count">&nbsp;</span>
           </div>
   
           <div class="data-wrapper">
-            <a class="goto-link" id="footerHelp" destination="help_info">           <span class="sub-footer-help-link">${StringUtils.translate("help", "footer")}</span></a>
+            <footer-a class="clickable goto-link" id="footerHelp" destination="help_info">           <span class="sub-footer-help-link">${StringUtils.translate("help", "footer")}</span></footer-a>
             <!--a class="goto-link" id="footerLegal" destination="legal_info">         <span class="sub-footer-legal-link">${StringUtils.translate("legal", "footer")}</span></a-->
             <a class="goto-link" id="footerTermsOfUse" target="_blank" href="http://www.futbolcuatro.com/terminos-de-uso/"> <span class="sub-footer-terms-link">${StringUtils.translate("terms", "footer")}</span></a>
             <a class="goto-link" id="footerPrivacyPolicy" target="_blank" href="http://www.futbolcuatro.com/politica-de-privacidad/"><span class="sub-footer-policy-link">${StringUtils.translate("privacy", "footer")}</span></a>

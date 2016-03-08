@@ -18065,6 +18065,7 @@ soccer-players-list:after {
   padding-right: 0px;
   text-align: center;
 }
+.soccer-player-list-header-table span,
 .soccer-player-list-header-table a {
   text-decoration: none;
   font-family: 'Open Sans', sans-serif;
@@ -18074,6 +18075,7 @@ soccer-players-list:after {
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 @media (max-width: 767px) {
+  .soccer-player-list-header-table span,
   .soccer-player-list-header-table a {
     font-size: 8pt;
   }
@@ -20200,6 +20202,7 @@ lineup-selector {
   border-top: 1px #000000;
   text-align: left;
 }
+.small-text span.link-aspect,
 .small-text a {
   cursor: pointer;
   font-family: 'Open Sans', sans-serif;
@@ -20218,6 +20221,7 @@ lineup-selector {
   text-align: left;
   text-align: center;
 }
+.small-text-centered span.link-aspect,
 .small-text-centered a {
   cursor: pointer;
   font-family: 'Open Sans', sans-serif;
@@ -28590,4 +28594,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
     border-radius: 0;
     box-shadow: none;
   }
+}
+.clickable {
+  cursor: pointer;
 }

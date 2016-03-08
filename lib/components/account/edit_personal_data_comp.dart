@@ -17,6 +17,9 @@ class EditPersonalDataComp implements ShadowRootAware{
 
   int MIN_PASSWORD_LENGTH = 8;
   int MIN_NICKNAME_LENGTH = 4;
+  int MAX_NICKNAME_LENGTH = 30;
+  int MAX_NAME_LENGTH = 15;
+  int MAX_SURNAME_LENGTH = 20;
 
   String country;
   String region;

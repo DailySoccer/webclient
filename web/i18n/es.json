@@ -822,7 +822,7 @@
 
       "contest_history_hastag"          : "FantasyCuatro",
       "contest_history_title"           : "Resultado",
-      "contest_history_description"     : "¡He quedado @USER_POS! Juega conmigo en Fútbol Cuatro y demuestra si puedes superarme.",
+      "contest_history_description"     : "¡He quedado @USER_POS! Juega conmigo en Fútbol Cuatro e intenta superarme.",
       "contest_history_img"             : "social/ClasifTorneoTerminado.jpg",
 
       "contest_live_hastag"             : "FantasyCuatro",
@@ -896,7 +896,7 @@
       "history_title"                   : "Histórico",
       "mycontest_disabled_info"         : "Todavía no has participado",
 
-      "blog_title"                      : "Palabra de Míster",
+      "blog_title"                      : "Comunidad",
       "blog_info"                       : "FORO FÚTBOL CUATRO",
       "blog_author"                     : "",
 

@@ -12,6 +12,8 @@ import 'package:webclient/utils/string_utils.dart';
    useShadowDom: false
 )
 class UsersListComp {
+  
+  int nameWidth = 105;
 
   List users = new List();
 

@@ -12484,6 +12484,9 @@ fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-b
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff606060', endColorstr='#ff555555', GradientType=0);
 }
+.opponent-team-gradient .user-nickname {
+  margin: 0 130px 0 80px;
+}
 .soccer-player-statistics {
   margin-left: 0;
   margin-right: 0;
@@ -12711,8 +12714,8 @@ fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-b
   cursor: pointer;
 }
 #rootFooter .sub-footer-wrapper .sub-footer .logo-wrapper {
-  height: 45px;
-  margin-top: 5px;
+  height: 60px;
+  margin-top: 10px;
   border-width: 1px;
   border-style: none none solid none;
   border-color: #606060;
@@ -21995,6 +21998,8 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   padding-left: 2px;
   padding-right: 2px;
   text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
 }
 #usersListRoot .user-row .name-view-contest-entry-mode {
   position: relative;

@@ -12,26 +12,34 @@ class MaxTextWidthDirective{
   final dom.Element element;
   int maxWidth = 100;
   int lastWidth = 100;
+  bool stable = false;
   String originalText = "";
 
   MaxTextWidthDirective(this.element) {
-    new Timer.periodic(new Duration(milliseconds: 100), (Timer t) {
-      int newWidth = max(element.offsetWidth - 15, maxWidth);
-      if (newWidth != lastWidth) {
-        updateWidth(newWidth);
-        lastWidth = newWidth;
-      }
-    });
+    TimerTick();
     lastWidth = element.offsetWidth - 5;
   }
 
   @NgOneWay('max-text-width')
   set value(Map val) {
-    if (val != null)  {
+    if (val != null && (val['width'] != maxWidth || val['text'] != originalText))  {
       maxWidth = val['width'];
       originalText = val['text'];
-      updateWidth(max(element.offsetWidth - 15, maxWidth));
     }
+  }
+  
+  void TimerTick() {
+    new Timer(new Duration(milliseconds: stable? 200: 0), () {
+          int newWidth = max(element.offsetWidth - 15, maxWidth);
+          if (newWidth != lastWidth || element.text == "") {
+            updateWidth(newWidth);
+            lastWidth = newWidth;
+            stable = false;
+          } else {
+            stable = true;
+          }
+          TimerTick();
+        });
   }
   
   void updateWidth(int newWidth) {

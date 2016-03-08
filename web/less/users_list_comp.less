@@ -22,7 +22,12 @@
 			
 		@grid-columns-gutter: 4px;		
 		.pos { .make-xs-column(1, @grid-columns-gutter); }
-		.name {	.make-xs-column(4, @grid-columns-gutter); text-align: left;	}
+		.name { 
+			.make-xs-column(4, @grid-columns-gutter);
+			text-align: left;
+			white-space: nowrap;
+			overflow: hidden;
+		}
 		.name-view-contest-entry-mode {	.make-xs-column(9, @grid-columns-gutter); text-align: left;	}
 		.remaining-time { .make-xs-column(3, @grid-columns-gutter); }
 		.score-container {

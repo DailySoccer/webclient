@@ -365,7 +365,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
         <ul class="nav navbar-nav">
           ${getMainOptions()}
           <li highlights="user" class="right-menu username-dropdown-toggle" >
-            <a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">${_userNickName}</a>
+            <menu-a id="menuUser" class="dropdown-toggle" data-toggle="dropdown">${_userNickName}</menu-a>
             <ul class="dropdown-menu">
               ${getUserMenuOptions(_scrDet.isXsScreen)}
             </ul>
@@ -429,10 +429,10 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
   String getUserMenuOptions(bool isDesktop) {
     if (isDesktop) {
       return '''        
-          <li><a id="menuUserMyAccount" destination="user_profile"> ${StringUtils.translate("myaccount",  "mainmenu")}</a></li>
-          <li><a id="menuUserShop"      destination="shop">         ${StringUtils.translate("shop",       "mainmenu")}</a></li>
-          <!--li><a id="menuHowItWorks" destination="help_info">    ${StringUtils.translate("howitworks", "mainmenu")}</a></li-->
-          <li><a id="menuUserLogOut"    destination="logout">       ${StringUtils.translate("logout",     "mainmenu")}</a></li>
+          <li><menu-a id="menuUserMyAccount" destination="user_profile"> ${StringUtils.translate("myaccount",  "mainmenu")}</menu-a></li>
+          <li><menu-a id="menuUserShop"      destination="shop">         ${StringUtils.translate("shop",       "mainmenu")}</menu-a></li>
+          <!--li><menu-a id="menuHowItWorks" destination="help_info">    ${StringUtils.translate("howitworks", "mainmenu")}</menu-a></li-->
+          <li><menu-a id="menuUserLogOut"    destination="logout">       ${StringUtils.translate("logout",     "mainmenu")}</menu-a></li>
         </ul>
       ''';
     }
@@ -455,22 +455,22 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
 
     switch (menuLink) {
       case "home":
-        ret = '''<a id="menuHome"        destination="home">                             ${StringUtils.translate("home",          "mainmenu")}</a>''';
+        ret = '''<menu-a id="menuHome"        destination="home">                             ${StringUtils.translate("home",          "mainmenu")}</menu-a>''';
         break;
       case "lobby":
-        ret = '''<a id="menuLobby"       destination="lobby">                            ${StringUtils.translate("lobby",         "mainmenu")}</a>''';
+        ret = '''<menu-a id="menuLobby"       destination="lobby">                            ${StringUtils.translate("lobby",         "mainmenu")}</menu-a>''';
         break;
       case "my_contests":
-        ret = '''<a id="menuMyContests"  destination="my_contests" params="section:live">${StringUtils.translate("mycontest",     "mainmenu")}</a>''';
+        ret = '''<menu-a id="menuMyContests"  destination="my_contests" params="section:live">${StringUtils.translate("mycontest",     "mainmenu")}</menu-a>''';
         break;
       case "leaderboard":
-        ret = '''<a id="menuLeaderboard" destination="leaderboard" params="section:points, userId:${profileService.user.userId}"> ${StringUtils.translate("leaderboard",   "mainmenu")}</a>''';
+        ret = '''<menu-a id="menuLeaderboard" destination="leaderboard" params="section:points, userId:${profileService.user.userId}"> ${StringUtils.translate("leaderboard",   "mainmenu")}</menu-a>''';
         break;
       case "notifications":
-        ret = '''<a id="menuNotifications" destination="notifications">                  ${StringUtils.translate("notifications", "mainmenu")}${_notificationsCountCode}</a>''';
+        ret = '''<menu-a id="menuNotifications" destination="notifications">                  ${StringUtils.translate("notifications", "mainmenu")}${_notificationsCountCode}</menu-a>''';
         break;
       case "help":
-        ret = '''<a id="menuHelp"        destination="help_info">                        ${StringUtils.translate("howitworks",    "mainmenu")}</a>''';
+        ret = '''<menu-a id="menuHelp"        destination="help_info">                        ${StringUtils.translate("howitworks",    "mainmenu")}</menu-a>''';
         break;
     }
 

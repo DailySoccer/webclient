@@ -98,15 +98,34 @@ main-menu-f2p when (@beta) {
 			& {
 				padding: 0px;
 			}
-			& > li > a {
-				text-align: left;
-				cursor:pointer;
-				padding: 10px 40px 10px 20px;
-				.make-border(1px, none solid solid solid, @greyUltraLight);
-				position: relative;
+			& > li {
+				& > menu-a {
+					text-align: left;
+					cursor: pointer;
+					padding: 10px 40px 10px 20px;
+					.make-border(1px, none solid solid solid, @greyUltraLight);
+					position: relative;
+					display: block;
+					clear: both;
+					font-weight: normal;
+					line-height: 1.42857143;
+					color: #333333;
+					white-space: nowrap;
 
-				&:hover {
-					background-color: @greyLight;
+					&:hover {
+						background-color: @greyLight;
+					}
+				}
+				& > a {
+					text-align: left;
+					cursor: pointer;
+					padding: 10px 40px 10px 20px;
+					.make-border(1px, none solid solid solid, @greyUltraLight);
+					position: relative;
+
+					&:hover {
+						background-color: @greyLight;
+					}
 				}
 			}
 		}
@@ -120,7 +139,7 @@ main-menu-f2p when (@beta) {
 
 		@offcanvas-width: 250px;	// Cuanto ancho necesitamos para que quepan incluso los submenus
 		@fixed-top: 70px;
-		#menuLoggedIn a:hover {
+		#menuLoggedIn menu-a:hover {
 			background-color: @greyLight;
 		}
 		
@@ -210,12 +229,12 @@ main-menu-f2p when (@beta) {
 					}
 					// Submenu de usuario
 					&.right-menu.open {
-						> a, > a:focus, > a:hover {
+						> menu-a, > menu-a:focus, > menu-a:hover {
 							color: @black;
 							background-color: @greyLight;
 						}
 						// Cambiamos la flechita a abierto
-						> a::after {
+						> menu-a::after {
 							.create-glyph("\E114", 10pt,  @greyDark) !important;
 							position: absolute;
 							top: 12px;
@@ -224,16 +243,23 @@ main-menu-f2p when (@beta) {
 					}
 				}
 			}
-
 	  	ul.dropdown-menu {
 				padding: 0px;
 				> li {
+					> menu-a {
+							cursor:pointer;
+							padding: 10px 0px 10px 40px;
+					}
 					> a {
 							cursor:pointer;
 							padding: 10px 0px 10px 40px;
 					}
+					> menu-a:focus {
+						color: @black;
+						background-color: @greyLight;
+					}
 					> a:focus {
-						color:@black;
+						color: @black;
 						background-color: @greyLight;
 					}
 				}
@@ -266,7 +292,7 @@ main-menu-f2p when (@beta) {
 			.mainLink{					
 				display: inline-block;
 				vertical-align: middle;
-				a {
+				menu-a {
 					padding: 23px 5px;
 					display: inline-block;
 					cursor: pointer;
@@ -351,7 +377,7 @@ main-menu-f2p when (@beta) {
 					}
 				}
 
-				&.active a {
+				&.active menu-a {
 					&#menuLeaderboard {
 						.addIcon("menuLeaderboardLight.png", 35px, 31px);
 					}
@@ -364,7 +390,7 @@ main-menu-f2p when (@beta) {
 				}
 			}
 			.active {
-				a {
+				menu-a {
 					color: @white;
 				}
 			}

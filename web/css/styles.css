@@ -13927,6 +13927,24 @@ main-menu-f2p .beta-label {
     color: #000000;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
   }
+  #mainMenu #menuSlide .navbar-nav li.active > menu-a,
+  #mainMenu #menuSlide .navbar-nav li.active > menu-a:hover,
+  #mainMenu #menuSlide .navbar-nav li.active > menu-a:focus {
+    color: #555555;
+    background-color: #e7e7e7;
+  }
+  #mainMenu #menuSlide .navbar-nav li > menu-a {
+    color: #777777;
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    line-height: 20px;
+  }
+  #mainMenu #menuSlide .navbar-nav li > menu-a:hover,
+  #mainMenu #menuSlide .navbar-nav li > menu-a:focus {
+    color: #434343;
+    background-color: #dcdcdc;
+  }
   #mainMenu #menuSlide .navbar-nav li.right-menu.open > menu-a,
   #mainMenu #menuSlide .navbar-nav li.right-menu.open > menu-a:focus,
   #mainMenu #menuSlide .navbar-nav li.right-menu.open > menu-a:hover {

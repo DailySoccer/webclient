@@ -226,6 +226,21 @@ main-menu-f2p when (@beta) {
 					}
 					&.active {
 						.opensans_bold(10pt, @black);
+						> menu-a, > menu-a:hover, > menu-a:focus {
+							color: @greyHeaderDark;
+							background-color: @greyLighter;
+						}
+					}
+					> menu-a {
+						color: @greyDark;
+						position: relative;
+						display: block;
+						padding: 10px 15px;
+						line-height: 20px;
+						&:hover, &:focus {
+							color: @greyUltraDark;
+							background-color: @greyLight;
+						}
 					}
 					// Submenu de usuario
 					&.right-menu.open {
@@ -243,6 +258,7 @@ main-menu-f2p when (@beta) {
 					}
 				}
 			}
+			
 	  	ul.dropdown-menu {
 				padding: 0px;
 				> li {

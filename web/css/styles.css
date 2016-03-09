@@ -23466,6 +23466,7 @@ fieldset[disabled] .info-complete-bar .invite-friends {
   color: #ffffff;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   pointer-events: all;
+  -webkit-transform: translate3d(0px, 0px, 0px);
 }
 @media (max-width: 767px) {
   .epic-tooltip {
@@ -23547,6 +23548,7 @@ fieldset[disabled] .info-complete-bar .invite-friends {
   z-index: 1001;
   position: relative;
   pointer-events: all;
+  -webkit-transform: translate3d(0px, 0px, 0px);
 }
 .disabled-pointer-events {
   pointer-events: none !important;

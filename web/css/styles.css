@@ -23717,6 +23717,14 @@ fieldset[disabled] .info-complete-bar .invite-friends {
 .modal-dialog .modal-content .panel {
   background-color: #ecf0f1;
 }
+@media (max-width: 767px) {
+  fantasy-team.tooltipped-element.highlighted-tip {
+    display: block;
+  }
+  fantasy-team.tooltipped-element.highlighted-tip > .epic-tooltip {
+    top: -75px;
+  }
+}
 fantasy-team#userFantasyTeam > .epic-tooltip {
   top: -75px;
 }
@@ -26886,11 +26894,11 @@ textareateams-filter .teams-filter-wrapper .teams-selector-filter {
     width: 20%;
   }
 }
-.friends-bar-wrapper .friend-element-wrapper + .friend-element-wrapper {
-  border-left: 1px solid #dcdcdc;
+.friends-bar-wrapper friend-info {
+  display: block;
 }
 @media (max-width: 767px) {
-  .friends-bar-wrapper .friend-element-wrapper + .friend-element-wrapper + .friend-element-wrapper + .friend-element-wrapper {
+  .friends-bar-wrapper friend-info + friend-info + friend-info + friend-info {
     display: none !important;
   }
 }

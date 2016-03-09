@@ -13,11 +13,10 @@
 		.make-sm-column(2.4); // 5 columnas
 		padding: 5px 5px;
 	}
-	
-	.friend-element-wrapper + .friend-element-wrapper {
-		border-left: 1px solid @greyLight;
+	friend-info {
+		display: block;
 	}
-	.friend-element-wrapper + .friend-element-wrapper + .friend-element-wrapper + .friend-element-wrapper {
+	friend-info + friend-info + friend-info + friend-info {
 		.hidden-xs();
 	}
 }

@@ -297,6 +297,15 @@
 	background-color: @tramaBlue;
 }
 
+@media (max-width: @screen-xs-max) {
+	fantasy-team.tooltipped-element.highlighted-tip {
+		display: block;
+		& > .epic-tooltip {
+			top: -75px;
+		}
+	}
+}
+
 fantasy-team#userFantasyTeam > .epic-tooltip {
 	top: -75px;
 }

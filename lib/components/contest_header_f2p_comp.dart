@@ -12,6 +12,7 @@ import 'package:webclient/services/contests_service.dart';
 import 'dart:html';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/facebook_service.dart';
+import 'package:webclient/utils/host_server.dart';
 
 @Component(
     selector: 'contest-header-f2p',
@@ -230,7 +231,7 @@ class ContestHeaderF2PComp implements DetachAware, ShadowRootAware {
   
 
 
-  String get inviteUrl => "${window.location.toString().split("#")[0]}#/enter_contest/lobby/${contest.contestId}/none";
+  String get inviteUrl => "${HostServer.domain}/#/enter_contest/lobby/${contest.contestId}/none";
 
   Map _sharingInfo = {};
   Map get sharingInfo {

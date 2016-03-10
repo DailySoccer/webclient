@@ -18,6 +18,7 @@ import 'package:webclient/services/facebook_service.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/utils/fblogin.dart';
 import 'package:webclient/utils/game_info.dart';
+import 'package:webclient/utils/host_server.dart';
 
 @Component(
    selector: 'view-contest-entry',
@@ -129,7 +130,7 @@ class ViewContestEntryComp {
       });
   }
   
-  String get inviteUrl => "${window.location.toString().split("#")[0]}#/sec/${contest.contestId}";
+  String get inviteUrl => "${HostServer.domain}/#/sec/${contest.contestId}";
   
   void onInviteFriends() {
     if (_shareContent == null) {

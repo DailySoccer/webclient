@@ -2464,7 +2464,7 @@ tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html"
   <div class="share-methods-modal-content" id="shareMethodsContent">
     <div class="share-method">
       <p>Puedes compartir el enlace del torneo en tu perfil de Facebook</p>
-      <social-share parameters-by-map="sharingInfo" inline></social-share>
+      <social-share parameters-by-map="sharingInfo" inline inline-xs></social-share>
     </div>
     <div class="share-method">
       <p>o enviarlo por mail a los amigos que quieras.</p>

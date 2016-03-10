@@ -22,7 +22,7 @@ class FacebookService {
     _instance = this;
   }
   
-  static String get _rootUrl => HostServer.domain;
+  static String get _rootUrl => "${HostServer.domain}/";
 
   static Map inscribeInContest(String contestId) {
     return _buildShareMap('contest_inscription', "$_rootUrl#/sec/${contestId}");

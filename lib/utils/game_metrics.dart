@@ -81,6 +81,10 @@ class GameMetrics {
   }
 
   static void logEvent(String eventName, [Map params]) {
+    if (TutorialService.isActivated) {
+      eventName = "TUTORIAL-$eventName";
+    }
+      
     if (JsUtils.existsContext("mixpanel")) {
       if (params != null && !params.isEmpty) {
         JsUtils.runJavascript(null, "track", [eventName, params], "mixpanel");

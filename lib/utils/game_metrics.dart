@@ -2,6 +2,7 @@ library game_metrics;
 
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/utils/host_server.dart';
+import 'package:webclient/services/tutorial_service.dart';
 
 class GameMetrics {
 
@@ -62,18 +63,27 @@ class GameMetrics {
 
 
   static void aliasMixpanel(String email) {
+    if (TutorialService.isActivated)
+      return;
+    
     if (!email.endsWith("test.com") && JsUtils.existsContext("mixpanel")) {
       JsUtils.runJavascript(null, "alias", email, "mixpanel");
     }
   }
 
   static void identifyMixpanel(String email) {
+    if (TutorialService.isActivated)
+      return;
+    
     if (!email.endsWith("test.com") && JsUtils.existsContext("mixpanel")) {
       JsUtils.runJavascript(null, "identify", email, "mixpanel");
     }
   }
 
   static void logEvent(String eventName, [Map params]) {
+    if (TutorialService.isActivated)
+      return;
+    
     if (JsUtils.existsContext("mixpanel")) {
       if (params != null && !params.isEmpty) {
         JsUtils.runJavascript(null, "track", [eventName, params], "mixpanel");
@@ -85,12 +95,18 @@ class GameMetrics {
   }
 
   static void peopleSet(Map params) {
+    if (TutorialService.isActivated)
+      return;
+    
     if (JsUtils.existsContext(["mixpanel","people"])) {
       JsUtils.runJavascript(null, "set", params, ["mixpanel","people"]);
     }
   }
 
   static void peopleCharge(double charge) {
+    if (TutorialService.isActivated)
+      return;
+    
     if (JsUtils.existsContext(["mixpanel","people"])) {
       JsUtils.runJavascript(null, "track_charge", charge, ["mixpanel","people"]);
     }
@@ -98,6 +114,9 @@ class GameMetrics {
 
   // Google Track, NOT Mixpanel.
   static void trackConversion(bool remarketing_only) {
+    if (TutorialService.isActivated)
+      return;
+    
     if (HostServer.isEpicEleven) {
       JsUtils.runJavascript(null, "conversion", [remarketing_only]);
     }

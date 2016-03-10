@@ -236,7 +236,7 @@ abstract class Tutorial {
     "firstName": "Tú",
     "lastName": "",
     "nickName":"Tú",
-    "email": "player@epiceleven.com",
+    "email": "tutorial.epiceleven@gmail.com",
     "wins":0,
     "trueSkill":0,
     "earnedMoney": "AUD 0.00",

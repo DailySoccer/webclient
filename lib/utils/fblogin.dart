@@ -103,6 +103,9 @@ class FBLogin {
               Logger.root.info (ProfileService.decorateLog("Server Login with Facebook"));
               _profileManager.facebookLogin(accessToken, id, name, email)
                                     .then((_) {
+                                      GameMetrics.logEvent(GameMetrics.LOGIN_FB_SUCCESSFUL);
+                                      GameMetrics.trackConversion(false);
+                
                                       Logger.root.info (ProfileService.decorateLog("Server Login with Facebook is OK"));
                                       _onLogin();
                                     }).catchError((ServerError error) {

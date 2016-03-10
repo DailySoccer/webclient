@@ -9,10 +9,11 @@ class GameMetrics {
   static String SIGNUP_ATTEMPTED = "Sign up attempted";
   static String SIGNUP_SUCCESSFUL = "Sign up successful";
   static String LOGIN_ATTEMPTED = "Login attempted";
+  static String LOGIN_SUCCESSFUL = "Login successful";
+  static String LOGIN_FB_SUCCESSFUL = "Login FB successful";
   static String LOGIN_FB_PERMISSIONS_DENIED = "Login FB permissions denied";
   static String LOGIN_FB_REREQUEST_ACCEPTED = "Login FB Rerequest accepted";
   static String LOGIN_FB_REREQUEST_REJECTED = "Login FB Rerequest rejected";
-  static String LOGIN_SUCCESSFUL = "Login successful";
   static String CHANGE_PASSWORD_ATTEMPTED = "Change Password attempted";
   static String LOBBY = "Lobby";
   static String VIEW_HISTORY = "View history";

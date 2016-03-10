@@ -61,6 +61,9 @@ class ProfileService {
   }
 
   Future<Map> facebookLogin(String accessToken, String id, String name, String email) {
+    GameMetrics.aliasMixpanel(email);
+    GameMetrics.peopleSet({"\$email": email, "\$created": new DateTime.now()});
+    
     return _server.facebookLogin(accessToken, id, name, email).then(_onLoginResponse);
   }
 

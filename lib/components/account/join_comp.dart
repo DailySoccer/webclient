@@ -297,6 +297,10 @@ class JoinComp implements ShadowRootAware {
     return errorMap[keyError];
   }
 
+  void makeFacebookSignUp() {
+    _fbLogin.loginFB();
+  }
+  
   bool get isFacebookConnected => _fbLogin.isConnected;
 
   FBLogin _fbLogin;

@@ -21954,12 +21954,12 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   padding: 4px 10px 4px 4px;
   background-color: #4a65a0;
   background: linear-gradient(#4c69ba, #3b55a0);
-  text-shadow: 0 -1px 0 #354c8c;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 16pt;
+  font-family: helvetica, arial, sans-serif;
+  font-weight: bold;
+  font-size: 24px;
   color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  text-shadow: 0 -1px 0 #354c8c;
+  -webkit-font-smoothing: antialiased;
   text-align: left;
   border: none;
   line-height: 16pt;

@@ -81,9 +81,6 @@ class GameMetrics {
   }
 
   static void logEvent(String eventName, [Map params]) {
-    if (TutorialService.isActivated)
-      return;
-    
     if (JsUtils.existsContext("mixpanel")) {
       if (params != null && !params.isEmpty) {
         JsUtils.runJavascript(null, "track", [eventName, params], "mixpanel");
@@ -114,9 +111,6 @@ class GameMetrics {
 
   // Google Track, NOT Mixpanel.
   static void trackConversion(bool remarketing_only) {
-    if (TutorialService.isActivated)
-      return;
-    
     if (HostServer.isEpicEleven) {
       JsUtils.runJavascript(null, "conversion", [remarketing_only]);
     }

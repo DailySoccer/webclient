@@ -53,6 +53,7 @@
 	white-space: normal;
 	.opensans_normal(13pt, @white);
 	pointer-events: all;
+	-webkit-transform: translate3d(0px, 0px, 0px);
 	
 	@media (max-width: @screen-xs-max) {
 		max-width: 300px;
@@ -142,6 +143,7 @@
 	z-index: 1001;
 	position: relative;
 	pointer-events: all;
+	-webkit-transform: translate3d(0px, 0px, 0px);
 }
 
 .disabled-pointer-events {
@@ -293,6 +295,15 @@
 
 .modal-dialog .modal-content .panel {
 	background-color: @tramaBlue;
+}
+
+@media (max-width: @screen-xs-max) {
+	fantasy-team.tooltipped-element.highlighted-tip {
+		display: block;
+		& > .epic-tooltip {
+			top: -75px;
+		}
+	}
 }
 
 fantasy-team#userFantasyTeam > .epic-tooltip {

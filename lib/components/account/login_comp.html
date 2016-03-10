@@ -48,7 +48,7 @@
 
           <!-- REMEMBER PASS -->
           <div class="user-form-field-righted">
-            <a id="rememberPasswordLink" class="small-link-righted" ng-click="onAction('REMEMBER_PASSWORD', $event)">{{GetLocalizedText('forgotpass')}}</a>
+            <span id="rememberPasswordLink" class="link-aspect small-link-righted" ng-click="onAction('REMEMBER_PASSWORD', $event)">{{GetLocalizedText('forgotpass')}}</span>
           </div>
 
           <!-- BUTTONS -->
@@ -64,7 +64,7 @@
           <!-- GOTO REGISTER -->
           <div class="user-form-field">
             <div class="new-row">
-              <div class="small-text">{{GetLocalizedText('unregistered')}} <a id="gotoRegisterLink" ng-click="onAction('JOIN', $event)"> {{GetLocalizedText('signuphere')}} </a></div>
+              <div class="small-text">{{GetLocalizedText('unregistered')}} <span class="link-aspect" id="gotoRegisterLink" ng-click="onAction('JOIN', $event)"> {{GetLocalizedText('signuphere')}} </span></div>
             </div>
           </div>
 

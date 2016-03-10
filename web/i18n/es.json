@@ -56,7 +56,7 @@
       "passrequires"                    : "Contraseña: Debe tener al menos @MIN_PASSWORD_LENGTH caracteres (escríbela 2 veces).",
       "pass"                            : "Contraseña",
       "repass"                          : "Repite la contraseña",
-      "acceptTermsAndPrivacyPolicy"     : "Acepto los <a target='_blank' href='http://www.futbolcuatro.com/terminos-de-uso/'>Términos de uso, Condiciones de compra</a> y la <a target='_blank' href='http://www.futbolcuatro.com/politica-de-privacidad/'>Política de privacidad</a>.",
+      "acceptTermsAndPrivacyPolicy"     : "Al registrase, usted acepta los <a target='_blank' href='http://www.futbolcuatro.com/terminos-de-uso/'>Términos de uso, Condiciones de compra</a> y la <a target='_blank' href='http://www.futbolcuatro.com/politica-de-privacidad/'>Política de privacidad</a>.",
       "invalidpass"                     : "Contraseña inválida.",
       "buttonsignup"                    : "REGÍSTRATE",
       "buttoncancel"                    : "CANCELAR",

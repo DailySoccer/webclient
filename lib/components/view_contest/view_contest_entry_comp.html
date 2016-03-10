@@ -18,8 +18,8 @@
     <div ng-switch-when="true">
       <!-- Tabs de la versión XS -->
       <ul class="view-contest-entry-tabs" id="viewContestEntryTab" >
-        <li class="active"><a ng-click="tabChange('userFantasyTeam')" data-toggle="tab">{{getLocalizedText("yourlineup")}}</a></li>
-        <li><a ng-click="tabChange('usersList')" data-toggle="tab">{{getLocalizedText("users")}}</a></li>
+        <li class="active"><tab ng-click="tabChange('userFantasyTeam')" data-toggle="tab">{{getLocalizedText("yourlineup")}}</tab></li>
+        <li><tab ng-click="tabChange('usersList')" data-toggle="tab">{{getLocalizedText("users")}}</tab></li>
       </ul>
       <div class="tab-content" id="viewContestEntryTabContent">
         <fantasy-team class="tab-pane active" id="userFantasyTeam" contest-entry="mainPlayer" watch="updatedDate" is-opponent="false"></fantasy-team>

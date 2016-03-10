@@ -184,16 +184,16 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   void _createSortHeader() {
     var text = '''
       <div class="soccer-player-list-header-table">
-        <div class="filter filterOrderPos"><a id="Pos">${getLocalizedText('positionabrev')}</a></div>
-        <div class="filter filterOrderName"><a id="Name">${getLocalizedText('name')}</a></div>
-        <div class="filter filterOrderDFP"><a id="DFP">${getLocalizedText('dfp')}</a></div>
-        <div class="filter filterOrderPlayed"><a id="Played">${getLocalizedText('numMatchesAbrev')}</a></div>
-        <div class="filter filterOrderSalary"><a id="Salary">${getLocalizedText('salary')}</a></div>
+        <div class="filter filterOrderPos"><span id="Pos">${getLocalizedText('positionabrev')}</span></div>
+        <div class="filter filterOrderName"><span id="Name">${getLocalizedText('name')}</span></div>
+        <div class="filter filterOrderDFP"><span id="DFP">${getLocalizedText('dfp')}</span></div>
+        <div class="filter filterOrderPlayed"><span id="Played">${getLocalizedText('numMatchesAbrev')}</span></div>
+        <div class="filter filterOrderSalary"><span id="Salary">${getLocalizedText('salary')}</span></div>
       </div>
       ''';
 
     _element.appendHtml(text);
-    _element.querySelectorAll(".filter a").onClick.listen((MouseEvent e) {
+    _element.querySelectorAll(".filter span").onClick.listen((MouseEvent e) {
       sortListByField((e.currentTarget as Element).id);
     });
   }

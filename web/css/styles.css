@@ -6988,6 +6988,7 @@ scoring-rules:after,
   border-color: #214a5f;
   border-radius: 0;
 }
+#contestInfoModal .modal-info-content .tabs-navigation #modalInfoContestTabs > li tab,
 #contestInfoModal .modal-info-content .tabs-navigation #modalInfoContestTabs > li a {
   cursor: pointer;
   line-height: 50px;
@@ -7003,6 +7004,7 @@ scoring-rules:after,
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 @media (max-width: 767px) {
+  #contestInfoModal .modal-info-content .tabs-navigation #modalInfoContestTabs > li tab,
   #contestInfoModal .modal-info-content .tabs-navigation #modalInfoContestTabs > li a {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
@@ -9610,6 +9612,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   border-color: #214a5f;
   border-radius: 0;
 }
+#addFundsContent .help-info-tabs > li tab,
 #addFundsContent .help-info-tabs > li a {
   cursor: pointer;
   line-height: 50px;
@@ -9625,6 +9628,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 @media (max-width: 767px) {
+  #addFundsContent .help-info-tabs > li tab,
   #addFundsContent .help-info-tabs > li a {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
@@ -13132,6 +13136,7 @@ fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-b
   border-color: #214a5f;
   border-radius: 0;
 }
+#viewContestRoot .view-contest-tabs > li tab,
 #viewContestRoot .view-contest-tabs > li a {
   cursor: pointer;
   line-height: 50px;
@@ -13147,6 +13152,7 @@ fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-b
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 @media (max-width: 767px) {
+  #viewContestRoot .view-contest-tabs > li tab,
   #viewContestRoot .view-contest-tabs > li a {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
@@ -13760,6 +13766,25 @@ main-menu-f2p .beta-label {
     left: -105px;
     padding: 0px;
   }
+  #mainMenu .dropdown-menu > li > menu-a {
+    text-align: left;
+    cursor: pointer;
+    padding: 10px 40px 10px 20px;
+    border-width: 1px;
+    border-style: none solid solid solid;
+    border-color: #f8f8f8;
+    border-radius: 0;
+    position: relative;
+    display: block;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #333333;
+    white-space: nowrap;
+  }
+  #mainMenu .dropdown-menu > li > menu-a:hover {
+    background-color: #dcdcdc;
+  }
   #mainMenu .dropdown-menu > li > a {
     text-align: left;
     cursor: pointer;
@@ -13779,7 +13804,7 @@ main-menu-f2p .beta-label {
   }
 }
 @media (max-width: 767px) {
-  #mainMenu #menuLoggedIn a:hover {
+  #mainMenu #menuLoggedIn menu-a:hover {
     background-color: #dcdcdc;
   }
   #mainMenu .navbar-toggle {
@@ -13902,13 +13927,31 @@ main-menu-f2p .beta-label {
     color: #000000;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
   }
-  #mainMenu #menuSlide .navbar-nav li.right-menu.open > a,
-  #mainMenu #menuSlide .navbar-nav li.right-menu.open > a:focus,
-  #mainMenu #menuSlide .navbar-nav li.right-menu.open > a:hover {
+  #mainMenu #menuSlide .navbar-nav li.active > menu-a,
+  #mainMenu #menuSlide .navbar-nav li.active > menu-a:hover,
+  #mainMenu #menuSlide .navbar-nav li.active > menu-a:focus {
+    color: #555555;
+    background-color: #e7e7e7;
+  }
+  #mainMenu #menuSlide .navbar-nav li > menu-a {
+    color: #777777;
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    line-height: 20px;
+  }
+  #mainMenu #menuSlide .navbar-nav li > menu-a:hover,
+  #mainMenu #menuSlide .navbar-nav li > menu-a:focus {
+    color: #434343;
+    background-color: #dcdcdc;
+  }
+  #mainMenu #menuSlide .navbar-nav li.right-menu.open > menu-a,
+  #mainMenu #menuSlide .navbar-nav li.right-menu.open > menu-a:focus,
+  #mainMenu #menuSlide .navbar-nav li.right-menu.open > menu-a:hover {
     color: #000000;
     background-color: #dcdcdc;
   }
-  #mainMenu #menuSlide .navbar-nav li.right-menu.open > a::after {
+  #mainMenu #menuSlide .navbar-nav li.right-menu.open > menu-a::after {
     font-family: 'Glyphicons Halflings' !important;
     content: "\E114" !important;
     font-size: 10pt !important;
@@ -13920,9 +13963,17 @@ main-menu-f2p .beta-label {
   #mainMenu #menuSlide ul.dropdown-menu {
     padding: 0px;
   }
+  #mainMenu #menuSlide ul.dropdown-menu > li > menu-a {
+    cursor: pointer;
+    padding: 10px 0px 10px 40px;
+  }
   #mainMenu #menuSlide ul.dropdown-menu > li > a {
     cursor: pointer;
     padding: 10px 0px 10px 40px;
+  }
+  #mainMenu #menuSlide ul.dropdown-menu > li > menu-a:focus {
+    color: #000000;
+    background-color: #dcdcdc;
   }
   #mainMenu #menuSlide ul.dropdown-menu > li > a:focus {
     color: #000000;
@@ -13977,7 +14028,7 @@ main-menu-f2p .beta-label {
   display: inline-block;
   vertical-align: middle;
 }
-#mainMenu #desktopMenu .links-options .mainLink a {
+#mainMenu #desktopMenu .links-options .mainLink menu-a {
   padding: 23px 5px;
   display: inline-block;
   cursor: pointer;
@@ -13988,12 +14039,12 @@ main-menu-f2p .beta-label {
   color: #59add5;
   text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
 }
-#mainMenu #desktopMenu .links-options .mainLink a:hover,
-#mainMenu #desktopMenu .links-options .mainLink a .active {
+#mainMenu #desktopMenu .links-options .mainLink menu-a:hover,
+#mainMenu #desktopMenu .links-options .mainLink menu-a .active {
   color: #ffffff;
 }
 @media (max-width: 991px) {
-  #mainMenu #desktopMenu .links-options .mainLink a {
+  #mainMenu #desktopMenu .links-options .mainLink menu-a {
     padding: 25px 3px;
     margin: 0 0 0 5px;
     font-family: 'Open Sans', sans-serif;
@@ -14002,14 +14053,14 @@ main-menu-f2p .beta-label {
     color: #59add5;
     text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
   }
-  #mainMenu #desktopMenu .links-options .mainLink a:hover,
-  #mainMenu #desktopMenu .links-options .mainLink a .active {
+  #mainMenu #desktopMenu .links-options .mainLink menu-a:hover,
+  #mainMenu #desktopMenu .links-options .mainLink menu-a .active {
     color: #ffffff;
   }
 }
-#mainMenu #desktopMenu .links-options .mainLink a#menuLeaderboard,
-#mainMenu #desktopMenu .links-options .mainLink a#menuNotifications,
-#mainMenu #desktopMenu .links-options .mainLink a#menuHelp {
+#mainMenu #desktopMenu .links-options .mainLink menu-a#menuLeaderboard,
+#mainMenu #desktopMenu .links-options .mainLink menu-a#menuNotifications,
+#mainMenu #desktopMenu .links-options .mainLink menu-a#menuHelp {
   margin: 0 0 0 10px;
   padding: 0;
   text-indent: 100%;
@@ -14019,15 +14070,15 @@ main-menu-f2p .beta-label {
   background-repeat: no-repeat;
 }
 @media (max-width: 991px) {
-  #mainMenu #desktopMenu .links-options .mainLink a#menuLeaderboard,
-  #mainMenu #desktopMenu .links-options .mainLink a#menuNotifications,
-  #mainMenu #desktopMenu .links-options .mainLink a#menuHelp {
+  #mainMenu #desktopMenu .links-options .mainLink menu-a#menuLeaderboard,
+  #mainMenu #desktopMenu .links-options .mainLink menu-a#menuNotifications,
+  #mainMenu #desktopMenu .links-options .mainLink menu-a#menuHelp {
     margin: 0 0 0 4px;
   }
 }
-#mainMenu #desktopMenu .links-options .mainLink a#menuLeaderboard .count,
-#mainMenu #desktopMenu .links-options .mainLink a#menuNotifications .count,
-#mainMenu #desktopMenu .links-options .mainLink a#menuHelp .count {
+#mainMenu #desktopMenu .links-options .mainLink menu-a#menuLeaderboard .count,
+#mainMenu #desktopMenu .links-options .mainLink menu-a#menuNotifications .count,
+#mainMenu #desktopMenu .links-options .mainLink menu-a#menuHelp .count {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 8pt;
@@ -14049,7 +14100,7 @@ main-menu-f2p .beta-label {
   vertical-align: middle;
   border-radius: 300px;
 }
-#mainMenu #desktopMenu .links-options .mainLink a#menuLeaderboard {
+#mainMenu #desktopMenu .links-options .mainLink menu-a#menuLeaderboard {
   margin: 0 0 0 30px;
   content: " ";
   background-image: url("../images/menuLeaderboard.png");
@@ -14059,11 +14110,11 @@ main-menu-f2p .beta-label {
   vertical-align: middle;
 }
 @media (max-width: 991px) {
-  #mainMenu #desktopMenu .links-options .mainLink a#menuLeaderboard {
+  #mainMenu #desktopMenu .links-options .mainLink menu-a#menuLeaderboard {
     margin: 0 0 0 5px;
   }
 }
-#mainMenu #desktopMenu .links-options .mainLink a#menuLeaderboard#menuLeaderboard:hover {
+#mainMenu #desktopMenu .links-options .mainLink menu-a#menuLeaderboard#menuLeaderboard:hover {
   content: " ";
   background-image: url("../images/menuLeaderboardLight.png");
   width: 35px;
@@ -14071,7 +14122,7 @@ main-menu-f2p .beta-label {
   display: inline-block;
   vertical-align: middle;
 }
-#mainMenu #desktopMenu .links-options .mainLink a#menuNotifications {
+#mainMenu #desktopMenu .links-options .mainLink menu-a#menuNotifications {
   content: " ";
   background-image: url("../images/menuNotifications.png");
   width: 35px;
@@ -14079,7 +14130,7 @@ main-menu-f2p .beta-label {
   display: inline-block;
   vertical-align: middle;
 }
-#mainMenu #desktopMenu .links-options .mainLink a#menuNotifications#menuNotifications:hover {
+#mainMenu #desktopMenu .links-options .mainLink menu-a#menuNotifications#menuNotifications:hover {
   content: " ";
   background-image: url("../images/menuNotificationsLight.png");
   width: 35px;
@@ -14087,7 +14138,7 @@ main-menu-f2p .beta-label {
   display: inline-block;
   vertical-align: middle;
 }
-#mainMenu #desktopMenu .links-options .mainLink a#menuHelp {
+#mainMenu #desktopMenu .links-options .mainLink menu-a#menuHelp {
   content: " ";
   background-image: url("../images/menuHelp.png");
   width: 35px;
@@ -14095,7 +14146,7 @@ main-menu-f2p .beta-label {
   display: inline-block;
   vertical-align: middle;
 }
-#mainMenu #desktopMenu .links-options .mainLink a#menuHelp#menuHelp:hover {
+#mainMenu #desktopMenu .links-options .mainLink menu-a#menuHelp#menuHelp:hover {
   content: " ";
   background-image: url("../images/menuHelpLight.png");
   width: 35px;
@@ -14103,7 +14154,7 @@ main-menu-f2p .beta-label {
   display: inline-block;
   vertical-align: middle;
 }
-#mainMenu #desktopMenu .links-options .mainLink.active a#menuLeaderboard {
+#mainMenu #desktopMenu .links-options .mainLink.active menu-a#menuLeaderboard {
   content: " ";
   background-image: url("../images/menuLeaderboardLight.png");
   width: 35px;
@@ -14111,7 +14162,7 @@ main-menu-f2p .beta-label {
   display: inline-block;
   vertical-align: middle;
 }
-#mainMenu #desktopMenu .links-options .mainLink.active a#menuNotifications {
+#mainMenu #desktopMenu .links-options .mainLink.active menu-a#menuNotifications {
   content: " ";
   background-image: url("../images/menuNotificationsLight.png");
   width: 35px;
@@ -14119,7 +14170,7 @@ main-menu-f2p .beta-label {
   display: inline-block;
   vertical-align: middle;
 }
-#mainMenu #desktopMenu .links-options .mainLink.active a#menuHelp {
+#mainMenu #desktopMenu .links-options .mainLink.active menu-a#menuHelp {
   content: " ";
   background-image: url("../images/menuHelpLight.png");
   width: 35px;
@@ -14127,7 +14178,7 @@ main-menu-f2p .beta-label {
   display: inline-block;
   vertical-align: middle;
 }
-#mainMenu #desktopMenu .links-options .active a {
+#mainMenu #desktopMenu .links-options .active menu-a {
   color: #ffffff;
 }
 #mainMenu #desktopMenu .stats-commons {
@@ -15074,6 +15125,7 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   border-color: #214a5f;
   border-radius: 0;
 }
+#myContestMenuTabs > li tab,
 #myContestMenuTabs > li a {
   cursor: pointer;
   line-height: 50px;
@@ -15089,6 +15141,7 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 @media (max-width: 767px) {
+  #myContestMenuTabs > li tab,
   #myContestMenuTabs > li a {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
@@ -16407,6 +16460,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
   border-color: #214a5f;
   border-radius: 0;
 }
+#modalSoccerPlayerStats .soccer-player-stats-content .soccer-player-stats-tabs > li tab,
 #modalSoccerPlayerStats .soccer-player-stats-content .soccer-player-stats-tabs > li a {
   cursor: pointer;
   line-height: 50px;
@@ -16422,6 +16476,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 @media (max-width: 767px) {
+  #modalSoccerPlayerStats .soccer-player-stats-content .soccer-player-stats-tabs > li tab,
   #modalSoccerPlayerStats .soccer-player-stats-content .soccer-player-stats-tabs > li a {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
@@ -17143,6 +17198,7 @@ fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-add {
   border-color: #214a5f;
   border-radius: 0;
 }
+.enter-contest-tabs > li tab,
 .enter-contest-tabs > li a {
   cursor: pointer;
   line-height: 50px;
@@ -17158,6 +17214,7 @@ fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-add {
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 @media (max-width: 767px) {
+  .enter-contest-tabs > li tab,
   .enter-contest-tabs > li a {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
@@ -18008,6 +18065,7 @@ soccer-players-list:after {
   padding-right: 0px;
   text-align: center;
 }
+.soccer-player-list-header-table span,
 .soccer-player-list-header-table a {
   text-decoration: none;
   font-family: 'Open Sans', sans-serif;
@@ -18017,6 +18075,7 @@ soccer-players-list:after {
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 @media (max-width: 767px) {
+  .soccer-player-list-header-table span,
   .soccer-player-list-header-table a {
     font-size: 8pt;
   }
@@ -19847,6 +19906,7 @@ lineup-selector {
   border-color: #214a5f;
   border-radius: 0;
 }
+#leaderboard-wrapper .leaderboard-tabs > li tab,
 #leaderboard-wrapper .leaderboard-tabs > li a {
   cursor: pointer;
   line-height: 50px;
@@ -19862,6 +19922,7 @@ lineup-selector {
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 @media (max-width: 767px) {
+  #leaderboard-wrapper .leaderboard-tabs > li tab,
   #leaderboard-wrapper .leaderboard-tabs > li a {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
@@ -20141,6 +20202,7 @@ lineup-selector {
   border-top: 1px #000000;
   text-align: left;
 }
+.small-text span.link-aspect,
 .small-text a {
   cursor: pointer;
   font-family: 'Open Sans', sans-serif;
@@ -20159,6 +20221,7 @@ lineup-selector {
   text-align: left;
   text-align: center;
 }
+.small-text-centered span.link-aspect,
 .small-text-centered a {
   cursor: pointer;
   font-family: 'Open Sans', sans-serif;
@@ -21924,7 +21987,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
 #joinRoot .acceptTermsAndConditionsWrapper .termsAndConditionsText {
   position: relative;
   float: left;
-  width: 83.33333333%;
+  width: 91.66666667%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
@@ -23003,6 +23066,7 @@ fieldset[disabled] .info-complete-bar .invite-friends {
   border-color: #214a5f;
   border-radius: 0;
 }
+#viewContestEntry .view-contest-entry-tabs > li tab,
 #viewContestEntry .view-contest-entry-tabs > li a {
   cursor: pointer;
   line-height: 50px;
@@ -23018,6 +23082,7 @@ fieldset[disabled] .info-complete-bar .invite-friends {
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 @media (max-width: 767px) {
+  #viewContestEntry .view-contest-entry-tabs > li tab,
   #viewContestEntry .view-contest-entry-tabs > li a {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
@@ -23401,6 +23466,7 @@ fieldset[disabled] .info-complete-bar .invite-friends {
   color: #ffffff;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   pointer-events: all;
+  -webkit-transform: translate3d(0px, 0px, 0px);
 }
 @media (max-width: 767px) {
   .epic-tooltip {
@@ -23482,6 +23548,7 @@ fieldset[disabled] .info-complete-bar .invite-friends {
   z-index: 1001;
   position: relative;
   pointer-events: all;
+  -webkit-transform: translate3d(0px, 0px, 0px);
 }
 .disabled-pointer-events {
   pointer-events: none !important;
@@ -23649,6 +23716,14 @@ fieldset[disabled] .info-complete-bar .invite-friends {
 }
 .modal-dialog .modal-content .panel {
   background-color: #ecf0f1;
+}
+@media (max-width: 767px) {
+  fantasy-team.tooltipped-element.highlighted-tip {
+    display: block;
+  }
+  fantasy-team.tooltipped-element.highlighted-tip > .epic-tooltip {
+    top: -75px;
+  }
 }
 fantasy-team#userFantasyTeam > .epic-tooltip {
   top: -75px;
@@ -25180,6 +25255,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   border-color: #214a5f;
   border-radius: 0;
 }
+#helpInfo .help-info-tabs > li tab,
 #helpInfo .help-info-tabs > li a {
   cursor: pointer;
   line-height: 50px;
@@ -25195,6 +25271,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
 @media (max-width: 767px) {
+  #helpInfo .help-info-tabs > li tab,
   #helpInfo .help-info-tabs > li a {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
@@ -26817,11 +26894,11 @@ textareateams-filter .teams-filter-wrapper .teams-selector-filter {
     width: 20%;
   }
 }
-.friends-bar-wrapper .friend-element-wrapper + .friend-element-wrapper {
-  border-left: 1px solid #dcdcdc;
+.friends-bar-wrapper friend-info {
+  display: block;
 }
 @media (max-width: 767px) {
-  .friends-bar-wrapper .friend-element-wrapper + .friend-element-wrapper + .friend-element-wrapper + .friend-element-wrapper {
+  .friends-bar-wrapper friend-info + friend-info + friend-info + friend-info {
     display: none !important;
   }
 }
@@ -28527,4 +28604,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
     border-radius: 0;
     box-shadow: none;
   }
+}
+.clickable {
+  cursor: pointer;
 }

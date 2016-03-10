@@ -2,6 +2,7 @@ library game_metrics;
 
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/utils/host_server.dart';
+import 'package:webclient/services/tutorial_service.dart';
 
 class GameMetrics {
 
@@ -9,10 +10,11 @@ class GameMetrics {
   static String SIGNUP_ATTEMPTED = "Sign up attempted";
   static String SIGNUP_SUCCESSFUL = "Sign up successful";
   static String LOGIN_ATTEMPTED = "Login attempted";
+  static String LOGIN_SUCCESSFUL = "Login successful";
+  static String LOGIN_FB_SUCCESSFUL = "Login FB successful";
   static String LOGIN_FB_PERMISSIONS_DENIED = "Login FB permissions denied";
   static String LOGIN_FB_REREQUEST_ACCEPTED = "Login FB Rerequest accepted";
   static String LOGIN_FB_REREQUEST_REJECTED = "Login FB Rerequest rejected";
-  static String LOGIN_SUCCESSFUL = "Login successful";
   static String CHANGE_PASSWORD_ATTEMPTED = "Change Password attempted";
   static String LOBBY = "Lobby";
   static String VIEW_HISTORY = "View history";
@@ -61,12 +63,18 @@ class GameMetrics {
 
 
   static void aliasMixpanel(String email) {
+    if (TutorialService.isActivated)
+      return;
+    
     if (!email.endsWith("test.com") && JsUtils.existsContext("mixpanel")) {
       JsUtils.runJavascript(null, "alias", email, "mixpanel");
     }
   }
 
   static void identifyMixpanel(String email) {
+    if (TutorialService.isActivated)
+      return;
+    
     if (!email.endsWith("test.com") && JsUtils.existsContext("mixpanel")) {
       JsUtils.runJavascript(null, "identify", email, "mixpanel");
     }
@@ -84,12 +92,18 @@ class GameMetrics {
   }
 
   static void peopleSet(Map params) {
+    if (TutorialService.isActivated)
+      return;
+    
     if (JsUtils.existsContext(["mixpanel","people"])) {
       JsUtils.runJavascript(null, "set", params, ["mixpanel","people"]);
     }
   }
 
   static void peopleCharge(double charge) {
+    if (TutorialService.isActivated)
+      return;
+    
     if (JsUtils.existsContext(["mixpanel","people"])) {
       JsUtils.runJavascript(null, "track_charge", charge, ["mixpanel","people"]);
     }

@@ -36,4 +36,10 @@ void clearQueryStrings() {
 
     UriUtils.removeQueryParameters(uri, ["utm"]);
   }
+  if (uri.hasQuery && uri.queryParameters.keys.any((param) => param.startsWith("mixp_landing"))) {
+
+    GameMetrics.logEvent(GameMetrics.ENTER_FROM_FUTBOL_CUATRO, {"button_id": uri.queryParameters['mixp_landing']});
+
+    UriUtils.removeQueryParameters(uri, ["mixp_landing"]);
+  }
 }

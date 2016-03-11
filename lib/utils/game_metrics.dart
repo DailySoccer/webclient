@@ -6,6 +6,7 @@ import 'package:webclient/services/tutorial_service.dart';
 
 class GameMetrics {
 
+  static String ENTER_FROM_FUTBOL_CUATRO = "Entered from futbol cuatro";
   static String LANDING_PAGE = "Landing Page";
   static String SIGNUP_ATTEMPTED = "Sign up attempted";
   static String SIGNUP_SUCCESSFUL = "Sign up successful";

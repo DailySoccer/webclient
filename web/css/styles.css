@@ -18901,6 +18901,11 @@ fieldset[disabled] .soccer-players-filter .filter-by-position .button-filter-pos
   background-color: #ffffff;
   color: #434343;
 }
+@media (min-width: 768px) and (max-width: 991px) {
+  .soccer-players-filter .filter-by-position .button-filter-position.all {
+    display: none !important;
+  }
+}
 @media (max-width: 767px) {
   .soccer-players-filter .filter-by-position .button-filter-position.all {
     display: none !important;

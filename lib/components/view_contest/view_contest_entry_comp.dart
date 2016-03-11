@@ -17,6 +17,7 @@ import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/services/facebook_service.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/utils/fblogin.dart';
+import 'package:webclient/utils/game_info.dart';
 
 @Component(
    selector: 'view-contest-entry',
@@ -114,7 +115,7 @@ class ViewContestEntryComp {
              .then((resp){
                 if(resp) {
                   cancelContestEntry();
-                  window.localStorage.remove(_getKeyForCurrentUserContest);
+                  GameInfo.remove(_getKeyForCurrentUserContest);
                 }
               });
   }

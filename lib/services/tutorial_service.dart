@@ -18,6 +18,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/components/backdrop_comp.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'package:webclient/utils/game_info.dart';
 
 @Injectable()
 class TutorialService {
@@ -43,7 +44,7 @@ class TutorialService {
   }
 
   bool isCompleted(String tutorialKey) {
-    return window.localStorage.containsKey(tutorialKey);
+    return GameInfo.contains(tutorialKey);
   }
 
   void start(String tutorialName) {
@@ -122,7 +123,7 @@ class TutorialService {
       GameMetrics.logEvent(GameMetrics.TUTORIAL_CANCELED);
     }
 
-    window.localStorage[CurrentTutorial.name] = CurrentTutorial.CurrentStepId;
+    GameInfo.assign(CurrentTutorial.name, CurrentTutorial.CurrentStepId);
 
     CurrentTutorial.restoreUser();
     CurrentTutorial.skipTutorial();

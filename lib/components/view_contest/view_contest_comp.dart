@@ -24,6 +24,7 @@ import 'dart:async';
 import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/models/money.dart';
 import 'package:webclient/components/modal_comp.dart';
+import 'package:webclient/utils/game_info.dart';
 
 @Component(
     selector: 'view-contest',
@@ -562,7 +563,7 @@ class ViewContestComp implements DetachAware {
         // Registramos dónde tendría que navegar al tener éxito en "add_funds"
         String hash = "#/live_contest/my_contests/${contestId}/change/${_changingPlayer.soccerPlayer.templateSoccerPlayerId}/${_newSoccerPlayer.soccerPlayer.templateSoccerPlayerId}";
         String url = "${window.location.origin}${window.location.pathname}$hash";
-        window.localStorage["add_gold_success"] = url;
+        GameInfo.assign("add_gold_success", url);
         _router.go('shop.buy', {});
       });
     });

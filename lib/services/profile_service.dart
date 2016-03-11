@@ -18,6 +18,7 @@ import 'package:webclient/components/achievement_comp.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/utils/fblogin.dart';
 import 'package:webclient/utils/host_server.dart';
+import 'package:webclient/utils/game_info.dart';
 
 @Injectable()
 class ProfileService {
@@ -139,7 +140,7 @@ class ProfileService {
   }
 
   void updateProfileFromJson(Map jsonMap) {
-    var storedSessionToken = window.localStorage['sessionToken'];
+    var storedSessionToken = GameInfo.get('sessionToken');
     if (storedSessionToken != null) {
       _setProfile(storedSessionToken, jsonMap, true);
     }
@@ -173,8 +174,8 @@ class ProfileService {
   }
 
   void _tryProfileLoad() {
-    var storedSessionToken = window.localStorage['sessionToken'];
-    var storedUser = window.localStorage['user'];
+    var storedSessionToken = GameInfo.get('sessionToken');
+    var storedUser = GameInfo.get('user');
 
     if (storedSessionToken != null && storedUser != null) {
       _setProfile(storedSessionToken, JSON.decode(storedUser), false);
@@ -197,7 +198,7 @@ class ProfileService {
       })
       .catchError((ServerError error) {
         // No se ha podido refrescar: Tenemos que salir y pedir que vuelva a hacer login
-        window.localStorage.clear();
+        GameInfo.clear();
         Logger.root.warning("ProfileService: Se borro la DB y necesitamos volver a hacer login.");
         window.location.reload();
       }, test: (error) => error is ServerError);
@@ -206,12 +207,12 @@ class ProfileService {
 
   void _saveProfile() {
     if (user != null && _sessionToken != null) {
-      window.localStorage['sessionToken'] = _sessionToken;
-      window.localStorage['user'] = JSON.encode(user);
+      GameInfo.assign('sessionToken', _sessionToken);
+      GameInfo.assign('user', JSON.encode(user));
     }
     else {
-      window.localStorage.remove('sessionToken');
-      window.localStorage.remove('user');
+      GameInfo.remove('sessionToken');
+      GameInfo.remove('user');
     }
   }
 
@@ -297,7 +298,7 @@ class ProfileService {
 
   bool _wasLoggedInForTriggerPopUp = false;
 
-  bool get _hasDoneLogin => window.localStorage.containsKey('user');
+  bool get _hasDoneLogin => GameInfo.contains('user');
 
   static ProfileService _instance;
 

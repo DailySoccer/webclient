@@ -108,13 +108,11 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
       
       // Optimizacion: Tenemos un instance con la información necesaria?
       InstanceSoccerPlayer instance = _soccerPlayerService.getInstanceSoccerPlayer(contestId, instanceSoccerPlayerId);
+      // El instance puede ser null (p.ej. cuando el usuario ha realizado un refresh del browser teniendo abiertas las estadísticas del futbolista)
       if (instance != null) {
         if (instance.hasFullInformation) {
           collectSoccerPlayerInfo(instance);
         }
-      }
-      else {
-        Logger.root.severe("SoccerPlayerStatsComp: ContestId: ${contestId} | InstanceSoccerPlayerId: ${instanceSoccerPlayerId}");
       }
       
       refreshInstancePlayerInfo = _soccerPlayerService.refreshInstancePlayerInfo(contestId, instanceSoccerPlayerId);

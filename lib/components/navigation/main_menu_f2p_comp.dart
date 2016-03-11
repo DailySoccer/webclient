@@ -286,11 +286,11 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     int gold = profileService.user.Gold;
     String goldString = gold.toString();
 
-    if(gold > 100000) {
+    if(gold > 9999) {
       gold ~/= 1000;
       goldString = '${gold}k';
 
-      if(gold > 10000) {
+      if(gold > 999) {
         gold ~/= 1000;
         goldString = '${gold}M';
       }

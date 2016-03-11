@@ -15483,6 +15483,8 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
     padding-right: 15px;
     padding-left: 0px;
     padding-right: 0px;
+    padding-right: 1px;
+    margin-right: -1px;
   }
   #promosComponent > .navbar-header,
   #promosComponent > .navbar-collapse {

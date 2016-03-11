@@ -17,6 +17,7 @@ import 'package:webclient/models/instance_soccer_player.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'dart:async';
 import 'package:webclient/services/server_error.dart';
+import 'package:logging/logging.dart';
 
 @Component(
     selector: 'soccer-player-stats',
@@ -107,8 +108,13 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
       
       // Optimizacion: Tenemos un instance con la información necesaria?
       InstanceSoccerPlayer instance = _soccerPlayerService.getInstanceSoccerPlayer(contestId, instanceSoccerPlayerId);
-      if (instance.hasFullInformation) {
-        collectSoccerPlayerInfo(instance);
+      if (instance != null) {
+        if (instance.hasFullInformation) {
+          collectSoccerPlayerInfo(instance);
+        }
+      }
+      else {
+        Logger.root.severe("SoccerPlayerStatsComp: ContestId: ${contestId} | InstanceSoccerPlayerId: ${instanceSoccerPlayerId}");
       }
       
       refreshInstancePlayerInfo = _soccerPlayerService.refreshInstancePlayerInfo(contestId, instanceSoccerPlayerId);

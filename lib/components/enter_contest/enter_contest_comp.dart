@@ -26,6 +26,7 @@ import 'package:webclient/models/money.dart';
 import 'package:webclient/services/tutorial_service.dart';
 import 'dart:math';
 import 'package:webclient/services/datetime_service.dart';
+import 'package:webclient/utils/game_info.dart';
 
 @Component(
     selector: 'enter-contest',
@@ -671,7 +672,7 @@ class EnterContestComp implements DetachAware {
     saveContestEntry();
 
     //TODO: Mostramos los IDs del fantasyTeam creado
-    //print ("FantasyTeam: " + window.localStorage[_getKeyForCurrentUserContest]);
+    //print ("FantasyTeam: " + GameInfo.get(_getKeyForCurrentUserContest));
 
     if (!_profileService.isLoggedIn) {
       _router.go("enter_contest.join", {});
@@ -684,7 +685,7 @@ class EnterContestComp implements DetachAware {
 
       /*
       // Registramos dónde tendría que navegar al tener éxito en "add_funds"
-      window.localStorage["add_funds_success"] = window.location.href;
+      GameInfo.assign("add_funds_success", window.location.href);
       _router.go("add_funds", {});
        */
     }
@@ -840,7 +841,7 @@ class EnterContestComp implements DetachAware {
   }
 
   void saveContestEntryFromJson(String key, String json) {
-    window.localStorage[key] = json;
+    GameInfo.assign(key, json);
   }
 
   void saveContestEntry() {
@@ -851,9 +852,9 @@ class EnterContestComp implements DetachAware {
   }
 
   void restoreContestEntry() {
-    if (window.localStorage.containsKey(_getKeyForCurrentUserContest)) {
-      // print ("localStorage: key: " + _getKeyForCurrentUserContest + ": " + window.localStorage[_getKeyForCurrentUserContest]);
-      Map loadedData = JSON.decode(window.localStorage[_getKeyForCurrentUserContest]);
+    if (GameInfo.contains(_getKeyForCurrentUserContest)) {
+      // print ("localStorage: key: " + _getKeyForCurrentUserContest + ": " + GameInfo.get(_getKeyForCurrentUserContest));
+      Map loadedData = JSON.decode(GameInfo.get(_getKeyForCurrentUserContest));
 
      _isRestoringTeam = true;
      formationId = loadedData['formation'];
@@ -898,7 +899,7 @@ class EnterContestComp implements DetachAware {
     (contest.entryFee.isEnergy ? alertNotEnoughEnergyContent() : alertNotEnoughGoldContent())
     .then((_) {
       // Registramos dónde tendría que navegar al tener éxito en "add_funds"
-      window.localStorage[contest.entryFee.isEnergy ? "add_energy_success" : "add_gold_success"] = window.location.href;
+      GameInfo.assign(contest.entryFee.isEnergy ? "add_energy_success" : "add_gold_success", window.location.href);
 
       _router.go('shop.buy', {});
     });

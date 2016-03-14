@@ -22,7 +22,7 @@ class SoccerPlayer {
   String name;
   // FieldPos fieldPos;
   int    fantasyPoints;
-  int    playedMatches;
+  // int    playedMatches;
   // int    salary;
 
   // Fantasy Points (actualizado por liveMatchEvent)
@@ -59,7 +59,7 @@ class SoccerPlayer {
     name = jsonMap.containsKey("name") ? jsonMap["name"] : "";
     // fieldPos = jsonMap.containsKey("fieldPos") ? new FieldPos(json["fieldPos"]) : null;
     fantasyPoints = jsonMap.containsKey("fantasyPoints") ? jsonMap["fantasyPoints"] : 0;
-    playedMatches = jsonMap.containsKey("playedMatches") ? jsonMap["playedMatches"] : 0;
+    // playedMatches = jsonMap.containsKey("playedMatches") ? jsonMap["playedMatches"] : 0;
     // salary = jsonMap.containsKey("salary") ? jsonMap["salary"] : 0;
 
     if (jsonMap.containsKey("stats")) {

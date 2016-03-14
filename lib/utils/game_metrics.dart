@@ -2,6 +2,7 @@ library game_metrics;
 
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/utils/host_server.dart';
+import 'package:webclient/services/tutorial_service.dart';
 
 class GameMetrics {
 
@@ -64,47 +65,55 @@ class GameMetrics {
 
 
   static void aliasMixpanel(String email) {
-    /*
-    if (!email.endsWith("test.com")) {
+    if (TutorialService.isActivated)
+      return;
+    
+    if (!email.endsWith("test.com") && JsUtils.existsContext("mixpanel")) {
       JsUtils.runJavascript(null, "alias", email, "mixpanel");
     }
-    *
-     */
   }
 
   static void identifyMixpanel(String email) {
-    /*
-    if (!email.endsWith("test.com")) {
+    if (TutorialService.isActivated)
+      return;
+    
+    if (!email.endsWith("test.com") && JsUtils.existsContext("mixpanel")) {
       JsUtils.runJavascript(null, "identify", email, "mixpanel");
     }
-    *
-     */
   }
 
   static void logEvent(String eventName, [Map params]) {
-    /*
-    if (params!=null && !params.isEmpty) {
-      JsUtils.runJavascript(null, "track", [eventName, params], "mixpanel");
+    if (TutorialService.isActivated) {
+      eventName = "TUTORIAL-$eventName";
     }
-    else {
-      JsUtils.runJavascript(null, "track", eventName, "mixpanel");
+      
+    if (JsUtils.existsContext("mixpanel")) {
+      if (params != null && !params.isEmpty) {
+        JsUtils.runJavascript(null, "track", [eventName, params], "mixpanel");
+      }
+      else {
+        JsUtils.runJavascript(null, "track", eventName, "mixpanel");
+      }
     }
-     */
   }
 
   static void peopleSet(Map params) {
-    /*
-    JsUtils.runJavascript(null, "set", params, ["mixpanel","people"]);
-    *
-     */
+    if (TutorialService.isActivated)
+      return;
+    
+    if (JsUtils.existsContext(["mixpanel","people"])) {
+      JsUtils.runJavascript(null, "set", params, ["mixpanel","people"]);
+    }
   }
 
   static void peopleCharge(double charge) {
-    /*
+    if (TutorialService.isActivated)
+      return;
+    
+    if (JsUtils.existsContext(["mixpanel","people"])) {
       JsUtils.runJavascript(null, "track_charge", charge, ["mixpanel","people"]);
-      *
-       */
     }
+  }
 
   // Google Track, NOT Mixpanel.
   static void trackConversion(bool remarketing_only) {

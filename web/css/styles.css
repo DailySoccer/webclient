@@ -16785,6 +16785,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
   padding-right: 0;
   display: inline-block;
   overflow-x: auto;
+  overflow-y: visible;
 }
 @media (min-width: 768px) {
   #modalSoccerPlayerStats .soccer-player-stats-content #statsTable .stats-rows {

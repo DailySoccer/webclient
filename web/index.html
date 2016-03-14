@@ -325,7 +325,7 @@
       function facebookProfilePhoto(facebookId, callback) {
         //console.log(" - FB REQUEST => ProfilePhoto  ::: " + '/' + facebookId + '/picture?redirect=false' );
         waitForFacebook( function() {
-          facebookConnectPlugin.api('/' + facebookId + '/picture?redirect=false', ["public_profile"],
+          facebookConnectPlugin.api('/' + facebookId + '/picture?redirect=false', [],
               function(response) {
                 //console.log(" - PROFILE PHOTO RESPONSE:");
                 //console.log(response);

@@ -210,29 +210,43 @@ class FBLogin {
     print("====================================");
     
     _profileImageCache[facebookId] = defaultImage;
-    JsUtils.runJavascript(null, "facebookProfilePhoto", [facebookId, (js.JsObject profileInfoResponse) {
-          Map image = {};
-          print("====================================");
-          print("====================================");
-          
-          print(profileInfoResponse);
-          print(profileInfoResponse["error"]);
-          
-          if (profileInfoResponse["error"] == false) {
-            
-            print(profileInfoResponse['imageUrl']);
-            print(profileInfoResponse['isDefault']);
-            
-            image['imageUrl'] = profileInfoResponse['imageUrl'];
-            image['isDefault'] = profileInfoResponse['isDefault'];
-            _profileImageCache[facebookId] = image;
-          } else {
-            Logger.root.warning (ProfileService.decorateLog("WTF - 3510 - RunJS - Facebook Get Profile Image '${profileInfoResponse["error"]['message']}'"));
-          }
-        }]);
-    
+    if (_isRequestingPhoto) {
+      _photoRequestQueue.add(() => _profileImageJSCall(facebookId));
+    } else {
+      _profileImageJSCall(facebookId);
+    }
+
     return defaultImage;
   }
+  
+  static void _profileImageJSCall(String facebookId) {
+    _isRequestingPhoto = true;
+    JsUtils.runJavascript(null, "facebookProfilePhoto", [facebookId, (js.JsObject profileInfoResponse) {
+      Map image = {};
+      print("====================================");
+      print("====================================");
+      
+      print(profileInfoResponse);
+      print(profileInfoResponse["error"]);
+      
+      if (profileInfoResponse["error"] == false) {
+        
+        print(profileInfoResponse['imageUrl']);
+        print(profileInfoResponse['isDefault']);
+        
+        image['imageUrl'] = profileInfoResponse['imageUrl'];
+        image['isDefault'] = profileInfoResponse['isDefault'];
+        _profileImageCache[facebookId] = image;
+      } else {
+        Logger.root.warning (ProfileService.decorateLog("WTF - 3510 - RunJS - Facebook Get Profile Image '${profileInfoResponse["error"]['message']}'"));
+      }
+      _isRequestingPhoto = false;
+      if (_photoRequestQueue.length > 0) { 
+        _photoRequestQueue.removeLast()(); // pop and call the function
+      }
+    }]);
+  }
+  
   
   static Future<List<String>> friendList(facebookId) {
     Completer<List<String>> completer = new Completer<List<String>>();
@@ -287,6 +301,8 @@ class FBLogin {
   
   static Map <String, Map> _profileImageCache = {};
   static Router _router;
+  static List<Function> _photoRequestQueue;
+  static bool _isRequestingPhoto;
   static ProfileService _profileManager;
   static Function _onLogin;
   static List<String> NEEDED_PERMISSIONS = ['email', 'user_friends', 'public_profile']; // user_friends, email, public_profile

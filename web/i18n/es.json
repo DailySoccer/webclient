@@ -827,7 +827,7 @@
 
       "contest_live_hastag"             : "FantasyCuatro",
       "contest_live_title"              : "¡Sigue el torneo en directo!",
-      "contest_live_description"        : "Estoy jugando en un torneo de Fútbol Cuatro, ¡fíjate cómo voy!",
+      "contest_live_description"        : "Estoy jugando un torneo en directo, ¡fíjate cómo voy!",
       "contest_live_img"                : "social/Live.jpg",
 
       "win_achievement_hastag"          : "FantasyCuatro",
@@ -836,7 +836,7 @@
       "win_achievement_img"             : "social/@ACHIEV_IMG_KEY",
 
       "manager_level_up_hastag"         : "FantasyCuatro",
-      "manager_level_up_title"          : "¡He subido de Nivel de Mánager!",
+      "manager_level_up_title"          : "¡He subido de Nivel!",
       "manager_level_up_description"    : "Ahora puedo alinear mejores futbolistas. ¿Podrás ganarme?",
       "manager_level_up_img"            : "social/ManagerLevel@MANAGER_LEVEL.jpg",
 

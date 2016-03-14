@@ -11,6 +11,7 @@ import 'package:webclient/services/server_error.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'dart:html';
 import 'package:webclient/models/money.dart';
+import 'package:webclient/utils/game_info.dart';
 
 
 @Component(
@@ -78,9 +79,9 @@ class EnergyShopComp {
           .then( (_) {
             _flashMessage.addGlobalMessage("Has comprado [ Recarga  Completa ]", 1);
 
-            if (window.localStorage.containsKey("add_energy_success")) {
+            if (GameInfo.contains("add_energy_success")) {
               CloseModal();
-              window.location.assign(window.localStorage["add_energy_success"]);
+              window.location.assign(GameInfo.get("add_energy_success"));
             }
           })
           .catchError((ServerError error) {

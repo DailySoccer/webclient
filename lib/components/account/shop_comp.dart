@@ -16,6 +16,7 @@ import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/datetime_service.dart';
+import 'package:webclient/utils/game_info.dart';
 
 @Component(
     selector: 'shop-comp',
@@ -97,8 +98,8 @@ class ShopComp implements DetachAware{
 
     _catalogService.buyProduct(id)
       .then( (_) {
-        if (window.localStorage.containsKey("add_gold_success")) {
-          window.location.assign(window.localStorage["add_gold_success"]);
+        if (GameInfo.contains("add_gold_success")) {
+          window.location.assign(GameInfo.get("add_gold_success"));
         }
         else {
           Map product = goldProducts.firstWhere((product) => product["id"] == id, orElse: () => {});
@@ -121,9 +122,9 @@ class ShopComp implements DetachAware{
           .then( (_) {
             _flashMessage.addGlobalMessage( (product["id"] == "ENERGY_ALL") ? "Has comprado [Recarga  Completa]" : "Has comprado [Recarga +1]", 1);
 
-            if (window.localStorage.containsKey("add_energy_success")) {
+            if (GameInfo.contains("add_energy_success")) {
               ModalComp.close();
-              window.location.assign(window.localStorage["add_energy_success"]);
+              window.location.assign(GameInfo.get("add_energy_success"));
             }
             GameMetrics.logEvent(GameMetrics.ENERGY_BOUGHT, {'quantity':(product["id"] == "ENERGY_ALL")? 10 : 1});
           })
@@ -170,9 +171,9 @@ class ShopComp implements DetachAware{
   }
    
   void clearCookies() {
-    window.localStorage.remove("add_funds_success");
-    window.localStorage.remove("add_gold_success");
-    window.localStorage.remove("add_energy_success");
+    GameInfo.remove("add_funds_success");
+    GameInfo.remove("add_gold_success");
+    GameInfo.remove("add_energy_success");
   }
 
   bool get canBuyEnergy => _profileService.user.energyBalance.amount < User.MAX_ENERGY;

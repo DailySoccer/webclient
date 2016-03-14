@@ -106,6 +106,7 @@ import 'package:webclient/components/legalese_and_help/terminus_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/policy_info_comp.dart';
 import 'package:logging/logging.dart';
+import 'package:webclient/utils/game_info.dart';
 
 //import 'package:webclient/components/account/add_funds_comp.dart';
 //import 'package:webclient/components/account/transaction_history_comp.dart';
@@ -582,8 +583,8 @@ class WebClientApp extends Module {
   }
 
   void _preEnterPagePayment(RoutePreEnterEvent event, Router router) {
-    if (event.parameters["result"] == 'success' && window.localStorage.containsKey("add_gold_success")) {
-      window.location.assign(window.localStorage["add_gold_success"]);
+    if (event.parameters["result"] == 'success' && GameInfo.contains("add_gold_success")) {
+      window.location.assign(GameInfo.get("add_gold_success"));
 
       event.allowEnter(_waitingPageLoad(() {
         return false;
@@ -593,8 +594,8 @@ class WebClientApp extends Module {
 
   // TODO: No funciona la redirección "window.location"
   void _preLeavePagePayment(RoutePreLeaveEvent event, Router router) {
-    if (window.localStorage.containsKey("add_gold_success")) {
-      window.location.assign(window.localStorage["add_gold_success"]);
+    if (GameInfo.contains("add_gold_success")) {
+      window.location.assign(GameInfo.get("add_gold_success"));
 
       event.allowLeave(_waitingPageLoad(() {
               return false;

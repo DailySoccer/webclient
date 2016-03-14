@@ -65,7 +65,7 @@ class SoccerPlayersFilterComp implements AttachAware {
         new FieldPos(getLocalizedText("forward"))
       ];
     // En movil podemos empezar directamente filtrados
-    if (scrDet.isXsScreen) {
+    if (scrDet.isSmScreen || scrDet.isXsScreen) {
       _fieldPosFilter = new FieldPos(getLocalizedText("goalkeeper"));
     }
     else {
@@ -73,7 +73,7 @@ class SoccerPlayersFilterComp implements AttachAware {
       //_fieldPosFilter = new FieldPos("FORWARD");
     }
     scrDet.mediaScreenWidth.listen((msg) { 
-      if (msg == "xs" && _fieldPosFilter == null) {
+      if ((msg == "sm" || msg == "xs") && _fieldPosFilter == null) {
         _fieldPosFilter = new FieldPos(getLocalizedText("goalkeeper"));
       }
     });

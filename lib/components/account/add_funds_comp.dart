@@ -5,6 +5,7 @@ import 'dart:html';
 import 'package:webclient/services/payment_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/utils/game_info.dart';
 
 
 @Component(
@@ -40,7 +41,7 @@ class AddFundsComp implements ShadowRootAware, DetachAware {
   }
 
   void detach() {
-    window.localStorage.remove("add_funds_success");
+    GameInfo.remove("add_funds_success");
   }
 
   /* Chequeos de los input */

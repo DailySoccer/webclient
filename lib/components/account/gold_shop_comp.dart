@@ -7,6 +7,7 @@ import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/catalog_service.dart';
 import 'package:webclient/models/product.dart';
 import 'dart:html';
+import 'package:webclient/utils/game_info.dart';
 
 @Component(
     selector: 'gold-shop-comp',
@@ -46,9 +47,9 @@ class GoldShopComp {
   void buyItem(String id) {
     _catalogService.buyProduct(id)
       .then( (_) {
-        if (window.localStorage.containsKey("add_gold_success")) {
+        if (GameInfo.contains("add_gold_success")) {
           CloseModal();
-          window.location.assign(window.localStorage["add_gold_success"]);
+          window.location.assign(GameInfo.get("add_gold_success"));
         }
         else {
           Map product = products.firstWhere((product) => product["id"] == id, orElse: () => {});

@@ -8,11 +8,14 @@ import 'package:webclient/models/template_soccer_team.dart';
 import 'package:webclient/models/template_soccer_player.dart';
 import 'package:webclient/services/template_references.dart';
 import 'package:logging/logging.dart';
+import 'package:webclient/services/datetime_service.dart';
 
 
 @Injectable()
 class TemplateService {
 
+  static num SECONDS_TO_REFRESH = 60 * 60 * 8; // 8 horas
+  // static num SECONDS_TO_REFRESH = 60; // 1 minuto
   static TemplateService get Instance => _instance; 
   
   TemplateService(this._server) {
@@ -20,6 +23,10 @@ class TemplateService {
   }
 
   TemplateReferences get references => _templateReferences;
+  
+  void forceRefresh() => _dateTimeRefreshed = null;
+  
+  bool get timedOut => _dateTimeRefreshed == null || (DateTimeService.now.difference(_dateTimeRefreshed).inSeconds > SECONDS_TO_REFRESH);
   
   TemplateSoccerPlayer getTemplateSoccerPlayer(String templateSoccerPlayerId) {
     return _templateReferences.getTemplateSoccerPlayerById(templateSoccerPlayerId);
@@ -30,7 +37,11 @@ class TemplateService {
   }
 
   Future refreshTemplateSoccerPlayers() {
-    if (_completer == null) {
+    if (timedOut) {
+      Logger.root.info("RefreshTemplateSoccerPlayers: ${DateTimeService.now}");
+      
+      _dateTimeRefreshed = DateTimeService.now;
+      
       _completer = new Completer();
   
       Future.wait([_server.getTemplateSoccerTeams(), _server.getTemplateSoccerPlayers()])
@@ -49,15 +60,18 @@ class TemplateService {
             
             _completer.complete();
           })
-          .catchError((_) {
-            Logger.root.severe("WTF 7773: refreshTemplateSoccerPlayers Error");
-            _completer = null;
+          .catchError((error) {
+            forceRefresh();
+            
+            Logger.root.severe("WTF 7773: refreshTemplateSoccerPlayers Error: ${error}");
+            _completer.complete();
           });
     }
 
     return _completer.future;
   }
 
+  DateTime _dateTimeRefreshed = null;
   TemplateReferences _templateReferences = new TemplateReferences();
   Completer _completer;
   

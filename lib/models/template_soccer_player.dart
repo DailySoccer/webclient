@@ -6,9 +6,11 @@ import 'package:webclient/models/soccer_player_stats.dart';
 import 'package:webclient/services/template_references.dart';
 
 class TemplateSoccerPlayer {
+  static String UNKNOWN = "<unknown>";
+  
   String templateSoccerPlayerId;
-  String name;
-  int    fantasyPoints;
+  String name = UNKNOWN;
+  int    fantasyPoints = 0;
   
   List<SoccerPlayerStats> stats = [];
 

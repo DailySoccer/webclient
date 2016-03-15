@@ -12,6 +12,8 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/soccer_player_service.dart';
 import 'package:webclient/models/competition.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:logging/logging.dart';
+import 'package:webclient/models/template_soccer_player.dart';
 
 @Component(
     selector: 'scouting',
@@ -103,21 +105,27 @@ class ScoutingComp implements DetachAware {
           allSoccerPlayersES = new List<dynamic>();
           teamListES = [];
           instanceSoccerPlayers.forEach( (InstanceSoccerPlayer instance) {
-            allSoccerPlayersES.add({
-              "instanceSoccerPlayer": instance,
-              "id": instance.id,
-              "intId": intId++,
-              "fieldPos": instance.fieldPos,
-              "fieldPosSortOrder": instance.fieldPos.sortOrder,
-              "fullName": instance.soccerPlayer.name,
-              "fullNameNormalized": StringUtils.normalize(instance.soccerPlayer.name).toUpperCase(),
-              "matchId" :  instance.soccerTeam.templateSoccerTeamId,
-              "matchEventName": instance.soccerTeam.name.toUpperCase(),
-              "remainingMatchTime": "-",
-              "fantasyPoints": instance.soccerPlayer.getFantasyPointsForCompetition(Competition.LEAGUE_ES_ID),
-              "playedMatches": instance.soccerPlayer.getPlayedMatchesForCompetition(Competition.LEAGUE_ES_ID),
-              "salary": instance.salary
-            });
+            if (instance.soccerPlayer.name != TemplateSoccerPlayer.UNKNOWN) {
+              allSoccerPlayersES.add({
+                "instanceSoccerPlayer": instance,
+                "id": instance.id,
+                "intId": intId++,
+                "fieldPos": instance.fieldPos,
+                "fieldPosSortOrder": instance.fieldPos.sortOrder,
+                "fullName": instance.soccerPlayer.name,
+                "fullNameNormalized": StringUtils.normalize(instance.soccerPlayer.name).toUpperCase(),
+                "matchId" :  instance.soccerTeam.templateSoccerTeamId,
+                "matchEventName": instance.soccerTeam.name.toUpperCase(),
+                "remainingMatchTime": "-",
+                "fantasyPoints": instance.soccerPlayer.getFantasyPointsForCompetition(Competition.LEAGUE_ES_ID),
+                "playedMatches": instance.soccerPlayer.getPlayedMatchesForCompetition(Competition.LEAGUE_ES_ID),
+                "salary": instance.salary
+              });
+            }
+            else {
+              // Con la caché de TemplateSoccerPlayers es posible que recibamos futbolistas "desconocidos"
+              Logger.root.severe("WTF 1013: Bad SoccerPlayer: ${instance.soccerPlayer.templateSoccerPlayerId}");
+            }
           });
           soccerTeams.forEach((team) {
             teamListES.add({"id": team.templateSoccerTeamId, "name": team.name, "shortName": team.shortName});

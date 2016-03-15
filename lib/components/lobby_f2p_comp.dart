@@ -64,9 +64,12 @@ class LobbyF2PComp implements DetachAware {
     DateTime current = DateTimeService.now;
     List<Contest> serverContestList = _contestsService.activeContests;
 
-    for(int i = 0; i < 7; i++) {
+    
+    const int WEEK_DAYS_COUNT = 1; //7; 
+    for(int i = 0; i < WEEK_DAYS_COUNT; i++) {
       List<Contest> contestListFiltered = new List<Contest>();
-      contestListFiltered.addAll(serverContestList.where((c) => contestIsAtDate(c, current)));
+      //contestListFiltered.addAll(serverContestList.where((c) => contestIsAtDate(c, current)));
+      contestListFiltered.addAll(serverContestList);
       contestListByDay[_dayKey(current)] = contestListFiltered;
 
       dayList.add({"weekday": current.weekday.toString(), "monthday": current.day, "date": current, "enabled": contestListFiltered.length > 0});

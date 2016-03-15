@@ -65,6 +65,20 @@ class SoccerPlayer {
     return this;
   }
 
+  factory SoccerPlayer.fromId(String templateSoccerPlayerId, String templateSoccerTeamId, TemplateReferences templateReferences, ContestReferences contestReferences) {
+    SoccerPlayer soccerPlayer = contestReferences.getSoccerPlayerById(templateSoccerPlayerId);
+    return soccerPlayer._initFromId(templateSoccerTeamId, templateReferences, contestReferences);
+  }
+  
+  SoccerPlayer _initFromId(String templateSoccerTeamId, TemplateReferences templateReferences, ContestReferences contestReferences) {
+    assert(templateSoccerPlayerId.isNotEmpty);
+
+    templateSoccerPlayer = templateReferences.getTemplateSoccerPlayerById(templateSoccerPlayerId);
+    soccerTeam = contestReferences.getSoccerTeamById(templateSoccerTeamId);
+    soccerTeam.addSoccerPlayer(this);
+    return this;
+  }
+  
   static String getEventName(String key) {
     if (!_EVENT_KEY_TO_NAME.containsKey(key)) {
       Logger.root.severe("soccer_player:getEventName:$key invalid");

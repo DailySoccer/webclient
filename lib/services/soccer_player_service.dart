@@ -43,16 +43,20 @@ class SoccerPlayerService {
   Future refreshInstancePlayerInfo(String contestId, String instanceSoccerPlayerId) {
     var completer = new Completer();
 
-    _server.getInstancePlayerInfo(contestId, instanceSoccerPlayerId)
-        .then((jsonMap) {
+    Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), _server.getInstancePlayerInfo(contestId, instanceSoccerPlayerId)])
+        .then((List jsonMaps) {
           TemplateReferences templateReferences = TemplateService.Instance.references;
           ContestReferences contestReferences = new ContestReferences();
 
-          nextMatchEvent = jsonMap.containsKey("match_event") ? new MatchEvent.fromJsonObject(jsonMap["match_event"], contestReferences) : null;
-          jsonMap["soccer_teams"].forEach( (jsonTeam) =>
+          nextMatchEvent = jsonMaps[1].containsKey("match_event") ? new MatchEvent.fromJsonObject(jsonMaps[1]["match_event"], contestReferences) : null;
+          jsonMaps[1]["soccer_teams"].forEach( (jsonTeam) =>
               new SoccerTeam.fromJsonObject(jsonTeam, templateReferences, contestReferences) );
-          soccerPlayer = new SoccerPlayer.fromJsonObject(jsonMap["soccer_player"], templateReferences, contestReferences);
-          instanceSoccerPlayer = new InstanceSoccerPlayer.initFromJsonObject(jsonMap["instance_soccer_player"], contestReferences);
+          
+          instanceSoccerPlayer = new InstanceSoccerPlayer.initFromJsonObject(jsonMaps[1]["instance_soccer_player"], contestReferences);
+          
+          soccerPlayer = new SoccerPlayer.fromId(instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId, instanceSoccerPlayer.soccerTeam.templateSoccerTeamId, templateReferences, contestReferences);
+          TemplateService.Instance.getTemplateSoccerPlayer(instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId).loadStatsFromJsonObject(jsonMaps[1]["soccer_player"], templateReferences);
+          
           completer.complete();
         });
 
@@ -62,16 +66,18 @@ class SoccerPlayerService {
   Future refreshSoccerPlayerInfo(String soccerPlayerId) {
     var completer = new Completer();
 
-    _server.getSoccerPlayerInfo(soccerPlayerId)
-        .then((jsonMap) {
+    Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), _server.getSoccerPlayerInfo(soccerPlayerId)])
+        .then((List jsonMaps) {
           TemplateReferences templateReferences = TemplateService.Instance.references;
           ContestReferences contestReferences = new ContestReferences();
 
-          nextMatchEvent = jsonMap.containsKey("match_event") ? new MatchEvent.fromJsonObject(jsonMap["match_event"], contestReferences) : null;
-          jsonMap["soccer_teams"].forEach( (jsonTeam) =>
+          nextMatchEvent = jsonMaps[1].containsKey("match_event") ? new MatchEvent.fromJsonObject(jsonMaps[1]["match_event"], contestReferences) : null;
+          jsonMaps[1]["soccer_teams"].forEach( (jsonTeam) =>
               new SoccerTeam.fromJsonObject(jsonTeam, templateReferences, contestReferences) );
-          soccerPlayer = new SoccerPlayer.fromJsonObject(jsonMap["soccer_player"], templateReferences, contestReferences);
-          instanceSoccerPlayer = new InstanceSoccerPlayer.initFromJsonObject(jsonMap["instance_soccer_player"], contestReferences);
+          
+          instanceSoccerPlayer = new InstanceSoccerPlayer.initFromJsonObject(jsonMaps[1]["instance_soccer_player"], contestReferences);
+          
+          soccerPlayer = new SoccerPlayer.fromJsonObject(jsonMaps[1]["instance_soccer_player"], templateReferences, contestReferences);
           completer.complete();
         });
 
@@ -81,31 +87,31 @@ class SoccerPlayerService {
   Future getSoccerPlayersByCompetition(String competitionId) {
     var completer = new Completer();
 
-    _server.getSoccerPlayersByCompetition(competitionId)
-        .then((jsonMap) {
+    Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), _server.getSoccerPlayersByCompetition(competitionId)])
+        .then((List jsonMaps) {
           TemplateReferences templateReferences = TemplateService.Instance.references;
           ContestReferences contestReferences = new ContestReferences();
           
           List<InstanceSoccerPlayer> instanceSoccerPlayers = [];
           List<SoccerTeam> soccerTeams = [];
 
-          if (jsonMap.containsKey("instanceSoccerPlayers")) {
-            jsonMap["instanceSoccerPlayers"].forEach((jsonObject) {
+          if (jsonMaps[1].containsKey("instanceSoccerPlayers")) {
+            jsonMaps[1]["instanceSoccerPlayers"].forEach((jsonObject) {
               instanceSoccerPlayers.add( new InstanceSoccerPlayer.initFromJsonObject(jsonObject, contestReferences) );
             });
           }
 
-          if (jsonMap.containsKey("soccer_players")) {
-            jsonMap["soccer_players"].map((jsonMap) => new SoccerPlayer.fromJsonObject(jsonMap, templateReferences, contestReferences)).toList();
+          if (jsonMaps[1].containsKey("soccer_players")) {
+            jsonMaps[1]["soccer_players"].map((jsonMap) => new SoccerPlayer.fromJsonObject(jsonMap, templateReferences, contestReferences)).toList();
           }
 
-          if (jsonMap.containsKey("soccer_teams")) {
-            soccerTeams = jsonMap["soccer_teams"].map( (jsonTeam) =>
+          if (jsonMaps[1].containsKey("soccer_teams")) {
+            soccerTeams = jsonMaps[1]["soccer_teams"].map( (jsonTeam) =>
                 new SoccerTeam.fromJsonObject(jsonTeam, templateReferences, contestReferences)).toList();
           }
 
-          if (jsonMap.containsKey("profile")) {
-            _profileService.updateProfileFromJson(jsonMap["profile"]);
+          if (jsonMaps[1].containsKey("profile")) {
+            _profileService.updateProfileFromJson(jsonMaps[1]["profile"]);
           }
 
           completer.complete({

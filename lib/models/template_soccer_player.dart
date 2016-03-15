@@ -24,6 +24,11 @@ class TemplateSoccerPlayer {
     name = jsonMap.containsKey("name") ? jsonMap["name"] : "";
     fantasyPoints = jsonMap.containsKey("fantasyPoints") ? jsonMap["fantasyPoints"] : 0;
 
+    loadStatsFromJsonObject(jsonMap, references);
+    return this;
+  }
+  
+  void loadStatsFromJsonObject(Map jsonMap, TemplateReferences references) {
     if (jsonMap.containsKey("stats")) {
       stats = [];
       for (var x in jsonMap["stats"]) {
@@ -32,6 +37,5 @@ class TemplateSoccerPlayer {
       // Eliminar las estadísticas vacías
       stats.removeWhere((stat) => !stat.hasPlayed());
     }
-    return this;
   }
 }

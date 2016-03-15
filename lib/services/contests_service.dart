@@ -304,20 +304,24 @@ class ContestsService {
 
           if (jsonMaps[1].containsKey("instanceSoccerPlayers")) {
             jsonMaps[1]["instanceSoccerPlayers"].forEach((jsonObject) {
-              instanceSoccerPlayers.add( new InstanceSoccerPlayer.initFromJsonObject(jsonObject, contestReferences) );
+              InstanceSoccerPlayer instanceSoccerPlayer = new InstanceSoccerPlayer.initFromJsonObject(jsonObject, contestReferences);
+              instanceSoccerPlayers.add( instanceSoccerPlayer );
+              
+              // Asociar el soccerPlayer
+              new SoccerPlayer.fromId(instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId, instanceSoccerPlayer.soccerTeam.templateSoccerTeamId, templateReferences, contestReferences);
             });
           }
 
-          if (jsonMaps[1].containsKey("soccer_players")) {
-            jsonMaps[1]["soccer_players"].map((jsonObject) => new SoccerPlayer.fromJsonObject(jsonObject, templateReferences, contestReferences)).toList();
-          }
-
-          if (jsonMaps[1].containsKey("soccer_teams")) {
-            jsonMaps[1]["soccer_teams"].map((jsonObject) => new SoccerTeam.fromJsonObject(jsonObject, templateReferences, contestReferences)).toList();
-          }
-
           if (jsonMaps[1].containsKey("match_events")) {
-            jsonMaps[1]["match_events"].map((jsonObject) => new MatchEvent.fromJsonObject(jsonObject, contestReferences)).toList();
+            jsonMaps[1]["match_events"].map((jsonObject) {
+              MatchEvent matchEvent = new MatchEvent.fromJsonObject(jsonObject, contestReferences);
+              
+              // Asociar los soccerTeams
+              new SoccerTeam.fromId(matchEvent.soccerTeamA.templateSoccerTeamId, templateReferences, contestReferences);
+              new SoccerTeam.fromId(matchEvent.soccerTeamB.templateSoccerTeamId, templateReferences, contestReferences);
+              
+              return matchEvent;
+            }).toList();
           }
 
           if (jsonMaps[1].containsKey("profile")) {

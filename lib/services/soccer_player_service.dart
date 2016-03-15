@@ -49,6 +49,13 @@ class SoccerPlayerService {
           ContestReferences contestReferences = new ContestReferences();
 
           nextMatchEvent = jsonMaps[1].containsKey("match_event") ? new MatchEvent.fromJsonObject(jsonMaps[1]["match_event"], contestReferences) : null;
+          
+          if (nextMatchEvent != null) {
+            // Asociar los soccerTeams
+            new SoccerTeam.fromId(nextMatchEvent.soccerTeamA.templateSoccerTeamId, templateReferences, contestReferences);
+            new SoccerTeam.fromId(nextMatchEvent.soccerTeamB.templateSoccerTeamId, templateReferences, contestReferences);
+          }
+          
           jsonMaps[1]["soccer_teams"].forEach( (jsonTeam) =>
               new SoccerTeam.fromJsonObject(jsonTeam, templateReferences, contestReferences) );
           
@@ -72,6 +79,13 @@ class SoccerPlayerService {
           ContestReferences contestReferences = new ContestReferences();
 
           nextMatchEvent = jsonMaps[1].containsKey("match_event") ? new MatchEvent.fromJsonObject(jsonMaps[1]["match_event"], contestReferences) : null;
+          
+          if (nextMatchEvent != null) {
+            // Asociar los soccerTeams
+            new SoccerTeam.fromId(nextMatchEvent.soccerTeamA.templateSoccerTeamId, templateReferences, contestReferences);
+            new SoccerTeam.fromId(nextMatchEvent.soccerTeamB.templateSoccerTeamId, templateReferences, contestReferences);
+          }
+          
           jsonMaps[1]["soccer_teams"].forEach( (jsonTeam) =>
               new SoccerTeam.fromJsonObject(jsonTeam, templateReferences, contestReferences) );
           
@@ -111,12 +125,6 @@ class SoccerPlayerService {
               new SoccerPlayer.fromId(instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId, instanceSoccerPlayer.soccerTeam.templateSoccerTeamId, templateReferences, contestReferences);
             });
           }
-
-          /*
-          if (jsonMaps[1].containsKey("soccer_players")) {
-            jsonMaps[1]["soccer_players"].map((jsonMap) => new SoccerPlayer.fromJsonObject(jsonMap, templateReferences, contestReferences)).toList();
-          }
-          */ 
 
           if (jsonMaps[1].containsKey("profile")) {
             _profileService.updateProfileFromJson(jsonMaps[1]["profile"]);

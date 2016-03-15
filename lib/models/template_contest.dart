@@ -159,12 +159,28 @@ class TemplateContest {
 
     // < FINAL > : Los partidos incluyen información ("liveFantasyPoints") que actualizarán a los futbolistas ("soccer_players")
     if (jsonMapRoot.containsKey("match_events")) {
-      jsonMapRoot["match_events"].map((jsonMap) => new MatchEvent.fromJsonObject(jsonMap, contestReferences)).toList();
+      jsonMapRoot["match_events"].map((jsonMap) {
+        MatchEvent matchEvent = new MatchEvent.fromJsonObject(jsonMap, contestReferences);
+        
+        // Asociar los soccerTeams
+        new SoccerTeam.fromId(matchEvent.soccerTeamA.templateSoccerTeamId, templateReferences, contestReferences);
+        new SoccerTeam.fromId(matchEvent.soccerTeamB.templateSoccerTeamId, templateReferences, contestReferences);
+        
+        return matchEvent;
+      }).toList();
     }
     else {
       // Aceptamos múltiples listas de partidos (con mayor o menor información)
       for (int view=0; view<10 && jsonMapRoot.containsKey("match_events_$view"); view++) {
-        jsonMapRoot["match_events_$view"].map((jsonMap) => new MatchEvent.fromJsonObject(jsonMap, contestReferences)).toList();
+        jsonMapRoot["match_events_$view"].map((jsonMap) { 
+          MatchEvent matchEvent = new MatchEvent.fromJsonObject(jsonMap, contestReferences);
+          
+          // Asociar los soccerTeams
+          new SoccerTeam.fromId(matchEvent.soccerTeamA.templateSoccerTeamId, templateReferences, contestReferences);
+          new SoccerTeam.fromId(matchEvent.soccerTeamB.templateSoccerTeamId, templateReferences, contestReferences);
+          
+          return matchEvent;
+        }).toList();
       }
     }
 

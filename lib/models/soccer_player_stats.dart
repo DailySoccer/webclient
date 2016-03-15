@@ -4,12 +4,14 @@ import "package:webclient/models/soccer_team.dart";
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/contest_references.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/models/template_soccer_team.dart';
+import 'package:webclient/services/template_references.dart';
 
 class SoccerPlayerStats {
   static DateTime SEASON_DATE_START = new DateTime(2015, 8);
 
   DateTime startDate;
-  SoccerTeam opponentTeam;
+  TemplateSoccerTeam opponentTeam;
   String optaCompetitionId;
 
   int fantasyPoints;
@@ -41,10 +43,10 @@ class SoccerPlayerStats {
     return StringUtils.translate(key, "soccerplayerstats");
   }
 
-  SoccerPlayerStats.fromJsonObject(Map jsonMap, ContestReferences references) {
+  SoccerPlayerStats.fromJsonObject(Map jsonMap, TemplateReferences references) {
     startDate = jsonMap.containsKey("startDate") ? DateTimeService.fromMillisecondsSinceEpoch(jsonMap["startDate"]) : DateTimeService.now;
     optaCompetitionId = jsonMap.containsKey("optaCompetitionId") && (jsonMap["optaCompetitionId"] != null) ? jsonMap["optaCompetitionId"] : "";
-    opponentTeam = jsonMap.containsKey("opponentTeamId") ? references.getSoccerTeamById(jsonMap["opponentTeamId"]) : null;
+    opponentTeam = jsonMap.containsKey("opponentTeamId") ? references.getTemplateSoccerTeamById(jsonMap["opponentTeamId"]) : null;
 
     fantasyPoints = jsonMap.containsKey("fantasyPoints") && (jsonMap["fantasyPoints"]!=null)? jsonMap["fantasyPoints"] : 0;
     playedMinutes = jsonMap.containsKey("playedMinutes") && (jsonMap["playedMinutes"]!=null)? jsonMap["playedMinutes"] : 0;

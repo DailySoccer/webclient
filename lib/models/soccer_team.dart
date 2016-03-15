@@ -3,11 +3,16 @@ library soccer_team;
 import "package:webclient/models/soccer_player.dart";
 import "package:webclient/models/match_event.dart";
 import 'package:webclient/services/contest_references.dart';
+import 'package:webclient/services/template_references.dart';
+import 'package:webclient/models/template_soccer_team.dart';
 
 class SoccerTeam {
   String templateSoccerTeamId;
-  String name;
-  String shortName;
+  TemplateSoccerTeam templateSoccerTeam;
+  
+  String get name => templateSoccerTeam.name;
+  String get shortName => templateSoccerTeam.shortName;
+  
   List<SoccerPlayer> soccerPlayers = new List<SoccerPlayer>();
   Map<String, SoccerPlayer> soccerPlayersMap = new Map<String, SoccerPlayer>();
 
@@ -21,19 +26,24 @@ class SoccerTeam {
   
   SoccerTeam.referenceInit(this.templateSoccerTeamId);
 
-  factory SoccerTeam.fromJsonObject(Map jsonMap, ContestReferences references) {
-    SoccerTeam soccerTeam = references.getSoccerTeamById(jsonMap.containsKey("templateSoccerTeamId") ? jsonMap["templateSoccerTeamId"] : jsonMap["_id"]);
-    return soccerTeam._initFromJsonObject(jsonMap, references);
+  factory SoccerTeam.fromJsonObject(Map jsonMap, TemplateReferences templateReferences, ContestReferences contestReferences) {
+    SoccerTeam soccerTeam = contestReferences.getSoccerTeamById(jsonMap.containsKey("templateSoccerTeamId") ? jsonMap["templateSoccerTeamId"] : jsonMap["_id"]);
+    return soccerTeam._initFromJsonObject(jsonMap, templateReferences, contestReferences);
   }
 
-  SoccerTeam _initFromJsonObject(Map jsonMap, ContestReferences references) {
+  factory SoccerTeam.fromId(String templateSoccerTeamId, TemplateReferences templateReferences, ContestReferences contestReferences) {
+    SoccerTeam soccerTeam = contestReferences.getSoccerTeamById(templateSoccerTeamId);
+    return soccerTeam._initFromJsonObject(null, templateReferences, contestReferences);
+  }
+  
+  SoccerTeam _initFromJsonObject(Map jsonMap, TemplateReferences templateReferences, ContestReferences contestReferences) {
     assert(templateSoccerTeamId.isNotEmpty);
-    name = jsonMap.containsKey("name") ? jsonMap["name"] : "";
-    shortName = jsonMap.containsKey("shortName") ? jsonMap["shortName"] : "";
+    
+    templateSoccerTeam = templateReferences.getTemplateSoccerTeamById(templateSoccerTeamId);
 
-    if (jsonMap.containsKey("soccerPlayers")) {
+    if (jsonMap != null && jsonMap.containsKey("soccerPlayers")) {
       for (var x in jsonMap["soccerPlayers"]) {
-        SoccerPlayer soccerPlayer = references.getSoccerPlayerById(x)
+        SoccerPlayer soccerPlayer = contestReferences.getSoccerPlayerById(x)
           .. soccerTeam = this;
 
         addSoccerPlayer(soccerPlayer);

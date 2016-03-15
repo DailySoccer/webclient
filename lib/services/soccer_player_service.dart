@@ -12,6 +12,10 @@ import "package:webclient/models/match_event.dart";
 import 'package:webclient/models/instance_soccer_player.dart';
 import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/models/template_soccer_team.dart';
+import 'package:webclient/models/template_soccer_player.dart';
+import 'package:webclient/services/template_references.dart';
+import 'package:webclient/services/template_service.dart';
 
 
 @Injectable()
@@ -41,12 +45,13 @@ class SoccerPlayerService {
 
     _server.getInstancePlayerInfo(contestId, instanceSoccerPlayerId)
         .then((jsonMap) {
+          TemplateReferences templateReferences = TemplateService.Instance.references;
           ContestReferences contestReferences = new ContestReferences();
 
           nextMatchEvent = jsonMap.containsKey("match_event") ? new MatchEvent.fromJsonObject(jsonMap["match_event"], contestReferences) : null;
           jsonMap["soccer_teams"].forEach( (jsonTeam) =>
-              new SoccerTeam.fromJsonObject(jsonTeam, contestReferences) );
-          soccerPlayer = new SoccerPlayer.fromJsonObject(jsonMap["soccer_player"], contestReferences);
+              new SoccerTeam.fromJsonObject(jsonTeam, templateReferences, contestReferences) );
+          soccerPlayer = new SoccerPlayer.fromJsonObject(jsonMap["soccer_player"], templateReferences, contestReferences);
           instanceSoccerPlayer = new InstanceSoccerPlayer.initFromJsonObject(jsonMap["instance_soccer_player"], contestReferences);
           completer.complete();
         });
@@ -59,12 +64,13 @@ class SoccerPlayerService {
 
     _server.getSoccerPlayerInfo(soccerPlayerId)
         .then((jsonMap) {
+          TemplateReferences templateReferences = TemplateService.Instance.references;
           ContestReferences contestReferences = new ContestReferences();
 
           nextMatchEvent = jsonMap.containsKey("match_event") ? new MatchEvent.fromJsonObject(jsonMap["match_event"], contestReferences) : null;
           jsonMap["soccer_teams"].forEach( (jsonTeam) =>
-              new SoccerTeam.fromJsonObject(jsonTeam, contestReferences) );
-          soccerPlayer = new SoccerPlayer.fromJsonObject(jsonMap["soccer_player"], contestReferences);
+              new SoccerTeam.fromJsonObject(jsonTeam, templateReferences, contestReferences) );
+          soccerPlayer = new SoccerPlayer.fromJsonObject(jsonMap["soccer_player"], templateReferences, contestReferences);
           instanceSoccerPlayer = new InstanceSoccerPlayer.initFromJsonObject(jsonMap["instance_soccer_player"], contestReferences);
           completer.complete();
         });
@@ -77,7 +83,9 @@ class SoccerPlayerService {
 
     _server.getSoccerPlayersByCompetition(competitionId)
         .then((jsonMap) {
+          TemplateReferences templateReferences = TemplateService.Instance.references;
           ContestReferences contestReferences = new ContestReferences();
+          
           List<InstanceSoccerPlayer> instanceSoccerPlayers = [];
           List<SoccerTeam> soccerTeams = [];
 
@@ -88,12 +96,12 @@ class SoccerPlayerService {
           }
 
           if (jsonMap.containsKey("soccer_players")) {
-            jsonMap["soccer_players"].map((jsonMap) => new SoccerPlayer.fromJsonObject(jsonMap, contestReferences)).toList();
+            jsonMap["soccer_players"].map((jsonMap) => new SoccerPlayer.fromJsonObject(jsonMap, templateReferences, contestReferences)).toList();
           }
 
           if (jsonMap.containsKey("soccer_teams")) {
             soccerTeams = jsonMap["soccer_teams"].map( (jsonTeam) =>
-                new SoccerTeam.fromJsonObject(jsonTeam, contestReferences)).toList();
+                new SoccerTeam.fromJsonObject(jsonTeam, templateReferences, contestReferences)).toList();
           }
 
           if (jsonMap.containsKey("profile")) {

@@ -12,6 +12,8 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/prizes_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/money.dart';
+import 'package:webclient/services/template_references.dart';
+import 'package:webclient/services/template_service.dart';
 
 class TemplateContest {
   // Tipos de Torneos (deducidos por las características del Contest: maxEntries ~ premios)
@@ -126,6 +128,7 @@ class TemplateContest {
   static List<TemplateContest> loadTemplateContestsFromJsonObject(Map jsonMapRoot) {
     var templateContests = new List<TemplateContest>();
 
+    TemplateReferences templateReferences = TemplateService.Instance.references;
     ContestReferences contestReferences = new ContestReferences();
 
     // Solo 1 contest
@@ -143,11 +146,11 @@ class TemplateContest {
     }
 
     if (jsonMapRoot.containsKey("soccer_teams")) {
-      jsonMapRoot["soccer_teams"].map((jsonMap) => new SoccerTeam.fromJsonObject(jsonMap, contestReferences)).toList();
+      jsonMapRoot["soccer_teams"].map((jsonMap) => new SoccerTeam.fromJsonObject(jsonMap, templateReferences, contestReferences)).toList();
     }
 
     if (jsonMapRoot.containsKey("soccer_players")) {
-      jsonMapRoot["soccer_players"].map((jsonMap) => new SoccerPlayer.fromJsonObject(jsonMap, contestReferences)).toList();
+      jsonMapRoot["soccer_players"].map((jsonMap) => new SoccerPlayer.fromJsonObject(jsonMap, templateReferences, contestReferences)).toList();
     }
 
     if (jsonMapRoot.containsKey("users_info")) {

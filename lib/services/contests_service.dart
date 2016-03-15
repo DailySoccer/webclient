@@ -15,6 +15,8 @@ import 'package:webclient/models/instance_soccer_player.dart';
 import 'package:webclient/models/soccer_player.dart';
 import 'package:webclient/models/soccer_team.dart';
 import 'package:webclient/models/match_event.dart';
+import 'package:webclient/services/template_references.dart';
+import 'package:webclient/services/template_service.dart';
 
 
 @Injectable()
@@ -85,9 +87,9 @@ class ContestsService {
   }
 
   Future refreshActiveContest(String contestId) {
-    return _server.getActiveContest(contestId)
-      .then((jsonMap) {
-        registerContest(Contest.loadContestsFromJsonObject(jsonMap).first);
+    return Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), _server.getActiveContest(contestId)])
+      .then((List jsonMaps) {
+        registerContest(Contest.loadContestsFromJsonObject(jsonMaps[1]).first);
       });
   }
 
@@ -295,7 +297,9 @@ class ContestsService {
 
     _server.getSoccerPlayersAvailablesToChange(contestId)
         .then((jsonMap) {
+          TemplateReferences templateReferences = TemplateService.Instance.references;
           ContestReferences contestReferences = new ContestReferences();
+          
           List<InstanceSoccerPlayer> instanceSoccerPlayers = [];
 
           if (jsonMap.containsKey("instanceSoccerPlayers")) {
@@ -305,11 +309,11 @@ class ContestsService {
           }
 
           if (jsonMap.containsKey("soccer_players")) {
-            jsonMap["soccer_players"].map((jsonObject) => new SoccerPlayer.fromJsonObject(jsonObject, contestReferences)).toList();
+            jsonMap["soccer_players"].map((jsonObject) => new SoccerPlayer.fromJsonObject(jsonObject, templateReferences, contestReferences)).toList();
           }
 
           if (jsonMap.containsKey("soccer_teams")) {
-            jsonMap["soccer_teams"].map((jsonObject) => new SoccerTeam.fromJsonObject(jsonObject, contestReferences)).toList();
+            jsonMap["soccer_teams"].map((jsonObject) => new SoccerTeam.fromJsonObject(jsonObject, templateReferences, contestReferences)).toList();
           }
 
           if (jsonMap.containsKey("match_events")) {

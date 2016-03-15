@@ -9,3 +9,10 @@ webclient.iml
 .packages
 /cordova/
 /epiceleven/
+/epiceleven/
+/cordova/www/
+
+
+/cordova/plugins/*
+!/cordova/plugins/*.json
+

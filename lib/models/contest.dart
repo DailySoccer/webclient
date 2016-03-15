@@ -234,16 +234,6 @@ class Contest {
       }
     }
 
-    /*
-    if (jsonMapRoot.containsKey("soccer_teams")) {
-      jsonMapRoot["soccer_teams"].map((jsonMap) => new SoccerTeam.fromJsonObject(jsonMap, templateReferences, contestReferences)).toList();
-    }
-
-    if (jsonMapRoot.containsKey("soccer_players")) {
-      jsonMapRoot["soccer_players"].map((jsonMap) => new SoccerPlayer.fromJsonObject(jsonMap, templateReferences, contestReferences)).toList();
-    }
-     */
-
     if (jsonMapRoot.containsKey("users_info")) {
       jsonMapRoot["users_info"].map((jsonMap) => new User.fromJsonObject(jsonMap, contestReferences)).toList();
     }
@@ -263,7 +253,15 @@ class Contest {
     else {
       // Aceptamos múltiples listas de partidos (con mayor o menor información)
       for (int view=0; view<10 && jsonMapRoot.containsKey("match_events_$view"); view++) {
-        jsonMapRoot["match_events_$view"].map((jsonMap) => new MatchEvent.fromJsonObject(jsonMap, contestReferences)).toList();
+        jsonMapRoot["match_events_$view"].map((jsonMap) {
+          MatchEvent matchEvent = new MatchEvent.fromJsonObject(jsonMap, contestReferences);
+          
+          // Asociar los soccerTeams
+          new SoccerTeam.fromId(matchEvent.soccerTeamA.templateSoccerTeamId, templateReferences, contestReferences);
+          new SoccerTeam.fromId(matchEvent.soccerTeamB.templateSoccerTeamId, templateReferences, contestReferences);
+          
+          return matchEvent;
+        }).toList();
       }
     }
 
@@ -323,7 +321,7 @@ class Contest {
         InstanceSoccerPlayer instanceSoccerPlayer =  new InstanceSoccerPlayer.initFromJsonObject(jsonObject, contestReferences);
         
         // Asociar el soccerPlayer
-        new SoccerPlayer.fromJsonObject(jsonObject, templateReferences, contestReferences);
+        new SoccerPlayer.fromId(instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId, instanceSoccerPlayer.soccerTeam.templateSoccerTeamId, templateReferences, contestReferences);
         
         instanceSoccerPlayers[instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId] = instanceSoccerPlayer;
       });

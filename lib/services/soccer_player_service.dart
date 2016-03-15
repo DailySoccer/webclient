@@ -45,10 +45,12 @@ class SoccerPlayerService {
 
     Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), _server.getInstancePlayerInfo(contestId, instanceSoccerPlayerId)])
         .then((List jsonMaps) {
+          Map jsonData = jsonMaps[1];
+          
           TemplateReferences templateReferences = TemplateService.Instance.references;
           ContestReferences contestReferences = new ContestReferences();
 
-          nextMatchEvent = jsonMaps[1].containsKey("match_event") ? new MatchEvent.fromJsonObject(jsonMaps[1]["match_event"], contestReferences) : null;
+          nextMatchEvent = jsonData.containsKey("match_event") ? new MatchEvent.fromJsonObject(jsonData["match_event"], contestReferences) : null;
           
           if (nextMatchEvent != null) {
             // Asociar los soccerTeams
@@ -56,13 +58,15 @@ class SoccerPlayerService {
             new SoccerTeam.fromId(nextMatchEvent.soccerTeamB.templateSoccerTeamId, templateReferences, contestReferences);
           }
           
-          jsonMaps[1]["soccer_teams"].forEach( (jsonTeam) =>
-              new SoccerTeam.fromJsonObject(jsonTeam, templateReferences, contestReferences) );
+          if (jsonData.containsKey("soccer_teams")) {
+            jsonData["soccer_teams"].forEach( (jsonTeam) =>
+                new SoccerTeam.fromJsonObject(jsonTeam, templateReferences, contestReferences) );
+          }
           
-          instanceSoccerPlayer = new InstanceSoccerPlayer.initFromJsonObject(jsonMaps[1]["instance_soccer_player"], contestReferences);
+          instanceSoccerPlayer = new InstanceSoccerPlayer.initFromJsonObject(jsonData["instance_soccer_player"], contestReferences);
           
           soccerPlayer = new SoccerPlayer.fromId(instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId, instanceSoccerPlayer.soccerTeam.templateSoccerTeamId, templateReferences, contestReferences);
-          TemplateService.Instance.getTemplateSoccerPlayer(instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId).loadStatsFromJsonObject(jsonMaps[1]["soccer_player"], templateReferences);
+          TemplateService.Instance.getTemplateSoccerPlayer(instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId).loadStatsFromJsonObject(jsonData["soccer_player"], templateReferences);
           
           completer.complete();
         });
@@ -75,10 +79,12 @@ class SoccerPlayerService {
 
     Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), _server.getSoccerPlayerInfo(soccerPlayerId)])
         .then((List jsonMaps) {
+          Map jsonData = jsonMaps[1];
+      
           TemplateReferences templateReferences = TemplateService.Instance.references;
           ContestReferences contestReferences = new ContestReferences();
 
-          nextMatchEvent = jsonMaps[1].containsKey("match_event") ? new MatchEvent.fromJsonObject(jsonMaps[1]["match_event"], contestReferences) : null;
+          nextMatchEvent = jsonData.containsKey("match_event") ? new MatchEvent.fromJsonObject(jsonData["match_event"], contestReferences) : null;
           
           if (nextMatchEvent != null) {
             // Asociar los soccerTeams
@@ -86,13 +92,15 @@ class SoccerPlayerService {
             new SoccerTeam.fromId(nextMatchEvent.soccerTeamB.templateSoccerTeamId, templateReferences, contestReferences);
           }
           
-          jsonMaps[1]["soccer_teams"].forEach( (jsonTeam) =>
-              new SoccerTeam.fromJsonObject(jsonTeam, templateReferences, contestReferences) );
+          if (jsonData.containsKey("soccer_teams")) {
+            jsonData["soccer_teams"].forEach( (jsonTeam) =>
+                new SoccerTeam.fromJsonObject(jsonTeam, templateReferences, contestReferences) );
+          }
           
-          instanceSoccerPlayer = new InstanceSoccerPlayer.initFromJsonObject(jsonMaps[1]["instance_soccer_player"], contestReferences);
+          instanceSoccerPlayer = new InstanceSoccerPlayer.initFromJsonObject(jsonData["instance_soccer_player"], contestReferences);
           
           soccerPlayer = new SoccerPlayer.fromId(instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId, instanceSoccerPlayer.soccerTeam.templateSoccerTeamId, templateReferences, contestReferences);
-          TemplateService.Instance.getTemplateSoccerPlayer(instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId).loadStatsFromJsonObject(jsonMaps[1]["soccer_player"], templateReferences);
+          TemplateService.Instance.getTemplateSoccerPlayer(instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId).loadStatsFromJsonObject(jsonData["soccer_player"], templateReferences);
           
           completer.complete();
         });
@@ -105,19 +113,21 @@ class SoccerPlayerService {
 
     Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), _server.getSoccerPlayersByCompetition(competitionId)])
         .then((List jsonMaps) {
+          Map jsonData = jsonMaps[1];
+      
           TemplateReferences templateReferences = TemplateService.Instance.references;
           ContestReferences contestReferences = new ContestReferences();
           
           List<InstanceSoccerPlayer> instanceSoccerPlayers = [];
           List<SoccerTeam> soccerTeams = [];
 
-          if (jsonMaps[1].containsKey("soccer_teams")) {
-            soccerTeams = jsonMaps[1]["soccer_teams"].map( (jsonTeam) =>
+          if (jsonData.containsKey("soccer_teams")) {
+            soccerTeams = jsonData["soccer_teams"].map( (jsonTeam) =>
                 new SoccerTeam.fromJsonObject(jsonTeam, templateReferences, contestReferences)).toList();
           }
 
-          if (jsonMaps[1].containsKey("instanceSoccerPlayers")) {
-            jsonMaps[1]["instanceSoccerPlayers"].forEach((jsonObject) {
+          if (jsonData.containsKey("instanceSoccerPlayers")) {
+            jsonData["instanceSoccerPlayers"].forEach((jsonObject) {
               InstanceSoccerPlayer instanceSoccerPlayer = new InstanceSoccerPlayer.initFromJsonObject(jsonObject, contestReferences);
               instanceSoccerPlayers.add( instanceSoccerPlayer );
               
@@ -126,8 +136,8 @@ class SoccerPlayerService {
             });
           }
 
-          if (jsonMaps[1].containsKey("profile")) {
-            _profileService.updateProfileFromJson(jsonMaps[1]["profile"]);
+          if (jsonData.containsKey("profile")) {
+            _profileService.updateProfileFromJson(jsonData["profile"]);
           }
 
           completer.complete({

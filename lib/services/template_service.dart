@@ -7,6 +7,7 @@ import "package:webclient/services/server_service.dart";
 import 'package:webclient/models/template_soccer_team.dart';
 import 'package:webclient/models/template_soccer_player.dart';
 import 'package:webclient/services/template_references.dart';
+import 'package:logging/logging.dart';
 
 
 @Injectable()
@@ -47,6 +48,10 @@ class TemplateService {
             }
             
             _completer.complete();
+          })
+          .catchError((_) {
+            Logger.root.severe("WTF 7773: refreshTemplateSoccerPlayers Error");
+            _completer = null;
           });
     }
 
@@ -54,9 +59,9 @@ class TemplateService {
   }
 
   TemplateReferences _templateReferences = new TemplateReferences();
-  var _completer;
-  
-  static TemplateService _instance;
+  Completer _completer;
   
   ServerService _server;
+  
+  static TemplateService _instance;
 }

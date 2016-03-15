@@ -363,6 +363,13 @@ class ContestsService {
         });
   }
 
+  Future<Map> countMyContests() {
+    return _server.countMyContests()
+        .then((jsonMap) {
+          return jsonMap;
+        });
+  }
+  
   Contest getAvailableNextContest() {
     if (_myEnteredActiveContests.isNotEmpty) {
       return _myEnteredActiveContests.first;

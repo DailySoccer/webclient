@@ -210,8 +210,8 @@ class FBLogin {
     print("====================================");
     
     _profileImageCache[facebookId] = defaultImage;
-    if (_isRequestingPhoto) {
-      _photoRequestQueue.add(() => _profileImageJSCall(facebookId));
+    if (_isRequestingOpenGraph) {
+      _openGraphRequestQueue.add(() => _profileImageJSCall(facebookId));
     } else {
       _profileImageJSCall(facebookId);
     }
@@ -220,7 +220,7 @@ class FBLogin {
   }
   
   static void _profileImageJSCall(String facebookId) {
-    _isRequestingPhoto = true;
+    _isRequestingOpenGraph = true;
     JsUtils.runJavascript(null, "facebookProfilePhoto", [facebookId, (js.JsObject profileInfoResponse) {
       Map image = {};
       print("====================================");
@@ -240,9 +240,9 @@ class FBLogin {
       } else {
         Logger.root.warning (ProfileService.decorateLog("WTF - 3510 - RunJS - Facebook Get Profile Image '${profileInfoResponse["error"]['message']}'"));
       }
-      _isRequestingPhoto = false;
-      if (_photoRequestQueue.length > 0) { 
-        _photoRequestQueue.removeLast()(); // pop and call the function
+      _isRequestingOpenGraph = false;
+      if (_openGraphRequestQueue.length > 0) { 
+        _openGraphRequestQueue.removeLast()(); // pop and call the function
       }
     }]);
   }
@@ -252,30 +252,43 @@ class FBLogin {
     Completer<List<String>> completer = new Completer<List<String>>();
     if (facebookId == null || facebookId == '') return completer.future;
     
-    JsUtils.runJavascript(null, "facebookFriends", [facebookId, (js.JsObject profileInfoResponse) {
-          if (profileInfoResponse["error"] == false) {
-            
-            List<String> idList = new List<String>();
-            int length = profileInfoResponse['friendsInfo']['length'];
-            
-            for (int i = 0; i < length; i++) {
-              var currentFriend = profileInfoResponse['friendsInfo'][i];
-              idList.add(currentFriend['id']);
-
-              _profileImageCache[currentFriend['id']] = { 
-                      'imageUrl'  : currentFriend['image']['url'],
-                      'isDefault' : currentFriend['image']['isDefault']
-                    };
-            }
-            
-            completer.complete(idList);
-          } else {
-            Logger.root.severe (ProfileService.decorateLog("WTF - 3511 - RunJS - Facebook Get Friends '${profileInfoResponse["error"]['message']}'"));
-            completer.completeError(profileInfoResponse["error"]);
-          }
-        }]);
+    if (_isRequestingOpenGraph) {
+      _openGraphRequestQueue.add(() => _friendListJSCall(facebookId, completer));
+    } else {
+      _friendListJSCall(facebookId, completer);
+    }
     
     return completer.future;
+  }
+  
+  static void _friendListJSCall(String facebookId, Completer<List<String>> completer) {
+    _isRequestingOpenGraph = true;
+    JsUtils.runJavascript(null, "facebookFriends", [facebookId, (js.JsObject profileInfoResponse) {
+        if (profileInfoResponse["error"] == false) {
+          
+          List<String> idList = new List<String>();
+          int length = profileInfoResponse['friendsInfo']['length'];
+          
+          for (int i = 0; i < length; i++) {
+            var currentFriend = profileInfoResponse['friendsInfo'][i];
+            idList.add(currentFriend['id']);
+  
+            _profileImageCache[currentFriend['id']] = {
+                    'imageUrl'  : currentFriend['image']['url'],
+                    'isDefault' : currentFriend['image']['isDefault']
+                  };
+          }
+          
+          completer.complete(idList);
+        } else {
+          Logger.root.severe (ProfileService.decorateLog("WTF - 3511 - RunJS - Facebook Get Friends '${profileInfoResponse["error"]['message']}'"));
+          completer.completeError(profileInfoResponse["error"]);
+        }
+        _isRequestingOpenGraph = false;
+        if (_openGraphRequestQueue.length > 0) { 
+          _openGraphRequestQueue.removeLast()(); // pop and call the function
+        }
+      }]);
   }
   
   static void parseXFBML(String cssSelector) {
@@ -298,11 +311,12 @@ class FBLogin {
   String get state => _state;
 
   bool get isConnected => _state == "connected";
+
+  static List<Function> _openGraphRequestQueue = new List<Function>();
+  static bool _isRequestingOpenGraph = false;
   
   static Map <String, Map> _profileImageCache = {};
   static Router _router;
-  static List<Function> _photoRequestQueue;
-  static bool _isRequestingPhoto;
   static ProfileService _profileManager;
   static Function _onLogin;
   static List<String> NEEDED_PERMISSIONS = ['email', 'user_friends', 'public_profile']; // user_friends, email, public_profile

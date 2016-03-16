@@ -69,7 +69,7 @@ class ScreenDetectorService {
     window.animationFrame.then(_detectNow);
   }
 
-  void scrollTo(String selector, {int offset: 0, int duration: 500, bool smooth : false, bool ignoreInDesktop: false}) {
+  void scrollTo(String selector, {fps: 60, int offset: 0, int duration: 500, bool smooth : false, bool ignoreInDesktop: false}) {
     Function easingFunction;
     Easing easing;
 
@@ -91,7 +91,7 @@ class ScreenDetectorService {
       easingFunction = Easing.getEasingFunction(easing);
 
       // Total de Frames
-      int totalFrames = ( duration / (1000 / 60) ).round();
+      int totalFrames = ( duration / (1000 / fps) ).round();
       int actualFrame = 0;
 
       // Posicion inicial de donde partimemos

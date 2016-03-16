@@ -15,7 +15,7 @@
     </div>
   </div>
 
-  <div class="lineup-selector-slot" ng-repeat="slot in lineupSlots" ng-click="onLineupSlotSelected({'slotIndex': $index})" ng-class="getSlotClassColor($index)">
+  <div class="lineup-selector-slot" ng-repeat="slot in lineupSlots" ng-mousedown="onLineupSlotSelected({'slotIndex': $index})" ng-class="getSlotClassColor($index)">
 
     <div ng-if="slot == null">
       <div class="column-fieldpos"></div>

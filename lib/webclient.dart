@@ -41,7 +41,7 @@ import 'package:webclient/utils/max_text_width.dart';
 
 import 'package:webclient/components/navigation/main_menu_f2p_comp.dart';
 import 'package:webclient/components/navigation/footer_comp.dart';
-import 'package:webclient/components/navigation/xs_not_available_screen_comp.dart';
+//import 'package:webclient/components/navigation/xs_not_available_screen_comp.dart';
 
 import 'package:webclient/components/flash_messages_comp.dart';
 import 'package:webclient/components/modal_comp.dart';
@@ -57,7 +57,7 @@ import 'package:webclient/components/contest_header_f2p_comp.dart';
 import 'package:webclient/components/leaderboard_comp.dart';
 import 'package:webclient/components/leaderboard_table_comp.dart';
 import 'package:webclient/components/my_contests_comp.dart';
-import 'package:webclient/components/welcome_comp.dart';
+//import 'package:webclient/components/welcome_comp.dart';
 import 'package:webclient/components/week_calendar_comp.dart';
 import 'package:webclient/components/tutorial_list_comp.dart';
 import 'package:webclient/components/create_contest_comp.dart';
@@ -170,7 +170,7 @@ class WebClientApp extends Module {
 
     bind(MainMenuF2PComp);
     bind(FooterComp);
-    bind(XsNotAvailableScreenComp);
+    //bind(XsNotAvailableScreenComp);
 
     bind(NgBindHtmlUnsafeDirective);
     bind(MaxTextWidthDirective);
@@ -202,7 +202,7 @@ class WebClientApp extends Module {
     bind(FantasyTeamComp);
     bind(UsersListComp);
     bind(TeamsPanelComp);
-    bind(WelcomeComp);
+    //bind(WelcomeComp);
     bind(WeekCalendar);
     bind(EnterContestComp);
     bind(SoccerPlayersListComp);

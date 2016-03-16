@@ -63,6 +63,7 @@ class ShopComp implements DetachAware{
         for (Product info in catalog.where((g) => g.gained.isGold)) {
           Map gProduct = {};
           gProduct["id"]             = info.id;
+          gProduct["appleID"]        = "com.epiceleven.futbolcuatro.gold_1";
           gProduct["description"]    = getLocalizedText(info.name);
           gProduct["captionImage"]   = info.imageUrl;
           gProduct["price"]          = info.price.toStringWithCurrency();

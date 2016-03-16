@@ -467,20 +467,27 @@
         registerConsumable: function(productList) {
           for (var i = 0; i < productList.length; i++) {
             store.register({
-                id:    productList[i]['id'],
-                alias: productList[i]['name'],
+                id:    productList[i]['appleID'],
+                alias: productList[i]['description'],
                 type:  store.CONSUMABLE
             });
-            store.when(productList[i]['alias']).approved(function (order) {
-              console.log("You got an " + productList[i]['alias'] + "!");
-              order.finish();
+            store.when(productList[i]['appleID']).initiated(function(p) {
+              console.log("Initiated: " + productList[i]['appleID']);
+            });
+            store.when(productList[i]['appleID']).cancelled(function(p) {
+              console.log("Cancelled: " + productList[i]['appleID']);
+            });
+            store.when(productList[i]['appleID']).approved(function (order) {
+              console.log("You got an " + productList[i]['description'] + "!");
+              // order.finish();
             });
           }
           store.refresh();
         },
         buyConsumable: function(id) {
           console.log("Request to get " + id + "!");
-          store.order(id);
+          // store.order(id);
+          store.order('com.epiceleven.futbolcuatro.gold_1');
         }
       };
 

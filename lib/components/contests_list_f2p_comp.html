@@ -1,6 +1,6 @@
 <div class="contests-list-f2p-root" ng-if="contestsListOriginal.isNotEmpty">
   <div ng-repeat="contest in contestsListOrdered">
-    <div class="contestSlot" ng-class="{'special' : getContestMorfology(contest) == 'special'}" ng-click="onRow(contest)">
+    <div class="contestSlot" ng-class="{'special' : getContestMorfology(contest) == 'special', 'real': getContestTypeIcon(contest) == 'real', 'virtual': getContestTypeIcon(contest) != 'real'}" ng-click="onRow(contest)">
 
       <div class="special-image-section" ng-if="getContestMorfology(contest) == 'special'">
         <img ng-src="{{getContestImage(contest)}}"></img>

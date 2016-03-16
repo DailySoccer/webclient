@@ -14,6 +14,7 @@
 		width: 100%;
 		position: relative;
 		background-color: @white;
+		&.real { background-color: @yellowLight; }
 		//Sección de iconos que definen el tipo y torneo del concurso
 		.tournament-and-type-section {
 			position: absolute;
@@ -86,7 +87,7 @@
 			overflow: hidden;
 			position: relative;
 			margin: 2px 2px 0 2px;
-			height: 103px;
+			/*height: 103px;
 			@media (min-width: @screen-sm-min) {
 				height: 206px;
 			}
@@ -96,6 +97,14 @@
 				margin-left: -485px;
 				top: 50%;
 				margin-top: -103px;
+			}*/
+			img {
+				width: 160%;
+				margin: 0 -30%;
+				@media (min-width: @screen-sm-min) {
+					width: 100%;
+					margin: 0;
+				}
 			}
 		}
 		// Sección de la hora
@@ -293,25 +302,25 @@
 	//Definición especifica para concursos especiales.
 	.special{
 		&.contestSlot { 
-			background-color: @greyUltraDark; 
+			//background-color: @greyUltraDark; 
 			
 			.friends-in .count {
 				color: @greyUltraDark;
-				border: 1px solid @greyUltraDark;
+				//border: 1px solid @greyUltraDark;
 			}
 		}
 		.special-image-section {}
 		.time-section {
 			position: relative;
       .column-start-time {
-				color: @white; 
+				//color: @white; 
 				@media (max-width: @screen-xs-max) {
 					position: absolute; top:2px; right: 0px;
 				}
 				.column-start-hour,
 				.column-start-hour.start-soon,
 				.column-start-date {
-					color: @white;
+					//color: @white;
 				}
 			}
 			.fake-time-column { 
@@ -325,7 +334,9 @@
 			top: 0;
 		}
 		.name-section {
-			.contest-name, .contest-description {color: @white;}
+			.contest-name, .contest-description { 
+				//color: @white;
+			}
 		}
 		.conditions-section {
 			margin-top: 8px;
@@ -334,12 +345,12 @@
 			.entry-fee-box,
 			.prize-box,
 			.points-box {
-				background-color: @greyUltraDark;
+				//background-color: @greyUltraDark;
 			}
 			.player-position .condition-amount .current-position, 
 			.entry-fee-box span, 
 			.prize-box span {
-				color: @white;
+				//color: @white;
 			}
 			
 		}

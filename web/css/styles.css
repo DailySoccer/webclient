@@ -7440,6 +7440,9 @@ scoring-rules:after,
   position: relative;
   background-color: #ffffff;
 }
+.contests-list-f2p-root .contestSlot.real {
+  background-color: #fdfbe6;
+}
 .contests-list-f2p-root .contestSlot .tournament-and-type-section {
   position: absolute;
   top: 0px;
@@ -7518,19 +7521,27 @@ scoring-rules:after,
   overflow: hidden;
   position: relative;
   margin: 2px 2px 0 2px;
-  height: 103px;
-}
-@media (min-width: 768px) {
-  .contests-list-f2p-root .contestSlot .special-image-section {
-    height: 206px;
-  }
+  /*height: 103px;
+			@media (min-width: @screen-sm-min) {
+				height: 206px;
+			}
+			img {
+				position: absolute;
+				left: 50%;
+				margin-left: -485px;
+				top: 50%;
+				margin-top: -103px;
+			}*/
 }
 .contests-list-f2p-root .contestSlot .special-image-section img {
-  position: absolute;
-  left: 50%;
-  margin-left: -485px;
-  top: 50%;
-  margin-top: -103px;
+  width: 160%;
+  margin: 0 -30%;
+}
+@media (min-width: 768px) {
+  .contests-list-f2p-root .contestSlot .special-image-section img {
+    width: 100%;
+    margin: 0;
+  }
 }
 @media (max-width: 767px) {
   .contests-list-f2p-root .contestSlot .time-section {
@@ -8324,18 +8335,11 @@ fieldset[disabled] .contests-list-f2p-root .contestSlot .action-section .action-
   outline: none !important;
   color: #ffffff;
 }
-.contests-list-f2p-root .special.contestSlot {
-  background-color: #434343;
-}
 .contests-list-f2p-root .special.contestSlot .friends-in .count {
   color: #434343;
-  border: 1px solid #434343;
 }
 .contests-list-f2p-root .special .time-section {
   position: relative;
-}
-.contests-list-f2p-root .special .time-section .column-start-time {
-  color: #ffffff;
 }
 @media (max-width: 767px) {
   .contests-list-f2p-root .special .time-section .column-start-time {
@@ -8343,11 +8347,6 @@ fieldset[disabled] .contests-list-f2p-root .contestSlot .action-section .action-
     top: 2px;
     right: 0px;
   }
-}
-.contests-list-f2p-root .special .time-section .column-start-time .column-start-hour,
-.contests-list-f2p-root .special .time-section .column-start-time .column-start-hour.start-soon,
-.contests-list-f2p-root .special .time-section .column-start-time .column-start-date {
-  color: #ffffff;
 }
 .contests-list-f2p-root .special .time-section .fake-time-column {
   margin-top: 17px;
@@ -8360,24 +8359,9 @@ fieldset[disabled] .contests-list-f2p-root .contestSlot .action-section .action-
 .contests-list-f2p-root .special .action-section {
   top: 0;
 }
-.contests-list-f2p-root .special .name-section .contest-name,
-.contests-list-f2p-root .special .name-section .contest-description {
-  color: #ffffff;
-}
 .contests-list-f2p-root .special .conditions-section {
   margin-top: 8px;
   margin-bottom: 5px;
-}
-.contests-list-f2p-root .special .conditions-section .player-position,
-.contests-list-f2p-root .special .conditions-section .entry-fee-box,
-.contests-list-f2p-root .special .conditions-section .prize-box,
-.contests-list-f2p-root .special .conditions-section .points-box {
-  background-color: #434343;
-}
-.contests-list-f2p-root .special .conditions-section .player-position .condition-amount .current-position,
-.contests-list-f2p-root .special .conditions-section .entry-fee-box span,
-.contests-list-f2p-root .special .conditions-section .prize-box span {
-  color: #ffffff;
 }
 scoring-rules {
   margin-right: auto;
@@ -13413,6 +13397,7 @@ lobbyf2p week-calendar .week-calendar {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  float: none;
   display: block;
   background-color: #ffffff;
   padding: 10px 15px;

@@ -7,14 +7,15 @@
 	//definición del slot de la lista
 	.contestSlot {
 		.make-row(0);
-		.make-shadow(0px, 1px, 5px, 0px, @greyUltraDark, 0.5);
+		.make-shadow(0px, 1px, 5px, 0px, @greyUltraDark, 0.3);
 		margin-top: 10px;		
 		min-height: 31px;
 		padding-bottom: 10px;
 		width: 100%;
 		position: relative;
 		background-color: @white;
-		&.real { background-color: @yellowLight; }
+		&.real { border: 2px solid @orangeHeaderDark; }
+		&.virtual { border: 2px solid @blueVirtual; }
 		//Sección de iconos que definen el tipo y torneo del concurso
 		.tournament-and-type-section {
 			position: absolute;
@@ -83,10 +84,19 @@
 			}
 		}
 		// Imagen para los concursos especiales
+		
+		&.real .special-image-section { 
+			border-bottom: 2px solid @orangeHeaderDark; 
+		}
+		&.virtual .special-image-section { 
+			border-bottom: 2px solid @blueVirtual; 
+		}
+		
 		.special-image-section {
 			overflow: hidden;
 			position: relative;
-			margin: 2px 2px 0 2px;
+			margin: 0;
+			
 			/*height: 103px;
 			@media (min-width: @screen-sm-min) {
 				height: 206px;

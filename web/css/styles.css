@@ -7430,9 +7430,9 @@ scoring-rules:after,
 .contests-list-f2p-root .contestSlot {
   margin-left: 0;
   margin-right: 0;
-  -webkit-box-shadow: 0px 1px 5px 0px rgba(67, 67, 67, 0.5);
-  -moz-box-shadow: 0px 1px 5px 0px rgba(67, 67, 67, 0.5);
-  box-shadow: 0px 1px 5px 0px rgba(67, 67, 67, 0.5);
+  -webkit-box-shadow: 0px 1px 5px 0px rgba(67, 67, 67, 0.3);
+  -moz-box-shadow: 0px 1px 5px 0px rgba(67, 67, 67, 0.3);
+  box-shadow: 0px 1px 5px 0px rgba(67, 67, 67, 0.3);
   margin-top: 10px;
   min-height: 31px;
   padding-bottom: 10px;
@@ -7441,7 +7441,10 @@ scoring-rules:after,
   background-color: #ffffff;
 }
 .contests-list-f2p-root .contestSlot.real {
-  background-color: #fdfbe6;
+  border: 2px solid #ec990e;
+}
+.contests-list-f2p-root .contestSlot.virtual {
+  border: 2px solid #3d5c6c;
 }
 .contests-list-f2p-root .contestSlot .tournament-and-type-section {
   position: absolute;
@@ -7517,10 +7520,16 @@ scoring-rules:after,
   width: 30px;
   height: 30px;
 }
+.contests-list-f2p-root .contestSlot.real .special-image-section {
+  border-bottom: 2px solid #ec990e;
+}
+.contests-list-f2p-root .contestSlot.virtual .special-image-section {
+  border-bottom: 2px solid #3d5c6c;
+}
 .contests-list-f2p-root .contestSlot .special-image-section {
   overflow: hidden;
   position: relative;
-  margin: 2px 2px 0 2px;
+  margin: 0;
   /*height: 103px;
 			@media (min-width: @screen-sm-min) {
 				height: 206px;

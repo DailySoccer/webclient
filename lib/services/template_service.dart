@@ -37,7 +37,7 @@ class TemplateService {
   }
 
   Future refreshTemplateSoccerPlayers() {
-    if (timedOut) {
+    if (_completer == null || timedOut) {
       Logger.root.info("RefreshTemplateSoccerPlayers: ${DateTimeService.now}");
       
       _dateTimeRefreshed = DateTimeService.now;

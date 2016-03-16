@@ -4,8 +4,8 @@ import 'package:webclient/services/template_references.dart';
 
 class TemplateSoccerTeam {
   String templateSoccerTeamId;
-  String name;
-  String shortName;
+  String name = "";
+  String shortName = "";
 
   TemplateSoccerTeam.referenceInit(this.templateSoccerTeamId);
 

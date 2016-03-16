@@ -11,6 +11,7 @@ import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/services/tooltip_service.dart';
 import 'package:webclient/models/user.dart';
 import 'package:angular/angular.dart';
+import 'package:webclient/services/template_service.dart';
 
 class TutorialStep {
   Map<String, Function> triggers;
@@ -192,20 +193,23 @@ abstract class Tutorial {
   }
 
   Future waitCompleter(Function callback) {
-    // TODO: Cuando estamos en desarrollo y el simulador no está activo, se tarda tiempo en configurar el fakeTime
-    if (DateTimeService.isReady) {
-      return new Future.value(callback());
-    }
-    else {
-      var completer = new Completer();
-      new Timer.periodic(new Duration(milliseconds: 100), (Timer t) {
+    return TemplateService.Instance.refreshTemplateSoccerPlayers()
+      .then((_) {
+        // TODO: Cuando estamos en desarrollo y el simulador no está activo, se tarda tiempo en configurar el fakeTime
         if (DateTimeService.isReady) {
-          completer.complete(callback());
-          t.cancel();
+          return new Future.value(callback());
+        }
+        else {
+          var completer = new Completer();
+          new Timer.periodic(new Duration(milliseconds: 100), (Timer t) {
+            if (DateTimeService.isReady) {
+              completer.complete(callback());
+              t.cancel();
+            }
+          });
+          return completer.future;
         }
       });
-      return completer.future;
-    }
   }
 
   final String ATHLETIC_CLUB = "5625d0ecc1f5fbc410e6ec7a";

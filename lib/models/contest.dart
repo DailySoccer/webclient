@@ -15,6 +15,8 @@ import 'package:webclient/models/money.dart';
 import 'package:webclient/models/competition.dart';
 import 'package:webclient/services/template_references.dart';
 import 'package:webclient/services/template_service.dart';
+import 'package:webclient/models/template_soccer_team.dart';
+import 'package:webclient/models/template_soccer_player.dart';
 
 class Contest {
   static const MAX_PLAYERS_SAME_TEAM = 4;
@@ -234,6 +236,22 @@ class Contest {
       }
     }
 
+    //TODO: El tutorial necesita especificar Equipos "especiales"
+    if (jsonMapRoot.containsKey("soccer_teams")) {
+      jsonMapRoot["soccer_teams"].map((jsonMap) {
+        new SoccerTeam.fromJsonObject(jsonMap, templateReferences, contestReferences);
+        new TemplateSoccerTeam.fromJsonObject(jsonMap, templateReferences);
+      }).toList();
+    }
+
+    //TODO: El tutorial necesita especificar Players "especiales"
+    if (jsonMapRoot.containsKey("soccer_players")) {
+      jsonMapRoot["soccer_players"].map((jsonMap) {
+        new SoccerPlayer.fromJsonObject(jsonMap, templateReferences, contestReferences);
+        new TemplateSoccerPlayer.fromJsonObject(jsonMap, templateReferences);
+      }).toList();
+    }
+    
     if (jsonMapRoot.containsKey("users_info")) {
       jsonMapRoot["users_info"].map((jsonMap) => new User.fromJsonObject(jsonMap, contestReferences)).toList();
     }
@@ -326,7 +344,7 @@ class Contest {
         instanceSoccerPlayers[instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId] = instanceSoccerPlayer;
       });
     }
-
+    
     // <FINAL> : Necesita acceso a los instanceSoccerPlayers
     contestEntries = jsonMap.containsKey("contestEntries") ? jsonMap["contestEntries"].map((jsonMap) => new ContestEntry.initFromJsonObject(jsonMap, contestReferences, this) ).toList() : [];
     

@@ -58,6 +58,8 @@ class HomeComp implements DetachAware {
     //contestTileHTML = isContestTileEnabled ? defaultPromo['html'] : defaultPromoWithTutorial['html'];
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
     _profileService.triggerNotificationsPopUp(_router);
+
+    GameMetrics.logEvent(GameMetrics.HOME, {"logged": _profileService.isLoggedIn});
   }
 
 

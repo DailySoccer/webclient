@@ -18,6 +18,7 @@ class GameMetrics {
   static String LOGIN_FB_REREQUEST_REJECTED = "Login FB Rerequest rejected";
   static String CHANGE_PASSWORD_ATTEMPTED = "Change Password attempted";
   static String LOBBY = "Lobby";
+  static String HOME = "Home";
   static String VIEW_HISTORY = "View history";
   static String VIEW_CONTEST = "View contest";
   static String HELP = "Entered Help";

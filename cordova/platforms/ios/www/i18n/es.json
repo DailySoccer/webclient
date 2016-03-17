@@ -1242,10 +1242,16 @@
       "aditional-achievements"          : "Has ganado @NUM_ACHIEVEMENTS logros más...",
       "go-notifications"                : "Ir a notificaciones"
     }
-    ,"XsNotAvailable"                   :
+    ,"xsNotAvailable"                   :
     {
       "title"                           : "No disponible para dispositivos móviles",
       "body"                            : "Muy pronto en todos los dispositivos"
+    }
+    ,"deprecatedVersion"                :
+    {
+      "title"                           : "La versión de la aplicacion está obsoleta.",
+      "body"                            : "Actualizala gratuitamente en la tienda de aplicaciones.",
+      "button"                          : "Ir a la tienda"
     }
     ,"serverError"                      :
     {

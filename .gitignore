@@ -7,8 +7,6 @@ webclient.iml
 .buildlog
 *.DS_Store
 .packages
-/cordova/
-/epiceleven/
 /epiceleven/
 /cordova/www/
 

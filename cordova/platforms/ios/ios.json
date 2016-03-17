@@ -47,6 +47,22 @@
                         {
                             "xml": "<feature name=\"Console\"><param name=\"ios-package\" value=\"CDVLogger\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SplashScreen\"><param name=\"ios-package\" value=\"CDVSplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"StatusBar\"><param name=\"ios-package\" value=\"CDVStatusBar\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference name=\"StatusBarOverlaysWebView\" value=\"true\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference name=\"StatusBarStyle\" value=\"lightcontent\" />",
+                            "count": 1
                         }
                     ]
                 }
@@ -104,6 +120,12 @@
         },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.unusualstudios.epiceleven"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         }
     },
     "dependent_plugins": {},
@@ -147,6 +169,22 @@
             "pluginId": "cordova-plugin-console",
             "clobbers": [
                 "cordova.logger"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+            "id": "cordova-plugin-splashscreen.SplashScreen",
+            "pluginId": "cordova-plugin-splashscreen",
+            "clobbers": [
+                "navigator.splashscreen"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+            "id": "cordova-plugin-statusbar.statusbar",
+            "pluginId": "cordova-plugin-statusbar",
+            "clobbers": [
+                "window.StatusBar"
             ]
         }
     ]

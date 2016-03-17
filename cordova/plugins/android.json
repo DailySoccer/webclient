@@ -87,6 +87,12 @@
         },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         }
     },
     "dependent_plugins": {}

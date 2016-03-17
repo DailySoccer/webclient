@@ -43,6 +43,14 @@
                         {
                             "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"StatusBar\"><param name=\"android-package\" value=\"org.apache.cordova.statusbar.StatusBar\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -115,6 +123,12 @@
         },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.unusualstudios.epiceleven"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         }
     },
     "dependent_plugins": {},
@@ -149,6 +163,22 @@
                 "cordova.InAppBrowser.open",
                 "window.open"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+            "id": "cordova-plugin-splashscreen.SplashScreen",
+            "pluginId": "cordova-plugin-splashscreen",
+            "clobbers": [
+                "navigator.splashscreen"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+            "id": "cordova-plugin-statusbar.statusbar",
+            "pluginId": "cordova-plugin-statusbar",
+            "clobbers": [
+                "window.StatusBar"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -156,6 +186,8 @@
         "cc.fovea.cordova.purchase": "4.0.0",
         "cordova-plugin-facebook4": "1.6.3",
         "cordova-plugin-inappbrowser": "1.2.1",
-        "cordova-plugin-console": "1.0.2"
+        "cordova-plugin-console": "1.0.2",
+        "cordova-plugin-splashscreen": "3.2.1",
+        "cordova-plugin-statusbar": "2.1.1"
     }
 }

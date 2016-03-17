@@ -3,6 +3,7 @@ library game_metrics;
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/services/tutorial_service.dart';
+import 'package:logging/logging.dart';
 
 class GameMetrics {
 
@@ -68,8 +69,11 @@ class GameMetrics {
     if (TutorialService.isActivated)
       return;
     
-    if (!email.endsWith("test.com") && JsUtils.existsContext("mixpanel")) {
+    if (!email.endsWith("test.com") && JsUtils.existsContext(["mixpanel", "alias"])) {
       JsUtils.runJavascript(null, "alias", email, "mixpanel");
+    }
+    else {
+      Logger.root.info("mixPanel: aliasMixpanel not found");
     }
   }
 
@@ -77,8 +81,11 @@ class GameMetrics {
     if (TutorialService.isActivated)
       return;
     
-    if (!email.endsWith("test.com") && JsUtils.existsContext("mixpanel")) {
+    if (!email.endsWith("test.com") && JsUtils.existsContext(["mixpanel", "identify"])) {
       JsUtils.runJavascript(null, "identify", email, "mixpanel");
+    }
+    else {
+      Logger.root.info("mixPanel: identifyMixpanel not found");
     }
   }
 
@@ -87,7 +94,7 @@ class GameMetrics {
       eventName = "TUTORIAL-$eventName";
     }
       
-    if (JsUtils.existsContext("mixpanel")) {
+    if (JsUtils.existsContext(["mixpanel", "track"])) {
       if (params != null && !params.isEmpty) {
         JsUtils.runJavascript(null, "track", [eventName, params], "mixpanel");
       }
@@ -95,14 +102,20 @@ class GameMetrics {
         JsUtils.runJavascript(null, "track", eventName, "mixpanel");
       }
     }
+    else {
+      Logger.root.info("mixPanel: logEvent not found");
+    }
   }
 
   static void peopleSet(Map params) {
     if (TutorialService.isActivated)
       return;
     
-    if (JsUtils.existsContext(["mixpanel","people"])) {
+    if (JsUtils.existsContext(["mixpanel", "people", "set"])) {
       JsUtils.runJavascript(null, "set", params, ["mixpanel","people"]);
+    }
+    else {
+      Logger.root.info("mixPanel: peopleSet not found");
     }
   }
 
@@ -110,10 +123,13 @@ class GameMetrics {
     if (TutorialService.isActivated)
       return;
     
-    if (JsUtils.existsContext(["mixpanel","people"])) {
+    if (JsUtils.existsContext(["mixpanel","people", "track_charge"])) {
       JsUtils.runJavascript(null, "track_charge", charge, ["mixpanel","people"]);
     }
-  }
+    else {
+      Logger.root.info("mixPanel: peopleCharge not found");
+    }
+ }
 
   // Google Track, NOT Mixpanel.
   static void trackConversion(bool remarketing_only) {

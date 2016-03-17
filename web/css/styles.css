@@ -15693,6 +15693,24 @@ social-share twitter-share {
     margin-bottom: 0;
   }
 }
+@media (max-width: 767px) {
+  social-share[inline-xs] {
+    height: 35px;
+  }
+  social-share[inline-xs] .social-share-wrapper facebook-share,
+  social-share[inline-xs] .social-share-wrapper .facebook-share-wrapper {
+    display: inline-block;
+    margin-bottom: 0;
+  }
+  social-share[inline-xs] .social-share-wrapper twitter-share,
+  social-share[inline-xs] .social-share-wrapper .twitter-share-wrapper {
+    display: inline-block;
+    margin-top: 0;
+  }
+  social-share[inline-xs] .social-share-wrapper .facebook-share-wrapper .facebook-share-button {
+    margin-bottom: 0;
+  }
+}
 #modalSoccerPlayerStats {
   background-color: #777777;
   color: #ffffff;
@@ -21948,6 +21966,28 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   min-height: 60px;
   float: none;
 }
+#loginBox .fb-button-wrapper .fb-login-button-smartphone,
+#joinRoot .fb-button-wrapper .fb-login-button-smartphone {
+  height: 37px;
+  padding: 4px 10px 4px 4px;
+  background-color: #4a65a0;
+  background: linear-gradient(#4c69ba, #3b55a0);
+  font-family: helvetica, arial, sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 #354c8c;
+  -webkit-font-smoothing: antialiased;
+  text-align: left;
+  border: none;
+  line-height: 16pt;
+  border-radius: 2px;
+}
+#loginBox .fb-button-wrapper .fb-login-button-smartphone .fb-brand,
+#joinRoot .fb-button-wrapper .fb-login-button-smartphone .fb-brand {
+  vertical-align: middle;
+  margin: 0 10px 0 0;
+}
 #loginBox .user-form-field.facebook-form-wrapper:after,
 #joinRoot .user-form-field.facebook-form-wrapper:after {
   content: "";
@@ -23119,6 +23159,11 @@ fieldset[disabled] .info-complete-bar .invite-friends {
   background-color: #e8eff6;
   border-top: 1px solid #ffffff;
   padding: 20px 20px 0 20px;
+}
+@media (max-width: 767px) {
+  #welcomeRoot.invite-friends-popup .panel .panel-body .share-methods-modal-content .share-method social-share[inline-xs] {
+    margin: 0 -20px;
+  }
 }
 #welcomeRoot.invite-friends-popup .panel .panel-body .share-methods-modal-content p {
   font-family: 'Open Sans', sans-serif;
@@ -26924,6 +26969,9 @@ textareateams-filter .teams-filter-wrapper .teams-selector-filter {
   display: block;
   margin: 3px;
   padding: 2px 5px;
+  max-height: 22px;
+  overflow: hidden;
+  line-height: 18px;
 }
 .friend-element-wrapper .friend-manager-level {
   display: inline-block;
@@ -27154,6 +27202,186 @@ fieldset[disabled] .friend-element-wrapper .challenge-friend {
     color: #ffffff;
     text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   }
+}
+.deprecated-version-screen {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #0a2938;
+  z-index: 100000;
+  padding: 100px 20px 0 20px;
+  padding-top: 20vh;
+  text-align: center;
+}
+.deprecated-version-screen h1 {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  font-size: 18pt;
+  color: #59add5;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  margin: 40px 0 20px 0;
+  margin: 10vh 0 5vh 0;
+}
+.deprecated-version-screen p {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+}
+.deprecated-version-screen button {
+  margin: 10px 0 10px 0;
+  margin: 3vh 0 3vh 0;
+  background-color: #428bca;
+  border-color: #357ebd;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  background-color: #a1c931;
+  color: #ffffff;
+  outline: none !important;
+}
+.deprecated-version-screen button:hover,
+.deprecated-version-screen button:focus,
+.deprecated-version-screen button:active,
+.deprecated-version-screen button.active,
+.open .dropdown-toggle.deprecated-version-screen button {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+.deprecated-version-screen button:active,
+.deprecated-version-screen button.active,
+.open .dropdown-toggle.deprecated-version-screen button {
+  background-image: none;
+}
+.deprecated-version-screen button.disabled,
+.deprecated-version-screen button[disabled],
+fieldset[disabled] .deprecated-version-screen button,
+.deprecated-version-screen button.disabled:hover,
+.deprecated-version-screen button[disabled]:hover,
+fieldset[disabled] .deprecated-version-screen button:hover,
+.deprecated-version-screen button.disabled:focus,
+.deprecated-version-screen button[disabled]:focus,
+fieldset[disabled] .deprecated-version-screen button:focus,
+.deprecated-version-screen button.disabled:active,
+.deprecated-version-screen button[disabled]:active,
+fieldset[disabled] .deprecated-version-screen button:active,
+.deprecated-version-screen button.disabled.active,
+.deprecated-version-screen button[disabled].active,
+fieldset[disabled] .deprecated-version-screen button.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+.deprecated-version-screen button .badge {
+  color: #428bca;
+  background-color: #ffffff;
+}
+.deprecated-version-screen button:focus,
+.deprecated-version-screen button:active:focus,
+.deprecated-version-screen button.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.deprecated-version-screen button:hover,
+.deprecated-version-screen button:focus {
+  color: #333333;
+  text-decoration: none;
+}
+.deprecated-version-screen button:active,
+.deprecated-version-screen button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.deprecated-version-screen button.disabled,
+.deprecated-version-screen button[disabled],
+fieldset[disabled] .deprecated-version-screen button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.deprecated-version-screen button:active,
+.deprecated-version-screen button.active {
+  box-shadow: none;
+}
+.deprecated-version-screen button:active:focus,
+.deprecated-version-screen button.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+.deprecated-version-screen button:active:hover,
+.deprecated-version-screen button.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+}
+.deprecated-version-screen button:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+.deprecated-version-screen button:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+.deprecated-version-screen button:hover:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+.deprecated-version-screen button:active,
+.deprecated-version-screen button.active {
+  box-shadow: none;
+  background-color: #a1c931;
+}
+.deprecated-version-screen button:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+.deprecated-version-screen button.disabled,
+.deprecated-version-screen button[disabled],
+fieldset[disabled] .deprecated-version-screen button {
+  background-color: #b5d657;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+.deprecated-version-screen button.close {
+  background-color: #a1c931;
+  outline: none !important;
+  color: #ffffff;
 }
 /*************************************************
 Si hay que añadir nuevas banderas, ir a la siguiente url

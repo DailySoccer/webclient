@@ -43,6 +43,7 @@ import 'package:webclient/utils/max_text_width.dart';
 
 import 'package:webclient/components/navigation/main_menu_f2p_comp.dart';
 import 'package:webclient/components/navigation/footer_comp.dart';
+import 'package:webclient/components/navigation/deprecated_version_screen_comp.dart';
 //import 'package:webclient/components/navigation/xs_not_available_screen_comp.dart';
 
 import 'package:webclient/components/flash_messages_comp.dart';
@@ -175,6 +176,7 @@ class WebClientApp extends Module {
 
     bind(MainMenuF2PComp);
     bind(FooterComp);
+    bind(DeprecatedVersionScreenComp);
     //bind(XsNotAvailableScreenComp);
 
     bind(NgBindHtmlUnsafeDirective);

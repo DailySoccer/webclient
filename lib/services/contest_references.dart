@@ -9,7 +9,6 @@ import "package:webclient/models/soccer_team.dart";
 import "package:webclient/models/soccer_player.dart";
 import 'package:webclient/models/template_contest.dart';
 
-
 class ContestReferences {
   var refUsers = new HashMap<String, User>();
   var refTemplateContests = new HashMap<String, TemplateContest>();

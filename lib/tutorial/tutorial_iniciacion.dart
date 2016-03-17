@@ -98,7 +98,8 @@ class TutorialIniciacion extends Tutorial {
       "edit_contest_entry": (url, postData) => addContestEntry(postData),
       "get_my_live_contest": (url, postData) => waitCompleter( () => TrainingContestLive ),
       "get_my_history_contest": (url, postData) => waitCompleter( () => TrainingContestHistory ),
-      "get_live_match_events": (url, postData) => waitCompleter( () => LiveMatchEventsResponse )
+      "get_live_match_events": (url, postData) => waitCompleter( () => LiveMatchEventsResponse ),
+      "get_live_contest_entries": (url, postData) => waitCompleter( () => LiveContestEntriesResponse )
     }]);
 
     // Identificadores de los futbolistas a seleccionar
@@ -508,9 +509,9 @@ class TutorialIniciacion extends Tutorial {
       OficialContestInstance
       ],
       "users_info": profileService.isLoggedIn && FantasyTeam.isNotEmpty ? joinLists(UsersInfo, element: PlayerInfo) : UsersInfo,
-      "match_events": MatchEvents,
+      "match_events": MatchEvents /*,
       "soccer_teams": SoccerTeams,
-      "soccer_players": SoccerPlayerList
+      "soccer_players": SoccerPlayerList*/
   };
 
   Map get OficialContestListWithFakes => {
@@ -530,9 +531,9 @@ class TutorialIniciacion extends Tutorial {
       TrainingContestInstance
       ],
       "users_info": profileService.isLoggedIn && FantasyTeam.isNotEmpty ? joinLists(UsersInfo, element: PlayerInfo) : UsersInfo,
-      "match_events": MatchEvents,
+      "match_events": MatchEvents /*,
       "soccer_teams": SoccerTeams,
-      "soccer_players": SoccerPlayerList
+      "soccer_players": SoccerPlayerList*/
   };
 
   Map get TrainingContestLive => {
@@ -540,9 +541,9 @@ class TutorialIniciacion extends Tutorial {
       TrainingContestInstanceLive
       ],
       "users_info": profileService.isLoggedIn && FantasyTeam.isNotEmpty ? joinLists(UsersInfo, element: PlayerInfo) : UsersInfo,
-      "match_events": MatchEvents,
+      "match_events": MatchEvents /*,
       "soccer_teams": SoccerTeams,
-      "soccer_players": SoccerPlayerList
+      "soccer_players": SoccerPlayerList*/
   };
 
   Map get TrainingContestHistory => {
@@ -550,9 +551,9 @@ class TutorialIniciacion extends Tutorial {
       TrainingContestInstanceHistory
       ],
       "users_info": profileService.isLoggedIn && FantasyTeam.isNotEmpty ? joinLists(UsersInfo, element: PlayerInfo) : UsersInfo,
-      "match_events": MatchEvents,
+      "match_events": MatchEvents /*,
       "soccer_teams": SoccerTeams,
-      "soccer_players": SoccerPlayerList
+      "soccer_players": SoccerPlayerList*/
   };
 
   Map get TrainingContestInstance => {
@@ -675,6 +676,10 @@ class TutorialIniciacion extends Tutorial {
 
   Map get LiveMatchEventsResponse => {
     "content": LiveMatchEventsList[liveStep]
+  };
+
+  Map get LiveContestEntriesResponse => {
+    "contest_entries": profileService.isLoggedIn && FantasyTeam.isNotEmpty ? joinLists(ContestEntries, element: PlayerEntry) : ContestEntries
   };
 
   List get ContestEntries => [

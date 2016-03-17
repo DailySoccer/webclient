@@ -17,6 +17,7 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/soccer_player_service.dart';
+import 'package:webclient/services/template_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/scoring_rules_service.dart';
 import 'package:webclient/services/leaderboard_service.dart';
@@ -41,7 +42,7 @@ import 'package:webclient/utils/max_text_width.dart';
 
 import 'package:webclient/components/navigation/main_menu_f2p_comp.dart';
 import 'package:webclient/components/navigation/footer_comp.dart';
-import 'package:webclient/components/navigation/xs_not_available_screen_comp.dart';
+//import 'package:webclient/components/navigation/xs_not_available_screen_comp.dart';
 
 import 'package:webclient/components/flash_messages_comp.dart';
 import 'package:webclient/components/modal_comp.dart';
@@ -57,7 +58,7 @@ import 'package:webclient/components/contest_header_f2p_comp.dart';
 import 'package:webclient/components/leaderboard_comp.dart';
 import 'package:webclient/components/leaderboard_table_comp.dart';
 import 'package:webclient/components/my_contests_comp.dart';
-import 'package:webclient/components/welcome_comp.dart';
+//import 'package:webclient/components/welcome_comp.dart';
 import 'package:webclient/components/week_calendar_comp.dart';
 import 'package:webclient/components/tutorial_list_comp.dart';
 import 'package:webclient/components/create_contest_comp.dart';
@@ -154,6 +155,7 @@ class WebClientApp extends Module {
     bind(PromosService);
     bind(ContestsService);
     bind(SoccerPlayerService);
+    bind(TemplateService);
     bind(ScoringRulesService);
     bind(LeaderboardService);
     bind(PaymentService);
@@ -170,7 +172,7 @@ class WebClientApp extends Module {
 
     bind(MainMenuF2PComp);
     bind(FooterComp);
-    bind(XsNotAvailableScreenComp);
+    //bind(XsNotAvailableScreenComp);
 
     bind(NgBindHtmlUnsafeDirective);
     bind(MaxTextWidthDirective);
@@ -202,7 +204,7 @@ class WebClientApp extends Module {
     bind(FantasyTeamComp);
     bind(UsersListComp);
     bind(TeamsPanelComp);
-    bind(WelcomeComp);
+    //bind(WelcomeComp);
     bind(WeekCalendar);
     bind(EnterContestComp);
     bind(SoccerPlayersListComp);

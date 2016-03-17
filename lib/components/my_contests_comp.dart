@@ -79,19 +79,25 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
   }
   
   void _refreshMyContests() {
-    Future refresher = contestsService.refreshMyLiveContests();
-    if (_tabSelected  != TAB_LIVE) {
+    if (_tabSelected == TAB_LIVE) {
+      contestsService.refreshMyLiveContests().then((_) {
+            loadingService.isLoading = false;
+            _numLiveContests = contestsService.liveContests.length;
+          })
+          .catchError((ServerError error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW), test: (error) => error is ServerError);
+    }
+    else {
+      Future refresher = contestsService.countMyLiveContests();
       Future selected = _tabSelected  == TAB_WAITING ? 
                           contestsService.refreshMyActiveContests() : 
                           contestsService.refreshMyHistoryContests();
-      refresher = Future.wait([refresher, selected]);
+      Future.wait([refresher, selected])
+        .then((List jsonMaps) {
+              loadingService.isLoading = false;
+              _numLiveContests = jsonMaps[0];
+            })
+            .catchError((ServerError error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW), test: (error) => error is ServerError);
     }
-    
-    refresher.then((_) {
-          loadingService.isLoading = false;
-          _numLiveContests = contestsService.liveContests.length;
-        })
-        .catchError((ServerError error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW), test: (error) => error is ServerError);
   }
 
   void onWaitingActionClick(Contest contest) {

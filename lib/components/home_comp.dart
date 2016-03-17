@@ -15,6 +15,7 @@ import 'package:webclient/tutorial/tutorial_iniciacion.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/components/account/notifications_comp.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/services/template_service.dart';
 
 @Component(
   selector: 'home',
@@ -58,6 +59,8 @@ class HomeComp implements DetachAware {
     //contestTileHTML = isContestTileEnabled ? defaultPromo['html'] : defaultPromoWithTutorial['html'];
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
     _profileService.triggerNotificationsPopUp(_router);
+
+    GameMetrics.logEvent(GameMetrics.HOME, {"logged": _profileService.isLoggedIn});
   }
 
 
@@ -75,15 +78,15 @@ class HomeComp implements DetachAware {
       return;
     }
     // Parallel processing using the Future API
-    Future.wait([ contestsService.refreshMyHistoryContests(),
-                  contestsService.refreshMyLiveContests(),
-                  contestsService.refreshMyActiveContests()])
-      .then((_) {
+    Future.wait([ TemplateService.Instance.refreshTemplateSoccerPlayers(), 
+                  contestsService.countMyContests()])
+      .then((List jsonMaps) {
+        Map jsonData = jsonMaps[1];
         loadingService.isLoading = false;
-        numVirtualHistoryContests = contestsService.historyContests.where( (c) => c.isSimulation ).length;
-        numRealHistoryContests = contestsService.historyContests.length - numVirtualHistoryContests;
-        numLiveContests = contestsService.liveContests.length;
-        numUpcomingContests = contestsService.waitingContests.length;
+        numVirtualHistoryContests = jsonData.containsKey("numVirtualHistory") ? jsonData["numVirtualHistory"] : 0;
+        numRealHistoryContests    = jsonData.containsKey("numRealHistory") ? jsonData["numRealHistory"] : 0;
+        numLiveContests           = jsonData.containsKey("numLive") ? jsonData["numLive"] : 0;
+        numUpcomingContests       = jsonData.containsKey("numWaiting") ? jsonData["numWaiting"] : 0;
         refreshContestTileHTML();
       })
       .catchError((ServerError error) {

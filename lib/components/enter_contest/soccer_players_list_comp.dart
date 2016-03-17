@@ -12,6 +12,7 @@ import 'package:webclient/models/instance_soccer_player.dart';
 import 'package:webclient/models/money.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:logging/logging.dart';
+import 'dart:async';
 
 @Component(
     selector: 'soccer-players-list',
@@ -69,7 +70,6 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   Money additionalGoldPrice = new Money.zeroFrom(Money.CURRENCY_GOLD);
   
   void _setFilter(String key, dynamic valor) {
-
     // En movil no permitimos nunca poner el filtro vacio!
     if (_scrDet.isXsScreen && key == FILTER_POSITION && valor == null) {
       return;
@@ -234,7 +234,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
       allHtml.write(_getHtmlForEmpty());
     }
 
-    _soccerPlayerListRoot.appendHtml(allHtml.toString());
+    _soccerPlayerListRoot.setInnerHtml(allHtml.toString(), treeSanitizer: NULL_TREE_SANITIZER);
     _element.append(_soccerPlayerListRoot);
 
     _element.querySelectorAll(".soccer-player-info").onClick.listen(_onSoccerPlayerInfo);

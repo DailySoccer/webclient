@@ -6,6 +6,8 @@ import "package:webclient/models/soccer_player_stats.dart";
 //import "package:webclient/models/field_pos.dart";
 import 'package:webclient/services/contest_references.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/models/template_soccer_player.dart';
+import 'package:webclient/services/template_references.dart';
 
 class LiveEventInfo {
   int count;
@@ -19,11 +21,11 @@ class LiveEventInfo {
 
 class SoccerPlayer {
   String templateSoccerPlayerId;
-  String name;
-  // FieldPos fieldPos;
-  int    fantasyPoints;
-  // int    playedMatches;
-  // int    salary;
+  
+  TemplateSoccerPlayer templateSoccerPlayer;
+  
+  String get name => templateSoccerPlayer.name;
+  int    get fantasyPoints => templateSoccerPlayer.fantasyPoints;
 
   // Fantasy Points (actualizado por liveMatchEvent)
   int currentLivePoints = 0;
@@ -40,7 +42,7 @@ class SoccerPlayer {
   // Estadisticas: Nombre del evento segun el enumerado OptaEventType => puntos obtenidos gracias a ese evento
   Map<String, LiveEventInfo> currentLivePointsPerOptaEvent = new Map<String, LiveEventInfo>();
 
-  List<SoccerPlayerStats> stats = [];
+  List<SoccerPlayerStats> get stats => templateSoccerPlayer.stats;
 
   // Equipo en el que juega
   SoccerTeam soccerTeam;
@@ -49,33 +51,34 @@ class SoccerPlayer {
   
   SoccerPlayer.referenceInit(this.templateSoccerPlayerId);
 
-  factory SoccerPlayer.fromJsonObject(Map jsonMap, ContestReferences references) {
-    SoccerPlayer soccerPlayer = references.getSoccerPlayerById(jsonMap.containsKey("templateSoccerPlayerId") ? jsonMap["templateSoccerPlayerId"] : jsonMap["_id"]);
-    return soccerPlayer._initFromJsonObject(jsonMap, references);
+  factory SoccerPlayer.fromJsonObject(Map jsonMap, TemplateReferences templateReferences, ContestReferences contestReferences) {
+    SoccerPlayer soccerPlayer = contestReferences.getSoccerPlayerById(jsonMap.containsKey("templateSoccerPlayerId") ? jsonMap["templateSoccerPlayerId"] : jsonMap["_id"]);
+    return soccerPlayer._initFromJsonObject(jsonMap, templateReferences, contestReferences);
   }
 
-  SoccerPlayer _initFromJsonObject(Map jsonMap, ContestReferences references) {
+  SoccerPlayer _initFromJsonObject(Map jsonMap, TemplateReferences templateReferences, ContestReferences contestReferences) {
     assert(templateSoccerPlayerId.isNotEmpty);
-    name = jsonMap.containsKey("name") ? jsonMap["name"] : "";
-    // fieldPos = jsonMap.containsKey("fieldPos") ? new FieldPos(json["fieldPos"]) : null;
-    fantasyPoints = jsonMap.containsKey("fantasyPoints") ? jsonMap["fantasyPoints"] : 0;
-    // playedMatches = jsonMap.containsKey("playedMatches") ? jsonMap["playedMatches"] : 0;
-    // salary = jsonMap.containsKey("salary") ? jsonMap["salary"] : 0;
 
-    if (jsonMap.containsKey("stats")) {
-      stats = [];
-      for (var x in jsonMap["stats"]) {
-        stats.add(new SoccerPlayerStats.fromJsonObject(x, references));
-      }
-      // Eliminar las estadísticas vacías
-      stats.removeWhere((stat) => !stat.hasPlayed());
-    }
-
-    soccerTeam = references.getSoccerTeamById(jsonMap["templateTeamId"]);
+    templateSoccerPlayer = templateReferences.getTemplateSoccerPlayerById(templateSoccerPlayerId);
+    soccerTeam = contestReferences.getSoccerTeamById(jsonMap["templateTeamId"]);
     soccerTeam.addSoccerPlayer(this);
     return this;
   }
 
+  factory SoccerPlayer.fromId(String templateSoccerPlayerId, String templateSoccerTeamId, TemplateReferences templateReferences, ContestReferences contestReferences) {
+    SoccerPlayer soccerPlayer = contestReferences.getSoccerPlayerById(templateSoccerPlayerId);
+    return soccerPlayer._initFromId(templateSoccerTeamId, templateReferences, contestReferences);
+  }
+  
+  SoccerPlayer _initFromId(String templateSoccerTeamId, TemplateReferences templateReferences, ContestReferences contestReferences) {
+    assert(templateSoccerPlayerId.isNotEmpty);
+
+    templateSoccerPlayer = templateReferences.getTemplateSoccerPlayerById(templateSoccerPlayerId);
+    soccerTeam = contestReferences.getSoccerTeamById(templateSoccerTeamId);
+    soccerTeam.addSoccerPlayer(this);
+    return this;
+  }
+  
   static String getEventName(String key) {
     if (!_EVENT_KEY_TO_NAME.containsKey(key)) {
       Logger.root.severe("soccer_player:getEventName:$key invalid");

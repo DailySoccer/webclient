@@ -461,9 +461,11 @@ class ViewContestComp implements DetachAware {
                   _changingPlayer.soccerPlayer.templateSoccerPlayerId, 
                   newSoccerPlayer.soccerPlayer.templateSoccerPlayerId)
             .then((_) {
-              //_profileService.user.goldBalance.amount -= newSoccerPlayer.moneyToBuy(contest, _profileService.user.managerLevel).amount;
-              updateLive();
-              //print ("onSoccerPlayerActionButton: Ok");
+              _turnZone.run(() {
+                //_profileService.user.goldBalance.amount -= newSoccerPlayer.moneyToBuy(contest, _profileService.user.managerLevel).amount;
+                updateLive();
+                //print ("onSoccerPlayerActionButton: Ok");
+              });
             })
             .catchError((ServerError error) {
               Logger.root.info("Error: ${error.responseError}");

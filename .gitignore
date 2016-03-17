@@ -7,3 +7,4 @@ webclient.iml
 .buildlog
 *.DS_Store
 .packages
+/cordova/

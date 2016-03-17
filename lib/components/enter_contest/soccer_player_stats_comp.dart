@@ -321,9 +321,11 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
   }
 
   void calculateSeasonResumeStats() {
-
       // Añadimos las especificas del portero
-      seasonResumeStats.add( {'nombre' : "MIN" , 'valor':  calculateStatAverage("MIN"),       'helpInfo': 'Minutes played'});
+      seasonResumeStats.add({ 'nombre' : "MIN" , 
+                              'valor':  calculateStatAverage("MIN"), 
+                              'helpInfo': getLocalizedText("minutes-played")
+                              });
 
       _totalSums.keys.forEach((key) {
          seasonResumeStats.add({'nombre' : mappedFieldNames[key]["shortName"], 'valor' : calculateStatAverage(key), 'helpInfo': mappedFieldNames[key]["description"]});

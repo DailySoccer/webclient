@@ -211,12 +211,13 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
         <div  class="user-form-field facebook-form-wrapper">
           <div class="form-description" ng-bind-html="getLocalizedText('facebookdescription')"></div>
           <div class="fb-button-wrapper">
-            <div class="fb-login-button" data-size="xlarge" data-max-rows="1" 
+            <!--div class="fb-login-button" data-size="xlarge" data-max-rows="1" 
                  data-scope="public_profile,email,user_friends"
                  data-show-faces="true" onlogin="jsLoginFB()" ng-show="!isFacebookConnected"></div>
             <div class="fb-login-button" data-size="xlarge"
                  data-scope="public_profile,email,user_friends"
-                 onlogin="jsLoginFB()" ng-show="isFacebookConnected"></div>
+                 onlogin="jsLoginFB()" ng-show="isFacebookConnected"></div-->
+            <button class="fb-login-button-smartphone" ng-click="makeFacebookSignUp()"> <img src="images/FB-f-Logo__white_29.png" class="fb-brand">{{getLocalizedText('buttonsignupfb')}}</button>
           </div>
         </div>
         <!-- -->
@@ -320,7 +321,7 @@ tc.put("packages/webclient/components/account/login_comp.html", new HttpResponse
             <div class="fb-login-button" data-size="xlarge" onlogin="jsLoginFB()"
                  data-scope="public_profile,email,user_friends"
                  data-show-faces="true" data-max-rows="1" ng-show="!isFacebookConnected"></div-->
-            <button class="fb-login-button-smartphone" ng-click="makeFacebookLogin()"> FB Login </button>
+            <button class="fb-login-button-smartphone" ng-click="makeFacebookLogin()"> <img src="images/FB-f-Logo__white_29.png" class="fb-brand">{{GetLocalizedText('buttonloginfb')}}</button>
           </div>
         </div>
         <!-- -->
@@ -666,7 +667,7 @@ tc.put("packages/webclient/components/contest_header_f2p_comp.html", new HttpRes
       <span>{{info['startTime']}}&nbsp;</span>
     </div>
   </div>
-  <social-share ng-if="userIsRegistered()" parameters-by-map="sharingInfo" inline></social-share>
+  <social-share ng-if="userIsRegistered()" parameters-by-map="sharingInfo" inline inline-xs></social-share>
 
   <div class="tournament-and-type-section">
     <span class="{{getSourceFlag()}}"></span>
@@ -1180,7 +1181,7 @@ tc.put("packages/webclient/components/enter_contest/lineup_selector_comp.html", 
     </div>
   </div>
 
-  <div class="lineup-selector-slot" ng-repeat="slot in lineupSlots" ng-mousedown="onLineupSlotSelected({'slotIndex': $index})" ng-class="getSlotClassColor($index)">
+  <div class="lineup-selector-slot" ng-repeat="slot in lineupSlots" ng-click="onLineupSlotSelected({'slotIndex': $index})" ng-class="getSlotClassColor($index)">
 
     <div ng-if="slot == null">
       <div class="column-fieldpos"></div>
@@ -1518,11 +1519,11 @@ tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", ne
   <div class="default-section-header">{{getLocalizedText('title')}}</div>
 
   <!-- Nav tabs -->
-  <ul class="help-info-tabs" role="tablist">
+  <!--ul class="help-info-tabs" role="tablist">
     <li class="active"><a role="tab" data-toggle="tab" ng-click="tabChange('tutorial-content')">{{getLocalizedText('tutorials')}}</a></li>
     <li><a role="tab" data-toggle="tab" ng-click="tabChange('how-works-content')">{{getLocalizedText('how-it-works')}}</a></li>
     <li><a role="tab" data-toggle="tab" ng-click="tabChange('rules-scores-content')">{{getLocalizedText('rules')}}</a></li>
-  </ul>
+  </ul-->
 
   <div class="tab-pane active" id="tutorial-content">
     <div class="block-light">
@@ -1530,19 +1531,19 @@ tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", ne
     </div>
   </div>
 
-  <div class="tab-pane" id="how-works-content">
+  <!--div class="tab-pane" id="how-works-content">
     <how-it-works></how-it-works>
-  </div>
+  </div-->
   
-  <div class="tab-pane" id="rules-scores-content">
+  <!--div class="tab-pane" id="rules-scores-content">
     <!--div class="block-dark">
       <div class="title">SCORING AND RULES</div>
       <div class="scores-wrapper">
         <scoring-rules></scoring-rules>
       </div>
     </div-->
-    <rules-comp></rules-comp>
-  </div>
+    <!--rules-comp></rules-comp>
+  </div-->
 
 </div>
 <ng-view></ng-view>
@@ -1885,15 +1886,14 @@ tc.put("packages/webclient/components/legalese_and_help/tutorials_comp.html", ne
     <!--p class="tutorial-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p-->
     <button type="button" class="button-go-tutorial" ng-click="goTutorial(tutorialIniciacionName)">{{getLocalizedText("go-tutorial")}}</button>
   </div>
-  <div class="tutorial-tile">
+  <!--div class="tutorial-tile">
     <h1 class="tutorial-title">{{getLocalizedText("rankings")}}</h1>
-    <!--p class="tutorial-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p-->
     <span class="incoming">{{getLocalizedText("incoming")}}</span>
-  </div>
+  </div-->
   <div class="tutorial-tile">
-    <h1 class="tutorial-title">{{getLocalizedText("how-to-create-contest")}}</h1>
+    <h1 class="tutorial-title">{{getLocalizedText("how-to-play")}}</h1>
     <!--p class="tutorial-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p-->
-    <button type="button" class="button-go-tutorial" ng-click="goToPage('howtocreatecontest')">{{getLocalizedText("go-to-help")}}</button>
+    <button type="button" class="button-go-tutorial" ng-click="goToHowToPlay()">{{getLocalizedText("go-to-help")}}</button>
   </div>
 </div>"""));
 tc.put("packages/webclient/components/lobby_f2p_comp.html", new HttpResponse(200, r"""<div id="lobbyf2pRoot">
@@ -2162,9 +2162,9 @@ tc.put("packages/webclient/components/social/facebook_share_comp.html", new Http
   <div class="facebook-share-button" ng-click="shareOnFB()">
     <img src="images/iconFacebook.png"/> Compartir
   </div>
-  <div class="facebook-like"  ng-show="showLike">
-    <fb:like class="facebook-like-xfbml" href="https://www.facebook.com/epicelevenfantasy" layout="button_count" action="like" />
-  </div>
+  <!--div class="facebook-like"  ng-show="showLike">
+    <fb:like class="facebook-like-xfbml" href="https://www.facebook.com/Futbolcuatro" layout="button_count" action="like" />
+  </div-->
 </div>"""));
 tc.put("packages/webclient/components/social/friend_info_comp.html", new HttpResponse(200, r"""<div class="friend-element-wrapper">
   <img class="friend-picture" ng-src="{{profileImage == ''? 'images/icon-userProfile.png' : profileImage}}">
@@ -2180,14 +2180,12 @@ tc.put("packages/webclient/components/social/social_share_comp.html", new HttpRe
   <twitter-share parameters-by-map="sharingInfo" show-like="showLike"></twitter-share>
 </div>"""));
 tc.put("packages/webclient/components/social/twitter_share_comp.html", new HttpResponse(200, r"""<div class="twitter-share-wrapper">
-  <a class="twitter-share-button-wrapper" target="_blank" ng-href="https://twitter.com/intent/tweet?{{intentTweetParams}}" ng-click="onTweet()">
+  <twitter-button class="twitter-share-button-wrapper" ng-click="onTweet()">
     <span class="twitter-share-button"><img src="images/twitterTransparentBG.png">Tweet</span>
-  </a>
-  <a class="twitter-share-button-wrapper" target="_blank" ng-href="https://twitter.com/intent/follow?screen_name=epiceleven" ng-click="onFollow()" ng-if="showLike">
+  </twitter-button>
+  <twitter-button class="twitter-share-button-wrapper" ng-click="onFollow()" ng-if="showLike">
     <span class="twitter-share-button"><img src="images/twitterTransparentBG.png">Follow</span>
-  </a>
-  <!--div id="twitterShareButton" class="twitter-share-button-wrapper"></div-->
-  <!--div id="twitterFollowButton" class="twitter-follow-button-wrapper" ng-if="showLike"></div-->
+  </twitter-button>
 </div>"""));
 tc.put("packages/webclient/components/tutorial_list_comp.html", new HttpResponse(200, r"""<div id="tutorialListRoot">
   
@@ -2269,7 +2267,7 @@ tc.put("packages/webclient/components/view_contest/fantasy_team_comp.html", new 
         </div>
         <div class="column-score" ng-if="!isViewContestEntryMode">
           <span>{{slot.score}}</span>
-          <button class="change-btt" ng-if="playerIsChangeable(slot)" ng-disabled="changingSoccerId != null && slot['id'] != changingSoccerId" ng-click="requestChange(slot)"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></button>
+          <button class="change-btt" ng-if="playerIsChangeable(slot) || playerIsChanging(slot)" ng-disabled="changingSoccerId != null && slot['id'] != changingSoccerId" ng-click="requestChange(slot)"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></button>
         </div>
         <div class="column-salary" ng-if="isViewContestEntryMode">${{slot.salary}}</div>
       </div>

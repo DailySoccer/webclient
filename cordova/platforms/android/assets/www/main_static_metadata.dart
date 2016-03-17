@@ -21,7 +21,7 @@ import 'package:angular/routing/module.dart' as import_14;
 import 'package:angular/cache/js_cache_register.dart' as import_15;
 import 'package:webclient/logger_exception_handler.dart' as import_16;
 import 'package:webclient/services/profile_service.dart' as import_17;
-import 'package:webclient/services/prizes_service.dart' as import_18;
+import 'package:webclient/services/template_service.dart' as import_18;
 import 'package:webclient/services/datetime_service.dart' as import_19;
 import 'package:webclient/services/refresh_timers_service.dart' as import_20;
 import 'package:webclient/services/tutorial_service.dart' as import_21;
@@ -29,15 +29,15 @@ import 'package:webclient/services/tooltip_service.dart' as import_22;
 import 'package:webclient/services/screen_detector_service.dart' as import_23;
 import 'package:webclient/components/view_contest/view_contest_comp.dart' as import_24;
 import 'package:webclient/services/loading_service.dart' as import_25;
-import 'package:webclient/services/flash_messages_service.dart' as import_26;
-import 'package:webclient/services/contests_service.dart' as import_27;
-import 'package:webclient/services/server_service.dart' as import_28;
-import 'package:webclient/components/modal_comp.dart' as import_29;
-import 'package:webclient/components/enter_contest/enter_contest_comp.dart' as import_30;
-import 'package:webclient/services/catalog_service.dart' as import_31;
-import 'package:webclient/services/payment_service.dart' as import_32;
-import 'package:webclient/components/achievement_comp.dart' as import_33;
-import 'package:webclient/components/navigation/xs_not_available_screen_comp.dart' as import_34;
+import 'package:webclient/services/prizes_service.dart' as import_26;
+import 'package:webclient/services/server_service.dart' as import_27;
+import 'package:webclient/services/flash_messages_service.dart' as import_28;
+import 'package:webclient/services/contests_service.dart' as import_29;
+import 'package:webclient/components/modal_comp.dart' as import_30;
+import 'package:webclient/components/enter_contest/enter_contest_comp.dart' as import_31;
+import 'package:webclient/services/catalog_service.dart' as import_32;
+import 'package:webclient/services/payment_service.dart' as import_33;
+import 'package:webclient/components/achievement_comp.dart' as import_34;
 import 'package:webclient/components/enter_contest/soccer_player_stats_comp.dart' as import_35;
 import 'package:webclient/services/soccer_player_service.dart' as import_36;
 import 'package:webclient/components/legalese_and_help/how_to_create_contest_comp.dart' as import_37;
@@ -85,9 +85,9 @@ import 'package:webclient/components/create_contest_comp.dart' as import_78;
 import 'package:webclient/components/contest_info_comp.dart' as import_79;
 import 'package:webclient/components/scouting/scouting_league_comp.dart' as import_80;
 import 'package:webclient/components/view_contest/teams_panel_comp.dart' as import_81;
-import 'package:webclient/components/welcome_comp.dart' as import_82;
-import 'package:webclient/components/legalese_and_help/policy_info_comp.dart' as import_83;
-import 'package:webclient/components/my_contests_comp.dart' as import_84;
+import 'package:webclient/components/legalese_and_help/policy_info_comp.dart' as import_82;
+import 'package:webclient/components/my_contests_comp.dart' as import_83;
+import 'package:webclient/resource_url_resolver_wrapper.dart' as import_84;
 import 'package:webclient/components/legalese_and_help/tutorials_comp.dart' as import_85;
 import 'package:webclient/components/enter_contest/matches_filter_comp.dart' as import_86;
 import 'package:webclient/utils/form-autofill-fix.dart' as import_87;
@@ -581,7 +581,7 @@ final Map<Type, Object> typeAnnotations = {
   import_17.ProfileService: const [
     const import_1.Injectable(),
   ],
-  import_18.PrizesService: const [
+  import_18.TemplateService: const [
     const import_1.Injectable(),
   ],
   import_19.DateTimeService: const [
@@ -605,32 +605,32 @@ final Map<Type, Object> typeAnnotations = {
   import_25.LoadingService: const [
     const import_1.Injectable(),
   ],
-  import_26.FlashMessagesService: const [
+  import_26.PrizesService: const [
     const import_1.Injectable(),
   ],
-  import_27.ContestsService: const [
+  import_27.DailySoccerServer: const [
     const import_1.Injectable(),
   ],
-  import_28.DailySoccerServer: const [
+  import_28.FlashMessagesService: const [
     const import_1.Injectable(),
   ],
-  import_29.ModalComp: const [
+  import_29.ContestsService: const [
+    const import_1.Injectable(),
+  ],
+  import_30.ModalComp: const [
     const import_2.Component(selector: 'modal', templateUrl: 'packages/webclient/components/modal_comp.html', useShadowDom: false, map: const {"window-size": '=>windowSize'}),
   ],
-  import_30.EnterContestComp: const [
+  import_31.EnterContestComp: const [
     const import_2.Component(selector: 'enter-contest', templateUrl: 'packages/webclient/components/enter_contest/enter_contest_comp.html', useShadowDom: false),
   ],
-  import_31.CatalogService: const [
+  import_32.CatalogService: const [
     const import_1.Injectable(),
   ],
-  import_32.PaymentService: const [
+  import_33.PaymentService: const [
     const import_1.Injectable(),
   ],
-  import_33.AchievementComp: const [
+  import_34.AchievementComp: const [
     const import_2.Component(selector: 'achievement', templateUrl: 'packages/webclient/components/achievement_comp.html', useShadowDom: false, map: const {"key": '=>Data', "enabled": '=>Earned'}),
-  ],
-  import_34.XsNotAvailableScreenComp: const [
-    const import_2.Component(selector: 'xs-not-available-screen', templateUrl: 'packages/webclient/components/navigation/xs_not_available_screen_comp.html', useShadowDom: false),
   ],
   import_35.SoccerPlayerStatsComp: const [
     const import_2.Component(selector: 'soccer-player-stats', templateUrl: 'packages/webclient/components/enter_contest/soccer_player_stats_comp.html', useShadowDom: false),
@@ -773,14 +773,14 @@ final Map<Type, Object> typeAnnotations = {
   import_81.TeamsPanelComp: const [
     const import_2.Component(selector: 'teams-panel', templateUrl: 'packages/webclient/components/view_contest/teams_panel_comp.html', useShadowDom: false, map: const {"button-text": '=>buttonText', "as-filter": '=>setUseAsFilter', "selected-option": '<=>matchFilter', "panel-open": '=>isPanelOpen', "template-contest": '=>templateContest', "contest": '=>contest', "contest-id": '=>contestId'}),
   ],
-  import_82.WelcomeComp: const [
-    const import_2.Component(selector: 'welcome', useShadowDom: false),
-  ],
-  import_83.PolicyInfoComp: const [
+  import_82.PolicyInfoComp: const [
     const import_2.Component(selector: 'policy-info', templateUrl: 'packages/webclient/components/legalese_and_help/policy_info_comp.html', useShadowDom: false),
   ],
-  import_84.MyContestsComp: const [
+  import_83.MyContestsComp: const [
     const import_2.Component(selector: 'my-contests', templateUrl: 'packages/webclient/components/my_contests_comp.html', useShadowDom: false),
+  ],
+  import_84.ResourceUrlResolverWrapper: const [
+    const import_1.Injectable(),
   ],
   import_85.TutorialsComp: const [
     const import_2.Component(selector: 'tutorials-comp', templateUrl: 'packages/webclient/components/legalese_and_help/tutorials_comp.html', useShadowDom: false),

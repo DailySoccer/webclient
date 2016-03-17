@@ -31,7 +31,7 @@ import 'package:angular/cache/js_cache_register.dart' as import_24;
 import 'package:webclient/logger_exception_handler.dart' as import_25;
 import 'package:webclient/services/profile_service.dart' as import_26;
 import 'package:webclient/services/server_service.dart' as import_27;
-import 'package:webclient/services/prizes_service.dart' as import_28;
+import 'package:webclient/services/template_service.dart' as import_28;
 import 'package:webclient/services/datetime_service.dart' as import_29;
 import 'package:webclient/services/refresh_timers_service.dart' as import_30;
 import 'package:webclient/services/tutorial_service.dart' as import_31;
@@ -41,12 +41,12 @@ import 'package:webclient/components/view_contest/view_contest_comp.dart' as imp
 import 'package:webclient/services/contests_service.dart' as import_35;
 import 'package:webclient/services/flash_messages_service.dart' as import_36;
 import 'package:webclient/services/loading_service.dart' as import_37;
-import 'package:webclient/components/modal_comp.dart' as import_38;
-import 'package:webclient/components/enter_contest/enter_contest_comp.dart' as import_39;
-import 'package:webclient/services/catalog_service.dart' as import_40;
-import 'package:webclient/services/payment_service.dart' as import_41;
-import 'package:webclient/components/achievement_comp.dart' as import_42;
-import 'package:webclient/components/navigation/xs_not_available_screen_comp.dart' as import_43;
+import 'package:webclient/services/prizes_service.dart' as import_38;
+import 'package:webclient/components/modal_comp.dart' as import_39;
+import 'package:webclient/components/enter_contest/enter_contest_comp.dart' as import_40;
+import 'package:webclient/services/catalog_service.dart' as import_41;
+import 'package:webclient/services/payment_service.dart' as import_42;
+import 'package:webclient/components/achievement_comp.dart' as import_43;
 import 'package:webclient/components/enter_contest/soccer_player_stats_comp.dart' as import_44;
 import 'package:webclient/services/soccer_player_service.dart' as import_45;
 import 'package:webclient/components/legalese_and_help/how_to_create_contest_comp.dart' as import_46;
@@ -94,9 +94,9 @@ import 'package:webclient/components/create_contest_comp.dart' as import_87;
 import 'package:webclient/components/contest_info_comp.dart' as import_88;
 import 'package:webclient/components/scouting/scouting_league_comp.dart' as import_89;
 import 'package:webclient/components/view_contest/teams_panel_comp.dart' as import_90;
-import 'package:webclient/components/welcome_comp.dart' as import_91;
-import 'package:webclient/components/legalese_and_help/policy_info_comp.dart' as import_92;
-import 'package:webclient/components/my_contests_comp.dart' as import_93;
+import 'package:webclient/components/legalese_and_help/policy_info_comp.dart' as import_91;
+import 'package:webclient/components/my_contests_comp.dart' as import_92;
+import 'package:webclient/resource_url_resolver_wrapper.dart' as import_93;
 import 'package:webclient/components/legalese_and_help/tutorials_comp.dart' as import_94;
 import 'package:webclient/components/enter_contest/matches_filter_comp.dart' as import_95;
 import 'package:webclient/utils/form-autofill-fix.dart' as import_96;
@@ -208,14 +208,15 @@ final Key _KEY_ContestsService = new Key(import_35.ContestsService);
 final Key _KEY_FlashMessagesService = new Key(import_36.FlashMessagesService);
 final Key _KEY_LoadingService = new Key(import_37.LoadingService);
 final Key _KEY_TutorialService = new Key(import_31.TutorialService);
-final Key _KEY_PrizesService = new Key(import_28.PrizesService);
-final Key _KEY_CatalogService = new Key(import_40.CatalogService);
-final Key _KEY_PaymentService = new Key(import_41.PaymentService);
+final Key _KEY_PrizesService = new Key(import_38.PrizesService);
+final Key _KEY_CatalogService = new Key(import_41.CatalogService);
+final Key _KEY_PaymentService = new Key(import_42.PaymentService);
 final Key _KEY_SoccerPlayerService = new Key(import_45.SoccerPlayerService);
 final Key _KEY_PromosService = new Key(import_50.PromosService);
 final Key _KEY_ScoringRulesService = new Key(import_75.ScoringRulesService);
 final Key _KEY_LeaderboardService = new Key(import_53.LeaderboardService);
 final Key _KEY_DateTimeService = new Key(import_29.DateTimeService);
+final Key _KEY_TemplateService = new Key(import_28.TemplateService);
 final Map<Type, Function> typeFactories = <Type, Function>{
   import_0.Animate: () => new import_0.Animate(),
   import_0.BrowserCookies: (a1) => new import_0.BrowserCookies(a1),
@@ -340,7 +341,7 @@ final Map<Type, Function> typeFactories = <Type, Function>{
   import_24.JsCacheRegister: (a1) => new import_24.JsCacheRegister(a1),
   import_25.LoggerExceptionHandler: () => new import_25.LoggerExceptionHandler(),
   import_26.ProfileService: (a1) => new import_26.ProfileService(a1),
-  import_28.PrizesService: (a1) => new import_28.PrizesService(a1),
+  import_28.TemplateService: (a1) => new import_28.TemplateService(a1),
   import_29.DateTimeService: (a1, a2) => new import_29.DateTimeService(a1, a2),
   import_30.RefreshTimersService: () => new import_30.RefreshTimersService(),
   import_31.TutorialService: (a1, a2, a3, a4) => new import_31.TutorialService(a1, a2, a3, a4),
@@ -348,15 +349,15 @@ final Map<Type, Function> typeFactories = <Type, Function>{
   import_33.ScreenDetectorService: (a1) => new import_33.ScreenDetectorService(a1),
   import_34.ViewContestComp: (a1, a2, a3, a4, a5, a6, a7, a8, a9, a10) => new import_34.ViewContestComp(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10),
   import_37.LoadingService: () => new import_37.LoadingService(),
+  import_38.PrizesService: (a1) => new import_38.PrizesService(a1),
+  import_27.DailySoccerServer: (a1) => new import_27.DailySoccerServer(a1),
   import_36.FlashMessagesService: () => new import_36.FlashMessagesService(),
   import_35.ContestsService: (a1, a2, a3) => new import_35.ContestsService(a1, a2, a3),
-  import_27.DailySoccerServer: (a1) => new import_27.DailySoccerServer(a1),
-  import_38.ModalComp: (a1, a2, a3, a4) => new import_38.ModalComp(a1, a2, a3, a4),
-  import_39.EnterContestComp: (a1, a2, a3, a4, a5, a6, a7, a8, a9, a10) => new import_39.EnterContestComp(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10),
-  import_40.CatalogService: (a1, a2, a3) => new import_40.CatalogService(a1, a2, a3),
-  import_41.PaymentService: (a1, a2) => new import_41.PaymentService(a1, a2),
-  import_42.AchievementComp: () => new import_42.AchievementComp(),
-  import_43.XsNotAvailableScreenComp: () => new import_43.XsNotAvailableScreenComp(),
+  import_39.ModalComp: (a1, a2, a3, a4) => new import_39.ModalComp(a1, a2, a3, a4),
+  import_40.EnterContestComp: (a1, a2, a3, a4, a5, a6, a7, a8, a9, a10) => new import_40.EnterContestComp(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10),
+  import_41.CatalogService: (a1, a2, a3) => new import_41.CatalogService(a1, a2, a3),
+  import_42.PaymentService: (a1, a2) => new import_42.PaymentService(a1, a2),
+  import_43.AchievementComp: () => new import_43.AchievementComp(),
   import_44.SoccerPlayerStatsComp: (a1, a2, a3, a4, a5, a6) => new import_44.SoccerPlayerStatsComp(a1, a2, a3, a4, a5, a6),
   import_45.SoccerPlayerService: (a1, a2, a3) => new import_45.SoccerPlayerService(a1, a2, a3),
   import_46.HowToCreateContestComp: (a1, a2) => new import_46.HowToCreateContestComp(a1, a2),
@@ -404,9 +405,9 @@ final Map<Type, Function> typeFactories = <Type, Function>{
   import_88.ContestInfoComp: (a1, a2, a3, a4, a5, a6, a7) => new import_88.ContestInfoComp(a1, a2, a3, a4, a5, a6, a7),
   import_89.ScoutingLeagueComp: (a1, a2) => new import_89.ScoutingLeagueComp(a1, a2),
   import_90.TeamsPanelComp: (a1, a2, a3) => new import_90.TeamsPanelComp(a1, a2, a3),
-  import_91.WelcomeComp: (a1, a2, a3, a4, a5) => new import_91.WelcomeComp(a1, a2, a3, a4, a5),
-  import_92.PolicyInfoComp: () => new import_92.PolicyInfoComp(),
-  import_93.MyContestsComp: (a1, a2, a3, a4, a5, a6, a7, a8, a9) => new import_93.MyContestsComp(a1, a2, a3, a4, a5, a6, a7, a8, a9),
+  import_91.PolicyInfoComp: () => new import_91.PolicyInfoComp(),
+  import_92.MyContestsComp: (a1, a2, a3, a4, a5, a6, a7, a8, a9) => new import_92.MyContestsComp(a1, a2, a3, a4, a5, a6, a7, a8, a9),
+  import_93.ResourceUrlResolverWrapper: (a1, a2) => new import_93.ResourceUrlResolverWrapper(a1, a2),
   import_94.TutorialsComp: (a1, a2) => new import_94.TutorialsComp(a1, a2),
   import_95.MatchesFilterComp: (a1, a2) => new import_95.MatchesFilterComp(a1, a2),
   import_96.FormAutofillDecorator: (a1) => new import_96.FormAutofillDecorator(a1),
@@ -415,7 +416,7 @@ final Map<Type, Function> typeFactories = <Type, Function>{
   import_99.DefaultPlatformNoShim: () => new import_99.DefaultPlatformNoShim(),
   import_99.PlatformJsBasedNoShim: () => new import_99.PlatformJsBasedNoShim(),
   import_100.RememberPasswordComp: (a1, a2, a3, a4, a5) => new import_100.RememberPasswordComp(a1, a2, a3, a4, a5),
-  import_101.FooterComp: (a1, a2, a3, a4, a5, a6, a7) => new import_101.FooterComp(a1, a2, a3, a4, a5, a6, a7),
+  import_101.FooterComp: (a1, a2, a3, a4, a5, a6, a7, a8) => new import_101.FooterComp(a1, a2, a3, a4, a5, a6, a7, a8),
   import_102.SimplePromoF2PComp: (a1, a2) => new import_102.SimplePromoF2PComp(a1, a2),
   import_103.TwitterShareComp: () => new import_103.TwitterShareComp(),
   import_104.FantasyTeamComp: (a1, a2, a3) => new import_104.FantasyTeamComp(a1, a2, a3),
@@ -551,7 +552,7 @@ final Map<Type, List<Key>> parameterKeys = {
   import_24.JsCacheRegister: [_KEY_CacheRegister],
   import_25.LoggerExceptionHandler: const[],
   import_26.ProfileService: [_KEY_ServerService],
-  import_28.PrizesService: [_KEY_ServerService],
+  import_28.TemplateService: [_KEY_ServerService],
   import_29.DateTimeService: [_KEY_ServerService, _KEY_RefreshTimersService],
   import_30.RefreshTimersService: const[],
   import_31.TutorialService: [_KEY_Router, _KEY_ProfileService, _KEY_ToolTipService, _KEY_ScreenDetectorService],
@@ -559,15 +560,15 @@ final Map<Type, List<Key>> parameterKeys = {
   import_33.ScreenDetectorService: [_KEY_VmTurnZone],
   import_34.ViewContestComp: [_KEY_VmTurnZone, _KEY_RouteProvider, _KEY_Router, _KEY_ScreenDetectorService, _KEY_RefreshTimersService, _KEY_ContestsService, _KEY_ProfileService, _KEY_FlashMessagesService, _KEY_LoadingService, _KEY_TutorialService],
   import_37.LoadingService: const[],
+  import_38.PrizesService: [_KEY_ServerService],
+  import_27.DailySoccerServer: [_KEY_Http],
   import_36.FlashMessagesService: const[],
   import_35.ContestsService: [_KEY_ServerService, _KEY_ProfileService, _KEY_PrizesService],
-  import_27.DailySoccerServer: [_KEY_Http],
-  import_38.ModalComp: [_KEY_Router, _KEY_Element, _KEY_ScreenDetectorService, _KEY_View],
-  import_39.EnterContestComp: [_KEY_RouteProvider, _KEY_Router, _KEY_ScreenDetectorService, _KEY_ContestsService, _KEY_LoadingService, _KEY_ProfileService, _KEY_CatalogService, _KEY_FlashMessagesService, _KEY_Element, _KEY_TutorialService],
-  import_40.CatalogService: [_KEY_ServerService, _KEY_ProfileService, _KEY_PaymentService],
-  import_41.PaymentService: [_KEY_ProfileService, _KEY_ServerService],
-  import_42.AchievementComp: const[],
-  import_43.XsNotAvailableScreenComp: const[],
+  import_39.ModalComp: [_KEY_Router, _KEY_Element, _KEY_ScreenDetectorService, _KEY_View],
+  import_40.EnterContestComp: [_KEY_RouteProvider, _KEY_Router, _KEY_ScreenDetectorService, _KEY_ContestsService, _KEY_LoadingService, _KEY_ProfileService, _KEY_CatalogService, _KEY_FlashMessagesService, _KEY_Element, _KEY_TutorialService],
+  import_41.CatalogService: [_KEY_ServerService, _KEY_ProfileService, _KEY_PaymentService],
+  import_42.PaymentService: [_KEY_ProfileService, _KEY_ServerService],
+  import_43.AchievementComp: const[],
   import_44.SoccerPlayerStatsComp: [_KEY_FlashMessagesService, _KEY_ScreenDetectorService, _KEY_SoccerPlayerService, _KEY_RouteProvider, _KEY_Router, _KEY_Element],
   import_45.SoccerPlayerService: [_KEY_ServerService, _KEY_ContestsService, _KEY_ProfileService],
   import_46.HowToCreateContestComp: [_KEY_ScreenDetectorService, _KEY_Router],
@@ -615,9 +616,9 @@ final Map<Type, List<Key>> parameterKeys = {
   import_88.ContestInfoComp: [_KEY_ScreenDetectorService, _KEY_RouteProvider, _KEY_LoadingService, _KEY_Router, _KEY_ContestsService, _KEY_ProfileService, _KEY_FlashMessagesService],
   import_89.ScoutingLeagueComp: [_KEY_RouteProvider, _KEY_Router],
   import_90.TeamsPanelComp: [_KEY_ScreenDetectorService, _KEY_ContestsService, _KEY_RouteProvider],
-  import_91.WelcomeComp: [_KEY_Element, _KEY_Router, _KEY_RouteProvider, _KEY_ScreenDetectorService, _KEY_ProfileService],
-  import_92.PolicyInfoComp: const[],
-  import_93.MyContestsComp: [_KEY_LoadingService, _KEY_ProfileService, _KEY_RefreshTimersService, _KEY_ContestsService, _KEY_Router, _KEY_RouteProvider, _KEY_FlashMessagesService, _KEY_Element, _KEY_TutorialService],
+  import_91.PolicyInfoComp: const[],
+  import_92.MyContestsComp: [_KEY_LoadingService, _KEY_ProfileService, _KEY_RefreshTimersService, _KEY_ContestsService, _KEY_Router, _KEY_RouteProvider, _KEY_FlashMessagesService, _KEY_Element, _KEY_TutorialService],
+  import_93.ResourceUrlResolverWrapper: [_KEY_TypeToUriMapper, _KEY_ResourceResolverConfig],
   import_94.TutorialsComp: [_KEY_TutorialService, _KEY_Router],
   import_95.MatchesFilterComp: [_KEY_ScreenDetectorService, _KEY_View],
   import_96.FormAutofillDecorator: [_KEY_Element],
@@ -626,7 +627,7 @@ final Map<Type, List<Key>> parameterKeys = {
   import_99.DefaultPlatformNoShim: const[],
   import_99.PlatformJsBasedNoShim: const[],
   import_100.RememberPasswordComp: [_KEY_Router, _KEY_ProfileService, _KEY_LoadingService, _KEY_ServerService, _KEY_Element],
-  import_101.FooterComp: [_KEY_Router, _KEY_LoadingService, _KEY_View, _KEY_Element, _KEY_DateTimeService, _KEY_ScreenDetectorService, _KEY_ProfileService],
+  import_101.FooterComp: [_KEY_Router, _KEY_LoadingService, _KEY_View, _KEY_Element, _KEY_DateTimeService, _KEY_ScreenDetectorService, _KEY_ProfileService, _KEY_TemplateService],
   import_102.SimplePromoF2PComp: [_KEY_Router, _KEY_Element],
   import_103.TwitterShareComp: const[],
   import_104.FantasyTeamComp: [_KEY_RouteProvider, _KEY_Router, _KEY_Element],

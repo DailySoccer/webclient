@@ -13,6 +13,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<!--meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *"-->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' data:* gap://* tel:* 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <meta property="og:url"          content="http://futbolcuatro.epiceleven.com/" />
@@ -97,7 +99,7 @@
     <!-- Google Analytics End -->
   </head>
 
-  <body>
+  <body onload="onLoad()"">
     <div id="fb-root"></div>
     <div id="spinnerIcon"></div>
     <!-- start js/spinner.js -->
@@ -159,14 +161,45 @@
     <script src="js/jquery.min.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script>
-
       var fbIsInit = false;
 
-      document.addEventListener('deviceready', function () {
-        console.log(" # DEVICE READY EVENT - FB");
-        fbIsInit = true;
-      }, false);
-        
+      function onLoad() {
+        document.addEventListener('deviceready', function () {
+          console.log(" # DEVICE READY EVENT - FB");
+          fbIsInit = true;
+        }, false);
+          
+        document.addEventListener('deviceready', function () {
+          console.log(" # DEVICE READY EVENT - SHOP");
+          /*store.ready(function() {
+            store.order('nonconsumable1');
+          });*/
+          if (!window.store) {
+            window.serverLoggerServere('Store not available');
+            return;
+          }
+          
+          /* use when configure CSS
+          var platform = device.platform.toLowerCase();
+          document.getElementsByTagName('body')[0].className = platform;
+          */
+          
+          store.verbosity = store.DEBUG;
+          
+          // Enable remote receipt validation
+          // store.validator = "https://api.fovea.cc:1982/check-purchase";
+          
+          // Log all errors
+          store.error(function(error) {
+            window.serverLoggerServere('Store Error => ' + error.code + ': ' + error.message);
+          });
+          
+          store.ready(function() {
+            console.log("STORE READY");  
+          });
+        }, false);
+      }
+    
       window.serverLoggerInfo = window.serverLoggerInfo || function(text) {
         if (typeof serverLoggerInfoCB !== "undefined" && serverLoggerInfoCB != null) {
           serverLoggerInfoCB(text);
@@ -492,36 +525,6 @@
         }
       };
 
-      document.addEventListener('deviceready', function () {
-        console.log(" # DEVICE READY EVENT - SHOP");
-        /*store.ready(function() {
-          store.order('nonconsumable1');
-        });*/
-        if (!window.store) {
-          window.serverLoggerServere('Store not available');
-          return;
-        }
-        
-        /* use when configure CSS
-        var platform = device.platform.toLowerCase();
-        document.getElementsByTagName('body')[0].className = platform;
-        */
-        
-        store.verbosity = store.DEBUG;
-        
-        // Enable remote receipt validation
-        // store.validator = "https://api.fovea.cc:1982/check-purchase";
-        
-        // Log all errors
-        store.error(function(error) {
-          window.serverLoggerServere('Store Error => ' + error.code + ': ' + error.message);
-        });
-        
-        store.ready(function() {
-          console.log("STORE READY");  
-        });
-      }, false);
-      
     </script>
 
     <!-- Script principal. Sera substituido por main.dart.js en el transformer -->

@@ -440,15 +440,11 @@ class DailySoccerServer implements ServerService {
         })
         .catchError((error) {
 
-          Logger.root.info("CallLoopVersionError: ${error.toString()}");
           _checkServerVersion(error);
 
           ServerError serverError = new ServerError.fromHttpResponse(error);
 
-          Logger.root.info("CallLoopVersionServerError: ${serverError.toString()}");
-          
           if (serverError.isConnectionError || serverError.isServerNotFoundError) {
-            Logger.root.info("CallLoopVersionServerError: C:${serverError.isConnectionError} || Serv!Found:${serverError.isServerNotFoundError}");
             _notify(ON_ERROR, {ServerService.URL: url, ServerService.TIMES: retryTimes, ServerService.SECONDS_TO_RETRY: 3});
 
             Logger.root.severe("_innerServerCall error: $error, url: $url, retry: $retryTimes");
@@ -461,12 +457,10 @@ class DailySoccerServer implements ServerService {
             }
           }
           else if (serverError.isServerExceptionError) {
-            Logger.root.info("CallLoopVersionServerError: serverError.isServerExceptionError");
                         // Si se ha producido una excepcion en el servidor, navegaremos a la landing/lobby para forzar "limpieza" en el cliente
             window.location.assign(Uri.parse(window.location.toString()).path);
           }
           else {
-            Logger.root.info("CallLoopVersionServerError: Else");
             _processError(serverError, url, completer);
           }
         });

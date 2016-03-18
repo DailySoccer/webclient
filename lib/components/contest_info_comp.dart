@@ -35,7 +35,6 @@ class ContestInfoComp implements DetachAware {
 
   ContestInfoComp(ScreenDetectorService scrDet, RouteProvider routeProvider, this.loadingService, this._router, this._contestsService, this._profileService, this._flashMessage) {
 
-    Logger.root.info("ContestInfoComp --> constructor");
     _streamListener = scrDet.mediaScreenWidth.listen(onScreenWidthChange);
 
     isModal = (_router.activePath.length > 0) && (_router.activePath.first.name == 'lobby');
@@ -53,19 +52,15 @@ class ContestInfoComp implements DetachAware {
       'prizes'          : []
     };
 
-    Logger.root.info("ContestInfoComp --> constructor 1");
     contestId = routeProvider.route.parameters['contestId'];
 
     loadingService.isLoading = true;
 
-    Logger.root.info("ContestInfoComp --> constructor 2");
     _contestsService.refreshContestInfo(contestId)
       .then((_) {
-        Logger.root.info("ContestInfoComp --> refresh contest info");
         updateContestInfo();
       })
       .catchError((ServerError error) {
-        Logger.root.info("ContestInfoComp --> ERROR REFRESH CONTEST");
         _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
       }, test: (error) => error is ServerError);
   }

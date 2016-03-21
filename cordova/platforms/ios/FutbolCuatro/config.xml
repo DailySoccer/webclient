@@ -62,6 +62,7 @@
     <preference name="BackupWebStorage" value="local" />
     <preference name="SuppressesIncrementalRendering" value="true" />
     <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="Orientation" value="all" />
     <icon height="167" src="res/ios/icon-83.5@2x.png" width="167" />
     <icon height="180" src="res/ios/icon-60@3x.png" width="180" />
     <icon height="60" src="res/ios/icon-60.png" width="60" />

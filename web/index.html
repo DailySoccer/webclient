@@ -502,7 +502,7 @@
           for (var i = 0; i < productList.length; i++) {
             store.register({
                 id:    productList[i]['appleID'],
-                alias: productList[i]['description'],
+                alias: productList[i]['id'],
                 type:  store.CONSUMABLE
             });
             store.when(productList[i]['appleID']).initiated(function(p) {
@@ -513,7 +513,26 @@
             });
             store.when(productList[i]['appleID']).approved(function (order) {
               console.log("You got an " + order + "!");
-              // order.finish();
+              
+              console.log("Product.id: " + order['id']);
+              console.log("Product.alias: " + order['alias']);
+              console.log("Product.type: " + order['type']);
+              console.log("Product.state: " + order['state']);
+              console.log("Product.title: " + order['title']);
+              console.log("Product.description: " + order['description']);
+              console.log("Product.price: " + order['price']);
+              console.log("Product.currency: " + order['currency']);
+              console.log("Product.loaded: " + order['loaded']);
+              console.log("Product.valid: " + order['valid']);
+              console.log("Product.canPurchase: " + order['canPurchase']);
+              console.log("Product.owned: " + order['owned']);
+              console.log("Product.downloading: " + order['downloading']);
+              console.log("Product.downloaded: " + order['downloaded']);
+              console.log("Product.transaction: " + order['transaction']);
+              console.log("Product.transaction.type: " + order['transaction']['type']);
+              console.log("Product.transaction.id: " + order['transaction']['id']);
+              
+              paymentServiceCheckout(order, order['alias'], order['transaction']['type'], order['transaction']['id']);
             });
           }
           store.refresh();
@@ -522,6 +541,10 @@
           console.log("Request to get " + id + "!");
           // store.order(id);
           store.order('com.epiceleven.futbolcuatro.gold_1');
+        },
+        finishOrder: function(order, result) {
+          console.log("finishOrder " + order['id'] + ": " + result + "!");
+          order.finish();
         }
       };
 

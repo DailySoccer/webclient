@@ -92,6 +92,8 @@ abstract class ServerService {
   Future<Map> buyProduct(String productId);
   Future<Map> buySoccerPlayer(String contestId, String soccerPlayerId);
   Future<Map> getCatalog();
+  
+  Future<Map> checkout(String productId, String paymentType, String paymentId);
 
   // Suscripción a eventos
   void        subscribe(dynamic id, {Function onSuccess, Function onError});
@@ -352,6 +354,16 @@ class DailySoccerServer implements ServerService {
     return _innerServerCall("${HostServer.url}/get_catalog", retryTimes: -1);
   }
 
+  Future<Map> checkout(String productId, String paymentType, String paymentId) {
+    // Incluimos el paymentId en la url, para que no se produzca la reutilización de "completers" de distintas compras    
+    return _innerServerCall("${HostServer.url}/store/buy/$paymentId", postData: {
+        'productId': productId,
+        'paymentType': paymentType,
+        'paymentId': paymentId
+      }
+    );
+  }
+  
   void cancelAllAndReload() {
     _allFuturesCancelled = true;
     window.location.reload();

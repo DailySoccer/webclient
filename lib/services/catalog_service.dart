@@ -10,6 +10,7 @@ import 'package:webclient/models/product.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/models/money.dart';
 import 'package:webclient/services/payment_service.dart';
+import 'package:webclient/utils/js_utils.dart';
 
 @Injectable()
 class CatalogService {
@@ -22,7 +23,10 @@ class CatalogService {
   Future buyProduct(String productId) {
     if (productsMap.containsKey(productId) && productsMap[productId].price.currencyUnit == Money.EUR) {
       Completer completer = new Completer();
-      _paymentService.expressCheckoutWithPaypal(productId: productId);
+      
+      // _paymentService.expressCheckoutWithPaypal(productId: productId);
+      JsUtils.runJavascript(null, "buyConsumable", [productId], 'epicStore');
+      
       return completer.future;
     }
     return _server.buyProduct(productId)

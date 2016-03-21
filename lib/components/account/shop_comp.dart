@@ -18,6 +18,7 @@ import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/utils/game_info.dart';
 import 'package:webclient/utils/js_utils.dart';
+import 'package:webclient/services/payment_service.dart';
 
 @Component(
     selector: 'shop-comp',
@@ -42,7 +43,7 @@ class ShopComp implements DetachAware{
     return StringUtils.translate(key, group, substitutions);
   }
 
-  ShopComp(this._flashMessage, this._profileService, this._catalogService, this._tutorialService) {
+  ShopComp(this._flashMessage, this._profileService, this._catalogService, this._tutorialService, this._paymentService) {
     goldProducts = [];
     energyProducts = [];
     
@@ -58,12 +59,21 @@ class ShopComp implements DetachAware{
       clearCookies();
     }
     
+    Map appleIDMap = {
+      "GOLD_1" : "com.epiceleven.futbolcuatro.gold_1",
+      "GOLD_2" : "com.epiceleven.futbolcuatro.gold_2",
+      "GOLD_3" : "com.epiceleven.futbolcuatro.gold_3",
+      "GOLD_4" : "com.epiceleven.futbolcuatro.gold_4",
+      "GOLD_5" : "com.epiceleven.futbolcuatro.gold_5",
+      "GOLD_6" : "com.epiceleven.futbolcuatro.gold_6"
+    };
+    
     _catalogService.getCatalog()
       .then((catalog) {
         for (Product info in catalog.where((g) => g.gained.isGold)) {
           Map gProduct = {};
           gProduct["id"]             = info.id;
-          gProduct["appleID"]        = "com.epiceleven.futbolcuatro.gold_1";
+          gProduct["appleID"]        = appleIDMap[info.id];
           gProduct["description"]    = getLocalizedText(info.name);
           gProduct["captionImage"]   = info.imageUrl;
           gProduct["price"]          = info.price.toStringWithCurrency();
@@ -72,7 +82,6 @@ class ShopComp implements DetachAware{
           gProduct["isMostPopular"]  = info.mostPopular;
           gProduct["purchasable"]    = true;
           goldProducts.add(gProduct);
-          
         }
         
         JsUtils.runJavascript(null, "registerConsumable", [goldProducts], 'epicStore');
@@ -187,5 +196,6 @@ class ShopComp implements DetachAware{
   ProfileService _profileService;
   CatalogService _catalogService;
   TutorialService _tutorialService;
+  PaymentService _paymentService;
 }
 

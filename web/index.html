@@ -506,13 +506,13 @@
                 type:  store.CONSUMABLE
             });
             store.when(productList[i]['appleID']).initiated(function(p) {
-              console.log("Initiated: " + productList[i]['appleID']);
+              console.log("Initiated: " + p['id']);
             });
             store.when(productList[i]['appleID']).cancelled(function(p) {
-              console.log("Cancelled: " + productList[i]['appleID']);
+              console.log("Cancelled: " + p['id']);
             });
             store.when(productList[i]['appleID']).approved(function (order) {
-              console.log("You got an " + productList[i]['description'] + "!");
+              console.log("You got an " + order + "!");
               // order.finish();
             });
           }

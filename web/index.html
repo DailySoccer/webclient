@@ -537,10 +537,9 @@
           }
           store.refresh();
         },
-        buyConsumable: function(id) {
-          console.log("Request to get " + id + "!");
-          // store.order(id);
-          store.order('com.epiceleven.futbolcuatro.gold_1');
+        buyConsumable: function(alias) {
+          console.log("Request to get " + alias + "!");
+          store.order(alias);
         },
         finishOrder: function(order, result) {
           console.log("finishOrder " + order['id'] + ": " + result + "!");

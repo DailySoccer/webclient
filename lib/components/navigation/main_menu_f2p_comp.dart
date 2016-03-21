@@ -48,9 +48,6 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
   @override void onShadowRoot(emulatedRoot) {
     _scope.watch("profileService.info", _monitorChanges, canChangeModel: false);
     _streamListener = _scrDet.mediaScreenWidth.listen(onScreenWidthChange);
-    
-    Money price = new Money.from(Money.EUR, num.parse("2,99 €".split(" ")[0].replaceAll(",", ".")));
-    Logger.root.info("Price: ${price.toString()}");
   }
 
   @override void detach() {

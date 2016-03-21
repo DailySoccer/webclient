@@ -92,6 +92,7 @@ abstract class ServerService {
   Future<Map> buyProduct(String productId);
   Future<Map> buySoccerPlayer(String contestId, String soccerPlayerId);
   Future<Map> getCatalog();
+  Future<Map> getiTunesCatalog();
   
   Future<Map> checkout(String productId, String paymentType, String paymentId);
 
@@ -352,6 +353,10 @@ class DailySoccerServer implements ServerService {
 
   Future<Map> getCatalog() {
     return _innerServerCall("${HostServer.url}/get_catalog", retryTimes: -1, cancelIfChangeContext: false);
+  }
+
+  Future<Map> getiTunesCatalog() {
+    return _innerServerCall("${HostServer.url}/get_itunes_catalog", retryTimes: -1, cancelIfChangeContext: false);
   }
 
   Future<Map> checkout(String productId, String paymentType, String paymentId) {

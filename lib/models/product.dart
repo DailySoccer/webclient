@@ -21,15 +21,6 @@ class Product {
     return StringUtils.translate(key, group, substitutions);
   }
   
-  Map storeIdMap = {
-    "GOLD_1" : "com.epiceleven.futbolcuatro.gold_1",
-    "GOLD_2" : "com.epiceleven.futbolcuatro.gold_2",
-    "GOLD_3" : "com.epiceleven.futbolcuatro.gold_3",
-    "GOLD_4" : "com.epiceleven.futbolcuatro.gold_4",
-    "GOLD_5" : "com.epiceleven.futbolcuatro.gold_5",
-    "GOLD_6" : "com.epiceleven.futbolcuatro.gold_6"
-  };
-  
   void updateInfo(String title, String strPrice) {
     _description = title;
     storePrice = strPrice;
@@ -42,7 +33,7 @@ class Product {
 
   Product.initFromJsonObject(Map jsonMap) {
     id = jsonMap.containsKey("productId") ? jsonMap["productId"] : "";
-    storeId = storeIdMap.containsKey(id) ? storeIdMap[id] : "";
+    storeId = jsonMap.containsKey("storeId") ? jsonMap["storeId"] : "";
     name = jsonMap.containsKey("name") ? jsonMap["name"] : "";
     price = jsonMap.containsKey("price") ? new Money.fromJsonObject(jsonMap["price"]) : new Money.zero();
     storePrice = price.toStringWithCurrency();

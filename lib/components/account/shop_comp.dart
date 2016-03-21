@@ -61,7 +61,23 @@ class ShopComp implements DetachAware{
     
     _catalogService.getCatalog()
       .then((catalog) {
-        for (Product info in catalog.where((g) => g.gained.isGold && g.isValid)) {
+        for (Product info in catalog.where((e) => e.gained.isEnergy)) {
+          Map eProduct = {};
+          eProduct["info"]         = info;
+          eProduct["id"]           = info.id;
+          eProduct["description"]  = info.description;
+          eProduct["captionImage"] = info.imageUrl;
+          eProduct["price"]        = info.price.toString();
+          eProduct["quantity"]     = info.gained.amount.toInt().toString();
+          eProduct["purchasable"]  = true;
+          energyProducts.add(eProduct);
+        }
+        
+        // Esperar a que iTunes Connect actualice correctamente los productos de GOLD
+        return _paymentService.waitingForReady();
+      })
+      .then((_) {
+        for (Product info in _catalogService.products.where((g) => g.gained.isGold && g.isValid)) {
           Map gProduct = {};
           gProduct["id"]             = info.id;
           gProduct["storeId"]        = info.storeId;
@@ -74,19 +90,7 @@ class ShopComp implements DetachAware{
           gProduct["purchasable"]    = true;
           goldProducts.add(gProduct);
         }
-        
-        for (Product info in catalog.where((e) => e.gained.isEnergy)) {
-          Map eProduct = {};
-          eProduct["info"]         = info;
-          eProduct["id"]           = info.id;
-          eProduct["description"]  = info.description;
-          eProduct["captionImage"] = info.imageUrl;
-          eProduct["price"]        = info.price.toString();
-          eProduct["quantity"]     = info.gained.amount.toInt().toString();
-          eProduct["purchasable"]  = true;
-          energyProducts.add(eProduct);
-        }
-    });
+      });
     
     GameMetrics.logEvent(GameMetrics.SHOP_ENTERED);
     _tutorialService.triggerEnter("shop", component: this, activateIfNeeded: false);

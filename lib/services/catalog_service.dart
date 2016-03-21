@@ -68,7 +68,8 @@ class CatalogService {
       completer.complete(products);
     }
     else {
-      _server.getCatalog()
+      // Solicitud el catálogo específico de iTunes Connect
+      _server.getiTunesCatalog()
         .then((jsonMapRoot) {
             if (jsonMapRoot.containsKey("products")) {
               products = [];
@@ -90,9 +91,6 @@ class CatalogService {
 
               JsUtils.runJavascript(null, "registerConsumable", [productsGold], 'epicStore');
             }
-            return _paymentService.waitingForReady();
-          })
-          .then((_) {
             completer.complete(products);
           });
     }

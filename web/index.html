@@ -171,9 +171,6 @@
           
         document.addEventListener('deviceready', function () {
           console.log(" # DEVICE READY EVENT - SHOP");
-          /*store.ready(function() {
-            store.order('nonconsumable1');
-          });*/
           if (!window.store) {
             window.serverLoggerServere('Store not available');
             return;
@@ -195,6 +192,8 @@
           });
           
           store.ready(function() {
+            store.refresh();
+            paymentServiceReady();
             console.log("STORE READY");  
           });
         }, false);
@@ -501,19 +500,27 @@
         registerConsumable: function(productList) {
           for (var i = 0; i < productList.length; i++) {
             store.register({
-                id:    productList[i]['appleID'],
+                id:    productList[i]['storeId'],
                 alias: productList[i]['id'],
                 type:  store.CONSUMABLE
             });
-            store.when(productList[i]['appleID']).initiated(function(p) {
+            store.when(productList[i]['storeId']).loaded(function(p) {
+              console.log("Loaded: " + p['id']);
+              console.log("Product.alias: " + p['alias']);
+              console.log("Product.title: " + p['title']);
+              console.log("Product.price: " + p['price']);
+              updateProductInfo(p['alias'], p['title'], p['price']);
+            });
+            store.when(productList[i]['storeId']).initiated(function(p) {
               console.log("Initiated: " + p['id']);
             });
-            store.when(productList[i]['appleID']).cancelled(function(p) {
+            store.when(productList[i]['storeId']).cancelled(function(p) {
               console.log("Cancelled: " + p['id']);
             });
-            store.when(productList[i]['appleID']).approved(function (order) {
+            store.when(productList[i]['storeId']).approved(function (order) {
               console.log("You got an " + order + "!");
               
+              /*
               console.log("Product.id: " + order['id']);
               console.log("Product.alias: " + order['alias']);
               console.log("Product.type: " + order['type']);
@@ -531,10 +538,14 @@
               console.log("Product.transaction: " + order['transaction']);
               console.log("Product.transaction.type: " + order['transaction']['type']);
               console.log("Product.transaction.id: " + order['transaction']['id']);
+              */
               
               paymentServiceCheckout(order, order['alias'], order['transaction']['type'], order['transaction']['id']);
             });
           }
+          store.refresh();
+        },
+        refresh: function() {
           store.refresh();
         },
         buyConsumable: function(alias) {

@@ -351,7 +351,7 @@ class DailySoccerServer implements ServerService {
   }
 
   Future<Map> getCatalog() {
-    return _innerServerCall("${HostServer.url}/get_catalog", retryTimes: -1);
+    return _innerServerCall("${HostServer.url}/get_catalog", retryTimes: -1, cancelIfChangeContext: false);
   }
 
   Future<Map> checkout(String productId, String paymentType, String paymentId) {

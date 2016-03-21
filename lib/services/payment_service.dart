@@ -21,6 +21,25 @@ class PaymentService {
 
   static PaymentService get Instance => _instance;
   
+  bool isReady = false;
+  
+  Future waitingForReady() {
+    var completer = new Completer();
+    
+    new Timer.periodic(new Duration(milliseconds: 100), (Timer t) {
+          if (isReady) {
+            Logger.root.info("PaymentService.isReady");
+            t.cancel();
+            completer.complete( true );
+          }
+          else {
+            // Logger.root.info("waiting PaymentService.isReady...");
+          }
+        });
+        
+    return completer.future;
+  }
+  
   void expressCheckoutWithPaypal({String productId, int amount}) {
     if (amount != null) {
       window.location.assign(PAYPAL_APPROVAL_PAYMENT_URL + "/${_profileService.user.userId}" + "/$amount");

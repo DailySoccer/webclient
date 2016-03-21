@@ -59,24 +59,15 @@ class ShopComp implements DetachAware{
       clearCookies();
     }
     
-    Map appleIDMap = {
-      "GOLD_1" : "com.epiceleven.futbolcuatro.gold_1",
-      "GOLD_2" : "com.epiceleven.futbolcuatro.gold_2",
-      "GOLD_3" : "com.epiceleven.futbolcuatro.gold_3",
-      "GOLD_4" : "com.epiceleven.futbolcuatro.gold_4",
-      "GOLD_5" : "com.epiceleven.futbolcuatro.gold_5",
-      "GOLD_6" : "com.epiceleven.futbolcuatro.gold_6"
-    };
-    
     _catalogService.getCatalog()
       .then((catalog) {
-        for (Product info in catalog.where((g) => g.gained.isGold)) {
+        for (Product info in catalog.where((g) => g.gained.isGold && g.isValid)) {
           Map gProduct = {};
           gProduct["id"]             = info.id;
-          gProduct["appleID"]        = appleIDMap[info.id];
-          gProduct["description"]    = getLocalizedText(info.name);
+          gProduct["storeId"]        = info.storeId;
+          gProduct["description"]    = info.description;
           gProduct["captionImage"]   = info.imageUrl;
-          gProduct["price"]          = info.price.toStringWithCurrency();
+          gProduct["price"]          = info.storePrice; // info.price.toStringWithCurrency();
           gProduct["quantity"]       = info.gained.amount.toInt().toString();
           gProduct["freeIncrement"]  = info.free.amount.toInt();
           gProduct["isMostPopular"]  = info.mostPopular;
@@ -84,13 +75,11 @@ class ShopComp implements DetachAware{
           goldProducts.add(gProduct);
         }
         
-        JsUtils.runJavascript(null, "registerConsumable", [goldProducts], 'epicStore');
-
         for (Product info in catalog.where((e) => e.gained.isEnergy)) {
           Map eProduct = {};
           eProduct["info"]         = info;
           eProduct["id"]           = info.id;
-          eProduct["description"]  = getLocalizedText(info.name);
+          eProduct["description"]  = info.description;
           eProduct["captionImage"] = info.imageUrl;
           eProduct["price"]        = info.price.toString();
           eProduct["quantity"]     = info.gained.amount.toInt().toString();

@@ -243,7 +243,9 @@ class WebClientApp extends Module {
     JsUtils.setJavascriptFunction('serverLoggerInfoCB',    (String text) => Logger.root.info   (ProfileService.decorateLog(text)) );
     JsUtils.setJavascriptFunction('serverLoggerWarningCB', (String text) => Logger.root.warning(ProfileService.decorateLog(text)) );
     JsUtils.setJavascriptFunction('serverLoggerServereCB', (String text) => Logger.root.severe (ProfileService.decorateLog(text)) );
+    JsUtils.setJavascriptFunction('paymentServiceReady', () => PaymentService.Instance.isReady = true);
     JsUtils.setJavascriptFunction('paymentServiceCheckout', (Object order, String productId, String paymentType, String paymentId) => PaymentService.Instance.checkout(order, productId, paymentType, paymentId));
+    JsUtils.setJavascriptFunction('updateProductInfo', (String productId, String title, String price) => CatalogService.Instance.updateProductInfo(productId, title, price));
     
     //bind(AddFundsComp);
     //bind(TransactionHistoryComp);

@@ -10,6 +10,10 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:intl/intl.dart';
 import 'package:webclient/utils/host_server.dart';
+import 'package:webclient/models/money.dart';
+import 'package:logging/logging.dart';
+import 'package:webclient/services/template_service.dart';
+import 'package:webclient/services/catalog_service.dart';
 
 @Component(
     selector: 'main-menu-f2p',
@@ -21,7 +25,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
   bool betaOn = true;
   
   MainMenuF2PComp(
-      this._router, this.profileService, this._scrDet, this._rootElement) {
+      this._router, this.profileService, this._scrDet, this._rootElement, this._templateService, this._catalogService) {
     _router.onRouteStart.listen((RouteStartEvent event) {
       event.completed.then((_) {
         if (_router.activePath.length > 0) {
@@ -44,6 +48,9 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
   @override void onShadowRoot(emulatedRoot) {
     _scope.watch("profileService.info", _monitorChanges, canChangeModel: false);
     _streamListener = _scrDet.mediaScreenWidth.listen(onScreenWidthChange);
+    
+    Money price = new Money.from(Money.EUR, num.parse("2,99 €".split(" ")[0].replaceAll(",", ".")));
+    Logger.root.info("Price: ${price.toString()}");
   }
 
   @override void detach() {
@@ -485,6 +492,8 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     }
   }
 
+  TemplateService _templateService;
+  CatalogService _catalogService;
   ScreenDetectorService _scrDet;
   Scope _scope;
   StreamSubscription _scrollMoveListener;

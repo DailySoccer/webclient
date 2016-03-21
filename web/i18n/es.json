@@ -778,6 +778,16 @@
       "energyshopdescription"           : "Recárgate de energía para acceder a <strong>Torneos Virtuales</strong>",
       "free"                            : "GRATIS",
       "mostpopularimagesource"          : "images/icon-mas-popular.png",
+      "refillable"                      : "Recarga +1 automáticamente en:",
+      "no-refillable"                   : "Tienes la energía a tope",
+      "alert-user-gold-message"         : "Tienes actualmente @MONEY",
+      "buy-gold-button"                 : "COMPRAR ORO",
+      "alert-no-gold-message"           : "No tienes ORO suficiente.",
+      "errordefaulttitle"               : "Atención",
+      "errordefaultgeneric"             : "Ha ocurrido un error. Inténtalo mas tarde."
+    }
+    ,"catalog"                          :
+    {
       "product_gold_1"                  : "Pack Calderilla",
       "product_gold_2"                  : "Pack Utillero",
       "product_gold_3"                  : "Pack Ojeador",
@@ -785,15 +795,7 @@
       "product_gold_5"                  : "Pack Director deportivo",
       "product_gold_6"                  : "Pack Presidente",
       "product_energy_1"                : "RECARGA +1",
-      "product_maxrefill"               : "RECARGA COMPLETA",
-      "refillable"                      : "Recarga +1 automáticamente en:",
-      "no-refillable"                   : "Tienes la energía a tope",
-      "alert-user-gold-message"         : "Tienes actualmente @MONEY",
-      "buy-gold-button"                 : "COMPRAR ORO",
-      "alert-no-gold-message"           : "No tienes ORO suficiente.",
-
-      "errordefaulttitle"               : "Atención",
-      "errordefaultgeneric"             : "Ha ocurrido un error. Inténtalo mas tarde."
+      "product_maxrefill"               : "RECARGA COMPLETA"
     }
     ,"goldshop"                         :
     {

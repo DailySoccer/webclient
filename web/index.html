@@ -13,7 +13,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<!--meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *"-->
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' data:* gap://* tel:* 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' data:* gap://* tel:* 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -62,44 +62,21 @@
     <script type="text/javascript" src="js/browser-action.js"></script>
     <!-- end Browser detect -->
 
-    <!-- Start Visual Website Optimizer Asynchronous Code
-    <script type='text/javascript'>
-    var _vwo_code=(function(){
-    var account_id=107691,
-    settings_tolerance=2000,
-    library_tolerance=2500,
-    use_existing_jquery=false,
-    // DO NOT EDIT BELOW THIS LINE
-    f=false,d=document;return{use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);this.load('//dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(d.URL)+'&r='+Math.random());var a=d.createElement('style'),b='body{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);return settings_timer;}};}());_vwo_settings_timer=_vwo_code.init();
-    </script>
-    -->
-    <!-- End Visual Website Optimizer Asynchronous Code -->
-
-    <!-- El huevo loco Start
-    <script type="text/javascript">
-    setTimeout(function(){var a=document.createElement("script");
-    var b=document.getElementsByTagName("script")[0];
-    a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0027/6461.js?"+Math.floor(new Date().getTime()/3600000);
-    a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
-    </script>
-    -->
-    <!-- El huevo loco End -->
-    
-    <!-- Google Analytics -->
-    <!--script>
-     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-     })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
-    
-     ga('create', 'UA-74368222-2', 'auto');
-     ga('send', 'pageview');
-    
-    </script-->
-    <!-- Google Analytics End -->
   </head>
 
-  <body onload="onLoad()"">
+  <body>
+    <script>
+      document.onreadystatechange = function () {
+          if (document.readyState === 'complete') {
+              console.log(" # READY - STATE COMPLETED");
+              
+              $.getScript("main.dart.js", function(data, textStatus, jqxhr) {
+                console.log('main.dart.js: Load was performed.');
+              });
+          }
+      }
+    </script>
+  
     <div id="fb-root"></div>
     <div id="spinnerIcon"></div>
     <!-- start js/spinner.js -->
@@ -143,121 +120,70 @@
       showSpinner();
     </script>
 
-    <div id="mainApp" ng-app>
-      <!--xs-not-available-screen></xs-not-available-screen-->
-      <deprecated-version-screen></deprecated-version-screen>
-      <main-menu-f2p id="mainAppMenu"></main-menu-f2p>
-      <div id="mainWrapper" class="wrapper-content-container">
-        <!--div id="mainMenu"-->
-        <div id="mainContent" class="main-content-container">
-          <flash-messages></flash-messages>
-          <ng-view></ng-view>
-          <div id="modalWindow"></div>
-        </div>
-      </div>
-      <footer></footer>
-    </div>
-
-    <script src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="cordova.js"></script>
     <script>
       var fbIsInit = false;
 
-      function onLoad() {
-        document.addEventListener('deviceready', function () {
-          console.log(" # DEVICE READY EVENT - FB");
-          fbIsInit = true;
-        }, false);
-          
-        document.addEventListener('deviceready', function () {
-          console.log(" # DEVICE READY EVENT - SHOP");
-          if (!window.store) {
-            window.serverLoggerServere('Store not available');
-            return;
-          }
-          
-          /* use when configure CSS
-          var platform = device.platform.toLowerCase();
-          document.getElementsByTagName('body')[0].className = platform;
-          */
-          
-          store.verbosity = store.DEBUG;
-          
-          // Enable remote receipt validation
-          // store.validator = "https://api.fovea.cc:1982/check-purchase";
-          
-          // Log all errors
-          store.error(function(error) {
-            window.serverLoggerServere('Store Error => ' + error.code + ': ' + error.message);
-          });
-          
-          store.ready(function() {
-            store.refresh();
-            paymentServiceReady();
-            console.log("STORE READY");  
-          });
-        }, false);
-      }
-    
+      document.addEventListener('deviceready', function () {
+        console.log(" # DEVICE READY EVENT - FB");
+        fbIsInit = true;
+        
+        console.log(" # DEVICE READY EVENT - SHOP");
+        if (!window.store) {
+          window.serverLoggerServere('Store not available');
+          return;
+        }
+
+        /* use when configure CSS
+        var platform = device.platform.toLowerCase();
+        document.getElementsByTagName('body')[0].className = platform;
+        */
+
+        store.verbosity = store.DEBUG;
+
+        // Enable remote receipt validation
+        // store.validator = "https://api.fovea.cc:1982/check-purchase";
+
+        // Log all errors
+        store.error(function(error) {
+          window.serverLoggerServere('Store Error => ' + error.code + ': ' + error.message);
+        });
+
+        store.ready(function() {
+          store.refresh();
+          paymentServiceReady();
+          console.log("# STORE READY");
+        });
+      }, false);
+
       window.serverLoggerInfo = window.serverLoggerInfo || function(text) {
+        /*
         if (typeof serverLoggerInfoCB !== "undefined" && serverLoggerInfoCB != null) {
           serverLoggerInfoCB(text);
         }
+        */
       };
 
       window.serverLoggerWarning = window.serverLoggerWarning || function(text) {
+        /*
         if (typeof serverLoggerWarningCB !== "undefined" && serverLoggerWarningCB != null) {
           serverLoggerWarningCB(text);
         }
+        */
       };
 
       window.serverLoggerServere = window.serverLoggerServere || function(text) {
+        /*
         if (typeof serverLoggerServereCB !== "undefined" && serverLoggerServereCB != null) {
           serverLoggerServereCB(text);
         }
+        */
       };
-      /*
-      var app = {
-        // Application Constructor
-        initialize: function() {
-            this.bindEvents();
-        },
-        // Bind Event Listeners
-        //
-        // Bind any events that are required on startup. Common events are:
-        // 'load', 'deviceready', 'offline', and 'online'.
-        bindEvents: function() {
-            document.addEventListener('deviceready', this.onDeviceReady, false);
-        },
-        // deviceready Event Handler
-        //
-        // The scope of 'this' is the event. In order to call the 'receivedEvent'
-        // function, we must explicitly call 'app.receivedEvent(...);'
-        onDeviceReady: function() {
-            app.receivedEvent('deviceready');
-        },
-        // Update DOM on a Received Event
-        receivedEvent: function(id) {
-            var parentElement = document.getElementById(id);
-            var listeningElement = parentElement.querySelector('.listening');
-            var receivedElement = parentElement.querySelector('.received');
-
-            listeningElement.setAttribute('style', 'display:none;');
-            receivedElement.setAttribute('style', 'display:block;');
-
-            //console.log('Received Event: ' + id);
-        }
-      };
-		
-			app.initialize();
-			*/
-
 
       var fbTimesWaitErrorLogged = false;
       function waitForFacebook(callback) {
-        
+
         var tryCall;
-                
+
         tryCall = function (callback) {
           if (fbIsInit === false) {
             //console.log(" # RETRY");
@@ -276,47 +202,47 @@
         };
         tryCall(callback);
       }
-    
+
       // facebook sdk
       // https://developers.facebook.com/docs/javascript/examples
       function facebookLogin(callback) {
         //console.log(" - FB REQUEST => Login");
-				facebookConnectPlugin.login(["public_profile", "email", "user_friends"],
-						function (info ) { 
-				      //console.log(" - FB REQUEST => Login r:" + info); 
-				      callback(info); 
-				    },
-						function (error) { 
-				      console.log(error) 
-				    }
-				  );
+        facebookConnectPlugin.login(["public_profile", "email", "user_friends"],
+            function (info ) {
+              //console.log(" - FB REQUEST => Login r:" + info);
+              callback(info);
+            },
+            function (error) {
+              console.log(error)
+            }
+          );
       }
-      
+
       function facebookLoginStatus(callback) {
         //console.log(" - FB REQUEST => LoginStatus");
         facebookConnectPlugin.getLoginStatus(
-            function (info ) { 
-              //console.log(" - FB REQUEST => LoginStatus r:" + info); 
-              callback(info); 
+            function (info ) {
+              //console.log(" - FB REQUEST => LoginStatus r:" + info);
+              callback(info);
             },
-            function (error) { 
-              console.log(error) 
+            function (error) {
+              console.log(error)
             }
           );
       }
 
       function facebookPermissions(callback) {
         //console.log(" - FB REQUEST => Permissions");
-        facebookConnectPlugin.api('/me/permissions', 
-            ["public_profile", "email", "user_friends"], 
-            function (response) { 
+        facebookConnectPlugin.api('/me/permissions',
+            ["public_profile", "email", "user_friends"],
+            function (response) {
               if (response && !response.error) {
                 response['error'] = false;
               }
-              //console.log(" - FB REQUEST => Permissions r:" + response); 
+              //console.log(" - FB REQUEST => Permissions r:" + response);
               callback(response);
             },
-            function (error) { 
+            function (error) {
               console.log(error)
             }
           );
@@ -333,14 +259,14 @@
             });
         });
       }
-      
+
       function facebookProfileInfo(callback) {
         //console.log(" - FB REQUEST => ProfileInfo");
-        facebookConnectPlugin.api('/me?fields=picture,id,name,email', ["public_profile", "email", "user_friends"], 
+        facebookConnectPlugin.api('/me?fields=picture,id,name,email', ["public_profile", "email", "user_friends"],
             function(response) {
                if (response && !response.error) {
                  response['error'] = false;
-                 
+
                  facebookConnectPlugin.getAccessToken(function(token) {
                         response['accessToken'] = token;
                         callback(response);
@@ -354,7 +280,7 @@
              },
             function (error) { console.log(error) });
       }
-      
+
       function facebookProfilePhoto(facebookId, callback) {
         //console.log(" - FB REQUEST => ProfilePhoto  ::: " + '/' + facebookId + '/picture?redirect=false' );
         waitForFacebook( function() {
@@ -377,7 +303,7 @@
 
       function facebookFriends(facebookId, callback) {
         //console.log(" - FB REQUEST => ProfileFriends");
-        facebookConnectPlugin.api('/me/friends?fields=picture,id', ["public_profile", "email", "user_friends"], 
+        facebookConnectPlugin.api('/me/friends?fields=picture,id', ["public_profile", "email", "user_friends"],
             function(response) {
               //console.log(" - FRIENDS RESPONSE:");
               //console.log(response);
@@ -402,7 +328,7 @@
 
       function facebookShare(params) {
         dartCallback = params.dartCallback || function() {};
-        facebookConnectPlugin.showDialog( 
+        facebookConnectPlugin.showDialog(
             {
                 method: 'share',
                 name: 'Facebook Dialogs',
@@ -416,15 +342,15 @@
             function (response) { dartCallback(); },
             function (response) { alert(JSON.stringify(response)) });
       }
-      
+
       var facebookParseXFBMLActiveSelectors = [];
-      
+
       function facebookParseXFBML(cssSelector) {
         if (facebookParseXFBMLActiveSelectors.indexOf(cssSelector) != -1) {
           return;
         }
         facebookParseXFBMLActiveSelectors.push(cssSelector);
-        
+
         var parse;
         var trys = 0;
         var fbCheck = false;
@@ -436,7 +362,7 @@
             if (trys < 500) {
               setTimeout(parse, msWaiting);
             } else {
-              serverLoggerServere("WTF - 8798 - JS - Parse XFBML made " + trys + 
+              serverLoggerServere("WTF - 8798 - JS - Parse XFBML made " + trys +
                                   " trys in " + (trys*msWaiting /1000) + " seconds and fail");
             }
           } else {
@@ -471,14 +397,14 @@
                                         );
         }*/
       }
-      
-      
+
+
       /**
       STORE
       **/
 
       var epicStoreIsInit = false;
-      
+
       var epicStore = {
         afterInit: function (callback) {
           var tryCall;
@@ -519,7 +445,7 @@
             });
             store.when(productList[i]['storeId']).approved(function (order) {
               console.log("You got an " + order + "!");
-              
+
               /*
               console.log("Product.id: " + order['id']);
               console.log("Product.alias: " + order['alias']);
@@ -539,7 +465,7 @@
               console.log("Product.transaction.type: " + order['transaction']['type']);
               console.log("Product.transaction.id: " + order['transaction']['id']);
               */
-              
+
               paymentServiceCheckout(order, order['alias'], order['transaction']['type'], order['transaction']['id']);
             });
           }
@@ -558,49 +484,35 @@
         }
       };
 
+      window.onload = function() {
+        console.log("# WINDOW - ONLOAD");
+      };
+      
     </script>
 
-    <!-- Script principal. Sera substituido por main.dart.js en el transformer -->
-    <script src="main.dart" id="mainDart" type="application/dart"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="js/jquery.min.js"></script>
 
     <!-- El resto de js -->
     <script src="js/bootstrap.min.js"></script>
     <script src="nouislider/jquery.nouislider.min.js"></script>
     <script src="bootstrap-switch/js/bootstrap-switch.min.js"></script>
 
-    <!-- Facebook Stuff -->
-    <script>
-      /*window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '1684730951797091',
-          // appId    : '1043008439063842', // TestAPP
-          xfbml      : true,
-          status     : true,
-          frictionlessRequests : true,
-          version    : 'v2.5'
-        });
-        var a;
-        a = function () {
-          FB.getLoginStatus(function (response) {
-            if (response.authResponse === undefined) {
-              setTimeout(a, 100);
-            } else {
-              fbIsInit = true;
-              FB.XFBML.parse();
-            }
-          }, true);
-        }
-        a();
-      };
-     
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v2.5";
-         fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));*/
-    </script>
+    <div id="mainApp" ng-app>
+      <!--xs-not-available-screen></xs-not-available-screen-->
+      <deprecated-version-screen></deprecated-version-screen>
+      <main-menu-f2p id="mainAppMenu"></main-menu-f2p>
+      <div id="mainWrapper" class="wrapper-content-container">
+        <!--div id="mainMenu"-->
+        <div id="mainContent" class="main-content-container">
+          <flash-messages></flash-messages>
+          <ng-view></ng-view>
+          <div id="modalWindow"></div>
+        </div>
+      </div>
+      <footer></footer>
+    </div>
+    
     <script>
       window.twitterShare = window.twitterShare || function(event) {
         if (typeof twitterShareCB !== "undefined" && twitterShareCB != null) {
@@ -667,7 +579,7 @@
         t._e = []; t.ready = function(f) {t._e.push(f);};
         return t;
       }(document, "script", "twitter-wjs"));
-      
+
       twttr.ready(function (twttr) {
         // Now bind our custom intent events
         twttr.events.bind('tweet', window.twitterShare);
@@ -678,32 +590,8 @@
         twttr.events.bind('like', likeIntentToAnalytics);
         */
       });
-    </script>
-    <!--script>
-      !function(d,s,id){
-        var js,fjs=d.getElementsByTagName(s)[0],
-            p=/^http:/.test(d.location)?'http':'https';
-        if(!d.getElementById(id)){js=d.createElement(s);
-        js.id=id;js.src=p+'://platform.twitter.com/widgets.js';
-        fjs.parentNode.insertBefore(js,fjs);}}
-      (document, 'script', 'twitter-wjs');
-    </script-->
-    
-    <!-- Google Tag Manager -->
-    
-    <!--noscript><iframe src="http://www.googletagmanager.com/ns.html?id=GTM-PGQB28"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'http://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-PGQB28');</script-->
-    
-    <!-- End Google Tag Manager -->
+    </script> 
 
-    <!-- Google Remarketing codes -->
-    <!--script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion_async.js" charset="utf-8"></script-->
-    
     <!-- SiteCatalyst code version: H.25.4.
     Copyright 1996-2013 Adobe, Inc. All Rights Reserved
     More info available at http://www.omniture.com -->
@@ -711,43 +599,41 @@
     <script language="JavaScript" type="text/javascript"><!--
       /* You may give each page an identifying name, server, and channel on
       the next lines. */
-      s.pageName="" 
+      s.pageName=""
       s.server=window.location.hostname
-      s.channel="Cuatro" 
-      s.pageType="" 
-      s.prop1="" 
-      s.prop2="" 
-      s.prop3="" 
-      s.prop4="" 
-      s.prop5="" 
+      s.channel="Cuatro"
+      s.pageType=""
+      s.prop1=""
+      s.prop2=""
+      s.prop3=""
+      s.prop4=""
+      s.prop5=""
       /* Conversion Variables */
-      s.campaign="" 
-      s.state="" 
-      s.zip="" 
-      s.events="" 
-      s.products="" 
-      s.purchaseID="" 
-      s.eVar1="" 
-      s.eVar2="Mediaset España" 
-      s.eVar3="Cuatro" 
-      s.eVar4="Cuatro.com" 
-      s.eVar5="Secciones" 
-      s.eVar6="Externas" 
-      s.eVar7="Juego futbolcuatro" 
-      s.eVar8="Juego" 
-      s.eVar9="" 
-      s.eVar10="/" 
+      s.campaign=""
+      s.state=""
+      s.zip=""
+      s.events=""
+      s.products=""
+      s.purchaseID=""
+      s.eVar1=""
+      s.eVar2="Mediaset España"
+      s.eVar3="Cuatro"
+      s.eVar4="Cuatro.com"
+      s.eVar5="Secciones"
+      s.eVar6="Externas"
+      s.eVar7="Juego futbolcuatro"
+      s.eVar8="Juego"
+      s.eVar9=""
+      s.eVar10="/"
       /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
       var s_code=s.t();if(s_code)document.write(s_code)//--></script>
     <script language="JavaScript" type="text/javascript"><!--
     if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
-    //--></script><noscript><img src="http://mediaset.d1.sc.omtrdc.net/b/ss/mediasetglobal/1/H.25.4--NS/0" 
+    //--></script><noscript><img src="http://mediaset.d1.sc.omtrdc.net/b/ss/mediasetglobal/1/H.25.4--NS/0"
     height="1" width="1" border="0" alt="" /></noscript><!--/DO NOT REMOVE/-->
     <!-- End SiteCatalyst code version: H.25.4. -->
-    
+
     <!-- Fuentes -->
     <link href='https://fonts.googleapis.com/css?family=Exo:300,600' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-
-  </body>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>  </body>
 </html>

@@ -23,6 +23,8 @@ class LoadingService {
 
   LoadingService() {
     _instance = this;
+    
+    JsUtils.runJavascript(null, "hide", null, ["navigator", "splashscreen"]);
   }
 
   void _refresh() {

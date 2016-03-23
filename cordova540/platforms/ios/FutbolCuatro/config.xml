@@ -68,13 +68,17 @@
     <icon height="50" src="res/ios/icon-50.png" width="50" />
     <icon height="100" src="res/ios/icon-50@2x.png" width="100" />
     <splash height="480" src="res/screen/ios/FutbolCuatro-Daily-Fantasy-Manager-El-Juego-320x480.png" width="320" />
+    <splash height="320" src="res/screen/ios/FutbolCuatro-Daily-Fantasy-Manager-El-Juego-320x480.png" width="480" />
     <splash height="960" src="res/screen/ios/FutbolCuatro-Daily-Fantasy-Manager-El-Juego-640x960.png" width="640" />
-    <splash height="1024" src="res/screen/ios/FutbolCuatro-Daily-Fantasy-Manager-El-Juego-768x1024.png" width="768" />
-    <splash height="2048" src="res/screen/ios/FutbolCuatro-Daily-Fantasy-Manager-El-Juego-1536x2048.png" width="1536" />
-    <splash height="768" src="res/screen/ios/FutbolCuatro-Daily-Fantasy-Manager-El-Juego-1024x768.png" width="1024" />
-    <splash height="1536" src="res/screen/ios/FutbolCuatro-Daily-Fantasy-Manager-El-Juego-2048x1536.png" width="2048" />
+    <splash height="640" src="res/screen/ios/FutbolCuatro-Daily-Fantasy-Manager-El-Juego-640x960.png" width="960" />
     <splash height="1136" src="res/screen/ios/FutbolCuatro-Daily-Fantasy-Manager-El-Juego-640x1136.png" width="640" />
+    <splash height="640" src="res/screen/ios/FutbolCuatro-Daily-Fantasy-Manager-El-Juego-640x1136.png" width="1136" />
+    <splash height="1024" src="res/screen/ios/FutbolCuatro-Daily-Fantasy-Manager-El-Juego-768x1024.png" width="768" />
+    <splash height="768" src="res/screen/ios/FutbolCuatro-Daily-Fantasy-Manager-El-Juego-1024x768.png" width="1024" />
+    <splash height="2048" src="res/screen/ios/FutbolCuatro-Daily-Fantasy-Manager-El-Juego-1536x2048.png" width="1536" />
+    <splash height="1536" src="res/screen/ios/FutbolCuatro-Daily-Fantasy-Manager-El-Juego-2048x1536.png" width="2048" />
     <splash height="1334" src="res/screen/ios/FutbolCuatro-Daily-Fantasy-Manager-El-Juego-750x1334.png" width="750" />
+    <splash height="750" src="res/screen/ios/FutbolCuatro-Daily-Fantasy-Manager-El-Juego-1334x750.png" width="1334" />
     <splash height="2208" src="res/screen/ios/FutbolCuatro-Daily-Fantasy-Manager-El-Juego-1242x2208.png" width="1242" />
     <splash height="1242" src="res/screen/ios/FutbolCuatro-Daily-Fantasy-Manager-El-Juego-2208x1242.png" width="2208" />
     <name>FutbolCuatro</name>

@@ -82,5 +82,6 @@
     <plugin name="cordova-plugin-splashscreen" version="3.2.1" />
     <plugin name="cordova-plugin-console" version="1.0.2" />
     <plugin name="cordova-plugin-statusbar" version="2.1.1" />
+    <plugin name="cordova-plugin-app-version" version="0.1.8" />
     <preference name="SplashScreenDelay" value="5000" />
 </widget>

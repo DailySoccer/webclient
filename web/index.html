@@ -69,9 +69,17 @@
 
   <body>
     <script>
+      function getAppVersion(cb) {
+        cordova.getAppVersion.getVersionNumber(cb);
+      }
+    
       document.onreadystatechange = function () {
           if (document.readyState === 'complete') {
               console.log(" # READY - STATE COMPLETED");
+              
+              getAppVersion(function (version) {
+                  console.log("Version iOS: " + version);
+              });
               
               $.getScript("main.dart.js", function(data, textStatus, jqxhr) {
                 console.log('main.dart.js: Load was performed.');

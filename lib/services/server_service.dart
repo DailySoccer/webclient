@@ -10,6 +10,8 @@ import 'dart:html';
 import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/competition.dart';
+import 'package:webclient/components/navigation/deprecated_version_screen_comp.dart';
+import 'package:webclient/utils/js_utils.dart';
 
 
 abstract class ServerService {
@@ -533,19 +535,25 @@ class DailySoccerServer implements ServerService {
     completer.completeError(new FutureCancelled());
   }
 
-
   // Cuando se produce una actualizacion del servidor, forzamos una recarga de la pagina en el cliente para asegurarnos
   // de que siempre tenemos la ultima version
   void _checkServerVersion(var httpResponse) {
     
-    var serverVersion = httpResponse.headers("release-version");
+    var serverVersion = httpResponse.headers("release-version-ios");
+    var marketAppId = httpResponse.headers("market-app-id-ios");
     
-    if (serverVersion != null) {
+    if (serverVersion != null && marketAppId != null) {
+      if (_currentVersion == null || _currentVersion.isEmpty) {
+        Logger.root.info("ServerService: CurrentVersion updated");
+        JsUtils.runJavascript(null, "getAppVersion", [(version) => _currentVersion = version]);
+      }
+      
       if (_currentVersion != null && _currentVersion != serverVersion) {
         Logger.root.info("INCOHERENT VERSION ==> VERSIONES ::::::  CURRENT: $_currentVersion |||| SERVER: $serverVersion");
         if (serverVersion!="devel") {
           Logger.root.info("RELOAD LOCATION ==> VERSIONES ::::::  CURRENT: $_currentVersion |||| SERVER: $serverVersion");
-          window.location.reload();
+          DeprecatedVersionScreenComp.Instance.show = true;
+          DeprecatedVersionScreenComp.Instance.marketAppId = marketAppId;
         }
       }
       else {

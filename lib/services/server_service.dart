@@ -556,11 +556,8 @@ class DailySoccerServer implements ServerService {
           DeprecatedVersionScreenComp.Instance.marketAppId = marketAppId;
         }
       }
-      else {
-        _currentVersion = serverVersion;
-
-        HostServer.CURRENT_VERSION = _currentVersion;
-      }
+      
+      HostServer.CURRENT_VERSION = serverVersion;
     }
   }
 

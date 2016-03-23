@@ -42,6 +42,8 @@ class GameMetrics {
   static String SHARE_REQUEST_FB = "Share request facebook";
   static String SHARE_REQUEST_TWITTER = "Share request twitter";
   static String FRIEND_BAR_CHALLENGE = "Friend bar Challenge request";
+  static String DEPRECATED_VERSION = "Deprecated Version";
+  static String REQUEST_VERSION_UPDATE = "Request Version update";
   // Acciones con dinero:
   static String ENTRY_FEE = "Entry Fee for Contest";
   static String ORDER = "Add Funds";

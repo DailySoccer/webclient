@@ -52,8 +52,8 @@ class FooterComp implements ShadowRootAware {
           <div class="data-wrapper">
             <footer-a class="clickable goto-link" id="footerHelp" destination="help_info">           <span class="sub-footer-help-link">${StringUtils.translate("help", "footer")}</span></footer-a>
             <!--a class="goto-link" id="footerLegal" destination="legal_info">         <span class="sub-footer-legal-link">${StringUtils.translate("legal", "footer")}</span></a-->
-            <a class="goto-link" id="footerTermsOfUse" target="_system" href="http://www.futbolcuatro.com/terminos-de-uso/"> <span class="sub-footer-terms-link">${StringUtils.translate("terms", "footer")}</span></a>
-            <a class="goto-link" id="footerPrivacyPolicy" target="_system" href="http://www.futbolcuatro.com/politica-de-privacidad/"><span class="sub-footer-policy-link">${StringUtils.translate("privacy", "footer")}</span></a>
+            <footer-a class="goto-link" id="footerTermsOfUse" externaldest="http://www.futbolcuatro.com/terminos-de-uso/"> <span class="sub-footer-terms-link">${StringUtils.translate("terms", "footer")}</span></footer-a>
+            <footer-a class="goto-link" id="footerPrivacyPolicy" externaldest="http://www.futbolcuatro.com/politica-de-privacidad/"><span class="sub-footer-policy-link">${StringUtils.translate("privacy", "footer")}</span></footer-a>
             <!--a class="goto-link" id="footerBlog" target="_system" href="http://halftime.epiceleven.com"><span class="sub-footer-blog-link">BLOG</span></a-->
           </div>
   
@@ -72,8 +72,8 @@ class FooterComp implements ShadowRootAware {
           <div class="copyright">© Copyright 2016 Fútbol Cuatro</div>
           ${_scrDet.isXsScreen ? '' : '''
           <div class="social">
-            <a target="_system" href="https://www.facebook.com/Futbolcuatro/"><img src="images/facebook.png"/></a>
-            <a target="_system" href="https://www.twitter.com/Futbol_cuatro"><img src="images/twitter.png"/></a>
+            <footer-a externaldest="https://www.facebook.com/Futbolcuatro/"><img src="images/facebook.png"/></footer-a>
+            <footer-a externaldest="https://www.twitter.com/Futbol_cuatro"><img src="images/twitter.png"/></footer-a>
           </div>
           '''}
         </div>
@@ -83,6 +83,7 @@ class FooterComp implements ShadowRootAware {
 
     _rootElement.setInnerHtml(html, treeSanitizer: NULL_TREE_SANITIZER);
     _rootElement.querySelectorAll("[destination]").onClick.listen(_onMouseClick);
+    _rootElement.querySelectorAll("[externaldest]").onClick.listen(_onMouseClickExternal);
     _setupTimer();
   }
 
@@ -98,6 +99,11 @@ class FooterComp implements ShadowRootAware {
   void _onMouseClick(event) {
     String destination = event.currentTarget.attributes["destination"];
     _router.go(destination, {});
+  }
+  
+  void _onMouseClickExternal(event) {
+    String destination = event.currentTarget.attributes["externaldest"];
+    window.open(destination, "_system");
   }
 
   Element _rootElement;

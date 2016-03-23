@@ -539,18 +539,18 @@ class DailySoccerServer implements ServerService {
   // de que siempre tenemos la ultima version
   void _checkServerVersion(var httpResponse) {
     
-    var serverVersion = httpResponse.headers("release-version-ios");
-    var marketAppId = httpResponse.headers("market-app-id-ios");
-    
-    if (serverVersion != null && marketAppId != null) {
+    String serverVersion = httpResponse.headers("release-version-ios");
+    if (serverVersion != null && (serverVersion!="devel")) {
       if (_currentVersion == null || _currentVersion.isEmpty) {
         Logger.root.info("ServerService: CurrentVersion updated");
         JsUtils.runJavascript(null, "getAppVersion", [(version) => _currentVersion = version]);
       }
       
-      if (_currentVersion != null && _currentVersion != serverVersion) {
+      if (_currentVersion != null && changedVersion(_currentVersion, serverVersion)) {
         Logger.root.info("INCOHERENT VERSION ==> VERSIONES ::::::  CURRENT: $_currentVersion |||| SERVER: $serverVersion");
-        if (serverVersion!="devel") {
+        
+        String marketAppId = httpResponse.headers("market-app-id-ios");
+        if (marketAppId != null && marketAppId.isNotEmpty) {
           Logger.root.info("RELOAD LOCATION ==> VERSIONES ::::::  CURRENT: $_currentVersion |||| SERVER: $serverVersion");
           DeprecatedVersionScreenComp.Instance.show = true;
           DeprecatedVersionScreenComp.Instance.marketAppId = marketAppId;
@@ -561,6 +561,14 @@ class DailySoccerServer implements ServerService {
     }
   }
 
+  bool changedVersion(String oriVersion, String dstVersion) {
+    if (oriVersion == dstVersion) return false;
+    
+    List ori = oriVersion.split(".");
+    List dst = dstVersion.split(".");
+    return !( (ori.length >= 2) && (dst.length >= 2) && (ori[0] == dst[0]) && (ori[1] == dst[1]) );
+  }
+  
   // Por si queremos volver al sistema de mandar todos nuestros posts en form-urlencoded
   String _mapToFormUrlEncoded(Map postData) {
     var parts = [];

@@ -150,7 +150,7 @@
         document.getElementsByTagName('body')[0].className = platform;
         */
 
-        store.verbosity = store.DEBUG;
+        store.verbosity = store.INFO;
 
         // Enable remote receipt validation
         // store.validator = "https://api.fovea.cc:1982/check-purchase";
@@ -443,10 +443,12 @@
                 type:  store.CONSUMABLE
             });
             store.when(productList[i]['storeId']).loaded(function(p) {
+              /*
               console.log("Loaded: " + p['id']);
               console.log("Product.alias: " + p['alias']);
               console.log("Product.title: " + p['title']);
               console.log("Product.price: " + p['price']);
+              */
               updateProductInfo(p['alias'], p['title'], p['price']);
             });
             store.when(productList[i]['storeId']).initiated(function(p) {

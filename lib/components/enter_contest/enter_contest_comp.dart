@@ -254,7 +254,8 @@ class EnterContestComp implements DetachAware {
     loadingService.isLoading = false;
 
     GameMetrics.logEvent(GameMetrics.ENTER_CONTEST, {"type": contest.isSimulation? 'virtual' : 'oficial',
-                                                     "created": contest.isAuthor(_profileService.user)});
+                                                     "created": contest.isAuthor(_profileService.user),
+                                                     "contest id": contest.contestId });
 
     if (_profileService.isLoggedIn && !contest.canEnter(_profileService.user) && !editingContestEntry) {
       cannotEnterMessageRedirect();
@@ -725,7 +726,8 @@ class EnterContestComp implements DetachAware {
                                                             "prize count": contest.prize.prizePool.amount,
                                                             "prize currency": contest.prize.prizePool.currencySymbol,
                                                             "prize type": contest.prize.prizeType,
-                                                            "players bought": boughtPlayers.length});
+                                                            "players bought": boughtPlayers.length,
+                                                            "contest id": contest.contestId });
             GameMetrics.peopleSet({"Last Team Created": DateTimeService.formatDateTimeLong(new DateTime.now())});
             GameMetrics.peopleSet({"Last Team Created (${contest.competitionType})": DateTimeService.formatDateTimeLong(new DateTime.now())});
             GameMetrics.logEvent(GameMetrics.ENTRY_FEE, {"value": contest.entryFee.toStringWithCurrency()});

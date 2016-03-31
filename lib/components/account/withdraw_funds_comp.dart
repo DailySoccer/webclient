@@ -69,7 +69,7 @@ class WithdrawFundsComp implements ShadowRootAware {
   /* Enviar la peticion */
 
   void withdrawFunds (Event e) {
-    GameMetrics.logEvent(GameMetrics.REFUND, {"value": selectedValue});
+    //GameMetrics.logEvent(GameMetrics.REFUND, {"value": selectedValue});
     (querySelector("#withdrawFundsButton") as ButtonElement).disabled = true;
     _paymentService.withdrawFunds(selectedValue)
       .then((_) {

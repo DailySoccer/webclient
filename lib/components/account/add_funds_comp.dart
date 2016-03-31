@@ -72,7 +72,7 @@ class AddFundsComp implements ShadowRootAware, DetachAware {
   /* Enviar la peticion */
 
   void addFunds (Event e) {
-    GameMetrics.logEvent(GameMetrics.ORDER, {"value": selectedValue});
+    //GameMetrics.logEvent(GameMetrics.ORDER, {"value": selectedValue});
     (querySelector("#addFundsButton") as ButtonElement).disabled = true;
 
     // TODO: HACK HACK HACK

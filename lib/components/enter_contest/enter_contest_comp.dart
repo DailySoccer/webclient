@@ -253,9 +253,11 @@ class EnterContestComp implements DetachAware {
   void refreshInfoFromContest() {
     loadingService.isLoading = false;
 
-    GameMetrics.logEvent(GameMetrics.ENTER_CONTEST, {"type": contest.isSimulation? 'virtual' : 'oficial',
+    GameMetrics.logEvent(editingContestEntry? GameMetrics.ENTER_CONTEST_EDITING : GameMetrics.ENTER_CONTEST, 
+                                                    {"type": contest.isSimulation? 'virtual' : 'oficial',
                                                      "created": contest.isAuthor(_profileService.user),
-                                                     "contest id": contest.contestId });
+                                                     "contest id": contest.contestId,
+                                                     "is editing": editingContestEntry});
 
     if (_profileService.isLoggedIn && !contest.canEnter(_profileService.user) && !editingContestEntry) {
       cannotEnterMessageRedirect();
@@ -694,10 +696,29 @@ class EnterContestComp implements DetachAware {
     if (editingContestEntry) {
       _contestsService.editContestEntry(contestEntryId, formationId, lineupSlots.map((player) => player["id"]).toList())
         .then((_) {
+          num managerLevel = playerManagerLevel;
+          Iterable boughtPlayers = lineupSlots.where((c) => c["instanceSoccerPlayer"].moneyToBuy(contest, managerLevel).amount > 0);
+                   
+          GameMetrics.logEvent(GameMetrics.TEAM_MODIFIED, {"type": contest.isSimulation? 'virtual' : 'oficial',
+                                                          "is created by user": contest.isAuthor(_profileService.user),
+                                                          "is custom contest": contest.isCustomContest() || contest.isAuthor(_profileService.user),
+                                                          "team created date": DateTimeService.formatDateShort(DateTimeService.now),
+                                                          "team created time": DateTimeService.formatDateTimeShort(DateTimeService.now),
+                                                          "contest start date": DateTimeService.formatDateShort(contest.startDate),
+                                                          "contest start time": DateTimeService.formatDateTimeShort(contest.startDate),
+                                                          "num jugadores": contest.contestEntries.length,
+                                                          "fee count": contest.entryFee.amount,
+                                                          "fee currency": contest.entryFee.currencySymbol,
+                                                          "prize count": contest.prize.prizePool.amount,
+                                                          "prize currency": contest.prize.prizePool.currencySymbol,
+                                                          "prize type": contest.prize.prizeType,
+                                                          "players bought": boughtPlayers.length,
+                                                          "contest id": contest.contestId });
           _teamConfirmed = true;
           _router.go('view_contest_entry', { "contestId": contest.contestId,
                                              "parent": _routeProvider.parameters["parent"],
                                              "viewContestEntryMode": "edited"});
+          
         })
         .catchError((ServerError error) => _errorCreating(error));
     }

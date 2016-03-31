@@ -26,7 +26,7 @@ class PromosComp {
 
   void gotoPromo(int pos) {
     //TODO: elegir el link, pero tiene preferencia el directUrl.
-    GameMetrics.logEvent(GameMetrics.PROMO, {"code": promos.values.toList()[pos]['codeName']});
+    // GameMetrics.logEvent(GameMetrics.PROMO, {"code": promos.values.toList()[pos]['codeName']});
     String url = promos.values.toList()[pos]['url'] == '' ? 'view_promo' : promos.values.toList()[pos]['url'];
     Map params = promos.values.toList()[pos]['url'] == '' ? {"promoId" : pos} : {};
 

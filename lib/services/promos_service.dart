@@ -33,7 +33,7 @@ class PromosService {
   void gotoPromo(Map promo, {String defaultUrl: 'view_promo', Map defaultUrlParams: null}) {
     //TODO: elegir el link, pero tiene preferencia el directUrl.
     if (defaultUrlParams == null) defaultUrlParams = defaultUrl == 'view_promo' ? {"promoId" : promo['codeName']} : {};
-    GameMetrics.logEvent(GameMetrics.PROMO, {"code": promo['codeName']});
+    // GameMetrics.logEvent(GameMetrics.PROMO, {"code": promo['codeName']});
     String url = promo['url'] == '' ? defaultUrl : promo['url'];
     Map params = promo['url'] == '' ? defaultUrlParams : {};
 

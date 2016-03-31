@@ -85,6 +85,9 @@ class ViewContestEntryComp {
         mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
 
         updatedDate = DateTimeService.now;
+        if(!_contestsService.lastContest.isHistory && !_contestsService.lastContest.isLive) {
+          GameMetrics.logEvent(GameMetrics.UPCOMING_CONTEST);
+        }
       })
       .catchError((ServerError error) {
         _router.go("lobby", {});
@@ -102,7 +105,8 @@ class ViewContestEntryComp {
   void goToParent() {
     _router.go(_routeProvider.parameters["parent"] , {});
   }
-
+  
+  /*
   void confirmContestCancellation(){
     modalShow(
                 getLocalizedText("alertcanceltitle"),
@@ -128,7 +132,7 @@ class ViewContestEntryComp {
         goToParent();
       });
   }
-  
+  */
   String get inviteUrl => "${window.location.toString().split("#")[0]}#/sec/${contest.contestId}";
   
   void onInviteFriends() {

@@ -23,9 +23,9 @@ class GameMetrics {
   static String VIEW_HISTORY = "View history";
   static String VIEW_CONTEST = "View contest";
   static String HELP = "Entered Help";
-  static String TUTORIAL_LIST = "Entered Tutorial list";
-  static String HOW_IT_WORKS = "Entered How it works";
-  static String RULES = "Entered Rules";
+  //static String TUTORIAL_LIST = "Entered Tutorial list";
+  //static String HOW_IT_WORKS = "Entered How it works";
+  //static String RULES = "Entered Rules";
   static String ENTER_CONTEST = "Entered enter contest";
   static String LEADERBOARD = "Entered Leaderboard";
   static String ACHIEVEMENTS = "Entered Achievements";
@@ -44,6 +44,7 @@ class GameMetrics {
   static String SHARE_REQUEST_FB = "Share request facebook";
   static String SHARE_REQUEST_TWITTER = "Share request twitter";
   static String FRIEND_BAR_CHALLENGE = "Friend bar Challenge request";
+  static String COMMING_FROM_SOCIAL_UTM = "social";
   // Acciones con dinero:
   static String ENTRY_FEE = "Entry Fee for Contest";
   static String ORDER = "Add Funds";

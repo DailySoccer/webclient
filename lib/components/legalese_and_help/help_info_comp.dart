@@ -35,7 +35,8 @@ class HelpInfoComp {
       case 'rules-scores-content':
         GameMetrics.logEvent(GameMetrics.RULES);
       break;
-    }*/
+    }
+    */
   }
 
   void goTo(String path) {

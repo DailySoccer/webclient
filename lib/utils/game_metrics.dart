@@ -68,7 +68,7 @@ class GameMetrics {
   static String SHOP_ENTERED = "Access Shop Section";
   
   // Tutorial
-  static String TUTORIAL_FROM_HELP = "From Help";
+  static String TUTORIAL_FROM_HELP = "Tutorial From Help";
   static String TUTORIAL_STARTED = "Started";
   static String TUTORIAL_STEP_TEAM_SELECTION = "Step Team Selection";
   static String TUTORIAL_STEP_LOBBY_TRAINING = "Step Lobby Training Contest";

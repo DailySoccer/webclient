@@ -135,8 +135,6 @@ class ViewContestComp implements DetachAware {
           GameMetrics.logEvent(GameMetrics.LIVE_CONTEST_VISITED);
         } else if (_contestsService.lastContest.isHistory) {
           GameMetrics.logEvent(GameMetrics.VIEW_HISTORY);
-        } else {
-          GameMetrics.logEvent(GameMetrics.VIEW_CONTEST);
         }
         
         if (_sourceSoccerPlayerIdToChange != null) {

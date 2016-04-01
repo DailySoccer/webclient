@@ -184,7 +184,7 @@ class HomeComp implements DetachAware {
 
   void onBlogClick() {
     if (!isBlogTileEnabled) return;
-    GameMetrics.logEvent(GameMetrics.TRAINERS_SCHOOL);
+    GameMetrics.logEvent(GameMetrics.ENTERED_FORUMS);
     // window.open("http://halftime.epiceleven.com", "HalfTime");
     window.open("http://www.futbolcuatro.com/foros/", "Foro Fútbol Cuatro");
   }

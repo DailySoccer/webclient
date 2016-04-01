@@ -116,12 +116,12 @@ class TutorialService {
 
 
   void skipTutorial({String routePathLogged: 'home', String routePathNotLogged: 'join'}) {
-    _activated = false;
-    configureSkipComponent();
-    
     if (!CurrentTutorial.isCompleted) {
       GameMetrics.logEvent(GameMetrics.TUTORIAL_CANCELED);
     }
+    
+    _activated = false;
+    configureSkipComponent();
 
     GameInfo.assign(CurrentTutorial.name, CurrentTutorial.CurrentStepId);
 

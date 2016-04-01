@@ -5,8 +5,8 @@
     mixpanel.init(mixpanelCode, {
         api_host: "https://api.mixpanel.com",
         'loaded': function() {
-          mixpanel.track("Landing Page Init");
-          console.log("Landing Page Init");
+          mixpanel.track("Load WebApp Started");
+          console.log("Load WebApp Started");
         }
       });
     

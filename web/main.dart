@@ -31,8 +31,10 @@ void clearQueryStrings() {
 
   // Limpiamos la uri si viene con Query Strings (utm_campaign...)
   if (uri.hasQuery && uri.queryParameters.keys.any((param) => param.startsWith("utm"))) {
-
-    GameMetrics.logEvent("social");
+    
+    List<String> utmKeys = uri.queryParameters.keys.where((k) => k.startsWith("utm"));
+    Map<String, String> utmParams = new Map.fromIterable(utmKeys, key: (k) => k, value: (k) => uri.queryParameters[k]);
+    GameMetrics.logEvent(GameMetrics.COMING_FROM_SOCIAL_UTM, utmParams);
 
     UriUtils.removeQueryParameters(uri, ["utm"]);
   }

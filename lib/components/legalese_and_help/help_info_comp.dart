@@ -24,7 +24,7 @@ class HelpInfoComp {
 
     Element contentTab = document.querySelector("#" + tab);
     contentTab.classes.add("active");
-    
+    /*
     switch (tab) {
       case 'tutorial-content':
         GameMetrics.logEvent(GameMetrics.TUTORIAL_LIST);
@@ -36,6 +36,7 @@ class HelpInfoComp {
         GameMetrics.logEvent(GameMetrics.RULES);
       break;
     }
+    */
   }
 
   void goTo(String path) {

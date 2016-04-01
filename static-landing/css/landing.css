@@ -1,0 +1,776 @@
+/*
+ * RESET CSS
+ */
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+ */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*
+ * END RESET CSS
+ */
+
+html, body {
+	height: 100%; 
+	font-size: 0;
+	
+	text-rendering: optimizeLegibility !important;
+	-webkit-font-smoothing: antialiased !important;
+}
+
+.wide-section {
+	display: block;
+	background-position: center !important;
+	background-repeat: no-repeat !important;
+	background-size: cover !important;
+}
+.section-content-wrapper {
+	max-width: 1100px;
+	width: 100%;
+	margin: 0px auto;
+	padding: 5% 0;
+}
+.section-content {
+	padding: 0px 4%;
+	text-align: center;
+}
+
+.section-content.half-section {
+	width: 40%;
+}
+
+@media (max-width: 900px) {
+	.section-content.half-section {
+		width: 50%;
+	}
+}
+@media (max-width: 600px) {
+	.section-content {
+		padding: 0px 7%;
+	}
+	.section-content.half-section {
+		width: 86%;
+	}
+}
+h3,
+.compete-and-win {
+	font-family: 'Exo', sans-serif;
+	font-weight: lighter;	
+	font-size: 26px;
+	text-transform: uppercase;
+	margin: 10px 0;
+}
+h3:after,
+.compete-and-win:after {
+	content: "";
+	display: block;
+	width: 20px;
+	margin: 20px auto;
+	height: 0;
+	border-bottom: 4px solid #000000;
+}
+.dark-section h3:after {
+	content:"";
+	border-bottom: 4px solid #ffffff;
+}
+/*
+h2 {
+	font-family: 'Exo', sans-serif;
+	font-weight: 500;	
+	font-size: 20px;
+	line-height: 1.4;
+}
+*/
+p {
+	font-family: 'Exo', sans-serif;
+	font-weight: 500;	
+	font-size: 16px;
+	line-height: 1.4;
+}
+
+.dark-section {
+	text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+	color: #ffffff;
+}
+.light-section {
+	text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+	color: #000000;
+}
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+	text-decoration: none;
+	color: #ffffff;
+}
+
+.button-aspect,
+.button-aspect:link,
+.button-aspect:visited,
+.button-aspect:hover,
+.button-aspect:active {
+	text-decoration: none;
+	font-family: 'Exo', sans-serif;
+	font-weight: 700;	
+	font-size: 18px;
+	text-transform: uppercase;
+	background-color: #A1C931;
+	border-radius: 4px;
+	padding: 18px 25px;
+	display: block;
+	min-width: 150px;
+	width: 150px;
+	text-align: center;
+	margin: 40px auto 0 auto;
+	color: #ffffff;
+	-webkit-box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.5);
+	box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.5);
+}
+.button-aspect:hover {
+	background-color: #ACD142;
+	-webkit-box-shadow: 0px 3px 1px 0px rgba(0,0,0,0.6);
+	-moz-box-shadow: 0px 3px 1px 0px rgba(0,0,0,0.6);
+	box-shadow: 0px 3px 1px 0px rgba(0,0,0,0.6);
+}
+
+.not-scrolled .on-scroll {
+	background-image: none !important;
+}
+
+#MainSection {
+	background-image: url("/img/futbol-cuatro-fondoXS.jpg");
+	height: 90vh;
+	max-height: 650px;
+	position: relative;
+}
+#MainSection .section-content-wrapper {
+	padding: 0;
+}
+
+#MainSection h2 {
+	font-size: 32px;
+	font-weight: 900;
+	max-width: 350px;
+	margin: 0 auto;
+}
+
+#MainSection h2:after {
+	display: none;
+}
+
+#MainSection p {
+	font-size: 16px;
+	font-weight: 500;
+}
+.main-section-brand {
+	display: block;
+	position: relative;
+	padding-top: 10vh;
+	padding-bottom: 10vh;
+	width: 100%;
+}
+.main-section-brand img {
+	width: 77%;
+	margin: 15px;
+	max-width: 400px;
+}
+
+.main-section-brand .brand-text {
+	display: block;
+	width: 100%;
+	font-size: 16px;
+	color: #ffffff;
+	font-family: 'Exo', sans-serif;
+}
+	
+@media (min-width: 768px) {
+	.main-section-brand .brand-text {
+		font-size: 18px;
+	}
+	#MainSection p {
+		font-size: 18px;
+	}
+	#MainSection h2 {
+		max-width: 668px;
+		font-size: 64px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.main-section-brand img {
+		width: 354px;
+		margin-top: -15px;
+	}
+	#MainSection {
+		background-image: url("/img/futbol-cuatro-fondoDesktop.jpg");
+		min-height: 475px;
+	}
+}
+
+@media (max-width: 768px) and (max-height: 430px) {
+	.main-section-brand img {
+		width: 250px;
+		margin-top: 0px;
+	}
+	
+	.main-section-brand {
+		display: block;
+		position: relative;
+		padding-top: 10px;
+		padding-bottom: 20px;
+		width: 100%;
+	}
+	
+	#MainSection .button-aspect {
+		margin-top: 20px;
+	}
+	#MainSection {
+		height: 95vh;
+	}
+}
+
+
+@media (max-width: 768px) and (max-height: 310px) {
+	#MainSection h2 {
+		font-size: 28px;
+		width: 250px;
+	}
+	.main-section-brand h1 {
+		font-size: 15px;
+	}
+	#MainSection p {
+		font-size: 15px;
+	}
+	#MainSection .button-aspect {
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	#MainSection {
+		height: 98vh;
+	}
+}
+
+#MainSection:after {
+	content:"";
+	height: 0;
+	width: 0px;
+	border: 16px solid #ffffff;
+	border-bottom-width: 0px;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	display: block;
+	position: absolute;
+	bottom: 15px;
+	left: 50%;
+	margin-left: -8px;
+}
+
+
+
+#YouTubeLinkImage {
+	display: inline-block;
+	margin: 20px auto 0 auto;
+}
+#YouTubeLinkImage img {
+	max-width: 100%;
+}
+
+#HowToSection {
+	background-image: url("/img/futbol-cuatro-fantasy-manager-liga-premiere.jpg");
+}
+
+.how-to-keypoints li {
+	font-family: 'Exo', sans-serif;
+	font-weight: 500;	
+	font-size: 24px;
+	text-transform: uppercase;
+	margin: 10px 0;
+	
+	text-align: center;
+	display: inline-block;
+	width: 30%;
+	margin: 1.66%;
+}
+.key-point {
+	border-radius: 10000px;
+	border-radius: 100%;
+	border: 1px solid #000000;
+	width: 28px;
+	height: 28px;
+	display: block;
+	margin: 0px auto;
+	padding: 10px;
+	font-size: 28px;
+	margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+	.how-to-keypoints li {
+		display: block;
+		width: 100%;
+		margin: 10px 0;
+		text-align: left;
+	}
+	.key-point {
+		display: inline-block;
+		text-align: center;
+		margin: 0px 10px;
+	}
+	.how-to-keypoints {
+		margin: 0 auto;
+		display: inline-block;
+	}
+}
+
+@media (max-width: 500px) {
+	.how-to-keypoints li {
+		font-size: 20px;
+	}
+}
+
+#ChallengeSection {
+	background-image: url("/img/torneos-liga-futbol-tiempo-real.jpg");
+}
+
+#JoinTournamentsSection {
+	background-image: url("/img/juega-todos-los-dias-futbol-cuatro.jpg");
+}
+
+#JoinTournamentsSection .section-content {
+	margin-right: 0;
+	margin-left: auto;
+}
+
+#WinSection .section-content-wrapper {
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+#CrossPlatformApp {
+	width: 100%;
+	margin: 50px auto 0 auto;
+}
+
+
+
+
+/*
+body:before {
+	content: "";
+	height: 30px;
+	display: block;
+}
+*/
+#NavigationBar {
+	display: block;
+	width: 100%;
+	height: 52px;
+	max-height: 52px;
+	margin-bottom: -52px;
+	overflow: visible;
+	position: fixed;
+	top: 0;
+	z-index: 10;
+	background-color: rgba(4, 24, 34, 0);
+	-webkit-transition: background-color 0.5s ease;
+	-moz-transition: background-color 0.5s ease;
+	-o-transition: background-color 0.5s ease;
+	-ms-transition: background-color 0.5s ease;
+	transition: background-color 0.5s ease;
+}
+#NavigationBar.opaque {
+	background-color: rgba(4, 24, 34, 1);
+	-webkit-transition: background-color 0.5s ease;
+	-moz-transition: background-color 0.5s ease;
+	-o-transition: background-color 0.5s ease;
+	-ms-transition: background-color 0.5s ease;
+	transition: background-color 0.5s ease;
+}
+
+.navigation-bar-wrapper {
+	max-width: 1100px;
+	width: 100%;
+	margin: 0px auto;
+	padding: 10px 0;
+	text-align: center;
+	position: relative;
+	display: block;
+	height: 32px;
+}
+.header-brand {
+	display: block;
+	position: absolute;
+	width: 172px;
+	margin-left: -86px;
+	left: 50%;
+	opacity: 0;
+	-webkit-transition: opacity 0.5s ease;
+	-moz-transition: opacity 0.5s ease;
+	-o-transition: opacity 0.5s ease;
+	-ms-transition: opacity 0.5s ease;
+	transition: opacity 0.5s ease;
+	z-index: 11;
+}
+
+.go-top {
+  display: none;
+  overflow: hidden;
+  padding: 0;
+  width: 45px;
+  height: 45px;
+  font-size: 60px;
+	line-height: 1.25;
+	font-family: 'Exo', sans-serif;
+  border: 2px solid #ff4000;
+  color: #ff4000;
+	border-radius: 100%;
+  cursor: pointer;
+	background-color: transparent;
+	position: fixed;
+	right: 50px;
+	bottom: 50px;
+	z-index: 11;
+	text-align: center;
+	cursor: pointer;
+	opacity: 0;
+}
+
+#NavigationBar.opaque .go-top {
+  display: inline-block;
+	opacity: 1;
+}
+
+#NavigationBar.opaque .header-brand {
+	opacity: 1;
+}
+.navigation-bar-links {
+	-webkit-transition: width 0.5s ease;
+	-moz-transition: width 0.5s ease;
+	-o-transition: width 0.5s ease;
+	-ms-transition: width 0.5s ease;
+	transition: width 0.5s ease;
+	width: 0px;
+	overflow: hidden;
+	display: block;
+	font-size: 15px;
+	color: #fff;
+	background-color: #f3f3f3;
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100%;
+	height: 100vh;
+	text-align: left;
+	-webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.3);
+	box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.3);
+}
+.is-active + .navigation-bar-links {
+	width: 300px;
+}
+
+.navigation-bar-links:before {
+	content:"";
+	display: block;
+	width: 300px;
+	height: 52px;
+	background-color: rgba(4, 24, 34, 1);
+}
+
+.navigation-link {
+	display: block;
+	width: 300px;
+	overflow: hidden;
+	float: right;
+}
+
+.navigation-link a {
+	display: block;
+	width: 300px;
+	font-size: 16px;
+	color: #3c3c3c;
+	font-family: 'Exo', sans-serif;
+	padding: 15px 25px;
+	border-bottom: 1px solid #3c3c3c;
+	border-left: 1px solid #ffffff;
+}
+
+@media (max-width: 768px) and (max-height: 340px) {
+	.navigation-link a {
+		padding: 10px 25px;
+		font-size: 14px;
+	}
+}
+
+/******* BURGUER *******/
+.menuButton {
+  display: inline-block;
+  overflow: hidden;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  font-size: 0;
+  text-indent: -9999px;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+  border: none;
+  cursor: pointer;
+	background-color: transparent;
+	position: fixed;
+	left: 10px;
+	z-index: 11;
+}
+
+.menuButton:focus {
+  outline: none;
+}
+
+.menuButton span {
+  display: block;
+  position: absolute;
+  top: 14px;
+  left: 4px;
+  right: 4px;
+  height: 2px;
+  background: #ffffff;
+}
+
+.menuButton span::before,
+.menuButton span::after {
+  position: absolute;
+  display: block;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #ffffff;
+  content: "";
+}
+
+.menuButton span::before {
+  top: -8px;
+}
+
+.menuButton span::after {
+  bottom: -8px;
+}
+
+.menuButton-x {
+}
+
+.menuButton-x span {
+  transition: background 0s 0.1s;
+}
+
+.menuButton-x span::before,
+.menuButton-x span::after {
+  transition-duration: 0.3s, 0.3s;
+  transition-delay: 0s, 0s;
+}
+
+.menuButton-x span::before {
+  transition-property: top, transform;
+}
+
+.menuButton-x span::after {
+  transition-property: bottom, transform;
+}
+
+/* active state, i.e. menu open */
+.menuButton-x.is-active {
+}
+
+.menuButton-x.is-active span {
+  background: none;
+}
+
+.menuButton-x.is-active span::before {
+  top: 0;
+  transform: rotate(225deg);
+}
+
+.menuButton-x.is-active span::after {
+  bottom: 0;
+  transform: rotate(135deg);
+}
+
+.menuButton-x.is-active span::before,
+.menuButton-x.is-active span::after {
+  transition-delay: 0s, 0s;
+}
+/***** END BURGUER *****/
+
+#FooterBar {
+	display: block;
+	position: relative;
+	background-color: #222;
+	font-family: 'Exo', sans-serif;
+	font-size: 15px;
+	padding-top: 75px;
+	padding-bottom: 1px;
+}
+
+#FooterBar:after {
+	content:"";
+	clear: both;
+	display: block;
+}
+
+.footer-wrapper {
+	display: block;
+	position: relative;
+	max-width: 1100px;
+	width: 100%;
+	margin: 0px auto;
+	display: block;
+	padding-bottom: 30px;
+}
+
+.footer-wrapper:after {
+	content:"";
+	clear: both;
+	display: block;
+}
+
+.branding-column {
+	display: block;
+	position: relative;
+	width: 44%;
+	max-width: 44%;
+	padding: 0 3%;
+	vertical-align: top;
+	float: left;
+}
+
+.links-column {
+	display: block;
+	position: relative;
+	max-width: 25%;
+	width: 25%;
+	float: left;
+}
+
+.contact-column {
+	display: block;
+	position: relative;
+	max-width: 25%;
+	width: 25%;
+	float: left;
+}
+
+@media (max-width: 768px) {
+	
+	.branding-column,
+	.links-column,
+	.contact-column {
+		width: 90%;
+		max-width: 90%;
+		padding: 0px 5%;
+	}
+	.links-column,
+	.contact-column {
+		padding: 40px 5% 0 5%;
+	}
+
+}
+
+.footer-column-title {
+	font-size: 16px;
+	text-transform: uppercase;
+	color: #ffffff;
+	font-weight: 700;
+	margin-right: 30px;
+	padding-bottom: 5px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #ffffff;
+}
+
+.branding-column p {
+	color: #818181;
+	font-size: 14px;
+}
+.footer-column-link-list a {
+	color: #818181;
+	line-height: 1.7;
+}
+.branding-column .footer-column-link-list {
+	margin: 10px 0 20px 0;
+}
+.branding-column .footer-column-link-list li {
+	padding: 0 5px 0 0;
+	display: inline-block;
+}
+.branding-column .footer-column-link-list li + li {
+	border-left: 1px solid #818181;
+	padding-left: 10px;
+}
+.copyright-bar {
+	clear: both;
+	position: relative;
+	display: block;
+	background-color: #1d4155;
+	text-align: center;
+	color: #818181;
+	font-size: 14px;
+	padding: 20px 0;
+	margin-top: 30px;
+}
+
+.footer-column-link-list li a:hover {
+	color: #fff;
+	transition: color 0.5s ease;
+}
+.opta-brand-img {
+	vertical-align: middle;
+}
+.footer-facebook-social,
+footer-twitter-social {
+	padding: 3px 10px 0 0;
+}

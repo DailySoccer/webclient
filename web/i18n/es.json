@@ -427,11 +427,16 @@
     }
     ,"footer"                           :
     {
-      "help"                            : "AYUDA",
-      "legal"                           : "LEGAL",
-      "terms"                           : "TÉRMINOS<span> DE USO</span>",
-      "privacy"                         : "POLÍTICAS<span> DE PRIVACIDAD</span>",
-      "data-provided-by"                : "Datos provistos por"
+      "help"                            : "Ayuda",
+      "legal"                           : "Legal",
+      "terms"                           : "Términos de uso",
+      "privacy"                         : "Políticas de privacidad",
+      "data-provided-by"                : "Datos provistos por",
+      "links"                           : "Enlaces",
+      "futbolcuatroforum"               : "Foro Fútbol Cuatro",
+      "futbolcuatroblog"                : "Blog",
+      "contact"                         : "Contacto",
+      "supportmail"                     : "support@futbolcuatro.com"
     }
     ,"mainmenu"                         :
     {

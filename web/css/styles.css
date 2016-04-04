@@ -5677,10 +5677,6 @@ scoring-rules:after,
 .fantasy-team-list .soccer-player-row:after,
 .soccer-player-statistics:before,
 .soccer-player-statistics:after,
-#rootFooter:before,
-#rootFooter:after,
-#rootFooter .sub-footer-wrapper .sub-footer:before,
-#rootFooter .sub-footer-wrapper .sub-footer:after,
 .contest-id-bar:before,
 .contest-id-bar:after,
 #mainMenu #desktopMenu:before,
@@ -5835,8 +5831,6 @@ scoring-rules:after,
 .fantasy-team-list:after,
 .fantasy-team-list .soccer-player-row:after,
 .soccer-player-statistics:after,
-#rootFooter:after,
-#rootFooter .sub-footer-wrapper .sub-footer:after,
 .contest-id-bar:after,
 #mainMenu #desktopMenu:after,
 .resume-bar:after,
@@ -6288,7 +6282,7 @@ scoring-rules:after,
 @media (min-width: 768px) {
   .contest-header-f2p-wrapper .name-section .contest-name {
     font-family: 'Exo', sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 12pt;
     color: #214a5f;
     text-transform: uppercase;
@@ -7238,7 +7232,7 @@ scoring-rules:after,
 }
 .matches-involved .match .teams {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 16pt;
   color: #0d75a6;
   text-transform: uppercase;
@@ -7292,7 +7286,7 @@ scoring-rules:after,
 }
 .prizes-wrapper .prize-element {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 12pt;
   color: #0d75a6;
   text-transform: uppercase;
@@ -7381,7 +7375,7 @@ scoring-rules:after,
   padding-right: 0px;
   padding-right: 10px;
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 14pt;
   color: #777777;
   text-transform: uppercase;
@@ -7603,7 +7597,7 @@ scoring-rules:after,
     padding-left: 10px;
     padding-top: 4px;
     font-family: 'Exo', sans-serif;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 12pt;
     color: #214a5f;
     text-transform: uppercase;
@@ -7612,7 +7606,7 @@ scoring-rules:after,
   .contests-list-f2p-root .contestSlot .time-section .column-start-time .column-start-hour.start-soon,
   .contests-list-f2p-root .contestSlot .time-section .column-start-time .column-start-date {
     font-family: 'Exo', sans-serif;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 10pt;
     color: #214a5f;
     text-transform: uppercase;
@@ -7648,7 +7642,7 @@ scoring-rules:after,
 @media (min-width: 768px) {
   .contests-list-f2p-root .contestSlot .name-section .contest-name {
     font-family: 'Exo', sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 12pt;
     color: #214a5f;
     text-transform: uppercase;
@@ -8437,7 +8431,7 @@ scoring-rules #scoringForForwards .rules-content {
 }
 .panel-points .rules-header {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -8463,7 +8457,7 @@ scoring-rules #scoringForForwards .rules-content {
 }
 .panel-points .name {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 9pt;
   color: #777777;
   text-transform: uppercase;
@@ -8479,7 +8473,7 @@ scoring-rules #scoringForForwards .rules-content {
 }
 .panel-points .points {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 9pt;
   color: #777777;
   text-transform: uppercase;
@@ -8505,7 +8499,7 @@ scoring-rules #scoringForForwards .rules-content {
 }
 #personalDataContent .edit-personal-data-header .header-title {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 20pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -8612,7 +8606,7 @@ button#personalDataContent .header button.close {
   padding-left: 15px;
   padding-right: 15px;
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 20pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -9173,7 +9167,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
 }
 #addFundsContent .title {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 20pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -9264,7 +9258,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
 }
 #addFundsContent .add-founds-box h2 {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 15pt;
   color: #214a5f;
   text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
@@ -9272,7 +9266,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
 }
 #addFundsContent .add-founds-box h2 span {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 15pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -9474,7 +9468,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   margin-left: 0;
   margin-right: 0;
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 20pt;
   color: #214a5f;
   text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
@@ -9491,7 +9485,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   #addFundsContent .pay-faq-block .pay-faq-title {
     padding: 10px 5px 10px 5px;
     font-family: 'Exo', sans-serif;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 16pt;
     color: #214a5f;
     text-transform: uppercase;
@@ -9504,7 +9498,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
 }
 #addFundsContent .toogle-block label {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 10pt;
   color: #777777;
   text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
@@ -9523,7 +9517,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
 @media (max-width: 767px) {
   #addFundsContent .toogle-block label {
     font-family: 'Exo', sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 8pt;
     color: #777777;
     text-transform: uppercase;
@@ -10221,7 +10215,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
 }
 #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .gold-quantity {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 20pt;
   color: #0a2938;
   text-transform: uppercase;
@@ -10718,7 +10712,7 @@ fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .en
   display: block;
   text-align: center;
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 20pt;
   color: #59add5;
   text-transform: uppercase;
@@ -10931,7 +10925,7 @@ fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .en
 #trainerPointsShopComp .products-wrapper .product .slot-content .quantity-column .product-count {
   display: block;
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 28pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -11328,7 +11322,7 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
 #energyshopComp .products-wrapper .product .slot-content .quantity-column .product-count {
   display: block;
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 28pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -11348,7 +11342,7 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
 #energyshopComp .products-wrapper .product .slot-content .quantity-column .product-time-left {
   display: block;
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 28pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -11609,7 +11603,7 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
   display: block;
   text-align: center;
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 11pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -11620,7 +11614,7 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
   display: block;
   text-align: center;
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 16pt;
   color: inherit;
   text-transform: uppercase;
@@ -11630,7 +11624,7 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
 }
 .fantasy-team-header .ranking-box .content {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 24pt;
   color: inherit;
   text-transform: uppercase;
@@ -11652,7 +11646,7 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
   display: block;
   text-align: center;
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 11pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -11663,7 +11657,7 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
   display: block;
   text-align: center;
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 16pt;
   color: inherit;
   text-transform: uppercase;
@@ -11673,7 +11667,7 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
 }
 .fantasy-team-header .score-box .content {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 20pt;
   color: inherit;
   text-transform: uppercase;
@@ -11694,7 +11688,7 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
   border-color: #ffffff;
   border-radius: 8px;
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 22pt;
   color: #777777;
   text-transform: uppercase;
@@ -11757,7 +11751,7 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
 }
 .fantasy-team-header .user-nickname {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 14pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -11769,7 +11763,7 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
 }
 .fantasy-team-header .change-ordinal {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 16pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -11781,7 +11775,7 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
 }
 .fantasy-team-header .nickname-view-contest-entry-mode {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 20pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -12199,7 +12193,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   border-radius: 6px;
   transition: background-color linear 150ms;
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 19pt;
   color: #59add5;
   text-transform: uppercase;
@@ -12245,7 +12239,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   background-color: #a1c931;
   outline: none !important;
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 14pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -12427,7 +12421,7 @@ fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-b
   display: block;
   text-align: center;
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 11pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -12438,7 +12432,7 @@ fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-b
   display: block;
   text-align: center;
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 16pt;
   color: inherit;
   text-transform: uppercase;
@@ -12547,7 +12541,7 @@ fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-b
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  padding-left: 10px;
+  padding-left: 5px;
   padding-right: 0px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
@@ -12555,425 +12549,139 @@ fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-b
   color: #777777;
   text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
 }
-@media (min-width: 768px) {
-  footer {
-    margin-right: auto;
-    margin-left: auto;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-  footer > .navbar-header,
-  footer > .navbar-collapse {
-    margin-right: -15px;
-    margin-left: -15px;
-  }
-}
-@media (min-width: 768px) and (min-width: 768px) {
-  footer > .navbar-header,
-  footer > .navbar-collapse {
-    margin-right: 0;
-    margin-left: 0;
-  }
-}
-@media (min-width: 992px) {
-  footer {
-    margin-right: auto;
-    margin-left: auto;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-  footer > .navbar-header,
-  footer > .navbar-collapse {
-    margin-right: -15px;
-    margin-left: -15px;
-  }
-}
-@media (min-width: 992px) and (min-width: 768px) {
-  footer {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) and (min-width: 992px) {
-  footer {
-    width: 970px;
-  }
-}
-@media (min-width: 992px) and (min-width: 1200px) {
-  footer {
-    width: 970px;
-  }
-}
-@media (min-width: 992px) and (min-width: 768px) {
-  footer > .navbar-header,
-  footer > .navbar-collapse {
-    margin-right: 0;
-    margin-left: 0;
-  }
-}
-#rootFooter {
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 0px;
-  padding-right: 0px;
-  background-color: #000000;
-  min-height: 88px;
-}
-#rootFooter .sub-footer-link {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 10pt;
-  color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  line-height: 35px;
-  padding: 0 10px 0 0;
-  border-left: 2px solid #ffffff;
-}
-@media (max-width: 767px) {
-  #rootFooter .sub-footer-link {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
-    font-size: 10pt;
-    color: #afafaf;
-    text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
-    border-color: #afafaf;
-    padding-right: 10px;
-  }
-}
-#rootFooter .sub-footer-wrapper {
-  width: 100%;
-  background: #000000;
-}
-@media (max-width: 767px) {
-  #rootFooter .sub-footer-wrapper {
-    background: #434343;
-    padding: 0 0 13px 0px;
-    border-width: 1px;
-    border-style: solid none none none;
-    border-color: #afafaf;
-    border-radius: 0;
-  }
-}
-#rootFooter .sub-footer-wrapper .sub-footer {
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-  /*
-			.credit-cards {
-				.hidden-xs();
-				.make-sm-column(4);
-				margin: 0 auto;
-				padding: 25px 0px 26px 20px;
-				text-align: right;
-				.pull-right();
-
-			}
-			*/
-}
-@media (min-width: 768px) {
-  #rootFooter .sub-footer-wrapper .sub-footer {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) {
-  #rootFooter .sub-footer-wrapper .sub-footer {
-    width: 970px;
-  }
-}
-@media (min-width: 1200px) {
-  #rootFooter .sub-footer-wrapper .sub-footer {
-    width: 970px;
-  }
-}
-#rootFooter .sub-footer-wrapper .sub-footer > .navbar-header,
-#rootFooter .sub-footer-wrapper .sub-footer > .navbar-collapse {
-  margin-right: -15px;
-  margin-left: -15px;
-}
-@media (min-width: 768px) {
-  #rootFooter .sub-footer-wrapper .sub-footer > .navbar-header,
-  #rootFooter .sub-footer-wrapper .sub-footer > .navbar-collapse {
-    margin-right: 0;
-    margin-left: 0;
-  }
-}
-@media (min-width: 768px) {
-  #rootFooter .sub-footer-wrapper .sub-footer {
-    width: 100%;
-    padding-bottom: 15px;
-  }
-}
-#rootFooter .sub-footer-wrapper .sub-footer a {
-  cursor: pointer;
-}
-#rootFooter .sub-footer-wrapper .sub-footer .logo-wrapper {
-  height: 60px;
-  margin-top: 10px;
-  border-width: 1px;
-  border-style: none none solid none;
-  border-color: #606060;
-  border-radius: 0;
-}
-@media (max-width: 767px) {
-  #rootFooter .sub-footer-wrapper .sub-footer .logo-wrapper {
-    text-align: center;
-  }
-}
-#rootFooter .sub-footer-wrapper .sub-footer .data-wrapper {
-  float: left;
-  width: 100%;
+#FooterBar {
+  display: block;
   position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-left: 0px;
-  padding-right: 0px;
+  background-color: #222;
+  font-family: 'Exo', sans-serif;
+  font-weight: 500;
+  font-size: 11pt;
+  color: #818181;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(129, 129, 129, 0.004);
+  text-transform: none;
+  padding-top: 75px;
+  padding-bottom: 1px;
 }
-@media (min-width: 768px) {
-  #rootFooter .sub-footer-wrapper .sub-footer .data-wrapper {
-    float: left;
-    width: 66.66666667%;
+#FooterBar * {
+  box-sizing: content-box;
+}
+#FooterBar:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+.footer-wrapper {
+  position: relative;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0px auto;
+  display: block;
+  padding-bottom: 30px;
+}
+.footer-wrapper:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+.branding-column {
+  display: block;
+  position: relative;
+  width: 44%;
+  max-width: 44%;
+  padding: 0 3%;
+  vertical-align: top;
+  float: left;
+}
+.links-column {
+  display: block;
+  position: relative;
+  max-width: 25%;
+  width: 25%;
+  float: left;
+}
+.contact-column {
+  display: block;
+  position: relative;
+  max-width: 25%;
+  width: 25%;
+  float: left;
+}
+@media (max-width: 768px) {
+  .branding-column,
+  .links-column,
+  .contact-column {
+    width: 90%;
+    max-width: 90%;
+    padding: 0px 5%;
+  }
+  .links-column,
+  .contact-column {
+    padding: 40px 5% 0 5%;
   }
 }
-@media (max-width: 767px) {
-  #rootFooter .sub-footer-wrapper .sub-footer .data-wrapper {
-    text-align: center;
-  }
+.footer-column-title {
+  font-size: 12pt;
+  text-transform: uppercase;
+  color: #ffffff;
+  font-weight: 700;
+  margin-right: 30px;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ffffff;
 }
-#rootFooter .sub-footer-wrapper .sub-footer .data-wrapper .goto-link {
+.branding-column p {
+  color: #818181;
+  font-size: 10pt;
+}
+.footer-column-link-list {
+  padding-left: 0;
+  list-style-type: none;
+}
+.footer-column-link-list a {
+  color: #818181;
+  line-height: 1.7;
   text-decoration: none;
 }
-#rootFooter .sub-footer-wrapper .sub-footer .data-wrapper .sub-footer-help-link {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 10pt;
-  color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  line-height: 35px;
-  padding: 0 10px 0 0;
-  border-left: 2px solid #ffffff;
-  border: none;
-  padding-left: 0px;
-  padding-right: 10px;
+.branding-column .footer-column-link-list {
+  margin: 10px 0 20px 0;
 }
-@media (max-width: 767px) {
-  #rootFooter .sub-footer-wrapper .sub-footer .data-wrapper .sub-footer-help-link {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
-    font-size: 10pt;
-    color: #afafaf;
-    text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
-    border-color: #afafaf;
-    padding-right: 10px;
-  }
+.branding-column .footer-column-link-list li {
+  padding: 0 5px 0 0;
+  display: inline-block;
+  text-transform: none;
 }
-@media (max-width: 767px) {
-  #rootFooter .sub-footer-wrapper .sub-footer .data-wrapper .sub-footer-help-link {
-    display: none !important;
-  }
-}
-#rootFooter .sub-footer-wrapper .sub-footer .data-wrapper .sub-footer-legal-link {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 10pt;
-  color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  line-height: 35px;
-  padding: 0 10px 0 0;
-  border-left: 2px solid #ffffff;
-  padding-right: 10px;
+.branding-column .footer-column-link-list li + li {
+  border-left: 1px solid #818181;
   padding-left: 10px;
 }
-@media (max-width: 767px) {
-  #rootFooter .sub-footer-wrapper .sub-footer .data-wrapper .sub-footer-legal-link {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
-    font-size: 10pt;
-    color: #afafaf;
-    text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
-    border-color: #afafaf;
-    padding-right: 10px;
-  }
-}
-@media (max-width: 767px) {
-  #rootFooter .sub-footer-wrapper .sub-footer .data-wrapper .sub-footer-legal-link {
-    border: none;
-    padding-left: 10px;
-  }
-}
-#rootFooter .sub-footer-wrapper .sub-footer .data-wrapper .sub-footer-terms-link {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 10pt;
-  color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  line-height: 35px;
-  padding: 0 10px 0 0;
-  border-left: 2px solid #ffffff;
-  padding-right: 10px;
-  padding-left: 10px;
-}
-@media (max-width: 767px) {
-  #rootFooter .sub-footer-wrapper .sub-footer .data-wrapper .sub-footer-terms-link {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
-    font-size: 10pt;
-    color: #afafaf;
-    text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
-    border-color: #afafaf;
-    padding-right: 10px;
-  }
-}
-@media (max-width: 767px) {
-  #rootFooter .sub-footer-wrapper .sub-footer .data-wrapper .sub-footer-terms-link span {
-    display: none !important;
-  }
-}
-#rootFooter .sub-footer-wrapper .sub-footer .data-wrapper .sub-footer-policy-link {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 10pt;
-  color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  line-height: 35px;
-  padding: 0 10px 0 0;
-  border-left: 2px solid #ffffff;
-  padding-right: 10px;
-  padding-left: 10px;
-}
-@media (max-width: 767px) {
-  #rootFooter .sub-footer-wrapper .sub-footer .data-wrapper .sub-footer-policy-link {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
-    font-size: 10pt;
-    color: #afafaf;
-    text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
-    border-color: #afafaf;
-    padding-right: 10px;
-  }
-}
-@media (max-width: 767px) {
-  #rootFooter .sub-footer-wrapper .sub-footer .data-wrapper .sub-footer-policy-link span {
-    display: none !important;
-  }
-}
-#rootFooter .sub-footer-wrapper .sub-footer .data-wrapper .sub-footer-blog-link {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 10pt;
-  color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  line-height: 35px;
-  padding: 0 10px 0 0;
-  border-left: 2px solid #ffffff;
-  padding-right: 10px;
-  padding-left: 10px;
-}
-@media (max-width: 767px) {
-  #rootFooter .sub-footer-wrapper .sub-footer .data-wrapper .sub-footer-blog-link {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
-    font-size: 10pt;
-    color: #afafaf;
-    text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
-    border-color: #afafaf;
-    padding-right: 10px;
-  }
-}
-#rootFooter .sub-footer-wrapper .sub-footer .opta {
+.copyright-bar {
+  clear: both;
   position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-left: 0px;
-  padding-right: 0px;
-  float: right !important;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
+  display: block;
+  background-color: #1a3949;
+  text-align: center;
+  color: #818181;
   font-size: 10pt;
-  color: #f8f8f8;
-  text-shadow: 1px 1px 1px rgba(248, 248, 248, 0.004);
+  padding: 20px 0;
+  margin-top: 30px;
+}
+.footer-column-link-list li a:hover {
+  color: #ffffff;
+  transition: color 0.5s ease;
+}
+.opta-brand-img {
+  vertical-align: middle;
+}
+.footer-facebook-social,
+.footer-twitter-social {
+  padding: 3px 10px 0 0;
+}
+.footer-count {
+  color: #818181;
+  display: block;
   line-height: 20px;
-}
-@media (max-width: 767px) {
-  #rootFooter .sub-footer-wrapper .sub-footer .opta {
-    display: none !important;
-  }
-}
-@media (min-width: 768px) {
-  #rootFooter .sub-footer-wrapper .sub-footer .opta {
-    float: left;
-    width: 33.33333333%;
-  }
-}
-#rootFooter .sub-footer-wrapper .sub-footer .opta div {
-  text-align: right;
-  padding-right: 58px;
-}
-#rootFooter .sub-footer-wrapper .sub-footer .opta div span {
-  text-indent: -9999px;
-  overflow: hidden;
-  display: inline-block;
-}
-#rootFooter .sub-footer-wrapper .sub-footer .opta div span::after {
-  content: url("../images/logoOpta.png");
-  display: inline-block;
-  width: 48px;
-  height: 21px;
-  position: absolute;
-  top: 5px;
-  right: 0;
-}
-#rootFooter .sub-footer-wrapper .sub-footer .opta div + div {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 11pt;
-  color: #f8f8f8;
-  text-shadow: 1px 1px 1px rgba(248, 248, 248, 0.004);
-  padding-right: 0;
-  padding-top: 10px;
-}
-#rootFooter .sub-footer-wrapper .sub-footer .opta div + div strong {
-  background-image: url("../images/performBg.png");
-  background-repeat: no-repeat;
-  background-position: 31px -4px;
-}
-#rootFooter .sub-footer-wrapper .sub-footer .copyright {
-  display: inline-block;
-  padding-left: 0px;
-  padding-right: 0px;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 9pt;
-  color: #f8f8f8;
-  text-shadow: 1px 1px 1px rgba(248, 248, 248, 0.004);
-  padding-top: 5px;
-}
-@media (max-width: 767px) {
-  #rootFooter .sub-footer-wrapper .sub-footer .copyright {
-    text-align: center;
-    width: 100%;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
-    font-size: 10pt;
-    color: #afafaf;
-    text-shadow: 1px 1px 1px rgba(175, 175, 175, 0.004);
-  }
-}
-#rootFooter .sub-footer-wrapper .sub-footer .social {
-  display: inline-block;
-}
-@media (max-width: 767px) {
-  #rootFooter .sub-footer-wrapper .sub-footer .social {
-    display: none !important;
-  }
-}
-#rootFooter .sub-footer-wrapper .sub-footer .social a {
-  margin-left: 15px;
+  margin-bottom: -20px;
 }
 .simulated-fallback-background {
   position: absolute;
@@ -13005,7 +12713,7 @@ fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-b
 }
 #obsoleteBrowserPageRoot #desktopContent .main-title-wrapper .main-title {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 34pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -13014,7 +12722,7 @@ fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-b
 @media (max-width: 991px) {
   #obsoleteBrowserPageRoot #desktopContent .main-title-wrapper .main-title {
     font-family: 'Exo', sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 25pt;
     color: #214a5f;
     text-transform: uppercase;
@@ -13413,7 +13121,7 @@ lobbyf2p week-calendar .week-calendar {
 }
 .challenge-your-friends .text {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 13pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -13604,7 +13312,7 @@ main-menu-f2p {
 }
 main-menu-f2p .beta-label {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 8pt;
   color: #000000;
   text-transform: uppercase;
@@ -15542,7 +15250,7 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
 }
 #promosComponent .beta-version-text {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -15690,24 +15398,6 @@ social-share twitter-share {
     margin-top: 0;
   }
   social-share[inline] .social-share-wrapper .facebook-share-wrapper .facebook-share-button {
-    margin-bottom: 0;
-  }
-}
-@media (max-width: 767px) {
-  social-share[inline-xs] {
-    height: 35px;
-  }
-  social-share[inline-xs] .social-share-wrapper facebook-share,
-  social-share[inline-xs] .social-share-wrapper .facebook-share-wrapper {
-    display: inline-block;
-    margin-bottom: 0;
-  }
-  social-share[inline-xs] .social-share-wrapper twitter-share,
-  social-share[inline-xs] .social-share-wrapper .twitter-share-wrapper {
-    display: inline-block;
-    margin-top: 0;
-  }
-  social-share[inline-xs] .social-share-wrapper .facebook-share-wrapper .facebook-share-button {
     margin-bottom: 0;
   }
 }
@@ -16160,7 +15850,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-
   padding-left: 0;
   padding-right: 0;
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 20pt;
   color: #fba61a;
   text-transform: uppercase;
@@ -16223,7 +15913,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-
 #modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-stats-info .soccer-player-matches span + span,
 #modalSoccerPlayerStats .soccer-player-stats-header .description-header .soccer-player-stats-info .soccer-player-salary span + span {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 18pt;
   color: #dcdcdc;
   text-transform: uppercase;
@@ -16691,7 +16381,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
 }
 #modalSoccerPlayerStats .soccer-player-stats-content .season-stats .season-stats-row .season-stats-info {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 14pt;
   color: #777777;
   text-transform: uppercase;
@@ -16715,7 +16405,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
 @media (min-width: 768px) {
   #modalSoccerPlayerStats .soccer-player-stats-content .season-stats .season-stats-row .season-stats-info {
     font-family: 'Exo', sans-serif;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 24pt;
     color: #0d75a6;
     text-transform: uppercase;
@@ -17333,7 +17023,7 @@ fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-add {
   padding-left: 15px;
   padding-right: 15px;
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 24px;
   color: #ffffff;
   text-transform: uppercase;
@@ -17880,7 +17570,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 }
 .enter-contest-lineup-wrapper .enter-contest-total-salary {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 15pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -17901,7 +17591,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 @media (max-width: 991px) {
   .enter-contest-lineup-wrapper .enter-contest-total-salary {
     font-family: 'Exo', sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 12pt;
     color: #ffffff;
     text-transform: uppercase;
@@ -17920,7 +17610,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
   border-color: #ffffff;
   border-radius: 8px;
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 22pt;
   color: #777777;
   text-transform: uppercase;
@@ -18727,7 +18417,7 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
 }
 .soccer-players-filter .filter-by-position span {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 14pt;
   color: #777777;
   text-transform: uppercase;
@@ -19818,7 +19508,7 @@ lineup-selector {
 }
 #leaderboard-wrapper #leaderboard-header-wrapper h1 {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 25pt;
   color: #08161b;
   text-transform: uppercase;
@@ -19857,7 +19547,7 @@ lineup-selector {
 }
 #leaderboard-wrapper #leaderboard-header-wrapper .rankings-wrapper .ranking .ranking-position {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 25pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -19878,7 +19568,7 @@ lineup-selector {
 }
 #leaderboard-wrapper #leaderboard-header-wrapper .rankings-wrapper .ranking .ranking-info .ranking-name {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 8pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -19891,7 +19581,7 @@ lineup-selector {
 }
 #leaderboard-wrapper #leaderboard-header-wrapper .rankings-wrapper .ranking .ranking-info .ranking-value {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 8pt;
   color: #fa9c19;
   text-transform: uppercase;
@@ -20036,7 +19726,7 @@ lineup-selector {
 }
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-header .leaderboard-table-element {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 10pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -20049,7 +19739,7 @@ lineup-selector {
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-data .leaderboard-table-element {
   margin-bottom: 2px;
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 10pt;
   color: #777777;
   text-transform: uppercase;
@@ -20058,7 +19748,7 @@ lineup-selector {
 }
 #leaderboard-wrapper .tabs .tab-content .tab-pane .leaderboard-table .leaderboard-table-data .leaderboard-table-element.player-position {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -20298,7 +19988,7 @@ lineup-selector {
 }
 .email-detail {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 10pt;
   color: #59add5;
   text-transform: uppercase;
@@ -20402,7 +20092,7 @@ lineup-selector {
 }
 .panel .panel-heading .panel-title {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 20pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -21556,7 +21246,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
 }
 #alertRoot.noGold .alert-content-title {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 18pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -21565,7 +21255,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
 @media (max-width: 767px) {
   #alertRoot.noGold .alert-content-title {
     font-family: 'Exo', sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 13pt;
     color: #214a5f;
     text-transform: uppercase;
@@ -21583,7 +21273,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
 }
 #alertRoot.noGold .gold-needed-icon-wrapper .not-enough-resources-count {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 16pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -21624,7 +21314,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
 #alertRoot.noGold .alert-content-subtitle {
   vertical-align: middle;
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 14pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -21634,7 +21324,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
 @media (max-width: 767px) {
   #alertRoot.noGold .alert-content-subtitle {
     font-family: 'Exo', sans-serif;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 12pt;
     color: #214a5f;
     text-transform: uppercase;
@@ -21646,7 +21336,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
 }
 #alertRoot.cannotEnter .alert-content-title {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 24pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -21697,7 +21387,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
 }
 #welcomeRoot .panel-title {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 20pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -21872,7 +21562,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
 }
 #alertRoot.facebook-rerequest-modal h1 {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 21pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -21965,28 +21655,6 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   text-align: left;
   min-height: 60px;
   float: none;
-}
-#loginBox .fb-button-wrapper .fb-login-button-smartphone,
-#joinRoot .fb-button-wrapper .fb-login-button-smartphone {
-  height: 37px;
-  padding: 4px 10px 4px 4px;
-  background-color: #4a65a0;
-  background: linear-gradient(#4c69ba, #3b55a0);
-  font-family: helvetica, arial, sans-serif;
-  font-weight: bold;
-  font-size: 24px;
-  color: #ffffff;
-  text-shadow: 0 -1px 0 #354c8c;
-  -webkit-font-smoothing: antialiased;
-  text-align: left;
-  border: none;
-  line-height: 16pt;
-  border-radius: 2px;
-}
-#loginBox .fb-button-wrapper .fb-login-button-smartphone .fb-brand,
-#joinRoot .fb-button-wrapper .fb-login-button-smartphone .fb-brand {
-  vertical-align: middle;
-  margin: 0 10px 0 0;
 }
 #loginBox .user-form-field.facebook-form-wrapper:after,
 #joinRoot .user-form-field.facebook-form-wrapper:after {
@@ -22131,7 +21799,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   padding-left: 2px;
   padding-right: 2px;
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 10pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -22265,7 +21933,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   }
   #usersListRoot .users-header h1 {
     font-family: 'Exo', sans-serif;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 14pt;
     color: #777777;
     text-transform: uppercase;
@@ -22286,7 +21954,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   }
   #usersListRoot .users-header-next h1 {
     font-family: 'Exo', sans-serif;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 16pt;
     color: #777777;
     text-transform: uppercase;
@@ -22326,7 +21994,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
 }
 .profile-content .profile-section .data-header .data-header-title {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 12pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -22335,7 +22003,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
 @media (min-width: 768px) {
   .profile-content .profile-section .data-header .data-header-title {
     font-family: 'Exo', sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 20pt;
     color: #214a5f;
     text-transform: uppercase;
@@ -22407,7 +22075,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   background-color: #59add5;
   outline: none !important;
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -22588,7 +22256,7 @@ fieldset[disabled] .profile-content .profile-section .data-action .action-button
 }
 .profile-content .profile-section.pocket-data .data-content .data-value-coins {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 25pt;
   color: #000000;
   text-transform: uppercase;
@@ -22601,7 +22269,7 @@ fieldset[disabled] .profile-content .profile-section .data-action .action-button
 @media (min-width: 768px) {
   .profile-content .profile-section.pocket-data .data-content .data-value-coins {
     font-family: 'Exo', sans-serif;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 35pt;
     color: #000000;
     text-transform: uppercase;
@@ -22646,7 +22314,7 @@ fieldset[disabled] .profile-content .profile-section .data-action .action-button
   background-color: #a1c931;
   outline: none !important;
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -22810,7 +22478,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
 }
 .profile-content .profile-section.ranking-data .data-content .single-ranking-info .ranking-position {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 25pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -22820,7 +22488,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
 }
 .profile-content .profile-section.ranking-data .data-content .single-ranking-info .ranking-score {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 10pt;
   color: #fa9c19;
   text-transform: uppercase;
@@ -22870,7 +22538,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
 }
 .info-complete-bar p {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 20pt;
   color: #0d75a6;
   text-transform: uppercase;
@@ -22879,7 +22547,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
 }
 .info-complete-bar p.complementary-info {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 12pt;
   color: #777777;
   text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
@@ -23160,11 +22828,6 @@ fieldset[disabled] .info-complete-bar .invite-friends {
   border-top: 1px solid #ffffff;
   padding: 20px 20px 0 20px;
 }
-@media (max-width: 767px) {
-  #welcomeRoot.invite-friends-popup .panel .panel-body .share-methods-modal-content .share-method social-share[inline-xs] {
-    margin: 0 -20px;
-  }
-}
 #welcomeRoot.invite-friends-popup .panel .panel-body .share-methods-modal-content p {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
@@ -23202,7 +22865,7 @@ fieldset[disabled] .info-complete-bar .invite-friends {
 }
 #staticInfo .title {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 20pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -23374,7 +23037,7 @@ fieldset[disabled] .info-complete-bar .invite-friends {
   padding-left: 0px;
   padding-right: 0px;
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 10pt;
   color: #55c0ff;
   text-transform: uppercase;
@@ -23453,7 +23116,7 @@ fieldset[disabled] .info-complete-bar .invite-friends {
 }
 .skip-tutorial-button {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 15pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -23695,7 +23358,7 @@ fieldset[disabled] .info-complete-bar .invite-friends {
 }
 .modal-dialog .panel-body .tut-title .modal-body-title {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 20pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -23717,7 +23380,7 @@ fieldset[disabled] .info-complete-bar .invite-friends {
 }
 .modal-dialog .panel-body .tut-title .modal-body-title {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 20pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -23730,7 +23393,7 @@ fieldset[disabled] .info-complete-bar .invite-friends {
 @media (max-width: 767px) {
   .modal-dialog .panel-body .tut-title .modal-body-title {
     font-family: 'Exo', sans-serif;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 16pt;
     color: #214a5f;
     text-transform: uppercase;
@@ -23892,7 +23555,7 @@ users-list#usersList > .epic-tooltip {
   display: block;
   position: relative;
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 14pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -24087,7 +23750,7 @@ users-list#usersList > .epic-tooltip {
 #homeRoot #contestTile.home-tile-wrapper .tile .tile-title {
   margin-top: 40px;
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 30pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -24258,8 +23921,6 @@ users-list#usersList > .epic-tooltip {
 #homeRoot .fantasy-team-list,
 #homeRoot .fantasy-team-list .soccer-player-row,
 #homeRoot .soccer-player-statistics,
-#homeRoot #rootFooter,
-#homeRoot #rootFooter .sub-footer-wrapper .sub-footer,
 #homeRoot .contest-id-bar,
 #homeRoot #mainMenu #desktopMenu,
 #homeRoot .resume-bar,
@@ -24884,7 +24545,7 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
   padding-left: 0px;
   padding-right: 0px;
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 10pt;
   color: #777777;
   text-transform: uppercase;
@@ -24904,7 +24565,7 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
 }
 #createContest week-calendar#createContestCalendar .week-calendar .week-days-wrapper .week-day.active {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 10pt;
   color: #000000;
   text-transform: uppercase;
@@ -24952,7 +24613,7 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
 }
 #helpInfo .title {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 30pt;
   color: #59add5;
   text-transform: uppercase;
@@ -25208,7 +24869,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
 }
 #helpInfo .toogle-block label {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 10pt;
   color: #777777;
   text-transform: uppercase;
@@ -25530,7 +25191,7 @@ fieldset[disabled] #helpInfo .button-back {
 }
 .tutorial-row .tutorial-tile .tutorial-title {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 20pt;
   color: #0a2938;
   text-transform: uppercase;
@@ -25542,7 +25203,7 @@ fieldset[disabled] #helpInfo .button-back {
 @media (max-width: 991px) {
   .tutorial-row .tutorial-tile .tutorial-title {
     font-family: 'Exo', sans-serif;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 16pt;
     color: #0a2938;
     text-transform: uppercase;
@@ -25789,7 +25450,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
   text-align: center;
   background-color: #214a5f;
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 16pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -25808,7 +25469,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 }
 .achievement .achievement-name {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 14pt;
   color: #434343;
   text-transform: uppercase;
@@ -25836,7 +25497,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 }
 .achievement.Training .achievement-name {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 14pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -25854,7 +25515,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 }
 .achievement.Oficial .achievement-name {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 14pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -25872,7 +25533,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 }
 .achievement.ManagerLevel .achievement-name {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 14pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -25890,7 +25551,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 }
 .achievement.Player .achievement-name {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 14pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -25908,7 +25569,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 }
 .achievement.SkillLevel .achievement-name {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 14pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -26013,7 +25674,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 }
 #notificationsComp .notification-list-wrapper .notification .main-info .name {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 15pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -26108,7 +25769,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 }
 #notificationsComp .notification-list-wrapper .uncommon .main-info .name {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 24pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -26144,7 +25805,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
   text-align: center;
   margin: 100px 0;
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 20pt;
   color: #434343;
   text-transform: uppercase;
@@ -26210,7 +25871,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 }
 #alertRoot.achievementEarned .alert-content-title {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 18pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -26219,7 +25880,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 }
 #alertRoot.achievementEarned .alert-content-title.large {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 24pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -26229,7 +25890,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 @media (max-width: 767px) {
   #alertRoot.achievementEarned .alert-content-title {
     font-family: 'Exo', sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 14pt;
     color: #214a5f;
     text-transform: uppercase;
@@ -26238,7 +25899,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
   }
   #alertRoot.achievementEarned .alert-content-title.large {
     font-family: 'Exo', sans-serif;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 18pt;
     color: #214a5f;
     text-transform: uppercase;
@@ -26264,7 +25925,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 #alertRoot.achievementEarned .alert-content-subtitle {
   vertical-align: middle;
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 14pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -26969,9 +26630,6 @@ textareateams-filter .teams-filter-wrapper .teams-selector-filter {
   display: block;
   margin: 3px;
   padding: 2px 5px;
-  max-height: 22px;
-  overflow: hidden;
-  line-height: 18px;
 }
 .friend-element-wrapper .friend-manager-level {
   display: inline-block;
@@ -27040,7 +26698,7 @@ textareateams-filter .teams-filter-wrapper .teams-selector-filter {
   background-color: #59add5;
   outline: none !important;
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -27187,7 +26845,7 @@ fieldset[disabled] .friend-element-wrapper .challenge-friend {
   }
   .xs-not-available-screen h1 {
     font-family: 'Exo', sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 18pt;
     color: #59add5;
     text-transform: uppercase;
@@ -27202,186 +26860,6 @@ fieldset[disabled] .friend-element-wrapper .challenge-friend {
     color: #ffffff;
     text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   }
-}
-.deprecated-version-screen {
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #0a2938;
-  z-index: 100000;
-  padding: 100px 20px 0 20px;
-  padding-top: 20vh;
-  text-align: center;
-}
-.deprecated-version-screen h1 {
-  font-family: 'Exo', sans-serif;
-  font-weight: 600;
-  font-size: 18pt;
-  color: #59add5;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
-  margin: 40px 0 20px 0;
-  margin: 10vh 0 5vh 0;
-}
-.deprecated-version-screen p {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 12pt;
-  color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-}
-.deprecated-version-screen button {
-  margin: 10px 0 10px 0;
-  margin: 3vh 0 3vh 0;
-  background-color: #428bca;
-  border-color: #357ebd;
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border-width: 0;
-  -webkit-transition: All 0.08s ease-out;
-  -moz-transition: All 0.08s ease-out;
-  -ms-transition: All 0.08s ease-out;
-  -o-transition: All 0.08s ease-out;
-  transition: All 0.08s ease-out;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 10pt;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  background-color: #a1c931;
-  color: #ffffff;
-  outline: none !important;
-}
-.deprecated-version-screen button:hover,
-.deprecated-version-screen button:focus,
-.deprecated-version-screen button:active,
-.deprecated-version-screen button.active,
-.open .dropdown-toggle.deprecated-version-screen button {
-  color: #ffffff;
-  background-color: #3276b1;
-  border-color: #285e8e;
-}
-.deprecated-version-screen button:active,
-.deprecated-version-screen button.active,
-.open .dropdown-toggle.deprecated-version-screen button {
-  background-image: none;
-}
-.deprecated-version-screen button.disabled,
-.deprecated-version-screen button[disabled],
-fieldset[disabled] .deprecated-version-screen button,
-.deprecated-version-screen button.disabled:hover,
-.deprecated-version-screen button[disabled]:hover,
-fieldset[disabled] .deprecated-version-screen button:hover,
-.deprecated-version-screen button.disabled:focus,
-.deprecated-version-screen button[disabled]:focus,
-fieldset[disabled] .deprecated-version-screen button:focus,
-.deprecated-version-screen button.disabled:active,
-.deprecated-version-screen button[disabled]:active,
-fieldset[disabled] .deprecated-version-screen button:active,
-.deprecated-version-screen button.disabled.active,
-.deprecated-version-screen button[disabled].active,
-fieldset[disabled] .deprecated-version-screen button.active {
-  background-color: #428bca;
-  border-color: #357ebd;
-}
-.deprecated-version-screen button .badge {
-  color: #428bca;
-  background-color: #ffffff;
-}
-.deprecated-version-screen button:focus,
-.deprecated-version-screen button:active:focus,
-.deprecated-version-screen button.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-.deprecated-version-screen button:hover,
-.deprecated-version-screen button:focus {
-  color: #333333;
-  text-decoration: none;
-}
-.deprecated-version-screen button:active,
-.deprecated-version-screen button.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-.deprecated-version-screen button.disabled,
-.deprecated-version-screen button[disabled],
-fieldset[disabled] .deprecated-version-screen button {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-.deprecated-version-screen button:active,
-.deprecated-version-screen button.active {
-  box-shadow: none;
-}
-.deprecated-version-screen button:active:focus,
-.deprecated-version-screen button.active:focus {
-  color: #ffffff;
-  background-color: #b5d657;
-}
-.deprecated-version-screen button:active:hover,
-.deprecated-version-screen button.active:hover {
-  color: #ffffff;
-  background-color: #b5d657;
-}
-.deprecated-version-screen button:focus {
-  background-color: #a1c931;
-  color: #ffffff;
-}
-.deprecated-version-screen button:hover {
-  background-color: #acd142;
-  outline: none !important;
-  color: #ffffff;
-}
-.deprecated-version-screen button:hover:focus {
-  background-color: #a1c931;
-  color: #ffffff;
-}
-.deprecated-version-screen button:active,
-.deprecated-version-screen button.active {
-  box-shadow: none;
-  background-color: #a1c931;
-}
-.deprecated-version-screen button:hover {
-  background-color: #acd142;
-  outline: none !important;
-  color: #ffffff;
-}
-.deprecated-version-screen button.disabled,
-.deprecated-version-screen button[disabled],
-fieldset[disabled] .deprecated-version-screen button {
-  background-color: #b5d657;
-  color: #ebebeb;
-  cursor: not-allowed !important;
-}
-.deprecated-version-screen button.close {
-  background-color: #a1c931;
-  outline: none !important;
-  color: #ffffff;
 }
 /*************************************************
 Si hay que añadir nuevas banderas, ir a la siguiente url
@@ -27809,26 +27287,21 @@ body {
 }
 .wrapper-content-container {
   min-height: 100%;
-  margin: -70px auto -120px;
-}
-@media (max-width: 991px) {
-  .wrapper-content-container {
-    margin: -70px auto -88px;
-  }
+  margin: -70px auto -352px;
 }
 .wrapper-content-container .main-content-container {
   padding-top: 70px;
-  padding-bottom: 120px;
+  padding-bottom: 352px;
 }
 @media (max-width: 991px) {
   .wrapper-content-container .main-content-container {
-    padding-bottom: 88px;
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
     padding-left: 0px;
     padding-right: 0px;
+    padding-bottom: 352px;
   }
   .wrapper-content-container .main-content-container > .navbar-header,
   .wrapper-content-container .main-content-container > .navbar-collapse {
@@ -27851,6 +27324,7 @@ body {
     padding-right: 15px;
     padding-left: 0px;
     padding-right: 0px;
+    padding-bottom: 352px;
   }
   .wrapper-content-container .main-content-container > .navbar-header,
   .wrapper-content-container .main-content-container > .navbar-collapse {
@@ -28396,7 +27870,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
   margin-left: 0;
   margin-right: 0;
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 20pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -28410,7 +27884,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
   .default-section-header {
     padding: 10px 5px 10px 5px;
     font-family: 'Exo', sans-serif;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 16pt;
     color: #214a5f;
     text-transform: uppercase;
@@ -28436,7 +27910,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
 */
 .default-info-text {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 20pt;
   color: #0d75a6;
   text-transform: uppercase;
@@ -28448,7 +27922,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
 @media (max-width: 991px) {
   .default-info-text {
     font-family: 'Exo', sans-serif;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 12pt;
     color: #0d75a6;
     text-transform: uppercase;
@@ -28470,7 +27944,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
 }
 .contest-big-bold-text {
   font-family: 'Exo', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 14pt;
   color: #214a5f;
   text-transform: uppercase;
@@ -28487,7 +27961,7 @@ fieldset[disabled] .btn-fb-span .fb_iframe_widget {
 }
 .contest-big-light-text {
   font-family: 'Exo', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 18pt;
   color: #214a5f;
   text-transform: uppercase;

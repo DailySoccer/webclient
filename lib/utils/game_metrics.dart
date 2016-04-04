@@ -44,8 +44,8 @@ class GameMetrics {
   static String MY_CONTEST_UPCOMING = "Entered My contest upcoming";*/
   static String ENTER_CONTEST = "Tournament SignUp Started";
   static String ENTER_CONTEST_EDITING = "Tournament Modification Started";
-  static String TEAM_CREATED = "Team Creation Complete";
-  static String TEAM_MODIFIED = "Team Modification Complete";
+  static String TEAM_CREATED = "Team Creation Completed";
+  static String TEAM_MODIFIED = "Team Modification Completed";
   static String CREATE_CONTEST = "Tournament Creation Started";
   static String CREATE_CONTEST_CREATED = "Tournament Creation Completed";
   static String ENTRY_FEE = "Tournament SignUp Completed";

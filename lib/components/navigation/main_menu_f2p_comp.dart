@@ -78,8 +78,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
   }
 
   void _createHtml() {
-    String navClass = "navbar navbar-default",
-        innerHtml;
+    String navClass = "navbar navbar-default", innerHtml;
 
     if (profileService.isLoggedIn) {
       innerHtml = _getLoggedInHtml();
@@ -110,12 +109,11 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
   }
 
   void _setUpSlidingMenu() {
-    if (!profileService.isLoggedIn) {
+    /*if (!profileService.isLoggedIn) {
       return;
-    }
+    }*/
 
-    _rootElement.querySelector("#toggleSlideMenu").onClick
-        .listen(_onToggleSlidingMenuClick);
+    _rootElement.querySelector("#toggleSlideMenu").onClick.listen(_onToggleSlidingMenuClick);
     _menuSlideElement = _rootElement.querySelector("#menuSlide");
 
     // Tanto el menuSlide como el backdrop estan ocultos fuera de la pantalla en xs
@@ -196,8 +194,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
       event.preventDefault();
     });
 
-    _scrollEndListener =
-        querySelector("body").onTouchEnd.listen((_) => lastY = -1);
+    _scrollEndListener = querySelector("body").onTouchEnd.listen((_) => lastY = -1);
 
     // Tenemos que dar un frame al browser para que calcule la posicion inicial
     window.animationFrame.then((_) {
@@ -332,7 +329,21 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
   String _getNotLoggedInHtml() {
     return '''
     <div id="menuNotLoggedIn">
-      <div id="brandLogoNotLogged" class="navbar-brand" destination="home"></div>
+      <div class="navbar-header">
+        <button type="button" id="toggleSlideMenu" class="navbar-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div id="brandLogoLogged" class="navbar-brand" destination="home"></div>
+      </div>
+
+      <div id="menuSlide" class="menu-elements">
+        <ul class="nav navbar-nav">
+          ${getMainOptions()}
+        </ul>
+      </div>
+
       <div id ="desktopMenu" class="fixed-menu">        
         <ul class="links-options">
           <li highlights="home"          class="mainLink"> ${getMainMenuLink("home")}         </li>
@@ -443,9 +454,9 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     return '''
       <li highlights="home"          class="mainLink"> ${getMainMenuLink("home")}         </li>
       <li highlights="lobby"         class="mainLink"> ${getMainMenuLink("lobby")}        </li>
-      <li highlights="my_contests"   class="mainLink"> ${getMainMenuLink("my_contests")}  </li>
-      <li highlights="leaderboard"   class="mainLink"> ${getMainMenuLink("leaderboard")}  </li>
-      <li highlights="notifications" class="mainLink"> ${getMainMenuLink("notifications")}</li>
+      ${profileService.isLoggedIn? '<li highlights="my_contests"   class="mainLink"> ${getMainMenuLink("my_contests")}  </li>' +
+                                   '<li highlights="leaderboard"   class="mainLink"> ${getMainMenuLink("leaderboard")}  </li>' +
+                                   '<li highlights="notifications" class="mainLink"> ${getMainMenuLink("notifications")}</li>': ''}
       <li highlights="help_info"     class="mainLink"> ${getMainMenuLink("help")}         </li>
     ''';
   }

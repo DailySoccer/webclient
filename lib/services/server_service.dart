@@ -549,7 +549,7 @@ class DailySoccerServer implements ServerService {
   // de que siempre tenemos la ultima version
   void _checkServerVersion(var httpResponse) {
     
-    String serverVersion = httpResponse.headers("release-version-ios");
+    String serverVersion = HostServer.isAndroidPlatform ? httpResponse.headers("release-version-android") : httpResponse.headers("release-version-ios");
     if (serverVersion != null && (serverVersion!="devel")) {
       if (_currentVersion == null || _currentVersion.isEmpty) {
         Logger.root.info("ServerService: CurrentVersion updated");
@@ -559,7 +559,7 @@ class DailySoccerServer implements ServerService {
       if (_currentVersion != null && changedVersion(_currentVersion, serverVersion)) {
         Logger.root.info("INCOHERENT VERSION ==> VERSIONES ::::::  CURRENT: $_currentVersion |||| SERVER: $serverVersion");
         
-        String marketAppId = httpResponse.headers("market-app-id-ios");
+        String marketAppId = HostServer.isAndroidPlatform ? httpResponse.headers("market-app-id-android") : httpResponse.headers("market-app-id-ios");
         if (marketAppId != null && marketAppId.isNotEmpty) {
           Logger.root.info("RELOAD LOCATION ==> VERSIONES ::::::  CURRENT: $_currentVersion |||| SERVER: $serverVersion");
           DeprecatedVersionScreenComp.Instance.show = true;

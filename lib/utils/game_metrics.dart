@@ -6,13 +6,18 @@ import 'package:webclient/services/tutorial_service.dart';
 import 'package:logging/logging.dart';
 
 class GameMetrics {
-
+  
+  // Load Page Time
   static String ENTER_FROM_FUTBOL_CUATRO = "Traffic Source FutbolCuatro";
   static String COMING_FROM_SOCIAL_UTM = "Traffic Source UTM";
   static String LANDING_PAGE = "Landing Page";
   static String PAGE_READY = "Load Web App Completed";
   
+  // Mobile only
+  static String DEPRECATED_VERSION = "Update Notification Displayed";
+  static String REQUEST_VERSION_UPDATE = "Update Notification Accepted";
   
+  // Login/SignUp
   static String SIGNUP_ATTEMPTED = "SignUp Started";
   static String SIGNUP_SUCCESSFUL = "SignUp Completed";
   static String LOGIN_ATTEMPTED = "Login Email Started";
@@ -23,25 +28,21 @@ class GameMetrics {
   static String LOGIN_FB_REREQUEST_REJECTED = "Login FB Rerequest Rejected";
   static String CHANGE_PASSWORD_ATTEMPTED = "Password Change Started";
   
-  
+  // Navigation related
   static String LOBBY = "Access Lobby Page";
   static String HOME = "Access Home Page";
   static String VIEW_HISTORY = "Access Tournament History";
   static String UPCOMING_CONTEST = "Access Tournament Upcoming";
   static String LIVE_CONTEST_VISITED = "Access Tournament Live";
   static String HELP = "Access Help Section";
-  //static String TUTORIAL_LIST = "Entered Tutorial list";
-  //static String HOW_IT_WORKS = "Entered How it works";
-  //static String RULES = "Entered Rules";
   static String LEADERBOARD = "Access Leaderboard Section";
   static String ACHIEVEMENTS = "Access Achievements Section";
   static String SCOUTING = "Access Scouting Section";
   static String ENTERED_FORUMS = "Access Forum Section";
   static String USER_PROFILE = "Access User Profile Section";
   static String NOTIFICATIONS = "Access Notifications Section";
-  /*static String MY_CONTEST_LIVE = "Entered My contest live";
-  static String MY_CONTEST_HISTORY = "Entered My contest history";
-  static String MY_CONTEST_UPCOMING = "Entered My contest upcoming";*/
+  
+  // Contest related
   static String ENTER_CONTEST = "Tournament SignUp Started";
   static String ENTER_CONTEST_EDITING = "Tournament Modification Started";
   static String TEAM_CREATED = "Team Creation Completed";
@@ -50,16 +51,12 @@ class GameMetrics {
   static String CREATE_CONTEST_CREATED = "Tournament Creation Completed";
   static String ENTRY_FEE = "Tournament SignUp Completed";
   
-  
+  // Social
   static String SHARE_REQUEST_FB = "Share FB Request";
   static String SHARE_REQUEST_TWITTER = "Share Twitter Request";
   static String FRIEND_BAR_CHALLENGE = "Challenge FriendBar Request";
   
-  
-  // Acciones con dinero:
-  //static String ORDER = "Add Funds";
-  //static String CANCEL_CONTEST_ENTRY = "Cancel Contest Entry";
-  //static String REFUND = "Refund Asked";
+  // Money Actions
   static String PROMO = "Promo"; // TODO: Revisarlo
   static String PLAYER_BOUGHT = "Buy GoldPlayer Completed";
   static String ENERGY_BOUGHT = "Buy Energy Completed";
@@ -74,8 +71,7 @@ class GameMetrics {
   static String TUTORIAL_STEP_LOBBY_TRAINING = "Step Lobby Training Contest";
   static String TUTORIAL_COMPLETED = "Step Completed";
   static String TUTORIAL_CANCELED = "Step Canceled";
-
-
+  
   static void aliasMixpanel(String email) {
     if (TutorialService.isActivated)
       return;

@@ -30,6 +30,30 @@ class HostServer {
 
     return _url;
   }
+  
+  static String get domain {
+    String REMOTE_SERVER = "http://futbolcuatro.epiceleven.com"; // "http://dailysoccer-staging.herokuapp.com";
+        
+    if (_domain == null) {
+      if (window.location.protocol.contains("file") || window.location.protocol.contains("chrome-extension")) {
+        _domain = REMOTE_SERVER;
+      }
+      else if(window.location.href.contains("live=true") || isEpicEleven) {
+        _domain = REMOTE_SERVER;
+      }
+      else if (_isLocalHost) {
+        _domain = (window.location.href.contains("https=true"))? "https://futbolcuatro.epiceleven.localhost:9000" :
+                                                                "http://localhost:9000";
+      }
+      else {
+        _domain = window.location.origin;
+      }
+
+      Logger.root.info("Nuestro Dominio es: $_domain");
+    }
+
+     return _domain;
+  }
 
   static bool get _isLocalHost => (window.location.hostname.contains("127.") || window.location.hostname.contains("localhost"));
   static bool get _isForcedProd => window.location.href.contains("prod=true");
@@ -39,6 +63,7 @@ class HostServer {
   static bool get isProd => !isDev;
   static bool get isEpicEleven => window.location.hostname.contains("epiceleven.com") && !window.location.hostname.contains("staging");
 
+  static String _domain;
   static String _url;
 }
 

@@ -65,7 +65,7 @@ class FacebookService {
   static Map _buildShareMap(String prefix, String link, {Map substitutions: null}) {
     return {
           'description': getLocalizedText('${prefix}_description', substitutions),
-          'caption': '',
+          'caption': getLocalizedText('${prefix}_title', substitutions),
           'hashtag': getLocalizedText('${prefix}_hastag', substitutions),
           'url': link,
           'title': getLocalizedText('${prefix}_title', substitutions),

@@ -65,7 +65,16 @@ class ProfileService {
     GameMetrics.aliasMixpanel(email);
     GameMetrics.peopleSet({"\$email": email, "\$created": new DateTime.now()});
     
-    return _server.facebookLogin(accessToken, id, name, email).then(_onLoginResponse);
+    return _server.facebookLogin(accessToken, id, name, email).then((Map loginResponseJson) {
+      String metricsEvent = GameMetrics.LOGIN_FB_SUCCESSFUL;
+      if (loginResponseJson.containsKey("action") && loginResponseJson["action"] == "signup") {
+        metricsEvent = GameMetrics.SIGNUP_FB_SUCCESSFUL;
+      }
+      GameMetrics.logEvent(metricsEvent);
+      GameMetrics.trackConversion(false);
+      
+      return _onLoginResponse(loginResponseJson);
+    });
   }
 
   Future<Map> _onLoginResponse(Map loginResponseJson) {

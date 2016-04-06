@@ -83,7 +83,9 @@ class ProfileService {
     // GameMetrics.aliasMixpanel(email);
     // GameMetrics.peopleSet({"\$email": email, "\$created": new DateTime.now()});
     
-    return _server.deviceLogin(uuid).then(_onLoginResponse);
+    return _server.deviceLogin(uuid)
+        .then(_onLoginResponse)
+        .then((_) => Logger.root.info("deviceLogin success: $uuid"));
   }
   
   Future<Map> _onLoginResponse(Map loginResponseJson) {

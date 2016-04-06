@@ -5,6 +5,7 @@ import 'package:angular/angular.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/services/tutorial_service.dart';
 import 'dart:html';
+import 'package:webclient/utils/js_utils.dart';
 
 @Injectable()
 class RefreshTimersService {
@@ -32,6 +33,9 @@ class RefreshTimersService {
   RefreshTimersService() {
     window.onBlur.listen( (_) => _focus = false );
     window.onFocus.listen( (_) => _focus = true );
+    
+    JsUtils.setJavascriptFunction('onApplicationPause', () => _focus = false);
+    JsUtils.setJavascriptFunction('onApplicationResume', () => _focus = true);
   }
 
   Timer addRefreshTimer(String name, Function updateFunction, [String timerName] ) {

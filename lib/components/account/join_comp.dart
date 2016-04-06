@@ -105,9 +105,15 @@ class JoinComp implements ShadowRootAware {
     passwordError = _rootElement.querySelector("#passwordError")
         ..parent.style.display = 'none';
     _fbLogin.refreshConnectedState();
+    _rootElement.querySelectorAll("[externaldest]").onClick.listen(_onMouseClickExternal);
     //_scrDet.scrollTo('.panel-heading', offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
   }
 
+  void _onMouseClickExternal(event) {
+    String destination = event.currentTarget.attributes["externaldest"];
+    window.open(destination, "_system");
+  }
+  
   void validateNickName({bool forceValidation: null}) {
     nickNameElement.classes.removeAll(['valid', 'not-valid']);
     // Validación del password
@@ -282,7 +288,7 @@ class JoinComp implements ShadowRootAware {
     }
     return _errorMap;
   }
-/*
+  /*
   Map<String, String> errorMap = {
     ERROR_CREATING_YOUR_ACCOUNT: "An error has occurred while creating your account.",
     ERROR_NICKNAME_TAKEN: "Nickname already taken.",

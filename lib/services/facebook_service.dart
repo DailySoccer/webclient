@@ -69,7 +69,7 @@ class FacebookService {
           'hashtag': getLocalizedText('${prefix}_hastag', substitutions),
           'url': link,
           'title': getLocalizedText('${prefix}_title', substitutions),
-          'image': "$_rootUrl/images/${getLocalizedText('${prefix}_img', substitutions)}",
+          'image': "${_rootUrl}images/${getLocalizedText('${prefix}_img', substitutions)}",
           'selector-prefix': '#shareWrapper'
         };
   }

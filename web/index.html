@@ -178,6 +178,16 @@
           paymentServiceReady();
           console.log("# STORE READY");
         });
+        
+        document.addEventListener("pause", function() {
+          onApplicationPause();
+          console.log(" # PAUSE");
+        }, false);
+
+        document.addEventListener("resume", function() {
+          onApplicationResume();
+          console.log(" # RESUME");
+        }, false);
       }, false);
 
       window.serverLoggerInfo = window.serverLoggerInfo || function(text) {

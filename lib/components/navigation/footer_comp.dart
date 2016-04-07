@@ -20,8 +20,8 @@ import 'package:webclient/services/template_service.dart';
 )
 class FooterComp implements ShadowRootAware {
 
-  FooterComp(this._router, this._loadingService, this._view, this._rootElement, this._dateTimeService, this._scrDet, this._profileService, this._templateService) {
-    _streamListener = _scrDet.mediaScreenWidth.listen((String scrWidth) => onScreenWidthChange(scrWidth));
+  FooterComp(this._router, this._loadingService, this._view, this._rootElement, this._dateTimeService, this._profileService, this._templateService) {
+    //_streamListener = _scrDet.mediaScreenWidth.listen((String scrWidth) => onScreenWidthChange(scrWidth));
   }
 
   @override void onShadowRoot(emulatedRoot) {
@@ -29,7 +29,7 @@ class FooterComp implements ShadowRootAware {
   }
 
   void detach() {
-    _streamListener.cancel();
+    //_streamListener.cancel();
   }
 
   void onScreenWidthChange(String scrWidth) {
@@ -37,7 +37,7 @@ class FooterComp implements ShadowRootAware {
   }
 
   void _createHtml() {
-
+    /*
     String html =
     '''
     <div id="rootFooter">
@@ -45,15 +45,28 @@ class FooterComp implements ShadowRootAware {
         <div class="sub-footer">
   
           <div class="logo-wrapper">
-            <footer-a class="clickable" destination="home"><img src="images/logoLobbyFooter.png" alt="FÚTBOL CUATRO"></img></footer-a> <span class="footer-count">&nbsp;</span>
+            <footer-a class="clickable" destination="home">
+              <img src="images/logoLobbyFooter.png" alt="FÚTBOL CUATRO">
+            </footer-a> 
+            <span class="footer-count">&nbsp;</span>
           </div>
   
           <div class="data-wrapper">
-            <footer-a class="clickable goto-link" id="footerHelp" destination="help_info">           <span class="sub-footer-help-link">${StringUtils.translate("help", "footer")}</span></footer-a>
-            <!--a class="goto-link" id="footerLegal" destination="legal_info">         <span class="sub-footer-legal-link">${StringUtils.translate("legal", "footer")}</span></a-->
-            <a class="goto-link" id="footerTermsOfUse" target="_blank" href="http://www.futbolcuatro.com/terminos-de-uso/"> <span class="sub-footer-terms-link">${StringUtils.translate("terms", "footer")}</span></a>
-            <a class="goto-link" id="footerPrivacyPolicy" target="_blank" href="http://www.futbolcuatro.com/politica-de-privacidad/"><span class="sub-footer-policy-link">${StringUtils.translate("privacy", "footer")}</span></a>
-            <!--a class="goto-link" id="footerBlog" target="_blank" href="http://halftime.epiceleven.com"><span class="sub-footer-blog-link">BLOG</span></a-->
+            <footer-a class="clickable goto-link" id="footerHelp" destination="help_info">
+              <span class="sub-footer-help-link">${StringUtils.translate("help", "footer")}</span>
+            </footer-a>
+            <!--a class="goto-link" id="footerLegal" destination="legal_info">
+              <span class="sub-footer-legal-link">${StringUtils.translate("legal", "footer")}</span>
+            </a-->
+            <a class="goto-link" id="footerTermsOfUse" target="_blank" href="http://www.futbolcuatro.com/terminos-de-uso/">
+              <span class="sub-footer-terms-link">${StringUtils.translate("terms", "footer")}</span>
+            </a>
+            <a class="goto-link" id="footerPrivacyPolicy" target="_blank" href="http://www.futbolcuatro.com/politica-de-privacidad/">
+              <span class="sub-footer-policy-link">${StringUtils.translate("privacy", "footer")}</span>
+            </a>
+            <!--a class="goto-link" id="footerBlog" target="_blank" href="http://halftime.epiceleven.com">
+              <span class="sub-footer-blog-link">BLOG</span>
+            </a-->
           </div>
   
           <!--
@@ -79,9 +92,48 @@ class FooterComp implements ShadowRootAware {
       </div>
     </div>
     ''';
-
+    */
+    String html = '''
+        <div id="FooterBar" class="on-scroll">
+          <div class="footer-wrapper">
+            <div class="branding-column">
+              <img title="Logo Futbol Cuatro el juego" alt="Logo de Futbol Cuatro" src="images/Logo-Futbol-Cuatro-el-juego-Footer.png">
+              <ul class="footer-column-link-list">
+                <li><a target="_blank" href="http://www.futbolcuatro.com/terminos-de-uso/">${StringUtils.translate("terms", "footer")}</a></li>
+                <li><a target="_blank" href="http://www.futbolcuatro.com/politica-de-privacidad/">${StringUtils.translate("privacy", "footer")}</a></li>
+              </ul>
+              <p>${StringUtils.translate("data-provided-by", "footer")} <img title="Logo Opta" alt="Logo Opta" class="opta-brand-img" src="images/opta-logo.png"></p>
+              <img title="Logo Opta Perform Group" alt="Logo Opta Perform Group" src="images/opta-perform-group.png">
+              <span class="footer-count">&nbsp;</span>
+            </div>
+            <div class="links-column">
+              <h5 class="links-column-title footer-column-title">${StringUtils.translate("links", "footer")}</h5>
+              <ul class="footer-column-link-list">
+                <li><a target="_blank" href="http://www.futbolcuatro.com/foros">${StringUtils.translate("futbolcuatroforum", "footer")}</a></li>
+                <li><a target="_blank" href="http://www.futbolcuatro.com/blog/">${StringUtils.translate("futbolcuatroblog", "footer")}</a></li>
+              </ul>
+            </div>
+            <div class="contact-column">
+              <h5 class="contact-column-title footer-column-title">${StringUtils.translate("contact", "footer")}</h5>
+              <ul class="footer-column-link-list">
+                <li><a target="_blank" href="mailto:support@futbolcuatro.com">${StringUtils.translate("supportmail", "footer")}</a></li>
+                <li>
+                  <a target="_blank" class="footer-facebook-social" href="https://www.facebook.com/Futbolcuatro/">
+                    <img title="Futbol Cuatro en Facebook" alt="Futbol Cuatro en Facebook" src="images/iconoFacebook.png">
+                  </a>
+                  <a target="_blank" class="footer-twitter-social" href="https://twitter.com/Futbol_cuatro">
+                    <img title="Futbol Cuatro en Twitter" alt="Futbol Cuatro en Twitter" src="images/iconoTwitter.png">
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="copyright-bar">&copy; Copyright 2016 Fútbol Cuatro</div>
+        </div>
+    ''';
+    
     _rootElement.setInnerHtml(html, treeSanitizer: NULL_TREE_SANITIZER);
-    _rootElement.querySelectorAll("[destination]").onClick.listen(_onMouseClick);
+    //_rootElement.querySelectorAll("[destination]").onClick.listen(_onMouseClick);
     _setupTimer();
   }
 
@@ -108,7 +160,7 @@ class FooterComp implements ShadowRootAware {
 
   TemplateService _templateService;
   ProfileService _profileService;
-  ScreenDetectorService _scrDet;
+  //ScreenDetectorService _scrDet;
 
-  var _streamListener;
+  //var _streamListener;
 }

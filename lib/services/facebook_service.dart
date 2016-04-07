@@ -6,6 +6,7 @@ import 'package:webclient/models/contest.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'dart:html';
 import 'package:webclient/models/achievement.dart';
+import 'package:webclient/utils/host_server.dart';
 
 @Injectable()
 class FacebookService {
@@ -20,8 +21,8 @@ class FacebookService {
 
     _instance = this;
   }
-  
-  static String get _rootUrl => window.location.toString().split("#")[0];
+
+  static String get _rootUrl => "${HostServer.domain}/";
 
   static Map inscribeInContest(String contestId) {
     return _buildShareMap('contest_inscription', "$_rootUrl#/sec/${contestId}");
@@ -68,7 +69,7 @@ class FacebookService {
           'hashtag': getLocalizedText('${prefix}_hastag', substitutions),
           'url': link,
           'title': getLocalizedText('${prefix}_title', substitutions),
-          'image': "$_rootUrl/images/${getLocalizedText('${prefix}_img', substitutions)}",
+          'image': "${_rootUrl}images/${getLocalizedText('${prefix}_img', substitutions)}",
           'selector-prefix': '#shareWrapper'
         };
   }

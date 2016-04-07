@@ -9,6 +9,9 @@
 		<meta name="title" content="Fútbol Cuatro">
 		<meta name="description" content="Fútbol Cuatro, el nuevo Daily Fantasy Manager de Deportes Cuatro. Compite todos los días y demuestra que eres el que más sabe de fútbol.">
 		
+		<meta name="theme-color" content="#041822"> <!-- Chrome, Firefox OS, Opera and Vivaldi -->
+		<meta name="msapplication-navbutton-color" content="#041822"> <!-- Windows Phone -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="#041822"> <!-- iOS Safari -->
 		
 		<title>Fútbol Cuatro</title>
 		
@@ -174,6 +177,12 @@
 		})(window,document,'script','dataLayer','GTM-59WQB7');</script>
 		<!-- End Google Tag Manager -->
 		
+		<div class="cookie-warning" id="CookieWarning">
+			Este sitio web utiliza cookies para recopilar información estadística sobre su navegación.
+			Si continúa navegando, consideramos que acepta su uso.
+			<button id="CookieAcceptButton" class="cookie-accept-btt">Aceptar</button>
+		</div>
+		
 		<header id="NavigationBar">
 			<div class="navigation-bar-wrapper">
 				<img class="header-brand" title="Logo Futbol Cuatro el juego" alt="Logo de Futbol Cuatro el juego" src="/img/Logo-Futbol-Cuatro-el-juego.png">
@@ -203,6 +212,9 @@
 					<h2 class="compete-and-win">Compite y gana todos los días</h2>
 					<p>Sin esperar al final de la temporada</p>
 					<a id="botonjugar1" class="button-aspect" href="http://futbolcuatro.epiceleven.com/?mixp_landing=BotonJugar1">Juega Gratis</a>
+					<a id="botonjugarappstore" target="_blank" class="button-app-store" href="https://itunes.apple.com/es/app/futbol-cuatro/id1091515990">
+						<img src="/img/app-store-button.png">
+					</a>
 				</div>
 			</div>
 		</section>
@@ -332,9 +344,47 @@
 					}
 				};
 			})();
+			
 			document.getElementById("GoTopButton").onclick = function() {
 				window.scrollTo(0, 0);
 			};
+			
+			(function() {
+				function getCookie(cname) {
+					var name = cname + "=";
+					var ca = document.cookie.split(';');
+					for(var i = 0; i < ca.length; i++) {
+						var c = ca[i];
+						while (c.charAt(0) == ' ') c = c.substring(1);
+						if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+					}
+					return "";
+				}
+				
+				var cookieNoticeAccepted = getCookie("cookie_notice_accepted");
+				if (cookieNoticeAccepted != "true") {
+					document.getElementById("CookieWarning").classList.add("show");
+					document.getElementById("CookieAcceptButton").onclick = function() {
+						var d = new Date();
+						d.setTime(d.getTime() + (365*24*60*60*1000));
+						var expires = "expires=" + d.toUTCString() + ";";
+						document.cookie = "cookie_notice_accepted=true; " + expires + " path=/";
+						document.getElementById("CookieWarning").classList.remove("show");
+					};
+				}
+			})();
+			/*
+			(function() {
+				alert("Android: " + ((navigator.userAgent.indexOf("Android") > -1)? "TRUE": "false")
+						+ "\nCriOS: " + ((navigator.userAgent.indexOf("CriOS") > -1)? "TRUE": "false")
+						+ "\niPhone: " + ((navigator.userAgent.indexOf("iPhone") > -1)? "TRUE": "false")
+						+ "\niPad: " + ((navigator.userAgent.indexOf("iPad") > -1)? "TRUE": "false")
+						+ "\niPod: " + ((navigator.userAgent.indexOf("iPod") > -1)? "TRUE": "false")
+						+ "\nWebOS: " + ((navigator.userAgent.indexOf("WebOS") > -1)? "TRUE": "false")
+						+ "\nBlackBerry : " + ((navigator.userAgent.indexOf("BlackBerry") > -1)? "TRUE": "false")
+						+ "\nMac : " + ((navigator.userAgent.indexOf("Mac") > -1)? "TRUE": "false"));
+			})();
+			*/
 		</script>
 	</body>
 </html>

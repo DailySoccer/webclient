@@ -270,7 +270,12 @@ tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(
             </div>
             <div class="acceptTermsAndConditionsWrapper">
               <!--input id="acceptTermsAndConditions" name="acceptTermsAndConditions" type="checkbox" ng-model="theAcceptTnC" tabindex="5"-->
-              <span class="termsAndConditionsText" ng-bind-html-unsafe="getLocalizedText('acceptTermsAndPrivacyPolicy')"></span>
+              <p class="termsAndConditionsText">
+                {{getLocalizedText('acceptTermsAndPrivacyPolicy0')}}
+                <span class="link-aspect" externaldest='http://www.futbolcuatro.com/terminos-de-uso/'>{{getLocalizedText('acceptTermsAndPrivacyPolicy1')}}</span> 
+                {{getLocalizedText('acceptTermsAndPrivacyPolicy2')}}
+                <span class="link-aspect" externaldest='http://www.futbolcuatro.com/politica-de-privacidad/'>{{getLocalizedText('acceptTermsAndPrivacyPolicy3')}}</span>.
+              </p>
             </div>
           </div>
             
@@ -581,7 +586,7 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
   <div class="default-section-header">{{getLocalizedText('title')}}</div>
   <div class="profile-content">
 
-    <div class="personal-data profile-section">
+    <div class="personal-data profile-section" ng-if="!userData.isLoggedByUUID">
       <div class="data-content">
         <div class="data-row"><span class="data-key">{{getLocalizedText("fullname")}}:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
         <div class="data-row"><span class="data-key">{{getLocalizedText("nick")}}:</span><span class="data-value">{{userData.nickName}}</span></div>

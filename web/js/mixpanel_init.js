@@ -9,10 +9,10 @@
       
       if (isDev) {
         console.log("isLocalhost: " + isLocalHost + 
-                    "\nisForcedProd: " + isForcedProd + 
-                    "\nisNgrok: " + isNgrok + 
-                    "\nisStaging: " + isStaging + 
-                    "\nisDev: " + isDev);
+                    " | isForcedProd: " + isForcedProd + 
+                    " | isNgrok: " + isNgrok + 
+                    " | isStaging: " + isStaging + 
+                    " | isDev: " + isDev);
       }
       
       return !isDev;

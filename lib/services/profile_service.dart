@@ -66,11 +66,11 @@ class ProfileService {
     GameMetrics.peopleSet({"\$email": email, "\$created": new DateTime.now()});
     
     return _server.facebookLogin(accessToken, id, name, email).then((Map loginResponseJson) {
-      String metricsEvent = GameMetrics.LOGIN_FB_SUCCESSFUL;
+      String metricsEvent = GameMetrics.LOGIN_SUCCESSFUL;
       if (loginResponseJson.containsKey("action") && loginResponseJson["action"] == "signup") {
-        metricsEvent = GameMetrics.SIGNUP_FB_SUCCESSFUL;
+        metricsEvent = GameMetrics.SIGNUP_SUCCESSFUL;
       }
-      GameMetrics.logEvent(metricsEvent);
+      GameMetrics.logEvent(metricsEvent, {"action via": "Facebook"});
       GameMetrics.trackConversion(false);
       
       return _onLoginResponse(loginResponseJson);

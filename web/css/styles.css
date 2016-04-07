@@ -13307,32 +13307,6 @@ main-menu-f2p {
   width: 100%;
   font-size: 0pt;
 }
-main-menu-f2p {
-  height: 87px;
-}
-main-menu-f2p .beta-label {
-  font-family: 'Exo', sans-serif;
-  font-weight: 700;
-  font-size: 8pt;
-  color: #000000;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
-  display: inline-block;
-  width: 100%;
-  background-color: #fa9c19;
-  text-align: center;
-  height: 17px;
-  border-width: 0 0 1px 0;
-  border-style: solid;
-  border-color: #ffffff;
-  border-radius: 0;
-  z-index: 998;
-}
-.global-logged-in main-menu-f2p .beta-label {
-  position: fixed;
-  display: block;
-  top: 70px;
-}
 .navbar {
   margin-bottom: 0;
   border-radius: 0;

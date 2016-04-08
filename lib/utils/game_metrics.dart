@@ -11,7 +11,7 @@ class GameMetrics {
   static String ENTER_FROM_FUTBOL_CUATRO = "Traffic Source FutbolCuatro";
   static String COMING_FROM_SOCIAL_UTM = "Traffic Source UTM";
   static String LANDING_PAGE = "Landing Page";
-  static String PAGE_READY = "Load Web App Completed";
+  static String PAGE_READY = "Load WebApp Completed";
   
   // Mobile only
   static String DEPRECATED_VERSION = "Update Notification Displayed";

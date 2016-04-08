@@ -70,7 +70,7 @@ class ProfileService {
       if (loginResponseJson.containsKey("action") && loginResponseJson["action"] == "signup") {
         metricsEvent = GameMetrics.SIGNUP_SUCCESSFUL;
       }
-      GameMetrics.logEvent(metricsEvent, {"action via": "Facebook"});
+      GameMetrics.logEvent(metricsEvent, {"action via": "facebook"});
       GameMetrics.trackConversion(false);
       
       return _onLoginResponse(loginResponseJson);

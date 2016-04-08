@@ -13647,13 +13647,14 @@ main-menu-f2p .beta-label {
     color: #434343;
     background-color: #dcdcdc;
   }
-  #mainMenu #menuSlide .navbar-nav li.right-menu.open > menu-a,
-  #mainMenu #menuSlide .navbar-nav li.right-menu.open > menu-a:focus,
-  #mainMenu #menuSlide .navbar-nav li.right-menu.open > menu-a:hover {
+  #mainMenu #menuSlide .navbar-nav li.right-menu > menu-a,
+  #mainMenu #menuSlide .navbar-nav li.right-menu > menu-a:focus,
+  #mainMenu #menuSlide .navbar-nav li.right-menu > menu-a:hover {
     color: #000000;
     background-color: #dcdcdc;
+    display: none;
   }
-  #mainMenu #menuSlide .navbar-nav li.right-menu.open > menu-a::after {
+  #mainMenu #menuSlide .navbar-nav li.right-menu > menu-a::after {
     font-family: 'Glyphicons Halflings' !important;
     content: "\E114" !important;
     font-size: 10pt !important;
@@ -13665,13 +13666,16 @@ main-menu-f2p .beta-label {
   #mainMenu #menuSlide ul.dropdown-menu {
     padding: 0px;
   }
+  #mainMenu #menuSlide ul.dropdown-menu > li:nth-child(1) {
+    border-top: 0;
+  }
   #mainMenu #menuSlide ul.dropdown-menu > li > menu-a {
     cursor: pointer;
-    padding: 10px 0px 10px 40px;
+    padding: 10px 0px 10px 15px;
   }
   #mainMenu #menuSlide ul.dropdown-menu > li > a {
     cursor: pointer;
-    padding: 10px 0px 10px 40px;
+    padding: 10px 0px 10px 15px;
   }
   #mainMenu #menuSlide ul.dropdown-menu > li > menu-a:focus {
     color: #000000;
@@ -13680,6 +13684,16 @@ main-menu-f2p .beta-label {
   #mainMenu #menuSlide ul.dropdown-menu > li > a:focus {
     color: #000000;
     background-color: #dcdcdc;
+  }
+  #mainMenu .right-menu.username-dropdown-toggle ul.dropdown-menu {
+    display: block;
+    position: static;
+    float: none;
+    width: auto;
+    margin-top: 0;
+    background-color: transparent;
+    border: 0;
+    box-shadow: none;
   }
   #mainMenu .open > #desktopUserMenu.dropdown-menu {
     display: none;

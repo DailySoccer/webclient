@@ -243,10 +243,11 @@ main-menu-f2p when (@beta) {
 						}
 					}
 					// Submenu de usuario
-					&.right-menu.open {
+					&.right-menu {
 						> menu-a, > menu-a:focus, > menu-a:hover {
 							color: @black;
 							background-color: @greyLight;
+							display: none;
 						}
 						// Cambiamos la flechita a abierto
 						> menu-a::after {
@@ -262,13 +263,16 @@ main-menu-f2p when (@beta) {
 	  	ul.dropdown-menu {
 				padding: 0px;
 				> li {
+					&:nth-child(1) {
+						border-top: 0;
+					}
 					> menu-a {
 							cursor:pointer;
-							padding: 10px 0px 10px 40px;
+							padding: 10px 0px 10px 15px;
 					}
 					> a {
 							cursor:pointer;
-							padding: 10px 0px 10px 40px;
+							padding: 10px 0px 10px 15px;
 					}
 					> menu-a:focus {
 						color: @black;
@@ -281,6 +285,18 @@ main-menu-f2p when (@beta) {
 				}
 			}
 		}
+		
+		.right-menu.username-dropdown-toggle ul.dropdown-menu {
+			display: block;
+			position: static;
+			float: none;
+			width: auto;
+			margin-top: 0;
+			background-color: transparent;
+			border: 0;
+			box-shadow: none;
+		}
+		
 		.open > #desktopUserMenu.dropdown-menu {
 			display: none;
 		}

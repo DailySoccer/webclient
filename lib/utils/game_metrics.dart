@@ -11,7 +11,7 @@ class GameMetrics {
   static String ENTER_FROM_FUTBOL_CUATRO = "Traffic Source FutbolCuatro";
   static String COMING_FROM_SOCIAL_UTM = "Traffic Source UTM";
   static String LANDING_PAGE = "Landing Page";
-  static String PAGE_READY = "Load Web App Completed";
+  static String PAGE_READY = "Load WebApp Completed";
   
   // Mobile only
   static String DEPRECATED_VERSION = "Update Notification Displayed";
@@ -22,8 +22,8 @@ class GameMetrics {
   static String SIGNUP_SUCCESSFUL = "SignUp Completed";
   static String LOGIN_ATTEMPTED = "Login Email Started";
   static String LOGIN_SUCCESSFUL = "Login Email Completed";
-  static String LOGIN_FB_SUCCESSFUL = "Login FB Completed";
-  static String SIGNUP_FB_SUCCESSFUL = "SignUp FB Completed";
+  // static String LOGIN_FB_SUCCESSFUL = "Login FB Completed";
+  // static String SIGNUP_FB_SUCCESSFUL = "SignUp FB Completed";
   static String LOGIN_FB_PERMISSIONS_DENIED = "Login FB Permissions Denied";
   static String LOGIN_FB_REREQUEST_ACCEPTED = "Login FB Rerequest Accepted";
   static String LOGIN_FB_REREQUEST_REJECTED = "Login FB Rerequest Rejected";

@@ -586,7 +586,7 @@ class EnterContestComp implements DetachAware {
 
     // Si ya no estamos en modo seleción, scrolleamos hasta la altura del dinero que nos queda disponible.
     if (!isSelectingSoccerPlayer) {
-      scrDet.scrollTo('.enter-contest-actions-wrapper', fps: 15, smooth: true, duration: 200, offset: -querySelector('#mainAppMenu').offsetHeight, ignoreInDesktop: true);
+      scrDet.scrollTo('.enter-contest-actions-wrapper', fps: 15, smooth: false, duration: 200, offset: -querySelector('#mainAppMenu').offsetHeight, ignoreInDesktop: true);
     }
 
     if(!_isRestoringTeam) {
@@ -662,6 +662,7 @@ class EnterContestComp implements DetachAware {
     updateFavorites();
   }
 
+  
   void createFantasyTeam() {
     if (isNegativeBalance)
       return;

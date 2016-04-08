@@ -29,6 +29,7 @@ class FBLogin {
   void loginFB() {
     //js.JsObject fb = js.context["FB"];
     //fb.callMethod("getLoginStatus", [onGetLoginStatus]);
+    GameMetrics.logEvent(GameMetrics.LOGIN_ATTEMPTED, {"action via": "facebook"});
     JsUtils.runJavascript(null, "facebookLoginStatus", [onGetLoginStatus]);
   }
 

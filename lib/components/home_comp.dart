@@ -73,6 +73,9 @@ class HomeComp implements DetachAware {
 
   void _refreshMyContests() {
     if (!userIsLogged) {
+      // Intentamos cargar lo más pronto posible los TemplateSoccerPlayers
+      TemplateService.Instance.refreshTemplateSoccerPlayers();
+ 
       loadingService.isLoading = false;
       refreshContestTileHTML();
       return;

@@ -61,19 +61,7 @@ class ShopComp implements DetachAware{
     
     _catalogService.getCatalog()
       .then((catalog) {
-        for (Product info in catalog.where((e) => e.gained.isEnergy)) {
-          Map eProduct = {};
-          eProduct["info"]         = info;
-          eProduct["id"]           = info.id;
-          eProduct["description"]  = info.description;
-          eProduct["captionImage"] = info.imageUrl;
-          eProduct["price"]        = info.price.toString();
-          eProduct["quantity"]     = info.gained.amount.toInt().toString();
-          eProduct["purchasable"]  = true;
-          energyProducts.add(eProduct);
-        }
-        
-        // Esperar a que iTunes Connect actualice correctamente los productos de GOLD
+        // Esperar a que iTunes Connect / Play Store actualice correctamente los productos de GOLD
         return _paymentService.waitingForReady();
       })
       .then((_) {
@@ -89,6 +77,18 @@ class ShopComp implements DetachAware{
           gProduct["isMostPopular"]  = info.mostPopular;
           gProduct["purchasable"]    = true;
           goldProducts.add(gProduct);
+        }
+      
+        for (Product info in _catalogService.products.where((e) => e.gained.isEnergy)) {
+          Map eProduct = {};
+          eProduct["info"]         = info;
+          eProduct["id"]           = info.id;
+          eProduct["description"]  = info.description;
+          eProduct["captionImage"] = info.imageUrl;
+          eProduct["price"]        = info.price.toString();
+          eProduct["quantity"]     = info.gained.amount.toInt().toString();
+          eProduct["purchasable"]  = true;
+          energyProducts.add(eProduct);
         }
       });
     

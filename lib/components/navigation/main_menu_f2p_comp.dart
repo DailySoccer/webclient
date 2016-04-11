@@ -454,9 +454,11 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     return '''
       <li highlights="home"          class="mainLink"> ${getMainMenuLink("home")}         </li>
       <li highlights="lobby"         class="mainLink"> ${getMainMenuLink("lobby")}        </li>
-      ${profileService.isLoggedIn? '<li highlights="my_contests"   class="mainLink"> ${getMainMenuLink("my_contests")}  </li>' +
-                                   '<li highlights="leaderboard"   class="mainLink"> ${getMainMenuLink("leaderboard")}  </li>' +
-                                   '<li highlights="notifications" class="mainLink"> ${getMainMenuLink("notifications")}</li>': ''}
+      ${profileService.isLoggedIn? '<li highlights="my_contests"    class="mainLink"> ${getMainMenuLink("my_contests")}  </li>' +
+                                   '<li highlights="leaderboard"    class="mainLink"> ${getMainMenuLink("leaderboard")}  </li>' +
+                                   '<li highlights="notifications"  class="mainLink"> ${getMainMenuLink("notifications")}</li>': ''}
+      ${_scrDet.isXsScreen?        '<li highlights="scouting"       class="mainLink"> ${getMainMenuLink("scouting")}     </li>' +
+                                   '<li highlights="create_contest" class="mainLink"> ${getMainMenuLink("challenge")}    </li>': ''}
       <li highlights="help_info"     class="mainLink"> ${getMainMenuLink("help")}         </li>
     ''';
   }
@@ -479,6 +481,12 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
         break;
       case "notifications":
         ret = '''<menu-a id="menuNotifications" destination="notifications">                  ${StringUtils.translate("notifications", "mainmenu")}${_notificationsCountCode}</menu-a>''';
+        break;
+      case "scouting":
+        ret = '''<menu-a id="menuScouting"    destination="scouting">                         ${StringUtils.translate("scouting", "mainmenu")} </menu-a>''';
+        break;
+      case "challenge":
+        ret = '''<menu-a id="menuChallenge"   destination="create_contest">                   ${StringUtils.translate("challenge-your-friends", "mainmenu")} </menu-a>''';
         break;
       case "help":
         ret = '''<menu-a id="menuHelp"        destination="help_info">                        ${StringUtils.translate("howitworks",    "mainmenu")}</menu-a>''';

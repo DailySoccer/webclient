@@ -445,6 +445,8 @@
       "mycontest"                       : "Mis torneos",
       "leaderboard"                     : "Clasificación",
       "notifications"                   : "Notificaciones",
+      "scouting"                        : "Ojeador",
+      "challenge-your-friends"          : "Reta a tus amigos",
       "howitworks"                      : "Ayuda",
       "myaccount"                       : "Mi Cuenta",
       "shop"                            : "Tienda",
@@ -458,8 +460,7 @@
       "login"                           : "Entrar",
       "signup"                          : "Regístrate",
 
-
-      "beta"                          : "Versión Beta"
+      "beta"                            : "Versión Beta"
     }
     ,"contestlist"                      :
     {

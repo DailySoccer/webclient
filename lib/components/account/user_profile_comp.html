@@ -11,6 +11,8 @@
       </div>
       <div class="data-action">
         <button class="action-button edit-button" ng-click="editPersonalData()">{{getLocalizedText("buttonedit")}}</button>
+        <button class="action-button edit-button" ng-click="bindWithFutbolCuatroJoin()">JOIN</button>
+        <button class="action-button edit-button" ng-click="bindWithFutbolCuatroLogin()">LOGIN</button>
       </div>
     </div>
 
@@ -29,7 +31,7 @@
     </div>
     <div class="ranking-data profile-section">
       <div class="data-header">
-          <span class="data-header-title">{{getLocalizedText("ranking")}}</span>
+        <span class="data-header-title">{{getLocalizedText("ranking")}}</span>
       </div>
       <div class="data-content">
         <div class="single-ranking-info ranking-by-points wrapper-box">
@@ -38,7 +40,6 @@
           <span class="ranking-score" ng-show="!loadingService.isLoading">{{rankingPoints}} {{getLocalizedText("abrevpoints", "common")}}</span>
         </div>
         <div class="single-ranking-info ranking-by-money wrapper-box">
-        
           <img class="ranking-badge" src="images/icon-coin-lg.png">
           <span class="ranking-position" ng-show="!loadingService.isLoading">{{rankingMoneyPosition}}º</span>
           <span class="ranking-score" ng-show="!loadingService.isLoading">{{rankingMoney}}</span>
@@ -50,3 +51,5 @@
     </div>
   </div>
 </div>
+
+<ng-view></ng-view>

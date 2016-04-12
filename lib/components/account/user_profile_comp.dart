@@ -7,6 +7,9 @@ import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/leaderboard_service.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/components/modal_comp.dart';
+import 'package:logging/logging.dart';
+import 'package:webclient/services/server_error.dart';
 
 @Component(
     selector: 'user-profile',
@@ -96,6 +99,49 @@ class UserProfileComp {
   }
   void goLeaderboard() { 
     _router.go('leaderboard', {'section': 'points', 'userId': _profileManager.user.userId});
+  }
+
+  void bindWithFutbolCuatroJoin() {
+    ModalComp.open(_router, "user_profile.join", {}, bindWithFutbolCuatroCallback);
+  }
+  void bindWithFutbolCuatroLogin() {
+    ModalComp.open(_router, "user_profile.login", {}, bindWithFutbolCuatroCallback);
+  }
+  void bindWithFutbolCuatroCallback(Map params) {
+    if (params["action"] == "join") {
+      String firstName = params["firstName"];
+      String lastName = params["lastName"];
+      String email = params["email"];
+      String nickName = params["nickName"];
+      String password = params["password"];
+      Function onError = params["onError"];
+      
+      //_profileService.signup(firstName, lastName, email, nickName, password)
+      
+      
+    } else if (params["action"] == "login") {
+      String email = params["email"];
+      String password = params["password"];
+      Function onError = params["onError"];
+
+      loadingService.isLoading = true;
+      _profileManager.getAccount(email, password).then((accountInfo) {
+          loadingService.isLoading = false;
+          
+          // Select the right account
+          
+          
+          ModalComp.deleteCallback();
+          ModalComp.close();
+          
+        }).catchError((ServerError error) {
+          loadingService.isLoading = false;
+          onError(error);
+        }, test: (error) => error is ServerError);
+      
+    } else {
+      Logger.root.severe("Unknown BindWithFutbolCuatro process on user profile");
+    }
   }
 
   ProfileService _profileManager;

@@ -70,6 +70,16 @@ class ModalComp implements DetachAware, ShadowRootAware {
     }
   }
 
+  static bool hasCallback() {
+    return _returnCallback != null;
+  }
+  static void callCallback([params = null]) {
+    _returnCallback(params);
+  }
+  static void deleteCallback() {
+    _returnCallback = null;
+  }
+  
   ScreenDetectorService _scrDet;
   Router _router;
   Element _element;

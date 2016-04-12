@@ -331,7 +331,19 @@ class WebClientApp extends Module {
       ,'user_profile': ngRoute(
           path: '/user_profile',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
-          viewHtml: '<user-profile></user-profile>'
+          viewHtml: '<user-profile></user-profile>',
+          mount: {
+            'login': ngRoute(
+                path: '/login',
+                preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+                viewHtml: '''<modal window-size="'md'"><login is-modal="true"></login></modal>'''
+            )
+            ,'join': ngRoute(
+                path: '/join',
+                preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
+                viewHtml: '''<modal window-size="'md'"><join is-modal="true"></join></modal>'''
+            )
+          }
       )
       ,'edit_profile': ngRoute(
           path: '/edit_profile',

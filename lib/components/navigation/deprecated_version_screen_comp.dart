@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'dart:html';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/utils/host_server.dart';
 
 @Component(
     selector: 'deprecated-version-screen',
@@ -23,8 +24,10 @@ class DeprecatedVersionScreenComp {
   }
   
   void goShop() {
-    GameMetrics.logEvent(GameMetrics.REQUEST_VERSION_UPDATE, {"store": "iOS"});
-    window.open("itms-apps://itunes.apple.com/app/$marketAppId", "_system");
+    GameMetrics.logEvent(GameMetrics.REQUEST_VERSION_UPDATE, {"store": HostServer.isAndroidPlatform ? "Android" : "iOS"});
+    
+    String linkToStore = HostServer.isAndroidPlatform ? "market://details?id=$marketAppId" : "itms-apps://itunes.apple.com/app/$marketAppId";
+    window.open(linkToStore, "_system");
   }
   
   bool _show = false;
@@ -34,7 +37,7 @@ class DeprecatedVersionScreenComp {
       _show = aValue;
       
       if (_show) {
-        GameMetrics.logEvent(GameMetrics.DEPRECATED_VERSION, {"store": "iOS"});
+        GameMetrics.logEvent(GameMetrics.DEPRECATED_VERSION, {"store": HostServer.isAndroidPlatform ? "Android" : "iOS"});
       }
     }
   }

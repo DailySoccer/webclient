@@ -20,27 +20,27 @@ import 'package:webclient/components/modal_comp.dart';
 class JoinComp implements ShadowRootAware {
   static const String PATH_IF_SUCCESS = "home";
   static const String PATH_IF_FAIL = "home";
-
+  
   int MIN_PASSWORD_LENGTH = 8;
   int MIN_NICKNAME_LENGTH = 4;
   int MAX_NICKNAME_LENGTH = 30;
-
+  
   String firstName  = "";
   String lastName   = "";
   String email      = "";
   String nickName   = "";
   String password   = "";
   String rePassword   = "";
-
+  
   Element nickNameElement;
   Element emailElement;
   Element passwordElement;
   Element rePasswordElement;
-
+  
   Element nicknameError;
   Element emailError;
   Element passwordError;
-
+  
   static final String ERROR_CREATING_YOUR_ACCOUNT = "ERROR_CREATING_YOUR_ACCOUNT";
   static final String ERROR_NICKNAME_TAKEN = "ERROR_NICKNAME_TAKEN";
   static final String ERROR_EMAIL_TAKEN = "ERROR_EMAIL_TAKEN";

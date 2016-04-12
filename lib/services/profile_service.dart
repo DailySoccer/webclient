@@ -310,6 +310,28 @@ class ProfileService {
     return completer.future;
   }
   
+  Future<Map> getAccount(String email, String password) {
+    Completer<Map> completer = new Completer<Map>();
+    
+    new Timer(new Duration(milliseconds: 500), () => completer.complete({
+      "name": "nombre",
+      "balance": 100,
+      "managerLevel": 10,
+      "historyCount": 123,
+      "playingCount": 321,
+    }));
+    
+    return completer.future;
+  }
+  
+  Future bindUUID(String firstName, String lastName, String email, String nickName, String password) {
+    Completer completer = new Completer();
+    
+    new Timer(new Duration(milliseconds: 500), () => completer.complete());
+    
+    return completer.future;
+  }
+  
   static String decorateLog(String text) {
     ProfileService profile = ProfileService.instance;
     if (profile != null){

@@ -40,6 +40,7 @@ class UserProfileComp {
 
   UserProfileComp(this._router, this._profileService, this._contestsService, this.loadingService, LeaderboardService leaderboardService) {
     loadingService.isLoading = true;
+    _fbLogin = new FBLogin(_router, _profileService, fbLoginCallback);
     leaderboardService.getUsers()
           .then((List<User> users) {
 
@@ -108,18 +109,25 @@ class UserProfileComp {
     _router.go('leaderboard', {'section': 'points', 'userId': _profileService.user.userId});
   }
 
+  void fbLoginCallback() {
+    
+  }
+  
   void bindWithServer() {
     modalSelectServerBind();
   }
   void bindWithFacebook() {
-
+    FBLogin.onLogin = fbLoginCallback;
+    _fbLogin.loginFB();
   }
   
   void bindWithServerJoin() {
     ModalComp.open(_router, "user_profile.join", {}, bindWithServerCallback);
+    FBLogin.onLogin = fbLoginCallback;
   }
   void bindWithServerLogin() {
     ModalComp.open(_router, "user_profile.login", {}, bindWithServerCallback);
+    FBLogin.onLogin = fbLoginCallback;
   }
   void bindWithServerCallback(Map params) {
     if (params["action"] == "join") {
@@ -129,7 +137,7 @@ class UserProfileComp {
       String nickName = params["nickName"];
       String password = params["password"];
       Function onError = params["onError"];
-
+      
       getAccount(email, password, (ServerError error) {
         if (error.responseError == "not_exists") {
           loadingService.isLoading = true;
@@ -156,7 +164,7 @@ class UserProfileComp {
     }
   }
   
-  Future getAccount(String email, String password, void onError(ServerError)) {
+  void getAccount(String email, String password, void onError(ServerError)) {
     loadingService.isLoading = true;
     _profileService.getAccount(email, password).then((Map accountInfo) {
           loadingService.isLoading = false;
@@ -197,7 +205,7 @@ class UserProfileComp {
   }
   
 
-  Future<bool> modalSelectAccount(deviceAccount, cloudAccount) {
+  void modalSelectAccount(deviceAccount, cloudAccount) {
   
     Element modalWindow = querySelector("#modalWindow");
   
@@ -225,7 +233,7 @@ class UserProfileComp {
     }
     
     modalWindow.setInnerHtml(''' 
-              <div id="alertRoot" class="modal container modal-select-acount" tabindex="-1" role="dialog" style="display: block;">
+              <div id="alertRoot" class="modal container modal-select-account" tabindex="-1" role="dialog" style="display: block;">
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content"> 
     
@@ -277,6 +285,7 @@ class UserProfileComp {
           case "onJoin":
             bindWithServerJoin();
             break;
+          case "onCancel": break;
           default:
             print("undefined");
         }
@@ -286,7 +295,7 @@ class UserProfileComp {
       }
       
       modalWindow.setInnerHtml(''' 
-              <div id="alertRoot" class="modal container modal-select-acount" tabindex="-1" role="dialog" style="display: block;">
+              <div id="alertRoot" class="modal container modal-bind-join-login" tabindex="-1" role="dialog" style="display: block;">
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="alert-content">
@@ -296,8 +305,12 @@ class UserProfileComp {
                           <div class="panel-body">
                             <!-- Alert Text -->
                             <div class="form-description" id="modalContentWrapper">
-                              <button class="ok-button" eventCallback="onLogin">Login</button>
-                              <button class="ok-button" eventCallback="onJoin">Crear Cuenta</button>
+                              <img src="images/alertCloseButton.png" eventCallback="onCancel" class="close-button">
+                              <h1>Vincula una cuenta</h1>
+                              <p>¿Ya tienes una cuenta?</p>
+                              <button class="bind-type-button" eventCallback="onLogin">Login</button>
+                              <p>Si quieres crear una cuenta nueva, haz click aquí</p>
+                              <button class="bind-type-button" eventCallback="onJoin">Crear Cuenta</button>
                             </div>
                           </div>
                         </div>
@@ -336,4 +349,5 @@ class UserProfileComp {
   ProfileService _profileService;
   ContestsService _contestsService;
   Router _router;
+  FBLogin _fbLogin;
 }

@@ -3,9 +3,12 @@
   <div class="profile-content">
 
     <div class="binding-actions profile-section" ng-if="!userData.isLoggedByUUID">
-      <div class="data-action">
-        <button class="action-button" ng-click="bindWithFacebook()">FACEBOOK</button>
-        <button class="action-button" ng-click="bindWithServer()">Futbol Cuatro</button>
+      <div class="data-content">
+        <span>Vincula tu cuenta a un perfil</span>
+      </div>
+      <div class="data-action single-button">
+        <button class="action-button facebook-button" ng-click="bindWithFacebook()">Facebook</button>
+        <button class="action-button server-button" ng-click="bindWithServer()">Fútbol Cuatro</button>
       </div>
     </div>
     

@@ -8220,6 +8220,7 @@ scoring-rules:after,
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
   cursor: pointer;
@@ -8297,11 +8298,13 @@ fieldset[disabled] .contests-list-f2p-root .contestSlot .action-section .action-
 .contests-list-f2p-root .contestSlot .action-section .action-button.active:focus {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .contests-list-f2p-root .contestSlot .action-section .action-button:active:hover,
 .contests-list-f2p-root .contestSlot .action-section .action-button.active:hover {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .contests-list-f2p-root .contestSlot .action-section .action-button:focus {
   background-color: #a1c931;
@@ -8309,6 +8312,7 @@ fieldset[disabled] .contests-list-f2p-root .contestSlot .action-section .action-
 }
 .contests-list-f2p-root .contestSlot .action-section .action-button:hover {
   background-color: #acd142;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -8825,6 +8829,7 @@ button#personalDataContent .header button.close {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -8905,11 +8910,13 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save.active:focus {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:active:hover,
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save.active:hover {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:focus {
   background-color: #a1c931;
@@ -8917,6 +8924,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
 }
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:hover {
   background-color: #acd142;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -8990,6 +8998,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -9034,11 +9043,13 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel.active:focus {
   color: #ffffff;
   background-color: #c9c9c9;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:active:hover,
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel.active:hover {
   color: #ffffff;
   background-color: #c9c9c9;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:focus {
   background-color: #afafaf;
@@ -9046,6 +9057,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
 }
 #personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:hover {
   background-color: #bcbcbc;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -9315,6 +9327,7 @@ fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-but
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
   text-transform: uppercase;
@@ -9393,11 +9406,13 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
 #addFundsContent .add-founds-box button.add-funds-button.active:focus {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #addFundsContent .add-founds-box button.add-funds-button:active:hover,
 #addFundsContent .add-founds-box button.add-funds-button.active:hover {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #addFundsContent .add-founds-box button.add-funds-button:focus {
   background-color: #a1c931;
@@ -9405,6 +9420,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
 }
 #addFundsContent .add-founds-box button.add-funds-button:hover {
   background-color: #acd142;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -10271,6 +10287,7 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
   transition: All 0.08s ease-out;
   font-size: 10pt;
   background-color: #a1c931;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   outline: none !important;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
@@ -10352,11 +10369,13 @@ fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .cont
 #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active:focus {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active:hover,
 #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active:hover {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:focus {
   background-color: #a1c931;
@@ -10364,6 +10383,7 @@ fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .cont
 }
 #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:hover {
   background-color: #acd142;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -10557,6 +10577,7 @@ fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .cont
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
   width: 100px;
@@ -10639,11 +10660,13 @@ fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .en
 #mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button.active:focus {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button:active:hover,
 #mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button.active:hover {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button:focus {
   background-color: #a1c931;
@@ -10651,6 +10674,7 @@ fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .en
 }
 #mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button:hover {
   background-color: #acd142;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -11042,6 +11066,7 @@ fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .en
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
   margin: 0 5px 0 5px;
@@ -11103,6 +11128,7 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
 #trainerPointsShopComp .buttons-wrapper .cancel-button.active:focus {
   color: #ffffff;
   background-color: #c9c9c9;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #goldShopComp .buttons-wrapper .cancel-button:active:hover,
 #trainerPointsShopComp .buttons-wrapper .cancel-button:active:hover,
@@ -11110,6 +11136,7 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
 #trainerPointsShopComp .buttons-wrapper .cancel-button.active:hover {
   color: #ffffff;
   background-color: #c9c9c9;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #goldShopComp .buttons-wrapper .cancel-button:focus,
 #trainerPointsShopComp .buttons-wrapper .cancel-button:focus {
@@ -11119,6 +11146,7 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
 #goldShopComp .buttons-wrapper .cancel-button:hover,
 #trainerPointsShopComp .buttons-wrapper .cancel-button:hover {
   background-color: #bcbcbc;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -11443,6 +11471,7 @@ fieldset[disabled] #trainerPointsShopComp .buttons-wrapper .cancel-button {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
   margin: 0 5px 0 5px;
@@ -11490,11 +11519,13 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
 #energyshopComp .buttons-wrapper .cancel-button.active:focus {
   color: #ffffff;
   background-color: #c9c9c9;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #energyshopComp .buttons-wrapper .cancel-button:active:hover,
 #energyshopComp .buttons-wrapper .cancel-button.active:hover {
   color: #ffffff;
   background-color: #c9c9c9;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #energyshopComp .buttons-wrapper .cancel-button:focus {
   background-color: #afafaf;
@@ -11502,6 +11533,7 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
 }
 #energyshopComp .buttons-wrapper .cancel-button:hover {
   background-color: #bcbcbc;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -11852,6 +11884,7 @@ fieldset[disabled] #energyshopComp .buttons-wrapper .cancel-button {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #59add5;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
   line-height: 25px;
@@ -11929,11 +11962,13 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
 .fantasy-team-header .edit-team .btn-edit-team.active:focus {
   color: #ffffff;
   background-color: #82c1df;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .fantasy-team-header .edit-team .btn-edit-team:active:hover,
 .fantasy-team-header .edit-team .btn-edit-team.active:hover {
   color: #ffffff;
   background-color: #82c1df;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .fantasy-team-header .edit-team .btn-edit-team:focus {
   background-color: #59add5;
@@ -11941,6 +11976,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
 }
 .fantasy-team-header .edit-team .btn-edit-team:hover {
   background-color: #6db7da;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -12237,6 +12273,7 @@ fieldset[disabled] .fantasy-team-header .edit-team .btn-edit-team {
   font-weight: 400;
   font-size: 10pt;
   background-color: #a1c931;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   outline: none !important;
   font-family: 'Exo', sans-serif;
   font-weight: 500;
@@ -12323,11 +12360,13 @@ fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-b
 .fantasy-team-list .fantasy-team-slot .column-score .change-btt.active:focus {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .fantasy-team-list .fantasy-team-slot .column-score .change-btt:active:hover,
 .fantasy-team-list .fantasy-team-slot .column-score .change-btt.active:hover {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .fantasy-team-list .fantasy-team-slot .column-score .change-btt:focus {
   background-color: #a1c931;
@@ -12335,6 +12374,7 @@ fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-b
 }
 .fantasy-team-list .fantasy-team-slot .column-score .change-btt:hover {
   background-color: #acd142;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -13002,6 +13042,7 @@ fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-b
     font-size: 10pt;
     text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
     background-color: #afafaf;
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
     color: #ffffff;
     outline: none !important;
     width: 96%;
@@ -13046,11 +13087,13 @@ fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-b
   .btn-cancel-player-selection.active:focus {
     color: #ffffff;
     background-color: #c9c9c9;
+    box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
   }
   .btn-cancel-player-selection:active:hover,
   .btn-cancel-player-selection.active:hover {
     color: #ffffff;
     background-color: #c9c9c9;
+    box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
   }
   .btn-cancel-player-selection:focus {
     background-color: #afafaf;
@@ -13058,6 +13101,7 @@ fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-b
   }
   .btn-cancel-player-selection:hover {
     background-color: #bcbcbc;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
     outline: none !important;
     color: #ffffff;
   }
@@ -13160,6 +13204,7 @@ lobbyf2p week-calendar .week-calendar {
   font-weight: 400;
   font-size: 10pt;
   background-color: #a1c931;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   outline: none !important;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
@@ -13244,11 +13289,13 @@ fieldset[disabled] .challenge-your-friends button {
 .challenge-your-friends button.active:focus {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .challenge-your-friends button:active:hover,
 .challenge-your-friends button.active:hover {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .challenge-your-friends button:focus {
   background-color: #a1c931;
@@ -13256,6 +13303,7 @@ fieldset[disabled] .challenge-your-friends button {
 }
 .challenge-your-friends button:hover {
   background-color: #acd142;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -14349,6 +14397,7 @@ main-menu-f2p {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #59add5;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
 }
@@ -14428,11 +14477,13 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
 #mainMenu #menuNotLoggedIn .button-wrapper .button-join.active:focus {
   color: #ffffff;
   background-color: #82c1df;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #mainMenu #menuNotLoggedIn .button-wrapper .button-join:active:hover,
 #mainMenu #menuNotLoggedIn .button-wrapper .button-join.active:hover {
   color: #ffffff;
   background-color: #82c1df;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #mainMenu #menuNotLoggedIn .button-wrapper .button-join:focus {
   background-color: #59add5;
@@ -14440,6 +14491,7 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
 }
 #mainMenu #menuNotLoggedIn .button-wrapper .button-join:hover {
   background-color: #6db7da;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -14928,6 +14980,7 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
   margin: 0 auto;
@@ -15007,11 +15060,13 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
 .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest.active:focus {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest:active:hover,
 .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest.active:hover {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest:focus {
   background-color: #a1c931;
@@ -15019,6 +15074,7 @@ fieldset[disabled] .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contes
 }
 .no-contests-wrapper .no-contest-bottom-row .btn-go-to-contest:hover {
   background-color: #acd142;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -15561,6 +15617,7 @@ social-share twitter-share {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -15607,11 +15664,13 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-
 #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel.active:focus {
   color: #ffffff;
   background-color: #c9c9c9;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel:active:hover,
 #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel.active:hover {
   color: #ffffff;
   background-color: #c9c9c9;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel:focus {
   background-color: #afafaf;
@@ -15619,6 +15678,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-
 }
 #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-cancel:hover {
   background-color: #bcbcbc;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -15679,6 +15739,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -15762,11 +15823,13 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-
 #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add.active:focus {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add:active:hover,
 #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add.active:hover {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add:focus {
   background-color: #a1c931;
@@ -15774,6 +15837,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-
 }
 #modalSoccerPlayerStats .soccer-player-stats-header .actions-header-xs .button-add:hover {
   background-color: #acd142;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -16005,6 +16069,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .actions-
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -16087,11 +16152,13 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
 #modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add.active:focus {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add:active:hover,
 #modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add.active:hover {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add:focus {
   background-color: #a1c931;
@@ -16099,6 +16166,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
 }
 #modalSoccerPlayerStats .soccer-player-stats-header .next-match-wrapper .button-add:hover {
   background-color: #acd142;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -16646,6 +16714,7 @@ fieldset[disabled] #modalSoccerPlayerStats .soccer-player-stats-header .next-mat
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -16692,11 +16761,13 @@ fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-cancel {
 #modalSoccerPlayerStats .actions-footer-xs .button-cancel.active:focus {
   color: #ffffff;
   background-color: #c9c9c9;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #modalSoccerPlayerStats .actions-footer-xs .button-cancel:active:hover,
 #modalSoccerPlayerStats .actions-footer-xs .button-cancel.active:hover {
   color: #ffffff;
   background-color: #c9c9c9;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #modalSoccerPlayerStats .actions-footer-xs .button-cancel:focus {
   background-color: #afafaf;
@@ -16704,6 +16775,7 @@ fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-cancel {
 }
 #modalSoccerPlayerStats .actions-footer-xs .button-cancel:hover {
   background-color: #bcbcbc;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -16764,6 +16836,7 @@ fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-cancel {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -16847,11 +16920,13 @@ fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-add {
 #modalSoccerPlayerStats .actions-footer-xs .button-add.active:focus {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #modalSoccerPlayerStats .actions-footer-xs .button-add:active:hover,
 #modalSoccerPlayerStats .actions-footer-xs .button-add.active:hover {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #modalSoccerPlayerStats .actions-footer-xs .button-add:focus {
   background-color: #a1c931;
@@ -16859,6 +16934,7 @@ fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-add {
 }
 #modalSoccerPlayerStats .actions-footer-xs .button-add:hover {
   background-color: #acd142;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -17078,6 +17154,7 @@ fieldset[disabled] #modalSoccerPlayerStats .actions-footer-xs .button-add {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -17124,11 +17201,13 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection {
 .enter-contest-actions-wrapper .btn-cancel-player-selection.active:focus {
   color: #ffffff;
   background-color: #c9c9c9;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .enter-contest-actions-wrapper .btn-cancel-player-selection:active:hover,
 .enter-contest-actions-wrapper .btn-cancel-player-selection.active:hover {
   color: #ffffff;
   background-color: #c9c9c9;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .enter-contest-actions-wrapper .btn-cancel-player-selection:focus {
   background-color: #afafaf;
@@ -17136,6 +17215,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection {
 }
 .enter-contest-actions-wrapper .btn-cancel-player-selection:hover {
   background-color: #bcbcbc;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -17222,6 +17302,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-cancel-player-selection {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
 }
@@ -17262,11 +17343,13 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-clean-lineup-list {
 .enter-contest-actions-wrapper .btn-clean-lineup-list.active:focus {
   color: #ffffff;
   background-color: #c9c9c9;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .enter-contest-actions-wrapper .btn-clean-lineup-list:active:hover,
 .enter-contest-actions-wrapper .btn-clean-lineup-list.active:hover {
   color: #ffffff;
   background-color: #c9c9c9;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .enter-contest-actions-wrapper .btn-clean-lineup-list:focus {
   background-color: #afafaf;
@@ -17274,6 +17357,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-clean-lineup-list {
 }
 .enter-contest-actions-wrapper .btn-clean-lineup-list:hover {
   background-color: #bcbcbc;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -17338,6 +17422,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-clean-lineup-list {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -17415,11 +17500,13 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 .enter-contest-actions-wrapper .btn-confirm-lineup-list.active:focus {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .enter-contest-actions-wrapper .btn-confirm-lineup-list:active:hover,
 .enter-contest-actions-wrapper .btn-confirm-lineup-list.active:hover {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .enter-contest-actions-wrapper .btn-confirm-lineup-list:focus {
   background-color: #a1c931;
@@ -17427,6 +17514,7 @@ fieldset[disabled] .enter-contest-actions-wrapper .btn-confirm-lineup-list {
 }
 .enter-contest-actions-wrapper .btn-confirm-lineup-list:hover {
   background-color: #acd142;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -18056,6 +18144,7 @@ soccer-players-list:after {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
   padding: 5px;
@@ -18134,11 +18223,13 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.add.active:focus {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.add:active:hover,
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.add.active:hover {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.add:focus {
   background-color: #a1c931;
@@ -18146,6 +18237,7 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
 }
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.add:hover {
   background-color: #acd142;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -18204,6 +18296,7 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
   transition: All 0.08s ease-out;
   font-size: 10pt;
   background-color: #59add5;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   outline: none !important;
   padding: 5px;
   line-height: 18px;
@@ -18286,11 +18379,13 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.remove.active:focus {
   color: #ffffff;
   background-color: #82c1df;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.remove:active:hover,
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.remove.active:hover {
   color: #ffffff;
   background-color: #82c1df;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.remove:focus {
   background-color: #59add5;
@@ -18298,6 +18393,7 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
 }
 .soccer-players-list .soccer-players-list-slot .column-action .action-button.remove:hover {
   background-color: #6db7da;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -18472,6 +18568,7 @@ fieldset[disabled] .soccer-players-list .soccer-players-list-slot .column-action
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #59add5;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
   -webkit-transition: none;
@@ -18553,11 +18650,13 @@ fieldset[disabled] .soccer-players-filter .filter-by-position .button-filter-pos
 .soccer-players-filter .filter-by-position .button-filter-position.active:focus {
   color: #ffffff;
   background-color: #82c1df;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .soccer-players-filter .filter-by-position .button-filter-position:active:hover,
 .soccer-players-filter .filter-by-position .button-filter-position.active:hover {
   color: #ffffff;
   background-color: #82c1df;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .soccer-players-filter .filter-by-position .button-filter-position:focus {
   background-color: #59add5;
@@ -18565,6 +18664,7 @@ fieldset[disabled] .soccer-players-filter .filter-by-position .button-filter-pos
 }
 .soccer-players-filter .filter-by-position .button-filter-position:hover {
   background-color: #6db7da;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -18651,6 +18751,7 @@ fieldset[disabled] .soccer-players-filter .filter-by-position .button-filter-pos
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #59add5;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
   padding: 10px 15px;
@@ -18735,11 +18836,13 @@ fieldset[disabled] .soccer-players-filter .filter-by-position .button-filter-fav
 .soccer-players-filter .filter-by-position .button-filter-favorites.active:focus {
   color: #ffffff;
   background-color: #82c1df;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .soccer-players-filter .filter-by-position .button-filter-favorites:active:hover,
 .soccer-players-filter .filter-by-position .button-filter-favorites.active:hover {
   color: #ffffff;
   background-color: #82c1df;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .soccer-players-filter .filter-by-position .button-filter-favorites:focus {
   background-color: #59add5;
@@ -18747,6 +18850,7 @@ fieldset[disabled] .soccer-players-filter .filter-by-position .button-filter-fav
 }
 .soccer-players-filter .filter-by-position .button-filter-favorites:hover {
   background-color: #6db7da;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -20337,6 +20441,7 @@ button.panel .panel-heading button.close {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
 }
@@ -20413,11 +20518,13 @@ fieldset[disabled] .panel .panel-body .new-row .enter-button {
 .panel .panel-body .new-row .enter-button.active:focus {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .panel .panel-body .new-row .enter-button:active:hover,
 .panel .panel-body .new-row .enter-button.active:hover {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .panel .panel-body .new-row .enter-button:focus {
   background-color: #a1c931;
@@ -20425,6 +20532,7 @@ fieldset[disabled] .panel .panel-body .new-row .enter-button {
 }
 .panel .panel-body .new-row .enter-button:hover {
   background-color: #acd142;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -20485,6 +20593,7 @@ fieldset[disabled] .panel .panel-body .new-row .enter-button {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -20568,11 +20677,13 @@ fieldset[disabled] .panel .panel-body .new-row .enter-button-half {
 .panel .panel-body .new-row .enter-button-half.active:focus {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .panel .panel-body .new-row .enter-button-half:active:hover,
 .panel .panel-body .new-row .enter-button-half.active:hover {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .panel .panel-body .new-row .enter-button-half:focus {
   background-color: #a1c931;
@@ -20580,6 +20691,7 @@ fieldset[disabled] .panel .panel-body .new-row .enter-button-half {
 }
 .panel .panel-body .new-row .enter-button-half:hover {
   background-color: #acd142;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -20638,6 +20750,7 @@ fieldset[disabled] .panel .panel-body .new-row .enter-button-half {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
   position: relative;
@@ -20685,11 +20798,13 @@ fieldset[disabled] .panel .panel-body .new-row .cancel-button-half {
 .panel .panel-body .new-row .cancel-button-half.active:focus {
   color: #ffffff;
   background-color: #c9c9c9;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .panel .panel-body .new-row .cancel-button-half:active:hover,
 .panel .panel-body .new-row .cancel-button-half.active:hover {
   color: #ffffff;
   background-color: #c9c9c9;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .panel .panel-body .new-row .cancel-button-half:focus {
   background-color: #afafaf;
@@ -20697,6 +20812,7 @@ fieldset[disabled] .panel .panel-body .new-row .cancel-button-half {
 }
 .panel .panel-body .new-row .cancel-button-half:hover {
   background-color: #bcbcbc;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -20837,6 +20953,7 @@ fieldset[disabled] .panel .panel-body .new-row .cancel-button-half {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
   margin: 0 5px 0 5px;
@@ -20920,11 +21037,13 @@ fieldset[disabled] .autocentered-buttons-wrapper .ok-button {
 .autocentered-buttons-wrapper .ok-button.active:focus {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .autocentered-buttons-wrapper .ok-button:active:hover,
 .autocentered-buttons-wrapper .ok-button.active:hover {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .autocentered-buttons-wrapper .ok-button:focus {
   background-color: #a1c931;
@@ -20932,6 +21051,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .ok-button {
 }
 .autocentered-buttons-wrapper .ok-button:hover {
   background-color: #acd142;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -20990,6 +21110,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .ok-button {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
   margin: 0 5px 0 5px;
@@ -21037,11 +21158,13 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
 .autocentered-buttons-wrapper .cancel-button.active:focus {
   color: #ffffff;
   background-color: #c9c9c9;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .autocentered-buttons-wrapper .cancel-button:active:hover,
 .autocentered-buttons-wrapper .cancel-button.active:hover {
   color: #ffffff;
   background-color: #c9c9c9;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .autocentered-buttons-wrapper .cancel-button:focus {
   background-color: #afafaf;
@@ -21049,6 +21172,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
 }
 .autocentered-buttons-wrapper .cancel-button:hover {
   background-color: #bcbcbc;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -21221,6 +21345,9 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
 }
 .invisible {
   display: none;
+}
+#alertRoot {
+  padding: 0;
 }
 #alertRoot .panel {
   border: 1px solid white;
@@ -21589,6 +21716,9 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
 #alertRoot.facebook-rerequest-modal .autocentered-buttons-wrapper .button-box .ok-button {
   text-transform: uppercase;
   font-size: 12pt;
+}
+#modalRoot #joinRoot #signupbox {
+  margin-top: 0;
 }
 #loginBox,
 #joinRoot {
@@ -22105,6 +22235,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   background-color: #59add5;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   outline: none !important;
   font-family: 'Exo', sans-serif;
   font-weight: 700;
@@ -22190,11 +22321,13 @@ fieldset[disabled] .profile-content .profile-section .data-action .action-button
 .profile-content .profile-section .data-action .action-button.active:focus {
   color: #ffffff;
   background-color: #82c1df;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .profile-content .profile-section .data-action .action-button:active:hover,
 .profile-content .profile-section .data-action .action-button.active:hover {
   color: #ffffff;
   background-color: #82c1df;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .profile-content .profile-section .data-action .action-button:focus {
   background-color: #59add5;
@@ -22202,6 +22335,7 @@ fieldset[disabled] .profile-content .profile-section .data-action .action-button
 }
 .profile-content .profile-section .data-action .action-button:hover {
   background-color: #6db7da;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -22230,6 +22364,44 @@ fieldset[disabled] .profile-content .profile-section .data-action .action-button
   background-color: #59add5;
   outline: none !important;
   color: #ffffff;
+}
+.profile-content .profile-section.binding-actions .data-content {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #214a5f;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+  text-align: center;
+  margin: 10px;
+  padding: 0px;
+}
+@media (min-width: 768px) {
+  .profile-content .profile-section.binding-actions .data-content {
+    min-height: 0px;
+  }
+}
+.profile-content .profile-section.binding-actions .data-action {
+  padding-bottom: 0px;
+  border: 0px;
+  min-height: 0;
+}
+.profile-content .profile-section.binding-actions .data-action .action-button {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  margin: 0px 1%;
+  width: 48%;
+}
+.profile-content .profile-section.binding-actions .data-action .action-button.facebook-button {
+  background-color: #4a65a0;
+}
+.profile-content .profile-section.binding-actions .data-action .action-button.server-button {
+  background-color: #fe4110;
+}
+.profile-content .profile-section.binding-actions .data-action.single-buttons .action-button {
+  width: 98%;
 }
 .profile-content .profile-section.personal-data .data-header {
   text-align: left;
@@ -22344,6 +22516,7 @@ fieldset[disabled] .profile-content .profile-section .data-action .action-button
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   background-color: #a1c931;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   outline: none !important;
   font-family: 'Exo', sans-serif;
   font-weight: 700;
@@ -22426,11 +22599,13 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
 .profile-content .profile-section.pocket-data .data-action .action-button.active:focus {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .profile-content .profile-section.pocket-data .data-action .action-button:active:hover,
 .profile-content .profile-section.pocket-data .data-action .action-button.active:hover {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .profile-content .profile-section.pocket-data .data-action .action-button:focus {
   background-color: #a1c931;
@@ -22438,6 +22613,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
 }
 .profile-content .profile-section.pocket-data .data-action .action-button:hover {
   background-color: #acd142;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -22533,6 +22709,195 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
 .profile-content .profile-section.ranking-data .data-action {
   border-bottom: 0px none #000000;
 }
+.modal-bind-join-login#alertRoot .panel {
+  background-color: #f8f8f8;
+}
+.modal-bind-join-login#alertRoot .panel .panel-body {
+  padding-bottom: 35px;
+}
+.modal-bind-join-login#alertRoot .panel .form-description .close-button {
+  font-size: 0;
+  float: right;
+  width: 12pt;
+  height: 12pt;
+  cursor: pointer;
+}
+.modal-bind-join-login#alertRoot .panel .form-description h1 {
+  font-family: 'Exo', sans-serif;
+  font-weight: 700;
+  font-size: 12pt;
+  color: #214a5f;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
+  margin-top: 0;
+  margin-left: 12pt;
+}
+.modal-bind-join-login#alertRoot .panel .form-description p {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
+  color: #0d75a6;
+  text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
+  margin: 15px 15px;
+  padding-top: 25px;
+}
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button {
+  background-color: #428bca;
+  border-color: #357ebd;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-width: 0;
+  -webkit-transition: All 0.08s ease-out;
+  -moz-transition: All 0.08s ease-out;
+  -ms-transition: All 0.08s ease-out;
+  -o-transition: All 0.08s ease-out;
+  transition: All 0.08s ease-out;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  background-color: #a1c931;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
+  outline: none !important;
+  font-family: 'Exo', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  width: 100%;
+  padding: 10px;
+}
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:hover,
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:focus,
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:active,
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.active,
+.open .dropdown-toggle.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:active,
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.active,
+.open .dropdown-toggle.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button {
+  background-image: none;
+}
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.disabled,
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button[disabled],
+fieldset[disabled] .modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button,
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.disabled:hover,
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button[disabled]:hover,
+fieldset[disabled] .modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:hover,
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.disabled:focus,
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button[disabled]:focus,
+fieldset[disabled] .modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:focus,
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.disabled:active,
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button[disabled]:active,
+fieldset[disabled] .modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:active,
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.disabled.active,
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button[disabled].active,
+fieldset[disabled] .modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button .badge {
+  color: #428bca;
+  background-color: #ffffff;
+}
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:focus,
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:active:focus,
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:hover,
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:focus {
+  color: #333333;
+  text-decoration: none;
+}
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:active,
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.disabled,
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button[disabled],
+fieldset[disabled] .modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:active,
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.active {
+  box-shadow: none;
+}
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:active:focus,
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.active:focus {
+  color: #ffffff;
+  background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
+}
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:active:hover,
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.active:hover {
+  color: #ffffff;
+  background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
+}
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:hover {
+  background-color: #acd142;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
+  outline: none !important;
+  color: #ffffff;
+}
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:hover:focus {
+  background-color: #a1c931;
+  color: #ffffff;
+}
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:active,
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.active {
+  box-shadow: none;
+  background-color: #a1c931;
+}
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:hover {
+  background-color: #acd142;
+  outline: none !important;
+  color: #ffffff;
+}
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.disabled,
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button[disabled],
+fieldset[disabled] .modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button {
+  background-color: #b5d657;
+  color: #ebebeb;
+  cursor: not-allowed !important;
+}
+.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.close {
+  background-color: #a1c931;
+  outline: none !important;
+  color: #ffffff;
+}
 .global-history-contest #mainWrapper.wrapper-content-container,
 .global-view-contest-entry #mainWrapper.wrapper-content-container,
 .global-live-contest #mainWrapper.wrapper-content-container {
@@ -22618,6 +22983,7 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #59add5;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
   line-height: 25px;
@@ -22696,11 +23062,13 @@ fieldset[disabled] .info-complete-bar .invite-friends {
 .info-complete-bar .invite-friends.active:focus {
   color: #ffffff;
   background-color: #82c1df;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .info-complete-bar .invite-friends:active:hover,
 .info-complete-bar .invite-friends.active:hover {
   color: #ffffff;
   background-color: #82c1df;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .info-complete-bar .invite-friends:focus {
   background-color: #59add5;
@@ -22708,6 +23076,7 @@ fieldset[disabled] .info-complete-bar .invite-friends {
 }
 .info-complete-bar .invite-friends:hover {
   background-color: #6db7da;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -24425,6 +24794,7 @@ users-list#usersList > .epic-tooltip {
   transition: All 0.08s ease-out;
   font-size: 10pt;
   background-color: #a1c931;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   outline: none !important;
   display: block;
   width: 100%;
@@ -24512,11 +24882,13 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.active:focus {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:active:hover,
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest.active:hover {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:focus {
   background-color: #a1c931;
@@ -24524,6 +24896,7 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
 }
 #createContest .create-contest-section-wrapper .create-contest-section .data-input-wrapper .btn-confirm-contest:hover {
   background-color: #acd142;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -24781,6 +25154,7 @@ fieldset[disabled] #createContest .create-contest-section-wrapper .create-contes
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
   margin-top: 5px;
@@ -24859,11 +25233,13 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
 #helpInfo .block-last .description-right .button-play.active:focus {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #helpInfo .block-last .description-right .button-play:active:hover,
 #helpInfo .block-last .description-right .button-play.active:hover {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #helpInfo .block-last .description-right .button-play:focus {
   background-color: #a1c931;
@@ -24871,6 +25247,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
 }
 #helpInfo .block-last .description-right .button-play:hover {
   background-color: #acd142;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -25073,6 +25450,7 @@ fieldset[disabled] #helpInfo .block-last .description-right .button-play {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
   margin: 0 auto;
@@ -25153,11 +25531,13 @@ fieldset[disabled] #helpInfo .button-back {
 #helpInfo .button-back.active:focus {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #helpInfo .button-back:active:hover,
 #helpInfo .button-back.active:hover {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 #helpInfo .button-back:focus {
   background-color: #a1c931;
@@ -25165,6 +25545,7 @@ fieldset[disabled] #helpInfo .button-back {
 }
 #helpInfo .button-back:hover {
   background-color: #acd142;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -25292,6 +25673,7 @@ fieldset[disabled] #helpInfo .button-back {
   -o-transition: All 0.08s ease-out;
   transition: All 0.08s ease-out;
   background-color: #a1c931;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   outline: none !important;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
@@ -25375,11 +25757,13 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 .tutorial-row .tutorial-tile .button-go-tutorial.active:focus {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .tutorial-row .tutorial-tile .button-go-tutorial:active:hover,
 .tutorial-row .tutorial-tile .button-go-tutorial.active:hover {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .tutorial-row .tutorial-tile .button-go-tutorial:focus {
   background-color: #a1c931;
@@ -25387,6 +25771,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 }
 .tutorial-row .tutorial-tile .button-go-tutorial:hover {
   background-color: #acd142;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -26127,6 +26512,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
   transition: All 0.08s ease-out;
   font-size: 10pt;
   background-color: #a1c931;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   outline: none !important;
   line-height: 0;
   font-family: 'Open Sans', sans-serif;
@@ -26209,11 +26595,13 @@ fieldset[disabled] .favorites-wrapper .soccer-players-list .soccer-players-list-
 .favorites-wrapper .soccer-players-list .soccer-players-list-slot .column-action .action-button.add.active:focus {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .favorites-wrapper .soccer-players-list .soccer-players-list-slot .column-action .action-button.add:active:hover,
 .favorites-wrapper .soccer-players-list .soccer-players-list-slot .column-action .action-button.add.active:hover {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .favorites-wrapper .soccer-players-list .soccer-players-list-slot .column-action .action-button.add:focus {
   background-color: #a1c931;
@@ -26221,6 +26609,7 @@ fieldset[disabled] .favorites-wrapper .soccer-players-list .soccer-players-list-
 }
 .favorites-wrapper .soccer-players-list .soccer-players-list-slot .column-action .action-button.add:hover {
   background-color: #acd142;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -26287,6 +26676,7 @@ fieldset[disabled] .favorites-wrapper .soccer-players-list .soccer-players-list-
   transition: All 0.08s ease-out;
   font-size: 10pt;
   background-color: #59add5;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   outline: none !important;
   line-height: 0;
   font-family: 'Open Sans', sans-serif;
@@ -26369,11 +26759,13 @@ fieldset[disabled] .favorites-wrapper .soccer-players-list .soccer-players-list-
 .favorites-wrapper .soccer-players-list .soccer-players-list-slot .column-action .action-button.remove.active:focus {
   color: #ffffff;
   background-color: #82c1df;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .favorites-wrapper .soccer-players-list .soccer-players-list-slot .column-action .action-button.remove:active:hover,
 .favorites-wrapper .soccer-players-list .soccer-players-list-slot .column-action .action-button.remove.active:hover {
   color: #ffffff;
   background-color: #82c1df;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .favorites-wrapper .soccer-players-list .soccer-players-list-slot .column-action .action-button.remove:focus {
   background-color: #59add5;
@@ -26381,6 +26773,7 @@ fieldset[disabled] .favorites-wrapper .soccer-players-list .soccer-players-list-
 }
 .favorites-wrapper .soccer-players-list .soccer-players-list-slot .column-action .action-button.remove:hover {
   background-color: #6db7da;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -26736,6 +27129,7 @@ textareateams-filter .teams-filter-wrapper .teams-selector-filter {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   background-color: #59add5;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   outline: none !important;
   font-family: 'Exo', sans-serif;
   font-weight: 700;
@@ -26819,11 +27213,13 @@ fieldset[disabled] .friend-element-wrapper .challenge-friend {
 .friend-element-wrapper .challenge-friend.active:focus {
   color: #ffffff;
   background-color: #82c1df;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .friend-element-wrapper .challenge-friend:active:hover,
 .friend-element-wrapper .challenge-friend.active:hover {
   color: #ffffff;
   background-color: #82c1df;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .friend-element-wrapper .challenge-friend:focus {
   background-color: #59add5;
@@ -26831,6 +27227,7 @@ fieldset[disabled] .friend-element-wrapper .challenge-friend {
 }
 .friend-element-wrapper .challenge-friend:hover {
   background-color: #6db7da;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -26964,6 +27361,7 @@ fieldset[disabled] .friend-element-wrapper .challenge-friend {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
 }
@@ -27040,11 +27438,13 @@ fieldset[disabled] .deprecated-version-screen button {
 .deprecated-version-screen button.active:focus {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .deprecated-version-screen button:active:hover,
 .deprecated-version-screen button.active:hover {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .deprecated-version-screen button:focus {
   background-color: #a1c931;
@@ -27052,6 +27452,7 @@ fieldset[disabled] .deprecated-version-screen button {
 }
 .deprecated-version-screen button:hover {
   background-color: #acd142;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -27629,6 +28030,7 @@ body {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #59add5;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
 }
@@ -27669,11 +28071,13 @@ fieldset[disabled] .btn-default {
 .btn-default.active:focus {
   color: #ffffff;
   background-color: #82c1df;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .btn-default:active:hover,
 .btn-default.active:hover {
   color: #ffffff;
   background-color: #82c1df;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .btn-default:focus {
   background-color: #59add5;
@@ -27681,6 +28085,7 @@ fieldset[disabled] .btn-default {
 }
 .btn-default:hover {
   background-color: #6db7da;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -27739,6 +28144,7 @@ fieldset[disabled] .btn-default {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #a1c931;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
 }
@@ -27779,11 +28185,13 @@ fieldset[disabled] .btn-primary {
 .btn-primary.active:focus {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .btn-primary:active:hover,
 .btn-primary.active:hover {
   color: #ffffff;
   background-color: #b5d657;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .btn-primary:focus {
   background-color: #a1c931;
@@ -27791,6 +28199,7 @@ fieldset[disabled] .btn-primary {
 }
 .btn-primary:hover {
   background-color: #acd142;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -27849,6 +28258,7 @@ fieldset[disabled] .btn-primary {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #afafaf;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
 }
@@ -27889,11 +28299,13 @@ fieldset[disabled] .btn-cancel {
 .btn-cancel.active:focus {
   color: #ffffff;
   background-color: #c9c9c9;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .btn-cancel:active:hover,
 .btn-cancel.active:hover {
   color: #ffffff;
   background-color: #c9c9c9;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .btn-cancel:focus {
   background-color: #afafaf;
@@ -27901,6 +28313,7 @@ fieldset[disabled] .btn-cancel {
 }
 .btn-cancel:hover {
   background-color: #bcbcbc;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
@@ -27959,6 +28372,7 @@ fieldset[disabled] .btn-cancel {
   font-size: 10pt;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #fa9c19;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   outline: none !important;
 }
@@ -27999,11 +28413,13 @@ fieldset[disabled] .btn-orange {
 .btn-orange.active:focus {
   color: #ffffff;
   background-color: #fbb14b;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .btn-orange:active:hover,
 .btn-orange.active:hover {
   color: #ffffff;
   background-color: #fbb14b;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
 .btn-orange:focus {
   background-color: #fa9c19;
@@ -28011,6 +28427,7 @@ fieldset[disabled] .btn-orange {
 }
 .btn-orange:hover {
   background-color: #fba732;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }

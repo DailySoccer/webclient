@@ -302,6 +302,8 @@ class FBLogin {
   String _state = null;
   String get state => _state;
 
+  static void set onLogin(Function f) { _onLogin = f; }
+  
   bool get isConnected => _state == "connected";
 
   static List<Function> _openGraphRequestQueue = new List<Function>();

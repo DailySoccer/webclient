@@ -37,7 +37,7 @@ class UserProfileComp {
     return StringUtils.translate(key, group);
   }
 
-  UserProfileComp(this._router, this._profileService, this.loadingService, LeaderboardService leaderboardService) {
+  UserProfileComp(this._router, this._profileService, this._contestsService, this.loadingService, LeaderboardService leaderboardService) {
     loadingService.isLoading = true;
     leaderboardService.getUsers()
           .then((List<User> users) {
@@ -107,13 +107,13 @@ class UserProfileComp {
     _router.go('leaderboard', {'section': 'points', 'userId': _profileService.user.userId});
   }
 
-  void bindWithFutbolCuatroJoin() {
-    ModalComp.open(_router, "user_profile.join", {}, bindWithFutbolCuatroCallback);
+  void bindWithServerJoin() {
+    ModalComp.open(_router, "user_profile.join", {}, bindWithServerCallback);
   }
-  void bindWithFutbolCuatroLogin() {
-    ModalComp.open(_router, "user_profile.login", {}, bindWithFutbolCuatroCallback);
+  void bindWithServerLogin() {
+    ModalComp.open(_router, "user_profile.login", {}, bindWithServerCallback);
   }
-  void bindWithFutbolCuatroCallback(Map params) {
+  void bindWithServerCallback(Map params) {
     if (params["action"] == "join") {
       String firstName = params["firstName"];
       String lastName = params["lastName"];
@@ -180,13 +180,11 @@ class UserProfileComp {
       deviceAccountInfo["managerLevel"] = _profileService.user.managerLevel;
       deviceAccountInfo["historyCount"] = numVirtualHistoryContests + numRealHistoryContests;
       deviceAccountInfo["playingCount"] = numLiveContests + numUpcomingContests;
-      
 
-      ModalComp.open(_router, "user_profile.selectAccount", {}, bindWithFutbolCuatroCallback);
+      //ModalComp.open(_router, "user_profile.selectAccount", {}, bindWithFutbolCuatroCallback);
 
       modalSelectAccount(deviceAccountInfo, cloudAccountInfo);
-        
-
+      
     });
   }
   
@@ -240,21 +238,25 @@ class UserProfileComp {
 
     // Aqui hago el setup de los botones. (que tiene que hacer cada botón al ser clickado... ver: main_menu_slide_comp).
     modalWindow.querySelectorAll("[eventCallback]").onClick.listen((sender) {
+      
       String eventCallback = sender.currentTarget.attributes["eventCallback"];
       switch (eventCallback) {
-            case "onCancel":
-              print("cancel");
-              break;
-            case "onConfirm":
-              print("confirm");
-              break;
-            case "onCloudAccount":
-              print("cloud");
-              break;
-            case "onDeviceAccount":
-              print("device");
-              break;
-          }
+        case "onCancel":
+          print("cancel");
+          break;
+        case "onConfirm":
+          print("confirm");
+          break;
+        case "onCloudAccount":
+          print("cloud");
+          break;
+        case "onDeviceAccount":
+          print("device");
+          break;
+      }
+      JsUtils.runJavascript('#alertRoot', 'modal', "hide");
+      BackdropComp.instance.hide();
+      modalWindow.children.remove(modalWindow.querySelector('#alertRoot'));
     });
   
     JsUtils.runJavascript('#alertRoot', 'modal', null);

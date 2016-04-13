@@ -19,7 +19,7 @@
 				.exo_bold(12pt, @blueDark);
 				@media (min-width: @screen-sm-min) {
 					.exo_bold(20pt, @blueDark);
-				}			
+				}
 			}
 			margin-bottom: 0px;
 		}
@@ -64,7 +64,40 @@
 				margin: 0px auto;
 			}
 		}
-	
+		
+		&.binding-actions {
+			.data-content {
+				.opensans_bold(10pt, @blueDark);
+				text-align: center;
+				margin: 10px;
+				padding: 0px;
+				
+				@media (min-width: @screen-sm-min) {
+					min-height: 0px;
+				}
+
+			}
+			.data-action {
+				.action-button {
+					.opensans_bold(10pt, @white);
+					margin: 0px 1%;
+					width: 48%;
+					&.facebook-button {
+						background-color: @blueFB;
+					}
+					&.server-button {
+						background-color: @redCuatro;
+					}
+				}
+				&.single-buttons .action-button {
+					width: 98%;
+				}
+				padding-bottom: 0px;
+				border: 0px;
+				min-height: 0;
+			}
+		}
+		
 		&.personal-data {
 			.data-header{
 
@@ -189,4 +222,36 @@
 
 	}
 	
+}
+
+.modal-bind-join-login#alertRoot .panel {
+	background-color: @greyUltraLight;
+	.panel-body {
+		padding-bottom: 35px;
+	}
+	.form-description {
+		.close-button {
+			font-size: 0;
+			float: right;
+			width: 12pt;
+			height: 12pt;
+			cursor: pointer;
+		}
+		h1 {
+			.exo_bold(12pt, @blueDark);
+			margin-top: 0;
+			margin-left: 12pt;
+		}
+		p {
+			.opensans_normal(12pt, @blueMed);
+			margin: 15px 15px;
+			padding-top: 25px;
+		}
+		button.bind-type-button {
+			.btn-primary();
+			.exo_bold(10pt, @white);
+			width: 100%;
+			padding: 10px;
+		}
+	}
 }

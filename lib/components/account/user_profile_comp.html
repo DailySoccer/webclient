@@ -2,6 +2,13 @@
   <div class="default-section-header">{{getLocalizedText('title')}}</div>
   <div class="profile-content">
 
+    <div class="binding-actions profile-section" ng-if="!userData.isLoggedByUUID">
+      <div class="data-action">
+        <button class="action-button" ng-click="bindWithFacebook()">FACEBOOK</button>
+        <button class="action-button" ng-click="bindWithServer()">Futbol Cuatro</button>
+      </div>
+    </div>
+    
     <div class="personal-data profile-section" ng-if="!userData.isLoggedByUUID">
       <div class="data-content">
         <div class="data-row"><span class="data-key">{{getLocalizedText("fullname")}}:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
@@ -11,9 +18,7 @@
       </div>
       <div class="data-action">
         <button class="action-button edit-button" ng-click="editPersonalData()">{{getLocalizedText("buttonedit")}}</button>
-        <button class="action-button edit-button" ng-click="bindWithServerJoin()">JOIN</button>
-        <button class="action-button edit-button" ng-click="bindWithServerLogin()">LOGIN</button>
-      </div>
+     </div>
     </div>
 
     <div class="pocket-data profile-section">

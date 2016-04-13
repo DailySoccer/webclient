@@ -16,6 +16,7 @@ import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/components/backdrop_comp.dart';
 import 'dart:html';
+import 'package:webclient/utils/fblogin.dart';
 
 @Component(
     selector: 'user-profile',
@@ -107,6 +108,13 @@ class UserProfileComp {
     _router.go('leaderboard', {'section': 'points', 'userId': _profileService.user.userId});
   }
 
+  void bindWithServer() {
+    modalSelectServerBind();
+  }
+  void bindWithFacebook() {
+
+  }
+  
   void bindWithServerJoin() {
     ModalComp.open(_router, "user_profile.join", {}, bindWithServerCallback);
   }
@@ -193,13 +201,27 @@ class UserProfileComp {
   
     Element modalWindow = querySelector("#modalWindow");
   
-    void onClose(dynamic sender) {
-      modalWindow.children.remove(modalWindow.querySelector('#alertRoot'));
-    }
-  
-    void onButtonClick(dynamic sender) {
+    void onClose(String eventCallback) {
+      
+      switch (eventCallback) {
+        case "onConfirm":
+          print("confirm");
+          break;
+        case "onCloudAccount":
+          print("cloud");
+          break;
+        case "onDeviceAccount":
+          print("device");
+          break;
+        case "onCancel":
+          print("cancel");
+        break;
+        default:
+          print("undefined");
+      }
       JsUtils.runJavascript('#alertRoot', 'modal', "hide");
       BackdropComp.instance.hide();
+      modalWindow.children.remove(modalWindow.querySelector('#alertRoot'));
     }
     
     modalWindow.setInnerHtml(''' 
@@ -237,32 +259,62 @@ class UserProfileComp {
       ''', treeSanitizer: NULL_TREE_SANITIZER);
 
     // Aqui hago el setup de los botones. (que tiene que hacer cada botón al ser clickado... ver: main_menu_slide_comp).
-    modalWindow.querySelectorAll("[eventCallback]").onClick.listen((sender) {
-      
-      String eventCallback = sender.currentTarget.attributes["eventCallback"];
-      switch (eventCallback) {
-        case "onCancel":
-          print("cancel");
-          break;
-        case "onConfirm":
-          print("confirm");
-          break;
-        case "onCloudAccount":
-          print("cloud");
-          break;
-        case "onDeviceAccount":
-          print("device");
-          break;
-      }
-      JsUtils.runJavascript('#alertRoot', 'modal', "hide");
-      BackdropComp.instance.hide();
-      modalWindow.children.remove(modalWindow.querySelector('#alertRoot'));
-    });
+    modalWindow.querySelectorAll("[eventCallback]").onClick.listen((sender) { onClose(sender.currentTarget.attributes["eventCallback"]); });
   
     JsUtils.runJavascript('#alertRoot', 'modal', null);
-    JsUtils.runJavascript('#alertRoot', 'on', {'hidden.bs.modal': (sender) { onClose(sender); } });
+    JsUtils.runJavascript('#alertRoot', 'on', {'hidden.bs.modal': (sender) { onClose("onCancel"); } });
     BackdropComp.instance.show();
   }
+  void modalSelectServerBind() {
+    
+      Element modalWindow = querySelector("#modalWindow");
+    
+      void onClose(String eventCallback) {
+        switch (eventCallback) {
+          case "onLogin":
+            bindWithServerLogin();
+            break;
+          case "onJoin":
+            bindWithServerJoin();
+            break;
+          default:
+            print("undefined");
+        }
+        JsUtils.runJavascript('#alertRoot', 'modal', "hide");
+        BackdropComp.instance.hide();
+        modalWindow.children.remove(modalWindow.querySelector('#alertRoot'));
+      }
+      
+      modalWindow.setInnerHtml(''' 
+              <div id="alertRoot" class="modal container modal-select-acount" tabindex="-1" role="dialog" style="display: block;">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="alert-content">
+                      <div id="alertBox" class="main-box">
+                        <div class="panel">
+                          <!-- Content Message and Buttons-->
+                          <div class="panel-body">
+                            <!-- Alert Text -->
+                            <div class="form-description" id="modalContentWrapper">
+                              <button class="ok-button" eventCallback="onLogin">Login</button>
+                              <button class="ok-button" eventCallback="onJoin">Crear Cuenta</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+      ''', treeSanitizer: NULL_TREE_SANITIZER);
+
+      // Aqui hago el setup de los botones. (que tiene que hacer cada botón al ser clickado... ver: main_menu_slide_comp).
+      modalWindow.querySelectorAll("[eventCallback]").onClick.listen((sender) { onClose(sender.currentTarget.attributes["eventCallback"]); });
+    
+      JsUtils.runJavascript('#alertRoot', 'modal', null);
+      JsUtils.runJavascript('#alertRoot', 'on', {'hidden.bs.modal': (sender) { onClose("onCancel"); } });
+      BackdropComp.instance.show();
+    }
 /*
   String getNotEnoughGoldContent(Money goldNeeded) {
     return '''

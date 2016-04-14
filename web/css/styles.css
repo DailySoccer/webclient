@@ -22722,11 +22722,23 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
 }
 .modal-bind-join-login#alertRoot .panel .form-description .close-button,
 .modal-select-account#alertRoot .panel .form-description .close-button {
-  font-size: 0;
+  color: #214a5f;
+  font-size: 20pt;
   float: right;
-  width: 12pt;
-  height: 12pt;
+  width: 18pt;
+  height: 14pt;
   cursor: pointer;
+  line-height: 14pt;
+}
+.modal-bind-join-login#alertRoot .panel .form-description .back-button,
+.modal-select-account#alertRoot .panel .form-description .back-button {
+  color: #214a5f;
+  font-size: 20pt;
+  float: left;
+  width: 18pt;
+  height: 14pt;
+  cursor: pointer;
+  line-height: 14pt;
 }
 .modal-bind-join-login#alertRoot .panel .form-description h1,
 .modal-select-account#alertRoot .panel .form-description h1 {
@@ -22737,7 +22749,14 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   text-transform: uppercase;
   text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   margin-top: 0;
-  margin-left: 12pt;
+}
+.modal-bind-join-login#alertRoot .panel .form-description .back-button + h1,
+.modal-select-account#alertRoot .panel .form-description .back-button + h1 {
+  margin-right: 18pt;
+}
+.modal-bind-join-login#alertRoot .panel .form-description .close-button + h1,
+.modal-select-account#alertRoot .panel .form-description .close-button + h1 {
+  margin-left: 18pt;
 }
 .modal-bind-join-login#alertRoot .panel .form-description p,
 .modal-select-account#alertRoot .panel .form-description p {
@@ -22982,7 +23001,7 @@ fieldset[disabled] .modal-select-account#alertRoot .panel .form-description butt
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  padding: 5px 25px;
+  padding: 5px 5px;
   font-size: 12pt;
   border-bottom: none;
 }
@@ -23015,6 +23034,7 @@ fieldset[disabled] .modal-select-account#alertRoot .panel .form-description butt
   height: 17px;
   display: inline-block;
   vertical-align: middle;
+  background-size: 17px 17px;
   margin-right: 5px;
 }
 .modal-select-account#alertRoot .panel .account-resume-box .account-resume-level:before {
@@ -23025,25 +23045,30 @@ fieldset[disabled] .modal-select-account#alertRoot .panel .form-description butt
   height: 17px;
   display: inline-block;
   vertical-align: middle;
+  background-size: 17px 17px;
   margin-right: 5px;
 }
 .modal-select-account#alertRoot .panel .account-resume-box .account-resume-played:before {
   content: "";
   content: " ";
-  background-image: url("../images/iconFacebook.png");
+  background-image: url("../images/VincularCuentaTrophy.png");
   width: 17px;
   height: 17px;
   display: inline-block;
   vertical-align: middle;
+  background-size: 17px 17px;
+  margin-right: 5px;
 }
 .modal-select-account#alertRoot .panel .account-resume-box .account-resume-playing:before {
   content: "";
   content: " ";
-  background-image: url("../images/iconFacebook.png");
+  background-image: url("../images/VincularCuentaBall.png");
   width: 17px;
   height: 17px;
   display: inline-block;
   vertical-align: middle;
+  background-size: 17px 17px;
+  margin-right: 5px;
 }
 .modal-select-account#alertRoot .panel button.cloud-button,
 .modal-select-account#alertRoot .panel button.device-button {
@@ -23053,7 +23078,6 @@ fieldset[disabled] .modal-select-account#alertRoot .panel .form-description butt
   margin-bottom: 0;
   font-weight: normal;
   text-align: center;
-  vertical-align: middle;
   cursor: pointer;
   background-image: none;
   border: 1px solid transparent;
@@ -23090,6 +23114,7 @@ fieldset[disabled] .modal-select-account#alertRoot .panel .form-description butt
   text-transform: uppercase;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   border-radius: 2px;
+  vertical-align: middle;
 }
 .modal-select-account#alertRoot .panel button.cloud-button:hover,
 .modal-select-account#alertRoot .panel button.device-button:hover,
@@ -23257,6 +23282,11 @@ fieldset[disabled] .modal-select-account#alertRoot .panel button.device-button {
   background-color: #a1c931;
   outline: none !important;
   color: #ffffff;
+}
+.modal-select-account#alertRoot .panel button.cloud-button i,
+.modal-select-account#alertRoot .panel button.device-button i {
+  margin-left: 10px;
+  vertical-align: middle;
 }
 .modal-select-account#alertRoot .panel button.cloud-button {
   margin-bottom: 20px;

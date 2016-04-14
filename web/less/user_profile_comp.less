@@ -232,16 +232,33 @@
 	}
 	.form-description {
 		.close-button {
-			font-size: 0;
+			color: @blueDark;
+			font-size: 20pt;
 			float: right;
-			width: 12pt;
-			height: 12pt;
+			width: 18pt;
+			height: 14pt;
 			cursor: pointer;
+			line-height: 14pt;
+		}
+		.back-button {
+			color: @blueDark;
+			font-size: 20pt;
+			float: left;
+			width: 18pt;
+			height: 14pt;
+			cursor: pointer;
+			line-height: 14pt;
 		}
 		h1 {
 			.exo_bold(12pt, @blueDark);
 			margin-top: 0;
-			margin-left: 12pt;
+		}
+		
+		.back-button + h1 {
+			margin-right: 18pt;
+		}
+		.close-button + h1 {
+			margin-left: 18pt;
 		}
 		p {
 			.opensans_normal(12pt, @blueMed);
@@ -274,7 +291,7 @@
 		
 		.account-resume-username {
 			.make-xs-column(12);
-			padding: 5px 25px;
+			padding: 5px 5px;
 			font-size: 12pt;
 			border-bottom: none;
 		}
@@ -300,20 +317,26 @@
 		.account-resume-gold:before {
 			content: "";
 			.addIcon("icon-coin-xs.png", 17px, 17px);
+			background-size: 17px 17px;
 			margin-right: 5px;
 		}
 		.account-resume-level:before {
 			content: "";
 			.addIcon("icon-star-xs.png", 17px, 17px);
+			background-size: 17px 17px;
 			margin-right: 5px;
 		}
 		.account-resume-played:before {
 			content: "";
-			.addIcon("iconFacebook.png", 17px, 17px);
+			.addIcon("VincularCuentaTrophy.png", 17px, 17px);
+			background-size: 17px 17px;
+			margin-right: 5px;
 		}
 		.account-resume-playing:before {
 			content: "";
-			.addIcon("iconFacebook.png", 17px, 17px);
+			.addIcon("VincularCuentaBall.png", 17px, 17px);
+			background-size: 17px 17px;
+			margin-right: 5px;
 		}
 	}
 	button.cloud-button, 
@@ -322,6 +345,11 @@
 		.make-xs-column(12);
 		.exo_bold(10pt, @white);
 		border-radius: 2px;
+		vertical-align: middle;
+		i {
+			margin-left: 10px;
+			vertical-align: middle;
+		}
 	}
 	button.cloud-button {
 		margin-bottom: 20px;

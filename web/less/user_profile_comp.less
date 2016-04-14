@@ -265,11 +265,18 @@
 			margin: 15px 15px;
 			padding-top: 25px;
 		}
+		p + p {
+			padding-top: 0;
+		}
+		button.confirm-button,
 		button.bind-type-button {
 			.btn-primary();
 			.exo_bold(10pt, @white);
 			width: 100%;
 			padding: 10px;
+		}
+		button.confirm-button {
+			margin-top: 20px;
 		}
 	}
 }

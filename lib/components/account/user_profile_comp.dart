@@ -205,31 +205,22 @@ class UserProfileComp {
   }
   
 
-  void modalSelectAccount(deviceAccount, cloudAccount) {
+  void modalSelectAccount(Map deviceAccount, Map cloudAccount) {
   
     Element modalWindow = querySelector("#modalWindow");
   
     void onClose(String eventCallback) {
       
-      switch (eventCallback) {
-        case "onConfirm":
-          print("confirm");
-          break;
-        case "onCloudAccount":
-          print("cloud");
-          break;
-        case "onDeviceAccount":
-          print("device");
-          break;
-        case "onCancel":
-          print("cancel");
-        break;
-        default:
-          print("undefined");
-      }
       JsUtils.runJavascript('#alertRoot', 'modal', "hide");
       BackdropComp.instance.hide();
       modalWindow.children.remove(modalWindow.querySelector('#alertRoot'));
+      
+      switch (eventCallback) {
+        case "onCloudAccount": modalConfirmAccount(cloudAccount, () => modalSelectAccount(deviceAccount, cloudAccount)); break;
+        case "onDeviceAccount": modalConfirmAccount(deviceAccount, () => modalSelectAccount(deviceAccount, cloudAccount)); break;
+        case "onCancel": print("Cancel"); break;
+        default: print("undefined");
+      }
     }
     
     modalWindow.setInnerHtml(''' 
@@ -244,25 +235,92 @@ class UserProfileComp {
                           <div class="panel-body" >
                             <!-- Alert Text -->
                             <div class="form-description" id="modalContentWrapper">
-                              <img src="images/alertCloseButton.png" eventCallback="onCancel" class="close-button">
+                              <i class="material-icons close-button" eventCallback="onCancel">close</i>
                               <h1>Vincula una cuenta</h1>
                               <p>Selecciona la cuenta que quieres conservar</p>
                               <div class="account-resume-box">
-                                <div class="account-resume-username">UsuarioWeb</div>
-                                <div class="account-resume-gold">Oro: 321</div>
-                                <div class="account-resume-played">Torneos jugados: 325</div>
-                                <div class="account-resume-level">Nivel de Manager: 10 </div>
-                                <div class="account-resume-playing">Torneos en juego: 22</div>
+                                <div class="account-resume-username">${cloudAccount["name"]}</div>
+                                <div class="account-resume-gold">Oro: ${cloudAccount["balance"]}</div>
+                                <div class="account-resume-played">Torneos jugados: ${cloudAccount["historyCount"]}</div>
+                                <div class="account-resume-level">Nivel de Manager: ${cloudAccount["managerLevel"].truncate()} </div>
+                                <div class="account-resume-playing">Torneos en juego: ${cloudAccount["playingCount"]}</div>
                               </div>
-                              <div class="button-box"><button class="cloud-button" eventCallback="onCloudAccount">Cloud</button></div>
+                              <div class="button-box"><button class="cloud-button" eventCallback="onCloudAccount">Cloud <i class="material-icons">cloud_download</i></button></div>
                               <div class="account-resume-box">
-                                <div class="account-resume-username">UsuarioDevice</div>
-                                <div class="account-resume-gold">Oro: 15</div>
-                                <div class="account-resume-played">Torneos jugados: 1</div>
-                                <div class="account-resume-level">Nivel de Manager: 1 </div>
-                                <div class="account-resume-playing">Torneos en juego: 0</div>
+                                <div class="account-resume-username">${deviceAccount["name"]}</div>
+                                <div class="account-resume-gold">Oro: ${deviceAccount["balance"]}</div>
+                                <div class="account-resume-played">Torneos jugados: ${deviceAccount["historyCount"]}</div>
+                                <div class="account-resume-level">Nivel de Manager: ${deviceAccount["managerLevel"].truncate()} </div>
+                                <div class="account-resume-playing">Torneos en juego: ${deviceAccount["playingCount"]}</div>
                               </div>
-                              <div class="button-box"><button class="device-button" eventCallback="onDeviceAccount">Device</button></div>
+                              <div class="button-box"><button class="device-button" eventCallback="onDeviceAccount">Device <i class="material-icons">phone_android</i></button></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>        
+                    </div>
+    
+                  </div>
+                </div>
+              </div>
+      ''', treeSanitizer: NULL_TREE_SANITIZER);
+
+    // Aqui hago el setup de los botones. (que tiene que hacer cada botón al ser clickado... ver: main_menu_slide_comp).
+    modalWindow.querySelectorAll("[eventCallback]").onClick.listen((sender) { onClose(sender.currentTarget.attributes["eventCallback"]); });
+  
+    JsUtils.runJavascript('#alertRoot', 'modal', null);
+    JsUtils.runJavascript('#alertRoot', 'on', {'hidden.bs.modal': (sender) { onClose("onCancel"); } });
+    BackdropComp.instance.show();
+  }
+  
+
+  void modalConfirmAccount(Map account, Function onBackButton) {
+  
+    Element modalWindow = querySelector("#modalWindow");
+  
+    void onClose(String eventCallback) {
+      JsUtils.runJavascript('#alertRoot', 'modal', "hide");
+      BackdropComp.instance.hide();
+      modalWindow.children.remove(modalWindow.querySelector('#alertRoot'));
+      
+      switch (eventCallback) {
+        case "onConfirm":
+          print("confirm");
+          break;
+          
+        case "onBack": 
+        case "onCancel": 
+          onBackButton(); 
+        break;
+        
+        default:
+          print("undefined");
+      }
+    }
+    
+    modalWindow.setInnerHtml(''' 
+              <div id="alertRoot" class="modal container modal-select-account" tabindex="-1" role="dialog" style="display: block;">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content"> 
+    
+                    <div class="alert-content">      
+                      <div id="alertBox" class="main-box">
+                        <div class="panel">
+                          <!-- Content Message and Buttons-->
+                          <div class="panel-body" >
+                            <!-- Alert Text -->
+                            <div class="form-description" id="modalContentWrapper">
+                              <i class="material-icons back-button" eventCallback="onBack">arrow_back</i>
+                              <h1>Vincula una cuenta</h1>
+                              <p>Selecciona la cuenta que quieres conservar</p>
+                              <div class="account-resume-box">
+                                <div class="account-resume-username">${account["name"]}</div>
+                                <div class="account-resume-gold">Oro: ${account["balance"]}</div>
+                                <div class="account-resume-played">Torneos jugados: ${account["historyCount"]}</div>
+                                <div class="account-resume-level">Nivel de Manager: ${account["managerLevel"].truncate()} </div>
+                                <div class="account-resume-playing">Torneos en juego: ${account["playingCount"]}</div>
+                              </div>
+                              <div class="button-box"><button class="cloud-button" eventCallback="onConfirm">Aceptar</button></div>
                             </div>
                           </div>
                         </div>
@@ -313,7 +371,7 @@ class UserProfileComp {
                           <div class="panel-body">
                             <!-- Alert Text -->
                             <div class="form-description" id="modalContentWrapper">
-                              <img src="images/alertCloseButton.png" eventCallback="onCancel" class="close-button">
+                              <i class="material-icons close-button" eventCallback="onCancel">close</i>
                               <h1>Vincula una cuenta</h1>
                               <p>¿Ya tienes una cuenta?</p>
                               <button class="bind-type-button" eventCallback="onLogin">Login</button>

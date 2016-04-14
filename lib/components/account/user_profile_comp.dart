@@ -118,7 +118,8 @@ class UserProfileComp {
   }
   void bindWithFacebook() {
     FBLogin.onLogin = fbLoginCallback;
-    _fbLogin.loginFB();
+    modalFacebookBindConfirm();
+    //_fbLogin.loginFB();
   }
   
   void bindWithServerJoin() {
@@ -259,7 +260,6 @@ class UserProfileComp {
                         </div>
                       </div>        
                     </div>
-    
                   </div>
                 </div>
               </div>
@@ -320,7 +320,7 @@ class UserProfileComp {
                                 <div class="account-resume-level">Nivel de Manager: ${account["managerLevel"].truncate()} </div>
                                 <div class="account-resume-playing">Torneos en juego: ${account["playingCount"]}</div>
                               </div>
-                              <div class="button-box"><button class="cloud-button" eventCallback="onConfirm">Aceptar</button></div>
+                              <div class="button-box"><button class="confirm-button" eventCallback="onConfirm">Aceptar</button></div>
                             </div>
                           </div>
                         </div>
@@ -377,6 +377,57 @@ class UserProfileComp {
                               <button class="bind-type-button" eventCallback="onLogin">Login</button>
                               <p>Si quieres crear una cuenta nueva, haz click aquí</p>
                               <button class="bind-type-button" eventCallback="onJoin">Crear Cuenta</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+      ''', treeSanitizer: NULL_TREE_SANITIZER);
+
+      // Aqui hago el setup de los botones. (que tiene que hacer cada botón al ser clickado... ver: main_menu_slide_comp).
+      modalWindow.querySelectorAll("[eventCallback]").onClick.listen((sender) { onClose(sender.currentTarget.attributes["eventCallback"]); });
+    
+      JsUtils.runJavascript('#alertRoot', 'modal', null);
+      JsUtils.runJavascript('#alertRoot', 'on', {'hidden.bs.modal': (sender) { onClose("onCancel"); } });
+      BackdropComp.instance.show();
+  }
+  void modalFacebookBindConfirm() {
+    
+      Element modalWindow = querySelector("#modalWindow");
+    
+      void onClose(String eventCallback) {
+        switch (eventCallback) {
+          case "onConfirm":
+            print("Confirm");
+            break;
+          case "onCancel": break;
+          default:
+            print("undefined");
+        }
+        JsUtils.runJavascript('#alertRoot', 'modal', "hide");
+        BackdropComp.instance.hide();
+        modalWindow.children.remove(modalWindow.querySelector('#alertRoot'));
+      }
+      
+      modalWindow.setInnerHtml(''' 
+              <div id="alertRoot" class="modal container modal-bind-join-login" tabindex="-1" role="dialog" style="display: block;">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="alert-content">
+                      <div id="alertBox" class="main-box">
+                        <div class="panel">
+                          <!-- Content Message and Buttons-->
+                          <div class="panel-body">
+                            <!-- Alert Text -->
+                            <div class="form-description" id="modalContentWrapper">
+                              <i class="material-icons close-button" eventCallback="onCancel">close</i>
+                              <h1>Vincula una cuenta</h1>
+                              <p>El usuario de Facebook ya tiene una cuenta en nuestra webapp</p>
+                              <p>¿Quieres vincularla a este dispositivo?</p>
+                              <button class="confirm-button" eventCallback="onConfirm">Aceptar</button>
                             </div>
                           </div>
                         </div>

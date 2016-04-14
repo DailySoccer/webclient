@@ -19,6 +19,7 @@ class User {
   static num get MAX_MANAGER_LEVEL => MANAGER_POINTS.length - 1;
 
   String userId;
+  
   String firstName;
   String lastName;
   String nickName;
@@ -28,7 +29,9 @@ class User {
   Money managerBalance;
   Money energyBalance;
 
+  String deviceUUID;
   String facebookID;
+  
   String get profileImage {
     Map image = FBLogin.profileImage(facebookID);
     String url;
@@ -62,7 +65,7 @@ class User {
   String get mainMenuInfo => "$userId;$facebookID;$profileImage;${energyBalance.toInt()};${managerBalance.toInt()};${goldBalance.toInt()};$trueSkill;${notifications.length};${achievements.length}";
 
   bool hasAchievement(String achievement) => achievements.contains(achievement);
-  bool get isLoggedByUUID => email.contains("@uuid.com");
+  bool get isLoggedByUUID => (deviceUUID != null) && deviceUUID.isNotEmpty && email.contains(deviceUUID);
 
   //String get fullName => "$firstName $lastName";
   String toString() => "$userId - $email - $nickName";
@@ -150,6 +153,7 @@ class User {
     lastName = (jsonMap.containsKey("lastName")) ? jsonMap["lastName"] : "";
     nickName = jsonMap["nickName"];
 
+    deviceUUID = jsonMap.containsKey("deviceUUID") ? jsonMap["deviceUUID"] : "";
     facebookID = jsonMap.containsKey("facebookID") ? jsonMap["facebookID"] : "";
 
     email = (jsonMap.containsKey("email")) ? jsonMap["email"] : "<email: null>";

@@ -186,7 +186,8 @@
       "topgold"                         : "RÁNKING ORO",
       "topskill"                        : "RÁNKING HABILIDAD",
       "abrevposition"                   : "Pos.",
-      "name"                            : "Nombre"
+      "name"                            : "Nombre",
+      "the-player"                      : "Tú"
     }
     ,"achievements"                     :
     {

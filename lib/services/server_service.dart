@@ -27,6 +27,7 @@ abstract class ServerService {
   Future<Map> login(String email, String password);
   Future<Map> facebookLogin(String accessToken, String facebookID, String facebookName, String facebookEmail);
   Future<Map> deviceLogin(String uuid);
+  Future<Map> askForUserProfile({String email, String password, String accessToken, String facebookID});
   Future<Map> getUserProfile();
   Future<Map> getFacebookProfiles(List<String> facebookIds);
   Future<Map> changeUserProfile(String firstName, String lastName, String email, String nickName, String password);
@@ -152,6 +153,18 @@ class DailySoccerServer implements ServerService {
     return _innerServerCall("${HostServer.url}/devicelogin", postData: {'uuid': uuid}, cancelIfChangeContext: false);
   }
 
+  Future<Map> askForUserProfile({String email, String password, String accessToken, String facebookID}) {
+    return _innerServerCall("${HostServer.url}/ask_for_user_profile", postData: (email != null)
+      ? {
+        'email': email,
+        'password': password
+      }
+      : {
+        'accessToken': accessToken,
+        'facebookID': facebookID
+      });
+  }
+  
   Future<Map> askForPasswordReset(String email) {
     return _innerServerCall("${HostServer.url}/ask_for_password_reset", postData: {'email': email});
   }

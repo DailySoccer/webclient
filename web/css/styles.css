@@ -21467,9 +21467,11 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
     text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
   }
 }
+#alertRoot.guest-name-modal .panel .panel-body,
 #alertRoot.cannotEnter .panel .panel-body {
   padding: 15px 20px;
 }
+#alertRoot.guest-name-modal .alert-content-title,
 #alertRoot.cannotEnter .alert-content-title {
   font-family: 'Exo', sans-serif;
   font-weight: 500;
@@ -21478,6 +21480,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   text-transform: uppercase;
   text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
 }
+#alertRoot.guest-name-modal .alert-content-subtitle,
 #alertRoot.cannotEnter .alert-content-subtitle {
   vertical-align: middle;
   font-family: 'Open Sans', sans-serif;

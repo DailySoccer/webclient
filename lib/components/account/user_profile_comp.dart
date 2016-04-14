@@ -118,8 +118,9 @@ class UserProfileComp {
   }
   void bindWithFacebook() {
     FBLogin.onLogin = fbLoginCallback;
-    modalFacebookBindConfirm();
-    //_fbLogin.loginFB();
+    showGuestNameModal();
+    //modalFacebookBindConfirm();
+//    /_fbLogin.loginFB();
   }
   
   void bindWithServerJoin() {
@@ -237,24 +238,12 @@ class UserProfileComp {
                             <!-- Alert Text -->
                             <div class="form-description" id="modalContentWrapper">
                               <i class="material-icons close-button" eventCallback="onCancel">close</i>
-                              <h1>Vincula una cuenta</h1>
-                              <p>Selecciona la cuenta que quieres conservar</p>
-                              <div class="account-resume-box">
-                                <div class="account-resume-username">${cloudAccount["name"]}</div>
-                                <div class="account-resume-gold">Oro: ${cloudAccount["balance"]}</div>
-                                <div class="account-resume-played">Torneos jugados: ${cloudAccount["historyCount"]}</div>
-                                <div class="account-resume-level">Nivel de Manager: ${cloudAccount["managerLevel"].truncate()} </div>
-                                <div class="account-resume-playing">Torneos en juego: ${cloudAccount["playingCount"]}</div>
-                              </div>
-                              <div class="button-box"><button class="cloud-button" eventCallback="onCloudAccount">Cloud <i class="material-icons">cloud_download</i></button></div>
-                              <div class="account-resume-box">
-                                <div class="account-resume-username">${deviceAccount["name"]}</div>
-                                <div class="account-resume-gold">Oro: ${deviceAccount["balance"]}</div>
-                                <div class="account-resume-played">Torneos jugados: ${deviceAccount["historyCount"]}</div>
-                                <div class="account-resume-level">Nivel de Manager: ${deviceAccount["managerLevel"].truncate()} </div>
-                                <div class="account-resume-playing">Torneos en juego: ${deviceAccount["playingCount"]}</div>
-                              </div>
-                              <div class="button-box"><button class="device-button" eventCallback="onDeviceAccount">Device <i class="material-icons">phone_android</i></button></div>
+                              <h1>${getLocalizedText("bind-an-account")}</h1>
+                              <p>${getLocalizedText("bind-select-account")}</p>
+                              ${accountResumeBox(cloudAccount)}
+                              <div class="button-box"><button class="cloud-button" eventCallback="onCloudAccount">${getLocalizedText("bind-cloud-account-btt")} <i class="material-icons">cloud_download</i></button></div>
+                              ${accountResumeBox(deviceAccount)}
+                              <div class="button-box"><button class="device-button" eventCallback="onDeviceAccount">${getLocalizedText("bind-device-account-btt")} <i class="material-icons">phone_android</i></button></div>
                             </div>
                           </div>
                         </div>
@@ -273,6 +262,16 @@ class UserProfileComp {
     BackdropComp.instance.show();
   }
   
+  String accountResumeBox(Map account) {
+    return '''  <div class="account-resume-box">
+                  <div class="account-resume-username">${account["name"]}</div>
+                  <div class="account-resume-gold">${getLocalizedText("wallet")}: ${account["balance"]}</div>
+                  <div class="account-resume-played">${getLocalizedText("bind-info-historic")}: ${account["historyCount"]}</div>
+                  <div class="account-resume-level">${getLocalizedText("bind-info-level")}: ${account["managerLevel"].truncate()} </div>
+                  <div class="account-resume-playing">${getLocalizedText("bind-info-upcoming-live")}: ${account["playingCount"]}</div>
+                </div>
+            ''';
+  }
 
   void modalConfirmAccount(Map account, Function onBackButton) {
   
@@ -311,16 +310,10 @@ class UserProfileComp {
                             <!-- Alert Text -->
                             <div class="form-description" id="modalContentWrapper">
                               <i class="material-icons back-button" eventCallback="onBack">arrow_back</i>
-                              <h1>Vincula una cuenta</h1>
-                              <p>Selecciona la cuenta que quieres conservar</p>
-                              <div class="account-resume-box">
-                                <div class="account-resume-username">${account["name"]}</div>
-                                <div class="account-resume-gold">Oro: ${account["balance"]}</div>
-                                <div class="account-resume-played">Torneos jugados: ${account["historyCount"]}</div>
-                                <div class="account-resume-level">Nivel de Manager: ${account["managerLevel"].truncate()} </div>
-                                <div class="account-resume-playing">Torneos en juego: ${account["playingCount"]}</div>
-                              </div>
-                              <div class="button-box"><button class="confirm-button" eventCallback="onConfirm">Aceptar</button></div>
+                              <h1>${getLocalizedText("bind-an-account")}</h1>
+                              <p>${getLocalizedText("bind-confirm-account")}</p>
+                              ${accountResumeBox(account)}
+                              <div class="button-box"><button class="confirm-button" eventCallback="onConfirm">${getLocalizedText("modal-ok")}</button></div>
                             </div>
                           </div>
                         </div>
@@ -372,11 +365,11 @@ class UserProfileComp {
                             <!-- Alert Text -->
                             <div class="form-description" id="modalContentWrapper">
                               <i class="material-icons close-button" eventCallback="onCancel">close</i>
-                              <h1>Vincula una cuenta</h1>
-                              <p>¿Ya tienes una cuenta?</p>
-                              <button class="bind-type-button" eventCallback="onLogin">Login</button>
-                              <p>Si quieres crear una cuenta nueva, haz click aquí</p>
-                              <button class="bind-type-button" eventCallback="onJoin">Crear Cuenta</button>
+                              <h1>${getLocalizedText("bind-an-account")}</h1>
+                              <p>${getLocalizedText("bind-have-account")}</p>
+                              <button class="bind-type-button" eventCallback="onLogin">${getLocalizedText("bind-login-btt")}</button>
+                              <p>${getLocalizedText("bind-new-account")}</p>
+                              <button class="bind-type-button" eventCallback="onJoin">${getLocalizedText("bind-join-btt")}</button>
                             </div>
                           </div>
                         </div>
@@ -424,10 +417,10 @@ class UserProfileComp {
                             <!-- Alert Text -->
                             <div class="form-description" id="modalContentWrapper">
                               <i class="material-icons close-button" eventCallback="onCancel">close</i>
-                              <h1>Vincula una cuenta</h1>
-                              <p>El usuario de Facebook ya tiene una cuenta en nuestra webapp</p>
-                              <p>¿Quieres vincularla a este dispositivo?</p>
-                              <button class="confirm-button" eventCallback="onConfirm">Aceptar</button>
+                              <h1>${getLocalizedText("bind-an-account")}</h1>
+                              <p>${getLocalizedText("bind-fb-exists")}</p>
+                              <p>${getLocalizedText("bind-fb-agree")}</p>
+                              <button class="confirm-button" eventCallback="onConfirm">${getLocalizedText("modal-ok")}</button>
                             </div>
                           </div>
                         </div>
@@ -444,23 +437,25 @@ class UserProfileComp {
       JsUtils.runJavascript('#alertRoot', 'modal', null);
       JsUtils.runJavascript('#alertRoot', 'on', {'hidden.bs.modal': (sender) { onClose("onCancel"); } });
       BackdropComp.instance.show();
-    }
-/*
-  String getNotEnoughGoldContent(Money goldNeeded) {
-    return '''
-    <div class="content-wrapper">
-      <img class="main-image" src="images/iconNoGold.png">
-      <span class="not-enough-resources-count">${goldNeeded}</span>
-      <p class="content-text">
-        <strong>${getLocalizedText("alert-no-gold-message")}</strong>
-        <br>
-        ${getLocalizedText('alert-user-gold-message', substitutions: {'MONEY': _profileService.user.goldBalance})}
-        <img src="images/icon-coin-xs.png">
-      </p>
-    </div>
-    ''';
   }
-*/
+  
+  
+  // Esta modal es para colocarla en el estado de bienvenida.
+  void showGuestNameModal() {
+    modalShow(
+          "",
+          '''
+            <div class="content-wrapper">
+              <h1 class="alert-content-title">Bienvenido a Futbol Cuatro</h1>
+              <h2 class="alert-content-subtitle">Tú nombre en los torneos será <b>Guest12345</b> <br>Si quieres puedes cambiar de nombre en tu perfil.</h2>
+            </div>
+          '''
+          , onBackdropClick: true
+          , aditionalClass: "guest-name-modal"
+        )
+        .then((_) => _router.go('home', {}))
+        .catchError((_) => _router.go('home', {}));
+  }
   
 
   ProfileService _profileService;

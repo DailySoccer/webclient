@@ -178,7 +178,29 @@
       "wallet"                          : "Oro",
       "buttonbuy"                       : "Comprar",
       "ranking"                         : "Clasificación",
-      "buttonrankingtable"              : "Ver en la tabla"
+      "buttonrankingtable"              : "Ver en la tabla",
+      "modal-ok"                        : "Aceptar",
+      
+      "bind-facebook-btt"               : "Facebook",
+      "bind-fb-exists"                  : "El usuario de Facebook ya tiene una cuenta en nuestra webapp",
+      "bind-fb-agree"                   : "¿Quieres vincularla a este dispositivo?",
+      "bind-server-btt"                 : "Fútbol Cuatro",
+      "bind-an-account"                 : "Vincula una cuenta",
+      "bind-select-account"             : "Selecciona la cuenta que quieres conservar",
+      "bind-info-historic"              : "Torneos jugados",
+      "bind-info-level"                 : "Nivel de Manager",
+      "bind-info-upcoming-live"         : "Torneos en juego",
+      "bind-cloud-account-btt"          : "Nube",
+      "bind-device-account-btt"         : "Dispositivo",
+      "bind-confirm-account"            : "¿Deseas vincular esta cuenta al dispositivo?",
+      "bind-have-account"               : "¿Ya tienes una cuenta?",
+      "bind-login-btt"                  : "Entrar",
+      "bind-new-account"                : "Si quieres crear una cuenta nueva, haz click aquí",
+      "bind-join-btt"                   : "Crear Cuenta"
+      
+      
+      
+      
     }
     ,"leaderboard"                      :
     {

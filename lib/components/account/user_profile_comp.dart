@@ -244,18 +244,26 @@ class UserProfileComp {
                           <div class="panel-body" >
                             <!-- Alert Text -->
                             <div class="form-description" id="modalContentWrapper">
-                              <button class="ok-button" eventCallback="onCloudAccount">Cloud</button>
-                              <button class="ok-button" eventCallback="onDeviceAccount">Device</button>
-                            </div>            
-                            <!-- Alert Buttons -->
-                            <div class="input-group user-form-field">
-                              <div class="new-row">                  
-                                <div class="autocentered-buttons-wrapper">
-                                  <div class="button-box"><button class="cancel-button" eventCallback="onCancel">Cancel</button></div> 
-                                  <div class="button-box"><button class="ok-button" eventCallback="onConfirm">Ok</button><div>
-                                </div>
+                              <img src="images/alertCloseButton.png" eventCallback="onCancel" class="close-button">
+                              <h1>Vincula una cuenta</h1>
+                              <p>Selecciona la cuenta que quieres conservar</p>
+                              <div class="account-resume-box">
+                                <div class="account-resume-username">UsuarioWeb</div>
+                                <div class="account-resume-gold">Oro: 321</div>
+                                <div class="account-resume-played">Torneos jugados: 325</div>
+                                <div class="account-resume-level">Nivel de Manager: 10 </div>
+                                <div class="account-resume-playing">Torneos en juego: 22</div>
                               </div>
-                            </div>            
+                              <div class="button-box"><button class="cloud-button" eventCallback="onCloudAccount">Cloud</button></div>
+                              <div class="account-resume-box">
+                                <div class="account-resume-username">UsuarioDevice</div>
+                                <div class="account-resume-gold">Oro: 15</div>
+                                <div class="account-resume-played">Torneos jugados: 1</div>
+                                <div class="account-resume-level">Nivel de Manager: 1 </div>
+                                <div class="account-resume-playing">Torneos en juego: 0</div>
+                              </div>
+                              <div class="button-box"><button class="device-button" eventCallback="onDeviceAccount">Device</button></div>
+                            </div>
                           </div>
                         </div>
                       </div>        

@@ -224,8 +224,9 @@
 	
 }
 
-.modal-bind-join-login#alertRoot .panel {
-	background-color: @greyUltraLight;
+.modal-bind-join-login#alertRoot .panel,
+.modal-select-account#alertRoot .panel {
+	background-color: @greyLighter;
 	.panel-body {
 		padding-bottom: 35px;
 	}
@@ -253,5 +254,76 @@
 			width: 100%;
 			padding: 10px;
 		}
+	}
+}
+
+.modal-select-account#alertRoot .panel {
+	.account-resume-box {
+		.make-row();
+		margin: 0;
+		
+		.account-resume-username,
+		.account-resume-gold,
+		.account-resume-played,
+		.account-resume-level,
+		.account-resume-playing {
+			background-color: @white;
+			.opensans_normal(8pt, @greyMedDark);
+			border: 1px solid @greyMed;
+		}
+		
+		.account-resume-username {
+			.make-xs-column(12);
+			padding: 5px 25px;
+			font-size: 12pt;
+			border-bottom: none;
+		}
+		
+		.account-resume-gold,
+		.account-resume-played,
+		.account-resume-level,
+		.account-resume-playing {
+			.make-xs-column(6);
+			padding: 10px 5px;
+			text-align: left;
+		}
+		
+		.account-resume-gold,
+		.account-resume-played {
+			border-bottom: none;
+		}
+		.account-resume-gold,
+		.account-resume-level {
+			border-right: none;
+		}
+		
+		.account-resume-gold:before {
+			content: "";
+			.addIcon("icon-coin-xs.png", 17px, 17px);
+			margin-right: 5px;
+		}
+		.account-resume-level:before {
+			content: "";
+			.addIcon("icon-star-xs.png", 17px, 17px);
+			margin-right: 5px;
+		}
+		.account-resume-played:before {
+			content: "";
+			.addIcon("iconFacebook.png", 17px, 17px);
+		}
+		.account-resume-playing:before {
+			content: "";
+			.addIcon("iconFacebook.png", 17px, 17px);
+		}
+	}
+	button.cloud-button, 
+	button.device-button {
+		.btn-primary();
+		.make-xs-column(12);
+		.exo_bold(10pt, @white);
+		border-radius: 2px;
+	}
+	button.cloud-button {
+		margin-bottom: 20px;
 	}
 }

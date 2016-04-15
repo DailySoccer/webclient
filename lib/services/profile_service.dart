@@ -232,8 +232,11 @@ class ProfileService {
   
   void loginWithUUID(String uuid) {
     Logger.root.info("UUID: $uuid");
-    // TODO: Comentado el login mediante el UUID, hasta que el backEnd ofrezca dicha posibilidad
-    // deviceLogin(uuid);
+    
+    if (HostServer.isAndroidPlatform || HostServer.isiOSPlatform) {
+      // TODO: Comentado el login mediante el UUID, hasta que el backEnd ofrezca dicha posibilidad
+      // deviceLogin(uuid);
+    }
   }
   
   void _saveProfile() {
@@ -310,18 +313,48 @@ class ProfileService {
     return completer.future;
   }
   
+  Future<Map> getFacebookAccount(String accessToken, String facebookID) {
+    Completer<Map> completer = new Completer<Map>();
+    
+    _server.askForUserProfile(accessToken: accessToken, facebookID: facebookID)
+    .then((jsonMap) {
+      Logger.root.info("getFacebookAccount: $jsonMap");
+      completer.complete( _getAccountInfo(jsonMap) );
+    })
+    .catchError((error) => completer.completeError(error));
+  
+    return completer.future;
+  }
+
   Future<Map> getAccount(String email, String password) {
     Completer<Map> completer = new Completer<Map>();
     
-    new Timer(new Duration(milliseconds: 500), () => completer.complete({
-      "name": "nombre",
-      "balance": 100,
-      "managerLevel": 10,
-      "historyCount": 123,
-      "playingCount": 321,
-    }));
+    _server.askForUserProfile(email: email, password: password)
+      .then((jsonMap) {
+        Logger.root.info("getAccount: $jsonMap");
+        completer.complete( _getAccountInfo(jsonMap) );
+      })
+      .catchError((error) => completer.completeError(error));
     
     return completer.future;
+  }
+  
+  Map _getAccountInfo(Map jsonMap) {
+    
+      User account = new User.fromJsonObject(jsonMap["profile"]);
+        
+      num numVirtualHistoryContests = jsonMap.containsKey("numVirtualHistory") ? jsonMap["numVirtualHistory"] : 0;
+      num numRealHistoryContests    = jsonMap.containsKey("numRealHistory") ? jsonMap["numRealHistory"] : 0;
+      num numLiveContests           = jsonMap.containsKey("numLive") ? jsonMap["numLive"] : 0;
+      num numUpcomingContests       = jsonMap.containsKey("numWaiting") ? jsonMap["numWaiting"] : 0;
+      
+      return {
+        "name": account.nickName,
+        "balance": account.goldBalance.amount,
+        "managerLevel": account.managerLevel,
+        "historyCount": numVirtualHistoryContests + numRealHistoryContests,
+        "playingCount": numUpcomingContests + numLiveContests,
+      };
   }
   
   Future bindUUID(String firstName, String lastName, String email, String nickName, String password) {

@@ -2,7 +2,7 @@
   <div class="default-section-header">{{getLocalizedText('title')}}</div>
   <div class="profile-content">
 
-    <div class="binding-actions profile-section" ng-if="!userData.isLoggedByUUID">
+    <div class="binding-actions profile-section">
       <div class="data-content">
         <span>Vincula tu cuenta a un perfil</span>
       </div>
@@ -12,12 +12,12 @@
       </div>
     </div>
     
-    <div class="personal-data profile-section" ng-if="!userData.isLoggedByUUID">
+    <div class="personal-data profile-section">
       <div class="data-content">
         <div class="data-row"><span class="data-key">{{getLocalizedText("fullname")}}:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
         <div class="data-row"><span class="data-key">{{getLocalizedText("nick")}}:</span><span class="data-value">{{userData.nickName}}</span></div>
-        <div class="data-row"><span class="data-key">{{getLocalizedText("email")}}:</span><span class="data-value">{{userData.email}}</span></div>
-        <div class="data-row"><span class="data-key">{{getLocalizedText("pass")}}:</span><span class="data-value">********</span></div>
+        <div class="data-row" ng-if="userData.canChangeEmail"><span class="data-key">{{getLocalizedText("email")}}:</span><span class="data-value">{{userData.email}}</span></div>
+        <div class="data-row" ng-if="userData.canChangePassword"><span class="data-key">{{getLocalizedText("pass")}}:</span><span class="data-value">********</span></div>
       </div>
       <div class="data-action">
         <button class="action-button edit-button" ng-click="editPersonalData()">{{getLocalizedText("buttonedit")}}</button>

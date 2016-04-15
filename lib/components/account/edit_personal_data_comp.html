@@ -32,7 +32,7 @@
       </div>
 
       <!-- Correo Electrónico -->
-      <div class="content-field">
+      <div class="content-field" ng-if="userData.canChangeEmail">
         <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">{{getLocalizedText("mail")}}</span></div>
         <div class="control-wrapper">
           <input id="txtEmail" type="email" ng-model="editedEmail" placeholder="{{getLocalizedText('mail')}}" class="form-control" tabindex="4" autocapitalize="off">
@@ -44,15 +44,15 @@
       </div>
 
       <!-- Label Contraseña -->
-      <div class="content-field-block">
+      <div class="content-field-block" ng-if="userData.canChangePassword">
         <div class="control-wrapper"><span id="lblPassword" class="text-label">{{getLocalizedText("passrequires")}}</span></div>
       </div>
       <!-- Contraseña -->
-      <div class="content-field">
+      <div class="content-field" ng-if="userData.canChangePassword">
         <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="editedPassword" placeholder="{{getLocalizedText('pass')}}" class="form-control" tabindex="5" autocapitalize="off"></div>
       </div>
       <!-- Repetir Contraseña -->
-      <div class="content-field">
+      <div class="content-field" ng-if="userData.canChangePassword">
         <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="editedRepeatPassword" placeholder="{{getLocalizedText('repass')}}" class="form-control" tabindex="6" autocapitalize="off"></div>
       </div>
       

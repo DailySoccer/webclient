@@ -141,13 +141,15 @@ class UserProfileComp {
       Function onError = params["onError"];
       
       getAccount(email, password, (ServerError error) {
-        if (error.responseError == "not_exists") {
+        // No existe el usuario?
+        if (error.responseError.contains("email")) {
           loadingService.isLoading = true;
           _profileService.bindUUID(firstName, lastName, email, nickName, password)
               .then(([_]) { loadingService.isLoading = false; })
               .catchError((ServerError error) {
                 loadingService.isLoading = false;
                 Logger.root.severe(error);
+                onError(error);
               }, test: (error) => error is ServerError);
         } else {
           onError(error);

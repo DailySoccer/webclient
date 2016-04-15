@@ -66,7 +66,11 @@ class User {
 
   bool hasAchievement(String achievement) => achievements.contains(achievement);
   bool get isLoggedByUUID => (deviceUUID != null) && deviceUUID.isNotEmpty && email.contains(deviceUUID);
+  bool get isLoggedByFacebook => (facebookID != null) && facebookID.isNotEmpty;
 
+  bool get canChangeEmail => !isLoggedByUUID && !isLoggedByFacebook;
+  bool get canChangePassword => !isLoggedByUUID && !isLoggedByFacebook;
+  
   //String get fullName => "$firstName $lastName";
   String toString() => "$userId - $email - $nickName";
   Map toJson() => {"_id": userId, "firstName": firstName, "lastName": lastName, "email": email, "nickName": nickName};

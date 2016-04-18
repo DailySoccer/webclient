@@ -366,6 +366,15 @@ class ProfileService {
     return completer.future;
   }
   
+
+  Future bindFacebookUUID(String accessToken, String id, String name, String email) {
+    Completer completer = new Completer();
+    
+    new Timer(new Duration(milliseconds: 500), () => completer.complete());
+    
+    return completer.future;
+  }
+  
   static String decorateLog(String text) {
     ProfileService profile = ProfileService.instance;
     if (profile != null){

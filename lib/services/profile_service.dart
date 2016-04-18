@@ -375,7 +375,24 @@ class ProfileService {
   
     return completer.future;
   }
+
+  Future bindToAccount(String email, String password) {
+    Completer<Map> completer = new Completer<Map>();
+    
+    _server.bindToAccount(email: email, password: password)
+      .then((jsonMap) {
+        Logger.root.info("bindToAccount: $jsonMap");
+        
+        _onLoginResponse(jsonMap)
+          .then((_) {
+            Logger.root.info("bindToAccount: _onLoginResponse OK");
+            completer.complete();
+          });
+      })
+      .catchError((error) => completer.completeError(error));
   
+    return completer.future;
+  }
 
   Future bindFacebookUUID(String accessToken, String id, String name, String email) {
     Completer<Map> completer = new Completer<Map>();

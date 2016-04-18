@@ -109,27 +109,46 @@ class UserProfileComp {
     _router.go('leaderboard', {'section': 'points', 'userId': _profileService.user.userId});
   }
 
-  void fbLoginCallback() {
+  Future fbLoginCallback(String accessToken, String id, String name, String email) {
+    Completer completer = new Completer();
     
+    _profileService.getFacebookAccount(accessToken, id).then((Map accountInfo) {
+          accountInfo['accessToken'] = accessToken;
+          accountInfo['facebookId'] = id;
+          
+          selectAccount(accountInfo);
+    }).catchError((ServerError error) {
+      loadingService.isLoading = true;
+      _profileService.bindFacebookUUID(accessToken, id, name, email)
+          .then(([_]) {
+            loadingService.isLoading = false; 
+          })
+          .catchError((ServerError error) {
+            loadingService.isLoading = false;
+          }, test: (error) => error is ServerError);
+  }, test: (error) => error is ServerError);
+    
+    return completer.future;
   }
   
   void bindWithServer() {
     modalSelectServerBind();
   }
   void bindWithFacebook() {
-    FBLogin.onLogin = fbLoginCallback;
+    //FBLogin.onLogin = fbLoginCallback;
     showGuestNameModal();
+    FBLogin.onFacebookConnection = fbLoginCallback;
     //modalFacebookBindConfirm();
-//    /_fbLogin.loginFB();
+    //_fbLogin.loginFB();
   }
   
   void bindWithServerJoin() {
     ModalComp.open(_router, "user_profile.join", {}, bindWithServerCallback);
-    FBLogin.onLogin = fbLoginCallback;
+    FBLogin.onFacebookConnection = fbLoginCallback;
   }
   void bindWithServerLogin() {
     ModalComp.open(_router, "user_profile.login", {}, bindWithServerCallback);
-    FBLogin.onLogin = fbLoginCallback;
+    FBLogin.onFacebookConnection = fbLoginCallback;
   }
   void bindWithServerCallback(Map params) {
     if (params["action"] == "join") {
@@ -155,14 +174,12 @@ class UserProfileComp {
           onError(error);
         }
       });
-      
     } else if (params["action"] == "login") {
       String email = params["email"];
       String password = params["password"];
       Function onError = params["onError"];
-
-      getAccount(email, password, onError);
       
+      getAccount(email, password, onError);
     } else {
       Logger.root.severe("Unknown BindWithFutbolCuatro process on user profile");
     }
@@ -200,17 +217,17 @@ class UserProfileComp {
       deviceAccountInfo["managerLevel"] = _profileService.user.managerLevel;
       deviceAccountInfo["historyCount"] = numVirtualHistoryContests + numRealHistoryContests;
       deviceAccountInfo["playingCount"] = numLiveContests + numUpcomingContests;
-
-      //ModalComp.open(_router, "user_profile.selectAccount", {}, bindWithFutbolCuatroCallback);
-
-      modalSelectAccount(deviceAccountInfo, cloudAccountInfo);
       
+      if (cloudAccountInfo.containsKey("accessToken")) {
+        deviceAccountInfo["accessToken"] = cloudAccountInfo["accessToken"];
+        deviceAccountInfo["facebookId"] = cloudAccountInfo["facebookId"];
+      }
+      modalSelectAccount(deviceAccountInfo, cloudAccountInfo);
     });
   }
   
 
   void modalSelectAccount(Map deviceAccount, Map cloudAccount) {
-  
     Element modalWindow = querySelector("#modalWindow");
   
     void onClose(String eventCallback) {
@@ -302,8 +319,7 @@ class UserProfileComp {
     modalWindow.setInnerHtml(''' 
               <div id="alertRoot" class="modal container modal-select-account" tabindex="-1" role="dialog" style="display: block;">
                 <div class="modal-dialog modal-lg">
-                  <div class="modal-content"> 
-    
+                  <div class="modal-content">
                     <div class="alert-content">      
                       <div id="alertBox" class="main-box">
                         <div class="panel">

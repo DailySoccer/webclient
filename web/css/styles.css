@@ -5747,8 +5747,8 @@ scoring-rules:after,
 .profile-content .profile-section .data-header:after,
 .profile-content .profile-section .data-content:before,
 .profile-content .profile-section .data-content:after,
-.modal-select-account#alertRoot .panel .account-resume-box:before,
-.modal-select-account#alertRoot .panel .account-resume-box:after,
+.modal-select-account#alertRoot .panel .form-description .account-resume-box:before,
+.modal-select-account#alertRoot .panel .form-description .account-resume-box:after,
 .info-complete-bar:before,
 .info-complete-bar:after,
 .view-contest-entry-actions-wrapper:before,
@@ -5868,7 +5868,7 @@ scoring-rules:after,
 .profile-content:after,
 .profile-content .profile-section .data-header:after,
 .profile-content .profile-section .data-content:after,
-.modal-select-account#alertRoot .panel .account-resume-box:after,
+.modal-select-account#alertRoot .panel .form-description .account-resume-box:after,
 .info-complete-bar:after,
 .view-contest-entry-actions-wrapper:after,
 #maintenance-wrapper .maintenance-content:after,
@@ -22781,8 +22781,9 @@ fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .a
   font-size: 12pt;
   color: #0d75a6;
   text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
-  margin: 15px 15px;
   padding-top: 25px;
+  max-width: 280px;
+  margin: 15px auto;
 }
 .modal-bind-join-login#alertRoot .panel .form-description p + p,
 .modal-select-account#alertRoot .panel .form-description p + p {
@@ -23102,16 +23103,16 @@ fieldset[disabled] .modal-select-account#alertRoot .panel .form-description butt
 .modal-select-account#alertRoot .panel .form-description button.confirm-button {
   margin-top: 20px;
 }
-.modal-select-account#alertRoot .panel .account-resume-box {
+.modal-select-account#alertRoot .panel .form-description .account-resume-box {
   margin-left: -15px;
   margin-right: -15px;
   margin: 0;
 }
-.modal-select-account#alertRoot .panel .account-resume-box .account-resume-username,
-.modal-select-account#alertRoot .panel .account-resume-box .account-resume-gold,
-.modal-select-account#alertRoot .panel .account-resume-box .account-resume-played,
-.modal-select-account#alertRoot .panel .account-resume-box .account-resume-level,
-.modal-select-account#alertRoot .panel .account-resume-box .account-resume-playing {
+.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-username,
+.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-gold,
+.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-played,
+.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-level,
+.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-playing {
   background-color: #ffffff;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
@@ -23120,7 +23121,7 @@ fieldset[disabled] .modal-select-account#alertRoot .panel .form-description butt
   text-shadow: 1px 1px 1px rgba(129, 129, 129, 0.004);
   border: 1px solid #afafaf;
 }
-.modal-select-account#alertRoot .panel .account-resume-box .account-resume-username {
+.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-username {
   position: relative;
   float: left;
   width: 100%;
@@ -23131,10 +23132,10 @@ fieldset[disabled] .modal-select-account#alertRoot .panel .form-description butt
   font-size: 12pt;
   border-bottom: none;
 }
-.modal-select-account#alertRoot .panel .account-resume-box .account-resume-gold,
-.modal-select-account#alertRoot .panel .account-resume-box .account-resume-played,
-.modal-select-account#alertRoot .panel .account-resume-box .account-resume-level,
-.modal-select-account#alertRoot .panel .account-resume-box .account-resume-playing {
+.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-gold,
+.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-played,
+.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-level,
+.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-playing {
   position: relative;
   float: left;
   width: 50%;
@@ -23144,15 +23145,15 @@ fieldset[disabled] .modal-select-account#alertRoot .panel .form-description butt
   padding: 10px 5px;
   text-align: left;
 }
-.modal-select-account#alertRoot .panel .account-resume-box .account-resume-gold,
-.modal-select-account#alertRoot .panel .account-resume-box .account-resume-played {
+.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-gold,
+.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-played {
   border-bottom: none;
 }
-.modal-select-account#alertRoot .panel .account-resume-box .account-resume-gold,
-.modal-select-account#alertRoot .panel .account-resume-box .account-resume-level {
+.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-gold,
+.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-level {
   border-right: none;
 }
-.modal-select-account#alertRoot .panel .account-resume-box .account-resume-gold:before {
+.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-gold:before {
   content: "";
   content: " ";
   background-image: url("../images/icon-coin-xs.png");
@@ -23163,7 +23164,7 @@ fieldset[disabled] .modal-select-account#alertRoot .panel .form-description butt
   background-size: 17px 17px;
   margin-right: 5px;
 }
-.modal-select-account#alertRoot .panel .account-resume-box .account-resume-level:before {
+.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-level:before {
   content: "";
   content: " ";
   background-image: url("../images/icon-star-xs.png");
@@ -23174,7 +23175,7 @@ fieldset[disabled] .modal-select-account#alertRoot .panel .form-description butt
   background-size: 17px 17px;
   margin-right: 5px;
 }
-.modal-select-account#alertRoot .panel .account-resume-box .account-resume-played:before {
+.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-played:before {
   content: "";
   content: " ";
   background-image: url("../images/VincularCuentaTrophy.png");
@@ -23185,7 +23186,7 @@ fieldset[disabled] .modal-select-account#alertRoot .panel .form-description butt
   background-size: 17px 17px;
   margin-right: 5px;
 }
-.modal-select-account#alertRoot .panel .account-resume-box .account-resume-playing:before {
+.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-playing:before {
   content: "";
   content: " ";
   background-image: url("../images/VincularCuentaBall.png");
@@ -23196,8 +23197,8 @@ fieldset[disabled] .modal-select-account#alertRoot .panel .form-description butt
   background-size: 17px 17px;
   margin-right: 5px;
 }
-.modal-select-account#alertRoot .panel button.cloud-button,
-.modal-select-account#alertRoot .panel button.device-button {
+.modal-select-account#alertRoot .panel .form-description button.cloud-button,
+.modal-select-account#alertRoot .panel .form-description button.device-button {
   background-color: #428bca;
   border-color: #357ebd;
   display: inline-block;
@@ -23242,98 +23243,98 @@ fieldset[disabled] .modal-select-account#alertRoot .panel .form-description butt
   border-radius: 2px;
   vertical-align: middle;
 }
-.modal-select-account#alertRoot .panel button.cloud-button:hover,
-.modal-select-account#alertRoot .panel button.device-button:hover,
-.modal-select-account#alertRoot .panel button.cloud-button:focus,
-.modal-select-account#alertRoot .panel button.device-button:focus,
-.modal-select-account#alertRoot .panel button.cloud-button:active,
-.modal-select-account#alertRoot .panel button.device-button:active,
-.modal-select-account#alertRoot .panel button.cloud-button.active,
-.modal-select-account#alertRoot .panel button.device-button.active,
-.open .dropdown-toggle.modal-select-account#alertRoot .panel button.cloud-button,
-.open .dropdown-toggle.modal-select-account#alertRoot .panel button.device-button {
+.modal-select-account#alertRoot .panel .form-description button.cloud-button:hover,
+.modal-select-account#alertRoot .panel .form-description button.device-button:hover,
+.modal-select-account#alertRoot .panel .form-description button.cloud-button:focus,
+.modal-select-account#alertRoot .panel .form-description button.device-button:focus,
+.modal-select-account#alertRoot .panel .form-description button.cloud-button:active,
+.modal-select-account#alertRoot .panel .form-description button.device-button:active,
+.modal-select-account#alertRoot .panel .form-description button.cloud-button.active,
+.modal-select-account#alertRoot .panel .form-description button.device-button.active,
+.open .dropdown-toggle.modal-select-account#alertRoot .panel .form-description button.cloud-button,
+.open .dropdown-toggle.modal-select-account#alertRoot .panel .form-description button.device-button {
   color: #ffffff;
   background-color: #3276b1;
   border-color: #285e8e;
 }
-.modal-select-account#alertRoot .panel button.cloud-button:active,
-.modal-select-account#alertRoot .panel button.device-button:active,
-.modal-select-account#alertRoot .panel button.cloud-button.active,
-.modal-select-account#alertRoot .panel button.device-button.active,
-.open .dropdown-toggle.modal-select-account#alertRoot .panel button.cloud-button,
-.open .dropdown-toggle.modal-select-account#alertRoot .panel button.device-button {
+.modal-select-account#alertRoot .panel .form-description button.cloud-button:active,
+.modal-select-account#alertRoot .panel .form-description button.device-button:active,
+.modal-select-account#alertRoot .panel .form-description button.cloud-button.active,
+.modal-select-account#alertRoot .panel .form-description button.device-button.active,
+.open .dropdown-toggle.modal-select-account#alertRoot .panel .form-description button.cloud-button,
+.open .dropdown-toggle.modal-select-account#alertRoot .panel .form-description button.device-button {
   background-image: none;
 }
-.modal-select-account#alertRoot .panel button.cloud-button.disabled,
-.modal-select-account#alertRoot .panel button.device-button.disabled,
-.modal-select-account#alertRoot .panel button.cloud-button[disabled],
-.modal-select-account#alertRoot .panel button.device-button[disabled],
-fieldset[disabled] .modal-select-account#alertRoot .panel button.cloud-button,
-fieldset[disabled] .modal-select-account#alertRoot .panel button.device-button,
-.modal-select-account#alertRoot .panel button.cloud-button.disabled:hover,
-.modal-select-account#alertRoot .panel button.device-button.disabled:hover,
-.modal-select-account#alertRoot .panel button.cloud-button[disabled]:hover,
-.modal-select-account#alertRoot .panel button.device-button[disabled]:hover,
-fieldset[disabled] .modal-select-account#alertRoot .panel button.cloud-button:hover,
-fieldset[disabled] .modal-select-account#alertRoot .panel button.device-button:hover,
-.modal-select-account#alertRoot .panel button.cloud-button.disabled:focus,
-.modal-select-account#alertRoot .panel button.device-button.disabled:focus,
-.modal-select-account#alertRoot .panel button.cloud-button[disabled]:focus,
-.modal-select-account#alertRoot .panel button.device-button[disabled]:focus,
-fieldset[disabled] .modal-select-account#alertRoot .panel button.cloud-button:focus,
-fieldset[disabled] .modal-select-account#alertRoot .panel button.device-button:focus,
-.modal-select-account#alertRoot .panel button.cloud-button.disabled:active,
-.modal-select-account#alertRoot .panel button.device-button.disabled:active,
-.modal-select-account#alertRoot .panel button.cloud-button[disabled]:active,
-.modal-select-account#alertRoot .panel button.device-button[disabled]:active,
-fieldset[disabled] .modal-select-account#alertRoot .panel button.cloud-button:active,
-fieldset[disabled] .modal-select-account#alertRoot .panel button.device-button:active,
-.modal-select-account#alertRoot .panel button.cloud-button.disabled.active,
-.modal-select-account#alertRoot .panel button.device-button.disabled.active,
-.modal-select-account#alertRoot .panel button.cloud-button[disabled].active,
-.modal-select-account#alertRoot .panel button.device-button[disabled].active,
-fieldset[disabled] .modal-select-account#alertRoot .panel button.cloud-button.active,
-fieldset[disabled] .modal-select-account#alertRoot .panel button.device-button.active {
+.modal-select-account#alertRoot .panel .form-description button.cloud-button.disabled,
+.modal-select-account#alertRoot .panel .form-description button.device-button.disabled,
+.modal-select-account#alertRoot .panel .form-description button.cloud-button[disabled],
+.modal-select-account#alertRoot .panel .form-description button.device-button[disabled],
+fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.cloud-button,
+fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.device-button,
+.modal-select-account#alertRoot .panel .form-description button.cloud-button.disabled:hover,
+.modal-select-account#alertRoot .panel .form-description button.device-button.disabled:hover,
+.modal-select-account#alertRoot .panel .form-description button.cloud-button[disabled]:hover,
+.modal-select-account#alertRoot .panel .form-description button.device-button[disabled]:hover,
+fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.cloud-button:hover,
+fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.device-button:hover,
+.modal-select-account#alertRoot .panel .form-description button.cloud-button.disabled:focus,
+.modal-select-account#alertRoot .panel .form-description button.device-button.disabled:focus,
+.modal-select-account#alertRoot .panel .form-description button.cloud-button[disabled]:focus,
+.modal-select-account#alertRoot .panel .form-description button.device-button[disabled]:focus,
+fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.cloud-button:focus,
+fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.device-button:focus,
+.modal-select-account#alertRoot .panel .form-description button.cloud-button.disabled:active,
+.modal-select-account#alertRoot .panel .form-description button.device-button.disabled:active,
+.modal-select-account#alertRoot .panel .form-description button.cloud-button[disabled]:active,
+.modal-select-account#alertRoot .panel .form-description button.device-button[disabled]:active,
+fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.cloud-button:active,
+fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.device-button:active,
+.modal-select-account#alertRoot .panel .form-description button.cloud-button.disabled.active,
+.modal-select-account#alertRoot .panel .form-description button.device-button.disabled.active,
+.modal-select-account#alertRoot .panel .form-description button.cloud-button[disabled].active,
+.modal-select-account#alertRoot .panel .form-description button.device-button[disabled].active,
+fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.cloud-button.active,
+fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.device-button.active {
   background-color: #428bca;
   border-color: #357ebd;
 }
-.modal-select-account#alertRoot .panel button.cloud-button .badge,
-.modal-select-account#alertRoot .panel button.device-button .badge {
+.modal-select-account#alertRoot .panel .form-description button.cloud-button .badge,
+.modal-select-account#alertRoot .panel .form-description button.device-button .badge {
   color: #428bca;
   background-color: #ffffff;
 }
-.modal-select-account#alertRoot .panel button.cloud-button:focus,
-.modal-select-account#alertRoot .panel button.device-button:focus,
-.modal-select-account#alertRoot .panel button.cloud-button:active:focus,
-.modal-select-account#alertRoot .panel button.device-button:active:focus,
-.modal-select-account#alertRoot .panel button.cloud-button.active:focus,
-.modal-select-account#alertRoot .panel button.device-button.active:focus {
+.modal-select-account#alertRoot .panel .form-description button.cloud-button:focus,
+.modal-select-account#alertRoot .panel .form-description button.device-button:focus,
+.modal-select-account#alertRoot .panel .form-description button.cloud-button:active:focus,
+.modal-select-account#alertRoot .panel .form-description button.device-button:active:focus,
+.modal-select-account#alertRoot .panel .form-description button.cloud-button.active:focus,
+.modal-select-account#alertRoot .panel .form-description button.device-button.active:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-.modal-select-account#alertRoot .panel button.cloud-button:hover,
-.modal-select-account#alertRoot .panel button.device-button:hover,
-.modal-select-account#alertRoot .panel button.cloud-button:focus,
-.modal-select-account#alertRoot .panel button.device-button:focus {
+.modal-select-account#alertRoot .panel .form-description button.cloud-button:hover,
+.modal-select-account#alertRoot .panel .form-description button.device-button:hover,
+.modal-select-account#alertRoot .panel .form-description button.cloud-button:focus,
+.modal-select-account#alertRoot .panel .form-description button.device-button:focus {
   color: #333333;
   text-decoration: none;
 }
-.modal-select-account#alertRoot .panel button.cloud-button:active,
-.modal-select-account#alertRoot .panel button.device-button:active,
-.modal-select-account#alertRoot .panel button.cloud-button.active,
-.modal-select-account#alertRoot .panel button.device-button.active {
+.modal-select-account#alertRoot .panel .form-description button.cloud-button:active,
+.modal-select-account#alertRoot .panel .form-description button.device-button:active,
+.modal-select-account#alertRoot .panel .form-description button.cloud-button.active,
+.modal-select-account#alertRoot .panel .form-description button.device-button.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-.modal-select-account#alertRoot .panel button.cloud-button.disabled,
-.modal-select-account#alertRoot .panel button.device-button.disabled,
-.modal-select-account#alertRoot .panel button.cloud-button[disabled],
-.modal-select-account#alertRoot .panel button.device-button[disabled],
-fieldset[disabled] .modal-select-account#alertRoot .panel button.cloud-button,
-fieldset[disabled] .modal-select-account#alertRoot .panel button.device-button {
+.modal-select-account#alertRoot .panel .form-description button.cloud-button.disabled,
+.modal-select-account#alertRoot .panel .form-description button.device-button.disabled,
+.modal-select-account#alertRoot .panel .form-description button.cloud-button[disabled],
+.modal-select-account#alertRoot .panel .form-description button.device-button[disabled],
+fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.cloud-button,
+fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.device-button {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -23341,83 +23342,83 @@ fieldset[disabled] .modal-select-account#alertRoot .panel button.device-button {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.modal-select-account#alertRoot .panel button.cloud-button:active,
-.modal-select-account#alertRoot .panel button.device-button:active,
-.modal-select-account#alertRoot .panel button.cloud-button.active,
-.modal-select-account#alertRoot .panel button.device-button.active {
+.modal-select-account#alertRoot .panel .form-description button.cloud-button:active,
+.modal-select-account#alertRoot .panel .form-description button.device-button:active,
+.modal-select-account#alertRoot .panel .form-description button.cloud-button.active,
+.modal-select-account#alertRoot .panel .form-description button.device-button.active {
   box-shadow: none;
 }
-.modal-select-account#alertRoot .panel button.cloud-button:active:focus,
-.modal-select-account#alertRoot .panel button.device-button:active:focus,
-.modal-select-account#alertRoot .panel button.cloud-button.active:focus,
-.modal-select-account#alertRoot .panel button.device-button.active:focus {
+.modal-select-account#alertRoot .panel .form-description button.cloud-button:active:focus,
+.modal-select-account#alertRoot .panel .form-description button.device-button:active:focus,
+.modal-select-account#alertRoot .panel .form-description button.cloud-button.active:focus,
+.modal-select-account#alertRoot .panel .form-description button.device-button.active:focus {
   color: #ffffff;
   background-color: #b5d657;
   box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
-.modal-select-account#alertRoot .panel button.cloud-button:active:hover,
-.modal-select-account#alertRoot .panel button.device-button:active:hover,
-.modal-select-account#alertRoot .panel button.cloud-button.active:hover,
-.modal-select-account#alertRoot .panel button.device-button.active:hover {
+.modal-select-account#alertRoot .panel .form-description button.cloud-button:active:hover,
+.modal-select-account#alertRoot .panel .form-description button.device-button:active:hover,
+.modal-select-account#alertRoot .panel .form-description button.cloud-button.active:hover,
+.modal-select-account#alertRoot .panel .form-description button.device-button.active:hover {
   color: #ffffff;
   background-color: #b5d657;
   box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 }
-.modal-select-account#alertRoot .panel button.cloud-button:focus,
-.modal-select-account#alertRoot .panel button.device-button:focus {
+.modal-select-account#alertRoot .panel .form-description button.cloud-button:focus,
+.modal-select-account#alertRoot .panel .form-description button.device-button:focus {
   background-color: #a1c931;
   color: #ffffff;
 }
-.modal-select-account#alertRoot .panel button.cloud-button:hover,
-.modal-select-account#alertRoot .panel button.device-button:hover {
+.modal-select-account#alertRoot .panel .form-description button.cloud-button:hover,
+.modal-select-account#alertRoot .panel .form-description button.device-button:hover {
   background-color: #acd142;
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
   outline: none !important;
   color: #ffffff;
 }
-.modal-select-account#alertRoot .panel button.cloud-button:hover:focus,
-.modal-select-account#alertRoot .panel button.device-button:hover:focus {
+.modal-select-account#alertRoot .panel .form-description button.cloud-button:hover:focus,
+.modal-select-account#alertRoot .panel .form-description button.device-button:hover:focus {
   background-color: #a1c931;
   color: #ffffff;
 }
-.modal-select-account#alertRoot .panel button.cloud-button:active,
-.modal-select-account#alertRoot .panel button.device-button:active,
-.modal-select-account#alertRoot .panel button.cloud-button.active,
-.modal-select-account#alertRoot .panel button.device-button.active {
+.modal-select-account#alertRoot .panel .form-description button.cloud-button:active,
+.modal-select-account#alertRoot .panel .form-description button.device-button:active,
+.modal-select-account#alertRoot .panel .form-description button.cloud-button.active,
+.modal-select-account#alertRoot .panel .form-description button.device-button.active {
   box-shadow: none;
   background-color: #a1c931;
 }
-.modal-select-account#alertRoot .panel button.cloud-button:hover,
-.modal-select-account#alertRoot .panel button.device-button:hover {
+.modal-select-account#alertRoot .panel .form-description button.cloud-button:hover,
+.modal-select-account#alertRoot .panel .form-description button.device-button:hover {
   background-color: #acd142;
   outline: none !important;
   color: #ffffff;
 }
-.modal-select-account#alertRoot .panel button.cloud-button.disabled,
-.modal-select-account#alertRoot .panel button.device-button.disabled,
-.modal-select-account#alertRoot .panel button.cloud-button[disabled],
-.modal-select-account#alertRoot .panel button.device-button[disabled],
-fieldset[disabled] .modal-select-account#alertRoot .panel button.cloud-button,
-fieldset[disabled] .modal-select-account#alertRoot .panel button.device-button {
+.modal-select-account#alertRoot .panel .form-description button.cloud-button.disabled,
+.modal-select-account#alertRoot .panel .form-description button.device-button.disabled,
+.modal-select-account#alertRoot .panel .form-description button.cloud-button[disabled],
+.modal-select-account#alertRoot .panel .form-description button.device-button[disabled],
+fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.cloud-button,
+fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.device-button {
   background-color: #b5d657;
   color: #ebebeb;
   cursor: not-allowed !important;
 }
-.modal-select-account#alertRoot .panel button.cloud-button.close,
-.modal-select-account#alertRoot .panel button.device-button.close {
+.modal-select-account#alertRoot .panel .form-description button.cloud-button.close,
+.modal-select-account#alertRoot .panel .form-description button.device-button.close {
   background-color: #a1c931;
   outline: none !important;
   color: #ffffff;
 }
-.modal-select-account#alertRoot .panel button.cloud-button i,
-.modal-select-account#alertRoot .panel button.device-button i {
+.modal-select-account#alertRoot .panel .form-description button.cloud-button i,
+.modal-select-account#alertRoot .panel .form-description button.device-button i {
   margin-left: 10px;
   vertical-align: middle;
 }
-.modal-select-account#alertRoot .panel button.cloud-button {
+.modal-select-account#alertRoot .panel .form-description button.cloud-button {
   margin-bottom: 20px;
 }
-.modal-select-account#alertRoot .panel p {
+.modal-select-account#alertRoot .panel .form-description p {
   margin: 15px auto;
   max-width: 200px;
 }
@@ -24885,7 +24886,7 @@ users-list#usersList > .epic-tooltip {
 #homeRoot .profile-content,
 #homeRoot .profile-content .profile-section .data-header,
 #homeRoot .profile-content .profile-section .data-content,
-#homeRoot .modal-select-account#alertRoot .panel .account-resume-box,
+#homeRoot .modal-select-account#alertRoot .panel .form-description .account-resume-box,
 #homeRoot .info-complete-bar,
 #homeRoot .view-contest-entry-actions-wrapper,
 #homeRoot #maintenance-wrapper .maintenance-content,

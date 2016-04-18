@@ -30,7 +30,7 @@ abstract class ServerService {
   Future<Map> askForUserProfile({String email, String password, String accessToken, String facebookID});
   Future<Map> bindFromAccount({String firstName, String lastName, String email, String nickName, String password});
   Future<Map> bindToAccount({String email, String password});
-  Future<Map> bindFromFacebookAccount({String accessToken, String facebookID});
+  Future<Map> bindFromFacebookAccount({String accessToken, String facebookID, String facebookName, String facebookEmail});
   Future<Map> bindToFacebookAccount({String accessToken, String facebookID});
   Future<Map> getUserProfile();
   Future<Map> getFacebookProfiles(List<String> facebookIds);
@@ -186,10 +186,12 @@ class DailySoccerServer implements ServerService {
       });
   }
 
-  Future<Map> bindFromFacebookAccount({String accessToken, String facebookID}) {
+  Future<Map> bindFromFacebookAccount({String accessToken, String facebookID, String facebookName, String facebookEmail}) {
     return _innerServerCall("${HostServer.url}/bind_from_facebook_account", postData: {
         'accessToken': accessToken,
-        'facebookID': facebookID
+        'facebookID': facebookID,
+        'facebookName': facebookName,
+        'facebookEmail': facebookEmail
       });
   }
   

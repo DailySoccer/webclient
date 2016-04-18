@@ -28,6 +28,11 @@ class UserProfileComp {
   LoadingService loadingService;
 
   bool isEditingProfile = false;
+  //bool get isLoggedByFacebook => _profileService.user.isLoggedByFacebook;
+  //bool get isLoggedByUUID => _profileService.user.isLoggedByFacebook;
+  bool get isLoggedByFacebook => false;
+  bool get isLoggedByUUID => false;
+  
 
   dynamic get userData => _profileService.user;
 
@@ -113,10 +118,10 @@ class UserProfileComp {
     Completer completer = new Completer();
     
     _profileService.getFacebookAccount(accessToken, id).then((Map accountInfo) {
-          accountInfo['accessToken'] = accessToken;
-          accountInfo['facebookId'] = id;
-          
-          selectAccount(accountInfo);
+      accountInfo['accessToken'] = accessToken;
+      accountInfo['facebookId'] = id;
+      
+      selectAccount(accountInfo);
     }).catchError((ServerError error) {
       loadingService.isLoading = true;
       _profileService.bindFacebookUUID(accessToken, id, name, email)
@@ -194,6 +199,8 @@ class UserProfileComp {
           ModalComp.close();
           
           // Select the right account
+          accountInfo["email"] = email;
+          accountInfo["password"] = password;
           selectAccount(accountInfo);
           
         }).catchError((ServerError error) {
@@ -217,7 +224,11 @@ class UserProfileComp {
       deviceAccountInfo["managerLevel"] = _profileService.user.managerLevel;
       deviceAccountInfo["historyCount"] = numVirtualHistoryContests + numRealHistoryContests;
       deviceAccountInfo["playingCount"] = numLiveContests + numUpcomingContests;
-      
+
+      if (cloudAccountInfo.containsKey("email")) {
+        deviceAccountInfo["email"] = cloudAccountInfo["email"];
+        deviceAccountInfo["password"] = cloudAccountInfo["password"];
+      }
       if (cloudAccountInfo.containsKey("accessToken")) {
         deviceAccountInfo["accessToken"] = cloudAccountInfo["accessToken"];
         deviceAccountInfo["facebookId"] = cloudAccountInfo["facebookId"];

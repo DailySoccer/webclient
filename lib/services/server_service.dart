@@ -28,6 +28,10 @@ abstract class ServerService {
   Future<Map> facebookLogin(String accessToken, String facebookID, String facebookName, String facebookEmail);
   Future<Map> deviceLogin(String uuid);
   Future<Map> askForUserProfile({String email, String password, String accessToken, String facebookID});
+  Future<Map> bindFromAccount({String firstName, String lastName, String email, String nickName, String password});
+  Future<Map> bindToAccount({String email, String password});
+  Future<Map> bindFromFacebookAccount({String accessToken, String facebookID});
+  Future<Map> bindToFacebookAccount({String accessToken, String facebookID});
   Future<Map> getUserProfile();
   Future<Map> getFacebookProfiles(List<String> facebookIds);
   Future<Map> changeUserProfile(String firstName, String lastName, String email, String nickName, String password);
@@ -160,6 +164,37 @@ class DailySoccerServer implements ServerService {
         'password': password
       }
       : {
+        'accessToken': accessToken,
+        'facebookID': facebookID
+      });
+  }
+  
+  Future<Map> bindFromAccount({String firstName, String lastName, String email, String nickName, String password}) {
+    return _innerServerCall("${HostServer.url}/bind_from_account", postData: {
+        'firstName': firstName,
+        'lastName': lastName,
+        'email': email,
+        'nickName': nickName,
+        'password': password
+      });
+  }
+  
+  Future<Map> bindToAccount({String email, String password}) {
+    return _innerServerCall("${HostServer.url}/bind_to_account", postData:{
+        'email': email,
+        'password': password
+      });
+  }
+
+  Future<Map> bindFromFacebookAccount({String accessToken, String facebookID}) {
+    return _innerServerCall("${HostServer.url}/bind_from_facebook_account", postData: {
+        'accessToken': accessToken,
+        'facebookID': facebookID
+      });
+  }
+  
+  Future<Map> bindToFacebookAccount({String accessToken, String facebookID}) {
+    return _innerServerCall("${HostServer.url}/bind_to_facebook_account", postData: {
         'accessToken': accessToken,
         'facebookID': facebookID
       });

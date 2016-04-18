@@ -359,19 +359,39 @@ class ProfileService {
   }
   
   Future bindUUID(String firstName, String lastName, String email, String nickName, String password) {
-    Completer completer = new Completer();
+    Completer<Map> completer = new Completer<Map>();
     
-    new Timer(new Duration(milliseconds: 500), () => completer.complete());
-    
+    _server.bindFromAccount(firstName: firstName, lastName: lastName, email: email, nickName: nickName, password: password)
+      .then((jsonMap) {
+        Logger.root.info("bindUUID: $jsonMap");
+        
+        _onLoginResponse(jsonMap)
+          .then((_) {
+            Logger.root.info("bindUUID: _onLoginResponse OK");
+            completer.complete();
+          });
+      })
+      .catchError((error) => completer.completeError(error));
+  
     return completer.future;
   }
   
 
   Future bindFacebookUUID(String accessToken, String id, String name, String email) {
-    Completer completer = new Completer();
+    Completer<Map> completer = new Completer<Map>();
     
-    new Timer(new Duration(milliseconds: 500), () => completer.complete());
-    
+    _server.bindFromFacebookAccount(accessToken: accessToken, facebookID: id)
+      .then((jsonMap) {
+        Logger.root.info("bindFacebookUUID: $jsonMap");
+        
+        _onLoginResponse(jsonMap)
+          .then((_) {
+            Logger.root.info("bindFacebookUUID: _onLoginResponse OK");
+            completer.complete();
+          });
+      })
+      .catchError((error) => completer.completeError(error));
+  
     return completer.future;
   }
   

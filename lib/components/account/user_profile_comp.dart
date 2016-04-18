@@ -170,7 +170,11 @@ class UserProfileComp {
         if (error.responseError.contains("email")) {
           loadingService.isLoading = true;
           _profileService.bindUUID(firstName, lastName, email, nickName, password)
-              .then(([_]) { loadingService.isLoading = false; })
+              .then(([_]) {
+                ModalComp.deleteCallback();
+                ModalComp.close();
+                loadingService.isLoading = false; 
+              })
               .catchError((ServerError error) {
                 loadingService.isLoading = false;
                 Logger.root.severe(error);
@@ -304,14 +308,18 @@ class UserProfileComp {
             ''';
   }
 
+  void closeModal (Element modalWindow) {
+    JsUtils.runJavascript('#alertRoot', 'modal', "hide");
+    BackdropComp.instance.hide();
+    modalWindow.children.remove(modalWindow.querySelector('#alertRoot'));
+  }
+  
   void modalConfirmAccount(Map account, Function onBackButton) {
   
     Element modalWindow = querySelector("#modalWindow");
   
     void onClose(String eventCallback) {
-      JsUtils.runJavascript('#alertRoot', 'modal', "hide");
-      BackdropComp.instance.hide();
-      modalWindow.children.remove(modalWindow.querySelector('#alertRoot'));
+      closeModal(modalWindow);
       
       switch (eventCallback) {
         case "onConfirm":

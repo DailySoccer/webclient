@@ -2,13 +2,18 @@
   <div class="default-section-header">{{getLocalizedText('title')}}</div>
   <div class="profile-content">
 
-    <div class="binding-actions profile-section">
+    <div class="binding-actions profile-section" ng-if="!isLoggedByFacebook">
       <div class="data-content">
         <span>Vincula tu cuenta a un perfil</span>
       </div>
-      <div class="data-action single-button">
+      <div class="data-action" ng-class="{'single-button': !isLoggedByUUID}" >
         <button class="action-button facebook-button" ng-click="bindWithFacebook()">{{getLocalizedText("bind-facebook-btt")}}</button>
-        <button class="action-button server-button" ng-click="bindWithServer()">{{getLocalizedText("bind-server-btt")}}</button>
+        <button class="action-button server-button" ng-if="isLoggedByUUID" ng-click="bindWithServer()">{{getLocalizedText("bind-server-btt")}}</button>
+      </div>
+    </div>
+    <div class="binding-info profile-section" ng-if="isLoggedByFacebook">
+      <div class="data-content">
+        <span>Cuenta vinculada con facebook</span>
       </div>
     </div>
     
@@ -23,7 +28,7 @@
         <button class="action-button edit-button" ng-click="editPersonalData()">{{getLocalizedText("buttonedit")}}</button>
      </div>
     </div>
-
+    
     <div class="pocket-data profile-section">
       <div class="data-header">
           <span class="data-header-title">{{getLocalizedText("wallet")}}</span>

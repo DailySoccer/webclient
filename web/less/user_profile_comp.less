@@ -64,7 +64,15 @@
 				margin: 0px auto;
 			}
 		}
-		
+		&.binding-info {
+			.data-content {
+				.exo_bold(12pt, @white);
+				background-color: @blueDark;
+				height: auto;
+				min-height: 0;
+				padding: 10px 15px;
+			}
+		}
 		&.binding-actions {
 			.data-content {
 				.opensans_bold(10pt, @blueDark);
@@ -89,12 +97,16 @@
 						background-color: @redCuatro;
 					}
 				}
-				&.single-buttons .action-button {
+				&.single-button .action-button {
 					width: 98%;
+					margin: 0px auto;
 				}
 				padding-bottom: 0px;
 				border: 0px;
 				min-height: 0;
+			}
+			.data-action.facebook-logged .facebook-logged-message {
+				
 			}
 		}
 		

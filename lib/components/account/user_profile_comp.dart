@@ -28,11 +28,12 @@ class UserProfileComp {
   LoadingService loadingService;
 
   bool isEditingProfile = false;
-  //bool get isLoggedByFacebook => _profileService.user.isLoggedByFacebook;
-  //bool get isLoggedByUUID => _profileService.user.isLoggedByFacebook;
+  bool get isLoggedByFacebook => _profileService.user.isLoggedByFacebook;
+  bool get isLoggedByUUID => _profileService.user.isLoggedByFacebook;
+  /*
   bool get isLoggedByFacebook => false;
-  bool get isLoggedByUUID => false;
-  
+  bool get isLoggedByUUID => true;
+  */
 
   dynamic get userData => _profileService.user;
 

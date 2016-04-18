@@ -22371,6 +22371,18 @@ fieldset[disabled] .profile-content .profile-section .data-action .action-button
   outline: none !important;
   color: #ffffff;
 }
+.profile-content .profile-section.binding-info .data-content {
+  font-family: 'Exo', sans-serif;
+  font-weight: 700;
+  font-size: 12pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  background-color: #214a5f;
+  height: auto;
+  min-height: 0;
+  padding: 10px 15px;
+}
 .profile-content .profile-section.binding-actions .data-content {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
@@ -22406,8 +22418,9 @@ fieldset[disabled] .profile-content .profile-section .data-action .action-button
 .profile-content .profile-section.binding-actions .data-action .action-button.server-button {
   background-color: #fe4110;
 }
-.profile-content .profile-section.binding-actions .data-action.single-buttons .action-button {
+.profile-content .profile-section.binding-actions .data-action.single-button .action-button {
   width: 98%;
+  margin: 0px auto;
 }
 .profile-content .profile-section.personal-data .data-header {
   text-align: left;

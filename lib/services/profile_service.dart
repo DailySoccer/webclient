@@ -396,13 +396,31 @@ class ProfileService {
   Future bindFacebookUUID(String accessToken, String id, String name, String email) {
     Completer<Map> completer = new Completer<Map>();
     
-    _server.bindFromFacebookAccount(accessToken: accessToken, facebookID: id)
+    _server.bindFromFacebookAccount(accessToken: accessToken, facebookID: id, facebookName: name, facebookEmail: email)
       .then((jsonMap) {
         Logger.root.info("bindFacebookUUID: $jsonMap");
         
         _onLoginResponse(jsonMap)
           .then((_) {
             Logger.root.info("bindFacebookUUID: _onLoginResponse OK");
+            completer.complete();
+          });
+      })
+      .catchError((error) => completer.completeError(error));
+  
+    return completer.future;
+  }
+  
+  Future bindToFacebookAccount(String accessToken, String id) {
+    Completer<Map> completer = new Completer<Map>();
+    
+    _server.bindToFacebookAccount(accessToken: accessToken, facebookID: id)
+      .then((jsonMap) {
+        Logger.root.info("bindToFacebookAccount: $jsonMap");
+        
+        _onLoginResponse(jsonMap)
+          .then((_) {
+            Logger.root.info("bindToFacebookAccount: _onLoginResponse OK");
             completer.complete();
           });
       })

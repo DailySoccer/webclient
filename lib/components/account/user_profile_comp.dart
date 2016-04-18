@@ -29,7 +29,7 @@ class UserProfileComp {
 
   bool isEditingProfile = false;
   bool get isLoggedByFacebook => _profileService.user.isLoggedByFacebook;
-  bool get isLoggedByUUID => _profileService.user.isLoggedByFacebook;
+  bool get isLoggedByUUID => _profileService.user.isLoggedByUUID;
   /*
   bool get isLoggedByFacebook => false;
   bool get isLoggedByUUID => true;
@@ -324,6 +324,26 @@ class UserProfileComp {
       switch (eventCallback) {
         case "onConfirm":
           print("confirm");
+          if (account.containsKey("email")) {
+            _profileService.bindToAccount(account["email"], account["password"])
+              .then((_) {
+                Logger.root.info("bindToAccount OK: ${account["email"]}");
+              });
+          }
+          if (account.containsKey("accessToken")) {
+            ((account["name"] == _profileService.user.nickName) 
+              ? _profileService.bindFacebookUUID(account["accessToken"], account["facebookId"], "<facebookName>", "<facebookEmail>")
+              : _profileService.bindToFacebookAccount(account["accessToken"], account["facebookId"]))
+              .then((_) {
+                String bindName = (account["name"] == _profileService.user.nickName) ? "bindFacebookUUID" : "bindToFacebookAccount";
+                if (account["name"] == _profileService.user.nickName) {
+                  Logger.root.info("$bindName OK: ${account["facebookId"]}");
+                }
+                else {
+                  Logger.root.info("$bindName OK: ${account["facebookId"]}");
+                }
+              });
+          }
           break;
           
         case "onBack": 

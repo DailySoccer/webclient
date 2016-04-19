@@ -18,8 +18,8 @@ class FBLogin {
     _router = router;
     _profileManager = _profileService;
     _onLogin = onLogin;
-    _onFacebookConnection = onLoginDefault;
     js.context['jsLoginFB'] = loginFB;
+    //_onFacebookConnection = onLoginDefault;
     
     // Default action onLogin
     if (_onLogin == null) {

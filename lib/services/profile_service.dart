@@ -35,7 +35,7 @@ class ProfileService {
   static ProfileService get instance => _instance;  // Si te peta en esta linea te obliga a pensar, lo que es Una Buena Cosa™.
                                                     // Una pista... quiza te ha pasado pq has quitado componentes del index?
 
-  ProfileService(this._server) {
+  ProfileService(this._router, this._server) {
     _instance = this;
     _tryProfileLoad();
   }
@@ -234,8 +234,7 @@ class ProfileService {
     Logger.root.info("UUID: $uuid");
     
     if (HostServer.isAndroidPlatform || HostServer.isiOSPlatform) {
-      // TODO: Comentado el login mediante el UUID, hasta que el backEnd ofrezca dicha posibilidad
-      // deviceLogin(uuid);
+      deviceLogin(uuid);
     }
   }
   
@@ -442,6 +441,27 @@ class ProfileService {
     }
     return "$text [WebClient]";
   }
+  
+  // Esta modal es para colocarla en el estado de bienvenida.
+  void showGuestNameModal() {
+    if (isLoggedIn && user.isLoggedByUUID && !GameInfo.contains("showGuestNameModal")) {
+      modalShow(
+            "",
+            '''
+              <div class="content-wrapper">
+                <h1 class="alert-content-title">Bienvenido a Fútbol Cuatro</h1>
+                <h2 class="alert-content-subtitle">Tu nombre en los torneos será <b>${user.nickName}</b> <br>Si quieres puedes cambiar de nombre en tu perfil.</h2>
+              </div>
+            '''
+            , onBackdropClick: true
+            , aditionalClass: "guest-name-modal"
+          )
+          .then((_) => _router.go('home', {}))
+          .catchError((_) => _router.go('home', {}));
+    }
+    
+    GameInfo.assign("showGuestNameModal", "true");
+  }
 
   List<User> _friendList = [];
   List<User> get friendList => user == null? [] : _friendList;
@@ -453,5 +473,6 @@ class ProfileService {
   static ProfileService _instance;
 
   ServerService _server;
+  Router _router;
   String _sessionToken;
 }

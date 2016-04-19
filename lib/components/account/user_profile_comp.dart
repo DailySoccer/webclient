@@ -119,6 +119,9 @@ class UserProfileComp {
     Completer completer = new Completer();
     
     _profileService.getFacebookAccount(accessToken, id).then((Map accountInfo) {
+      ModalComp.deleteCallback();
+      ModalComp.close();
+      
       accountInfo['accessToken'] = accessToken;
       accountInfo['facebookId'] = id;
       
@@ -127,6 +130,8 @@ class UserProfileComp {
       loadingService.isLoading = true;
       _profileService.bindFacebookUUID(accessToken, id, name, email)
           .then(([_]) {
+            ModalComp.deleteCallback();
+            ModalComp.close();
             loadingService.isLoading = false; 
           })
           .catchError((ServerError error) {
@@ -142,10 +147,10 @@ class UserProfileComp {
   }
   void bindWithFacebook() {
     //FBLogin.onLogin = fbLoginCallback;
-    showGuestNameModal();
+    //showGuestNameModal();
     FBLogin.onFacebookConnection = fbLoginCallback;
     //modalFacebookBindConfirm();
-    //_fbLogin.loginFB();
+    _fbLogin.loginFB();
   }
   
   void bindWithServerJoin() {
@@ -496,25 +501,6 @@ class UserProfileComp {
       JsUtils.runJavascript('#alertRoot', 'on', {'hidden.bs.modal': (sender) { onClose("onCancel"); } });
       BackdropComp.instance.show();
   }
-  
-  
-  // Esta modal es para colocarla en el estado de bienvenida.
-  void showGuestNameModal() {
-    modalShow(
-          "",
-          '''
-            <div class="content-wrapper">
-              <h1 class="alert-content-title">Bienvenido a Futbol Cuatro</h1>
-              <h2 class="alert-content-subtitle">Tú nombre en los torneos será <b>Guest12345</b> <br>Si quieres puedes cambiar de nombre en tu perfil.</h2>
-            </div>
-          '''
-          , onBackdropClick: true
-          , aditionalClass: "guest-name-modal"
-        )
-        .then((_) => _router.go('home', {}))
-        .catchError((_) => _router.go('home', {}));
-  }
-  
 
   ProfileService _profileService;
   ContestsService _contestsService;

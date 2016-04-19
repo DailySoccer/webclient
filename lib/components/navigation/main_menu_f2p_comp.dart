@@ -66,6 +66,10 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
     }
     _setUpSlidingMenu();
     _setUpClicks();
+    
+    if (profileService.isLoggedIn) {
+      profileService.showGuestNameModal();
+    }
   }
 
   void _reset() {

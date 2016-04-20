@@ -124,6 +124,8 @@ class UserProfileComp {
       
       accountInfo['accessToken'] = accessToken;
       accountInfo['facebookId'] = id;
+      accountInfo['facebookName'] = name;
+      accountInfo['facebookEmail'] = email;
       
       selectAccount(accountInfo);
     }).catchError((ServerError error) {
@@ -242,6 +244,8 @@ class UserProfileComp {
       if (cloudAccountInfo.containsKey("accessToken")) {
         deviceAccountInfo["accessToken"] = cloudAccountInfo["accessToken"];
         deviceAccountInfo["facebookId"] = cloudAccountInfo["facebookId"];
+        deviceAccountInfo["facebookName"] = cloudAccountInfo["facebookName"];
+        deviceAccountInfo["facebookEmail"] = cloudAccountInfo["facebookEmail"];
       }
       modalSelectAccount(deviceAccountInfo, cloudAccountInfo);
     });
@@ -337,7 +341,7 @@ class UserProfileComp {
           }
           if (account.containsKey("accessToken")) {
             ((account["name"] == _profileService.user.nickName) 
-              ? _profileService.bindFacebookUUID(account["accessToken"], account["facebookId"], "<facebookName>", "<facebookEmail>")
+              ? _profileService.bindFacebookUUID(account["accessToken"], account["facebookId"], account["facebookName"], account["facebookEmail"])
               : _profileService.bindToFacebookAccount(account["accessToken"], account["facebookId"]))
               .then((_) {
                 String bindName = (account["name"] == _profileService.user.nickName) ? "bindFacebookUUID" : "bindToFacebookAccount";

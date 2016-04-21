@@ -20,27 +20,27 @@ import 'package:webclient/components/modal_comp.dart';
 class JoinComp implements ShadowRootAware {
   static const String PATH_IF_SUCCESS = "home";
   static const String PATH_IF_FAIL = "home";
-
+  
   int MIN_PASSWORD_LENGTH = 8;
   int MIN_NICKNAME_LENGTH = 4;
   int MAX_NICKNAME_LENGTH = 30;
-
+  
   String firstName  = "";
   String lastName   = "";
   String email      = "";
   String nickName   = "";
   String password   = "";
   String rePassword   = "";
-
+  
   Element nickNameElement;
   Element emailElement;
   Element passwordElement;
   Element rePasswordElement;
-
+  
   Element nicknameError;
   Element emailError;
   Element passwordError;
-
+  
   static final String ERROR_CREATING_YOUR_ACCOUNT = "ERROR_CREATING_YOUR_ACCOUNT";
   static final String ERROR_NICKNAME_TAKEN = "ERROR_NICKNAME_TAKEN";
   static final String ERROR_EMAIL_TAKEN = "ERROR_EMAIL_TAKEN";
@@ -196,59 +196,73 @@ class JoinComp implements ShadowRootAware {
     }
 
     loadingService.isLoading = true;
-    _profileService.signup(firstName, lastName, email, nickName, password)
-        .then((_) =>  _profileService.login(email, password))
-          .then((_) {
-            GameMetrics.logEvent(GameMetrics.SIGNUP_SUCCESSFUL, {"action via": "email"});
-            GameMetrics.logEvent(GameMetrics.LOGIN_SUCCESSFUL, {"action via": "email"});
-            GameMetrics.trackConversion(false);
 
-            loadingService.isLoading = false;
-            if(_routeProvider.route.parent.name == null) {
-              if (_routeProvider.route.name == 'join') {
-                _router.go(PATH_IF_SUCCESS, {});
+    if (isModal && ModalComp.hasCallback()) {
+      ModalComp.callCallback({"firstName": firstName, 
+                              "lastName": lastName, 
+                              "email": email, 
+                              "nickName":nickName, 
+                              "password":password,
+                              "action": "join",
+                              "onError": submitErrorHandling
+                              });
+    } else {
+      _profileService.signup(firstName, lastName, email, nickName, password)
+          .then((_) =>  _profileService.login(email, password))
+            .then((_) {
+              GameMetrics.logEvent(GameMetrics.SIGNUP_SUCCESSFUL, {"action via": "email"});
+              GameMetrics.trackConversion(false);
+  
+              loadingService.isLoading = false;
+              if(_routeProvider.route.parent.name == null) {
+                if (_routeProvider.route.name == 'join') {
+                  _router.go(PATH_IF_SUCCESS, {});
+                }
+              } else {
+                ModalComp.close();
               }
-            } else {
-              ModalComp.close();
-            }
-        })
-        .catchError((ServerError error) {
-          error.toJson().forEach( (key, value) {
-            switch (key)
-            {
-              case "nickName":
-                nicknameError
-                  ..text = _showMsgError(value[0])
-                  ..classes.remove("errorDetected")
-                  ..classes.add("errorDetected")
-                  ..parent.style.display = "";
-                validateNickName(forceValidation: false);
+          })
+          .catchError((ServerError error) {
+            submitErrorHandling(error);
+          }, test: (error) => error is ServerError);
+    }
+  }
+  
+  void submitErrorHandling(ServerError error) {
+    error.toJson().forEach( (key, value) {
+      switch (key)
+      {
+        case "nickName":
+          nicknameError
+            ..text = _showMsgError(value[0])
+            ..classes.remove("errorDetected")
+            ..classes.add("errorDetected")
+            ..parent.style.display = "";
+          validateNickName(forceValidation: false);
 
-              break;
-              case "email":
-                emailError
-                  ..text = _showMsgError(value[0])
-                  ..classes.remove("errorDetected")
-                  ..classes.add("errorDetected")
-                  ..parent.style.display = "";
-                validateEmail(forceValidation: false);
-              break;
-              case "password":
-                passwordError
-                  ..text = _showMsgError(value[0])
-                  ..classes.remove("errorDetected")
-                  ..classes.add("errorDetected")
-                  ..parent.style.display = "";
-              break;
-              default:
-                print('WTF: 1212:Houston, ha pasado algo al hacer join');
-              break;
-            }
-          });
-          _enabledSubmit = true;
-          loadingService.isLoading = false;
-
-        }, test: (error) => error is ServerError);
+        break;
+        case "email":
+          emailError
+            ..text = _showMsgError(value[0])
+            ..classes.remove("errorDetected")
+            ..classes.add("errorDetected")
+            ..parent.style.display = "";
+          validateEmail(forceValidation: false);
+        break;
+        case "password":
+          passwordError
+            ..text = _showMsgError(value[0])
+            ..classes.remove("errorDetected")
+            ..classes.add("errorDetected")
+            ..parent.style.display = "";
+        break;
+        default:
+          print('WTF: 1212:Houston, ha pasado algo al hacer join');
+        break;
+      }
+    });
+    _enabledSubmit = true;
+    loadingService.isLoading = false;
   }
 
   void onAction (String action, [event]) {
@@ -258,17 +272,14 @@ class JoinComp implements ShadowRootAware {
 
     switch (action) {
       case "SUBMIT":
-        submitSignup();
-        break;
-
+          submitSignup();
+      break;
       case "CANCEL":
         isModal ? ModalComp.close() : _router.go(PATH_IF_FAIL, {});
-        break;
-
+      break;
       case "LOGIN":
         isModal ? _router.go("${_router.activePath.first.name}.login", {}) : _router.go('login', {});
-        break;
-
+      break;
       default:
         Logger.root.severe("join_comp: onAction: $action");
     }
@@ -297,7 +308,8 @@ class JoinComp implements ShadowRootAware {
     ERROR_CHECK_EMAIL_SPELLING: "Something went wrong, check the spelling on your email address.",
     ERROR_PASSWORD_TOO_SHORT: "Password is too short.",
     "_ERROR_DEFAULT_": "An error has occurred. Please, try again later."
-  };*/
+  };
+  */
 
   String _showMsgError(String errorCode) {
     String keyError = errorMap.keys.firstWhere( (key) => errorCode.contains(key), orElse: () => "_ERROR_DEFAULT_" );

@@ -145,27 +145,34 @@ class EditPersonalDataComp implements ShadowRootAware{
   bool validatePassword() {
     bool retorno = true;
     passwordErrorText = "";
-    // Verificación del password
-    if ( ! (editedPassword == '' && editedRepeatPassword == '') 
-      && (editedPassword != editedRepeatPassword || editedPassword.length < MIN_PASSWORD_LENGTH)) {
-      if (editedPassword.length < MIN_PASSWORD_LENGTH) {
-        passwordErrorText = getLocalizedText('passwordshort', sustitutions: {'MIN_PASSWORD_LENGTH': MIN_PASSWORD_LENGTH});//"Password must be at least ${MIN_PASSWORD_LENGTH} characters long.";
-        retorno = false;
-      } else if (editedPassword != editedRepeatPassword) {
-        passwordErrorText = getLocalizedText('passwordnotmatch');//"Passwords don't match.";
-        retorno = false;
+    if (userData.canChangePassword) {
+      // Verificación del password
+      if ( ! (editedPassword == '' && editedRepeatPassword == '') 
+        && (editedPassword != editedRepeatPassword || editedPassword.length < MIN_PASSWORD_LENGTH)) {
+        if (editedPassword.length < MIN_PASSWORD_LENGTH) {
+          passwordErrorText = getLocalizedText('passwordshort', sustitutions: {'MIN_PASSWORD_LENGTH': MIN_PASSWORD_LENGTH});//"Password must be at least ${MIN_PASSWORD_LENGTH} characters long.";
+          retorno = false;
+        } else if (editedPassword != editedRepeatPassword) {
+          passwordErrorText = getLocalizedText('passwordnotmatch');//"Passwords don't match.";
+          retorno = false;
+        }
       }
     }
     return retorno;
   }
   
   bool validateEmail() {
-    bool valid = StringUtils.isValidEmail(editedEmail);
+    bool valid = true;
     emailErrorText = "";
     
-    if (!valid) {
-      emailErrorText = getLocalizedText('emailnotvalid');//"Email is not valid.";
+    if (userData.canChangeEmail) {
+      valid = StringUtils.isValidEmail(editedEmail);
+      
+      if (!valid) {
+        emailErrorText = getLocalizedText('emailnotvalid');//"Email is not valid.";
+      }
     }
+    
     return valid;
   }
   

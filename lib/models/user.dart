@@ -19,6 +19,7 @@ class User {
   static num get MAX_MANAGER_LEVEL => MANAGER_POINTS.length - 1;
 
   String userId;
+  
   String firstName;
   String lastName;
   String nickName;
@@ -28,7 +29,9 @@ class User {
   Money managerBalance;
   Money energyBalance;
 
+  String deviceUUID;
   String facebookID;
+  
   String get profileImage {
     Map image = FBLogin.profileImage(facebookID);
     String url;
@@ -62,8 +65,12 @@ class User {
   String get mainMenuInfo => "$userId;$facebookID;$profileImage;${energyBalance.toInt()};${managerBalance.toInt()};${goldBalance.toInt()};$trueSkill;${notifications.length};${achievements.length}";
 
   bool hasAchievement(String achievement) => achievements.contains(achievement);
-  bool get isLoggedByUUID => email.contains("@uuid.com");
+  bool get isLoggedByUUID => (deviceUUID != null) && deviceUUID.isNotEmpty && email.contains(deviceUUID);
+  bool get isLoggedByFacebook => (facebookID != null) && facebookID.isNotEmpty;
 
+  bool get canChangeEmail => !isLoggedByUUID && !isLoggedByFacebook;
+  bool get canChangePassword => !isLoggedByUUID && !isLoggedByFacebook;
+  
   //String get fullName => "$firstName $lastName";
   String toString() => "$userId - $email - $nickName";
   Map toJson() => {"_id": userId, "firstName": firstName, "lastName": lastName, "email": email, "nickName": nickName};
@@ -150,11 +157,12 @@ class User {
     lastName = (jsonMap.containsKey("lastName")) ? jsonMap["lastName"] : "";
     nickName = jsonMap["nickName"];
 
+    deviceUUID = jsonMap.containsKey("deviceUUID") ? jsonMap["deviceUUID"] : "";
     facebookID = jsonMap.containsKey("facebookID") ? jsonMap["facebookID"] : "";
 
     email = (jsonMap.containsKey("email")) ? jsonMap["email"] : "<email: null>";
     wins = (jsonMap.containsKey("wins")) ? jsonMap["wins"] : 0;
-    balance = jsonMap.containsKey("cachedBalance") ? new Money.fromJsonObject(jsonMap["cachedBalance"]) : new Money.zero();
+    balance = jsonMap.containsKey("cachedBalance") && (jsonMap["cachedBalance"] != null) ? new Money.fromJsonObject(jsonMap["cachedBalance"]) : new Money.zero();
 
     trueSkill = (jsonMap.containsKey("trueSkill")) ? jsonMap["trueSkill"] : 0;
     earnedMoney = jsonMap.containsKey("earnedMoney") ? new Money.fromJsonObject(jsonMap["earnedMoney"]) : new Money.zero();

@@ -35,7 +35,7 @@ class ProfileService {
   static ProfileService get instance => _instance;  // Si te peta en esta linea te obliga a pensar, lo que es Una Buena Cosa™.
                                                     // Una pista... quiza te ha pasado pq has quitado componentes del index?
 
-  ProfileService(this._server) {
+  ProfileService(this._router, this._server) {
     _instance = this;
     _tryProfileLoad();
   }
@@ -232,8 +232,10 @@ class ProfileService {
   
   void loginWithUUID(String uuid) {
     Logger.root.info("UUID: $uuid");
-    // TODO: Comentado el login mediante el UUID, hasta que el backEnd ofrezca dicha posibilidad
-    // deviceLogin(uuid);
+    
+    if (HostServer.isAndroidPlatform || HostServer.isiOSPlatform) {
+      deviceLogin(uuid);
+    }
   }
   
   void _saveProfile() {
@@ -310,6 +312,122 @@ class ProfileService {
     return completer.future;
   }
   
+  Future<Map> getFacebookAccount(String accessToken, String facebookID) {
+    Completer<Map> completer = new Completer<Map>();
+    
+    _server.askForUserProfile(accessToken: accessToken, facebookID: facebookID)
+    .then((jsonMap) {
+      Logger.root.info("getFacebookAccount: $jsonMap");
+      completer.complete( _getAccountInfo(jsonMap) );
+    })
+    .catchError((error) => completer.completeError(error));
+  
+    return completer.future;
+  }
+
+  Future<Map> getAccount(String email, String password) {
+    Completer<Map> completer = new Completer<Map>();
+    
+    _server.askForUserProfile(email: email, password: password)
+      .then((jsonMap) {
+        Logger.root.info("getAccount: $jsonMap");
+        completer.complete( _getAccountInfo(jsonMap) );
+      })
+      .catchError((error) => completer.completeError(error));
+    
+    return completer.future;
+  }
+  
+  Map _getAccountInfo(Map jsonMap) {
+    
+      User account = new User.fromJsonObject(jsonMap["profile"]);
+        
+      num numVirtualHistoryContests = jsonMap.containsKey("numVirtualHistory") ? jsonMap["numVirtualHistory"] : 0;
+      num numRealHistoryContests    = jsonMap.containsKey("numRealHistory") ? jsonMap["numRealHistory"] : 0;
+      num numLiveContests           = jsonMap.containsKey("numLive") ? jsonMap["numLive"] : 0;
+      num numUpcomingContests       = jsonMap.containsKey("numWaiting") ? jsonMap["numWaiting"] : 0;
+      
+      return {
+        "name": account.nickName,
+        "balance": account.goldBalance.amount,
+        "managerLevel": account.managerLevel,
+        "historyCount": numVirtualHistoryContests + numRealHistoryContests,
+        "playingCount": numUpcomingContests + numLiveContests,
+      };
+  }
+  
+  Future bindUUID(String firstName, String lastName, String email, String nickName, String password) {
+    Completer<Map> completer = new Completer<Map>();
+    
+    _server.bindFromAccount(firstName: firstName, lastName: lastName, email: email, nickName: nickName, password: password)
+      .then((jsonMap) {
+        Logger.root.info("bindUUID: $jsonMap");
+        
+        _onLoginResponse(jsonMap)
+          .then((_) {
+            Logger.root.info("bindUUID: _onLoginResponse OK");
+            completer.complete();
+          });
+      })
+      .catchError((error) => completer.completeError(error));
+  
+    return completer.future;
+  }
+
+  Future bindToAccount(String email, String password) {
+    Completer<Map> completer = new Completer<Map>();
+    
+    _server.bindToAccount(email: email, password: password)
+      .then((jsonMap) {
+        Logger.root.info("bindToAccount: $jsonMap");
+        
+        _onLoginResponse(jsonMap)
+          .then((_) {
+            Logger.root.info("bindToAccount: _onLoginResponse OK");
+            completer.complete();
+          });
+      })
+      .catchError((error) => completer.completeError(error));
+  
+    return completer.future;
+  }
+
+  Future bindFacebookUUID(String accessToken, String id, String name, String email) {
+    Completer<Map> completer = new Completer<Map>();
+    
+    _server.bindFromFacebookAccount(accessToken: accessToken, facebookID: id, facebookName: name, facebookEmail: email)
+      .then((jsonMap) {
+        Logger.root.info("bindFacebookUUID: $jsonMap");
+        
+        _onLoginResponse(jsonMap)
+          .then((_) {
+            Logger.root.info("bindFacebookUUID: _onLoginResponse OK");
+            completer.complete();
+          });
+      })
+      .catchError((error) => completer.completeError(error));
+  
+    return completer.future;
+  }
+  
+  Future bindToFacebookAccount(String accessToken, String id) {
+    Completer<Map> completer = new Completer<Map>();
+    
+    _server.bindToFacebookAccount(accessToken: accessToken, facebookID: id)
+      .then((jsonMap) {
+        Logger.root.info("bindToFacebookAccount: $jsonMap");
+        
+        _onLoginResponse(jsonMap)
+          .then((_) {
+            Logger.root.info("bindToFacebookAccount: _onLoginResponse OK");
+            completer.complete();
+          });
+      })
+      .catchError((error) => completer.completeError(error));
+  
+    return completer.future;
+  }
+  
   static String decorateLog(String text) {
     ProfileService profile = ProfileService.instance;
     if (profile != null){
@@ -323,6 +441,27 @@ class ProfileService {
     }
     return "$text [WebClient]";
   }
+  
+  // Esta modal es para colocarla en el estado de bienvenida.
+  void showGuestNameModal() {
+    if (isLoggedIn && user.isLoggedByUUID && !GameInfo.contains("showGuestNameModal")) {
+      modalShow(
+            "",
+            '''
+              <div class="content-wrapper">
+                <h1 class="alert-content-title">Bienvenido a Fútbol Cuatro</h1>
+                <h2 class="alert-content-subtitle">Tu nombre en los torneos será <b>${user.nickName}</b> <br>Si quieres puedes cambiar de nombre en tu perfil.</h2>
+              </div>
+            '''
+            , onBackdropClick: true
+            , aditionalClass: "guest-name-modal"
+          )
+          .then((_) => _router.go('home', {}))
+          .catchError((_) => _router.go('home', {}));
+    }
+    
+    GameInfo.assign("showGuestNameModal", "true");
+  }
 
   List<User> _friendList = [];
   List<User> get friendList => user == null? [] : _friendList;
@@ -334,5 +473,6 @@ class ProfileService {
   static ProfileService _instance;
 
   ServerService _server;
+  Router _router;
   String _sessionToken;
 }

@@ -89,7 +89,24 @@ class LoginComp implements ShadowRootAware {
 
     switch (action) {
       case "SUBMIT":
-        login();
+        if (isModal && ModalComp.hasCallback()) {
+          _enabledSubmit = false;
+          ModalComp.callCallback({"email": emailOrUsername, 
+                                  "password":password,
+                                  "action": "login",
+                                  "onError": (error) {
+                                      _enabledSubmit = true;
+                                      _loginErrorSection.style.display = '';
+                              
+                                      _loginErrorLabel
+                                        ..text = _showMsgError(error.toJson()["email"][0])
+                                        ..classes.remove("errorDetected")
+                                        ..classes.add("errorDetected");
+                                    }
+                                  });
+        } else {
+          login();
+        }
         break;
 
       case "CANCEL":

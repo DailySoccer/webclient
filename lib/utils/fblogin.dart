@@ -19,6 +19,7 @@ class FBLogin {
     _profileManager = _profileService;
     _onLogin = onLogin;
     js.context['jsLoginFB'] = loginFB;
+    //_onFacebookConnection = onLoginDefault;
     
     // Default action onLogin
     if (_onLogin == null) {
@@ -116,6 +117,16 @@ class FBLogin {
     });
   }
   
+  static Future onLoginDefault(String accessToken, String id, String name, String email) {
+    return _profileManager.facebookLogin(accessToken, id, name, email)
+                                .then((_) {
+                                  Logger.root.info (ProfileService.decorateLog("Server Login with Facebook is OK"));
+                                  _onLogin();
+                                }).catchError((ServerError error) {
+                                  Logger.root.severe(error);
+                                }, test: (error) => error is ServerError);
+  }
+  
   static void serverLoginWithFB() {
     print(" - FB REQUEST => ProfileInfoRequest");
     profileInfo().then((info) {
@@ -126,15 +137,12 @@ class FBLogin {
               print(" - FB REQUEST => ProfileInfoRequest Then: accessToken => $accessToken || email => $email || id => $id || name => $name ");
                      
               // LOGIN
+              /*_profileManager.getFacebookAccount(accessToken, id).then((Map accountInfo) {
+              });*/
+
               Logger.root.info (ProfileService.decorateLog("Server Login with Facebook"));
-              _profileManager.facebookLogin(accessToken, id, name, email)
-                                    .then((_) {
-                                      Logger.root.info (ProfileService.decorateLog("Server Login with Facebook is OK"));
-                                      _onLogin();
-                                    }).catchError((ServerError error) {
-                                      Logger.root.severe(error);
-                                    }, test: (error) => error is ServerError);
-            });
+              return _onFacebookConnection(accessToken, id, name, email);
+          });
   }
   
   static Future<Map> profileInfo() {
@@ -302,6 +310,12 @@ class FBLogin {
   String _state = null;
   String get state => _state;
 
+  static Function _onFacebookConnection = onLoginDefault;
+  static void set onFacebookConnection(Future funct(String accessToken, String id, String name, String email)) {
+    _onFacebookConnection = funct;
+  }
+  static Function get onFacebookConnection => _onFacebookConnection;
+  
   bool get isConnected => _state == "connected";
 
   static List<Function> _openGraphRequestQueue = new List<Function>();

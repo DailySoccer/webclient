@@ -3,6 +3,7 @@ library loading_service;
 import 'package:angular/angular.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'dart:async';
+import 'package:webclient/utils/host_server.dart';
 
 @Injectable()
 class LoadingService {
@@ -26,8 +27,10 @@ class LoadingService {
     _instance = this;
     
     new Timer(new Duration(milliseconds: 1000), () {
-      JsUtils.runJavascript(null, "hide", null, ["navigator", "splashscreen"]);
-      JsUtils.runJavascript(null, "hide", null, ["StatusBar"]);
+      if (HostServer.isAndroidPlatform || HostServer.isiOSPlatform) {
+        JsUtils.runJavascript(null, "hide", null, ["navigator", "splashscreen"]);
+        JsUtils.runJavascript(null, "hide", null, ["StatusBar"]);
+      }
     });
   }
 

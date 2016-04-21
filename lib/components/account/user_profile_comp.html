@@ -2,18 +2,33 @@
   <div class="default-section-header">{{getLocalizedText('title')}}</div>
   <div class="profile-content">
 
-    <div class="personal-data profile-section" ng-if="!userData.isLoggedByUUID">
+    <div class="binding-actions profile-section" ng-if="!isLoggedByFacebook">
+      <div class="data-content">
+        <span>Vincula tu cuenta a un perfil</span>
+      </div>
+      <div class="data-action" ng-class="{'single-button': !isLoggedByUUID}" >
+        <button class="action-button facebook-button" ng-click="bindWithFacebook()">{{getLocalizedText("bind-facebook-btt")}}</button>
+        <button class="action-button server-button" ng-if="isLoggedByUUID" ng-click="bindWithServer()">{{getLocalizedText("bind-server-btt")}}</button>
+      </div>
+    </div>
+    <div class="binding-info profile-section" ng-if="isLoggedByFacebook">
+      <div class="data-content">
+        <span>Cuenta vinculada con facebook</span>
+      </div>
+    </div>
+    
+    <div class="personal-data profile-section">
       <div class="data-content">
         <div class="data-row"><span class="data-key">{{getLocalizedText("fullname")}}:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
         <div class="data-row"><span class="data-key">{{getLocalizedText("nick")}}:</span><span class="data-value">{{userData.nickName}}</span></div>
-        <div class="data-row"><span class="data-key">{{getLocalizedText("email")}}:</span><span class="data-value">{{userData.email}}</span></div>
-        <div class="data-row"><span class="data-key">{{getLocalizedText("pass")}}:</span><span class="data-value">********</span></div>
+        <div class="data-row" ng-if="userData.canChangeEmail"><span class="data-key">{{getLocalizedText("email")}}:</span><span class="data-value">{{userData.email}}</span></div>
+        <div class="data-row" ng-if="userData.canChangePassword"><span class="data-key">{{getLocalizedText("pass")}}:</span><span class="data-value">********</span></div>
       </div>
       <div class="data-action">
         <button class="action-button edit-button" ng-click="editPersonalData()">{{getLocalizedText("buttonedit")}}</button>
-      </div>
+     </div>
     </div>
-
+    
     <div class="pocket-data profile-section">
       <div class="data-header">
           <span class="data-header-title">{{getLocalizedText("wallet")}}</span>
@@ -29,7 +44,7 @@
     </div>
     <div class="ranking-data profile-section">
       <div class="data-header">
-          <span class="data-header-title">{{getLocalizedText("ranking")}}</span>
+        <span class="data-header-title">{{getLocalizedText("ranking")}}</span>
       </div>
       <div class="data-content">
         <div class="single-ranking-info ranking-by-points wrapper-box">
@@ -38,7 +53,6 @@
           <span class="ranking-score" ng-show="!loadingService.isLoading">{{rankingPoints}} {{getLocalizedText("abrevpoints", "common")}}</span>
         </div>
         <div class="single-ranking-info ranking-by-money wrapper-box">
-        
           <img class="ranking-badge" src="images/icon-coin-lg.png">
           <span class="ranking-position" ng-show="!loadingService.isLoading">{{rankingMoneyPosition}}º</span>
           <span class="ranking-score" ng-show="!loadingService.isLoading">{{rankingMoney}}</span>
@@ -50,3 +64,5 @@
     </div>
   </div>
 </div>
+
+<ng-view></ng-view>

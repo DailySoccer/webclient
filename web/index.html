@@ -66,38 +66,54 @@
   <body>
     <script>
       function getUUID(cb) {
+        if (typeof cordova === 'undefined') {
+          cb("UUID-UUID-UUID-UUID");
+          return;
+        }
         cb(device.uuid);
       }
       
       function getPlatform(cb) {
+        if (typeof cordova === 'undefined') {
+          cb("desktop");
+          return;
+        }
         cb(device.platform);
       }
       
       function getAppVersion(cb) {
+        if (typeof cordova === 'undefined') {
+          cb("1.0.0");
+          return;
+        }
         cordova.getAppVersion.getVersionNumber(cb);
       }
 
       document.onreadystatechange = function () {
-          if (document.readyState === 'complete') {
-              console.log(" # READY - STATE COMPLETED");
-              
-              getAppVersion(function (version) {
-                  console.log("Version App: " + version);
-              });
-              
-              console.log('Device Name: ' + device.name);
-              console.log('Device Cordova: ' + device.cordova);
-              console.log('Device Platform: ' + device.platform);
-              console.log('Device UUID: ' + device.uuid);
-              console.log('Device Version: ' + device.version);
-              console.log('Device Serial: ' + device.serial);
-              console.log('Device isVirtual: ' + device.isVirtual);
-              console.log('Device Manufacturer: ' + device.manufacturer);
-                                          
-              $.getScript("main.dart.js", function(data, textStatus, jqxhr) {
-                console.log('main.dart.js: Load was performed.');
-              });
-          }
+        if (typeof cordova === 'undefined') {
+          return
+        }
+        
+        if (document.readyState === 'complete') {
+            console.log(" # READY - STATE COMPLETED");
+            
+            getAppVersion(function (version) {
+                console.log("Version App: " + version);
+            });
+            
+            console.log('Device Name: ' + device.name);
+            console.log('Device Cordova: ' + device.cordova);
+            console.log('Device Platform: ' + device.platform);
+            console.log('Device UUID: ' + device.uuid);
+            console.log('Device Version: ' + device.version);
+            console.log('Device Serial: ' + device.serial);
+            console.log('Device isVirtual: ' + device.isVirtual);
+            console.log('Device Manufacturer: ' + device.manufacturer);
+                                        
+            $.getScript("main.dart.js", function(data, textStatus, jqxhr) {
+              console.log('main.dart.js: Load was performed.');
+            });
+        }
       }
     </script>
   
@@ -540,6 +556,9 @@
       <footer></footer>
     </div>
     
+    <!-- Script principal. Sera substituido por main.dart.js en el transformer -->
+    <!--script src="main.dart" id="mainDart" type="application/dart"></script-->
+        
     <script>
       window.twitterShare = window.twitterShare || function(event) {
         if (typeof twitterShareCB !== "undefined" && twitterShareCB != null) {
@@ -663,5 +682,6 @@
     <!-- Fuentes -->
     <link href='https://fonts.googleapis.com/css?family=Exo:500,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </body>
 </html>

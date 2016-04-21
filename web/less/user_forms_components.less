@@ -252,6 +252,7 @@
 }
 //Ventana Alerta
 #alertRoot {
+	padding: 0;
 	.panel {
 		border: 1px solid white;
 		background-color: @greyLight;
@@ -331,6 +332,7 @@
 		}
 	}
 	
+	&.guest-name-modal,
 	&.cannotEnter {
 		.panel .panel-body {
 			padding: 15px 20px;
@@ -482,6 +484,9 @@
 	}
 }
 
+#modalRoot #joinRoot #signupbox {
+	margin-top: 0;
+}
 #loginBox, #joinRoot {
 	text-align: left;
 	#signupbox {

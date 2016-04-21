@@ -175,7 +175,7 @@ body {
 	.btn();
 	.opensans_normal(10pt, @white);
 	background-color: @theBgColor;
-	//box-shadow: 0px 5px 0px rgba(red(@theBgColor), green(@theBgColor), blue(@theBgColor), 0.5);
+	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
 	color: @white;
 	outline: none !important;
 	&:active,
@@ -184,10 +184,12 @@ body {
 		&:focus {
 			color: @white;
 			background-color: lighten(@theBgColor,10%);
+			box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 		}
 		&:hover {
 			color: @white;
-			background-color: lighten(@theBgColor,10%);	
+			background-color: lighten(@theBgColor,10%);
+			box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
 		}
 	}
 	&:focus {
@@ -196,6 +198,7 @@ body {
 	}
 	&:hover {
 		background-color: lighten(@theBgColor, 5%);
+		box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
 		//box-shadow: 0px 5px 0px lighten(@theBgColor, 15%);
 		outline: none !important;
 		color: @white;

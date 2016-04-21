@@ -236,7 +236,10 @@ class ProfileService {
     if (HostServer.isAndroidPlatform || HostServer.isiOSPlatform) {
       deviceLogin(uuid).then(([_]) {
         if(isLoggedIn && user.isLoggedByUUID) {
-          GameMetrics.logEvent(GameMetrics.SIGNUP_SUCCESSFUL, {"action via": "uuid"});
+          GameMetrics.logEvent(GameMetrics.SIGNUP_SUCCESSFUL, {"action via": "uuid",
+                                                               "platform": HostServer.isAndroidPlatform? 'android' : 
+                                                                           HostServer.isiOSPlatform? 'ios' : 
+                                                                                                     'unknown' });
           GameMetrics.trackConversion(false);
         }
       });

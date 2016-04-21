@@ -22,6 +22,8 @@ class GameMetrics {
   static String SIGNUP_SUCCESSFUL = "SignUp Completed";
   static String LOGIN_ATTEMPTED = "Login Started";
   static String LOGIN_SUCCESSFUL = "Login Completed";
+  static String BINDING_WITH_APP = "Binding Completed";
+  static String BINDING_EXISTS = "Binding Existent";
   // static String LOGIN_FB_SUCCESSFUL = "Login FB Completed";
   // static String SIGNUP_FB_SUCCESSFUL = "SignUp FB Completed";
   static String LOGIN_FB_PERMISSIONS_DENIED = "Login FB Permissions Denied";

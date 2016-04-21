@@ -135,6 +135,7 @@ class UserProfileComp {
             ModalComp.deleteCallback();
             ModalComp.close();
             loadingService.isLoading = false; 
+            GameMetrics.logEvent(GameMetrics.BINDING_WITH_APP, {"action via": "facebook"});
           })
           .catchError((ServerError error) {
             loadingService.isLoading = false;
@@ -180,7 +181,9 @@ class UserProfileComp {
               .then(([_]) {
                 ModalComp.deleteCallback();
                 ModalComp.close();
-                loadingService.isLoading = false; 
+                loadingService.isLoading = false;
+
+                GameMetrics.logEvent(GameMetrics.BINDING_WITH_APP, {"action via": "email"});
               })
               .catchError((ServerError error) {
                 loadingService.isLoading = false;
@@ -337,6 +340,7 @@ class UserProfileComp {
             _profileService.bindToAccount(account["email"], account["password"])
               .then((_) {
                 Logger.root.info("bindToAccount OK: ${account["email"]}");
+                GameMetrics.logEvent(GameMetrics.BINDING_EXISTS, {"action via": "email"});
               });
           }
           if (account.containsKey("accessToken")) {
@@ -351,6 +355,7 @@ class UserProfileComp {
                 else {
                   Logger.root.info("$bindName OK: ${account["facebookId"]}");
                 }
+                GameMetrics.logEvent(GameMetrics.BINDING_EXISTS, {"action via": "facebook"});
               });
           }
           break;

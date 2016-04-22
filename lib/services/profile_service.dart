@@ -374,6 +374,24 @@ class ProfileService {
     return completer.future;
   }
 
+  Future bindFromAccount(String email, String password) {
+    Completer<Map> completer = new Completer<Map>();
+    
+    _server.bindFromAccount(email: email, password: password)
+      .then((jsonMap) {
+        Logger.root.info("bindFromAccount: $jsonMap");
+        
+        _onLoginResponse(jsonMap)
+          .then((_) {
+            Logger.root.info("bindFromAccount: _onLoginResponse OK");
+            completer.complete();
+          });
+      })
+      .catchError((error) => completer.completeError(error));
+  
+    return completer.future;
+  }
+  
   Future bindToAccount(String email, String password) {
     Completer<Map> completer = new Completer<Map>();
     

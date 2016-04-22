@@ -347,7 +347,9 @@ class UserProfileComp {
           Logger.root.info("modalConfirmAccount > onConfirm");
           
           if (account.containsKey("email")) {
-            _profileService.bindToAccount(account["email"], account["password"])
+            ((account["name"] == _profileService.user.nickName) 
+             ? _profileService.bindFromAccount(account["email"], account["password"])
+             : _profileService.bindToAccount(account["email"], account["password"]))
               .then((_) {
                 Logger.root.info("bindToAccount OK: ${account["email"]}");
                 GameMetrics.logEvent(GameMetrics.BINDING_EXISTS, {"action via": "email",

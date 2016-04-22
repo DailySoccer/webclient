@@ -344,7 +344,8 @@ class UserProfileComp {
       
       switch (eventCallback) {
         case "onConfirm":
-          print("confirm");
+          Logger.root.info("modalConfirmAccount > onConfirm");
+          
           if (account.containsKey("email")) {
             _profileService.bindToAccount(account["email"], account["password"])
               .then((_) {

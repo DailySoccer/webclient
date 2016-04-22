@@ -212,8 +212,11 @@
 					<h2 class="compete-and-win">Compite y gana todos los días</h2>
 					<p>Sin esperar al final de la temporada</p>
 					<a id="botonjugar1" class="button-aspect" href="http://futbolcuatro.epiceleven.com/?mixp_landing=BotonJugar1">Juega Gratis</a>
-					<a id="botonjugarappstore" target="_blank" class="button-app-store" href="https://itunes.apple.com/es/app/futbol-cuatro/id1091515990">
+					<a id="botonjugarappstore" target="_blank" class="button-app-store" href="https://itunes.apple.com/app/apple-store/id1091515990?pt=117969002&ct=Botonlanding&mt=8">
 						<img src="/img/app-store-button.png">
+					</a>
+					<a id="botonjugarplaystore" target="_blank" class="button-play-store" href="https://play.google.com/store/apps/details?id=com.epiceleven.futbolcuatro&referrer=utm_source%3Dfutbolcuatro%26utm_medium%3Dreferral%26utm_content%3Dbotonlanding%26utm_campaign%3Dbotonlanding">
+						<img src="/img/google-play-button.png">
 					</a>
 				</div>
 			</div>
@@ -373,7 +376,18 @@
 					};
 				}
 			})();
+			
 			/*
+			(function() {
+				var isIOS = navigator.userAgent.indexOf("iPhone") > -1 || 
+										navigator.userAgent.indexOf("iPad") > -1 ||
+										navigator.userAgent.indexOf("iPod") > -1 ||
+										navigator.userAgent.indexOf("CriOS") > -1;
+
+				var isAndroid = navigator.userAgent.indexOf("Android") > -1;
+				
+				
+			})();
 			(function() {
 				alert("Android: " + ((navigator.userAgent.indexOf("Android") > -1)? "TRUE": "false")
 						+ "\nCriOS: " + ((navigator.userAgent.indexOf("CriOS") > -1)? "TRUE": "false")

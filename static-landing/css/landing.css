@@ -181,28 +181,77 @@ a:active {
 	-moz-box-shadow: 0px 3px 1px 0px rgba(0,0,0,0.6);
 	box-shadow: 0px 3px 1px 0px rgba(0,0,0,0.6);
 }
+#MainSection #botonjugar1.button-aspect {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.button-play-store,
 .button-app-store {
 	display: inline-block;
 	vertical-align: middle;
-	margin: 15px;
+	margin: 10px;
 	margin-top: 15px;
 	border-radius: 5px;
+	overflow: hidden;
 	-webkit-box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.5);
 	-moz-box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.5);
 	box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.5);
 }
-@media (min-width: 768px) {
-	.button-app-store {
-		margin-top: 40px;
-	}
+.button-play-store {
+	margin-right: 0;
 }
+.button-app-store {
+	margin-left: 0;
+}
+.button-play-store:hover,
 .button-app-store:hover {
 	-webkit-box-shadow: 0px 3px 1px 0px rgba(0,0,0,0.6);
 	-moz-box-shadow: 0px 3px 1px 0px rgba(0,0,0,0.6);
 	box-shadow: 0px 3px 1px 0px rgba(0,0,0,0.6);
 }
+.button-play-store img,
 .button-app-store img {
-	height: 55px;
+	height: 40px;
+}
+@media (max-width: 350px) {
+	.button-play-store img,
+	.button-app-store img {
+		height: 35px;
+	}
+}
+@media (min-width: 768px) {
+	.button-play-store,
+	.button-app-store {
+		margin-top: 40px;
+	}
+	.button-play-store img,
+	.button-app-store img {
+		height: 55px;
+	}
+	.button-app-store {
+		float: left;
+		margin-left: 5vw;
+		margin-right: 0;
+	}
+	.button-play-store {
+		float: right;
+		margin-left: 0;
+		margin-right: 5vw;
+	}
+	#MainSection #botonjugar1.button-aspect {
+		display: inline-block;
+		margin-left: 15px;
+		margin-right: 15px;
+	}
+}
+@media (min-width: 900px) {
+	.button-app-store {
+		margin-left: 10vw;
+	}
+	.button-play-store {
+		margin-right: 10vw;
+	}
 }
 
 .not-scrolled .on-scroll {
@@ -293,6 +342,7 @@ a:active {
 		margin-top: 25px;
 		margin-bottom: 0px;
 	}
+	.button-play-store,
 	.button-app-store {
 		margin-top: 25px;
 		margin-bottom: 0px;
@@ -308,6 +358,7 @@ a:active {
 		margin-top: 10px;
 		margin-bottom: 0px;
 	}
+	.button-play-store,
 	.button-app-store {
 		margin-top: 10px;
 		margin-bottom: 0px;
@@ -323,12 +374,36 @@ a:active {
 		display: block;
 		position: relative;
 		padding-top: 20px;
-		padding-bottom: 10px;
+		padding-bottom: 7vh;
 		width: 100%;
 	}
 	#MainSection {
 		height: 95vh;
 		min-height: 310px;
+	}
+	#MainSection #botonjugar1.button-aspect {
+		display: inline-block;
+		padding: 11px;
+		margin-top: 7vh;
+		margin-left: 15px;
+		margin-right: 15px;
+		font-size: 17px;
+		width: 130px;
+		min-width: 130px;
+	}
+	.button-play-store,
+	.button-app-store {
+		margin-top: 7vh;
+	}
+	.button-app-store {
+		float: left;
+		margin-left: 5vw;
+		margin-right: 0;
+	}
+	.button-play-store {
+		float: right;
+		margin-left: 0;
+		margin-right: 5vw;
 	}
 }
 
@@ -467,12 +542,12 @@ body:before {
 #NavigationBar {
 	display: block;
 	width: 100%;
-	height: 52px;
+	height: 54px;
 	max-height: 52px;
 	margin-bottom: -52px;
 	overflow: visible;
 	position: fixed;
-	top: 0;
+	top: -2px;
 	z-index: 10;
 	background-color: rgba(4, 24, 34, 0);
 	-webkit-transition: background-color 0.5s ease;

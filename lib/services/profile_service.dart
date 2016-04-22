@@ -234,16 +234,7 @@ class ProfileService {
     Logger.root.info("UUID: $uuid");
     
     if (HostServer.isAndroidPlatform || HostServer.isiOSPlatform) {
-      deviceLogin(uuid).then(([_]) {
-        if(isLoggedIn && user.isLoggedByUUID) {
-          GameMetrics.logEvent(GameMetrics.SIGNUP_SUCCESSFUL, {"action via": "uuid",
-                                                               "platform": HostServer.isAndroidPlatform? 'android' : 
-                                                                           HostServer.isiOSPlatform? 'ios' : 
-                                                                                                     'unknown' });
-          GameMetrics.trackConversion(false);
-        }
-      });
-      
+      deviceLogin(uuid);
     }
   }
   
@@ -467,6 +458,14 @@ class ProfileService {
           )
           .then((_) => _router.go('home', {}))
           .catchError((_) => _router.go('home', {}));
+      
+      
+      
+      GameMetrics.logEvent(GameMetrics.SIGNUP_SUCCESSFUL, {"action via": "uuid",
+                                                           "platform": HostServer.isAndroidPlatform? 'android' : 
+                                                                       HostServer.isiOSPlatform? 'ios' : 
+                                                                                                 'unknown' });
+      GameMetrics.trackConversion(false);
     }
     
     GameInfo.assign("showGuestNameModal", "true");

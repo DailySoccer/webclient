@@ -9,6 +9,7 @@ import 'package:webclient/models/user_notification.dart';
 import 'package:webclient/utils/fblogin.dart';
 
 class User {
+  static const String UUID_EMAIL = "@uuid.e11";
   static const int MINUTES_TO_RELOAD_ENERGY = 60;
   static const num MAX_ENERGY = 10;
 
@@ -65,7 +66,7 @@ class User {
   String get mainMenuInfo => "$userId;$facebookID;$profileImage;${energyBalance.toInt()};${managerBalance.toInt()};${goldBalance.toInt()};$trueSkill;${notifications.length};${achievements.length}";
 
   bool hasAchievement(String achievement) => achievements.contains(achievement);
-  bool get isLoggedByUUID => (deviceUUID != null) && deviceUUID.isNotEmpty && email.contains(deviceUUID);
+  bool get isLoggedByUUID => (deviceUUID != null) && deviceUUID.isNotEmpty && (email.contains(deviceUUID) || email.contains(UUID_EMAIL));
   bool get isLoggedByFacebook => (facebookID != null) && facebookID.isNotEmpty;
 
   bool get canChangeEmail => !isLoggedByUUID && !isLoggedByFacebook;

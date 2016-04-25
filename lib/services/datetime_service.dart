@@ -123,10 +123,10 @@ class DateTimeService {
           _simulatorActivated = activated;
 
           if (_simulatorActivated) {
-            print("Simulator Activated");
+            Logger.root.info("Simulator Activated");
           }
           else {
-            print("Simulator Deactivated");
+            Logger.root.info("Simulator Deactivated");
             _fakeDateTime = null;
           }
         }

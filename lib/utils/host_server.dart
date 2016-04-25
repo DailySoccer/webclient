@@ -8,9 +8,11 @@ class HostServer {
 
   static String CURRENT_VERSION = "";
 
+  static String DOMAIN = "http://backend.epiceleven.com"; // "http://dailysoccer-staging.herokuapp.com";
+  
   // Global que apunta al servidor Host. Obligatorio usarla cuando vas a hacer una llamada al servidor
   static String get url {
-    String REMOTE_SERVER = "http://backend.epiceleven.com"; // "http://dailysoccer-staging.herokuapp.com";
+    String REMOTE_SERVER = DOMAIN;
     
     if (_url == null) {
       if (window.location.protocol.contains("file") || window.location.protocol.contains("chrome-extension")) {
@@ -60,7 +62,7 @@ class HostServer {
   static bool get _isLocalHost => (window.location.hostname.contains("127.") || window.location.hostname.contains("localhost"));
   static bool get _isForcedProd => window.location.href.contains("prod=true");
   static bool get _isNgrok => window.location.hostname.contains("ngrok");
-  static bool get _isStaging => window.location.hostname.contains("staging");
+  static bool get _isStaging => (window.location.hostname.contains("staging") || DOMAIN.contains("staging"));
   static bool get isDev => (_isNgrok || _isLocalHost || _isStaging) && !_isForcedProd;
   static bool get isProd => !isDev;
   static bool get isEpicEleven => window.location.hostname.contains("epiceleven.com") && !window.location.hostname.contains("staging");

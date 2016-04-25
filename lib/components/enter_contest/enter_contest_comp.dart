@@ -946,8 +946,8 @@ class EnterContestComp implements DetachAware {
           </div>
           '''
           , onOk: getLocalizedText("buy-gold-button")
-          , onBackdropClick: true
-          , closeButton: false
+          , onBackdropClick: TutorialService.isActivated
+          , closeButton: true
           , aditionalClass: "noGold"
         );
   }
@@ -966,8 +966,8 @@ class EnterContestComp implements DetachAware {
           </div>
           '''
           , onOk: getLocalizedText('buy-energy-button')
-          , onBackdropClick: true
-          , closeButton: false
+          , onBackdropClick: TutorialService.isActivated
+          , closeButton: true
           , aditionalClass: "noGold"
         );
     /*return '''

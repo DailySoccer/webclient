@@ -59,6 +59,7 @@ Future<bool> modalShow(String title, String content, {String modalSize: "lg",
         break;
       case "onNo":
       case "onCancel":
+      case "closeMe":
         result = false;
         break;
     }

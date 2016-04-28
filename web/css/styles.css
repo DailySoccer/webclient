@@ -8185,9 +8185,9 @@ scoring-rules:after,
   .contests-list-f2p-root .contestSlot .action-section {
     text-align: right;
     max-width: 125px;
-    padding: 2px 10px 0 10px;
+    padding: 7px 10px 0 10px;
     top: 0;
-    height: 20px;
+    height: 33px;
   }
 }
 .contests-list-f2p-root .contestSlot .action-section .action-button {
@@ -15320,7 +15320,7 @@ facebook-share .facebook-share-button,
   vertical-align: middle;
   height: 20px;
   margin: 0 10px;
-  min-width: 80px;
+  min-width: 85px;
   cursor: pointer;
 }
 facebook-share .facebook-share-button img,

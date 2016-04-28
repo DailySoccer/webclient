@@ -752,7 +752,8 @@ class EnterContestComp implements DetachAware {
                                                             "contest id": contest.contestId });
             GameMetrics.peopleSet({"Last Team Created": DateTimeService.formatDateTimeLong(new DateTime.now())});
             GameMetrics.peopleSet({"Last Team Created (${contest.competitionType})": DateTimeService.formatDateTimeLong(new DateTime.now())});
-            GameMetrics.logEvent(GameMetrics.ENTRY_FEE, {"value": contest.entryFee.toStringWithCurrency()});
+            GameMetrics.logEvent(GameMetrics.ENTRY_FEE, { "type": contest.isSimulation? 'virtual' : 'oficial',
+                                                          "value": contest.entryFee.toStringWithCurrency()});
 
             _teamConfirmed = true;
 
@@ -945,8 +946,8 @@ class EnterContestComp implements DetachAware {
           </div>
           '''
           , onOk: getLocalizedText("buy-gold-button")
-          , onBackdropClick: true
-          , closeButton: false
+          , onBackdropClick: TutorialService.isActivated
+          , closeButton: true
           , aditionalClass: "noGold"
         );
   }
@@ -965,8 +966,8 @@ class EnterContestComp implements DetachAware {
           </div>
           '''
           , onOk: getLocalizedText('buy-energy-button')
-          , onBackdropClick: true
-          , closeButton: false
+          , onBackdropClick: TutorialService.isActivated
+          , closeButton: true
           , aditionalClass: "noGold"
         );
     /*return '''

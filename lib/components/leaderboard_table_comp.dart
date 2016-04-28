@@ -32,6 +32,7 @@ class LeaderboardTableComp {
   String playerHint = 'Eres un crack!!';
   
   bool isThePlayer(id) => id == highlightedElement['id'];
+  String get playerName => getLocalizedText("the-player");
   
   int rows = 0;
   List<Map> tableElements = null;

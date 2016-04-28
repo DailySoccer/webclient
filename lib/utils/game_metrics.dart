@@ -20,8 +20,8 @@ class GameMetrics {
   // Login/SignUp
   static String SIGNUP_ATTEMPTED = "SignUp Started";
   static String SIGNUP_SUCCESSFUL = "SignUp Completed";
-  static String LOGIN_ATTEMPTED = "Login Email Started";
-  static String LOGIN_SUCCESSFUL = "Login Email Completed";
+  static String LOGIN_ATTEMPTED = "Login Started";
+  static String LOGIN_SUCCESSFUL = "Login Completed";
   // static String LOGIN_FB_SUCCESSFUL = "Login FB Completed";
   // static String SIGNUP_FB_SUCCESSFUL = "SignUp FB Completed";
   static String LOGIN_FB_PERMISSIONS_DENIED = "Login FB Permissions Denied";

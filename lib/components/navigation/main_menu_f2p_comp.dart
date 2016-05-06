@@ -450,7 +450,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
           <li><menu-a id="menuUserMyAccount" destination="user_profile"> ${StringUtils.translate("myaccount",  "mainmenu")}</menu-a></li>
           <li><menu-a id="menuUserShop"      destination="shop">         ${StringUtils.translate("shop",       "mainmenu")}</menu-a></li>
           <!--li><menu-a id="menuHowItWorks" destination="help_info">    ${StringUtils.translate("howitworks", "mainmenu")}</menu-a></li-->
-          <!--li><menu-a id="menuUserLogOut"    destination="logout">       ${StringUtils.translate("logout",     "mainmenu")}</menu-a></li-->
+          <li><menu-a id="menuUserLogOut"    destination="logout">       ${StringUtils.translate("logout",     "mainmenu")}</menu-a></li>
         </ul>
       ''';
     }
@@ -463,8 +463,8 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
       <li highlights="lobby"         class="mainLink"> ${getMainMenuLink("lobby")}        </li>
       ${profileService.isLoggedIn? '<li highlights="my_contests"    class="mainLink"> ${getMainMenuLink("my_contests")}  </li>' +
                                    '<li highlights="leaderboard"    class="mainLink"> ${getMainMenuLink("leaderboard")}  </li>' +
-                                   '<li highlights="notifications"  class="mainLink"> ${getMainMenuLink("notifications")}</li>': ''}
-      ${_scrDet.isXsScreen?        '<li highlights="scouting"       class="mainLink"> ${getMainMenuLink("scouting")}     </li>' +
+                                   '<li highlights="notifications"  class="mainLink"> ${getMainMenuLink("notifications")}</li>' +
+                                   '<li highlights="scouting"       class="mainLink"> ${getMainMenuLink("scouting")}     </li>' +
                                    '<li highlights="create_contest" class="mainLink"> ${getMainMenuLink("challenge")}    </li>': ''}
       <li highlights="help_info"     class="mainLink"> ${getMainMenuLink("help")}         </li>
     ''';

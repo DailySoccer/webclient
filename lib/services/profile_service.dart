@@ -234,7 +234,7 @@ class ProfileService {
     Logger.root.info("UUID: $uuid");
     
     if (HostServer.isAndroidPlatform || HostServer.isiOSPlatform) {
-      deviceLogin(uuid);
+      // deviceLogin(uuid);
     }
   }
   

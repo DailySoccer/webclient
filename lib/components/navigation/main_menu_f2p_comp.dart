@@ -463,9 +463,9 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
       <li highlights="lobby"         class="mainLink"> ${getMainMenuLink("lobby")}        </li>
       ${profileService.isLoggedIn? '<li highlights="my_contests"    class="mainLink"> ${getMainMenuLink("my_contests")}  </li>' +
                                    '<li highlights="leaderboard"    class="mainLink"> ${getMainMenuLink("leaderboard")}  </li>' +
-                                   '<li highlights="notifications"  class="mainLink"> ${getMainMenuLink("notifications")}</li>' +
+                                   '<li highlights="notifications"  class="mainLink"> ${getMainMenuLink("notifications")}</li>'/*+ 
                                    '<li highlights="scouting"       class="mainLink"> ${getMainMenuLink("scouting")}     </li>' +
-                                   '<li highlights="create_contest" class="mainLink"> ${getMainMenuLink("challenge")}    </li>': ''}
+                                   '<li highlights="create_contest" class="mainLink"> ${getMainMenuLink("challenge")}    </li>'*/ : ''}
       <li highlights="help_info"     class="mainLink"> ${getMainMenuLink("help")}         </li>
     ''';
   }

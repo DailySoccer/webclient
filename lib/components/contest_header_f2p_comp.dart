@@ -13,6 +13,7 @@ import 'dart:html';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/facebook_service.dart';
 import 'package:webclient/utils/host_server.dart';
+import 'package:logging/logging.dart';
 
 @Component(
     selector: 'contest-header-f2p',
@@ -161,6 +162,15 @@ class ContestHeaderF2PComp implements DetachAware, ShadowRootAware {
   Money getMyPrize(Contest contest) {
     ContestEntry mainContestEntry = contest.getContestEntryWithUser(_profileService.user.userId);
     return mainContestEntry.prize;
+  }
+
+  String getContestCoinIcon(Money money) {
+    if(money.currencyUnit == Money.CURRENCY_GOLD) return 'gold';
+    if(money.currencyUnit == Money.CURRENCY_ENERGY) return 'energy';
+    if(money.currencyUnit == Money.CURRENCY_MANAGER) return 'manager';
+
+    Logger.root.severe("ContestHeader - Unknown Currency Symbol detected");
+    return 'unknown';
   }
 
   void _refreshCountdownDate() {

@@ -16,11 +16,11 @@
 
     <div class="entry-fee-box" ng-if="!(viewLive || viewHistory)">
       <span class="condition-name">{{getLocalizedText("entryfee")}}</span>
-      <span class="condition-amount" ng-class="{'entry-fee-coin':getContestTypeIcon() == 'real', 'entry-fee-energy':getContestTypeIcon() == 'train'}">{{contest.entryFee}}</span>
+      <span class="condition-amount" ng-class="{'entry-fee-coin': getContestCoinIcon(contest.entryFee) == 'gold', 'entry-fee-energy':getContestCoinIcon(contest.entryFee) == 'energy'}">{{contest.entryFee}}</span>
     </div>
     <div class="prize-box">
       <span class="condition-name">{{getLocalizedText("prize")}}</span>
-      <span class="condition-amount" ng-class="{'prize-coin':getContestTypeIcon() == 'real', 'prize-managerpoints':getContestTypeIcon() == 'train'}">{{getPrizeToShow()}}</span>
+      <span class="condition-amount" ng-class="{'prize-coin':getContestCoinIcon(getPrizeToShow()) == 'gold', 'prize-managerpoints':getContestCoinIcon(getPrizeToShow()) == 'manager'}">{{getPrizeToShow()}}</span>
     </div>
   </div>
 

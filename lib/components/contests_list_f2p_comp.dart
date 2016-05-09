@@ -245,6 +245,30 @@ class ContestsListF2PComp {
       onActionClick({"contest":contest});
     }
   }
+
+  
+  String dateSeparatorText(DateTime date) {
+    // Avisamos cuando sea "Hoy"
+    if (DateTimeService.isToday(date)) {
+      return getLocalizedText("today");
+    }
+    DateTime auxdate = (new DateTime(date.year, date.month, date.day)).subtract(new Duration(days: 1));
+    if (DateTimeService.isToday(auxdate)) {
+      return getLocalizedText("tomorrow");
+    }
+    return DateTimeService.formatDateWithDayOfTheMonth(date);
+  }
+  bool idDifferentDate(Contest contest) {
+    bool isDifferent = true;
+    if (_lastContest != null){
+      isDifferent = contest.startDate.year != _lastContest.startDate.year ||
+                    contest.startDate.month != _lastContest.startDate.month ||
+                    contest.startDate.day != _lastContest.startDate.day;
+    }
+    _lastContest = contest;
+    return isDifferent;
+  }
+  Contest _lastContest = null; //while printing, the last contest si saved
   
   DateTime _dateFilter = null;
   Map _sortOrder = {'fieldName':'contest-start-time', 'order': 1};

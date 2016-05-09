@@ -498,6 +498,7 @@
       "points"                          : "Puntos",
       "position"                        : "Puesto:",
       "today"                           : "Hoy",
+      "tomorrow"                        : "Mañana",
       "soonHint"                        : "Faltan<br>@TIME min",
       "verySoonHint"                    : "Faltan<br>@TIME"
     }

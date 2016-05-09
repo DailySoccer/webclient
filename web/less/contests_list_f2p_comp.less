@@ -3,7 +3,34 @@
 	position: relative;
 	background-color: @greyLight;
 	padding-bottom: 15px;
+	
+	.contestDateSeparator {
+		.exo_bold(12pt, @blueVirtual);
+		padding: 15px 0 0 5px;
+		text-align: center;
+		/*display: -webkit-flex;
+		-webkit-flex-direction: row;
 
+		display: flex;
+		flex-direction: row;*/
+		//border-bottom: 1px solid @blueVirtual;
+		/*
+		span {
+      -webkit-flex: 0 1 auto;
+    	-ms-flex: 0 1; // IE 10 
+      flex: 0 1 auto;
+		}*/
+		/*&:after {
+			content: "";
+			border-bottom: 2px solid @blueVirtual;
+			margin: 11px 0 11px 11px;
+			
+      -webkit-flex: 1 1 auto;
+    	-ms-flex: 1; // IE 10 
+      flex: 1 1 auto;
+		}*/
+	}
+	
 	//definición del slot de la lista
 	.contestSlot {
 		.make-row(0);

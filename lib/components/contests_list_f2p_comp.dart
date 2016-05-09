@@ -9,6 +9,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/money.dart';
+import 'package:logging/logging.dart';
 
 @Component(
     selector: 'contests-list-f2p',
@@ -91,6 +92,15 @@ class ContestsListF2PComp {
 
   String getContestTypeIcon(Contest contest) {
     return contest.isSimulation ? "train" : "real";
+  }
+
+  String getContestCoinIcon(Money money) {
+    if(money.currencyUnit == Money.CURRENCY_GOLD) return 'gold';
+    if(money.currencyUnit == Money.CURRENCY_ENERGY) return 'energy';
+    if(money.currencyUnit == Money.CURRENCY_MANAGER) return 'manager';
+
+    Logger.root.severe("ContestList - Unknown Currency Symbol detected");
+    return 'unknown';
   }
 
   String getContestMorfology(Contest contest) {

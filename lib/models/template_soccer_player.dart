@@ -5,6 +5,11 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/soccer_player_stats.dart';
 import 'package:webclient/services/template_references.dart';
 
+class StatsCompetition {
+  int num;
+  int fantasyPoints;
+}
+
 class TemplateSoccerPlayer {
   static String UNKNOWN = "<unknown>";
   
@@ -13,7 +18,23 @@ class TemplateSoccerPlayer {
   int    fantasyPoints = 0;
   
   List<SoccerPlayerStats> stats = [];
+  Map<String, StatsCompetition> competitions = {};
 
+  int getFantasyPointsForCompetition(String competitionId) {
+    if (competitions.containsKey(competitionId)) {
+      return competitions[competitionId].fantasyPoints;
+    }
+    List matchsForCompetition = stats.where((stat) => stat.isCurrentSeason(competitionId)).toList();
+    return matchsForCompetition.isNotEmpty ? matchsForCompetition.fold(0, (prev, stat) => prev + stat.fantasyPoints ) ~/ matchsForCompetition.length : 0;
+  }
+
+  int getPlayedMatchesForCompetition(String competitionId) {
+    if (competitions.containsKey(competitionId)) {
+      return competitions[competitionId].num;
+    }
+    return stats.where((stat) => stat.isCurrentSeason(competitionId)).length;
+  }
+  
   TemplateSoccerPlayer.referenceInit(this.templateSoccerPlayerId);
 
   factory TemplateSoccerPlayer.fromJsonObject(Map jsonMap, TemplateReferences references) {
@@ -38,6 +59,16 @@ class TemplateSoccerPlayer {
       }
       // Eliminar las estadísticas vacías
       stats.removeWhere((stat) => !stat.hasPlayed());
+    }
+    
+    if (jsonMap.containsKey("competitions")) {
+      for (var competitionId in jsonMap["competitions"].keys) {
+        var x = jsonMap["competitions"][competitionId];
+        StatsCompetition competition = new StatsCompetition();
+        competition.num = x["num"];
+        competition.fantasyPoints = x["fantasyPoints"];
+        competitions[competitionId] = competition;
+      }
     }
   }
 }

@@ -31,12 +31,11 @@ class SoccerPlayer {
   int currentLivePoints = 0;
 
   int getFantasyPointsForCompetition(String competitionId) {
-    List matchsForCompetition = stats.where((stat) => stat.isCurrentSeason(competitionId)).toList();
-    return matchsForCompetition.isNotEmpty ? matchsForCompetition.fold(0, (prev, stat) => prev + stat.fantasyPoints ) ~/ matchsForCompetition.length : 0;
+    return templateSoccerPlayer.getFantasyPointsForCompetition(competitionId);
   }
 
   int getPlayedMatchesForCompetition(String competitionId) {
-    return stats.where((stat) => stat.isCurrentSeason(competitionId)).length;
+    return templateSoccerPlayer.getPlayedMatchesForCompetition(competitionId);
   }
 
   // Estadisticas: Nombre del evento segun el enumerado OptaEventType => puntos obtenidos gracias a ese evento

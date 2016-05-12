@@ -362,11 +362,11 @@ class DailySoccerServer implements ServerService {
   }
 
   Future<Map> getTemplateSoccerPlayers() {
-    return _innerServerCall("${HostServer.url}/v2/get_template_soccer_players");
+    return _innerServerCall("${HostServer.url}/v2/get_template_soccer_players", retryTimes: -1, cancelIfChangeContext: false);
   }
   
   Future<Map> getTemplateSoccerTeams() {
-    return _innerServerCall("${HostServer.url}/get_template_soccer_teams");
+    return _innerServerCall("${HostServer.url}/get_template_soccer_teams", retryTimes: -1, cancelIfChangeContext: false);
   }
 
   Future<Map> getSimulatorState() {

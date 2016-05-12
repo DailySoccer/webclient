@@ -12,7 +12,7 @@ class TransformerMain extends Transformer {
       transform.addOutput(new Asset.fromString(transform.primaryInput.id,
                                                content.toString()
                                                .replaceFirst('<script src="main.dart" id="mainDart" type="application/dart"></script>',
-                                                             '<script src="main.dart.js" id="mainDart"></script>')));
+                                                             '<!--script src="main.dart.js" id="mainDart"></script-->')));
     });
   }
 }

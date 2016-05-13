@@ -1,5 +1,5 @@
 <div class="contests-list-f2p-root" ng-if="contestsListOriginal.isNotEmpty">
-  <div ng-repeat="contest in contestsListOrdered">
+  <div ng-repeat="contest in currentContestList.elements">
     <div class="contestDateSeparator" ng-if="idDifferentDate(contest)">
       <span>{{dateSeparatorText(contest.startDate)}}</span>
     </div>

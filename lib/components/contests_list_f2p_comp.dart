@@ -10,6 +10,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/money.dart';
 import 'package:logging/logging.dart';
+import 'package:webclient/utils/scaling_list.dart';
 
 @Component(
     selector: 'contests-list-f2p',
@@ -20,10 +21,17 @@ class ContestsListF2PComp {
 
   static const num SOON_SECONDS = 2 * 60 * 60;
   static const num VERY_SOON_SECONDS = 30 * 60;
+  static const int MIN_CONTEST_SHOWN = 0;
   
   // Lista original de los contest
   List<Contest> contestsListOriginal = [];
   List<Contest> contestsListOrdered = [];
+  
+  ScalingList<Contest> currentContestList = new ScalingList(MIN_CONTEST_SHOWN);
+  
+  void updateCurrentContestList() {
+    currentContestList.elements = contestsListOrdered;
+  }
   
   /********* BINDINGS */
   @NgOneWay("contests-list")
@@ -177,6 +185,7 @@ class ContestsListF2PComp {
         print('-CONTEST_LIST-: No se ha encontrado el campo para ordenar');
       break;
     }
+    updateCurrentContestList();
   }
 
   String printableMyPosition(Contest contest) {

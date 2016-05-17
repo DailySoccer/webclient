@@ -31,4 +31,8 @@ class ScalingList<T> {
     };
     scaleList();
   }
+  
+  bool isFullList() {
+    return _fullList.length == _currentList.length;
+  }
 }

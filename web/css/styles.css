@@ -8403,6 +8403,17 @@ fieldset[disabled] .contests-list-f2p-root .contestSlot .action-section .action-
   margin-top: 8px;
   margin-bottom: 5px;
 }
+.contests-list-f2p-root .loading-row {
+  text-align: center;
+  position: relative;
+  height: 50px;
+  top: 30px;
+}
+.contests-list-f2p-root .loading-row .spinner {
+  height: 30px;
+  width: 0px;
+  margin: 0 auto;
+}
 scoring-rules {
   margin-right: auto;
   margin-left: auto;

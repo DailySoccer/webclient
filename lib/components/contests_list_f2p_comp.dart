@@ -21,7 +21,7 @@ class ContestsListF2PComp {
 
   static const num SOON_SECONDS = 2 * 60 * 60;
   static const num VERY_SOON_SECONDS = 30 * 60;
-  static const int MIN_CONTEST_SHOWN = 0;
+  static const int MIN_CONTEST_SHOWN = 5;
   
   // Lista original de los contest
   List<Contest> contestsListOriginal = [];
@@ -31,6 +31,7 @@ class ContestsListF2PComp {
   
   void updateCurrentContestList() {
     currentContestList.elements = contestsListOrdered;
+    currentContestList.initialAmount = MIN_CONTEST_SHOWN;
   }
   
   /********* BINDINGS */

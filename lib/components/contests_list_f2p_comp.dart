@@ -27,7 +27,7 @@ class ContestsListF2PComp {
   List<Contest> contestsListOriginal = [];
   List<Contest> contestsListOrdered = [];
   
-  ScalingList<Contest> currentContestList = new ScalingList(MIN_CONTEST_SHOWN);
+  ScalingList<Contest> currentContestList = new ScalingList(MIN_CONTEST_SHOWN, (Contest c1, Contest c2) => c1.contestId == c2.contestId);
   
   void updateCurrentContestList() {
     currentContestList.elements = contestsListOrdered;
@@ -278,17 +278,20 @@ class ContestsListF2PComp {
     }
     return DateTimeService.formatDateWithDayOfTheMonth(date);
   }
-  bool idDifferentDate(Contest contest) {
+  bool idDifferentDate(int index) {
     bool isDifferent = true;
-    if (_lastContest != null){
-      isDifferent = contest.startDate.year != _lastContest.startDate.year ||
-                    contest.startDate.month != _lastContest.startDate.month ||
-                    contest.startDate.day != _lastContest.startDate.day;
+    if (index != 0){
+      Contest lastContest = currentContestList.elements[index-1];
+      Contest contest = currentContestList.elements[index];
+      
+      isDifferent = contest.startDate.year != lastContest.startDate.year ||
+                    contest.startDate.month != lastContest.startDate.month ||
+                    contest.startDate.day != lastContest.startDate.day;
     }
-    _lastContest = contest;
+    //_lastContest = contest;
     return isDifferent;
   }
-  Contest _lastContest = null; //while printing, the last contest si saved
+  //Contest _lastContest = null; //while printing, the last contest si saved
   
   DateTime _dateFilter = null;
   Map _sortOrder = {'fieldName':'contest-start-time', 'order': 1};

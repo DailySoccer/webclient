@@ -389,7 +389,7 @@ class WebClientApp extends Module {
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<home></home>'
       )
-      ,'lobby': ngRoute(
+      /*,'lobby': ngRoute(
           path: '/lobby',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<lobbyf2p></lobbyf2p>',
@@ -405,7 +405,7 @@ class WebClientApp extends Module {
                 }
             )
           }
-      )
+      )*/
       ,'tutorial_list': ngRoute(
           path: '/tutorial_list',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),

@@ -34,7 +34,7 @@ class HomeComp implements DetachAware {
 
   bool get userIsLogged => _profileService.isLoggedIn;
   bool get tutorialIsDone => TutorialService.Instance.isCompleted(TutorialIniciacion.NAME);
-
+  /*
   bool get isContestTileEnabled => tutorialIsDone;
   bool get isCreateContestTileEnabled => userIsLogged && tutorialIsDone;
   bool get isScoutingTileEnabled => userIsLogged && tutorialIsDone;
@@ -44,6 +44,18 @@ class HomeComp implements DetachAware {
   bool get isHistoryTileEnabled => isMyContestTilesEnabled;
   bool get isBlogTileEnabled => true;
   bool get isHowItWorksEnabled => true;
+  */
+  bool get isContestTileEnabled => false;
+  bool get isCreateContestTileEnabled => false;
+  bool get isScoutingTileEnabled => true;
+  bool get isMyContestTilesEnabled => false;
+  bool get isUpcomingTileEnabled => false;
+  bool get isLiveTileEnabled => false;
+  bool get isHistoryTileEnabled => false;
+  bool get isBlogTileEnabled => true;
+  bool get isHowItWorksEnabled => true;
+  
+  
   String get CreateContestTileText => !userIsLogged? getLocalizedText('create_contest_text_nolog') :
                                             !tutorialIsDone? getLocalizedText('create_contest_text_notut') :
                                                              getLocalizedText('create_contest_text_logNtut');
@@ -96,7 +108,7 @@ class HomeComp implements DetachAware {
         _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
       }, test: (error) => error is ServerError);
   }
-
+/*
   Map defaultPromo = {  'url' : '' // EJ: "#/enter_contest/lobby/564cb79ad4c6c22fa0407f5d/none"
                        ,'imageXs' : 'images/ht_ModuloTorneoBGPlay.jpg'  // Not used
                        ,'imageDesktop' : 'images/ht_ModuloTorneoBGPlay.jpg'
@@ -123,7 +135,32 @@ class HomeComp implements DetachAware {
                         ,'buttonCaption' : 'Return to Lobby'  // Not used
                         ,'codeName' : '404'
                       };
+*/
 
+  Map defaultPromoWithTutorial = {  'url' : '' // EJ: "#/enter_contest/lobby/564cb79ad4c6c22fa0407f5d/none"
+                        ,'imageXs' : 'images/ht_ModuloTorneoSeasonEnd.jpg'  // Not used
+                        ,'imageDesktop' : 'images/ht_ModuloTorneoSeasonEnd.jpg'
+                        ,'html' : '''  
+                            <span class="tile-title"><strong>Fútbol Cuatro</strong></span>
+                            <div class="tile-info">
+                              <span class="end-of-season">
+                                La temporada 15/16 ha terminado, volvemos en agosto con nuevas funcionalidades. ¡Podrás estar al día de las novedades en nuestras redes sociales!
+                              </span>
+                              <a target="_blank" class="home-facebook-social" href="https://www.facebook.com/Futbolcuatro/">
+                                <img title="Futbol Cuatro en Facebook" alt="Futbol Cuatro en Facebook" src="images/facebook.png">
+                              </a>
+                              <a target="_blank" class="home-twitter-social" href="https://twitter.com/Futbol_cuatro">
+                                <img title="Futbol Cuatro en Twitter" alt="Futbol Cuatro en Twitter" src="images/twitter.png">
+                              </a>
+                            </div>
+                                 '''
+                        ,'text' : 'The promo you are trying to access is not available'
+                        ,'promoEnterUrl' : 'lobby' // Not used
+                        ,'buttonCaption' : 'Return to Lobby'  // Not used
+                        ,'codeName' : '404'
+                      };
+  
+  Map get defaultPromo => defaultPromoWithTutorial;
   
   void refreshContestTileHTML() {
     Element tile = querySelector("#contestTile .tile");

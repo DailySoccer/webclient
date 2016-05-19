@@ -892,17 +892,17 @@
       "play"                            : "Jugar",
       "learn_to_play"                   : "Aprende a ganar<br>y comienza tu carrera de mánager",
       "create_contest_title"            : "Reta a tus amigos",
-      "create_contest_text_nolog"       : "Debes estar registrado",
-      "create_contest_text_notut"       : "Primero debes aprender a jugar",
-      "create_contest_text_logNtut"     : "Demuestra quien manda",
+      "create_contest_text_logNtut"     : "Espera a la siguiente temporada para demostrar quién manda.",
+      "create_contest_text_nolog"       : "Reta a tus amigos",
+      "create_contest_text_notut"       : "En agosto volvemos",
 
       "scouting_title"                  : "Ojeador",
-      "scouting_info"                   : "Encuentra tu 11 ideal",
+      "scouting_info"                   : "Consulta las estadísticas de los jugadores en la pasada temporada.",
 
       "upcoming_title"                  : "Próximos torneos",
       "live_title"                      : "Torneos en vivo",
       "history_title"                   : "Histórico",
-      "mycontest_disabled_info"         : "Todavía no has participado",
+      "mycontest_disabled_info"         : "La temporada ha terminado",
 
       "blog_title"                      : "Comunidad",
       "blog_info"                       : "FORO FÚTBOL CUATRO",

@@ -1,0 +1,45 @@
+tab-bar {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	background-color: @blueUltraDark;
+}
+
+.tab-bar-item {
+	position: relative;
+	display: inline-block;
+	width: 20%;
+	padding: 10px 0;
+	img {
+		width: 32px;
+		height: 32px;
+	}
+	&.active {
+		background-color: @blueDark;
+	}
+}
+.tab-bar-item+.tab-bar-item {
+	border-left: 1px solid @white;
+}
+
+.tab-bar-item-name {
+	.opensans_normal(10pt, @white);
+	display: block;
+}
+
+.tab-bar-item-badge {
+	.opensans_bold(8pt, @white);
+	text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.8);
+	position: absolute;
+	top: 10px;
+	left: 50%;
+	margin-left: 10px;
+	min-width: 17px;
+	min-height: 17px;
+	line-height: 13px;
+	padding: 2px;
+	border-radius: 50px;
+	border-radius: 100%;
+	background-color: @red;
+}

@@ -35,10 +35,6 @@ class ScalingList<T> {
     if(_currentList.isEmpty) {
       // Si _currentList esta vacía _insertList tiene lo mismo que full list.
       _fullList.forEach( (t) => _insertList.addLast(new _Pair(t, i++)));
-      // Despues sacamos initialAmount y los metemos en _currentList.
-      for (j = 0; j < initialAmount; j++) {
-        _currentList.add(_insertList.removeFirst().value);
-      }
     } else {
       // Si _currentList no está vacía eliminamos todos los que no esten en full list.
       _currentList.removeWhere((t1) => _fullList.firstWhere((t2) => _compare(t1, t2), orElse: () => null) == null);
@@ -55,8 +51,11 @@ class ScalingList<T> {
   }
   
   void _startScalingList() {
-    Function scaleList;
-    scaleList = ([_]) {
+    for (int j = _currentList.length; j < initialAmount; j++) {
+      _currentList.add(_insertList.removeFirst().value);
+    }
+    
+    void scaleList([_]) {
       if (_insertList.length > 0) {
         _Pair<T> element = _insertList.removeFirst();
         _currentList.insert(element.position, element.value);

@@ -1,5 +1,10 @@
 .global-home #mainWrapper {
 	background: none;
+	.will-back {
+		.alert-content-subtitle {
+			font-size: 16pt;
+		}
+	}
 }
 
 #homeRoot {
@@ -48,7 +53,7 @@
 				
 			.tile-info {
 				.opensans_normal(10pt, @white);
-				max-width: 200px;
+				max-width: 180px;
 				margin: 10px 0 5px 0;
 				display: inline-block;
 			}
@@ -155,11 +160,27 @@
 
 			.tile-info {
 				.opensans_normal(14pt, @white);
-				max-width: 450px;
+				max-width: 700px;
 				.promo-date,
 				.promo-description {
 					display: block;
 					.opensans_normal(10pt, @white);
+				}
+				.end-of-season {
+					display: block;
+					.opensans_normal(12pt, @white);
+				}
+				.home-twitter-social, .home-facebook-social {
+					img {
+						width: 36px;
+						height: 36px;
+						margin-top: 15px;
+					}
+				}	
+			  .home-facebook-social {
+					img {
+						margin-right: 30px;
+					}
 				}
 			}
 			.tile-action {	

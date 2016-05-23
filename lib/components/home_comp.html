@@ -8,17 +8,19 @@
   Scouting??
   -->
   
-  <div id="contestTile" class="home-tile-wrapper enabled" ng-click="onContestsClick()">
+  <!--div id="contestTile" class="home-tile-wrapper enabled" ng-click="onContestsClick()"-->
+  <div id="contestTile" class="home-tile-wrapper"  ng-class="{'disabled': !isCreateContestTileEnabled}">
     <div class="home-tile-content">
       <div class="tile">
-        <div ng-bind-html="contestTileHTML"></div>
-        <span class="tile-action"></span>
+        <div ng-bind-html-unsafe="contestTileHTML"></div>
+        <!--span class="tile-action"></span-->
       </div>
     </div>
   </div>
   
   <div id="manageTile" class="vertical-layout-tilling">
-    <div id="createContestTile" class="home-tile-wrapper" ng-click="onCreateContestClick()" ng-class="{'disabled': !isCreateContestTileEnabled}">
+    <!--div id="createContestTile" class="home-tile-wrapper" ng-click="onCreateContestClick()" ng-class="{'disabled': !isCreateContestTileEnabled}"-->
+    <div id="createContestTile" class="home-tile-wrapper" ng-class="{'disabled': !isCreateContestTileEnabled}">
       <div class="home-tile-content">
         <div class="tile">
           <span class="tile-title">{{getLocalizedText('create_contest_title')}}</span>
@@ -37,6 +39,7 @@
       </div>
     </div>
   </div>
+  
   
   <div id="myContestsTile" class="vertical-layout-tilling">
     <div id="upcomingTile" class="home-tile-wrapper" ng-click="onUpcomingClick()" ng-class="{'disabled': !isUpcomingTileEnabled}">

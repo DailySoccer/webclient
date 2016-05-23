@@ -23522,6 +23522,9 @@ users-list#usersList > .epic-tooltip {
 .global-home #mainWrapper {
   background: none;
 }
+.global-home #mainWrapper .will-back .alert-content-subtitle {
+  font-size: 16pt;
+}
 #homeRoot .home-tile-wrapper {
   min-height: 1px;
   padding-left: 15px;
@@ -23589,7 +23592,7 @@ users-list#usersList > .epic-tooltip {
   font-size: 10pt;
   color: #ffffff;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  max-width: 200px;
+  max-width: 180px;
   margin: 10px 0 5px 0;
   display: inline-block;
 }
@@ -23805,7 +23808,7 @@ users-list#usersList > .epic-tooltip {
   font-size: 14pt;
   color: #ffffff;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  max-width: 450px;
+  max-width: 700px;
 }
 #homeRoot #contestTile.home-tile-wrapper .tile .tile-info .promo-date,
 #homeRoot #contestTile.home-tile-wrapper .tile .tile-info .promo-description {
@@ -23815,6 +23818,23 @@ users-list#usersList > .epic-tooltip {
   font-size: 10pt;
   color: #ffffff;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+}
+#homeRoot #contestTile.home-tile-wrapper .tile .tile-info .end-of-season {
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+}
+#homeRoot #contestTile.home-tile-wrapper .tile .tile-info .home-twitter-social img,
+#homeRoot #contestTile.home-tile-wrapper .tile .tile-info .home-facebook-social img {
+  width: 36px;
+  height: 36px;
+  margin-top: 15px;
+}
+#homeRoot #contestTile.home-tile-wrapper .tile .tile-info .home-facebook-social img {
+  margin-right: 30px;
 }
 #homeRoot #contestTile.home-tile-wrapper .tile .tile-action {
   display: block;

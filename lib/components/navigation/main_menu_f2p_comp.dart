@@ -347,7 +347,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
       <div id ="desktopMenu" class="fixed-menu">        
         <ul class="links-options">
           <li highlights="home"          class="mainLink"> ${getMainMenuLink("home")}         </li>
-          <li highlights="lobby"         class="mainLink"> ${getMainMenuLink("lobby")}        </li>
+          <!--li highlights="lobby"         class="mainLink"> ${getMainMenuLink("lobby")}        </li-->
         </ul>
         
         <div class="button-wrapper">
@@ -453,7 +453,7 @@ class MainMenuF2PComp implements ShadowRootAware, ScopeAware, DetachAware {
   String getMainOptions() {
     return '''
       <li highlights="home"          class="mainLink"> ${getMainMenuLink("home")}         </li>
-      <li highlights="lobby"         class="mainLink"> ${getMainMenuLink("lobby")}        </li>
+      <!--li highlights="lobby"         class="mainLink"> ${getMainMenuLink("lobby")}        </li-->
       ${profileService.isLoggedIn? '<li highlights="my_contests"    class="mainLink"> ${getMainMenuLink("my_contests")}  </li>' +
                                    '<li highlights="leaderboard"    class="mainLink"> ${getMainMenuLink("leaderboard")}  </li>' +
                                    '<li highlights="notifications"  class="mainLink"> ${getMainMenuLink("notifications")}</li>': ''}

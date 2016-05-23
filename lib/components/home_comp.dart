@@ -16,6 +16,7 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/components/account/notifications_comp.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/template_service.dart';
+import 'package:webclient/utils/html_utils.dart';
 
 @Component(
   selector: 'home',
@@ -71,10 +72,21 @@ class HomeComp implements DetachAware {
     //contestTileHTML = isContestTileEnabled ? defaultPromo['html'] : defaultPromoWithTutorial['html'];
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
     _profileService.triggerNotificationsPopUp(_router);
+    modalShow(
+          "",
+          '''
+            <div class="content-wrapper">
+              <h1 class="alert-content-title">Fin de temporada</h1>
+              <h2 class="alert-content-subtitle">Volvemos en agosto con nuevas funcionalidades.</h2>
+            </div>
+          '''
+          , onBackdropClick: true
+          , aditionalClass: "will-back"
+        );
 
     GameMetrics.logEvent(GameMetrics.HOME, {"logged": _profileService.isLoggedIn});
   }
-
+  
 
   static String getStaticLocalizedText(key) {
     return StringUtils.translate(key, "home");

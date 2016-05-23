@@ -71,7 +71,9 @@ class HomeComp implements DetachAware {
     loadingService.isLoading = true;
     //contestTileHTML = isContestTileEnabled ? defaultPromo['html'] : defaultPromoWithTutorial['html'];
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
-    _profileService.triggerNotificationsPopUp(_router);
+    
+    // CUANDO SE QUITE EL FIN DE TEMPORADA DESCOMENTAR ESTA LINEA
+    //_profileService.triggerNotificationsPopUp(_router);
     modalShow(
           "",
           '''

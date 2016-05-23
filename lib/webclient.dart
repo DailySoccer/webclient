@@ -134,10 +134,12 @@ class WebClientApp extends Module {
   WebClientApp() {
     // El cache de templates solo lo primeamos en produccion, pq es donde tenemos garantizado que se habra
     // hecho una build y por lo tanto el fichero lib/template_cache.dart tendra todos los contenidos frescos
-    if (HostServer.isProd) {
+    if (HostServer.isTemplateCacheON) {
       TemplateCache cache = new TemplateCache();
       primeTemplateCache(cache);
       bind(TemplateCache, toValue: cache);
+      
+      Logger.root.info("TemplateCache ON");
     }
 
     // No usamos animacion -> podemos quitar esto

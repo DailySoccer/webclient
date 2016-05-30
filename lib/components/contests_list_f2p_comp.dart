@@ -25,12 +25,11 @@ class ContestsListF2PComp {
   
   // Lista original de los contest
   List<Contest> contestsListOriginal = [];
-  List<Contest> contestsListOrdered = [];
   
   ScalingList<Contest> currentContestList = new ScalingList(MIN_CONTEST_SHOWN, (Contest c1, Contest c2) => c1.contestId == c2.contestId);
   
   void updateCurrentContestList() {
-    currentContestList.elements = contestsListOrdered;
+    currentContestList.elements = contestsListOriginal;
     currentContestList.initialAmount = MIN_CONTEST_SHOWN;
   }
   
@@ -162,10 +161,23 @@ class ContestsListF2PComp {
   }
 
   void refreshListOrder() {
-    if (_sortOrder == null || _sortOrder.isEmpty) {
-      return;
-    }
+    if (_sortOrder == null || _sortOrder.isEmpty) { return; }
 
+    switch(_sortOrder['fieldName']) {
+      case "contest-name":
+        currentContestList.sortComparer = (contest1, contest2) => ( _sortOrder['order'] * contest1.compareNameTo(contest2));
+      break;
+      case "contest-entry-fee":
+        currentContestList.sortComparer = (contest1, contest2) => ( _sortOrder['order'] * contest1.compareEntryFeeTo(contest2));
+      break;
+      case "contest-start-time":
+        currentContestList.sortComparer = (contest1, contest2) => ( _sortOrder['order'] * contest1.compareStartDateTo(contest2));
+      break;
+      default:
+        print('-CONTEST_LIST-: No se ha encontrado el campo para ordenar');
+      break;
+    }
+    /*
     contestsListOrdered = [];
     contestsListOrdered.addAll(contestsListOriginal);
 
@@ -185,7 +197,7 @@ class ContestsListF2PComp {
       default:
         print('-CONTEST_LIST-: No se ha encontrado el campo para ordenar');
       break;
-    }
+    }*/
     updateCurrentContestList();
   }
 

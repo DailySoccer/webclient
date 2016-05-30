@@ -6,68 +6,95 @@ import 'dart:math';
 import 'dart:collection';
 
 class ScalingList<T> {
-  List<T> _fullList;
-  Queue<_Pair<T>> _insertList;
-  List<T> _currentList;
   
   int initialAmount = 0;
-  Function _compare = (T t1,T t2) => t1 == t2;
-  
-  ScalingList(this.initialAmount, [bool f(T a, T b)]) {
-    _insertList = new Queue<_Pair<T>>();
-    _currentList = [];
-    if(f != null) _compare = f;
+  Function get sortComparer =>  _sortComparer;
+  void set sortComparer(bool comparer(T a, T b)) {
+    _sortComparer = comparer;
+    _processList();
   }
   
   void set elements(List<T> list) {
+    if (list == null || list.isEmpty) return;
     _fullList = list;
     _processList();
     _startScalingList();
   }
   List<T> get elements => _currentList;
   bool get isFullList => _insertList.length == 0;
+  
+  ScalingList(this.initialAmount, [bool eqComparer(T a, T b)]) {
+    _insertList = new Queue<T>();
+    _fullList = [];
+    _currentList = [];
+    if(eqComparer != null) _equalsComparer = eqComparer;
+  }
 
   void _processList() {
-    int i = 0;
-    int j = 0;
     _insertList.clear();
+    _fullList.sort(sortComparer);
     
     if(_currentList.isEmpty) {
       // Si _currentList esta vacía _insertList tiene lo mismo que full list.
-      _fullList.forEach( (t) => _insertList.addLast(new _Pair(t, i++)));
+      _fullList.forEach( (t) => _insertList.addLast(t));
     } else {
       // Si _currentList no está vacía eliminamos todos los que no esten en full list.
-      _currentList.removeWhere((t1) => _fullList.firstWhere((t2) => _compare(t1, t2), orElse: () => null) == null);
+      _currentList.removeWhere((t1) => !_fullList.any((t2) => _equalsComparer(t1, t2)));
       // y añadimos a la insert list los elementos que no están y la posicion en la que hay que insertarlos.
-      _fullList.forEach( (t) {
-        if(!_compare(_fullList[i], _currentList[j])) {
-          _insertList.add(new _Pair(t, i));
-        } else {
-          j++;
-        }
-        i++;
-      });
+      _insertList.addAll(_fullList.where((t1) => !_currentList.any((t2) => _equalsComparer(t1, t2))));
     }
+    _setInitialAmount();
+  }
+  
+  void _setInitialAmount() {
+    int count = min(initialAmount, _insertList.length);
+    for (int i = _currentList.length; i < count; i++) {
+      _currentList.add(_insertList.removeFirst());
+    }
+    
+    for (int j = 0; j < count; j++) {
+      if (!_equalsComparer(_currentList[j], _fullList[j])) {
+        _currentList.add(_insertList.removeFirst());
+      }
+    }
+    _currentList.sort(sortComparer);
   }
   
   void _startScalingList() {
-    for (int j = _currentList.length; j < initialAmount; j++) {
-      _currentList.add(_insertList.removeFirst().value);
-    }
-    
-    void scaleList([_]) {
-      if (_insertList.length > 0) {
-        _Pair<T> element = _insertList.removeFirst();
-        _currentList.insert(element.position, element.value);
-        window.animationFrame.then(scaleList);
-      }
-    };
-    scaleList();
+    /*int count = min(initialAmount, _insertList.length);
+    for (int j = _currentList.length; j < count; j++) {
+      _currentList.add(_insertList.removeFirst());
+    }*/
+    //_setInitialAmount();
+    _continueScaling = true;
+    _scaleList();
   }
+
+  void _scaleList([_]) {
+    if (_insertList.length > 0 && _continueScaling) {
+      _currentList..add(_insertList.removeFirst())
+                  ..sort(sortComparer);
+      
+      window.animationFrame.then(_scaleList);
+    }
+  }
+    
+  void stopScaling() {
+    _continueScaling = false;
+  }
+  void resumeScaling() {
+    if (!_continueScaling) {
+      _continueScaling = true;
+      _scaleList();
+    }
+  }
+  
+  List<T> _fullList;
+  Queue<T> _insertList;
+  List<T> _currentList;
+  bool _continueScaling;
+  
+  Function _equalsComparer = (T t1,T t2) => t1 == t2;
+  Function _sortComparer =  (T t1,T t2) => 0;
 }
 
-class _Pair<T> {
-    T value;
-    int position;
-    _Pair(this.value, this.position);
-}

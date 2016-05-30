@@ -60,14 +60,24 @@
                 <soccer-players-filter name-filter="nameFilter" field-pos-filter="fieldPosFilter" position-filters-enabled="scrDet.isNotXsScreen" 
                                        only-favorites="onlyFavorites" show-on-xs="true" show-favorites-button="userIsLoggedIn"></soccer-players-filter>
 
-                <soccer-players-list soccer-players="allSoccerPlayers"
+                <!--soccer-players-list soccer-players="allSoccerPlayers"
                                      lineup-filter="lineupSlots"
                                      manager-level="playerManagerLevel"
                                      contest="contest"
                                      favorites-list="favoritesPlayers" only-favorites="onlyFavorites"
                                      field-pos-filter="fieldPosFilter" name-filter="nameFilter" match-filter="matchFilter"
                                      on-row-click="onRowClick(soccerPlayerId)"
-                                     on-action-click="onSoccerPlayerActionButton(soccerPlayer)"></soccer-players-list>
+                                     on-action-click="onSoccerPlayerActionButton(soccerPlayer)"></soccer-players-list-->
+                
+                <soccer-players-scalinglist soccer-players="allSoccerPlayers"
+                                     lineup-filter="lineupSlots"
+                                     manager-level="playerManagerLevel"
+                                     contest="contest"
+                                     favorites-list="favoritesPlayers" only-favorites="onlyFavorites"
+                                     field-pos-filter="fieldPosFilter" name-filter="nameFilter" match-filter="matchFilter"
+                                     on-row-click="onRowClick(soccerPlayerId)"
+                                     on-action-click="onSoccerPlayerActionButton(soccerPlayer)"></soccer-players-scaling-list>
+                
               </div>
             </div>
 

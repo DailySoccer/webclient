@@ -27,7 +27,7 @@
       <!--div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div-->
       <div class="column-primary-info">
         <span class="soccer-player-name">{{slot.fullName}}</span>
-        <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
+        <span class="match-event-name" ng-bind-html="slot.matchEventNameHTML"></span>
       </div>
       <div class="column-salary">${{getPrintableSalary(slot.salary)}}</div>
       <div class="column-gold-cost" ng-bind-html="getPrintableGoldCost(slot)"></div>

@@ -114,7 +114,7 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
       </div>
 
       <!-- Correo Electrónico -->
-      <div class="content-field">
+      <div class="content-field" ng-if="userData.canChangeEmail">
         <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">{{getLocalizedText("mail")}}</span></div>
         <div class="control-wrapper">
           <input id="txtEmail" type="email" ng-model="editedEmail" placeholder="{{getLocalizedText('mail')}}" class="form-control" tabindex="4" autocapitalize="off">
@@ -126,15 +126,15 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
       </div>
 
       <!-- Label Contraseña -->
-      <div class="content-field-block">
+      <div class="content-field-block" ng-if="userData.canChangePassword">
         <div class="control-wrapper"><span id="lblPassword" class="text-label">{{getLocalizedText("passrequires")}}</span></div>
       </div>
       <!-- Contraseña -->
-      <div class="content-field">
+      <div class="content-field" ng-if="userData.canChangePassword">
         <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="editedPassword" placeholder="{{getLocalizedText('pass')}}" class="form-control" tabindex="5" autocapitalize="off"></div>
       </div>
       <!-- Repetir Contraseña -->
-      <div class="content-field">
+      <div class="content-field" ng-if="userData.canChangePassword">
         <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="editedRepeatPassword" placeholder="{{getLocalizedText('repass')}}" class="form-control" tabindex="6" autocapitalize="off"></div>
       </div>
       
@@ -540,7 +540,7 @@ tc.put("packages/webclient/components/account/shop_comp.html", new HttpResponse(
       </div>
     </div>
     
-    <div class="energy-layout">
+    <div class="energy-layout" ng-if="energyProducts.length > 0">
       <div class="energy-tiles-wrapper">
         <div class="tile">
           <div class="energy-item">
@@ -588,18 +588,33 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
   <div class="default-section-header">{{getLocalizedText('title')}}</div>
   <div class="profile-content">
 
-    <div class="personal-data profile-section" ng-if="!userData.isLoggedByUUID">
+    <!--div class="binding-actions profile-section" ng-if="!isLoggedByFacebook">
+      <div class="data-content">
+        <span>Vincula tu cuenta a un perfil</span>
+      </div>
+      <div class="data-action" ng-class="{'single-button': !isLoggedByUUID}" >
+        <button class="action-button facebook-button" ng-click="bindWithFacebook()">{{getLocalizedText("bind-facebook-btt")}}</button>
+        <button class="action-button server-button" ng-if="isLoggedByUUID" ng-click="bindWithServer()">{{getLocalizedText("bind-server-btt")}}</button>
+      </div>
+    </div>
+    <div class="binding-info profile-section" ng-if="isLoggedByFacebook">
+      <div class="data-content">
+        <span>Cuenta vinculada con facebook</span>
+      </div>
+    </div-->
+    
+    <div class="personal-data profile-section">
       <div class="data-content">
         <div class="data-row"><span class="data-key">{{getLocalizedText("fullname")}}:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
         <div class="data-row"><span class="data-key">{{getLocalizedText("nick")}}:</span><span class="data-value">{{userData.nickName}}</span></div>
-        <div class="data-row"><span class="data-key">{{getLocalizedText("email")}}:</span><span class="data-value">{{userData.email}}</span></div>
-        <div class="data-row"><span class="data-key">{{getLocalizedText("pass")}}:</span><span class="data-value">********</span></div>
+        <div class="data-row" ng-if="userData.canChangeEmail"><span class="data-key">{{getLocalizedText("email")}}:</span><span class="data-value">{{userData.email}}</span></div>
+        <div class="data-row" ng-if="userData.canChangePassword"><span class="data-key">{{getLocalizedText("pass")}}:</span><span class="data-value">********</span></div>
       </div>
       <div class="data-action">
         <button class="action-button edit-button" ng-click="editPersonalData()">{{getLocalizedText("buttonedit")}}</button>
-      </div>
+     </div>
     </div>
-
+    
     <div class="pocket-data profile-section">
       <div class="data-header">
           <span class="data-header-title">{{getLocalizedText("wallet")}}</span>
@@ -615,7 +630,7 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
     </div>
     <div class="ranking-data profile-section">
       <div class="data-header">
-          <span class="data-header-title">{{getLocalizedText("ranking")}}</span>
+        <span class="data-header-title">{{getLocalizedText("ranking")}}</span>
       </div>
       <div class="data-content">
         <div class="single-ranking-info ranking-by-points wrapper-box">
@@ -624,7 +639,6 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
           <span class="ranking-score" ng-show="!loadingService.isLoading">{{rankingPoints}} {{getLocalizedText("abrevpoints", "common")}}</span>
         </div>
         <div class="single-ranking-info ranking-by-money wrapper-box">
-        
           <img class="ranking-badge" src="images/icon-coin-lg.png">
           <span class="ranking-position" ng-show="!loadingService.isLoading">{{rankingMoneyPosition}}º</span>
           <span class="ranking-score" ng-show="!loadingService.isLoading">{{rankingMoney}}</span>
@@ -635,7 +649,9 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
       </div>
     </div>
   </div>
-</div>"""));
+</div>
+
+<ng-view></ng-view>"""));
 tc.put("packages/webclient/components/achievement_comp.html", new HttpResponse(200, r"""<div ng-bind-html="theHtml"></div>"""));
 tc.put("packages/webclient/components/achievement_list_comp.html", new HttpResponse(200, r"""<div id="achievement-list-wrapper">
   <achievement ng-repeat="achiev in achievementList" enabled="achievementEarned(achiev.id)" key="achiev.id"></achievement>
@@ -659,11 +675,11 @@ tc.put("packages/webclient/components/contest_header_f2p_comp.html", new HttpRes
 
     <div class="entry-fee-box" ng-if="!(viewLive || viewHistory)">
       <span class="condition-name">{{getLocalizedText("entryfee")}}</span>
-      <span class="condition-amount" ng-class="{'entry-fee-coin':getContestTypeIcon() == 'real', 'entry-fee-energy':getContestTypeIcon() == 'train'}">{{contest.entryFee}}</span>
+      <span class="condition-amount" ng-class="{'entry-fee-coin': getContestCoinIcon(contest.entryFee) == 'gold', 'entry-fee-energy':getContestCoinIcon(contest.entryFee) == 'energy'}">{{contest.entryFee}}</span>
     </div>
     <div class="prize-box">
       <span class="condition-name">{{getLocalizedText("prize")}}</span>
-      <span class="condition-amount" ng-class="{'prize-coin':getContestTypeIcon() == 'real', 'prize-managerpoints':getContestTypeIcon() == 'train'}">{{getPrizeToShow()}}</span>
+      <span class="condition-amount" ng-class="{'prize-coin':getContestCoinIcon(getPrizeToShow()) == 'gold', 'prize-managerpoints':getContestCoinIcon(getPrizeToShow()) == 'manager'}">{{getPrizeToShow()}}</span>
     </div>
   </div>
 
@@ -829,9 +845,12 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
 
 """));
 tc.put("packages/webclient/components/contests_list_f2p_comp.html", new HttpResponse(200, r"""<div class="contests-list-f2p-root" ng-if="contestsListOriginal.isNotEmpty">
-  <div ng-repeat="contest in contestsListOrdered">
+  <div ng-repeat="contest in currentContestList.elements">
+    <div class="contestDateSeparator" ng-if="idDifferentDate($index)">
+      <span>{{dateSeparatorText(contest.startDate)}}</span>
+    </div>
     <div class="contestSlot" ng-class="{'special' : getContestMorfology(contest) == 'special', 'real': getContestTypeIcon(contest) == 'real', 'virtual': getContestTypeIcon(contest) != 'real'}" ng-click="onRow(contest)">
-
+      
       <div class="special-image-section" ng-if="getContestMorfology(contest) == 'special'">
         <img ng-src="{{getContestImage(contest)}}"></img>
       </div>
@@ -859,11 +878,11 @@ tc.put("packages/webclient/components/contests_list_f2p_comp.html", new HttpResp
         
         <div class="entry-fee-box" ng-if="!(contest.isLive || contest.isHistory)">
           <span class="condition-name">{{getLocalizedText("entryfee")}}</span>
-          <span class="condition-amount" ng-class="{'entry-fee-coin':getContestTypeIcon(contest) == 'real', 'entry-fee-energy':getContestTypeIcon(contest) == 'train'}">{{contest.entryFee}}</span>
+          <span class="condition-amount" ng-class="{'entry-fee-coin': getContestCoinIcon(contest.entryFee) == 'gold', 'entry-fee-energy':getContestCoinIcon(contest.entryFee) == 'energy'}">{{contest.entryFee}}</span>
         </div>
         <div class="prize-box" ng-if="!contest.isLive">
           <span class="condition-name">{{getLocalizedText("prize")}}</span>
-          <span class="condition-amount" ng-class="{'prize-coin':getContestTypeIcon(contest) == 'real', 'prize-managerpoints':getContestTypeIcon(contest) == 'train'}">{{getPrizeToShow(contest)}}</span>
+          <span class="condition-amount" ng-class="{'prize-coin':getContestCoinIcon(getPrizeToShow(contest)) == 'gold', 'prize-managerpoints':getContestCoinIcon(getPrizeToShow(contest)) == 'manager'}">{{getPrizeToShow(contest)}}</span>
         </div>
         <div class="points-box" ng-if="contest.isLive">
           <span class="condition-name">{{getLocalizedText("points")}}</span>
@@ -886,6 +905,9 @@ tc.put("packages/webclient/components/contests_list_f2p_comp.html", new HttpResp
       </div>
       
     </div>
+  </div>
+  <div class="loading-row" ng-if="!currentContestList.isFullList">
+    <div id="loadingRowSpinner"><div class="spinner" role="progressbar"><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-0-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(0deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-1-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(27deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-2-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(55deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-3-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(83deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-4-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(110deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-5-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(138deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-6-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(166deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-7-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(193deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-8-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(221deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-9-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(249deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-10-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(276deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-11-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(304deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-12-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(332deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div></div></div>
   </div>
 </div>
 """));
@@ -1119,7 +1141,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
                 <!-- Este es el desplegable para el movil -->
                 <matches-filter contest="contest" selected-option="matchFilter" ng-if="scrDet.isXsScreen"></matches-filter>
 
-                <soccer-players-filter name-filter="nameFilter" field-pos-filter="fieldPosFilter" position-filters-enabled="scrDet.isNotXsScreen" 
+                <!--soccer-players-filter name-filter="nameFilter" field-pos-filter="fieldPosFilter" position-filters-enabled="scrDet.isNotXsScreen" 
                                        only-favorites="onlyFavorites" show-on-xs="true" show-favorites-button="userIsLoggedIn"></soccer-players-filter>
 
                 <soccer-players-list soccer-players="allSoccerPlayers"
@@ -1129,7 +1151,10 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
                                      favorites-list="favoritesPlayers" only-favorites="onlyFavorites"
                                      field-pos-filter="fieldPosFilter" name-filter="nameFilter" match-filter="matchFilter"
                                      on-row-click="onRowClick(soccerPlayerId)"
-                                     on-action-click="onSoccerPlayerActionButton(soccerPlayer)"></soccer-players-list>
+                                     on-action-click="onSoccerPlayerActionButton(soccerPlayer)"></soccer-players-list-->
+                
+                <soccer-players-scalinglist soccer-players="allSoccerPlayers"></soccer-players-scaling-list>
+                
               </div>
             </div>
 
@@ -1351,6 +1376,33 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_filter_comp.h
   <input type="text" class="name-player-input-filter" ng-model="nameFilter" 
           placeholder="{{getLocalizedText('search-player', group: 'soccerplayerlist')}}"/>
 </div>"""));
+tc.put("packages/webclient/components/enter_contest/soccer_players_scalinglist_comp.html", new HttpResponse(200, r"""<div class="soccer-player-scalinglist-wrapper">
+  <div class="soccer-player-table-header">
+    <div class="filter filterOrderPos"><span id="Pos">{{getLocalizedText('positionabrev')}}</span></div>
+    <div class="filter filterOrderName"><span id="Name">{{getLocalizedText('name')}}</span></div>
+    <div class="filter filterOrderDFP"><span id="DFP">{{getLocalizedText('dfp')}}</span></div>
+    <div class="filter filterOrderPlayed"><span id="Played">{{getLocalizedText('numMatchesAbrev')}}</span></div>
+    <div class="filter filterOrderSalary"><span id="Salary">{{getLocalizedText('salary')}}</span></div>
+  </div>
+  <div class="soccer-player-table-body">
+    <div ng-id="'soccerPlayer' + soccerPlayer.id" ng-repeat="soccerPlayer in currentSoccerPlayerList.elements" class="soccer-players-list-slot" ng-class="[POS_CLASS_NAMES[soccerPlayer.fieldPos.abrevName], !soccerPlayerIsAvailable(soccerPlayer) ? 'not-available': '']">
+      <div ng-id="'soccerPlayerInfo' + soccerPlayer.id" class="soccer-player-info">
+        <div class="column-fieldpos">{{soccerPlayer.fieldPos.abrevName}}</div>
+        <div class="column-primary-info">
+          <span class="soccer-player-name">{{soccerPlayer.fullName}}</span>
+          <span class="match-event-name" ng-bind-html-unsafe="soccerPlayer.matchEventNameHTML"></span>
+        </div>
+        <div class="column-dfp">{{parseFantasyPoints(soccerPlayer)}}</div>
+        <div class="column-played">{{soccerPlayer.playedMatches}}</div>
+        <div class="column-salary">${{parseSalary(soccerPlayer)}}</div>
+        <div class="column-manager-level"><span class="manager-level-needed">{{soccerPlayer.level}}</span></div>
+      </div>
+      <div class="column-action" ng-class="{'add': isAddAction(soccerPlayer), 'remove': !isAddAction(soccerPlayer)}" 
+            ng-id="'soccerPlayerAction' + soccerPlayer.id" ng-bind-html-unsafe="getActionButton(soccerPlayer)">
+      </div>
+    </div>
+  </div>
+</div>"""));
 tc.put("packages/webclient/components/home_comp.html", new HttpResponse(200, r"""<div id="homeRoot">
   <!--
   Torneos
@@ -1509,7 +1561,7 @@ tc.put("packages/webclient/components/leaderboard_table_comp.html", new HttpResp
     <div class="leaderboard-table-element {{isThePlayer(element['id'])? 'player-position' : ''}}" ng-repeat="element in shownElements">
       <span class="leaderboard-column leaderboard-table-position">{{element['position']}} </span>
       <div class="leaderboard-name-hint-wrapper">
-        <span class="leaderboard-column leaderboard-table-name">{{element['name']}} </span>
+        <span class="leaderboard-column leaderboard-table-name">{{isThePlayer(element['id'])? playerName : element['name']}} </span>
         <span class="leaderboard-column leaderboard-table-hint" ng-class="{'empty': !isThePlayer(element['id'])}">
           <social-share parameters-by-map="sharingInfo" show-like="false" inline ng-if="isThePlayer(element['id']) && sharingInfo != null"></social-share>
         </span>

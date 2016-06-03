@@ -4,6 +4,7 @@ import 'package:angular/core/annotation.dart';
 import 'dart:html';
 import 'dart:math';
 import 'dart:collection';
+// import 'package:logging/logging.dart';
 
 class ScalingList<T> {
   
@@ -18,7 +19,6 @@ class ScalingList<T> {
     if (list == null || list.isEmpty) return;
     _fullList = list;
     _processList();
-    _startScalingList();
   }
   List<T> get elements => _currentList;
   bool get isFullList => _insertList.length == 0;
@@ -43,10 +43,12 @@ class ScalingList<T> {
       // y añadimos a la insert list los elementos que no están y la posicion en la que hay que insertarlos.
       _insertList.addAll(_fullList.where((t1) => !_currentList.any((t2) => _equalsComparer(t1, t2))));
     }
-    _setInitialAmount();
-  }
+
+    window.animationFrame.then(_startScalingList);
+    // Logger.root.info("_processList: ${_fullList.length} - ${new DateTime.now()}");
+}
   
-  void _setInitialAmount() {
+  void _setInitialAmount([_]) {
     int count = min(initialAmount, _insertList.length);
     for (int i = _currentList.length; i < count; i++) {
       _currentList.add(_insertList.removeFirst());
@@ -60,14 +62,14 @@ class ScalingList<T> {
     _currentList.sort(sortComparer);
   }
   
-  void _startScalingList() {
+  void _startScalingList([_]) {
     /*int count = min(initialAmount, _insertList.length);
     for (int j = _currentList.length; j < count; j++) {
       _currentList.add(_insertList.removeFirst());
     }*/
-    //_setInitialAmount();
+    _setInitialAmount();
     _continueScaling = true;
-    _scaleList();
+    window.animationFrame.then(_scaleList);
   }
 
   void _scaleList([_]) {
@@ -76,6 +78,7 @@ class ScalingList<T> {
                   ..sort(sortComparer);
       
       window.animationFrame.then(_scaleList);
+      // Logger.root.info("_scaleList: ${_currentList.length} - ${new DateTime.now()}");
     }
   }
     

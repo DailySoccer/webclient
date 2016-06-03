@@ -7,7 +7,7 @@
     <div class="filter filterOrderSalary" ng-click="sortListByField('Salary')"><span id="Salary">{{getLocalizedText('salary')}}</span></div>
   </div>
   <div class="soccer-player-table-body">
-    <div ng-id="'soccerPlayer' + soccerPlayer.id" ng-repeat="soccerPlayer in currentSoccerPlayerList.elements" class="soccer-players-list-slot" ng-class="[POS_CLASS_NAMES[soccerPlayer.fieldPos.abrevName], !soccerPlayerIsAvailable(soccerPlayer) ? 'not-available': '']">
+    <div ng-id="'soccerPlayer' + soccerPlayer.id" ng-repeat="soccerPlayer in currentSoccerPlayerList.elements track by soccerPlayer.id" class="soccer-players-list-slot" ng-class="[POS_CLASS_NAMES[soccerPlayer.fieldPos.abrevName], !soccerPlayerIsAvailable(soccerPlayer) ? 'not-available': '']">
       <div ng-id="'soccerPlayerInfo' + soccerPlayer.id" class="soccer-player-info">
         <div class="column-fieldpos">{{soccerPlayer.fieldPos.abrevName}}</div>
         <div class="column-primary-info">

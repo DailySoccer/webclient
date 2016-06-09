@@ -105,6 +105,14 @@ abstract class ServerService {
   
   Future<Map> checkout(String productId, String paymentType, String paymentId);
 
+  // Guild
+  Future<Map> getGuilds();
+  Future<Map> createGuild(String name);
+  Future<Map> addMemberToGuild(String userId);
+  Future<Map> requestFromMember(String guildId);
+  Future<Map> removeMember(String userId);
+  Future<Map> removeFromGuild();
+  
   // Suscripción a eventos
   void        subscribe(dynamic id, {Function onSuccess, Function onError});
 
@@ -429,6 +437,32 @@ class DailySoccerServer implements ServerService {
         'paymentId': paymentId
       }
     );
+  }
+  
+  Future<Map> getGuilds() {
+    return _innerServerCall("${HostServer.url}/get_guilds");
+  }
+  
+  Future<Map> createGuild(String name) {
+    return _innerServerCall("${HostServer.url}/create_guild", postData: {
+      'name': name
+    });
+  }
+  
+  Future<Map> addMemberToGuild(String userId) {
+    return _innerServerCall("${HostServer.url}/add_member_to_guild/$userId", retryTimes: -1);
+  }
+  
+  Future<Map> requestFromMember(String guildId) {
+    return _innerServerCall("${HostServer.url}/request_from_member/$guildId", retryTimes: -1);
+  }
+  
+  Future<Map> removeMember(String userId) {
+    return _innerServerCall("${HostServer.url}/remove_member/$userId", retryTimes: -1);
+  }
+  
+  Future<Map> removeFromGuild() {
+    return _innerServerCall("${HostServer.url}/remove_from_guild", retryTimes: -1);
   }
   
   void cancelAllAndReload() {

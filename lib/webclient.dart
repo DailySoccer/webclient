@@ -28,6 +28,7 @@ import 'package:webclient/services/promos_service.dart';
 import 'package:webclient/services/catalog_service.dart';
 import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/services/tooltip_service.dart';
+import 'package:webclient/services/guild_service.dart';
 
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/utils/form-autofill-fix.dart';
@@ -169,6 +170,7 @@ class WebClientApp extends Module {
     bind(CatalogService);
     bind(TutorialService);
     bind(ToolTipService);
+    bind(GuildService);
 
     bind(FacebookShareComp);
     bind(TwitterShareComp);

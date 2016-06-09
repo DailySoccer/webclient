@@ -14,6 +14,7 @@ import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/tutorial/tutorial_iniciacion.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/services/guild_service.dart';
 
 @Component(
   selector: 'lobbyf2p',
@@ -32,7 +33,7 @@ class LobbyF2PComp implements DetachAware {
   List<Map> dayList = new List<Map>();
 
   LobbyF2PComp(RouteProvider routeProvider, this._router, this._refreshTimersService,
-      this._contestsService, this.scrDet, this.loadingService, this._profileService, TutorialService tutorialService) {
+      this._contestsService, this.scrDet, this.loadingService, this._profileService, TutorialService tutorialService, GuildService guildService) {
 
     GameMetrics.logEvent(GameMetrics.LOBBY);
 
@@ -43,6 +44,74 @@ class LobbyF2PComp implements DetachAware {
     tutorialService.triggerEnter("lobby");
 
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST, refreshActiveContest);
+    
+    if (_profileService.isLoggedIn) {
+      // EJEMPLOS DE USO del GuildService
+      
+      // 1. Creación del Guild
+      // El usuario creará un Guild (será su administrador)
+      /*
+      guildService.createGuild("Primer Guild")
+        .then((result) {
+          print("createGuild => $result");
+          
+          guildService.refreshGuilds()
+            .then((result) => print("refreshGuilds => $result"));
+      });
+       */
+      // 2. Solicitar la entrada en un Guild
+      // Un 2º usuario solicitará entrar en el Guild anteriormente creado
+      /*
+      guildService.refreshGuilds()
+        .then((result) {
+          print("refreshGuilds => $result");
+          
+          guildService.requestFromMember("575912bfd4c6b8aa8360cb93")
+            .then((result) {
+              print("requestFromMember => $result");
+            });
+        });
+         */
+      // 3. Aceptar nuevo miembro en el Guild
+      // El usuario administrador acepta la solicitud anterior
+      /*
+      guildService.refreshGuilds()
+        .then((result) {
+          print("refreshGuilds => $result");
+          
+          guildService.acceptMember("56991fa0d4c6a506ff6973eb")
+            .then((result) {
+              print("acceptMember => $result");
+            });
+        });
+         */
+      // 4. Quitar a un miembro del Guild
+      // El usuario administrador expulsa a un miembro del Guild
+      /*
+      guildService.refreshGuilds()
+        .then((result) {
+          print("refreshGuilds => $result");
+          
+          guildService.removeMember("56991fa0d4c6a506ff6973eb")
+            .then((result) {
+              print("removeMember => $result");
+            });
+        });
+         */
+      // 5. Salirse del Guild
+      // El propio usuario quiere salirse del Guild
+      /*
+      guildService.refreshGuilds()
+        .then((result) {
+          print("refreshGuilds => $result");
+          
+          guildService.removeFromGuild()
+            .then((result) {
+              print("removeFromGuild => $result");
+            });
+        });
+         */
+    }
   }
 
   String getStaticLocalizedText(key) {

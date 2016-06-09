@@ -33,13 +33,23 @@ class GuildService {
   /*
    * Un usuario solicita entrar en un Guild (aún necesita ser aceptado)
    */
-  Future requestFromMember(String guildId) {
-    return _server.requestFromMember(guildId)
+  Future requestToEnter(String guildId) {
+    return _server.requestToEnter(guildId)
         .then((jsonMap) {
           return jsonMap;
         });
   }
 
+  /*
+   * Un usuario Administrador rechaza la entrada de un usuario en el Guild (que previamente había solicitado el acceso)
+   */
+  Future rejectRequestToEnter(String userId) {
+    return _server.rejectRequestToEnter(userId)
+        .then((jsonMap) {
+          return jsonMap;
+        });
+  }
+  
   /*
    * Un usuario Administrador acepta la entrada en el Guild de otro usuario (previamente DEBE haberlo solicitado)
    */

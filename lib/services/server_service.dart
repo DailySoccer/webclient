@@ -108,8 +108,9 @@ abstract class ServerService {
   // Guild
   Future<Map> getGuilds();
   Future<Map> createGuild(String name);
+  Future<Map> requestToEnter(String guildId);
+  Future<Map> rejectRequestToEnter(String userId);
   Future<Map> addMemberToGuild(String userId);
-  Future<Map> requestFromMember(String guildId);
   Future<Map> removeMember(String userId);
   Future<Map> removeFromGuild();
   
@@ -449,12 +450,16 @@ class DailySoccerServer implements ServerService {
     });
   }
   
+  Future<Map> requestToEnter(String guildId) {
+    return _innerServerCall("${HostServer.url}/request_to_enter/$guildId", retryTimes: -1);
+  }
+
+  Future<Map> rejectRequestToEnter(String userId) {
+    return _innerServerCall("${HostServer.url}/reject_request_to_enter/$userId", retryTimes: -1);
+  }
+
   Future<Map> addMemberToGuild(String userId) {
     return _innerServerCall("${HostServer.url}/add_member_to_guild/$userId", retryTimes: -1);
-  }
-  
-  Future<Map> requestFromMember(String guildId) {
-    return _innerServerCall("${HostServer.url}/request_from_member/$guildId", retryTimes: -1);
   }
   
   Future<Map> removeMember(String userId) {

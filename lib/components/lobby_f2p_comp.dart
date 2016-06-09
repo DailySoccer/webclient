@@ -66,13 +66,24 @@ class LobbyF2PComp implements DetachAware {
         .then((result) {
           print("refreshGuilds => $result");
           
-          guildService.requestFromMember("575912bfd4c6b8aa8360cb93")
+          guildService.requestToEnter("575912bfd4c6b8aa8360cb93")
             .then((result) {
-              print("requestFromMember => $result");
+              print("requestToEnter => $result");
             });
         });
          */
-      // 3. Aceptar nuevo miembro en el Guild
+      // 3. Rechazar la solicitud de acceso a un usuario
+      // El usuario administrador rechaza la solicitud anterior
+      guildService.refreshGuilds()
+        .then((result) {
+          print("refreshGuilds => $result");
+          
+          guildService.rejectRequestToEnter("56991fa0d4c6a506ff6973eb")
+            .then((result) {
+              print("rejectRequestToEnter => $result");
+            });
+        });
+      // 4. Aceptar nuevo miembro en el Guild
       // El usuario administrador acepta la solicitud anterior
       /*
       guildService.refreshGuilds()
@@ -85,7 +96,7 @@ class LobbyF2PComp implements DetachAware {
             });
         });
          */
-      // 4. Quitar a un miembro del Guild
+      // 5. Quitar a un miembro del Guild
       // El usuario administrador expulsa a un miembro del Guild
       /*
       guildService.refreshGuilds()
@@ -98,7 +109,7 @@ class LobbyF2PComp implements DetachAware {
             });
         });
          */
-      // 5. Salirse del Guild
+      // 6. Salirse del Guild
       // El propio usuario quiere salirse del Guild
       /*
       guildService.refreshGuilds()

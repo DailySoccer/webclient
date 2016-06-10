@@ -55,12 +55,7 @@ class AppSecondaryTabBarState {
   
 }
 class AppTopBarState {
-
-  // LAYOUTS
-  static const String THREE_COLUMNS = "THREE_COLUMNS";
-  static const String ONE_COLUMN = "ONE_COLUMN";
-  static const String NONE_COLUMNS = "NONE";
-
+  
   
   
 }

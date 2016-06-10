@@ -5681,6 +5681,18 @@ scoring-rules:after,
 .contest-id-bar:after,
 #mainMenu #desktopMenu:before,
 #mainMenu #desktopMenu:after,
+.secondary-tab-bar-wrapper:before,
+.secondary-tab-bar-wrapper:after,
+.top-bar-wrapper:before,
+.top-bar-wrapper:after,
+.three-columns:before,
+.three-columns:after,
+.one-column:before,
+.one-column:after,
+.three-columns .main-column .user-currencies:before,
+.three-columns .main-column .user-currencies:after,
+.one-column .main-column .user-currencies:before,
+.one-column .main-column .user-currencies:after,
 .resume-bar:before,
 .resume-bar:after,
 .no-contests-wrapper:before,
@@ -5835,6 +5847,12 @@ scoring-rules:after,
 .soccer-player-statistics:after,
 .contest-id-bar:after,
 #mainMenu #desktopMenu:after,
+.secondary-tab-bar-wrapper:after,
+.top-bar-wrapper:after,
+.three-columns:after,
+.one-column:after,
+.three-columns .main-column .user-currencies:after,
+.one-column .main-column .user-currencies:after,
 .resume-bar:after,
 .no-contests-wrapper:after,
 #promosComponent:after,
@@ -14763,6 +14781,7 @@ tab-bar {
   display: inline-block;
   width: 20%;
   padding: 10px 0;
+  cursor: pointer;
 }
 .tab-bar-item img {
   width: 32px;
@@ -14800,6 +14819,153 @@ tab-bar {
   border-radius: 50px;
   border-radius: 100%;
   background-color: #ff0000;
+  display: none;
+}
+.tab-bar-item-badge.has-notifications {
+  display: block;
+}
+.secondary-tab-bar-wrapper {
+  position: fixed;
+  top: 30px;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100vw;
+  z-index: 100;
+}
+.secondary-tabbar-tab {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  background-color: #0a2938;
+  border: 0;
+  border-top: 1px solid #ffffff;
+  cursor: pointer;
+  text-align: center;
+  /*
+	button {
+		display: block;
+	}*/
+}
+.secondary-tabbar-tab.tabs-count-1 {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0;
+  padding-right: 0;
+}
+.secondary-tabbar-tab.tabs-count-2 {
+  position: relative;
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 0;
+  padding-right: 0;
+}
+.secondary-tabbar-tab.tabs-count-3 {
+  position: relative;
+  float: left;
+  width: 33.33333333%;
+  min-height: 1px;
+  padding-left: 0;
+  padding-right: 0;
+}
+.secondary-tabbar-tab.tabs-count-4 {
+  position: relative;
+  float: left;
+  width: 25%;
+  min-height: 1px;
+  padding-left: 0;
+  padding-right: 0;
+}
+.secondary-tabbar-tab.tabs-count-5 {
+  position: relative;
+  float: left;
+  width: 20%;
+  min-height: 1px;
+  padding-left: 0;
+  padding-right: 0;
+}
+.secondary-tabbar-tab.tabs-count-6 {
+  position: relative;
+  float: left;
+  width: 16.66666667%;
+  min-height: 1px;
+  padding-left: 0;
+  padding-right: 0;
+}
+.secondary-tabbar-tab + .secondary-tabbar-tab {
+  border-left: 1px solid #ffffff;
+}
+.top-bar-wrapper {
+  position: fixed;
+  top: 0;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100vw;
+  z-index: 100;
+}
+.three-columns,
+.one-column {
+  text-align: center;
+  margin-left: 0;
+  margin-right: 0;
+}
+.three-columns .left-column,
+.one-column .left-column {
+  position: relative;
+  float: left;
+  width: 16.66666667%;
+  min-height: 1px;
+  padding-left: 0;
+  padding-right: 0;
+}
+.three-columns .main-column,
+.one-column .main-column {
+  position: relative;
+  float: left;
+  width: 66.66666667%;
+  min-height: 1px;
+  padding-left: 0;
+  padding-right: 0;
+}
+.three-columns .main-column .user-currencies,
+.one-column .main-column .user-currencies {
+  margin-left: 0;
+  margin-right: 0;
+}
+.three-columns .main-column .user-currencies .currency,
+.one-column .main-column .user-currencies .currency {
+  position: relative;
+  float: left;
+  width: 33.33333333%;
+  min-height: 1px;
+  padding-left: 0;
+  padding-right: 0;
+}
+.three-columns .right-column,
+.one-column .right-column {
+  position: relative;
+  float: left;
+  width: 16.66666667%;
+  min-height: 1px;
+  padding-left: 0;
+  padding-right: 0;
+}
+.columns-layout {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  display: block;
+  background-color: #0a2938;
+  height: 30px;
+}
+.columns-layout.hidden-bar {
+  display: none;
 }
 @media (max-width: 991px) {
   #myContest {
@@ -24938,6 +25104,12 @@ users-list#usersList > .epic-tooltip {
 #homeRoot .soccer-player-statistics,
 #homeRoot .contest-id-bar,
 #homeRoot #mainMenu #desktopMenu,
+#homeRoot .secondary-tab-bar-wrapper,
+#homeRoot .top-bar-wrapper,
+#homeRoot .three-columns,
+#homeRoot .one-column,
+#homeRoot .three-columns .main-column .user-currencies,
+#homeRoot .one-column .main-column .user-currencies,
 #homeRoot .resume-bar,
 #homeRoot .no-contests-wrapper,
 #homeRoot #promosComponent,

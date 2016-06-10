@@ -11,6 +11,7 @@ tab-bar {
 	display: inline-block;
 	width: 20%;
 	padding: 10px 0;
+	cursor: pointer;
 	img {
 		width: 32px;
 		height: 32px;
@@ -42,4 +43,8 @@ tab-bar {
 	border-radius: 50px;
 	border-radius: 100%;
 	background-color: @red;
+	display: none;
+	&.has-notifications {
+		display: block;
+	}
 }

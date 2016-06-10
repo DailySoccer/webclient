@@ -1,0 +1,37 @@
+.top-bar-wrapper {
+	position: fixed;
+	top: 0;
+	.make-row(0);
+	width: 100vw;
+	z-index: 100;
+}
+
+.three-columns, .one-column {
+	text-align: center;
+	.make-row(0);
+	.left-column {
+		.make-xs-column(2, 0);
+	}
+	.main-column {
+		.make-xs-column(8, 0);
+		.user-currencies {
+			.make-row(0);
+			.currency {
+				.make-xs-column(4, 0);
+			}
+		}
+	}
+	.right-column {
+		.make-xs-column(2, 0);
+	}
+}
+
+.columns-layout {
+	.opensans_normal(12pt, @white);
+	display: block;
+	background-color: @blueUltraDark;
+	height: 30px;
+}
+.columns-layout.hidden-bar {
+	display: none;
+}

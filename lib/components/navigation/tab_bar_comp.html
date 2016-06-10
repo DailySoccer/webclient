@@ -1,27 +1,27 @@
 <div class="tab-bar-wrapper">
-  <div class="tab-bar-item">
-    <img src="images/menuLeaderboardLight.png">
-    <span class="tab-bar-item-name">section1</span>
-    <span class="tab-bar-item-badge">10</span>
+  <div class="tab-bar-item" ng-click="storeTab.goLocation()" ng-class="{'active': storeTab.isActive}">
+    <img ng-src="{{storeTab.iconImage}}">
+    <span class="tab-bar-item-name">{{storeTab.name}}</span>
+    <span class="tab-bar-item-badge" ng-class="{'has-notifications': storeTab.notificationsCount > 0}">{{storeTab.notificationsCount}}</span>
   </div>
-  <div class="tab-bar-item">
-    <img src="images/menuLeaderboardLight.png">
-    <span class="tab-bar-item-name">section2</span>
-    <span class="tab-bar-item-badge">3</span>
+  <div class="tab-bar-item" ng-click="leaderTab.goLocation()" ng-class="{'active': leaderTab.isActive}">
+    <img ng-src="{{leaderTab.iconImage}}">
+    <span class="tab-bar-item-name">{{leaderTab.name}}</span>
+    <span class="tab-bar-item-badge" ng-class="{'has-notifications': leaderTab.notificationsCount > 0}">{{leaderTab.notificationsCount}}</span>
   </div>
-  <div class="tab-bar-item active">
-    <img src="images/menuLeaderboardLight.png">
-    <span class="tab-bar-item-name">section3</span>
-    <span class="tab-bar-item-badge">700</span>
+  <div class="tab-bar-item" ng-click="contestsTab.goLocation()" ng-class="{'active': contestsTab.isActive}">
+    <img ng-src="{{contestsTab.iconImage}}">
+    <span class="tab-bar-item-name">{{contestsTab.name}}</span>
+    <span class="tab-bar-item-badge" ng-class="{'has-notifications': contestsTab.notificationsCount > 0}">{{contestsTab.notificationsCount}}</span>
   </div>
-  <div class="tab-bar-item">
-    <img src="images/menuLeaderboardLight.png">
-    <span class="tab-bar-item-name">section4</span>
-    <span class="tab-bar-item-badge">2</span>
+  <div class="tab-bar-item" ng-click="friendsTab.goLocation()" ng-class="{'active': friendsTab.isActive}">
+    <img ng-src="{{friendsTab.iconImage}}">
+    <span class="tab-bar-item-name">{{friendsTab.name}}</span>
+    <span class="tab-bar-item-badge" ng-class="{'has-notifications': friendsTab.notificationsCount > 0}">{{friendsTab.notificationsCount}}</span>
   </div>
-  <div class="tab-bar-item">
-    <img src="images/menuLeaderboardLight.png">
-    <span class="tab-bar-item-name">section5</span>
-    <span class="tab-bar-item-badge">1</span>
+  <div class="tab-bar-item" ng-click="bonusTab.goLocation()" ng-class="{'active': bonusTab.isActive}">
+    <img ng-src="{{bonusTab.iconImage}}">
+    <span class="tab-bar-item-name">{{bonusTab.name}}</span>
+    <span class="tab-bar-item-badge" ng-class="{'has-notifications': bonusTab.notificationsCount > 0}">{{bonusTab.notificationsCount}}</span>
   </div>
 </div>

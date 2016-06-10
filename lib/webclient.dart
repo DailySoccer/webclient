@@ -26,6 +26,7 @@ import 'package:webclient/services/payment_service.dart';
 import 'package:webclient/services/prizes_service.dart';
 import 'package:webclient/services/promos_service.dart';
 import 'package:webclient/services/catalog_service.dart';
+import 'package:webclient/services/app_state_service.dart';
 import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/services/tooltip_service.dart';
 import 'package:webclient/services/guild_service.dart';
@@ -45,7 +46,9 @@ import 'package:webclient/utils/max_text_width.dart';
 
 import 'package:webclient/components/navigation/main_menu_f2p_comp.dart';
 import 'package:webclient/components/navigation/footer_comp.dart';
+import 'package:webclient/components/navigation/top_bar_comp.dart';
 import 'package:webclient/components/navigation/tab_bar_comp.dart';
+import 'package:webclient/components/navigation/secondary_tab_bar_comp.dart';
 import 'package:webclient/components/navigation/deprecated_version_screen_comp.dart';
 //import 'package:webclient/components/navigation/xs_not_available_screen_comp.dart';
 
@@ -170,6 +173,7 @@ class WebClientApp extends Module {
     bind(PaymentService);
     bind(PrizesService);
     bind(CatalogService);
+    bind(AppStateService);
     bind(TutorialService);
     bind(ToolTipService);
     bind(GuildService);
@@ -184,6 +188,8 @@ class WebClientApp extends Module {
     bind(MainMenuF2PComp);
     bind(FooterComp);
     bind(TabBarComp);
+    bind(SecondaryTabBarComp);
+    bind(TopBarComp);
     bind(DeprecatedVersionScreenComp);
     //bind(XsNotAvailableScreenComp);
 

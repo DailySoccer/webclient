@@ -296,16 +296,16 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   String _getActionButton(bool addButton, Money moneyToBuy) {
     bool isFree = moneyToBuy.toInt() == 0;
     String buttonText = !addButton? '-' : isFree? '+' : '<span class="coins-to-buy">${moneyToBuy.toInt()}</span>';
-
+    
     return '<button type="button" class="action-button ${addButton? 'add' : 'remove'} ${isFree? 'free-purchase' : 'coin-purchase'}">$buttonText</button>';
   }
 
   void _onSoccerPlayerAction(MouseEvent e) {
     DivElement div = e.currentTarget as DivElement;
-
+    
     int soccerPlayerId = int.parse(div.id.replaceFirst("soccerPlayerAction", ""));
     var clickedSlot = _sortedSoccerPlayers.firstWhere((slot) => slot['intId'] == soccerPlayerId);
-
+    
     if (onActionClick != null) {
       onActionClick({"soccerPlayer": clickedSlot});
     }

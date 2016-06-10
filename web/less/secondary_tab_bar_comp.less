@@ -1,0 +1,36 @@
+.secondary-tab-bar-wrapper {
+	position: fixed;
+	top: 30px;
+	.make-row(0);
+	width: 100vw;
+	z-index: 100;
+}
+
+.secondary-tabbar-tab {
+	.opensans_bold(10pt, @white);
+	
+	.tabs-count-n (@n) {
+		.make-xs-column((12/@n), 0);
+	}
+	
+	&.tabs-count-1 { .tabs-count-n(1); }
+	&.tabs-count-2 { .tabs-count-n(2); }
+	&.tabs-count-3 { .tabs-count-n(3); }
+	&.tabs-count-4 { .tabs-count-n(4); }
+	&.tabs-count-5 { .tabs-count-n(5); }
+	&.tabs-count-6 { .tabs-count-n(6); }
+	
+	background-color: @blueUltraDark;
+	border: 0;
+	border-top: 1px solid @white;
+	cursor: pointer;
+	text-align: center;
+	
+	&+.secondary-tabbar-tab {
+		border-left: 1px solid @white;
+	}
+	/*
+	button {
+		display: block;
+	}*/
+}

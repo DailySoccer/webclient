@@ -2051,6 +2051,47 @@ tc.put("packages/webclient/components/navigation/deprecated_version_screen_comp.
   <p>{{getLocalizedText("body")}}</p>
   <button ng-click="goShop()">{{getLocalizedText("button")}}</button>
 </div>"""));
+tc.put("packages/webclient/components/navigation/secondary_tab_bar_comp.html", new HttpResponse(200, r"""<div class="secondary-tab-bar-wrapper">
+  <!--div ng-repeat="tab in tabs" class="secondary-tabbar-tab" ng-class="[nTabsClass]"-->
+    <div ng-repeat="tab in tabs" class="secondary-tabbar-tab" ng-class="[nTabsClass]" ng-click="tab.action()">
+      {{tab.text}}
+    </div>
+  <!--/div-->
+</div>"""));
+tc.put("packages/webclient/components/navigation/tab_bar_comp.html", new HttpResponse(200, r"""<div class="tab-bar-wrapper">
+  <div class="tab-bar-item" ng-click="storeTab.goLocation()" ng-class="{'active': storeTab.isActive}">
+    <img ng-src="{{storeTab.iconImage}}">
+    <span class="tab-bar-item-name">{{storeTab.name}}</span>
+    <span class="tab-bar-item-badge" ng-class="{'has-notifications': storeTab.notificationsCount > 0}">{{storeTab.notificationsCount}}</span>
+  </div>
+  <div class="tab-bar-item" ng-click="leaderTab.goLocation()" ng-class="{'active': leaderTab.isActive}">
+    <img ng-src="{{leaderTab.iconImage}}">
+    <span class="tab-bar-item-name">{{leaderTab.name}}</span>
+    <span class="tab-bar-item-badge" ng-class="{'has-notifications': leaderTab.notificationsCount > 0}">{{leaderTab.notificationsCount}}</span>
+  </div>
+  <div class="tab-bar-item" ng-click="contestsTab.goLocation()" ng-class="{'active': contestsTab.isActive}">
+    <img ng-src="{{contestsTab.iconImage}}">
+    <span class="tab-bar-item-name">{{contestsTab.name}}</span>
+    <span class="tab-bar-item-badge" ng-class="{'has-notifications': contestsTab.notificationsCount > 0}">{{contestsTab.notificationsCount}}</span>
+  </div>
+  <div class="tab-bar-item" ng-click="friendsTab.goLocation()" ng-class="{'active': friendsTab.isActive}">
+    <img ng-src="{{friendsTab.iconImage}}">
+    <span class="tab-bar-item-name">{{friendsTab.name}}</span>
+    <span class="tab-bar-item-badge" ng-class="{'has-notifications': friendsTab.notificationsCount > 0}">{{friendsTab.notificationsCount}}</span>
+  </div>
+  <div class="tab-bar-item" ng-click="bonusTab.goLocation()" ng-class="{'active': bonusTab.isActive}">
+    <img ng-src="{{bonusTab.iconImage}}">
+    <span class="tab-bar-item-name">{{bonusTab.name}}</span>
+    <span class="tab-bar-item-badge" ng-class="{'has-notifications': bonusTab.notificationsCount > 0}">{{bonusTab.notificationsCount}}</span>
+  </div>
+</div>"""));
+tc.put("packages/webclient/components/navigation/top_bar_comp.html", new HttpResponse(200, r"""<div class="top-bar-wrapper">
+  <div class="columns-layout" ng-class="[layoutCssClass]">
+    <div class="left-column" ng-bind-html-unsafe="leftColumnHTML"></div>
+    <div class="main-column" ng-bind-html-unsafe="centerColumnHTML"></div>
+    <div class="right-column" ng-bind-html-unsafe="rightColumnHTML"></div>
+  </div>
+</div>"""));
 tc.put("packages/webclient/components/promos_comp.html", new HttpResponse(200, r"""<div id="promosRoot" ng-class="{'hide-promos': !hasPromos()}">
 <div ng-if="!scrDet.isXsScreen">
   <a class="banner2"  ng-click="gotoPromo(0)">

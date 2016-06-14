@@ -18,22 +18,29 @@ import 'dart:html';
 )
 class TopBarComp {
 
-  // LAYOUTS
-  static const String THREE_COLUMNS = "THREE_COLUMNS";
-  static const String ONE_COLUMN = "ONE_COLUMN";
-  static const String NONE_COLUMNS = "NONE";
+  AppTopBarStateConfig get currentState => _appStateService.appTopBarState.activeState;
+  Map get configParameters => _appStateService.appTopBarState.configParameters;
+  
+  String get layoutCssClass => currentState.layout == AppTopBarState.THREE_COLUMNS ? "three-columns" :
+                               currentState.layout == AppTopBarState.ONE_COLUMN ? "one-column" : "hidden-bar";
+  
+  String get leftColumnHTML => currentState.layout == AppTopBarState.THREE_COLUMNS ? _getHtmlModule(currentState.elements[0]) : '';
+  String get centerColumnHTML => currentState.layout == AppTopBarState.NONE_COLUMNS? '' : _getHtmlModule(currentState.elements[currentState.layout == AppTopBarState.THREE_COLUMNS? 1 : 0]);
+  String get rightColumnHTML => currentState.layout == AppTopBarState.THREE_COLUMNS ? _getHtmlModule(currentState.elements[2]) : '';
+  
+  TopBarComp(this._appStateService) {}
 
   // LAYOUT ELEMENTS
-  String backButton([String clas = ""]) {
+  String _backButton([String clas = ""]) {
     return "<button class='back-button $clas'>BACK</button>";
   }
-  String titleLabel([String clas = ""]) {
+  String _titleLabel([String clas = ""]) {
     return "<div class='title-label $clas'>${configParameters["title"]}</div>";
   }
-  String empty([String clas = ""]) {
+  String _empty([String clas = ""]) {
     return "<div class='empty-element $clas'></div>";
   }
-  String userCurrencies([String clas = ""]) {
+  String _userCurrencies([String clas = ""]) {
     return '''
               <div class='user-currencies $clas'>
                 <div class="energy-currency currency">
@@ -51,41 +58,24 @@ class TopBarComp {
               </div>
           ''';
   }
-  String createContestButton([String clas = ""]) {
+  String _createContestButton([String clas = ""]) {
     return "<button class='create-contest $clas'>( + )</button>";
   }
-  String liveContestButton([String clas = ""]) {
+  String _liveContestButton([String clas = ""]) {
     return "<button class='live-contest $clas'>Y</button>";
   }
   
-  // 
-  static const Map HIDDEN_CONFIG     = const { "layout"  : NONE_COLUMNS,
-                                               "elements": const[] };
-                                               
-  Map get LOBBY_CONFIG      => { "layout"  : THREE_COLUMNS, 
-                                 "elements": [createContestButton, userCurrencies, liveContestButton] };
-  Map get SUBSECTION_CONFIG => { "layout"  : THREE_COLUMNS, 
-                                 "elements": [backButton, titleLabel, empty] };
-  Map get SECTION_CONFIG    => { "layout"  : ONE_COLUMN,
-                                 "elements": [titleLabel] };
-  
-  Map configParameters = { "title" : "FURBORCUATRO" };
-  Map _currentConfig = HIDDEN_CONFIG;
-  Map get currentConfig => LOBBY_CONFIG;
-  
-  String get layoutCssClass => currentConfig["layout"] == THREE_COLUMNS ? "three-columns" :
-                               currentConfig["layout"] == ONE_COLUMN ? "one-column" : "hidden-bar";
-  
-  String get leftColumnHTML => currentConfig["layout"] == THREE_COLUMNS ? currentConfig['elements'][0]() : '';
-  String get centerColumnHTML => currentConfig["layout"] == NONE_COLUMNS? '' : currentConfig['elements'][currentConfig["layout"] == THREE_COLUMNS? 1 : 0]();
-  String get rightColumnHTML => currentConfig["layout"] == THREE_COLUMNS ? currentConfig['elements'][2]() : '';
-  
-  TopBarComp(/*this._router, this._loadingService, this._view, this._rootElement, 
-              this._dateTimeService, this._profileService, this._templateService, 
-              this._catalogService, this._appStateService*/) {
+  String _getHtmlModule(String s) {
+    Map<String, Function> modules = { AppTopBarState.CREATE_CONTEST_BUTTON: _createContestButton,
+                                      AppTopBarState.LIVE_CONTESTS: _liveContestButton,
+                                      AppTopBarState.BACK_BUTTON: _backButton,
+                                      AppTopBarState.USER_CURRENCIES: _userCurrencies,
+                                      AppTopBarState.TITLE_LABEL: _titleLabel,
+                                      AppTopBarState.EMPTY: _empty
+                                    };
     
-    
+    return modules[s]();
   }
-  
+  AppStateService _appStateService;
   
 }

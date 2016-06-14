@@ -16,6 +16,7 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/components/account/notifications_comp.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/template_service.dart';
+import 'package:webclient/services/app_state_service.dart';
 
 @Component(
   selector: 'home',
@@ -52,10 +53,12 @@ class HomeComp implements DetachAware {
   static const String PROMO_CODE_NAME_LOGOFF = "Home Contest Tile LogOff";
   Map currentPromo = null;
 
-  HomeComp(this._router, this._profileService, this.contestsService, this._flashMessage,
+  HomeComp(this._router, this._profileService, this._appStateService, this.contestsService, this._flashMessage,
             this.loadingService, this._refreshTimersService, this._promosService,
             TutorialService tutorialService) {
     loadingService.isLoading = true;
+    _appStateService.appTopBarState.activeState = AppTopBarState.HIDDEN_CONFIG;
+    _appStateService.appSecondaryTabBarState.tabList = [];
     //contestTileHTML = isContestTileEnabled ? defaultPromo['html'] : defaultPromoWithTutorial['html'];
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
     _profileService.triggerNotificationsPopUp(_router);
@@ -207,5 +210,6 @@ class HomeComp implements DetachAware {
   FlashMessagesService _flashMessage;
   RefreshTimersService _refreshTimersService;
   PromosService _promosService;
+  AppStateService _appStateService;
 
 }

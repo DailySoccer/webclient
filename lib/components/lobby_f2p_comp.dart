@@ -15,6 +15,7 @@ import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/tutorial/tutorial_iniciacion.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/guild_service.dart';
+import 'package:webclient/services/app_state_service.dart';
 
 @Component(
   selector: 'lobbyf2p',
@@ -32,10 +33,19 @@ class LobbyF2PComp implements DetachAware {
   List<Contest> currentContestList;
   List<Map> dayList = new List<Map>();
 
-  LobbyF2PComp(RouteProvider routeProvider, this._router, this._refreshTimersService,
+  LobbyF2PComp(RouteProvider routeProvider, this._router, this._appStateService, this._refreshTimersService,
       this._contestsService, this.scrDet, this.loadingService, this._profileService, TutorialService tutorialService, GuildService guildService) {
 
+
     GameMetrics.logEvent(GameMetrics.LOBBY);
+    _appStateService.appTopBarState.activeState = AppTopBarState.USER_DATA_CONFIG;
+    _appStateService.appSecondaryTabBarState.tabList = [
+      new AppSecondaryTabBarTab('A', () { print("A Pressed"); }),
+      new AppSecondaryTabBarTab('B', () { print("B Pressed"); }),
+      new AppSecondaryTabBarTab('C', () { print("C Pressed"); }),
+      new AppSecondaryTabBarTab('D', () { print("D Pressed"); }),
+      new AppSecondaryTabBarTab('E', () { print("E Pressed"); }),
+    ];
 
     if (_contestsService.activeContests.isEmpty) {
       loadingService.isLoading = true;
@@ -217,4 +227,5 @@ class LobbyF2PComp implements DetachAware {
   ProfileService _profileService;
   RefreshTimersService _refreshTimersService;
   ContestsService _contestsService;
+  AppStateService _appStateService;
 }

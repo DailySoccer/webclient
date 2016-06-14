@@ -18,83 +18,71 @@ import 'package:webclient/utils/host_server.dart';
 class AppStateService {
   
   static AppStateService get Instance => _instance;
-  
-  //AppTabBarState get appTabBarState => _appTabBarState;
-  Stream<String> get onAppStateChange => _appStateController.stream;
+
+  //AppTopBarStateConfig get appTabBarStateConfig => _appTabBarState.activeState;
+  AppTabBarState get appTabBarState => _appTabBarState;
+  AppTopBarState get appTopBarState => _appTopBarState;
+  AppSecondaryTabBarState get appSecondaryTabBarState => _appSecondaryTabBarState;
   
   AppStateService(this._router) {
     _instance = this;
-    //_appTabBarState = new AppTabBarState(_router);
+    _appTabBarState = new AppTabBarState();
     _appTopBarState = new AppTopBarState();
-    
-    _router.onRouteStart.listen((RouteStartEvent event) {
-             event.completed.then((_) {
-               if (_router.activePath.length > 0) {
-                 String oldActivePath = _activePath;
-                 _activePath = _router.activePath[0].name;
-                 if (oldActivePath != _activePath) {
-                   _appStateController.add("");
-                 }
-               }
-             });
-           });
+    _appSecondaryTabBarState = new AppSecondaryTabBarState();
   }
   
   Router _router;
-  //AppTabBarState _appTabBarState;
+  AppTabBarState _appTabBarState;
   AppTopBarState _appTopBarState;
+  AppSecondaryTabBarState _appSecondaryTabBarState;
   String _activePath = "";
-  StreamController<String> _appStateController = new StreamController.broadcast();
   
   static AppStateService _instance;
 }
 
 class AppSecondaryTabBarState {
-  
-  
-  
+  List<AppSecondaryTabBarTab> tabList = [];
 }
+class AppSecondaryTabBarTab {
+  String text;
+  Function action;
+  AppSecondaryTabBarTab(this.text, this.action);
+}
+
 class AppTopBarState {
+  // LAYOUTS
+  static const String THREE_COLUMNS = "THREE_COLUMNS";
+  static const String ONE_COLUMN = "ONE_COLUMN";
+  static const String NONE_COLUMNS = "NONE";
+
+  // COMPONENTS
+  static const String CREATE_CONTEST_BUTTON = "CREATE_CONTEST_BUTTON";
+  static const String LIVE_CONTESTS = "LIVE_CONTEST_BUTTON";
+  static const String BACK_BUTTON = "BACK_BUTTON";
+  static const String USER_CURRENCIES = "USER_CURRENCIES";
+  static const String TITLE_LABEL = "TITLE";
+  static const String EMPTY = "EMPTY";
   
+  // PRECONFIGURATIONS
+  static AppTopBarStateConfig HIDDEN_CONFIG     = new AppTopBarStateConfig(NONE_COLUMNS, const[]);
+  static AppTopBarStateConfig USER_DATA_CONFIG  = new AppTopBarStateConfig(THREE_COLUMNS, const[CREATE_CONTEST_BUTTON, USER_CURRENCIES, LIVE_CONTESTS]);
+  static AppTopBarStateConfig SUBSECTION_CONFIG = new AppTopBarStateConfig(THREE_COLUMNS, const[BACK_BUTTON, TITLE_LABEL, EMPTY]);
+  static AppTopBarStateConfig SECTION_CONFIG    = new AppTopBarStateConfig(ONE_COLUMN, const[TITLE_LABEL]);
   
-  
+  AppTopBarStateConfig activeState = HIDDEN_CONFIG;
+  Map configParameters = { "title" : "FURBORCUATRO" }; 
 }
+class AppTopBarStateConfig {
+  String layout;
+  List<String> elements;
+  AppTopBarStateConfig(this.layout, this.elements);
+}
+
 class AppTabBarState {
-  /*
-  static const String CONTESTS = "CONTEST";
-  static const String LEADERBOARD = "LEADERBOARD";
-  static const String STORE = "STORE";
-  static const String FRIENDS = "FRIENDS";
-  static const String BONUS = "BONUS";
-  
-  Stream<String> get onTabBarStateChange => _tabBarStateController.stream;
-  
-  String get activeSection => _PATH_TAB[_activePath];
-
-  AppTabBarState(this._router) {
-    _router.onRouteStart.listen((RouteStartEvent event) {
-          event.completed.then((_) {
-            if (_router.activePath.length > 0) {
-              String oldActivePath = _activePath;
-              _activePath = _router.activePath[0].name;
-              if (oldActivePath != _activePath) {
-                _tabBarStateController.add(activeSection);
-              }
-            }
-          });
-        });
-  }
-
-  static const Map<String, String> _PATH_TAB = const {
-    "lobby": CONTESTS,
-    "leaderboard": LEADERBOARD,
-    "shop": STORE,
-    "friends": FRIENDS,
-    "Bonus": BONUS,
-  };
-  
-  String _activePath = "";
-  Router _router;
-  StreamController<String> _tabBarStateController = new StreamController.broadcast();
-  */
+  bool show = false;
+  int storeNotifications = 0;
+  int leaderNotifications = 0;
+  int lobbyNotifications = 0;
+  int friendsNotifications = 0;
+  int BonusNotifications = 0;
 }

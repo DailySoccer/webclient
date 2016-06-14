@@ -32,9 +32,8 @@ class TabBarComp {
   TabBarItemComp get friendsTab  => tabs[FRIENDS];
   TabBarItemComp get bonusTab    => tabs[BONUS];
   
-  TabBarComp(this._router, this._loadingService, this._view, this._rootElement, 
-              this._dateTimeService, this._profileService, this._templateService, 
-              this._catalogService, this._appStateService) {
+  TabBarComp(this._router, this._view, this._rootElement, this._profileService, 
+             this._appStateService) {
     tabs = { STORE       : new TabBarItemComp(_router, 
                                                name: "Store",
                                                iconImage: "images/menuLeaderboardLight.png",
@@ -74,11 +73,6 @@ class TabBarComp {
   View _view;
   Router _router;
   
-  DateTimeService _dateTimeService;
-  LoadingService _loadingService;
-
-  TemplateService _templateService;
-  CatalogService _catalogService;
   ProfileService _profileService;
   AppStateService _appStateService;
 }

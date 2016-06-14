@@ -19,15 +19,9 @@ import 'dart:math';
     useShadowDom: false
 )
 class SecondaryTabBarComp {
-  
-  List<Map> tabs = [
-      {'text': 'A', 'onClick': () { print("A Pressed"); }},
-      {'text': 'B', 'onClick': () { print("B Pressed"); }},
-      {'text': 'C', 'onClick': () { print("C Pressed"); }},
-      {'text': 'D', 'onClick': () { print("D Pressed"); }},
-      {'text': 'E', 'onClick': () { print("E Pressed"); }}
-    ];
-  
+
+  List get tabs => _appStateService.appSecondaryTabBarState.tabList;
+    
   String get nTabsClass {
     if (tabs.length > 6) {
       Logger.root.severe("Too much secondary tabs");
@@ -35,9 +29,7 @@ class SecondaryTabBarComp {
     return "tabs-count-${min(tabs.length, 6)}";
   }
   
-  SecondaryTabBarComp() {
-    
-  }
+  SecondaryTabBarComp(this._appStateService) {}
   
-  
+  AppStateService _appStateService;
 }

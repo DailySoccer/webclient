@@ -1,7 +1,7 @@
 <div class="secondary-tab-bar-wrapper">
   <!--div ng-repeat="tab in tabs" class="secondary-tabbar-tab" ng-class="[nTabsClass]"-->
-    <div ng-repeat="tab in tabs" class="secondary-tabbar-tab" ng-class="[nTabsClass]"ng-click="tab['onClick']()">
-      {{tab["text"]}}
+    <div ng-repeat="tab in tabs" class="secondary-tabbar-tab" ng-class="[nTabsClass]" ng-click="tab.action()">
+      {{tab.text}}
     </div>
   <!--/div-->
 </div>

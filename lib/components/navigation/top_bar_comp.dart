@@ -10,6 +10,7 @@ import 'package:webclient/services/catalog_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/app_state_service.dart';
 import 'dart:html';
+import 'package:webclient/services/screen_detector_service.dart';
 
 @Component(
     selector: 'top-bar',
@@ -27,8 +28,10 @@ class TopBarComp {
   String get leftColumnHTML => currentState.layout == AppTopBarState.THREE_COLUMNS ? _getHtmlModule(currentState.elements[0]) : '';
   String get centerColumnHTML => currentState.layout == AppTopBarState.NONE_COLUMNS? '' : _getHtmlModule(currentState.elements[currentState.layout == AppTopBarState.THREE_COLUMNS? 1 : 0]);
   String get rightColumnHTML => currentState.layout == AppTopBarState.THREE_COLUMNS ? _getHtmlModule(currentState.elements[2]) : '';
-  
-  TopBarComp(this._appStateService) {}
+
+  TopBarComp(this._router, this._loadingService, this._view, this._rootElement, 
+                this._dateTimeService, this._profileService, this._templateService, 
+                this._catalogService, this._appStateService, this._scrDet) {}
 
   // LAYOUT ELEMENTS
   String _backButton([String clas = ""]) {
@@ -45,15 +48,15 @@ class TopBarComp {
               <div class='user-currencies $clas'>
                 <div class="energy-currency currency">
                   <span class="enery-icon">E</span>
-                  <span class="enery-counter">12</span>
+                  <span class="enery-counter">$_userEnergyPoints</span>
                 </div>
                 <div class="gold-currency currency">
                   <span class="gold-icon">G</span>
-                  <span class="gold-counter">14</span>
+                  <span class="gold-counter">$_userGold</span>
                 </div>
                 <div class="manager-level currency">
                   <span class="manager-icon">M</span>
-                  <span class="manager-counter">10</span>
+                  <span class="manager-counter">$_userManagerPoints</span>
                 </div>
               </div>
           ''';
@@ -76,6 +79,60 @@ class TopBarComp {
     
     return modules[s]();
   }
-  AppStateService _appStateService;
   
+  String get _userEnergyPoints {
+    if (!_profileService.isLoggedIn) {
+      return "";
+    }
+    return "${_profileService.user.Energy}";
+  }
+  
+  String get _userManagerPoints {
+    if (!_profileService.isLoggedIn) {
+      return "";
+    }
+    return '''<span class='current-manager'>${_profileService.user.ManagerPoints.toString()}</span>
+              <span class='max-manager'>/${_profileService.user.pointsToNextLevel}</span>''';
+  }
+  
+  String get _userManagerLevel {
+    if (!_profileService.isLoggedIn) {
+      return "";
+    }
+    return _profileService.user.managerLevel.toInt().toString();
+  }
+
+  String get _userGold {
+    if (!_profileService.isLoggedIn) {
+      return "";
+    }
+
+    int gold = _profileService.user.Gold;
+    String goldString = gold.toString();
+
+    if(gold > 9999) {
+      gold ~/= 1000;
+      goldString = '${gold}k';
+
+      if(gold > 999) {
+        gold ~/= 1000;
+        goldString = '${gold}M';
+      }
+    }
+
+    return goldString;
+  }
+
+  Element _rootElement;
+  View _view;
+  Router _router;
+  ScreenDetectorService _scrDet;
+  
+  DateTimeService _dateTimeService;
+  LoadingService _loadingService;
+
+  TemplateService _templateService;
+  CatalogService _catalogService;
+  ProfileService _profileService;
+  AppStateService _appStateService;
 }

@@ -26,14 +26,31 @@ class TabBarComp {
   
   Map<String, TabBarItemComp> tabs = {};
 
-  TabBarItemComp get storeTab    => tabs[STORE];
-  TabBarItemComp get leaderTab   => tabs[LEADERBOARD];
-  TabBarItemComp get contestsTab => tabs[CONTESTS];
-  TabBarItemComp get friendsTab  => tabs[FRIENDS];
-  TabBarItemComp get bonusTab    => tabs[BONUS];
+  TabBarItemComp get storeTab    {
+    tabs[STORE].notificationsCount = _appStateService.appTabBarState.storeNotifications;
+    return tabs[STORE];
+  }
+  TabBarItemComp get leaderTab    {
+    tabs[LEADERBOARD].notificationsCount = _appStateService.appTabBarState.leaderNotifications;
+    return tabs[LEADERBOARD];
+  }
+  TabBarItemComp get contestsTab    {
+    tabs[CONTESTS].notificationsCount = _appStateService.appTabBarState.contestNotifications;
+    return tabs[CONTESTS];
+  }
+  TabBarItemComp get friendsTab    {
+    tabs[FRIENDS].notificationsCount = _appStateService.appTabBarState.friendsNotifications;
+    return tabs[FRIENDS];
+  }
+  TabBarItemComp get bonusTab    {
+    tabs[BONUS].notificationsCount = _appStateService.appTabBarState.bonusNotifications;
+    return tabs[BONUS];
+  }
   
-  TabBarComp(this._router, this._view, this._rootElement, this._profileService, 
-             this._appStateService) {
+
+  TabBarComp(this._router, this._loadingService, this._view, this._rootElement, 
+                this._dateTimeService, this._profileService, this._templateService, 
+                this._catalogService, this._appStateService) {
     tabs = { STORE       : new TabBarItemComp(_router, 
                                                name: "Store",
                                                iconImage: "images/menuLeaderboardLight.png",
@@ -43,8 +60,7 @@ class TabBarComp {
                                                iconImage: "images/menuLeaderboardLight.png", 
                                                destination: "leaderboard", 
                                                parameters: { "section": "points", 
-                                                             "userId": _profileService.user.userId}, 
-                                               notificationsCount: 700),
+                                                             "userId": _profileService.isLoggedIn? _profileService.user.userId : 'none'}),
              CONTESTS    : new TabBarItemComp(_router, 
                                                name: "Torneos",
                                                iconImage: "images/menuLeaderboardLight.png", 
@@ -54,16 +70,13 @@ class TabBarComp {
                                                iconImage: "images/menuLeaderboardLight.png", 
                                                destination: "leaderboard", 
                                                parameters: { "section": "points", 
-                                                             "userId": _profileService.user.userId},
-                                               notificationsCount: 3),
+                                                             "userId": _profileService.isLoggedIn? _profileService.user.userId : 'none'}),
              BONUS       : new TabBarItemComp(_router, 
                                                name: "Bonos",
                                                iconImage: "images/menuLeaderboardLight.png",
                                                destination: "shop")
     };
   }
-  
-  
 
   String getLocalizedText(key, [Map substitutions]) {
     return StringUtils.translate(key, "TabBar", substitutions);
@@ -73,6 +86,11 @@ class TabBarComp {
   View _view;
   Router _router;
   
+  DateTimeService _dateTimeService;
+  LoadingService _loadingService;
+
+  TemplateService _templateService;
+  CatalogService _catalogService;
   ProfileService _profileService;
   AppStateService _appStateService;
 }

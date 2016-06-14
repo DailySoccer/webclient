@@ -24,18 +24,16 @@ class AppStateService {
   AppTopBarState get appTopBarState => _appTopBarState;
   AppSecondaryTabBarState get appSecondaryTabBarState => _appSecondaryTabBarState;
   
-  AppStateService(this._router) {
+  AppStateService() {
     _instance = this;
     _appTabBarState = new AppTabBarState();
     _appTopBarState = new AppTopBarState();
     _appSecondaryTabBarState = new AppSecondaryTabBarState();
   }
   
-  Router _router;
   AppTabBarState _appTabBarState;
   AppTopBarState _appTopBarState;
   AppSecondaryTabBarState _appSecondaryTabBarState;
-  String _activePath = "";
   
   static AppStateService _instance;
 }
@@ -82,7 +80,7 @@ class AppTabBarState {
   bool show = false;
   int storeNotifications = 0;
   int leaderNotifications = 0;
-  int lobbyNotifications = 0;
+  int contestNotifications = 0;
   int friendsNotifications = 0;
-  int BonusNotifications = 0;
+  int bonusNotifications = 0;
 }

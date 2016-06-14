@@ -39,9 +39,8 @@ class LobbyComp implements DetachAware {
   int contestCount = 0;
 
   LobbyComp(this._router, this._refreshTimersService, this.contestsService, this.scrDet, this.loadingService, this._profileService) {
-
     GameMetrics.logEvent(GameMetrics.LOBBY);
-
+    
     if (contestsService.activeContests.isEmpty) {
       loadingService.isLoading = true;
     }

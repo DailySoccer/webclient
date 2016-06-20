@@ -8,6 +8,7 @@ import "package:webclient/models/match_event.dart";
 import "package:webclient/models/soccer_team.dart";
 import "package:webclient/models/soccer_player.dart";
 import 'package:webclient/models/template_contest.dart';
+import 'package:webclient/models/guild.dart';
 
 class ContestReferences {
   var refUsers = new HashMap<String, User>();
@@ -16,6 +17,7 @@ class ContestReferences {
   var refMatchEvents = new HashMap<String, MatchEvent>();
   var refSoccerTeams = new HashMap<String, SoccerTeam>();
   var refSoccerPlayers = new HashMap<String, SoccerPlayer>();
+  var refGuilds = new HashMap<String, Guild>();
 
   ContestReferences();
 
@@ -47,5 +49,10 @@ class ContestReferences {
   SoccerPlayer getSoccerPlayerById(String id) {
     return refSoccerPlayers.containsKey(id) ? refSoccerPlayers[id]
                                             : refSoccerPlayers[id] = new SoccerPlayer.referenceInit(id);
+  }
+
+  Guild getGuildById(String id) {
+    return refGuilds.containsKey(id) ? refGuilds[id]
+                                     : refGuilds[id] = new Guild.referenceInit(id);
   }
 }

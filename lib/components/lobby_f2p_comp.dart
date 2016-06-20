@@ -74,6 +74,7 @@ class LobbyF2PComp implements DetachAware {
          */
       // 3. Rechazar la solicitud de acceso a un usuario
       // El usuario administrador rechaza la solicitud anterior
+      /*
       guildService.refreshGuilds()
         .then((result) {
           print("refreshGuilds => $result");
@@ -83,6 +84,7 @@ class LobbyF2PComp implements DetachAware {
               print("rejectRequestToEnter => $result");
             });
         });
+         */
       // 4. Aceptar nuevo miembro en el Guild
       // El usuario administrador acepta la solicitud anterior
       /*

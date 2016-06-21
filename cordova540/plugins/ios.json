@@ -35,6 +35,9 @@
         },
         "cc.fovea.cordova.purchase": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
+        },
+        "com.telerik.plugins.nativepagetransitions": {
+            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         }
     },
     "dependent_plugins": {}

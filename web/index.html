@@ -88,6 +88,29 @@
         }
         cordova.getAppVersion.getVersionNumber(cb);
       }
+      
+      function transition(path) {
+        if (typeof cordova === 'undefined') {
+          return;
+        }
+        window.plugins.nativepagetransitions.slide({
+            "iosdelay"      : 500,
+            "androiddelay"  : 500,           
+            "href"          : path
+        });        
+      }
+      
+      function transitionRun() {
+        /*
+        if (typeof cordova === 'undefined') {
+          return;
+        }
+        window.plugins.nativepagetransitions.executePendingTransition(
+          function (msg) {console.log("success: " + msg)}, // called when the animation has finished
+          function (msg) {alert("error: " + msg)} // called in case you pass in weird values
+        );
+        */
+      }
 
       document.onreadystatechange = function () {
         if (typeof cordova === 'undefined') {

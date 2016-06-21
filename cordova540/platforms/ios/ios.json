@@ -71,6 +71,10 @@
                         {
                             "xml": "<feature name=\"InAppPurchase\"><param name=\"ios-package\" value=\"InAppPurchase\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"NativePageTransitions\"><param name=\"ios-package\" value=\"NativePageTransitions\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -139,6 +143,9 @@
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         },
         "cc.fovea.cordova.purchase": {
+            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
+        },
+        "com.telerik.plugins.nativepagetransitions": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         }
     },
@@ -216,6 +223,17 @@
             "clobbers": [
                 "store"
             ]
+        },
+        {
+            "file": "plugins/com.telerik.plugins.nativepagetransitions/www/NativePageTransitions.js",
+            "id": "com.telerik.plugins.nativepagetransitions.NativePageTransitions",
+            "pluginId": "com.telerik.plugins.nativepagetransitions",
+            "clobbers": [
+                "window.plugins.nativepagetransitions"
+            ]
         }
-    ]
+    ],
+    "plugin_metadata": {
+        "com.telerik.plugins.nativepagetransitions": "0.6.5"
+    }
 }

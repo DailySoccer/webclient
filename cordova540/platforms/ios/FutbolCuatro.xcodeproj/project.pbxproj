@@ -55,6 +55,8 @@
 		605B92A5987A49B5894E3EFB /* InAppPurchase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7FFC1251D1406287EDFFFE /* InAppPurchase.m */; };
 		C2A2537436104D7B9F0EF9CE /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 02BB6AFFBC6B48AF89C6E8AD /* SKProduct+LocalizedPrice.m */; };
 		AA5F215B2F2B408F9B5D3F8B /* FileUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 190BBCFE72BA433BBEC1285B /* FileUtility.m */; };
+		4D570A7451744FC49E95FD3D /* NativePageTransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D6496E6952495189258459 /* NativePageTransitions.m */; };
+		A4456498EA8B43BF898187A4 /* AppDelegate+nativepagetransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A5C8FB7FD647E2B5695191 /* AppDelegate+nativepagetransitions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +147,10 @@
 		6DED1E171FD249B483DB33B1 /* InAppPurchase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "InAppPurchase.h"; path = "cc.fovea.cordova.purchase/InAppPurchase.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		72119B78336249D18FAC5952 /* SKProduct+LocalizedPrice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SKProduct+LocalizedPrice.h"; path = "cc.fovea.cordova.purchase/SKProduct+LocalizedPrice.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		4D14C9F212CB466BAF92E001 /* FileUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "FileUtility.h"; path = "cc.fovea.cordova.purchase/FileUtility.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		A1D6496E6952495189258459 /* NativePageTransitions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NativePageTransitions.m"; path = "com.telerik.plugins.nativepagetransitions/NativePageTransitions.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		57A5C8FB7FD647E2B5695191 /* AppDelegate+nativepagetransitions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "AppDelegate+nativepagetransitions.m"; path = "com.telerik.plugins.nativepagetransitions/AppDelegate+nativepagetransitions.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		D7BA55BFEEF541E2A8454711 /* NativePageTransitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NativePageTransitions.h"; path = "com.telerik.plugins.nativepagetransitions/NativePageTransitions.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		EE89A59269A34B71BAE73424 /* AppDelegate+nativepagetransitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "AppDelegate+nativepagetransitions.h"; path = "com.telerik.plugins.nativepagetransitions/AppDelegate+nativepagetransitions.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +281,10 @@
 				6DED1E171FD249B483DB33B1 /* InAppPurchase.h */,
 				72119B78336249D18FAC5952 /* SKProduct+LocalizedPrice.h */,
 				4D14C9F212CB466BAF92E001 /* FileUtility.h */,
+				A1D6496E6952495189258459 /* NativePageTransitions.m */,
+				57A5C8FB7FD647E2B5695191 /* AppDelegate+nativepagetransitions.m */,
+				D7BA55BFEEF541E2A8454711 /* NativePageTransitions.h */,
+				EE89A59269A34B71BAE73424 /* AppDelegate+nativepagetransitions.h */,
 			);
 			name = Plugins;
 			path = FutbolCuatro/Plugins;
@@ -475,6 +485,8 @@
 				605B92A5987A49B5894E3EFB /* InAppPurchase.m in Sources */,
 				C2A2537436104D7B9F0EF9CE /* SKProduct+LocalizedPrice.m in Sources */,
 				AA5F215B2F2B408F9B5D3F8B /* FileUtility.m in Sources */,
+				4D570A7451744FC49E95FD3D /* NativePageTransitions.m in Sources */,
+				A4456498EA8B43BF898187A4 /* AppDelegate+nativepagetransitions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

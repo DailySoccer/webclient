@@ -15,6 +15,7 @@ import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/tutorial/tutorial_iniciacion.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/guild_service.dart';
+import 'package:webclient/utils/js_utils.dart';
 
 @Component(
   selector: 'lobbyf2p',
@@ -135,6 +136,8 @@ class LobbyF2PComp implements DetachAware {
   void refreshActiveContest() {
     _contestsService.refreshActiveContests()
       .then((_) {
+        JsUtils.runJavascript(null, "transitionRun", []);
+      
         updateDayList();
         loadingService.isLoading = false;
       });

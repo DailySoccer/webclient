@@ -16,6 +16,7 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/components/account/notifications_comp.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/template_service.dart';
+import 'package:webclient/utils/js_utils.dart';
 
 @Component(
   selector: 'home',
@@ -153,6 +154,8 @@ class HomeComp implements DetachAware {
   }
 
   void onContestsClick() {
+    JsUtils.runJavascript(null, "transition", ["#/lobby"]);
+    
     if (_contestTileHTML == '') {
       _router.go('lobby', {});
     } else {

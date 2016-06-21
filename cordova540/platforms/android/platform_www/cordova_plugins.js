@@ -1,6 +1,14 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
+        "file": "plugins/cc.fovea.cordova.purchase/www/store-android.js",
+        "id": "cc.fovea.cordova.purchase.InAppBillingPlugin",
+        "pluginId": "cc.fovea.cordova.purchase",
+        "clobbers": [
+            "store"
+        ]
+    },
+    {
         "file": "plugins/cordova-plugin-app-version/www/AppVersionPlugin.js",
         "id": "cordova-plugin-app-version.AppVersionPlugin",
         "pluginId": "cordova-plugin-app-version",
@@ -56,16 +64,18 @@ module.exports = [
         "runs": true
     },
     {
-        "file": "plugins/cc.fovea.cordova.purchase/www/store-android.js",
-        "id": "cc.fovea.cordova.purchase.InAppBillingPlugin",
-        "pluginId": "cc.fovea.cordova.purchase",
+        "file": "plugins/com.telerik.plugins.nativepagetransitions/www/NativePageTransitions.js",
+        "id": "com.telerik.plugins.nativepagetransitions.NativePageTransitions",
+        "pluginId": "com.telerik.plugins.nativepagetransitions",
         "clobbers": [
-            "store"
+            "window.plugins.nativepagetransitions"
         ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
-{}
+{
+    "com.telerik.plugins.nativepagetransitions": "0.6.5"
+}
 // BOTTOM OF METADATA
 });

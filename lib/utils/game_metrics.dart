@@ -4,6 +4,8 @@ import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/services/tutorial_service.dart';
 import 'package:logging/logging.dart';
+import 'package:webclient/services/deltaDNA_service.dart';
+import 'package:webclient/services/datetime_service.dart';
 
 class GameMetrics {
   
@@ -12,6 +14,9 @@ class GameMetrics {
   static String COMING_FROM_SOCIAL_UTM = "Traffic Source UTM";
   static String LANDING_PAGE = "Landing Page";
   static String PAGE_READY = "Load WebApp Completed";
+  
+  // Delta DNA Patch
+  static String PEOPLE_SET = "Player Info Set";
   
   // Mobile only
   static String DEPRECATED_VERSION = "Update Notification Displayed";
@@ -76,9 +81,10 @@ class GameMetrics {
   static String TUTORIAL_CANCELED = "Step Canceled";
   
   static void aliasMixpanel(String email) {
-    if (TutorialService.isActivated)
-      return;
+    if (TutorialService.isActivated) return;
     
+    if (!email.endsWith("test.com")) DeltaDNAService.instance.sendEvent('newPlayer', {'email': email});
+        
     if (!email.endsWith("test.com") && JsUtils.existsContext(["mixpanel", "alias"])) {
       JsUtils.runJavascript(null, "alias", email, "mixpanel");
     }
@@ -90,6 +96,8 @@ class GameMetrics {
   static void identifyMixpanel(String email) {
     if (TutorialService.isActivated)
       return;
+
+    if (!email.endsWith("test.com")) DeltaDNAService.instance.sendEvent('newPlayer', {'email': email});
     
     if (!email.endsWith("test.com") && JsUtils.existsContext(["mixpanel", "identify"])) {
       JsUtils.runJavascript(null, "identify", email, "mixpanel");
@@ -103,7 +111,9 @@ class GameMetrics {
     if (TutorialService.isActivated) {
       eventName = "Tutorial $eventName";
     }
-      
+    
+    DeltaDNAService.instance.sendEvent(eventName, params);
+    
     if (JsUtils.existsContext(["mixpanel", "track"])) {
       if (params != null && !params.isEmpty) {
         JsUtils.runJavascript(null, "track", [eventName, params], "mixpanel");
@@ -120,6 +130,8 @@ class GameMetrics {
   static void peopleSet(Map params) {
     if (TutorialService.isActivated)
       return;
+
+    DeltaDNAService.instance.sendEvent(PEOPLE_SET, params);
     
     if (JsUtils.existsContext(["mixpanel", "people", "set"])) {
       JsUtils.runJavascript(null, "set", params, ["mixpanel","people"]);
@@ -129,6 +141,7 @@ class GameMetrics {
     }
   }
 
+  // Not used
   static void peopleCharge(double charge) {
     if (TutorialService.isActivated)
       return;
@@ -146,5 +159,9 @@ class GameMetrics {
     if (HostServer.isEpicEleven) {
       JsUtils.runJavascript(null, "conversion", [remarketing_only]);
     }
+  }
+  
+  static String eventsDateString() {
+    return DateTimeService.now.toString().substring(0, 23);
   }
 }

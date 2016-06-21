@@ -75,7 +75,7 @@
       
       function getPlatform(cb) {
         if (typeof cordova === 'undefined') {
-          cb("desktop");
+          cb("web");
           return;
         }
         cb(device.platform);

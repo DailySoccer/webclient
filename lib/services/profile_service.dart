@@ -20,6 +20,8 @@ import 'package:webclient/utils/fblogin.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/utils/game_info.dart';
 import 'package:webclient/utils/js_utils.dart';
+import 'package:webclient/services/deltaDNA_service.dart';
+import 'package:webclient/services/datetime_service.dart';
 
 @Injectable()
 class ProfileService {
@@ -35,7 +37,7 @@ class ProfileService {
   static ProfileService get instance => _instance;  // Si te peta en esta linea te obliga a pensar, lo que es Una Buena Cosa™.
                                                     // Una pista... quiza te ha pasado pq has quitado componentes del index?
 
-  ProfileService(this._router, this._server) {
+  ProfileService(this._router, this._server, this._deltaDnaService) {
     _instance = this;
     _tryProfileLoad();
   }
@@ -179,7 +181,7 @@ class ProfileService {
       }
       
       GameMetrics.identifyMixpanel(user.email);
-      GameMetrics.peopleSet({"\$email": user.email, "\$last_login": new DateTime.now()});
+      GameMetrics.peopleSet({"email": user.email, "last_login": GameMetrics.eventsDateString()});
     }
     else {
       user = null;
@@ -499,6 +501,7 @@ class ProfileService {
   static ProfileService _instance;
 
   ServerService _server;
+  DeltaDNAService _deltaDnaService;
   Router _router;
   String _sessionToken;
 }

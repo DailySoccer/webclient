@@ -19,7 +19,6 @@ class FBLogin {
     _profileManager = _profileService;
     _onLogin = onLogin;
     js.context['jsLoginFB'] = loginFB;
-    //_onFacebookConnection = onLoginDefault;
     
     // Default action onLogin
     if (_onLogin == null) {
@@ -28,16 +27,9 @@ class FBLogin {
   }
 
   void loginFB() {
-    //js.JsObject fb = js.context["FB"];
-    //fb.callMethod("getLoginStatus", [onGetLoginStatus]);
     GameMetrics.logEvent(GameMetrics.LOGIN_ATTEMPTED, {"action via": "facebook"});
     
-    JsUtils.runJavascript(null, "facebookLoginStatus", [onGetLoginStatus]);
-    /*JsUtils.runJavascript(null, "facebookLogin", [(js.JsObject loginResponse) {
-          if (loginResponse["status"] == "connected") {
-            loginCallback(loginResponse);
-          }
-        }]);*/
+    jsApiCall("loginStatus", [onGetLoginStatus]);
   }
 
   void onGetLoginStatus(statusResponse) {
@@ -45,11 +37,11 @@ class FBLogin {
       print(" - FB EVAL => CONNECTED");
       loginCallback(statusResponse);
     } else if (statusResponse["status"] == 'not_authorized') {
-      print(" - FB EVAL => NOT AUTH");
       // El usuario no ha autorizado el uso de su facebook.
+      print(" - FB EVAL => NOT AUTH");
     } else {
       print(" - FB EVAL => CONNECTED AND AUTH");
-      JsUtils.runJavascript(null, "facebookLogin", [(js.JsObject loginResponse) {
+      jsApiCall("login", [(js.JsObject loginResponse) {
         if (loginResponse["status"] == "connected") {
           loginCallback(loginResponse);
         }
@@ -60,7 +52,7 @@ class FBLogin {
   static Future<Map> getFacebookPermissions() {
     Completer<Map> completer = new Completer<Map>();
     
-    JsUtils.runJavascript(null, "facebookPermissions", [(js.JsObject permissionsResponse) {
+    jsApiCall("permissions", [(js.JsObject permissionsResponse) {
       print(" - FB REQUEST => Permissions CB ${permissionsResponse["error"]}");
       if (permissionsResponse["error"] == false) {
         print(" - FB REQUEST => Permissions 1");
@@ -82,23 +74,19 @@ class FBLogin {
       }
       print(" - FB REQUEST => Permissions END");
     }]);
+    
     return completer.future;  
   }
   
   static void share(Map info) {
-    JsUtils.runJavascript(null, "facebookShare", 
+    jsApiCall("share", 
         [{'description'   : info.containsKey('description')  ? info['description']  : '',
           'imageUrl'      : info.containsKey('image') ?        info['image']        : '',
           'caption'       : info.containsKey('caption') ?      info['caption']      : '',
           'url'           : info.containsKey('url') ?          info['url']          : 'futbolcuatro.epiceleven.com',
           'title'         : info.containsKey('title') ?        info['title']        : null,
           'dartCallback'  : info.containsKey('dartCallback') ? info['dartCallback'] : () => null
-        }]
-        /*(js.JsObject loginResponse) {
-            if (loginResponse["status"]=="connected") {
-              loginCallback(loginResponse);
-            }
-          }]*/);
+        }]);
   }
 
   static void loginCallback(loginResponse) {
@@ -149,7 +137,7 @@ class FBLogin {
     Completer<Map> completer = new Completer<Map>();
     print(" - FB REQUEST => ProfileInfoRequest In");
     
-    JsUtils.runJavascript(null, "facebookProfileInfo", [(js.JsObject profileInfoResponse) {
+    jsApiCall("profileInfo", [(js.JsObject profileInfoResponse) {
       Map info = {};
       print(" - FB REQUEST => ProfileInfoRequest CB");
       print(" - FB REQUEST => ProfileInfoRequest ${profileInfoResponse["error"]}");
@@ -193,7 +181,7 @@ class FBLogin {
               , aditionalClass: "facebook-rerequest-modal"
             ).then((_) {
               GameMetrics.logEvent(GameMetrics.LOGIN_FB_REREQUEST_ACCEPTED);
-              JsUtils.runJavascript(null, "facebookLoginReRequest", [(js.JsObject loginResponse) {
+              jsApiCall("loginReRequest", [(js.JsObject loginResponse) {
                 if (loginResponse["status"] == "connected") {
                   loginCallback(loginResponse);
                 }
@@ -224,7 +212,7 @@ class FBLogin {
   
   static void _profileImageJSCall(String facebookId) {
     _isRequestingOpenGraph = true;
-    JsUtils.runJavascript(null, "facebookProfilePhoto", [facebookId, (js.JsObject profileInfoResponse) {
+    jsApiCall("profilePhoto", [facebookId, (js.JsObject profileInfoResponse) {
       Map image = {};
       
       print('error: ' + profileInfoResponse["error"]);
@@ -263,7 +251,8 @@ class FBLogin {
   
   static void _friendListJSCall(String facebookId, Completer<List<String>> completer) {
     _isRequestingOpenGraph = true;
-    JsUtils.runJavascript(null, "facebookFriends", [facebookId, (js.JsObject profileInfoResponse) {
+
+    jsApiCall("friends", [facebookId, (js.JsObject profileInfoResponse) {
         if (profileInfoResponse["error"] == false) {
           
           List<String> idList = new List<String>();
@@ -296,7 +285,7 @@ class FBLogin {
   }
   
   void refreshConnectedState() {
-    JsUtils.runJavascript(null, "facebookLoginStatus", [(r) => _state = r["status"]]);
+    jsApiCall("loginStatus", [(r) => _state = r["status"]]);
   }
   
   static bool _checkPermissions(Map permissions) {
@@ -305,6 +294,10 @@ class FBLogin {
       print(" - FB REQUEST => Permissions Check ${p} -> ${permissions[p]}");
       return permissions[p];
     });
+  }
+  
+  static void jsApiCall(String funcName, dynamic params) {
+    JsUtils.runJavascript(null, funcName, params, 'facebookApiWrapper');
   }
 
   String _state = null;

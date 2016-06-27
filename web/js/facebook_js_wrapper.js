@@ -1,5 +1,6 @@
+var fbIsInit = false;
 var facebookApiWrapper = {
-  
+  /*
   waitToBePrepared: function(callback) {
     var tryCall;
     tryCall = function (callback) {
@@ -20,7 +21,7 @@ var facebookApiWrapper = {
     };
     tryCall(callback);
   },
-  
+  */
   login: function(callback) {
     //console.log(" - FB REQUEST => Login");
     facebookConnectPlugin.login(["public_profile", "email", "user_friends"],
@@ -32,18 +33,6 @@ var facebookApiWrapper = {
           console.warn(error)
         }
       );
-  },
-  
-  loginReRequest: function(callback) {
-		//TODO: NO CONTEMPLADO
-		//console.log(" - FB REQUEST => LoginReRequest");
-		waitForFacebook(function() {
-			//console.log("js facebook rerequest");
-			FB.login(callback, {
-					scope: 'email, public_profile, user_friends',
-					auth_type: 'rerequest'
-				});
-		});
   },
 
   loginStatus: function (callback) {
@@ -343,6 +332,6 @@ function facebookParseXFBML(cssSelector) {
       facebookParseXFBMLActiveSelectors.splice(facebookParseXFBMLActiveSelectors.indexOf(cssSelector),1);
     }
   }
-  waitForFacebook(function() { fbCheck = true; });
+  facebookApiWrapper.waitForFacebook(function() { fbCheck = true; });
   parse();
 }

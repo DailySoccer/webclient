@@ -208,6 +208,10 @@ class Contest {
     return instanceSoccerPlayers.containsKey(instanceSoccerPlayerId) ? instanceSoccerPlayers[instanceSoccerPlayerId] : null;
   }
 
+  InstanceSoccerPlayer getInstanceFromSoccerPlayer(String soccerPlayerId) {
+    return instanceSoccerPlayers.values.firstWhere( (instance) => instance.soccerPlayer.templateSoccerPlayerId == soccerPlayerId, orElse: () => null );
+  }
+ 
   String getPrize(int index) {
     Money prizeValue = prize.getValue(index);
     return (prizeValue.amount > 0) ? "${prizeValue}" : "_";

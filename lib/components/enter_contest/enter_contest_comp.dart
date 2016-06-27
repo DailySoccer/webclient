@@ -511,6 +511,21 @@ class EnterContestComp implements DetachAware {
     }
 
     _tutorialService.triggerEnter("formation-" + _formationId.toString(), activateIfNeeded: false);
+    
+    // EJEMPLO DE USO del Generate Lineup
+    /*
+    if (contest != null) {
+      _contestsService.generateLineup(contest, _formationId)
+        .then( (List<InstanceSoccerPlayer> lineup) {
+          deleteFantasyTeam();
+          lineup.forEach( (instance) {
+            if (instance != null) {
+              addSoccerPlayerToLineup(instance.id);
+            }
+          });
+        });
+    }
+     */
 
     /*
     for (int c = 0; c < lineupSlots.length; ++c) {

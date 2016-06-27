@@ -17,6 +17,7 @@ import 'package:webclient/models/soccer_team.dart';
 import 'package:webclient/models/match_event.dart';
 import 'package:webclient/services/template_references.dart';
 import 'package:webclient/services/template_service.dart';
+import 'package:webclient/models/template_soccer_player.dart';
 
 
 @Injectable()
@@ -177,6 +178,16 @@ class ContestsService {
       });
   }
 
+  Future generateLineup(Contest contest, String formation) {
+    return _server.generateLineup(contest.contestId, formation)
+      .then((jsonMap) {
+        return jsonMap["lineup"].map((jsonMap) {
+            TemplateSoccerPlayer soccerPlayer = new TemplateSoccerPlayer.fromJsonObject(jsonMap, new TemplateReferences());
+            return contest.getInstanceFromSoccerPlayer(soccerPlayer.templateSoccerPlayerId);
+        }).toList();
+      });
+  }
+  
   Future refreshMyContests() {
     return Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), _server.getMyContests()])
         .then((List jsonMaps) {

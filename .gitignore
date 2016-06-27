@@ -7,4 +7,5 @@ webclient.iml
 .buildlog
 *.DS_Store
 .packages
-**/www/
+cordova*/www
+cordova*/platforms/**/www

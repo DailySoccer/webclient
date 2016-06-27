@@ -21,7 +21,6 @@ import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/utils/game_info.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/services/deltaDNA_service.dart';
-import 'package:webclient/services/datetime_service.dart';
 
 @Injectable()
 class ProfileService {
@@ -55,7 +54,7 @@ class ProfileService {
       throw new Exception("WTF 4234 - We shouldn't be logged in when signing up");
 
     GameMetrics.aliasMixpanel(email);
-    GameMetrics.peopleSet({"\$email": email, "\$created": new DateTime.now()});
+    GameMetrics.peopleSet({"email": email, "created":  GameMetrics.eventsDateString()});
 
     return _server.signup(firstName, lastName, email, nickName, password);
    }
@@ -66,7 +65,7 @@ class ProfileService {
 
   Future<Map> facebookLogin(String accessToken, String id, String name, String email) {
     GameMetrics.aliasMixpanel(email);
-    GameMetrics.peopleSet({"\$email": email, "\$created": new DateTime.now()});
+    GameMetrics.peopleSet({"email": email, "created": GameMetrics.eventsDateString()});
     
     return _server.facebookLogin(accessToken, id, name, email).then((Map loginResponseJson) {
       if (loginResponseJson.containsKey("action") && loginResponseJson["action"] == "signup") {
@@ -76,7 +75,7 @@ class ProfileService {
       GameMetrics.trackConversion(false);
       
       return _onLoginResponse(loginResponseJson);
-    });
+    }).catchError((err) => Logger.root.severe(err));
   }
 
   Future<Map> deviceLogin(String uuid) {

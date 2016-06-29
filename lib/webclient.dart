@@ -252,6 +252,7 @@ class WebClientApp extends Module {
     JsUtils.setJavascriptFunction('paymentServiceReady', () => PaymentService.Instance.isReady = true);
     JsUtils.setJavascriptFunction('paymentServiceCheckout', (Object order, String productId, String paymentType, String paymentId) => PaymentService.Instance.checkout(order, productId, paymentType, paymentId));
     JsUtils.setJavascriptFunction('updateProductInfo', (String productId, String title, String price) => CatalogService.Instance.updateProductInfo(productId, title, price));
+    JsUtils.setJavascriptFunction('getDomain', () => HostServer.url );
     
     //bind(AddFundsComp);
     //bind(TransactionHistoryComp);

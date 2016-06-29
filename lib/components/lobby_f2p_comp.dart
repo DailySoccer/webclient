@@ -124,6 +124,13 @@ class LobbyF2PComp implements DetachAware {
             });
         });
          */
+      // 7. Leaderboard del Guild
+      /*
+      guildService.getLeaderboard()
+        .then((result) {
+          print("getLeaderboard => $result");
+        });
+         */
     }
   }
 

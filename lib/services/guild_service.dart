@@ -79,6 +79,16 @@ class GuildService {
           return jsonMap;
         });
   }
+
+  /*
+   * El leaderboard del guild al que pertenece el usuario
+   */
+  Future getLeaderboard() {
+    return _server.getGuildLeaderboard()
+        .then((jsonMap) {
+          return jsonMap;
+        });
+  }
   
   ServerService _server;
   ProfileService _profileService;

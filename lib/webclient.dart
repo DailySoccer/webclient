@@ -99,6 +99,7 @@ import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:webclient/components/enter_contest/lineup_selector_comp.dart';
 import 'package:webclient/components/enter_contest/lineup_field_selector_comp.dart';
 import 'package:webclient/components/enter_contest/soccer_players_list_comp.dart';
+import 'package:webclient/components/enter_contest/soccer_players_scalinglist_comp.dart';
 import 'package:webclient/components/enter_contest/soccer_players_filter_comp.dart';
 import 'package:webclient/components/enter_contest/matches_filter_comp.dart';
 import 'package:webclient/components/enter_contest/soccer_player_stats_comp.dart';
@@ -228,6 +229,7 @@ class WebClientApp extends Module {
     bind(WeekCalendar);
     bind(EnterContestComp);
     bind(SoccerPlayersListComp);
+    bind(SoccerPlayersScalingListComp);
     bind(SoccerPlayersFilterComp);
     bind(MatchesFilterComp);
     bind(LineupSelectorComp);

@@ -10,6 +10,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/money.dart';
 import 'package:logging/logging.dart';
+import 'package:webclient/utils/scaling_list.dart';
 
 @Component(
     selector: 'contests-list-f2p',
@@ -20,10 +21,17 @@ class ContestsListF2PComp {
 
   static const num SOON_SECONDS = 2 * 60 * 60;
   static const num VERY_SOON_SECONDS = 30 * 60;
+  static const int MIN_CONTEST_SHOWN = 5;
   
   // Lista original de los contest
   List<Contest> contestsListOriginal = [];
-  List<Contest> contestsListOrdered = [];
+  
+  ScalingList<Contest> currentContestList = new ScalingList(MIN_CONTEST_SHOWN, (Contest c1, Contest c2) => c1.contestId == c2.contestId);
+  
+  void updateCurrentContestList() {
+    currentContestList.elements = contestsListOriginal;
+    currentContestList.initialAmount = MIN_CONTEST_SHOWN;
+  }
   
   /********* BINDINGS */
   @NgOneWay("contests-list")
@@ -153,10 +161,23 @@ class ContestsListF2PComp {
   }
 
   void refreshListOrder() {
-    if (_sortOrder == null || _sortOrder.isEmpty) {
-      return;
-    }
+    if (_sortOrder == null || _sortOrder.isEmpty) { return; }
 
+    switch(_sortOrder['fieldName']) {
+      case "contest-name":
+        currentContestList.sortComparer = (contest1, contest2) => ( _sortOrder['order'] * contest1.compareNameTo(contest2));
+      break;
+      case "contest-entry-fee":
+        currentContestList.sortComparer = (contest1, contest2) => ( _sortOrder['order'] * contest1.compareEntryFeeTo(contest2));
+      break;
+      case "contest-start-time":
+        currentContestList.sortComparer = (contest1, contest2) => ( _sortOrder['order'] * contest1.compareStartDateTo(contest2));
+      break;
+      default:
+        print('-CONTEST_LIST-: No se ha encontrado el campo para ordenar');
+      break;
+    }
+    /*
     contestsListOrdered = [];
     contestsListOrdered.addAll(contestsListOriginal);
 
@@ -176,7 +197,8 @@ class ContestsListF2PComp {
       default:
         print('-CONTEST_LIST-: No se ha encontrado el campo para ordenar');
       break;
-    }
+    }*/
+    updateCurrentContestList();
   }
 
   String printableMyPosition(Contest contest) {
@@ -268,17 +290,20 @@ class ContestsListF2PComp {
     }
     return DateTimeService.formatDateWithDayOfTheMonth(date);
   }
-  bool idDifferentDate(Contest contest) {
+  bool idDifferentDate(int index) {
     bool isDifferent = true;
-    if (_lastContest != null){
-      isDifferent = contest.startDate.year != _lastContest.startDate.year ||
-                    contest.startDate.month != _lastContest.startDate.month ||
-                    contest.startDate.day != _lastContest.startDate.day;
+    if (index != 0){
+      Contest lastContest = currentContestList.elements[index-1];
+      Contest contest = currentContestList.elements[index];
+      
+      isDifferent = contest.startDate.year != lastContest.startDate.year ||
+                    contest.startDate.month != lastContest.startDate.month ||
+                    contest.startDate.day != lastContest.startDate.day;
     }
-    _lastContest = contest;
+    //_lastContest = contest;
     return isDifferent;
   }
-  Contest _lastContest = null; //while printing, the last contest si saved
+  //Contest _lastContest = null; //while printing, the last contest si saved
   
   DateTime _dateFilter = null;
   Map _sortOrder = {'fieldName':'contest-start-time', 'order': 1};

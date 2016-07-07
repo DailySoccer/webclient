@@ -29,6 +29,7 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/utils/game_info.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/services/app_state_service.dart';
+import 'package:webclient/components/enter_contest/soccer_player_listitem.dart';
 
 @Component(
     selector: 'enter-contest',
@@ -67,10 +68,10 @@ class EnterContestComp implements DetachAware {
   }
   String contestEntryId;
 
-  List<dynamic> allSoccerPlayers;
-  List<dynamic> lineupSlots;
+  List<SoccerPlayerListItem> allSoccerPlayers;
+  List<SoccerPlayerListItem> lineupSlots;
   List<String> get lineupFormation => FieldPos.FORMATIONS[formationId];
-  List<dynamic> favoritesPlayers = [];
+  List<SoccerPlayerListItem> favoritesPlayers = [];
   bool onlyFavorites = false;
 
   FieldPos fieldPosFilter;
@@ -88,7 +89,7 @@ class EnterContestComp implements DetachAware {
     lineupSlots
       .where((c) => c != null)
       .forEach( (c) =>
-          _coinsNeeded.amount += c["instanceSoccerPlayer"].moneyToBuy(contest, managerLevel).amount);
+          _coinsNeeded.amount += c.moneyToBuy.amount);
 
     if (contest != null && contest.entryFee != null && contest.entryFee.isGold && !editingContestEntry) {
       _coinsNeeded.amount += contest.entryFee.amount;
@@ -380,7 +381,7 @@ class EnterContestComp implements DetachAware {
     favoritesPlayers.clear();
     if (_profileService.isLoggedIn) {
       favoritesPlayers.addAll(_profileService.user.favorites.map((playerId) =>
-          allSoccerPlayers.firstWhere( (player) => player['id'] == playerId, orElse: () => null)
+          allSoccerPlayers.firstWhere( (player) => player.id == playerId, orElse: () => null)
         ).where( (d) => d != null));
     }
   }
@@ -442,7 +443,7 @@ class EnterContestComp implements DetachAware {
 
     if (lineupSlots[slotIndex] != null) {
       // Al borrar el jugador seleccionado en el lineup, sumamos su salario al total
-      availableSalary += lineupSlots[slotIndex]["salary"];
+      availableSalary += lineupSlots[slotIndex].salary;
 
       // Lo quitamos del slot
       lineupSlots[slotIndex] = null;
@@ -465,7 +466,7 @@ class EnterContestComp implements DetachAware {
   }
 
   void addSoccerPlayerToLineup(String soccerPlayerId) {
-    var soccerPlayer = allSoccerPlayers.firstWhere((soccerPlayer) => soccerPlayer["id"] == soccerPlayerId, orElse: () => null);
+    var soccerPlayer = allSoccerPlayers.firstWhere((soccerPlayer) => soccerPlayer.id == soccerPlayerId, orElse: () => null);
     if (soccerPlayer != null) {
       _tryToAddSoccerPlayerToLineup(soccerPlayer);
     }
@@ -486,8 +487,8 @@ class EnterContestComp implements DetachAware {
       int cheapestValue = -1;
       for (int c = 0; c < lineupSlots.length; ++c) {
         if (lineupSlots[c] != null && lineupFormation[c] == soccerPosition) {
-          if (cheapestValue == -1 || lineupSlots[c]["salary"] < cheapestValue){
-            cheapestValue = lineupSlots[c]["salary"];
+          if (cheapestValue == -1 || lineupSlots[c].salary < cheapestValue){
+            cheapestValue = lineupSlots[c].salary;
             cheapestIdx = c;
           }
         }
@@ -497,17 +498,17 @@ class EnterContestComp implements DetachAware {
 
 
     for (int c = 0; c < lineupSlots.length; ++c) {
-      if (lineupSlots[c] != null && lineupFormation[c] != lineupSlots[c]["fieldPos"].value) {
+      if (lineupSlots[c] != null && lineupFormation[c] != lineupSlots[c].fieldPos.value) {
         // print(lineupSlots[c]["fieldPos"].value + " -ConflictoCon- " + lineupFormation[c]);
         var soccerPlayer = lineupSlots[c];
-        int availablePosition = firstAvailablePosition(lineupSlots[c]["fieldPos"].value);
+        int availablePosition = firstAvailablePosition(lineupSlots[c].fieldPos.value);
         // print("Posicion disponible: $availablePosition");
 
         if (availablePosition != -1) {
           onLineupSlotSelected(c);
           _tryToAddSoccerPlayerToLineup(soccerPlayer);
         } else {
-          int cheapestIndex = cheapestByPosition(lineupSlots[c]["fieldPos"].value);
+          int cheapestIndex = cheapestByPosition(lineupSlots[c].fieldPos.value);
           // print("Más barato: $cheapestIndex");
           onLineupSlotSelected(c);
           if (c != cheapestIndex) {
@@ -570,9 +571,9 @@ class EnterContestComp implements DetachAware {
     _verifyMaxPlayersInSameTeam();
   }
 
-  void _tryToAddSoccerPlayerToLineup(var soccerPlayer) {
+  void _tryToAddSoccerPlayerToLineup(SoccerPlayerListItem soccerPlayer) {
     if (contest.entryFee.isGold && !_isRestoringTeam) {
-      Money moneyToBuy = new Money.from(Money.CURRENCY_GOLD, soccerPlayer["instanceSoccerPlayer"].moneyToBuy(contest, playerManagerLevel).amount);
+      Money moneyToBuy = new Money.from(Money.CURRENCY_GOLD, soccerPlayer.moneyToBuy.amount);
 
       // TODO: En el tutorial no queremos permitir que el usuario alinee un futbolista que cueste GOLD
       // BEGIN HACK ---------------------->
@@ -587,7 +588,7 @@ class EnterContestComp implements DetachAware {
     }
 
     // Buscamos el primer slot libre para la posicion que ocupa el soccer player
-    FieldPos theFieldPos = soccerPlayer["fieldPos"];
+    FieldPos theFieldPos = soccerPlayer.fieldPos;
 
     for (int c = 0; c < lineupSlots.length; ++c) {
       if (lineupSlots[c] == null && lineupFormation[c] == theFieldPos.value) {
@@ -596,7 +597,7 @@ class EnterContestComp implements DetachAware {
 
         lineupSlots[c] = soccerPlayer;
         isSelectingSoccerPlayer = false;
-        availableSalary -= soccerPlayer["salary"];
+        availableSalary -= soccerPlayer.salary;
         // Comprobamos si estamos en salario negativo
         isNegativeBalance = availableSalary < 0;
 
@@ -627,7 +628,7 @@ class EnterContestComp implements DetachAware {
       return false;
     }
 
-    var soccerPlayer = allSoccerPlayers.firstWhere((sp) => sp["id"] == soccerPlayerId);
+    var soccerPlayer = allSoccerPlayers.firstWhere((sp) => sp.id == soccerPlayerId);
 
     FieldPos theFieldPos = soccerPlayer["fieldPos"];
     int c = 0;
@@ -642,47 +643,22 @@ class EnterContestComp implements DetachAware {
   }
 
   void initAllSoccerPlayers() {
-
-    int intId = 0;
-    allSoccerPlayers = new List<dynamic>();
+    allSoccerPlayers = new List<SoccerPlayerListItem>();
 
     ContestEntry contestEntry = null;
     if (editingContestEntry) {
       contestEntry = contest.getContestEntry(contestEntryId);
     }
-
-
+    
     contest.instanceSoccerPlayers.forEach((templateSoccerId, instanceSoccerPlayer) {
-
       if (contestEntry != null && contestEntry.isPurchased(instanceSoccerPlayer)) {
         instanceSoccerPlayer.level = 0;
       }
-
-      MatchEvent matchEvent = instanceSoccerPlayer.soccerTeam.matchEvent;
-      SoccerTeam soccerTeam = instanceSoccerPlayer.soccerTeam;
-
-      String shortNameTeamA = matchEvent.soccerTeamA.shortName;
-      String shortNameTeamB = matchEvent.soccerTeamB.shortName;
-
-      var matchEventName = (instanceSoccerPlayer.soccerTeam.templateSoccerTeamId == matchEvent.soccerTeamA.templateSoccerTeamId)
-           ? "<strong>$shortNameTeamA</strong> - $shortNameTeamB"
-           : "$shortNameTeamA - <strong>$shortNameTeamB</strong>";
-
-      allSoccerPlayers.add({
-        "instanceSoccerPlayer": instanceSoccerPlayer,
-        "id": instanceSoccerPlayer.id,
-        "intId": intId++,
-        "fieldPos": instanceSoccerPlayer.fieldPos,
-        "fieldPosSortOrder": instanceSoccerPlayer.fieldPos.sortOrder,
-        "fullName": instanceSoccerPlayer.soccerPlayer.name,
-        "fullNameNormalized": StringUtils.normalize(instanceSoccerPlayer.soccerPlayer.name).toUpperCase(),
-        "matchId" : matchEvent.templateMatchEventId,
-        "matchEventName": matchEventName,
-        "remainingMatchTime": "-",
-        "fantasyPoints": instanceSoccerPlayer.soccerPlayer.getFantasyPointsForCompetition(contest.optaCompetitionId),
-        "playedMatches": instanceSoccerPlayer.soccerPlayer.getPlayedMatchesForCompetition(contest.optaCompetitionId),
-        "salary": instanceSoccerPlayer.salary
-      });
+      num managerLevel = 0;
+      if (_profileService.isLoggedIn) {
+        managerLevel = _profileService.user.managerLevel;
+      }
+      allSoccerPlayers.add(new SoccerPlayerListItem(instanceSoccerPlayer, managerLevel, contest));
     });
     updateFavorites();
   }
@@ -876,7 +852,7 @@ class EnterContestComp implements DetachAware {
     Map<String, int> playersInSameTeam = new Map<String, int>();
 
     lineupSlots.where((player) => player != null).forEach((player) {
-      String key = player["instanceSoccerPlayer"].soccerTeam.templateSoccerTeamId;
+      String key = player.instanceSoccerPlayer.soccerTeam.templateSoccerTeamId;
       int num = playersInSameTeam.containsKey(key)
                 ? playersInSameTeam[key]
                 : 0;
@@ -896,7 +872,7 @@ class EnterContestComp implements DetachAware {
 
   void saveContestEntry() {
     // Lo almacenamos localStorage.
-    Map data = { 'formation' :  formationId, 'lineupSlots' : lineupSlots.where((player) => player != null).map((player) => player["id"]).toList()};
+    Map data = { 'formation' :  formationId, 'lineupSlots' : lineupSlots.where((player) => player != null).map((player) => player.id).toList()};
 
     saveContestEntryFromJson(_getKeyForCurrentUserContest, JSON.encode(data));
   }

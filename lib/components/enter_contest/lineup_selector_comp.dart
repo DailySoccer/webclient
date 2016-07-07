@@ -7,6 +7,7 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/money.dart';
 import 'package:webclient/models/contest_entry.dart';
+import 'package:webclient/components/enter_contest/soccer_player_listitem.dart';
 
 
 @Component(
@@ -61,7 +62,7 @@ class LineupSelectorComp {
   String getSlotClassColor(int slotIndex) => _POS_CLASS_NAMES[FieldPos.FIELD_POSITION_ABREV[lineupFormation[slotIndex]]];
 
   // Por si queremos cambiar lo que significa un slot libre
-  bool isEmptySlot(var slot) => slot == null;
+  bool isEmptySlot(SoccerPlayerListItem slot) => slot == null;
 
   // Cuando el slot esta libre, ponemos un texto alternativo + posicion del jugador
   String getSlotPosition(int slotIndex) => FieldPos.FIELD_POSITION_ABREV[lineupFormation[slotIndex]];
@@ -69,8 +70,8 @@ class LineupSelectorComp {
 
   String getPrintableSalary(int salary) => StringUtils.parseSalary(salary);
 
-  String getPrintableGoldCost(dynamic slot) {
-    Money money = slot['instanceSoccerPlayer'].moneyToBuy(contest, managerLevel);
+  String getPrintableGoldCost(SoccerPlayerListItem slot) {
+    Money money = slot.moneyToBuy;
     return money.amount <= 0 ? '' : '<span class="coins-amount">${money.toInt()}</span>';
   }
 

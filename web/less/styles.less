@@ -1,11 +1,15 @@
 @import "../bootstrap-3.1.1/less/bootstrap.less";
 //@import "../bootstrap-3.1.1/less/navbar.less";
- 
-@import "color_palette.less";
-@import "fonts.less";
+
+@import "common.less";
 @import "animations.less";
 
-@import "contest_header_f2p_comp.less";
+/*
+  NEW FILES
+*/
+@import "contest_header_comp.less";
+
+// @import "contest_header_f2p_comp.less";
 @import "teams_panel_comp.less";
 @import "contest_info_comp.less";
 @import "contests_list_f2p_comp.less";
@@ -36,6 +40,7 @@
 @import "soccer_players_filter_comp.less";
 @import "matches_filter_comp.less";
 @import "lineup_selector_comp.less";
+@import "lineup_field_selector_comp.less";
 @import "leaderboard_comp.less";
 @import "user_forms_components.less";
 @import "users_list_comp.less";
@@ -128,13 +133,13 @@ body {
 
 // Contenedor exterior que envuelve a todo el contenido.
 .wrapper-content-container {
-	min-height: 100%; 
-	margin: -70px auto -352px; 	// Para que el footer se ponga encima nuestra (teniendo en cuenta el menu)
+	min-height: 100%;
 	
 	// Contenedor interior que envuelve al contenido. Fijamos el width con el.
 	.main-content-container {
-		padding-top: 70px;
-		padding-bottom: 352px;
+    &.top-bar-gap {
+      padding-top: 55px;
+    }
 
 		@media (max-width: @screen-sm-max) {
 			//padding-bottom: 88px;

@@ -1,0 +1,46 @@
+<div class="lineup-field-selector" ng-class="getLineupClassname()">
+  
+  <div class="lineup-actions-wrapper">  
+    <div class="lineup-clean-btn-wrapper">
+      <button type="button" class="btn-clean-lineup-list">Limpiar alineación</button>
+    </div>
+    <div class="lineup-clean-btn-wrapper">
+      <button type="button" class="btn-automatic-lineup">Alineación automática</button>
+    </div>
+  </div>
+  
+  <div class="lineup-formation-selector-wrapper">
+    <span class="lineup-formation-label">{{getLocalizedText('formation')}}</span>
+    <select name="lineup-formation-dropdown" id="lineup-formation-dropdown" ng-model="formationId" class="lineup-formation-dropdown">
+      <option ng-repeat="key in formationList" ng-value="key" >{{formationToString(key)}}</option>
+    </select>
+    <label for="lineup-formation-dropdown" class="lineup-formation-dropdown-caret"><i class="material-icons">&#xE5C5;</i></label>
+  </div>
+  
+  <div class="lineup-selector-wrapper">
+    <div class="lineup-selector-slot" ng-repeat="slot in lineupSlots" ng-click="onLineupSlotSelected({'slotIndex': $index})" ng-class="getSlotClassColor($index)">
+      <div ng-if="slot == null">
+        <img ng-src="{{getImgPerSlotPosition($index)}}" class="team-shirt-image">
+        <action class="iconButtonSelect"><i class="material-icons">&#xE145;</i></action>
+      </div>
+  
+      <div ng-if="slot != null">
+        <!--div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div-->
+        <img ng-src="{{getImgPerSoccerTeam(slot)}}" class="team-shirt-image">
+        <span class="soccer-player-name">{{slot.fullName}}</span>
+        <!--div class="column-primary-info">
+          <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
+        </div-->
+        <div class="column-salary"><div>{{getPrintableSalary(slot.salary)}}</div></div>
+        <div class="column-dfp"><div>{{slot.fantasyPoints}}</div></div>
+        <!--div class="column-gold-cost" ng-bind-html="getPrintableGoldCost(slot)"></div-->
+        <!--action class="iconButtonRemove"><i class="material-icons">&#xE15B;</i></action-->
+      </div>
+    </div>
+  </div>
+  
+  <div class="alert alert-danger alert-dismissible alert-red-numbers" ng-class="{'active':alertNotEnoughResources}" role="alert" ng-bind-html="getLocalizedText('not-enough-resources')"></div>
+  <div class="alert alert-danger alert-dismissible alert-red-numbers" ng-class="{'active':alertNegativeBalance}" role="alert" ng-bind-html="getLocalizedText('wastedsalarycap')"></div>
+  <div class="alert alert-danger alert-max-players-same-team" ng-class="{'active':alertMaxPlayersSameTeamExceed}" role="alert" ng-bind-html="getLocalizedText('maxplayersteam')"></div>
+  
+</div>

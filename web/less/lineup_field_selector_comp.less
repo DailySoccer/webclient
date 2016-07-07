@@ -1,0 +1,231 @@
+.lineup-selector-slot {
+  display: block;
+  position: absolute;
+  
+  @slot-width: 48px;
+  @slot-height: 48px;
+  
+  width: @slot-width;
+  margin-left: -(@slot-width/2);
+  height: @slot-height;
+  margin-top: -(@slot-height/2);
+  
+  .team-shirt-image {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .iconButtonSelect {
+    i {
+      width: 24px;
+      height: 24px;
+    }
+    .default-button();
+    .elevation(3);
+    width: 36px;
+    height: 36px;
+    display: block;
+    position: absolute;
+    top: 8px;
+    left: 30px;
+    padding: 6px;
+  }
+  .soccer-player-name {
+    .mainfont_bold(10pt, @white);
+    
+    position: relative;
+    text-align: center;
+    display: block;
+    width: @slot-width * 3;
+    margin-left: -(@slot-width);
+    text-shadow: 1px 1px 6px rgba(34, 34, 34,1);
+    text-transform: uppercase;
+    margin-top: 3px;
+  }
+  .column-salary, .column-dfp {
+    #gradient.vertical(@grey-gradient-light, @grey-gradient-dark);
+    .mainfont_bold(9pt, @orange);
+    .elevation(1);
+    padding: 1px;
+    display: block;
+    position: absolute;
+    top: 8px;
+    left: 30px;
+    
+    div {
+      background-color: @black;
+      width: 40px;
+      height: 18px;
+      text-align: center;
+      padding: 1px 0;
+      position: relative;
+    }
+  }
+  .column-dfp {
+    color: @grey-bluish;
+    top: 27px;
+  }
+}
+
+@import "lineup_field_selector_352_comp.less";
+@import "lineup_field_selector_343_comp.less";
+@import "lineup_field_selector_433_comp.less";
+@import "lineup_field_selector_442_comp.less";
+@import "lineup_field_selector_451_comp.less";
+
+// Reserva de sitio
+lineup-field-selector {
+	.flex-container-col();
+	min-height: 126vw;
+	position: relative;
+  background-color: @white;
+	background-image: url("@{images}/football-field.jpg");
+  background-size: 100% 100%;
+}
+
+.lineup-field-selector {
+  .flex-elem-fluid-col();
+	.flex-container-col();
+}
+
+.lineup-selector-wrapper {
+  position: relative;
+  .flex-elem-fluid-col();
+}
+
+.lineup-actions-wrapper {
+  .flex-container-row();
+  .flex-elem-fixed-col(70px);
+  padding: 7px;
+  div {
+    .flex-elem-fluid-col();
+    padding: 7px;
+    button {
+      .default-button();
+    }
+  }
+}
+
+.lineup-formation-selector-wrapper {
+  .flex-elem-fixed-col(36px);
+  position: relative;
+  margin-left: auto;
+  margin-right: 15px;
+  text-align: right;
+  
+  
+  .lineup-formation-label {
+    .mainfont_bold(12pt, @white);
+    text-transform: uppercase;
+    position: relative;
+    margin-right: 3px;
+    padding: 5px 0;
+    margin-left: auto;
+  }
+  .lineup-formation-dropdown {
+    .mainfont_bold(12pt, @black);
+    background-color: @white;
+    border-radius: 1px;
+    padding: 7px 30px 7px 10px;
+    border: 0;
+    position: relative;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    margin-right: -24px;
+    outline-offset: 0px;
+    cursor: pointer;
+  }
+  .lineup-formation-dropdown:hover,
+  .lineup-formation-dropdown:active,
+  .lineup-formation-dropdown:focus {
+    border: 0;
+    outline-offset: 0px;
+    outline: none;
+  }
+  .lineup-formation-dropdown-caret {
+    background-color: @white;
+    position: relative;
+    .mainfont_bold(12pt, @black);
+    border: 0;
+    margin-bottom: 0;
+    pointer-events: none;
+    cursor: pointer;
+    margin-right: auto;
+    vertical-align: bottom;
+    i {
+      margin: 6px 0;
+      pointer-events: none;
+    }
+  }
+  
+}
+
+
+.lineup-field-selector {
+	
+	//Alerta números rojos
+	.alert-red-numbers {
+		width: 100%;
+		text-align: center;
+		font-size: 10pt;
+		margin-bottom: 0;
+		display: none;
+		border-radius: 0;
+		
+		button {
+			margin: -12px -10px 0 0;
+		}
+		
+		&.active {
+      display: block;
+    }
+	}
+	
+	.alert-max-players-same-team {
+		.alert-red-numbers();
+	}
+	
+	#formationsPanelRoot {
+		width: 100%;
+		background-color: @tramaBlue;
+		.user-select(none);
+		
+		.formations-container{
+			.container-fluid();
+			padding: 10px 15px;
+			.opensans_bold(10pt, @blueUltraDark);
+			border-bottom: 1px solid @greyMed;
+			
+			.formation-element {
+				.make-xs-column(2.4);
+				padding: 0 3px;
+				
+				input[type="radio"] {
+					display: none;
+				}
+				input[type="radio"] + label {
+					width: 100%;
+					padding: 10px 0px;
+					text-align: center;
+
+					background-color: @blueLight;
+					.opensans_bold(10pt, @white);
+
+					border-radius: 5px;
+					cursor: pointer;
+					border: 1px solid transparent;
+					margin-bottom: 0;
+				}
+				input[type="radio"]:checked + label {
+					background-color: @white;
+					color: @greyDark;
+
+					border: 1px solid @greyDark;
+				}
+			}
+			
+		}
+	}
+
+}

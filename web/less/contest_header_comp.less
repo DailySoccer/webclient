@@ -1,114 +1,31 @@
-// Reserva de sitio
 contest-header {
-	background-color: @white;
-	display: block;
-	min-height: 125px;
-	@media (min-width: @screen-sm-min) {
-		min-height: 115px;
-	}
-}
-.rounded-borders {
-	border-radius: 5px 5px 0 0;
-}
-#contestHeaderWrapper {
-	.container-fluid();
-	position: relative;
-	padding: 0;
-	.contest-relevant-data {
-		.make-row(0);		
-		padding: 20px 0 12px 0;
-		.contest-name-description {
-			.make-xs-column(12, 0);
-			.make-sm-column(8, 0);
-			.contest-big-bold-text();
-			padding: 0 15px 0px 15px;
-			
-		}
-		.contest-price, .contest-prize {
-			.make-xs-column(6);
-			.make-sm-column(2);
-			.contest-big-light-text();
-		}
-		.contest-explanation {
-			.contest-small-bold-text();
-			@media (max-width: @screen-xs-max) {
-				padding-top: 5px;
-				padding-bottom: 10px;
-			}
-		}
-		.contest-coins-header, .contest-coins-header-title   {
-			.contest-small-light-text();
-		}
-		
-		.contest-coins-content {
-			// Inversion para header y content
-			.pull-left();
-			.make-sm-column(12, 0);
-			.iconPrize {
-				.size(32px, 26px);
-				position: absolute;
-				left: -38px;
-				top: 3px;
-			}
-			> span {
-				@media (max-width: @screen-xs-max) {
-					display: inline-block;
-					margin-right: 10px;
-					.badge();
-					background-color: @greyLight;
-				}
-				.contest-big-light-text();
-			}			
-		}
-		
-	}
-	.date-time-text{
-		span {
-			.opensans_bold(8pt, @blueLight);
-			@media (min-width: @screen-sm-min) {
-				.opensans_bold(11pt, @blueLight);
-			}
-		}
-	}
-	.date-time-data {
-		.make-row(0);
-		display: inline-block;
-		//background-color: @greyUltraDark;
-		line-height: 2;
-		// Fecha comienzo contest
-		.contest-start-date {
-		  white-space: nowrap;
-			.make-xs-column(6);
-			.date-time-text();
-			text-align: left;			
-		}
+  .flex-container-row();
+  background-color: @black;
+  background-image: url("@{images}/contest-header-bg.png");
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  padding: 7px 15px;
+  border-bottom: 1px solid @grey-translucid;
 
-		// Contador para comienzo de contest
-		.contest-countdown-text {
-			.make-xs-column(6);
-			.date-time-text();
-			text-align: right;
-			padding-left: 0px;
-		}
-//		&:after {
-//			height: 1px;
-//			width: 100%;
-//			background-color: @greyMed;
-//			content: "";
-//		}
-	}
-	// Botón de cerrar
-	.close-contest {		
-		position: absolute;
-		right: 10px;
-		top: 10px;
-		// Posición para versión xs
-		@media (max-width: @screen-xs-max) {
-			right: 5px;
-			top: 8px;
-		}
-		.btn::after {
-			.create-glyph("\E014", 9pt);
-		}
-	}
+  .name-section {
+    .flex-container-col();
+    .flex-elem-fluid-col(1);
+
+    .contest-name {
+      .mainfont_bold(12pt, @white);
+      text-transform: uppercase;
+      .flex-elem-fluid-col(1);
+    }
+    .contest-description {
+      .mainfont_bold(10pt, @grey-bluish);
+      .flex-elem-fluid-col(1);
+    }
+  }
+  .more-info {
+    .flex-elem-fixed-col(25px);
+    padding: 6px 0 0 0;
+    text-align: right;
+    .mainfont_bold(10pt, @white);
+  }
 }

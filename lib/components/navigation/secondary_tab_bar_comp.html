@@ -1,4 +1,4 @@
-<div class="secondary-tab-bar-wrapper">
+<div class="secondary-tab-bar-wrapper" ng-if="tabs != null && tabs.length > 0">
   <!--div ng-repeat="tab in tabs" class="secondary-tabbar-tab" ng-class="[nTabsClass]"-->
     <div ng-repeat="tab in tabs" class="secondary-tabbar-tab" ng-class="[nTabsClass]" ng-click="tab.action()">
       {{tab.text}}

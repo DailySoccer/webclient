@@ -1,5 +1,5 @@
-@fontOpenSans: 'Open Sans', sans-serif;
-@fontExo: 'Exo', sans-serif;
+@mainFont: 'Fjalla One', sans-serif;
+@bodyFont: 'Open Sans', sans-serif;
 @fontFacebook: helvetica, arial, sans-serif;
 
 @font-family-base: @fontOpenSans;
@@ -7,6 +7,31 @@
 .text_shadowing(@theColor) when (iscolor(@theColor)) {
 	text-shadow: 1px 1px 1px rgba(red(@theColor), green(@theColor), blue(@theColor), 0.004);
 }
+
+.mainfont_bold(@theFontSize, @theFontColor:inherit) {
+	font-family: @mainFont;
+	font-weight: 700;
+	font-size: @theFontSize;
+	color: @theFontColor;
+	text-transform: lowercase;
+	
+	.text_shadowing(@theFontColor);
+}
+.mainfont_light(@theFontSize, @theFontColor:inherit) {
+	font-family: @mainFont;
+	font-weight: 500;	
+	font-size: @theFontSize;
+	color: @theFontColor;
+	text-transform: lowercase;
+	
+	.text_shadowing(@theFontColor);
+}
+
+/*
+OLD FONTS
+*/
+@fontOpenSans: 'Open Sans', sans-serif;
+@fontExo: 'Fjalla One', sans-serif;
 
 .exo_bold(@theFontSize, @theFontColor:inherit) {
 	font-family: @fontExo;

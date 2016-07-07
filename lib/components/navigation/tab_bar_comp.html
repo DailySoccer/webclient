@@ -1,4 +1,4 @@
-<div class="tab-bar-wrapper">
+<div class="tab-bar-wrapper" ng-if="isShown">
   <div class="tab-bar-item" ng-click="storeTab.goLocation()" ng-class="{'active': storeTab.isActive}">
     <img ng-src="{{storeTab.iconImage}}">
     <span class="tab-bar-item-name">{{storeTab.name}}</span>

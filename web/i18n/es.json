@@ -350,7 +350,7 @@
       "maxplayersteam"                  : "<strong>Tienes demasiados futbolistas del mismo equipo.</strong><br>No superes el límite de @MAX_PLAYERS_SAME_TEAM futbolistas.",
       "not-enough-resources"            : "<strong>¡ATENCIÓN! Algo está fallando...</strong><br> Te falta @RESOURCE para entrar en este torneo.",
       "add"                             : "AÑADIR ",
-      "formation"                       : "Formación",
+      "formation"                       : "Formación:",
       "change"                          : "Cambiar"
     }
     ,"matchesfilter"                     :

@@ -28,6 +28,7 @@ import 'dart:math';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/utils/game_info.dart';
 import 'package:logging/logging.dart';
+import 'package:webclient/services/app_state_service.dart';
 
 @Component(
     selector: 'enter-contest',
@@ -164,9 +165,16 @@ class EnterContestComp implements DetachAware {
     return StringUtils.formatCurrency(amount);
   }
 
-  EnterContestComp(this._routeProvider, this._router, this.scrDet,
+  EnterContestComp(this._routeProvider, this._router, this.scrDet, this._appStateService,
                    this._contestsService, this.loadingService, this._profileService, this._catalogService,
                    this._flashMessage, this._rootElement, this._tutorialService) {
+    
+
+    _appStateService.appTopBarState.activeState = AppTopBarState.SUBSECTION_CONFIG;
+    _appStateService.appTopBarState.configParameters['title'] = "Crear alineación";
+    _appStateService.appSecondaryTabBarState.tabList = [];
+    _appStateService.appTabBarState.show = false;
+    
     loadingService.isLoading = true;
 
     errorMap = {
@@ -602,9 +610,9 @@ class EnterContestComp implements DetachAware {
     }
 
     // Si ya no estamos en modo seleción, scrolleamos hasta la altura del dinero que nos queda disponible.
-    if (!isSelectingSoccerPlayer) {
+    /*if (!isSelectingSoccerPlayer) {
       scrDet.scrollTo('.enter-contest-actions-wrapper', fps: 15, smooth: false, duration: 200, offset: -querySelector('#mainAppMenu').offsetHeight, ignoreInDesktop: true);
-    }
+    }*/
 
     if(!_isRestoringTeam) {
       _verifyMaxPlayersInSameTeam();
@@ -1032,4 +1040,5 @@ class EnterContestComp implements DetachAware {
 
   Element _rootElement;
   Element alertMaxplayerInSameTeam;
+  AppStateService _appStateService;
 }

@@ -62,7 +62,7 @@ import 'package:webclient/components/simple_promo_f2p_comp.dart';
 import 'package:webclient/components/contests_list_f2p_comp.dart';
 import 'package:webclient/components/contest_info_comp.dart';
 import 'package:webclient/components/scoring_rules_comp.dart';
-import 'package:webclient/components/contest_header_f2p_comp.dart';
+import 'package:webclient/components/contest_header_comp.dart';
 import 'package:webclient/components/leaderboard_comp.dart';
 import 'package:webclient/components/leaderboard_table_comp.dart';
 import 'package:webclient/components/my_contests_comp.dart';
@@ -97,6 +97,7 @@ import 'package:webclient/components/view_contest/teams_panel_comp.dart';
 
 import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:webclient/components/enter_contest/lineup_selector_comp.dart';
+import 'package:webclient/components/enter_contest/lineup_field_selector_comp.dart';
 import 'package:webclient/components/enter_contest/soccer_players_list_comp.dart';
 import 'package:webclient/components/enter_contest/soccer_players_filter_comp.dart';
 import 'package:webclient/components/enter_contest/matches_filter_comp.dart';
@@ -212,7 +213,7 @@ class WebClientApp extends Module {
     bind(PaginatorComp);
     bind(LeaderboardComp);
     bind(LeaderboardTableComp);
-    bind(ContestHeaderF2PComp);
+    bind(ContestHeaderComp);
     bind(ContestInfoComp);
     bind(ScoringRulesComp);
     bind(CreateContestComp);
@@ -230,6 +231,7 @@ class WebClientApp extends Module {
     bind(SoccerPlayersFilterComp);
     bind(MatchesFilterComp);
     bind(LineupSelectorComp);
+    bind(LineupFieldSelectorComp);
     bind(SoccerPlayerStatsComp);
     bind(ChangePasswordComp);
     bind(RememberPasswordComp);

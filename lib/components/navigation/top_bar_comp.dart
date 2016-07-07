@@ -19,7 +19,18 @@ import 'package:webclient/services/screen_detector_service.dart';
 )
 class TopBarComp {
 
-  AppTopBarStateConfig get currentState => _appStateService.appTopBarState.activeState;
+  AppTopBarStateConfig _lastState;
+  AppTopBarStateConfig get currentState {
+    if (_lastState == _appStateService.appTopBarState.activeState) 
+      return _lastState;
+    
+    if (_appStateService.appTopBarState.activeState.layout == AppTopBarState.NONE_COLUMNS){
+      querySelector("#mainContent").classes.remove("top-bar-gap");
+    } else {
+      querySelector("#mainContent").classes.add("top-bar-gap");
+    }
+    return _lastState = _appStateService.appTopBarState.activeState;
+  }
   Map get configParameters => _appStateService.appTopBarState.configParameters;
   
   String get layoutCssClass => currentState.layout == AppTopBarState.THREE_COLUMNS ? "three-columns" :
@@ -35,7 +46,7 @@ class TopBarComp {
 
   // LAYOUT ELEMENTS
   String _backButton([String clas = ""]) {
-    return "<button class='back-button $clas'>BACK</button>";
+    return "<div class='back-button $clas'><i class='material-icons'>&#xE5C4;</i></div>";
   }
   String _titleLabel([String clas = ""]) {
     return "<div class='title-label $clas'>${configParameters["title"]}</div>";

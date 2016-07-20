@@ -33,7 +33,24 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
   List seasonsList = [];
 
   Map currentInfoData;
-  bool selectablePlayer;
+
+  String _instanceSoccerPlayerId = null;
+  @NgOneWay("instance-soccer-player-id")
+  void set instanceSoccerPlayerId(String id) {
+    _instanceSoccerPlayerId = id; 
+    refreshSoccerPlayerData();
+  }
+  String get instanceSoccerPlayerId => _instanceSoccerPlayerId;
+  
+  bool _selectablePlayer = null;
+  @NgOneWay("selectable-player")
+  void set selectablePlayer(bool isSelectable) { _selectablePlayer = isSelectable; }
+  bool get selectablePlayer => _selectablePlayer;
+  
+  String _contestId = null;
+  @NgOneWay("contest-id")
+  void set contestId(String id) { _contestId = id; }
+  String get contestId => _contestId;
 
   bool isGoalkeeper() => currentInfoData['fieldPos'] == StringUtils.translate("gk", "soccerplayerpositions");
 
@@ -94,17 +111,25 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
   String getUppercaseLocalizedText(String key) {
     return getLocalizedText(key).toUpperCase();
   }
+  String get imgSoccerTeam => currentInfoData != null ? "images/team-shirts/${currentInfoData['shortTeam']}.png" : "";
 
   SoccerPlayerStatsComp(this._flashMessage, this.scrDet, this._soccerPlayerService, RouteProvider routeProvider, Router router, this._rootElement) {
+    contestId = routeProvider.route.parent.parameters.containsKey("contestId") ? routeProvider.route.parent.parameters["contestId"] : null;
+    instanceSoccerPlayerId = routeProvider.route.parent.parameters.containsKey("soccerPlayerId") ? routeProvider.route.parameters["soccerPlayerId"] : null;
+    
+    refreshSoccerPlayerData();
+  }
+  
+  void refreshSoccerPlayerData() {
 
     Future refreshInstancePlayerInfo;
+    if (instanceSoccerPlayerId == null) return;
 
     // 2 Opciones:
     // a) parent.contestId + instanceSoccerPlayerId + selectable
     // b) soccerPlayerId + selectable
-    var contestId = routeProvider.route.parent.parameters.containsKey("contestId") ? routeProvider.route.parent.parameters["contestId"] : null;
     if (contestId != null) {
-      var instanceSoccerPlayerId = routeProvider.route.parameters['instanceSoccerPlayerId'];
+      // var instanceSoccerPlayerId = routeProvider.route.parameters['instanceSoccerPlayerId'];
       
       // Optimizacion: Tenemos un instance con la información necesaria?
       InstanceSoccerPlayer instance = _soccerPlayerService.getInstanceSoccerPlayer(contestId, instanceSoccerPlayerId);
@@ -118,11 +143,11 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
       refreshInstancePlayerInfo = _soccerPlayerService.refreshInstancePlayerInfo(contestId, instanceSoccerPlayerId);
     }
     else {
-      var soccerPlayerId = routeProvider.route.parameters["soccerPlayerId"];
-      refreshInstancePlayerInfo = _soccerPlayerService.refreshSoccerPlayerInfo(soccerPlayerId);
+      //var soccerPlayerId = routeProvider.route.parameters["soccerPlayerId"];
+      refreshInstancePlayerInfo = _soccerPlayerService.refreshSoccerPlayerInfo(instanceSoccerPlayerId);
     }
 
-    selectablePlayer = routeProvider.route.parameters["selectable"] == "true";
+    //selectablePlayer = routeProvider.route.parameters["selectable"] == "true";
 
     refreshInstancePlayerInfo
       .then((_) {
@@ -132,11 +157,11 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
         _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
       }, test: (error) => error is ServerError);
 
-    _streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
+    //_streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
   }
 
   void detach() {
-    _streamListener.cancel();
+    //_streamListener.cancel();
   }
 
   void onShadowRoot(ShadowRoot shadowRoot) {
@@ -150,7 +175,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
   }
 
   void onScreenWidthChange(String msg) {
-    tabChange('season-stats-tab-content', 'seasonTab');
+    //tabChange('season-stats-tab-content', 'seasonTab');
   }
 
   void collectSoccerPlayerInfo(InstanceSoccerPlayer _soccerPlayerInstance) {
@@ -161,6 +186,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
         'id'              : _instanceSoccerPlayer.id,
         'fieldPos'        : _instanceSoccerPlayer.fieldPos.abrevName,
         'team'            : _instanceSoccerPlayer.soccerTeam.name.toUpperCase(),
+        'shortTeam'       : _instanceSoccerPlayer.soccerTeam.shortName.toUpperCase(),
         'name'            : _instanceSoccerPlayer.soccerPlayer.name.toUpperCase(),
         'fantasyPoints'   : StringUtils.parseFantasyPoints(_instanceSoccerPlayer.soccerPlayer.fantasyPoints),
         'salary'          : _instanceSoccerPlayer.salary,

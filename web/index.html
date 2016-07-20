@@ -129,14 +129,9 @@
       <top-bar id="mainTopBar"></top-bar>
       <secondary-tab-bar></secondary-tab-bar>
       
-      <div id="mainWrapper" class="wrapper-content-container">
-        <!--div id="mainMenu"-->
-        <div id="mainContent" class="main-content-container">
-          <flash-messages></flash-messages>
-          <ng-view></ng-view>
-          <div id="modalWindow"></div>
-        </div>
-      </div>
+      <!--div id="mainWrapper" class="wrapper-content-container"-->
+      <ng-view id="mainWrapper" class="wrapper-content-container"></ng-view>
+      <!--/div-->
       <tab-bar id="mainBottomTabBar"></tab-bar>
       <!--footer></footer-->
     </div>

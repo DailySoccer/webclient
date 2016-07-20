@@ -1,12 +1,12 @@
 library lineup_field_selector_comp;
 
 import 'package:angular/angular.dart';
-import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/money.dart';
 import 'package:webclient/models/contest_entry.dart';
+import 'package:webclient/components/enter_contest/soccer_player_listitem.dart';
 
 
 @Component(
@@ -30,9 +30,6 @@ class LineupFieldSelectorComp {
 
   @NgOneWay("manager-level")
   num managerLevel = 0;
-
-  @NgOneWay("contest")
-  Contest contest;
 
   @NgOneWay("lineup-slots")
   List<dynamic> lineupSlots = [];
@@ -70,12 +67,12 @@ class LineupFieldSelectorComp {
   String getSlotPosition(int slotIndex) => FieldPos.FIELD_POSITION_ABREV[lineupFormation[slotIndex]];
   String getSlotDescription(int slotIndex) => getLocalizedText("add") + FieldPos.FIELD_POSITION_FULL_NAMES[lineupFormation[slotIndex]];
   String getImgPerSlotPosition(int slotIndex) => "images/team-shirts/_${getSlotPosition(slotIndex)}.png";
-  String getImgPerSoccerTeam(dynamic slot) => "images/team-shirts/${slot['instanceSoccerPlayer'].soccerTeam.shortName}.png";
+  String getImgPerSoccerTeam(SoccerPlayerListItem slot) => "images/team-shirts/${slot.soccerTeam.shortName}.png";
     
   String getPrintableSalary(int salary) => StringUtils.parseSalary(salary);
 
-  String getPrintableGoldCost(dynamic slot) {
-    Money money = slot['instanceSoccerPlayer'].moneyToBuy(contest, managerLevel);
+  String getPrintableGoldCost(SoccerPlayerListItem slot) {
+    Money money = slot.moneyToBuy;
     return money.amount <= 0 ? '' : '<span class="coins-amount">${money.toInt()}</span>';
   }
 

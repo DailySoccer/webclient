@@ -68,7 +68,7 @@ class AppTopBarState {
   static AppTopBarStateConfig SECTION_CONFIG    = new AppTopBarStateConfig(ONE_COLUMN, const[TITLE_LABEL]);
   
   AppTopBarStateConfig activeState = HIDDEN_CONFIG;
-  Map configParameters = { "title" : "FURBORCUATRO" }; 
+  Map configParameters = { "title" : "FURBORCUATRO", "leftColumnClick": () => {} };
 }
 class AppTopBarStateConfig {
   String layout;

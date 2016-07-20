@@ -39,6 +39,7 @@ class LobbyF2PComp implements DetachAware {
 
     GameMetrics.logEvent(GameMetrics.LOBBY);
     _appStateService.appTopBarState.activeState = AppTopBarState.USER_DATA_CONFIG;
+    _appStateService.appTabBarState.show = true;
     _appStateService.appSecondaryTabBarState.tabList = [
       new AppSecondaryTabBarTab('A', () { print("A Pressed"); }),
       new AppSecondaryTabBarTab('B', () { print("B Pressed"); }),

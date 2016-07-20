@@ -1,0 +1,62 @@
+html, body {
+	height: 100%;
+	max-height: 100%;
+	min-height: 100%;
+	font-size: 0;
+	
+	text-rendering: optimizeLegibility !important;
+	-webkit-font-smoothing: antialiased !important;
+}
+
+// Forzamos a que siempre aparezca la scrollbar vertical para que no haya saltos
+html { 
+  //overflow-y: scroll; 
+}
+
+body {
+	background-color: @black;
+	background-image: url("@{images}/landingBackground.jpg");
+	background-size: cover;
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+/*
+div#mainApp
+  top-bar#mainTopBar
+  secondary-tab-bar
+
+  div#mainWrapper.wrapper-content-container
+    div#mainContent.main-content-container
+      ng-view
+  tab-bar#mainBottomTabBar
+*/
+
+#mainApp { 
+  .flex-container-col();
+	height: 100%;
+	max-height: 100%;
+	min-height: 100%;
+}
+
+// Contenedor exterior que envuelve a todo el contenido.
+.wrapper-content-container {
+	.flex-elem-fluid();
+  .flex-container-col();
+  overflow-y: auto;
+  & > * {
+	 .flex-elem-fluid();
+  }
+}
+
+
+::-webkit-scrollbar {
+	-webkit-appearance: none;
+	width: 6px;
+}
+::-webkit-scrollbar-track {
+	background-color: #dcdcdc;
+}
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background-color: rgba(156, 156, 156, .6);
+}

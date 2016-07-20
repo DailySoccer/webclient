@@ -2,12 +2,16 @@
 //@import "../bootstrap-3.1.1/less/navbar.less";
 
 @import "common.less";
+@import "global_layout.less";
 @import "animations.less";
 
 /*
   NEW FILES
 */
 @import "contest_header_comp.less";
+@import "lineup_field_selector_comp.less";
+
+
 
 // @import "contest_header_f2p_comp.less";
 @import "teams_panel_comp.less";
@@ -41,7 +45,6 @@
 @import "soccer_players_filter_comp.less";
 @import "matches_filter_comp.less";
 @import "lineup_selector_comp.less";
-@import "lineup_field_selector_comp.less";
 @import "leaderboard_comp.less";
 @import "user_forms_components.less";
 @import "users_list_comp.less";
@@ -91,70 +94,15 @@
 
 @icon-font-path: "../bootstrap-3.1.1/fonts/";
 
-html, body {
-	height: 100%; 
-	font-size: 0;
-	
-	text-rendering: optimizeLegibility !important;
-	-webkit-font-smoothing: antialiased !important;
-}
 
-::-webkit-scrollbar {
-	-webkit-appearance: none;
-	width: 12px;
-}
-::-webkit-scrollbar-track {
-	background-color: rgba(240,240,240, 1);
-}
-::-webkit-scrollbar-thumb {
-	border-radius: 10px;
-	background-color: rgba(156, 156, 156, .6);
-	-webkit-box-shadow: inset 0px 0px 0px 2px rgba(240, 240, 240, 1);
-}
-
-// Forzamos a que siempre aparezca la scrollbar vertical para que no haya saltos
-html { overflow-y: scroll; }
 
 // En pantallas > 1200 nos limitamos a > 992px
 @container-lg: @container-md;
 
+
 // El modal viene en boostrap como overflow-y: scroll (siempre se ve barra). Preferimos
 // que solo se vea si realmente se necesita.
 #modalRoot, #alertRoot { overflow-y: auto; }
-
-#mainApp { height: 100%; }
-
-body {
-	background-color: @black;
-	background-image: url("@{images}/landingBackground.jpg");
-	background-size: cover;
-	background-position: center top;
-	background-repeat: no-repeat;
-}
-
-// Contenedor exterior que envuelve a todo el contenido.
-.wrapper-content-container {
-	min-height: 100%;
-	
-	// Contenedor interior que envuelve al contenido. Fijamos el width con el.
-	.main-content-container {
-    &.top-bar-gap {
-      padding-top: 55px;
-    }
-
-		@media (max-width: @screen-sm-max) {
-			//padding-bottom: 88px;
-			.container-fluid();
-			.clean-paddings();
-			padding-bottom: 352px;
-		}
-		@media (min-width: @screen-md-min) {
-			.container();
-			.clean-paddings();
-			padding-bottom: 352px;
-		}
-	}
-}
 
 .global-landing-page .wrapper-content-container  {
 	width: 100%;

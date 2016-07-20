@@ -1,12 +1,93 @@
-soccer-players-list {
-	position: relative;
-	display: block;
-	
-	&:after {
-		content: "";
-		clear: both;
-	}
+/*
+soccer-players-scalinglist              COL
+  - .soccer-player-table-header         |-ROW
+    - .column-header, column-info....   | '-ELEM
+  - .soccer-player-table-body           '-COL
+    - .soccer-players-list-slot           '-ROW
+      - .column-header, column-info....     '-ELEM
+*/
+
+soccer-players-scalinglist {
+	.flex-container-col();
+	.mainfont_light(12pt, @white);
+  text-transform: uppercase;
+  position: relative;
+  background-color: @grey-dark;
+  
+  .column-info, .column-header .column-info {
+    .flex-elem-fixed(34px);
+    text-align: center;
+    padding: 0 5px;
+    color: @white;
+  }
+  .column-info {
+    cursor: pointer;
+  }
+  .column-tshirt {
+    .flex-elem-fixed(30px);
+    padding: 0 5px;
+    overflow: hidden;
+  }
+  .column-primary-info {
+    .flex-elem-fluid();
+	  .flex-container-col();
+    padding: 0 5px;
+    text-align: left;
+    
+    .soccer-player-name {
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .match-event-name {
+      strong {
+        font-weight: 500;
+        color: @white;
+      }
+      color: @grey-bluish;
+    }
+  }
+  .column-dfp {
+    .flex-elem-fixed(40px);
+    text-align: left;
+    color: @grey-bluish;
+  }
+  .column-salary {
+    .flex-elem-fixed(60px);
+    padding: 0 5px;
+    text-align: right;
+    color: @orange;
+  }
+  .column-addbtn {
+    .flex-elem-fixed(34px);
+    padding: 0 5px;
+    cursor: pointer;
+  }
 }
+
+.soccer-player-table-header {
+	.flex-container-row();
+  padding: 5px 8px;
+  align-items: center;
+  .column-header {
+    color: @grey-bluish;
+  }
+}
+
+.soccer-player-table-body {
+	.flex-container-col();
+  
+  .soccer-players-list-slot {
+	  .flex-container-row();
+    padding: 7px 8px;
+    align-items: center;
+    border-bottom: 2px solid @black;
+  }
+}
+
+.global-enter-contest .wrapper-content-container::-webkit-scrollbar-track {
+	background-color: @grey-dark;
+}
+/*
 // Tabla de ordenacion en la cabecera del listado de jugadores
 .soccer-player-table-header {
 	.user-select(none);
@@ -100,7 +181,7 @@ soccer-players-list {
 				@media (max-width: @screen-xs-max) {
 					padding-left: 5px;
 				}
-				/*Temporal*/
+				
 				white-space: nowrap;
 				overflow: hidden;
 
@@ -244,5 +325,6 @@ soccer-players-list {
 			}
 	}
 }
+*/
 
 

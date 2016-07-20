@@ -1,7 +1,7 @@
 contest-header {
   .flex-container-row();
-  background-color: @black;
-  background-image: url("@{images}/contest-header-bg.png");
+  background-color: @soft-black;
+  //background-image: url("@{images}/contest-header-bg.png");
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
@@ -10,20 +10,20 @@ contest-header {
 
   .name-section {
     .flex-container-col();
-    .flex-elem-fluid-col(1);
+    .flex-elem-fluid(1);
 
     .contest-name {
       .mainfont_bold(12pt, @white);
       text-transform: uppercase;
-      .flex-elem-fluid-col(1);
+      .flex-elem-fluid(1);
     }
     .contest-description {
       .mainfont_bold(10pt, @grey-bluish);
-      .flex-elem-fluid-col(1);
+      .flex-elem-fluid(1);
     }
   }
   .more-info {
-    .flex-elem-fixed-col(25px);
+    .flex-elem-fixed(25px);
     padding: 6px 0 0 0;
     text-align: right;
     .mainfont_bold(10pt, @white);

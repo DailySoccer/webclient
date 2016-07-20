@@ -99,8 +99,8 @@ class SoccerPlayersScalingListComp {
     sortListByField('Pos', invert: false);
   }
 
-  @NgCallback("on-row-click")
-  Function onRowClick;
+  @NgCallback("on-info-click")
+  Function onInfoClick;
 
   @NgCallback("on-action-click")
   Function onActionClick;
@@ -200,6 +200,8 @@ class SoccerPlayersScalingListComp {
 
     _setSort();
   }
+  
+  String getImgPerSoccerTeam(SoccerPlayerListItem slot) => "images/team-shirts/${slot.soccerTeam.shortName}.png";
   
   void _setFilter(String key, dynamic valor) {
     // En movil no permitimos nunca poner el filtro vacio!

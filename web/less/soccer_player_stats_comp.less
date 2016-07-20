@@ -1,6 +1,71 @@
-#modalSoccerPlayerStats {	
-	.modal-properties-default();
-	
+/*
+.soccer-player-stats-header
+  .soccer-player-stats-header-tshirt
+  .soccer-player-stats-header-data
+    .soccer-player-stats-header-description
+      .soccer-player-name-team
+        .soccer-player-pos-team
+        .soccer-player-name
+      .soccer-player-stats-header-button-add
+    .soccer-player-stats-info
+      .soccer-player-fantasy-points > span | span
+      .soccer-player-matches > span | span
+      .soccer-player-salary > span | span
+*/
+
+soccer-player-stats {
+  .flex-elem-fluid();
+  .flex-container-col();
+}
+.soccer-player-stats-header {
+  .flex-elem-fixed(110px);
+  .flex-container-row();
+  background-color: @soft-black;
+	.mainfont_light(12pt, @white);
+}
+.soccer-player-stats-header-tshirt {
+  .flex-elem-fixed(70px);
+  margin-left: -10px
+  padding-top: 20px;
+  overflow: hidden;
+  img {
+    width: 100px;
+    position: relative;
+    right: 0;
+    left: -30px;
+  }
+}
+.soccer-player-stats-header-data {
+  .flex-elem-fluid();
+  .flex-container-col();
+}
+.soccer-player-stats-header-description {
+  .flex-elem-fixed(65px);
+  border-bottom: 1px solid @grey-translucid;
+	.mainfont_light(5pt, @white);
+}
+.soccer-player-stats-info {
+  .flex-elem-fixed(40px);
+	.mainfont_light(0pt, @white);
+}
+
+
+
+.soccer-player-stats-content {
+  .flex-elem-fluid();
+}
+
+
+
+
+
+
+
+
+/*#modalSoccerPlayerStats {	
+	.modal-properties-default();*/
+/*
+soccer-player-stats {
 	// Cabecera de la ventana modal
 	.soccer-player-stats-header {
 		.make-row(0);	
@@ -321,5 +386,6 @@
 	 	.soccer-player-stats-header.actions-header-xs();
 	 	background-color: @white;
 		padding: 10px;
-	 }
+  }
 }
+*/

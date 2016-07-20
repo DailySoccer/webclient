@@ -1,9 +1,61 @@
-#enter-contest-wrapper {
+enter-contest {
+  .flex-container-col();
   background-color: @black;
-  display: block;
-  position: relative;
 }
+.lineup-selector-section,
+.soccer-player-list-section {
+  .flex-container-col();
+  .flex-elem-fluid();
+}
+.lineup-selector-section {
+  contest-header {
+    .flex-elem-fixed(55px);
+  }
+  lineup-field-selector {
+    .flex-elem-fluid();
+  }
 
+  .contest-id {
+    .mainfont_light(10pt, @white);
+    background-color: transparent;
+    position: relative;    
+    margin: 0 10px;
+    top: -15px;
+    text-align: right;
+    height: 0;
+    .flex-elem-fixed(0px);
+  }
+
+  .confirm-btn {
+    .default-button();
+    .flex-elem-fixed(40px);
+  }
+
+  .salary-info-wrapper {
+    .dark-green-bluish-gradient();
+    .mainfont_light(10pt, @white);
+    .flex-container-row();
+    .flex-elem-fixed(36px);
+    padding: 9px;
+
+    text-align: center;
+
+    .current-salary {
+      .flex-elem-fluid();
+    }
+    .limit-salary {
+      .flex-elem-fluid();
+    }
+    .current-salary-label,
+    .limit-salary-label {
+      color: @grey-bluish;
+    }
+    .current-salary-amount,
+    .limit-salary-amount {
+      color: @orange;
+    }
+  }
+}
 
 // Tabs menu
 /*.enter-contest-tabs {

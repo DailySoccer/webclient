@@ -48,7 +48,6 @@ class TabBarComp {
   }
   
   bool get isShown => _appStateService.appTabBarState.show;
-  
 
   TabBarComp(this._router, this._loadingService, this._view, this._rootElement, 
                 this._dateTimeService, this._profileService, this._templateService, 

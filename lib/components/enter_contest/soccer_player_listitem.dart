@@ -8,6 +8,7 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/match_event.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/money.dart';
+import 'package:webclient/models/soccer_team.dart';
 
 class SoccerPlayerListItem {
   InstanceSoccerPlayer get instanceSoccerPlayer => _instanceSoccerPlayer;
@@ -19,6 +20,7 @@ class SoccerPlayerListItem {
   String get fullNameNormalized => _fullNameNormalized;
   String get matchId => _matchEvent.templateMatchEventId;
   String get matchEventNameHTML => _matchEventNameHTML;
+  SoccerTeam get soccerTeam => _instanceSoccerPlayer.soccerTeam;
 
   //String get remainingMatchTime => "";
   int get fantasyPoints => _fantasyPoints;

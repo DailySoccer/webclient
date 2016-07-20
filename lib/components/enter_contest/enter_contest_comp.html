@@ -1,6 +1,10 @@
-<div id="enter-contest-wrapper" >
-
-  <contest-header id="contestHeader" contest="contest" contest-id="contestId" view-state="ACTIVE" show-matches="false" ng-if="contest != null"></contest-header>
+<section class="lineup-selector-section" ng-show="isLineupFieldSelectorActive" >
+  <contest-header id="contestHeader" 
+                  contest="contest" 
+                  contest-id="contestId" 
+                  view-state="ACTIVE" 
+                  show-matches="false" 
+                  ng-if="contest != null"></contest-header>
   
   <!--div class="button-wrapper-block" ng-if="isSelectingSoccerPlayer && scrDet.isXsScreen">
     <button type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">{{getLocalizedText("buttoncancel")}}</button>
@@ -15,102 +19,38 @@
               ng-bind-html="getConfirmButtonText()"></button>
     </div>
   </div-->
-
-  <lineup-field-selector ng-show="!isSelectingSoccerPlayer || scrDet.isNotXsScreen"
-                   not-enough-resources="!enoughResourcesForEntryFee"
-                   resource="resourceName"
-                   has-max-players-same-team="playersInSameTeamInvalid"
-                   has-negative-balance="isNegativeBalance"
-                   manager-level="playerManagerLevel"
-                   contest="contest"
-                   lineup-slots="lineupSlots"
-                   on-lineup-slot-selected="onLineupSlotSelected(slotIndex)"
-                   formation-id="formationId"
-                   lineup-formation="lineupFormation"></lineup-field-selector>
   
-  <div class="contest-id-bar">
-    <div class="contest-id">ID: {{contest.contestId.toUpperCase()}}</div>
+  <lineup-field-selector not-enough-resources="!enoughResourcesForEntryFee"
+                         resource="resourceName"
+                         has-max-players-same-team="playersInSameTeamInvalid"
+                         has-negative-balance="isNegativeBalance"
+                         manager-level="playerManagerLevel"
+                         lineup-slots="lineupSlots"
+                         on-lineup-slot-selected="onLineupSlotSelected(slotIndex)"
+                         on-lineup-slot-selected="onLineupSlotSelected(slotIndex)"
+                         formation-id="formationId"
+                         lineup-formation="lineupFormation"></lineup-field-selector>
+  <div class="contest-id">ID: {{contest.contestId.toUpperCase()}}</div>
+  <button class="confirm-btn">Confirmar</button>
+  <div class="salary-info-wrapper">
+    <div class="current-salary"><span class="current-salary-label">Presupuesto </span><span class="current-salary-amount">45.000</span></div>
+    <div class="limit-salary"><span class="limit-salary-label">Límite </span><span class="limit-salary-amount">60.000</span></div>
   </div>
-  
-  
-  <div id="enterContest">
-    <div class="tabs">
-      <div class="tab-content">
+</section>
+<section class="soccer-player-list-section" ng-show="isSelectingSoccerPlayerActive">
+  <soccer-players-scalinglist soccer-players="allSoccerPlayers"
+                              lineup-filter="lineupSlots"
+                              manager-level="playerManagerLevel"
+                              contest="contest"
+                              favorites-list="favoritesPlayers" only-favorites="onlyFavorites"
+                              field-pos-filter="fieldPosFilter" name-filter="nameFilter" match-filter="matchFilter"
+                              on-info-click="onSoccerPlayerInfoClick(soccerPlayerId)"
+                              on-action-click="onSoccerPlayerActionButton(soccerPlayer)"></soccer-players-scalinglist>
+</section>
+<section class="soccer-player-list-section" ng-show="isSoccerPlayerStatsActive">
+  <soccer-player-stats contest-id="contest.contestId" instance-soccer-player-id="instanceSoccerPlayerDisplayInfo" selectable-player="false"></soccer-player-stats>
+</section>
 
-        <!-- Tab del contenido normal de seleccion de lineup -->
-        <div class="tab-pane active" id="lineup-tab-content">
-
-            <!-- Este sera el selector de partidos en "grande", con botones-->
-            <!--matches-filter contest="contest" selected-option="matchFilter" ng-if="scrDet.isNotXsScreen"></matches-filter-->
-
-            <!--div class="enter-contest-actions-wrapper" ng-if="scrDet.isXsScreen">
-              <div class="total-salary" ng-class="{'red-numbers':availableSalary < 0}">
-                <span class="total-salary-money" ng-show="contest != null">{{formatCurrency(printableAvailableSalary)}}</span>
-              </div>
-              <button id="cancelSoccerPlayerSelection" type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">{{getLocalizedText("buttoncancel")}}</button>
-            </div-->
-
-            <div class="enter-contest-lineup-wrapper">
-              <div class="enter-contest-lineup">
-                <!--div class="enter-contest-total-salary">
-                    <span class="total-salary-text">{{getLocalizedText("yourlineup")}}</span>
-                    <div class="total-salary">
-                      <span class="total-salary-text">{{getLocalizedText("remainsalary")}}:</span>
-                      <span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }" ng-show="contest != null">{{formatCurrency(printableAvailableSalary)}}</span>
-                    </div>
-                </div-->
-              </div>
-            </div>
-
-            <div class="enter-contest-soccer-players-wrapper" ng-show="isSelectingSoccerPlayer || scrDet.isNotXsScreen">
-              <div class="enter-contest-soccer-players">
-
-                <!-- Este es el desplegable para el movil -->
-                <matches-filter contest="contest" selected-option="matchFilter" ng-if="scrDet.isXsScreen"></matches-filter>
-
-                <soccer-players-filter name-filter="nameFilter" field-pos-filter="fieldPosFilter" position-filters-enabled="scrDet.isNotXsScreen" 
-                                       only-favorites="onlyFavorites" show-on-xs="true" show-favorites-button="userIsLoggedIn"></soccer-players-filter>
-
-                <!--soccer-players-list soccer-players="allSoccerPlayers"
-                                     lineup-filter="lineupSlots"
-                                     manager-level="playerManagerLevel"
-                                     contest="contest"
-                                     favorites-list="favoritesPlayers" only-favorites="onlyFavorites"
-                                     field-pos-filter="fieldPosFilter" name-filter="nameFilter" match-filter="matchFilter"
-                                     on-row-click="onRowClick(soccerPlayerId)"
-                                     on-action-click="onSoccerPlayerActionButton(soccerPlayer)"></soccer-players-list-->
-                
-                <soccer-players-scalinglist soccer-players="allSoccerPlayers"
-                                     lineup-filter="lineupSlots"
-                                     manager-level="playerManagerLevel"
-                                     contest="contest"
-                                     favorites-list="favoritesPlayers" only-favorites="onlyFavorites"
-                                     field-pos-filter="fieldPosFilter" name-filter="nameFilter" match-filter="matchFilter"
-                                     on-row-click="onRowClick(soccerPlayerId)"
-                                     on-action-click="onSoccerPlayerActionButton(soccerPlayer)"></soccer-players-scaling-list>
-                
-              </div>
-            </div>
-
-            <div class="enter-contest-actions-wrapper conclude-actions-wrapper">
-              
-            </div>
-
-        </div>
-
-        <!-- El otro tab, el del contest-info  -->
-        <!--div class="tab-pane" id="contest-info-tab-content">
-          <contest-info ng-if="contestInfoFirstTimeActivation"></contest-info>
-        </div-->
-
-      </div>
-    </div>
-
-    <div class="contest-id-bar">
-      <div class="contest-id">ID: {{contest.contestId.toUpperCase()}}</div>
-    </div>
-  </div>
-
-</div>
-
-<ng-view></ng-view>
+<modal-window show-window="true">
+  <ng-view></ng-view>
+</modal-window>

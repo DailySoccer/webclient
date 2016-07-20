@@ -55,6 +55,10 @@ class EnterContestComp implements DetachAware {
   static const String ERROR_OP_UNAUTHORIZED = "ERROR_OP_UNAUTHORIZED";
   static const String ERROR_CONTEST_ENTRY_INVALID = "ERROR_CONTEST_ENTRY_INVALID";
 
+  static const String LINEUP_FIELD_SELECTOR = "LINEUP_FIELD_SELECTOR";
+  static const String SELECTING_SOCCER_PLAYER = "SELECTING_SOCCER_PLAYER";
+  static const String SOCCER_PLAYER_STATS = "SOCCER_PLAYER_STATS";
+
   ScreenDetectorService scrDet;
   LoadingService loadingService;
 
@@ -77,8 +81,33 @@ class EnterContestComp implements DetachAware {
   FieldPos fieldPosFilter;
   String nameFilter;
   String matchFilter;
+  
+  String instanceSoccerPlayerDisplayInfo = null;
 
-  bool isSelectingSoccerPlayer = false;
+  String _sectionActive = "";
+  void set sectionActive(String section) { 
+    _sectionActive = section;
+    switch(_sectionActive) {
+      case LINEUP_FIELD_SELECTOR:
+        _appStateService.appTopBarState.configParameters['title'] = "Crear alineación";
+        _appStateService.appTopBarState.configParameters['leftColumnClick'] = () => _router.go('lobby', {});
+      break;
+      case SELECTING_SOCCER_PLAYER:
+        _appStateService.appTopBarState.configParameters['title'] = "Elige un ${fieldPosFilter.fullName}";
+        _appStateService.appTopBarState.configParameters['leftColumnClick'] = cancelPlayerSelection;
+      break;
+      case SOCCER_PLAYER_STATS:
+        _appStateService.appTopBarState.configParameters['title'] = "Estadísticas";
+        _appStateService.appTopBarState.configParameters['leftColumnClick'] = cancelPlayerDetails;
+      break;
+    }
+  }
+  String get sectionActive => _sectionActive;
+
+  bool get isLineupFieldSelectorActive => sectionActive == LINEUP_FIELD_SELECTOR;
+  bool get isSelectingSoccerPlayerActive => sectionActive == SELECTING_SOCCER_PLAYER;
+  bool get isSoccerPlayerStatsActive => sectionActive == SOCCER_PLAYER_STATS;
+  
   InstanceSoccerPlayer selectedInstanceSoccerPlayer;
 
   int availableSalary = 0;
@@ -88,8 +117,7 @@ class EnterContestComp implements DetachAware {
     num managerLevel = playerManagerLevel;
     lineupSlots
       .where((c) => c != null)
-      .forEach( (c) =>
-          _coinsNeeded.amount += c.moneyToBuy.amount);
+      .forEach( (c) => _coinsNeeded.amount += c.moneyToBuy.amount);
 
     if (contest != null && contest.entryFee != null && contest.entryFee.isGold && !editingContestEntry) {
       _coinsNeeded.amount += contest.entryFee.amount;
@@ -454,12 +482,12 @@ class EnterContestComp implements DetachAware {
       isNegativeBalance = availableSalary < 0;
     }
     else {
-      isSelectingSoccerPlayer = true;
-      scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: false, duration: 200, offset: -querySelector('#mainAppMenu').offsetHeight, ignoreInDesktop: true);
+      fieldPosFilter = new FieldPos(lineupFormation[slotIndex]);
+      sectionActive = SELECTING_SOCCER_PLAYER;
+      //scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: false, duration: 200, offset: -querySelector('#mainAppMenu').offsetHeight, ignoreInDesktop: true);
       // Cuando seleccionan un slot del lineup cambiamos siempre el filtro de la soccer-player-list, especialmente
       // en movil que cambiamos de vista a "solo ella".
       // El componente hijo se entera de que le hemos cambiado el filtro a traves del two-way binding.
-      fieldPosFilter = new FieldPos(lineupFormation[slotIndex]);
     }
 
     _verifyMaxPlayersInSameTeam();
@@ -500,7 +528,7 @@ class EnterContestComp implements DetachAware {
     for (int c = 0; c < lineupSlots.length; ++c) {
       if (lineupSlots[c] != null && lineupFormation[c] != lineupSlots[c].fieldPos.value) {
         // print(lineupSlots[c]["fieldPos"].value + " -ConflictoCon- " + lineupFormation[c]);
-        var soccerPlayer = lineupSlots[c];
+        SoccerPlayerListItem soccerPlayer = lineupSlots[c];
         int availablePosition = firstAvailablePosition(lineupSlots[c].fieldPos.value);
         // print("Posicion disponible: $availablePosition");
 
@@ -596,7 +624,7 @@ class EnterContestComp implements DetachAware {
         // _catalogService.buySoccerPlayer(contest.contestId, soccerPlayer["id"]);
 
         lineupSlots[c] = soccerPlayer;
-        isSelectingSoccerPlayer = false;
+        sectionActive = LINEUP_FIELD_SELECTOR;
         availableSalary -= soccerPlayer.salary;
         // Comprobamos si estamos en salario negativo
         isNegativeBalance = availableSalary < 0;
@@ -628,9 +656,9 @@ class EnterContestComp implements DetachAware {
       return false;
     }
 
-    var soccerPlayer = allSoccerPlayers.firstWhere((sp) => sp.id == soccerPlayerId);
+    SoccerPlayerListItem soccerPlayer = allSoccerPlayers.firstWhere((sp) => sp.id == soccerPlayerId);
 
-    FieldPos theFieldPos = soccerPlayer["fieldPos"];
+    FieldPos theFieldPos = soccerPlayer.fieldPos;
     int c = 0;
     if (lineupSlots.contains(soccerPlayer)) {
       return false;
@@ -699,7 +727,7 @@ class EnterContestComp implements DetachAware {
       _contestsService.editContestEntry(contestEntryId, formationId, lineupSlots.map((player) => player["id"]).toList())
         .then((_) {
           num managerLevel = playerManagerLevel;
-          Iterable boughtPlayers = lineupSlots.where((c) => c["instanceSoccerPlayer"].moneyToBuy(contest, managerLevel).amount > 0);
+          Iterable boughtPlayers = lineupSlots.where((c) => c.moneyToBuy.amount > 0);
                    
           GameMetrics.logEvent(GameMetrics.TEAM_MODIFIED, {"type": contest.isSimulation? 'virtual' : 'oficial',
                                                           "is created by user": contest.isAuthor(_profileService.user),
@@ -725,14 +753,14 @@ class EnterContestComp implements DetachAware {
         .catchError((ServerError error) => _errorCreating(error));
     }
     else {
-        _contestsService.addContestEntry(contest.contestId, formationId, lineupSlots.map((player) => player["id"]).toList())
+        _contestsService.addContestEntry(contest.contestId, formationId, lineupSlots.map((SoccerPlayerListItem player) => player.id).toList())
           .then((contestId) {
 
             num managerLevel = playerManagerLevel;
-            Iterable boughtPlayers = lineupSlots.where((c) => c["instanceSoccerPlayer"].moneyToBuy(contest, managerLevel).amount > 0);
+            Iterable boughtPlayers = lineupSlots.where((c) => c.moneyToBuy.amount > 0);
             boughtPlayers.forEach( (c) {
-              num cost = c["instanceSoccerPlayer"].moneyToBuy(contest, managerLevel).amount;
-              GameMetrics.logEvent(GameMetrics.PLAYER_BOUGHT, {"value": cost, "name": c["instanceSoccerPlayer"].soccerPlayer.name});
+              num cost = c.instanceSoccerPlayer.moneyToBuy(contest, managerLevel).amount;
+              GameMetrics.logEvent(GameMetrics.PLAYER_BOUGHT, {"value": cost, "name": c.instanceSoccerPlayer.soccerPlayer.name});
             });
 
             GameMetrics.identifyMixpanel(_profileService.user.email);
@@ -808,7 +836,7 @@ class EnterContestComp implements DetachAware {
   }
 
   bool isPlayerSelected() {
-    for (dynamic player in lineupSlots) {
+    for (SoccerPlayerListItem player in lineupSlots) {
       if (player != null) {
         return false;
       }
@@ -817,12 +845,18 @@ class EnterContestComp implements DetachAware {
   }
 
   void cancelPlayerSelection() {
-    isSelectingSoccerPlayer = false;
-    scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('#mainAppMenu').offsetHeight, ignoreInDesktop: true);
+    sectionActive = LINEUP_FIELD_SELECTOR;
+    //scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('#mainAppMenu').offsetHeight, ignoreInDesktop: true);
+  }
+  void cancelPlayerDetails() {
+    sectionActive = SELECTING_SOCCER_PLAYER;
+    //scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('#mainAppMenu').offsetHeight, ignoreInDesktop: true);
   }
 
-  void onRowClick(String soccerPlayerId) {
-    ModalComp.open(_router, "enter_contest.soccer_player_stats", { "instanceSoccerPlayerId":soccerPlayerId, "selectable":isSlotAvailableForSoccerPlayer(soccerPlayerId)}, addSoccerPlayerToLineup);
+  void onSoccerPlayerInfoClick(String soccerPlayerId) {
+    //ModalComp.open(_router, "enter_contest.soccer_player_stats", { "instanceSoccerPlayerId":soccerPlayerId, "selectable":isSlotAvailableForSoccerPlayer(soccerPlayerId)}, addSoccerPlayerToLineup);
+    sectionActive = SOCCER_PLAYER_STATS;
+    instanceSoccerPlayerDisplayInfo = soccerPlayerId;
   }
 
   void _showMsgError(ServerError error) {

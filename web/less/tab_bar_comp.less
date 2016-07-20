@@ -1,12 +1,10 @@
 tab-bar {
-	position: fixed;
-	bottom: 0;
-	.make-row(0);
-	left: 0;
-	right: 0;
+  .flex-elem-fixed(auto);
 	text-align: center;
 	background-color: @blueUltraDark;
-	z-index: 1000;
+}
+.tab-bar-wrapper {
+  height: 70px;
 }
 
 .tab-bar-item {

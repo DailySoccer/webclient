@@ -24,11 +24,6 @@ class TopBarComp {
     if (_lastState == _appStateService.appTopBarState.activeState) 
       return _lastState;
     
-    if (_appStateService.appTopBarState.activeState.layout == AppTopBarState.NONE_COLUMNS){
-      querySelector("#mainContent").classes.remove("top-bar-gap");
-    } else {
-      querySelector("#mainContent").classes.add("top-bar-gap");
-    }
     return _lastState = _appStateService.appTopBarState.activeState;
   }
   Map get configParameters => _appStateService.appTopBarState.configParameters;
@@ -44,6 +39,12 @@ class TopBarComp {
                 this._dateTimeService, this._profileService, this._templateService, 
                 this._catalogService, this._appStateService, this._scrDet) {}
 
+  void onLeftColumnClick() {
+    if (currentState.layout == AppTopBarState.THREE_COLUMNS) {
+      _appStateService.appTopBarState.configParameters["leftColumnClick"]();
+    }
+  }
+  
   // LAYOUT ELEMENTS
   String _backButton([String clas = ""]) {
     return "<div class='back-button $clas'><i class='material-icons'>&#xE5C4;</i></div>";

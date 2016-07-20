@@ -1,6 +1,7 @@
 .lineup-selector-slot {
   display: block;
   position: absolute;
+  cursor: pointer;
   
   @slot-width: 48px;
   @slot-height: 48px;
@@ -16,10 +17,6 @@
   }
   
   .iconButtonSelect {
-    i {
-      width: 24px;
-      height: 24px;
-    }
     .default-button();
     .elevation(3);
     width: 36px;
@@ -29,6 +26,10 @@
     top: 8px;
     left: 30px;
     padding: 6px;
+    i {
+      width: 24px;
+      height: 24px;
+    }
   }
   .soccer-player-name {
     .mainfont_bold(10pt, @white);
@@ -76,7 +77,7 @@
 // Reserva de sitio
 lineup-field-selector {
 	.flex-container-col();
-	min-height: 126vw;
+  
 	position: relative;
   background-color: @white;
 	background-image: url("@{images}/football-field.jpg");
@@ -84,21 +85,21 @@ lineup-field-selector {
 }
 
 .lineup-field-selector {
-  .flex-elem-fluid-col();
+  .flex-elem-fluid();
 	.flex-container-col();
 }
 
 .lineup-selector-wrapper {
   position: relative;
-  .flex-elem-fluid-col();
+  .flex-elem-fluid();
 }
 
 .lineup-actions-wrapper {
   .flex-container-row();
-  .flex-elem-fixed-col(70px);
+  .flex-elem-fixed(70px);
   padding: 7px;
   div {
-    .flex-elem-fluid-col();
+    .flex-elem-fluid();
     padding: 7px;
     button {
       .default-button();
@@ -107,7 +108,7 @@ lineup-field-selector {
 }
 
 .lineup-formation-selector-wrapper {
-  .flex-elem-fixed-col(36px);
+  .flex-elem-fixed(36px);
   position: relative;
   margin-left: auto;
   margin-right: 15px;
@@ -144,9 +145,9 @@ lineup-field-selector {
     outline: none;
   }
   .lineup-formation-dropdown-caret {
+    .mainfont_bold(12pt, @black);
     background-color: @white;
     position: relative;
-    .mainfont_bold(12pt, @black);
     border: 0;
     margin-bottom: 0;
     pointer-events: none;
@@ -160,6 +161,7 @@ lineup-field-selector {
   }
   
 }
+
 
 
 .lineup-field-selector {
@@ -186,46 +188,5 @@ lineup-field-selector {
 		.alert-red-numbers();
 	}
 	
-	#formationsPanelRoot {
-		width: 100%;
-		background-color: @tramaBlue;
-		.user-select(none);
-		
-		.formations-container{
-			.container-fluid();
-			padding: 10px 15px;
-			.opensans_bold(10pt, @blueUltraDark);
-			border-bottom: 1px solid @greyMed;
-			
-			.formation-element {
-				.make-xs-column(2.4);
-				padding: 0 3px;
-				
-				input[type="radio"] {
-					display: none;
-				}
-				input[type="radio"] + label {
-					width: 100%;
-					padding: 10px 0px;
-					text-align: center;
-
-					background-color: @blueLight;
-					.opensans_bold(10pt, @white);
-
-					border-radius: 5px;
-					cursor: pointer;
-					border: 1px solid transparent;
-					margin-bottom: 0;
-				}
-				input[type="radio"]:checked + label {
-					background-color: @white;
-					color: @greyDark;
-
-					border: 1px solid @greyDark;
-				}
-			}
-			
-		}
-	}
 
 }

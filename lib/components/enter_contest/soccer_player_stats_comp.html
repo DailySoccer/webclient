@@ -7,82 +7,75 @@
         <div class="soccer-player-pos-team">{{currentInfoData['fieldPos']}} | {{currentInfoData['team']}}</div>
         <div class="soccer-player-name">{{currentInfoData['name']}}</div>
       </div>
-      <button class="soccer-player-stats-header-button-add" ng-click="onAddClicked()" ng-disabled="!selectablePlayer">{{getLocalizedText("buttonadd")}}</button>
+      <div class="soccer-player-stats-header-button-add-wrapper">
+        <button class="soccer-player-stats-header-button-add" ng-click="onAddClicked()" ng-disabled="!selectablePlayer">{{getLocalizedText("buttonadd")}}</button>
+      </div>
     </div>
     <div class="soccer-player-stats-info">
-      <div class="soccer-player-fantasy-points"><span>{{getLocalizedText("dfp")}}</span><span>{{currentInfoData['fantasyPoints']}}</span></div>
-      <div class="soccer-player-matches"><span>{{getLocalizedText("matches")}}</span><span>{{currentInfoData['matchesCount']}}</span></div>
-      <div class="soccer-player-salary"><span>{{getLocalizedText("salary")}}</span><span>{{printableSalary}}</span></div>
+      <div class="soccer-player-stat-resume-item soccer-player-fantasy-points">{{currentInfoData['fantasyPoints']}}</div>
+      <div class="soccer-player-stat-resume-item soccer-player-matches">{{currentInfoData['matchesCount']}}</div>
+      <div class="soccer-player-stat-resume-item soccer-player-salary">{{printableSalary}}</div>
     </div>
   </div>
 </div>
   
 <div class="soccer-player-stats-content">
-    <!-- Nav tabs -->
-    <ul id="soccer-player-stats-tabs" class="soccer-player-stats-tabs" role="tablist">
-      <li id="seasonTab" class="active"><tab role="tab" data-toggle="tab" ng-click="tabChange('season-stats-tab-content')">{{getLocalizedText("seasondata")}}</tab></li>
-      <li id="matchTab" ><tab role="tab" data-toggle="tab" ng-click="tabChange('match-by-match-stats-tab-content')">{{getLocalizedText("matchbymatch")}}</tab></li>
-    </ul>
-
-    <div class="tabs">
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <!-- START BY-SEASON-STATS -->
-        <div class="tab-pane active" id="season-stats-tab-content">
-          <div class="next-match" ng-bind-html="currentInfoData['nextMatchEvent']"></div>
-          <!-- MEDIAS -->
-          <div class="season-header" ng-bind-html="getLocalizedText('seasonstats')"></div>
-          <div class="season-stats">
-              <div class="season-stats-row" ng-repeat="stat in seasonResumeStats"  data-toggle="tooltip" title="{{stat['helpInfo']}}">
-                  <div class="season-stats-header">{{stat['nombre']}}</div>
-                  <div class="season-stats-info">{{stat['valor']}}</div>
-              </div>
-              <div div class="season-stats-row" ng-if="seasonResumeStats.length % 2 != 0"  data-toggle="" title="">
-                  <div class="season-stats-header"></div>
-                  <div class="season-stats-info"></div>
-              </div>
-          </div>
-
+  <!-- Nav tabs -->
+  <div class="soccer-player-stats-tabs">
+    <input id="soccerPlayerStatsTabSeason" type="radio" name="soccerPlayerStatsTabs" value="season-stats-tab-content" ng-model="currentTab" checked>
+    <label for="soccerPlayerStatsTabSeason">{{getLocalizedText("seasondata")}}</label>
+    
+    <input id="soccerPlayerStatsTabPerMatch" type="radio" name="soccerPlayerStatsTabs" value="match-by-match-stats-tab-content" ng-model="currentTab">
+    <label for="soccerPlayerStatsTabPerMatch">{{getLocalizedText("matchbymatch")}}</label>
+    
+    <!--tab ng-click="tabChange('season-stats-tab-content')">{{getLocalizedText("seasondata")}}</tab>
+    <tab ng-click="tabChange('match-by-match-stats-tab-content')">{{getLocalizedText("matchbymatch")}}</tab-->
+  </div>
+  <!-- START BY-SEASON-STATS -->
+  <div class="soccer-player-stats-tab-pane" id="season-stats-tab-content" ng-class="{'active': currentTab =='season-stats-tab-content'}">
+    <!--div class="next-match" ng-bind-html="currentInfoData['nextMatchEvent']"></div>
+    <div class="season-header" ng-bind-html="getLocalizedText('seasonstats')"></div-->
+    <!-- MEDIAS -->
+    <div class="season-stats">
+        <div class="season-stats-row" ng-repeat="stat in seasonResumeStats"  data-toggle="tooltip" title="{{stat['helpInfo']}}">
+            <div class="season-stats-header">{{stat['nombre']}}</div>
+            <div class="season-stats-value">{{stat['valor']}}</div>
         </div>
-        <!-- END BY-SEASON-STATS -->
-        <!-- START BY-MATCH-STATS-->
-        <div class="tab-pane" id="match-by-match-stats-tab-content">
-          <div class="match-header">{{getUppercaseLocalizedText("matchbymatch")}}</div>
-          <div class="noMatchesPlayed" ng-class="{'hidden':currentInfoData['matchesCount'] > 0}">
-              <span>{{getLocalizedText("noseasonstats")}}</span>
-          </div>
-          <div class="match-stats-table-wrapper" ng-class="{'hidden':currentInfoData['matchesCount'] == 0}">
-            <!--HEADER-->
-            <table id="statsTable" class="table table-striped">
-              <thead class="stats-headings">
-                <tr>
-                  <th class="head-of-headings">{{getLocalizedText("season")}}</th> <!-- necesitamos una vacía -->
-                  <th class="stat-field-header" ng-repeat="item in seasonTableHeaders">{{item}}</th>
-                </tr>
-              </thead>
-              <tbody class="stats-rows">
-                <tr>
-                  <td ng-repeat="year in seasonsList" class="year-season">
-                    <div class="year">{{year['year']}}</div>
-                    <table class="match-stats-block" ng-repeat="stats in year['stats']">
-                      <tbody>
-                        <tr ng-repeat="stat in stats">
-                          <td class="match-block" ng-class="{'blue':$index == 1}">{{stat}} </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+        <div div class="season-stats-row" ng-if="seasonResumeStats.length % 2 != 0"  data-toggle="" title="">
+            <div class="season-stats-header"></div>
+            <div class="season-stats-value"></div>
         </div>
-        <!--END BY-MATCH-->
-      </div>
     </div>
+  </div>
+  <!-- END BY-SEASON-STATS -->
+  
+  <!-- START BY-MATCH-STATS-->
+  <div class="soccer-player-stats-tab-pane" id="match-by-match-stats-tab-content" ng-class="{'active': currentTab =='match-by-match-stats-tab-content'}">
+    <div class="noMatchesPlayed" ng-if="{currentInfoData['matchesCount'] == 0}">
+        <span>{{getLocalizedText("noseasonstats")}}</span>
+    </div>
+    
+    <div class="match-stats-table-wrapper" ng-if="{currentInfoData['matchesCount'] > 0}">
+      
+      <table class="table table-striped per-match-stats-table">
+          <tr class="per-match-stats-table-years-row">
+            <th></th>
+            <td ng-repeat="season in seasonsList" colspan="{{season['stats'].length}}">{{season['year']}}</td>
+          </tr>
+          <tr ng-repeat="item in seasonTableHeaders" class="per-match-stats-table-data-row">
+            <th class="per-match-stats-row-header">{{item.substring(0,3)}}</th>
+            <td ng-repeat="cell in perStatTypeData[$index]" class="per-match-stats-row-cell">
+              {{cell}}
+            </td>
+          </tr>
+      </table>
+      
+    </div>
+  </div>
+  <!--END BY-MATCH-->
 </div>
-<div class="actions-footer-xs">
+<!--div class="actions-footer-xs">
   <button class="button-cancel" data-dismiss="modal">{{getLocalizedText("buttoncancel")}}</button>
   <button class="button-add" ng-click="onAddClicked()" ng-disabled="!selectablePlayer">{{getLocalizedText("buttonadd")}}</button>
-</div>
+</div-->
 

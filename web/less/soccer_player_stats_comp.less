@@ -16,48 +16,148 @@
 soccer-player-stats {
   .flex-elem-fluid();
   .flex-container-col();
+  text-transform: uppercase;
 }
+
+/********************************/
+/*********** HEADER *************/
+/********************************/
+
 .soccer-player-stats-header {
   .flex-elem-fixed(110px);
   .flex-container-row();
   background-color: @soft-black;
 	.mainfont_light(12pt, @white);
+  border-bottom: 2px solid @grey-translucid;
 }
 .soccer-player-stats-header-tshirt {
   .flex-elem-fixed(70px);
-  margin-left: -10px
-  padding-top: 20px;
+  margin-right: -10px;
+  padding-top: 10px;
   overflow: hidden;
   img {
-    width: 100px;
+    width: 120px;
     position: relative;
     right: 0;
-    left: -30px;
+    left: -38px;
   }
 }
 .soccer-player-stats-header-data {
   .flex-elem-fluid();
   .flex-container-col();
 }
+
 .soccer-player-stats-header-description {
   .flex-elem-fixed(65px);
+  .flex-container-row();
+	padding: 10px 15px 5px 15px;
+  
   border-bottom: 1px solid @grey-translucid;
-	.mainfont_light(5pt, @white);
+  
+  .soccer-player-name-team {
+    .flex-elem-fluid();
+    .soccer-player-pos-team {
+      .mainfont_light(10pt, @grey-bluish);
+    }
+    .soccer-player-name {
+      .mainfont_light(18pt, @white);
+      white-space: nowrap;
+      overflow: hidden;
+      margin-right: 10px;
+    }
+  }
+  .soccer-player-stats-header-button-add {
+    .flex-elem-fixed(130px);
+    .default-button();
+  }
 }
 .soccer-player-stats-info {
   .flex-elem-fixed(40px);
-	.mainfont_light(0pt, @white);
+  .flex-container-row();
+	padding: 10px 30px 5px 20px;
+  
+  .soccer-player-stat-resume-item {
+    .flex-elem-fluid();
+    .mainfont_light(16pt, @grey-bluish);
+  }
+  .soccer-player-fantasy-points {
+    text-align: left;
+  }
+  .soccer-player-matches {
+    text-align: center;
+  }
+  .soccer-player-salary {
+    color: @orange;
+    text-align: right;
+  }
 }
 
-
+/********************************/
+/*********** CONTENT ************/
+/********************************/
 
 .soccer-player-stats-content {
   .flex-elem-fluid();
+  .flex-container-col();
 }
 
+.soccer-player-stats-tabs {
+  .flex-elem-fixed(40px);
+  .flex-container-row();
+  background-color: @soft-black;
+  
+  input {
+    display: none;
+  }
+  input + label {
+    .flex-elem-fluid();
+    .mainfont_light(10pt, @grey-bluish);
+	  padding: 15px 10px 7px 10px;
+    margin: 0 0 1px 0;
+    text-align: center;
+  }
+  input:checked + label {
+    color: @white;
+    border-bottom: 2px solid @white;
+  }
+}
+.soccer-player-stats-tab-pane {
+  background-color: @white;
+  .flex-elem-fluid();
+}
 
+.soccer-player-stats-tab-pane {
+  display: none;
+}
+.soccer-player-stats-tab-pane.active {
+  display: block;
+}
+.soccer-player-stats-tab-pane {
+  .mainfont_light(8pt, @grey-bluish);
+  .season-stats {
+    
+  }
+  .season-stats-row {
+    border: 1px solid red;
+  }
+  .season-stats-header{
+    .mainfont_bold(10pt, @grey-bluish);
+    border: 1px solid blue;
+  }
+  .season-stats-value {
+    .mainfont_light(10pt, @grey-bluish);
+    border: 1px solid green;
+  }
+  /*  .season-stats-row
+        .season-stats-header
+        .season-stats-info*/
+}
 
+/************* SOCCER PLAYER STATS ****************/
 
+.match-stats-table-wrapper {
+  
+}
 
 
 

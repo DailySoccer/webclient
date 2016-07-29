@@ -31,8 +31,13 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
   List<Map> seasonResumeStats = [];
   List seasonTableHeaders = [];
   List seasonsList = [];
+  List perStatTypeData = [];
+  
+  List<List<String>> matchByMatchTable = [];
 
   Map currentInfoData;
+  
+  String currentTab = "season-stats-tab-content";
 
   String _instanceSoccerPlayerId = null;
   @NgOneWay("instance-soccer-player-id")
@@ -111,7 +116,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
   String getUppercaseLocalizedText(String key) {
     return getLocalizedText(key).toUpperCase();
   }
-  String get imgSoccerTeam => currentInfoData != null ? "images/team-shirts/${currentInfoData['shortTeam']}.png" : "";
+  String get imgSoccerTeam => currentInfoData != null ? "images/team-shirts/${currentInfoData['shortTeam']}_XL.png" : "";
 
   SoccerPlayerStatsComp(this._flashMessage, this.scrDet, this._soccerPlayerService, RouteProvider routeProvider, Router router, this._rootElement) {
     contestId = routeProvider.route.parent.parameters.containsKey("contestId") ? routeProvider.route.parent.parameters["contestId"] : null;
@@ -249,7 +254,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
     if (_instanceSoccerPlayer == null) {
       return;
     }
-
+    
     seasonResumeStats.clear();
     seasonsList.clear();
     seasonTableHeaders = [
@@ -300,6 +305,8 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
       initializePlayerStats();
       calculateSeasonStats();
       calculateSeasonResumeStats();
+      buildPerStatTypeTable();
+      
   }
 
   void calculateSeasonStats() {
@@ -345,6 +352,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
       seasonsList = [];
     }
   }
+  
 
   void calculateSeasonResumeStats() {
       // Añadimos las especificas del portero
@@ -368,6 +376,24 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
     if (LItabName != null) {
       querySelectorAll('#soccer-player-stats-tabs li').classes.remove('active');
       querySelector('#' + LItabName).classes.add("active");
+    }
+  }
+  
+  void buildPerStatTypeTable() {
+    perStatTypeData = [];
+
+    for(var i = 0; i < seasonTableHeaders.length; i++) {
+      List row = new List();
+      perStatTypeData.add(row);
+      
+      for(var y = 0; y < seasonsList.length; y++) {
+        var yearStats = seasonsList[y]['stats'];
+        
+        for(var d = 0; d < yearStats.length; d++) {
+          var stat = yearStats[d];
+          row.add(stat[i]);
+        }
+      }
     }
   }
 

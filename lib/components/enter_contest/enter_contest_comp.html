@@ -37,7 +37,7 @@
     <div class="limit-salary"><span class="limit-salary-label">Límite </span><span class="limit-salary-amount">60.000</span></div>
   </div>
 </section>
-<section class="soccer-player-list-section" ng-show="isSelectingSoccerPlayerActive">
+<section class="soccer-player-list-section" ng-if="isSelectingSoccerPlayerActive">
   <soccer-players-scalinglist soccer-players="allSoccerPlayers"
                               lineup-filter="lineupSlots"
                               manager-level="playerManagerLevel"

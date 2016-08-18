@@ -41,7 +41,7 @@
             <div class="season-stats-header">{{stat['nombre']}}</div>
             <div class="season-stats-value">{{stat['valor']}}</div>
         </div>
-        <div div class="season-stats-row" ng-if="seasonResumeStats.length % 2 != 0"  data-toggle="" title="">
+        <div class="season-stats-row" ng-if="seasonResumeStats.length % 2 != 0"  data-toggle="" title="">
             <div class="season-stats-header"></div>
             <div class="season-stats-value"></div>
         </div>
@@ -51,25 +51,36 @@
   
   <!-- START BY-MATCH-STATS-->
   <div class="soccer-player-stats-tab-pane" id="match-by-match-stats-tab-content" ng-class="{'active': currentTab =='match-by-match-stats-tab-content'}">
-    <div class="noMatchesPlayed" ng-if="{currentInfoData['matchesCount'] == 0}">
+    <div class="noMatchesPlayed" ng-if="!hasPlayedMatches">
         <span>{{getLocalizedText("noseasonstats")}}</span>
     </div>
     
-    <div class="match-stats-table-wrapper" ng-if="{currentInfoData['matchesCount'] > 0}">
+    <div class="match-stats-table-wrapper" ng-if="hasPlayedMatches">
       
-      <table class="table table-striped per-match-stats-table">
-          <tr class="per-match-stats-table-years-row">
-            <th></th>
-            <td ng-repeat="season in seasonsList" colspan="{{season['stats'].length}}">{{season['year']}}</td>
-          </tr>
-          <tr ng-repeat="item in seasonTableHeaders" class="per-match-stats-table-data-row">
-            <th class="per-match-stats-row-header">{{item.substring(0,3)}}</th>
-            <td ng-repeat="cell in perStatTypeData[$index]" class="per-match-stats-row-cell">
-              {{cell}}
-            </td>
-          </tr>
-      </table>
-      
+      <div class="per-match-stats-headers-table-wrapper">
+        <table class="table table-striped per-match-stats-headers-table">
+            <tr class="per-match-stats-table-years-row">
+              <th class="per-match-stats-row-header">&nbsp;</th>
+            </tr>
+            <tr ng-repeat="item in seasonTableHeaders" class="per-match-stats-table-data-row">
+              <th class="per-match-stats-row-header">{{item.substring(0,3)}}</th>
+            </tr>
+        </table>
+      </div>
+      <div class="per-match-stats-table-wrapper">
+        <table class="table table-striped per-match-stats-table">
+            <tr class="per-match-stats-table-years-row">
+              <!--th class="per-match-stats-row-header"></th-->
+              <td ng-repeat="season in seasonsList" colspan="{{season['stats'].length}}" class="start-year-column">{{season['year']}}</td>
+            </tr>
+            <tr ng-repeat="item in seasonTableHeaders" class="per-match-stats-table-data-row">
+              <!--th class="per-match-stats-row-header">{{item.substring(0,3)}}</th-->
+              <td ng-repeat="cell in perStatTypeData[$index]" class="per-match-stats-row-cell" ng-class="{'start-year-column': cell['isNewYear']}">
+                {{cell['data']}}
+              </td>
+            </tr>
+        </table>
+      </div>
     </div>
   </div>
   <!--END BY-MATCH-->

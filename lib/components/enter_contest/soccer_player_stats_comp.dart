@@ -36,6 +36,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
   List<List<String>> matchByMatchTable = [];
 
   Map currentInfoData;
+  bool get hasPlayedMatches => currentInfoData == null? false : currentInfoData['matchesCount'] != null && currentInfoData['matchesCount'] != 0;
   
   String currentTab = "season-stats-tab-content";
 
@@ -88,25 +89,25 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
     getCodeData("keyyellowcards"),
     getCodeData("keyredcards")
   ];
-
+  
   Map get mappedFieldNames => {
-    getCodeData("keypasses")          : {"shortName" : getCodeData("abrevpasses"),        "description" : getCodeData("descpasses")},
-    getCodeData("keyrecovers")        : {"shortName" : getCodeData("abrevrecovers"),      "description" : getCodeData("descrecovers")},
-    getCodeData("keyposslost")        : {"shortName" : getCodeData("abrevposslost"),      "description" : getCodeData("descposslost")},
-    getCodeData("keyfoulscommited")   : {"shortName" : getCodeData("abrevfoulscommited"), "description" : getCodeData("descfoulscommited")},
-    getCodeData("keyyellowcards")     : {"shortName" : getCodeData("abrevyellowcards"),   "description" : getCodeData("descyellowcards")},
-    getCodeData("keyredcards")        : {"shortName" : getCodeData("abrevredcards"),      "description" : getCodeData("descredcards")},
-    getCodeData("keygoalsconceded")   : {"shortName" : getCodeData("abrevgoalsconceded"), "description" : getCodeData("descgoalsconceded")},
-    getCodeData("keysaves")           : {"shortName" : getCodeData("abrevsaves"),         "description" : getCodeData("descsaves")},
-    getCodeData("keyclearances")      : {"shortName" : getCodeData("abrevclearances"),    "description" : getCodeData("descclearances")},
-    getCodeData("keypenaltiessaved")  : {"shortName" : getCodeData("abrevpenaltiessaved"),"description" : getCodeData("descpenaltiessaved")},
-    getCodeData("keygoals")           : {"shortName" : getCodeData("abrevgoals"),         "description" : getCodeData("descgoals")},
-    getCodeData("keyshots")           : {"shortName" : getCodeData("abrevshots"),         "description" : getCodeData("descshots")},
-    getCodeData("keychancescreated")  : {"shortName" : getCodeData("abrevchancescreated"),"description" : getCodeData("descchancescreated")},
-    getCodeData("keytakeons")         : {"shortName" : getCodeData("abrevtakeons") ,      "description" : getCodeData("desctakeons") },
-    getCodeData("keyfoulsconceded")   : {"shortName" : getCodeData("abrevfoulsconceded"), "description" : getCodeData("descfoulsconceded")}
-  };
-
+        getCodeData("keypasses")          : {"shortName" : getCodeData("abrevpasses"),        "description" : getCodeData("descpasses")},
+        getCodeData("keyrecovers")        : {"shortName" : getCodeData("abrevrecovers"),      "description" : getCodeData("descrecovers")},
+        getCodeData("keyposslost")        : {"shortName" : getCodeData("abrevposslost"),      "description" : getCodeData("descposslost")},
+        getCodeData("keyfoulscommited")   : {"shortName" : getCodeData("abrevfoulscommited"), "description" : getCodeData("descfoulscommited")},
+        getCodeData("keyyellowcards")     : {"shortName" : getCodeData("abrevyellowcards"),   "description" : getCodeData("descyellowcards")},
+        getCodeData("keyredcards")        : {"shortName" : getCodeData("abrevredcards"),      "description" : getCodeData("descredcards")},
+        getCodeData("keygoalsconceded")   : {"shortName" : getCodeData("abrevgoalsconceded"), "description" : getCodeData("descgoalsconceded")},
+        getCodeData("keysaves")           : {"shortName" : getCodeData("abrevsaves"),         "description" : getCodeData("descsaves")},
+        getCodeData("keyclearances")      : {"shortName" : getCodeData("abrevclearances"),    "description" : getCodeData("descclearances")},
+        getCodeData("keypenaltiessaved")  : {"shortName" : getCodeData("abrevpenaltiessaved"),"description" : getCodeData("descpenaltiessaved")},
+        getCodeData("keygoals")           : {"shortName" : getCodeData("abrevgoals"),         "description" : getCodeData("descgoals")},
+        getCodeData("keyshots")           : {"shortName" : getCodeData("abrevshots"),         "description" : getCodeData("descshots")},
+        getCodeData("keychancescreated")  : {"shortName" : getCodeData("abrevchancescreated"),"description" : getCodeData("descchancescreated")},
+        getCodeData("keytakeons")         : {"shortName" : getCodeData("abrevtakeons") ,      "description" : getCodeData("desctakeons") },
+        getCodeData("keyfoulsconceded")   : {"shortName" : getCodeData("abrevfoulsconceded"), "description" : getCodeData("descfoulsconceded")}
+      };
+  
   static String getCodeData(String key) {
     return StringUtils.translate(key, "soccerplayerstats");
   }
@@ -362,7 +363,9 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
                               });
 
       _totalSums.keys.forEach((key) {
-         seasonResumeStats.add({'nombre' : mappedFieldNames[key]["shortName"], 'valor' : calculateStatAverage(key), 'helpInfo': mappedFieldNames[key]["description"]});
+         seasonResumeStats.add({'nombre' : mappedFieldNames[key]["shortName"],
+                                'valor' : calculateStatAverage(key),
+                                'helpInfo': mappedFieldNames[key]["description"]});
       });
   }
 
@@ -391,7 +394,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
         
         for(var d = 0; d < yearStats.length; d++) {
           var stat = yearStats[d];
-          row.add(stat[i]);
+          row.add({'data': stat[i], 'isNewYear': d == 0});
         }
       }
     }

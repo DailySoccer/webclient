@@ -84,7 +84,7 @@ class EnterContestComp implements DetachAware {
   
   String instanceSoccerPlayerDisplayInfo = null;
 
-  String _sectionActive = "";
+  String _sectionActive = LINEUP_FIELD_SELECTOR;
   void set sectionActive(String section) { 
     _sectionActive = section;
     switch(_sectionActive) {

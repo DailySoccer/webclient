@@ -1,0 +1,109 @@
+contests-list {
+	.flex-container-col();
+	background-color: @soft-black;
+	.contestDateSeparator {
+		.mainfont_bold(13pt, @orange, center, uppercase);
+		background-color: @grey-dark;
+		border-bottom: 3px solid @orange;
+		padding: 10px;
+	}
+	.contestSlot {
+		.flex-elem-fluid();
+		.flex-container-row();
+		background-color: @grey-dark;
+		border-bottom: 2px solid @black;
+		margin-bottom: 10px;
+		.special {
+			.flex-elem-fixed(100px);
+		}
+	}
+	.time-section {
+		.flex-elem-fixed(66px);
+		.contest-flag{
+			width:31px;
+			height:22px;
+			margin: 10px auto 5px auto;
+		}
+		.column-start-time {
+			.mainfont_bold(10pt, @grey-bluish, center, uppercase);
+			padding-bottom: 11px;
+		}
+	}
+	.name-section {
+		.flex-container-col();
+		.flex-elem-fluid();
+		.flex-container-content-centered();
+		.contest-name {
+			.mainfont_bold(13pt, @white, none, uppercase);
+		}
+		.contest-description {
+			.mainfont_bold(10pt, @grey-bluish);
+		}
+	}
+	.prize-section {
+		.make-flex-column-fixed(@size: 60px);
+		.prize-count {
+			.mainfont_bold(13pt, @white, none, uppercase);
+		}
+		.prize-description{
+			.mainfont_bold(10pt, @grey-bluish);
+		}
+	}
+	.price-section {
+		.make-flex-column-fixed(@size: 60px);
+		.price-count {
+			.mainfont_bold(13pt, @white, none, uppercase);
+		}
+		.price-description{
+			.mainfont_bold(10pt, @grey-bluish);
+		}
+	}
+	.action-section{
+		.make-flex-column-fixed(@size: 30px);
+		color: @white;
+	}	
+	.make-flex-column-fixed(@size: 50px) {
+		.flex-container-col();
+		.flex-elem-fixed(@size);
+		.flex-container-content-centered();
+	}
+	.fit-icon-size {
+		width: 15px;
+		height: 15px;
+		position: relative;
+		display: inline-block;
+		margin-left: 5px;
+		top: 1px;
+		/*@media (min-width: @screen-sm-min) {
+			float: right;
+			width: 27px;
+			height: 27px;
+			margin-left: 0px;
+			top: 0px;
+		}*/
+	}
+	.entry-fee-energy::after {
+		content: " ";
+		background-image: url("@{images}/icon-lightning-xs.png");
+		/*@media (min-width: @screen-sm-min) {
+			background-image: url("@{images}/icon-lightning-lg.png");
+		}*/
+		.fit-icon-size();
+	}		
+	.entry-fee-coin::after, .prize-coin::after {
+		content: " ";
+		background-image: url("@{images}/icon-coin-xs.png");
+		/*@media (min-width: @screen-sm-min) {
+			background-image: url("@{images}/icon-coin-lg.png");
+		}*/
+		.fit-icon-size();
+	}
+	.prize-managerpoints::after {
+		content: " ";
+		background-image: url("@{images}/icon-star-xs.png");
+		/*@media (min-width: @screen-sm-min) {
+			background-image: url("@{images}/icon-star-lg.png");
+		}*/
+		.fit-icon-size();
+	}
+}

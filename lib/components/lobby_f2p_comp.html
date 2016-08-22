@@ -11,13 +11,13 @@
   <!--week-calendar on-day-selected="onSelectedDayChange(day)" dates="dayList"></week-calendar-->
 
   <!-- Lista de concursos -->
-  <contests-list-f2p  id="activeContestList"
+  <contests-list  id="activeContestList"
                       contests-list="currentContestList"
                       on-action-click='onActionClick(contest)'
                       on-row-click="onRowClick(contest)"
                       action-button-title="'>'"
                       show-date="true">
-  </contests-list-f2p>
+  </contests-list>
   
   <!-- Punto de insercion de nuestra ruta hija contest-info (modal) -->
   <ng-view  ng-show="!loadingService.isLoading"></ng-view>

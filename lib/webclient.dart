@@ -59,7 +59,7 @@ import 'package:webclient/components/lobby_f2p_comp.dart';
 import 'package:webclient/components/home_comp.dart';
 import 'package:webclient/components/promos_comp.dart';
 import 'package:webclient/components/simple_promo_f2p_comp.dart';
-import 'package:webclient/components/contests_list_f2p_comp.dart';
+import 'package:webclient/components/contests_list_comp.dart';
 import 'package:webclient/components/contest_info_comp.dart';
 import 'package:webclient/components/scoring_rules_comp.dart';
 import 'package:webclient/components/contest_header_comp.dart';
@@ -208,7 +208,7 @@ class WebClientApp extends Module {
     bind(JoinComp);
     bind(LobbyF2PComp);
     bind(HomeComp);
-    bind(ContestsListF2PComp);
+    bind(ContestsListComp);
     bind(PromosComp);
     bind(SimplePromoF2PComp);
     bind(PaginatorComp);

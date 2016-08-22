@@ -492,9 +492,9 @@
     }
     ,"contestlist"                      :
     {
-      "entryfee"                        : "Precio:",
+      "entryfee"                        : "Precio",
       "of"                              : "DE",
-      "prize"                           : "Premio:",
+      "prize"                           : "Premio",
       "points"                          : "Puntos",
       "position"                        : "Puesto:",
       "today"                           : "Hoy",

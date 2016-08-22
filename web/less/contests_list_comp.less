@@ -13,9 +13,6 @@ contests-list {
 		background-color: @grey-dark;
 		border-bottom: 2px solid @black;
 		margin-bottom: 10px;
-		.special {
-			.flex-elem-fixed(100px);
-		}
 	}
 	.time-section {
 		.flex-elem-fixed(66px);
@@ -105,5 +102,47 @@ contests-list {
 			background-image: url("@{images}/icon-star-lg.png");
 		}*/
 		.fit-icon-size();
+	}
+
+
+
+	.contestSlot.special {
+		position: relative;
+		height: 135px;
+
+		.time-section {
+			.flex-elem-fixed(150px);
+			position: absolute;
+			display: block;
+			top: 10px;
+			left: 10px;
+			.contest-flag, .column-start-time{
+				display: inline-block;
+			}
+		}
+
+		.action-section,
+		.name-section .contest-name {
+			display: none !important;
+		}
+		.name-section {
+			text-align: right;
+			position: absolute;
+			right: 10px;
+			top: 10px;
+		}
+		.prize-section {
+			position: absolute;
+			margin-left: -150px;
+			left: 50%;
+			top: 90px;
+		}
+		.price-section {
+			position: absolute;
+			margin-right: 150px;
+			left: 50%;
+			top: 90px;
+		}
+
 	}
 }

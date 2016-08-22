@@ -112,10 +112,17 @@ class ContestsListComp {
   }
 
   String getContestMorfology(Contest contest) {
+    if(contest.hasSpecialImage) {
+      print("Concurso Especial: " + contest.name);
+    }
+    
     return contest.hasSpecialImage ? "special" : "normal";
   }
 
   String getContestImage(Contest contest) {
+    if(contest.hasSpecialImage) { 
+      return "special";
+    }
     return contest.hasSpecialImage ? contest.specialImage : "";
   }
 

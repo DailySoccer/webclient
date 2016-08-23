@@ -1,0 +1,41 @@
+modal-window {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.65);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  
+  &.hidden-window {
+    display: none;
+  }
+  
+}
+.modal-window-frame {
+  .flex-container-col();
+  .mainfont_light(10pt, @white);
+  background-color: @white;
+  margin: 16px 8px;
+}
+.modal-window-header {
+  .flex-elem-fixed(50px);
+  .flex-container-row();
+  background-color: @grey-dark;
+  background-image: url("@{images}/contest-header-bg.png");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 12px 8px;
+}
+.modal-window-title {
+  .flex-elem-fluid(1);
+  .mainfont_light(13pt, @white);
+  text-transform: uppercase;
+  padding: 2px 0;
+}
+.modal-window-close-btt {
+  .flex-elem-fixed(32px);
+  color: @white;
+  cursor: pointer;
+}
+

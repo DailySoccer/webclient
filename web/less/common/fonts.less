@@ -8,7 +8,7 @@
 	text-shadow: 1px 1px 1px rgba(red(@theColor), green(@theColor), blue(@theColor), 0.004);
 }
 
-.mainfont_bold(@theFontSize, @theFontColor:inherit, @align:none, @transform: none) {
+.mainfont_bold(@theFontSize, @theFontColor:inherit, @align:inherit, @transform: inherit) {
 	font-family: @mainFont;
 	font-weight: 700;
 	font-size: @theFontSize;
@@ -18,8 +18,25 @@
 	
 	.text_shadowing(@theFontColor);
 }
-.mainfont_light(@theFontSize, @theFontColor:inherit) {
+.mainfont_light(@theFontSize, @theFontColor:inherit, @align:inherit, @transform: inherit) {
 	font-family: @mainFont;
+	font-weight: 500;	
+	font-size: @theFontSize;
+	color: @theFontColor;
+	
+	.text_shadowing(@theFontColor);
+}
+
+.bodyfont_bold(@theFontSize, @theFontColor:inherit) {
+	font-family: @bodyFont;
+	font-weight: 700;
+	font-size: @theFontSize;
+	color: @theFontColor;
+	
+	.text_shadowing(@theFontColor);
+}
+.bodyfont_light(@theFontSize, @theFontColor:inherit) {
+	font-family: @bodyFont;
 	font-weight: 500;	
 	font-size: @theFontSize;
 	color: @theFontColor;

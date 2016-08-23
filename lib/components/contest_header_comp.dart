@@ -22,6 +22,22 @@ import 'package:logging/logging.dart';
 )
 class ContestHeaderComp implements DetachAware, ShadowRootAware {
 
+  @NgOneWay("contest")
+  void set setContest(Contest value) {
+    if (value != null) {
+      contest = value;
+    }
+  }
+
+  @NgOneWay("show-info-button")
+  bool showInfoButton = true;
+  
+  @NgOneWay("on-info-click")
+  Function onInfoClick = (){};
+  
+  
+  
+  
   ScreenDetectorService scrDet;
   bool showFilter = false;
 
@@ -40,15 +56,6 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
   @NgTwoWay("match-filter")
   String matchFilter = null;
   
-  @NgOneWay("contest")
-  void set setContest(Contest value) {
-    if (value != null) {
-      contest = value;
-
-      _refreshHeader();
-      _refreshCountdownDate();
-    }
-  }
 
   // Indica el nivel de información que se quiere mostrar (por defecto, si empty mostrará el estado en el que se encuentre el contest)
   @NgAttr('view-state')

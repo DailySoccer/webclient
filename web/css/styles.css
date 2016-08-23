@@ -6085,8 +6085,8 @@ OLD FONTS
   font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
-  text-transform: none;
-  text-align: none;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   padding: 10px;
   border: none;
@@ -6336,8 +6336,8 @@ contest-header .name-section .contest-name {
   font-weight: 700;
   font-size: 12pt;
   color: #ffffff;
-  text-transform: none;
-  text-align: none;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   text-transform: uppercase;
   flex: 1;
@@ -6347,8 +6347,8 @@ contest-header .name-section .contest-description {
   font-weight: 700;
   font-size: 10pt;
   color: #757993;
-  text-transform: none;
-  text-align: none;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
   flex: 1;
 }
@@ -6360,9 +6360,114 @@ contest-header .more-info {
   font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
-  text-transform: none;
-  text-align: none;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  cursor: pointer;
+}
+contest-header .more-info i {
+  cursor: pointer;
+}
+contest-header .prize-section {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  flex: 0 0 60px;
+  padding: 0 3px;
+  justify-content: center;
+  text-align: center;
+}
+contest-header .prize-section .prize-count {
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
+  font-size: 13pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+}
+contest-header .prize-section .prize-description {
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #757993;
+  text-transform: inherit;
+  text-align: inherit;
+  text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+}
+contest-header .price-section {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  flex: 0 0 50px;
+  padding: 0 3px;
+  justify-content: center;
+  text-align: center;
+}
+contest-header .price-section .price-count {
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
+  font-size: 13pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+}
+contest-header .price-section .price-description {
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #757993;
+  text-transform: inherit;
+  text-align: inherit;
+  text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+}
+contest-header .fit-icon-size {
+  width: 17px;
+  height: 17px;
+  position: relative;
+  display: inline-block;
+  margin-left: 5px;
+  top: 1px;
+}
+contest-header .entry-fee-energy::after {
+  content: " ";
+  background-image: url("../images/icon-lightning-xs.png");
+  width: 17px;
+  height: 17px;
+  position: relative;
+  display: inline-block;
+  margin-left: 5px;
+  top: 1px;
+}
+contest-header .entry-fee-coin::after,
+contest-header .prize-coin::after {
+  content: " ";
+  background-image: url("../images/icon-coin-xs.png");
+  width: 17px;
+  height: 17px;
+  position: relative;
+  display: inline-block;
+  margin-left: 5px;
+  top: 1px;
+}
+contest-header .prize-managerpoints::after {
+  content: " ";
+  background-image: url("../images/icon-star-xs.png");
+  width: 17px;
+  height: 17px;
+  position: relative;
+  display: inline-block;
+  margin-left: 5px;
+  top: 1px;
 }
 .lineup-selector-slot {
   display: block;
@@ -6386,8 +6491,8 @@ contest-header .more-info {
   font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
-  text-transform: none;
-  text-align: none;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   padding: 10px;
   border: none;
@@ -6428,8 +6533,8 @@ contest-header .more-info {
   font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
-  text-transform: none;
-  text-align: none;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   position: relative;
   text-align: center;
@@ -6450,8 +6555,8 @@ contest-header .more-info {
   font-weight: 700;
   font-size: 9pt;
   color: #fa9c19;
-  text-transform: none;
-  text-align: none;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16), 0 1px 2px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16), 0 1px 2px rgba(0, 0, 0, 0.3);
@@ -6746,8 +6851,8 @@ lineup-field-selector {
   font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
-  text-transform: none;
-  text-align: none;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   padding: 10px;
   border: none;
@@ -6781,8 +6886,8 @@ lineup-field-selector {
   font-weight: 700;
   font-size: 12pt;
   color: #ffffff;
-  text-transform: none;
-  text-align: none;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   text-transform: uppercase;
   position: relative;
@@ -6795,8 +6900,8 @@ lineup-field-selector {
   font-weight: 700;
   font-size: 12pt;
   color: #000000;
-  text-transform: none;
-  text-align: none;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
   background-color: #ffffff;
   border-radius: 1px;
@@ -6822,8 +6927,8 @@ lineup-field-selector {
   font-weight: 700;
   font-size: 12pt;
   color: #000000;
-  text-transform: none;
-  text-align: none;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
   background-color: #ffffff;
   position: relative;
@@ -6947,8 +7052,8 @@ contests-list .name-section .contest-description {
   font-weight: 700;
   font-size: 10pt;
   color: #757993;
-  text-transform: none;
-  text-align: none;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
 }
 contests-list .prize-section {
@@ -6976,8 +7081,8 @@ contests-list .prize-section .prize-description {
   font-weight: 700;
   font-size: 10pt;
   color: #757993;
-  text-transform: none;
-  text-align: none;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
 }
 contests-list .price-section {
@@ -7005,8 +7110,8 @@ contests-list .price-section .price-description {
   font-weight: 700;
   font-size: 10pt;
   color: #757993;
-  text-transform: none;
-  text-align: none;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
 }
 contests-list .action-section {
@@ -7096,6 +7201,64 @@ contests-list .prize-managerpoints::after {
 			margin-left: 0px;
 			top: 0px;
 		}*/
+}
+modal-window {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.65);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+modal-window.hidden-window {
+  display: none;
+}
+.modal-window-frame {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  font-size: 10pt;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  background-color: #ffffff;
+  margin: 16px 8px;
+}
+.modal-window-header {
+  flex: 0 0 50px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  background-color: #242529;
+  background-image: url("../images/contest-header-bg.png");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 12px 8px;
+}
+.modal-window-title {
+  flex: 1;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  font-size: 13pt;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  text-transform: uppercase;
+  padding: 2px 0;
+}
+.modal-window-close-btt {
+  flex: 0 0 32px;
+  color: #ffffff;
+  cursor: pointer;
 }
 #teamsPanelComp {
   margin-right: auto;
@@ -15196,8 +15359,8 @@ soccer-player-stats {
   font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
-  text-transform: none;
-  text-align: none;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   padding: 10px;
   border: none;
@@ -15327,8 +15490,8 @@ soccer-player-stats {
   font-weight: 700;
   font-size: 10pt;
   color: #757993;
-  text-transform: none;
-  text-align: none;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
   border: 1px solid #242529;
   padding: 5px 15px;
@@ -15380,8 +15543,8 @@ soccer-player-stats {
   font-weight: 700;
   font-size: 10pt;
   color: #757993;
-  text-transform: none;
-  text-align: none;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
 }
 .per-match-stats-table-data-row:nth-child(2) {
@@ -15389,8 +15552,8 @@ soccer-player-stats {
   font-weight: 700;
   font-size: 8pt;
   color: #757993;
-  text-transform: none;
-  text-align: none;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
   border-top: 1px solid #757993;
 }
@@ -15399,8 +15562,8 @@ soccer-player-stats {
   font-weight: 700;
   font-size: 8pt;
   color: #0d75a6;
-  text-transform: none;
-  text-align: none;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
 }
 /*#modalSoccerPlayerStats {	
@@ -15741,7 +15904,8 @@ enter-contest {
   background-color: #000000;
 }
 .lineup-selector-section,
-.soccer-player-list-section {
+.soccer-player-list-section,
+.contest-info-section {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -15750,6 +15914,9 @@ enter-contest {
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
   flex: 1;
+}
+.contest-info-section {
+  background-color: #ffffff;
 }
 .lineup-selector-section contest-header {
   flex: 0 0 55px;
@@ -15780,8 +15947,8 @@ enter-contest {
   font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
-  text-transform: none;
-  text-align: none;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   padding: 10px;
   border: none;

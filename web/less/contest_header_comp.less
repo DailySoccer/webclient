@@ -27,5 +27,61 @@ contest-header {
     padding: 6px 0 0 0;
     text-align: right;
     .mainfont_bold(10pt, @white);
+    cursor: pointer;
+    i {
+      cursor: pointer;
+    }
+  }
+  .prize-section {
+    .flex-container-col();
+    .flex-elem-fixed(60px);
+    padding: 0 3px;
+    .flex-container-content-centered();
+    text-align: center;
+    
+    .prize-count {
+      .mainfont_bold(13pt, @white, center, uppercase);
+    }
+    .prize-description{
+      .mainfont_bold(10pt, @grey-bluish);
+    }
+  }
+  .price-section {
+    .flex-container-col();
+    .flex-elem-fixed(50px);
+    padding: 0 3px;
+    .flex-container-content-centered();
+    text-align: center;
+
+    .price-count {
+      .mainfont_bold(13pt, @white, center, uppercase);
+    }
+    .price-description{
+      .mainfont_bold(10pt, @grey-bluish);
+    }
+  }
+  .fit-icon-size {
+    width: 17px;
+    height: 17px;
+    position: relative;
+    display: inline-block;
+    margin-left: 5px;
+    top: 1px;
+  }
+  .entry-fee-energy::after {
+    content: " ";
+    background-image: url("@{images}/icon-lightning-xs.png");
+    .fit-icon-size();
+  }		
+  .entry-fee-coin::after,
+  .prize-coin::after {
+    content: " ";
+    background-image: url("@{images}/icon-coin-xs.png");
+    .fit-icon-size();
+  }
+  .prize-managerpoints::after {
+    content: " ";
+    background-image: url("@{images}/icon-star-xs.png");
+    .fit-icon-size();
   }
 }

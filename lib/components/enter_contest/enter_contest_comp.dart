@@ -58,6 +58,7 @@ class EnterContestComp implements DetachAware {
   static const String LINEUP_FIELD_SELECTOR = "LINEUP_FIELD_SELECTOR";
   static const String SELECTING_SOCCER_PLAYER = "SELECTING_SOCCER_PLAYER";
   static const String SOCCER_PLAYER_STATS = "SOCCER_PLAYER_STATS";
+  static const String CONTEST_INFO = "CONTEST_INFO";
 
   ScreenDetectorService scrDet;
   LoadingService loadingService;
@@ -100,6 +101,10 @@ class EnterContestComp implements DetachAware {
         _appStateService.appTopBarState.configParameters['title'] = "Estadísticas";
         _appStateService.appTopBarState.configParameters['leftColumnClick'] = cancelPlayerDetails;
       break;
+      case CONTEST_INFO:
+        _appStateService.appTopBarState.configParameters['title'] = "Detalles del torneo";
+        _appStateService.appTopBarState.configParameters['leftColumnClick'] = cancelContestDetails;
+      break;
     }
   }
   String get sectionActive => _sectionActive;
@@ -107,6 +112,7 @@ class EnterContestComp implements DetachAware {
   bool get isLineupFieldSelectorActive => sectionActive == LINEUP_FIELD_SELECTOR;
   bool get isSelectingSoccerPlayerActive => sectionActive == SELECTING_SOCCER_PLAYER;
   bool get isSoccerPlayerStatsActive => sectionActive == SOCCER_PLAYER_STATS;
+  bool get isContestInfoActive => sectionActive == CONTEST_INFO;
   
   InstanceSoccerPlayer selectedInstanceSoccerPlayer;
 
@@ -200,9 +206,9 @@ class EnterContestComp implements DetachAware {
     
 
     _appStateService.appTopBarState.activeState = AppTopBarState.SUBSECTION_CONFIG;
-    _appStateService.appTopBarState.configParameters['title'] = "Crear alineación";
     _appStateService.appSecondaryTabBarState.tabList = [];
     _appStateService.appTabBarState.show = false;
+    sectionActive = LINEUP_FIELD_SELECTOR;
     
     loadingService.isLoading = true;
 
@@ -843,7 +849,15 @@ class EnterContestComp implements DetachAware {
     }
     return true;
   }
+  
+  void onContestInfoClick() {
+    sectionActive = CONTEST_INFO;
+  }
 
+  void cancelContestDetails() {
+    sectionActive = LINEUP_FIELD_SELECTOR;
+    //scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('#mainAppMenu').offsetHeight, ignoreInDesktop: true);
+  }
   void cancelPlayerSelection() {
     sectionActive = LINEUP_FIELD_SELECTOR;
     //scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('#mainAppMenu').offsetHeight, ignoreInDesktop: true);

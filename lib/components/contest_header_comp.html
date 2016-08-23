@@ -2,5 +2,16 @@
   <div class="contest-name">{{contest.name}}</div>
   <div class="contest-description">{{contest.description}}</div>
 </div>
+<div class="more-info" ng-show="showInfoButton" ng-click="onInfoClick()"><i class="material-icons">&#xE88F;</i></div>
 
-<div class="more-info"><i class="material-icons">&#xE88F;</i></div>
+<!-- precio -->
+<div class="prize-section" ng-show="!showInfoButton">
+  <div class="prize-count" ng-class="{'prize-coin':getContestCoinIcon(getPrizeToShow()) == 'gold', 'prize-managerpoints':getContestCoinIcon(getPrizeToShow()) == 'manager'}">{{getPrizeToShow()}}</div>
+  <div class="prize-description">{{getLocalizedText("prize")}}</div>
+</div>
+
+<!-- premio -->
+<div class="price-section" ng-show="!showInfoButton" ng-if="!(contest.isLive || contest.isHistory)">
+  <span class="price-count" ng-class="{'entry-fee-coin': getContestCoinIcon(contest.entryFee) == 'gold', 'entry-fee-energy':getContestCoinIcon(contest.entryFee) == 'energy'}">{{contest.entryFee}}</span>
+  <span class="price-description">{{getLocalizedText("entryfee")}}</span>
+</div>

@@ -4,6 +4,7 @@
                   contest-id="contestId" 
                   view-state="ACTIVE" 
                   show-matches="false" 
+                  on-info-click="onContestInfoClick"
                   ng-if="contest != null"></contest-header>
   
   <!--div class="button-wrapper-block" ng-if="isSelectingSoccerPlayer && scrDet.isXsScreen">
@@ -27,7 +28,8 @@
                          manager-level="playerManagerLevel"
                          lineup-slots="lineupSlots"
                          on-lineup-slot-selected="onLineupSlotSelected(slotIndex)"
-                         on-lineup-slot-selected="onLineupSlotSelected(slotIndex)"
+                         on-lineup-clear-request="resetLineup()"
+                         on-automatic-lineup-request="onLineupSlotSelected(slotIndex)"
                          formation-id="formationId"
                          lineup-formation="lineupFormation"></lineup-field-selector>
   <div class="contest-id">ID: {{contest.contestId.toUpperCase()}}</div>
@@ -51,6 +53,15 @@
   <soccer-player-stats contest-id="contest.contestId" instance-soccer-player-id="instanceSoccerPlayerDisplayInfo" selectable-player="false"></soccer-player-stats>
 </section>
 
-<modal-window show-window="true">
-  <ng-view></ng-view>
-</modal-window>
+<!--modal-window show-window="true" title="'Detalles del Torneo'"-->
+<section class="contest-info-section" ng-show="isContestInfoActive">
+  <contest-header id="contestHeader" 
+                  contest="contest" 
+                  contest-id="contestId" 
+                  view-state="ACTIVE" 
+                  show-matches="false" 
+                  show-info-button="false"
+                  ng-if="contest != null"></contest-header>
+  <contest-info></contest-info>
+</section>
+<!--/modal-window-->

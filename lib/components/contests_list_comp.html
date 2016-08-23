@@ -1,15 +1,16 @@
 <div ng-repeat="contest in currentContestList.elements track by contest.contesId">
+    <!-- Separador de fecha -->
     <div class="contestDateSeparator" ng-if="idDifferentDate($index)">
       <span>{{dateSeparatorText(contest.startDate)}}</span>
     </div>
-    
-    <div class="contestSlot" ng-class="{'special': getContestMorfology(contest) == 'special', 'real': getContestTypeIcon(contest) == 'real', 'virtual': getContestTypeIcon(contest) != 'real'}" ng-click="onRow(contest)">
+    <!-- Slot de Concurso -->
+    <div class="contestSlot" ng-class="{'special': getContestMorfology(contest) == 'special', 'real': getContestTypeIcon(contest) == 'real', 'virtual': getContestTypeIcon(contest) != 'real'}" ng-click="onRow(contest)"
+    ng-style="{'background-image':'url({{getContestImage(contest)}})'}">
       <!-- bandera y Hora -->
       <div class="time-section">
         <div class="contest-flag" ng-class="getSourceFlag(contest)"></div>
         <div class="column-start-time">
           <div class="column-start-hour" ng-class="{'start-soon' : isSoon(contest.startDate)}" ng-bind-html="timeInfo(contest.startDate, !contest.isHistory)"></div>
-          <!--div class="column-start-date" ng-if="showDate && !isSoon(contest.startDate)" ng-bind-html="dateInfo(contest.startDate, !contest.isHistory)"></div-->
         </div>
       </div>
       <!-- nombre y descripción -->
@@ -24,13 +25,15 @@
       </div>
       <!-- premio -->
       <div class="price-section" ng-if="!(contest.isLive || contest.isHistory)">
-        <span class="price-count" ng-class="{'entry-fee-coin': getContestCoinIcon(contest.entryFee) == 'gold', 'entry-fee-energy':getContestCoinIcon(contest.entryFee) == 'energy'}">{{contest.entryFee}}</span>
-        <span class="price-description">{{getLocalizedText("entryfee")}}</span>
+        <div class="price-count" ng-class="{'entry-fee-coin': getContestCoinIcon(contest.entryFee) == 'gold', 'entry-fee-energy':getContestCoinIcon(contest.entryFee) == 'energy'}">{{contest.entryFee}}</div>
+        <div class="price-description">{{getLocalizedText("entryfee")}}</div>
       </div>
+      <!-- Flechita call to action --->
       <div class="action-section" ng-click="onAction(contest, $event)">
         <i class="material-icons">&#xE5CC;</i>
       </div>
-    </div>    
+    </div> 
+       
 </div>
 
 <div class="loading-row" ng-if="!currentContestList.isFullList">

@@ -3,7 +3,6 @@ contests-list {
 	background-color: @soft-black;
 	.contestDateSeparator {
 		.mainfont_bold(13pt, @orange, center, uppercase);
-		background-color: @grey-dark;
 		border-bottom: 3px solid @orange;
 		padding: 10px;
 	}
@@ -109,7 +108,8 @@ contests-list {
 	.contestSlot.special {
 		position: relative;
 		height: 135px;
-
+    	background-size: cover;
+    	background-position: center;
 		.time-section {
 			.flex-elem-fixed(150px);
 			position: absolute;
@@ -118,6 +118,12 @@ contests-list {
 			left: 10px;
 			.contest-flag, .column-start-time{
 				display: inline-block;
+				color: @white;
+			}
+			.column-start-time {
+				bottom: 10px;
+				left: 10px;
+    			position: relative;
 			}
 		}
 
@@ -128,21 +134,45 @@ contests-list {
 		.name-section {
 			text-align: right;
 			position: absolute;
-			right: 10px;
-			top: 10px;
+			right: 15px;
+			top: 24px;
+			color: @white;
+			.contest-description {
+				color: @white;
+			}
+		}
+		.prize-section, .price-section {
+			.flex-container-row();
+			position: absolute;
+			left: 50%;
+			top: 90px;
+			background-image: url('../images/special_contest_inner_box.png');
+			width: 106px;
+			text-align: center;
+
+			.prize-count, .price-count {
+				order: 2;
+				color: @orange;
+				padding: 5px 10px;
+
+			}
+			.prize-description, .price-description {
+				order: 1;
+				color: @white;
+				top: 3px;
+    			position: relative;
+    			padding: 5px 10px;
+			}
 		}
 		.prize-section {
-			position: absolute;
-			margin-left: -150px;
-			left: 50%;
-			top: 90px;
+			margin-left: -115px;
 		}
 		.price-section {
-			position: absolute;
-			margin-right: 150px;
-			left: 50%;
-			top: 90px;
+			margin-left: 9px;
 		}
-
+		.prize-count, .price-count, .prize-description, .price-description {
+			
+			
+		}
 	}
 }

@@ -94,7 +94,6 @@ class ContestsListComp {
         ret += "flag-icon-es";
       break;
     }
-
     return ret;
   }
 
@@ -120,10 +119,7 @@ class ContestsListComp {
   }
 
   String getContestImage(Contest contest) {
-    if(contest.hasSpecialImage) { 
-      return "special";
-    }
-    return contest.hasSpecialImage ? contest.specialImage : "";
+    return contest.hasSpecialImage ? "images/promos/" + contest.specialImage : "";
   }
 
   // Date info

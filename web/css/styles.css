@@ -6989,7 +6989,6 @@ contests-list .contestDateSeparator {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
-  background-color: #242529;
   border-bottom: 3px solid #fa9c19;
   padding: 10px;
 }
@@ -7005,9 +7004,6 @@ contests-list .contestSlot {
   background-color: #242529;
   border-bottom: 2px solid #000000;
   margin-bottom: 10px;
-}
-contests-list .contestSlot .special {
-  flex: 0 0 100px;
 }
 contests-list .time-section {
   flex: 0 0 66px;
@@ -7202,6 +7198,83 @@ contests-list .prize-managerpoints::after {
 			top: 0px;
 		}*/
 }
+contests-list .contestSlot.special {
+  position: relative;
+  height: 135px;
+  background-size: cover;
+  background-position: center;
+}
+contests-list .contestSlot.special .time-section {
+  flex: 0 0 150px;
+  position: absolute;
+  display: block;
+  top: 10px;
+  left: 10px;
+}
+contests-list .contestSlot.special .time-section .contest-flag,
+contests-list .contestSlot.special .time-section .column-start-time {
+  display: inline-block;
+  color: #ffffff;
+}
+contests-list .contestSlot.special .time-section .column-start-time {
+  bottom: 10px;
+  left: 10px;
+  position: relative;
+}
+contests-list .contestSlot.special .action-section,
+contests-list .contestSlot.special .name-section .contest-name {
+  display: none !important;
+}
+contests-list .contestSlot.special .name-section {
+  text-align: right;
+  position: absolute;
+  right: 15px;
+  top: 24px;
+  color: #ffffff;
+}
+contests-list .contestSlot.special .name-section .contest-description {
+  color: #ffffff;
+}
+contests-list .contestSlot.special .prize-section,
+contests-list .contestSlot.special .price-section {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  position: absolute;
+  left: 50%;
+  top: 90px;
+  background-image: url('../images/special_contest_inner_box.png');
+  width: 106px;
+  text-align: center;
+}
+contests-list .contestSlot.special .prize-section .prize-count,
+contests-list .contestSlot.special .price-section .prize-count,
+contests-list .contestSlot.special .prize-section .price-count,
+contests-list .contestSlot.special .price-section .price-count {
+  order: 2;
+  color: #fa9c19;
+  padding: 5px 10px;
+}
+contests-list .contestSlot.special .prize-section .prize-description,
+contests-list .contestSlot.special .price-section .prize-description,
+contests-list .contestSlot.special .prize-section .price-description,
+contests-list .contestSlot.special .price-section .price-description {
+  order: 1;
+  color: #ffffff;
+  top: 3px;
+  position: relative;
+  padding: 5px 10px;
+}
+contests-list .contestSlot.special .prize-section {
+  margin-left: -115px;
+}
+contests-list .contestSlot.special .price-section {
+  margin-left: 9px;
+}
 modal-window {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.65);
@@ -7225,6 +7298,8 @@ modal-window.hidden-window {
   font-weight: 500;
   font-size: 10pt;
   color: #ffffff;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: #ffffff;
   margin: 16px 8px;
@@ -7251,6 +7326,8 @@ modal-window.hidden-window {
   font-weight: 500;
   font-size: 13pt;
   color: #ffffff;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   text-transform: uppercase;
   padding: 2px 0;
@@ -14308,33 +14385,30 @@ tab-bar {
   flex: 0 0 auto;
   text-align: center;
   background-color: #0a2938;
+  border-top: 2px solid rgba(210, 210, 210, 0.3);
 }
 .tab-bar-wrapper {
-  height: 70px;
+  height: 100px;
+  background-image: url(../images/tabBar/BottomBarBg.png);
 }
 .tab-bar-item {
   position: relative;
   display: inline-block;
   width: 20%;
-  padding: 10px 0;
   cursor: pointer;
 }
-.tab-bar-item img {
-  width: 32px;
-  height: 32px;
-}
 .tab-bar-item.active {
-  background-color: #214a5f;
-}
-.tab-bar-item + .tab-bar-item {
-  border-left: 1px solid #ffffff;
+  background-image: url(../images/tabBar/BottomBarMenuElementActive.png);
+  background-size: cover;
 }
 .tab-bar-item-name {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 10pt;
-  color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  font-size: 11pt;
+  color: #757993;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
   display: block;
 }
 .tab-bar-item-badge {
@@ -14496,6 +14570,8 @@ top-bar {
   font-weight: 500;
   font-size: 14pt;
   color: #ffffff;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   text-transform: uppercase;
   height: 55px;
@@ -15292,6 +15368,8 @@ soccer-player-stats {
   font-weight: 500;
   font-size: 12pt;
   color: #ffffff;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   border-bottom: 2px solid rgba(210, 210, 210, 0.3);
 }
@@ -15337,6 +15415,8 @@ soccer-player-stats {
   font-weight: 500;
   font-size: 10pt;
   color: #757993;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
 }
 .soccer-player-stats-header-description .soccer-player-name-team .soccer-player-name {
@@ -15344,6 +15424,8 @@ soccer-player-stats {
   font-weight: 500;
   font-size: 18pt;
   color: #ffffff;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   white-space: nowrap;
   overflow: hidden;
@@ -15399,6 +15481,8 @@ soccer-player-stats {
   font-weight: 500;
   font-size: 16pt;
   color: #757993;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
 }
 .soccer-player-stats-info .soccer-player-fantasy-points {
@@ -15445,6 +15529,8 @@ soccer-player-stats {
   font-weight: 500;
   font-size: 10pt;
   color: #757993;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
   padding: 15px 10px 7px 10px;
   margin: 0 0 1px 0;
@@ -15469,6 +15555,8 @@ soccer-player-stats {
   font-weight: 500;
   font-size: 8pt;
   color: #757993;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
 }
 .soccer-player-stats-tab-pane#season-stats-tab-content {
@@ -15502,6 +15590,8 @@ soccer-player-stats {
   font-weight: 500;
   font-size: 10pt;
   color: #757993;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
   border: 1px solid #242529;
   padding: 5px 15px;
@@ -15929,6 +16019,8 @@ enter-contest {
   font-weight: 500;
   font-size: 10pt;
   color: #ffffff;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: transparent;
   position: relative;
@@ -15987,6 +16079,8 @@ enter-contest {
   font-weight: 500;
   font-size: 10pt;
   color: #ffffff;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   display: -webkit-box;
   display: -moz-box;
@@ -16923,6 +17017,8 @@ soccer-players-scalinglist {
   font-weight: 500;
   font-size: 12pt;
   color: #ffffff;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   text-transform: uppercase;
   position: relative;

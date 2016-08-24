@@ -18,33 +18,33 @@ import 'dart:html';
 )
 class TabBarComp {
 
-  static const String CONTESTS = "CONTEST";
   static const String LEADERBOARD = "LEADERBOARD";
-  static const String STORE = "STORE";
-  static const String FRIENDS = "FRIENDS";
-  static const String BONUS = "BONUS";
+  static const String MY_CONTESTS = "NEXTS";
+  static const String CONTESTS = "CONTEST";
+  static const String LIVE_CONESTS = "LIVE_CONTESTS";
+  static const String SCOUTING = "SCOUTING";
   
   Map<String, TabBarItemComp> tabs = {};
 
-  TabBarItemComp get storeTab    {
-    tabs[STORE].notificationsCount = _appStateService.appTabBarState.storeNotifications;
-    return tabs[STORE];
-  }
   TabBarItemComp get leaderTab    {
     tabs[LEADERBOARD].notificationsCount = _appStateService.appTabBarState.leaderNotifications;
     return tabs[LEADERBOARD];
+  }
+  TabBarItemComp get myContest    {
+    tabs[MY_CONTESTS].notificationsCount = _appStateService.appTabBarState.myContestNotifications;
+    return tabs[MY_CONTESTS];
   }
   TabBarItemComp get contestsTab    {
     tabs[CONTESTS].notificationsCount = _appStateService.appTabBarState.contestNotifications;
     return tabs[CONTESTS];
   }
-  TabBarItemComp get friendsTab    {
-    tabs[FRIENDS].notificationsCount = _appStateService.appTabBarState.friendsNotifications;
-    return tabs[FRIENDS];
+  TabBarItemComp get liveContestTab    {
+    tabs[LIVE_CONESTS].notificationsCount = _appStateService.appTabBarState.liveContestsNotifications;
+    return tabs[LIVE_CONESTS];
   }
-  TabBarItemComp get bonusTab    {
-    tabs[BONUS].notificationsCount = _appStateService.appTabBarState.bonusNotifications;
-    return tabs[BONUS];
+  TabBarItemComp get scoutingTab    {
+    tabs[SCOUTING].notificationsCount = _appStateService.appTabBarState.scoutingNotifications;
+    return tabs[SCOUTING];
   }
   
   bool get isShown => _appStateService.appTabBarState.show;
@@ -52,30 +52,26 @@ class TabBarComp {
   TabBarComp(this._router, this._loadingService, this._view, this._rootElement, 
                 this._dateTimeService, this._profileService, this._templateService, 
                 this._catalogService, this._appStateService) {
-    tabs = { STORE       : new TabBarItemComp(_router, 
-                                               name: "Store",
-                                               iconImage: "images/menuLeaderboardLight.png",
-                                               destination: "shop"),
-             LEADERBOARD : new TabBarItemComp(_router, 
-                                               name: "Leaders",
-                                               iconImage: "images/menuLeaderboardLight.png", 
-                                               destination: "leaderboard", 
-                                               parameters: { "section": "points", 
-                                                             "userId": _profileService.isLoggedIn? _profileService.user.userId : 'none'}),
-             CONTESTS    : new TabBarItemComp(_router, 
-                                               name: "Torneos",
-                                               iconImage: "images/menuLeaderboardLight.png", 
-                                               destination: "lobby"),
-             FRIENDS     : new TabBarItemComp(_router, 
-                                               name: "Amigos",  
-                                               iconImage: "images/menuLeaderboardLight.png", 
-                                               destination: "leaderboard", 
-                                               parameters: { "section": "points", 
-                                                             "userId": _profileService.isLoggedIn? _profileService.user.userId : 'none'}),
-             BONUS       : new TabBarItemComp(_router, 
-                                               name: "Bonos",
-                                               iconImage: "images/menuLeaderboardLight.png",
-                                               destination: "shop")
+    tabs = { LEADERBOARD  : new TabBarItemComp( _router, 
+                                                name: "Ranking",
+                                                iconImage: "images/TabBar/Button_Ranking.png",
+                                                destination: "leaderboard"),
+             MY_CONTESTS  : new TabBarItemComp( _router, 
+                                                name: "Proximos",
+                                                iconImage: "images/TabBar/Button_Nexts.png", 
+                                                destination: "my_contests"),
+             CONTESTS     : new TabBarItemComp( _router, 
+                                                name: "Torneos",
+                                                iconImage: "images/TabBar/Button_Contests.png", 
+                                                destination: "lobby"),
+             LIVE_CONESTS : new TabBarItemComp( _router, 
+                                                name: "En Vivo",  
+                                                iconImage: "images/TabBar/Button_Lives.png", 
+                                                destination: "live_contest"),
+             SCOUTING     : new TabBarItemComp( _router, 
+                                                name: "Ojeador",
+                                                iconImage: "images/TabBar/Button_Scouting.png",
+                                                destination: "scouting")
     };
   }
 
@@ -102,7 +98,7 @@ class TabBarItemComp {
   String iconImage = "";
   String destination = "";
   int notificationsCount = 0;
-  bool isActive = false;
+  bool get isActive => _router.activePath[0].name == destination;
   Map parameters = {};
   
   TabBarItemComp(Router router, {String name: "", String iconImage: "", String destination: "", Map parameters: const {}, int notificationsCount: 0}) {
@@ -112,14 +108,14 @@ class TabBarItemComp {
     if (parameters.length > 0) this.parameters = parameters;
     this.notificationsCount = notificationsCount;
     _router = router;
-    
+    /*
     _router.onRouteStart.listen((RouteStartEvent event) {
               event.completed.then((_) {
                 if (_router.activePath.isNotEmpty) {
                   isActive = _router.activePath[0].name == destination;
                 }
               });
-            });
+            });*/
   }
   
   void goLocation() {

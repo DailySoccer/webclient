@@ -78,9 +78,9 @@ class AppTopBarStateConfig {
 
 class AppTabBarState {
   bool show = false;
-  int storeNotifications = 0;
   int leaderNotifications = 0;
+  int myContestNotifications = 0;
   int contestNotifications = 0;
-  int friendsNotifications = 0;
-  int bonusNotifications = 0;
+  int liveContestsNotifications = 0;
+  int scoutingNotifications = 0;
 }

@@ -63,48 +63,6 @@ contests-list {
 		.flex-elem-fixed(@size);
 		.flex-container-content-centered();
 	}
-	.fit-icon-size {
-		width: 15px;
-		height: 15px;
-		position: relative;
-		display: inline-block;
-		margin-left: 5px;
-		top: 1px;
-		/*@media (min-width: @screen-sm-min) {
-			float: right;
-			width: 27px;
-			height: 27px;
-			margin-left: 0px;
-			top: 0px;
-		}*/
-	}
-	.entry-fee-energy::after {
-		content: " ";
-		background-image: url("@{images}/icon-lightning-xs.png");
-		/*@media (min-width: @screen-sm-min) {
-			background-image: url("@{images}/icon-lightning-lg.png");
-		}*/
-		.fit-icon-size();
-	}		
-	.entry-fee-coin::after, .prize-coin::after {
-		content: " ";
-		background-image: url("@{images}/icon-coin-xs.png");
-		/*@media (min-width: @screen-sm-min) {
-			background-image: url("@{images}/icon-coin-lg.png");
-		}*/
-		.fit-icon-size();
-	}
-	.prize-managerpoints::after {
-		content: " ";
-		background-image: url("@{images}/icon-star-xs.png");
-		/*@media (min-width: @screen-sm-min) {
-			background-image: url("@{images}/icon-star-lg.png");
-		}*/
-		.fit-icon-size();
-	}
-
-
-
 	.contestSlot.special {
 		position: relative;
 		height: 135px;

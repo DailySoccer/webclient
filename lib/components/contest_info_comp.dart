@@ -5,6 +5,7 @@ import 'dart:html';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/models/prize.dart';
+import 'package:webclient/models/money.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
@@ -23,6 +24,13 @@ import 'package:logging/logging.dart';
 )
 class ContestInfoComp implements DetachAware {
 
+  
+  @NgOneWay("the-contest")
+  void set setContest(Contest value) {
+    if (value != null) {
+      contest = value;
+    }
+  }
   bool isModal = false;
   Map currentInfoData;
   Contest contest = null;
@@ -109,7 +117,6 @@ class ContestInfoComp implements DetachAware {
     String fullDesc = "";
     switch(prizeType) {
       case Prize.FREE:
-      case Prize.TOP_3:
       case Prize.WINNER:
         fullDesc = prizeDesc;
       break;
@@ -146,7 +153,30 @@ class ContestInfoComp implements DetachAware {
     }
     Logger.root.info("ContestInfoComp --> tabChange end");
   }
+  
+  String getContestCoinIcon(Money money) {
+    if(money.currencyUnit == Money.CURRENCY_GOLD) return 'gold';
+    if(money.currencyUnit == Money.CURRENCY_ENERGY) return 'energy';
+    if(money.currencyUnit == Money.CURRENCY_MANAGER) return 'manager';
 
+    Logger.root.severe("ContestList - Unknown Currency Symbol detected");
+    return 'unknown';
+  }
+    
+  Money getPrizeToShow(Contest contest) {
+    // En los contest Históricos tendremos la posición registrada en el propio ContestEntry
+    if (contest.isHistory || contest.isLive) {
+      return getMyPrize(contest);
+    }
+
+    return contest.prizePool;
+  }
+  
+  Money getMyPrize(Contest contest) {
+    ContestEntry mainContestEntry = contest.getContestEntryWithUser(_profileService.user.userId);
+    return mainContestEntry.prize;
+  }
+ 
   var _streamListener;
   Router _router;
 

@@ -55,13 +55,13 @@
 
 <!--modal-window show-window="true" title="'Detalles del Torneo'"-->
 <section class="contest-info-section" ng-show="isContestInfoActive">
-  <contest-header id="contestHeader" 
+  <!--contest-header id="contestHeader" 
                   contest="contest" 
                   contest-id="contestId" 
                   view-state="ACTIVE" 
                   show-matches="false" 
                   show-info-button="false"
-                  ng-if="contest != null"></contest-header>
-  <contest-info></contest-info>
+                  ng-if="contest != null"></contest-header-->
+  <contest-info the-contest="contest" ng-if="contest != null"></contest-info>
 </section>
 <!--/modal-window-->

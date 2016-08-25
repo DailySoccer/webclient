@@ -197,10 +197,6 @@
       "bind-login-btt"                  : "Entrar",
       "bind-new-account"                : "Si quieres crear una cuenta nueva, haz click aquí",
       "bind-join-btt"                   : "Crear Cuenta"
-      
-      
-      
-      
     }
     ,"leaderboard"                      :
     {
@@ -636,6 +632,7 @@
     ,"contestinfo"                      :
     {
       "matches"                         : "Partidos",
+      "players"                        : "Jugadores",
       "prizes"                          : "Premios",
       "contenders"                      : "Participantes",
       "scoringrules"                    : "Reglas",
@@ -645,7 +642,11 @@
       "prizes2"                         : "PREMIOS",
       "contenders2"                     : "CONCURSANTES",
       "rulestip"                        : "Elige un equipo de 11 futbolistas de los siguientes encuentros.",
-      "winnertakesall"                  : "El ganador de lo lleva todo"
+      "winnertakesall"                  : "El ganador de lo lleva todo",
+      "prize"                           : "Premio",
+      "entryfee"                        : "Precio",
+      "level"                           : "Level",
+      "name"                            : "Nombre"
     }
     ,"prizes"                           :
     {

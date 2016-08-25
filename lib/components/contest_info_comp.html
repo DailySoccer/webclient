@@ -1,134 +1,45 @@
-<modal id="contestInfoModal" ng-if="isModal">
-
-  <contest-header id="contestInfoHeader" contest="contest" contest-id="contestId"  modal="true" show-matches="false"></contest-header>
-
-  <div class="modal-info-content">
-
-      <div class="tabs-background">
-        <!-- Nav tabs -->
-        <div class="tabs-navigation">
-          <ul class="contest-info-tabs " id="modalInfoContestTabs">
-              <li class="tab active"><tab data-toggle="tab" ng-click="tabChange('matches')">{{getLocalizedText("matches")}}</tab></li>
-              <li class="tab"><tab data-toggle="tab" ng-click="tabChange('prizes')">{{getLocalizedText("prizes")}}</tab></li>
-              <li class="tab"><tab data-toggle="tab" ng-click="tabChange('contestants')">{{getLocalizedText("contenders")}}</tab></li>
-              <!--li class="tab"><tab data-toggle="tab" ng-click="tabChange('scoring')">{{getLocalizedText("scoringrules")}}</a></li-->
-              <!--<li class="buton-place">
-                <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">ENTER</button>
-              </li>-->
-          </ul>
-
-          <div id="enterContestButton">
-            <button id="btn-go-enter-contest" class="btn btn-primary" ng-click="enterContest()">{{getLocalizedText("buttonenter")}}</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="contest-info-content" id="modalInfoContestTabContent">
-          <div class=" tab-content">
-
-              <!-- Tab panes -->
-              <div class="tab-pane active" id="matches">
-                  <p class="instructions">{{currentInfoData['rules']}}</p>
-                  <div class="matches-involved">
-                      <div class="match" ng-repeat="match in currentInfoData['matchesInvolved']">
-                          <p class="teams">{{match.soccerTeamA.shortName}} - {{match.soccerTeamB.shortName}}</p>
-                          <p class="date">{{formatMatchDate(match.startDate)}}</p>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="tab-pane" id="prizes">
-                <div class="prizes-wrapper">
-                  <!--<div ng-if="!loadingService.isLoading && currentInfoData['prizes'].isEmpty" class="default-info-text">
-                    Este concurso no tiene premios
-                  </div>-->
-                  <div class="default-info-text">
-                    {{currentInfoData["prizeType"]}}
-                  </div>
-                  <div id="prizes-list">
-                    <div class="prize-element-wrapper" ng-repeat="prize in currentInfoData['prizes']">
-                      <div class="prize-element">
-                          {{$index + 1}}º &nbsp;&nbsp; {{prize}}
-                      </div>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="tab-pane" id="contestants">
-                <div class="contestant-list-wrapper">
-                  <div ng-if="!loadingService.isLoading && currentInfoData['contestants'].isEmpty" class="default-info-text" ng-bind-html="getLocalizedText('nocontenders')"></div>
-                  <div class="contestant-list">
-                    <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
-                      <div class="contestant-position">{{$index + 1}}º</div>
-                      <div class="contestant-name">{{contestant.name}}</div>
-                      <div class="contestant-points">{{contestant.trueSkill + ' '}}<span class="prize-currency">{{getLocalizedText("skill")}}</span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-                            <!-- Tab panes -->
-              <!--div class="tab-pane" id="scoring">
-                  <div class="rules-description">
-                    <scoring-rules></scoring-rules>
-                  </div>
-              </div-->
-
-          </div>
-      </div>
-  </div>
-</modal>
-
 <div id="contestInfoTabbed" ng-if="!isModal" ng-show="contest != null">
-  <p class="title">{{currentInfoData['rules']}}</p>
+  
+  <!-- cabecera con precio y premio -->
+  <div class="info-header">
+    <!-- precio -->
+    <div class="prize-section">
+      <div class="prize-count" ng-class="{'prize-coin':getContestCoinIcon(getPrizeToShow(contest)) == 'gold', 'prize-managerpoints':getContestCoinIcon(getPrizeToShow(contest)) == 'manager'}">{{getPrizeToShow(contest)}}</div>
+      <div class="prize-description">{{getLocalizedText("prize")}}</div>
+    </div>
+    <!-- premio -->
+    <div class="price-section" ng-if="!(contest.isLive || contest.isHistory)">
+      <div class="price-count" ng-class="{'entry-fee-coin': getContestCoinIcon(contest.entryFee) == 'gold', 'entry-fee-energy':getContestCoinIcon(contest.entryFee) == 'energy'}">{{contest.entryFee}}</div>
+      <div class="price-description">{{getLocalizedText("entryfee")}}</div>
+    </div>
+  </div>
+  
+  <!--Cartel "partidos"-->
+  <div class="header-section">{{getLocalizedText("matches")}}</div>
+  
+  <!--Partidos dentro del concurso-->
   <div class="matches-involved">
       <div class="match" ng-repeat="match in currentInfoData['matchesInvolved']">
-          <p class="teams">{{match.soccerTeamA.shortName}} - {{match.soccerTeamB.shortName}}</p>
-          <p class="date">{{formatMatchDate(match.startDate)}}</p>
+          <div class="team">{{match.soccerTeamA.shortName}}</div>
+          <div class="date">{{formatMatchDate(match.startDate)}}</div>
+          <div class="team">{{match.soccerTeamB.shortName}}</div>
       </div>
   </div>
-  <div class="clearfix"></div>
-  <div class="info-section"></div>
-
-  <p class="title">{{getLocalizedText("prizes").toUpperCase()}}</p>
-  <div class="prizes-wrapper">
-      <div id="prizes-list">
-        <!--<div ng-if="!loadingService.isLoading && currentInfoData['prizes'].isEmpty" class="default-info-text">
-          Este concurso no tiene premios
-        </div> -->
-        <div class="default-info-text">
-          {{currentInfoData["prizeType"]}}
-        </div>
-        <div class="prize-element-wrapper" ng-repeat="prize in currentInfoData['prizes']">
-          <div class="prize-element">
-              {{$index + 1}}º &nbsp;&nbsp; {{prize}}
-          </div>
-        </div>
-        <div class="clearfix"></div>
-      </div>
-  </div>
-  <div class="clearfix"></div>
-  <div class="info-section"></div>
-
-  <p class="title">{{getLocalizedText("contenders").toUpperCase()}}</p>
-  <div ng-if="!loadingService.isLoading && currentInfoData['contestants'].isEmpty" class="default-info-text" ng-bind-html="getLocalizedText('nocontenders')"></div>
+  
+  <!--Cartel "jugadores"-->
+  <div class="header-section">{{getLocalizedText("players")}}</div>
+  <!--Jugadores dentro del concurso-->
   <div class="contestant-list">
-      <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
-          <div class="contestant-position">{{$index + 1}}º</div>
-          <div class="contestant-name">{{contestant.name}}</div>
-          <div class="contestant-points">{{contestant.trueSkill + ' '}}<span class="prize-currency">{{getLocalizedText("skill")}}</span></div>
-      </div>
-  </div>
-  <div class="clearfix"></div>
-  <!--div class="info-section"></div>
-
-  <p class="title">{{getLocalizedText("scoringrules").toUpperCase()}}</p>
-  <div class="rules-description">
-    <scoring-rules></scoring-rules>
-  </div>
-  <div class="clearfix"></div-->
-
+    <div class="contestant-element">
+      <div class="name">{{getLocalizedText("name")}}</div>
+      <div class="level">{{getLocalizedText("level")}}</div>
+    </div>    
+    <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
+      <div class="name">{{contestant.name}}</div>
+      <div class="level">{{contestant.trueSkill}}</div>
+    </div>
+  </div>  
+  <div ng-if="!loadingService.isLoading && currentInfoData['contestants'].isEmpty" class="default-info-text" ng-bind-html="getLocalizedText('nocontenders')"></div>
+  
 </div>
 

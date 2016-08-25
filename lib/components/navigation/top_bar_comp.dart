@@ -49,6 +49,11 @@ class TopBarComp {
       _appStateService.appTopBarState.activeState.onLeftColumn();
     }
   }
+  void onCenterColumnClick() {
+    if (currentState.centerColumn != AppTopBarState.EMPTY) {
+      _appStateService.appTopBarState.activeState.onCenterColumn();
+    }
+  }
   void onRightColumnClick() {
     if (currentState.rightColumn != AppTopBarState.EMPTY) {
       _appStateService.appTopBarState.activeState.onRightColumn();

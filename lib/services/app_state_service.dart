@@ -59,12 +59,14 @@ class AppTopBarStateConfig {
   String centerColumn;
   String rightColumn;
   Function onLeftColumn = (){};
+  Function onCenterColumn = (){};
   Function onRightColumn = (){};
   
   AppTopBarStateConfig({this.leftColumn: AppTopBarState.EMPTY, 
                         this.centerColumn: AppTopBarState.EMPTY, 
                         this.rightColumn: AppTopBarState.EMPTY, 
                         this.onLeftColumn,
+                        this.onCenterColumn,
                         this.onRightColumn});
   
   AppTopBarStateConfig.hidden() {

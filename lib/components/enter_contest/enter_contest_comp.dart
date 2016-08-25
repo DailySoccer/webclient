@@ -93,7 +93,7 @@ class EnterContestComp implements DetachAware {
     _sectionActive = section;
     switch(_sectionActive) {
       case LINEUP_FIELD_SELECTOR:
-        setupContestInfoTopBar(true, onContestInfoClick);
+        setupContestInfoTopBar(true, () => _router.go('lobby', {}), onContestInfoClick);
       break;
       case SELECTING_SOCCER_PLAYER:
         _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Elige un ${fieldPosFilter.fullName}");

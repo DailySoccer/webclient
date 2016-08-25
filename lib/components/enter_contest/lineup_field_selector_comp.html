@@ -1,14 +1,4 @@
 <div class="lineup-field-selector" ng-class="getLineupClassname()">
-  
-  <div class="lineup-actions-wrapper">  
-    <div class="lineup-clean-btn-wrapper">
-      <button type="button" class="btn-clean-lineup-list" ng-click="onLineupClearRequest()">Limpiar alineación</button>
-    </div>
-    <div class="lineup-clean-btn-wrapper">
-      <button type="button" class="btn-automatic-lineup" ng-click="onAutomaticLineupRequest()">Alineación automática</button>
-    </div>
-  </div>
-  
   <div class="lineup-formation-selector-wrapper">
     <span class="lineup-formation-label">{{getLocalizedText('formation')}}</span>
     <select name="lineup-formation-dropdown" id="lineup-formation-dropdown" ng-model="formationId" class="lineup-formation-dropdown">

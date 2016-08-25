@@ -39,12 +39,6 @@ class LineupFieldSelectorComp {
 
   @NgCallback("on-lineup-slot-selected")
   Function onLineupSlotSelected;
-  
-  @NgCallback("on-lineup-clear-request")
-  Function onLineupClearRequest;
-  
-  @NgCallback("on-automatic-lineup-request")
-  Function onAutomaticLineupRequest;
 
   @NgTwoWay("formation-id")
   String get formationId => _formationId;

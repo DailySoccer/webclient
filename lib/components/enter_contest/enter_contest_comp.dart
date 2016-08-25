@@ -38,6 +38,9 @@ import 'package:webclient/components/enter_contest/soccer_player_listitem.dart';
 )
 class EnterContestComp implements DetachAware {
 
+  static const num SOON_SECONDS = 2 * 60 * 60;
+  static const num VERY_SOON_SECONDS = 30 * 60;
+  
   static const String ERROR_RETRY_OP = "ERROR_RETRY_OP";
   static const String ERROR_CONTEST_NOT_ACTIVE = "ERROR_CONTEST_NOT_ACTIVE";
   static const String ERROR_CONTEST_FULL = "ERROR_CONTEST_FULL";
@@ -90,20 +93,18 @@ class EnterContestComp implements DetachAware {
     _sectionActive = section;
     switch(_sectionActive) {
       case LINEUP_FIELD_SELECTOR:
-        _appStateService.appTopBarState.configParameters['title'] = "Crear alineación";
-        _appStateService.appTopBarState.configParameters['leftColumnClick'] = () => _router.go('lobby', {});
+        setupContestInfoTopBar(true, onContestInfoClick);
       break;
       case SELECTING_SOCCER_PLAYER:
-        _appStateService.appTopBarState.configParameters['title'] = "Elige un ${fieldPosFilter.fullName}";
-        _appStateService.appTopBarState.configParameters['leftColumnClick'] = cancelPlayerSelection;
+        _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Elige un ${fieldPosFilter.fullName}");
+        _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerSelection;
       break;
       case SOCCER_PLAYER_STATS:
-        _appStateService.appTopBarState.configParameters['title'] = "Estadísticas";
-        _appStateService.appTopBarState.configParameters['leftColumnClick'] = cancelPlayerDetails;
+        _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Estadísticas");
+        _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerDetails;
       break;
       case CONTEST_INFO:
-        _appStateService.appTopBarState.configParameters['title'] = "Detalles del torneo";
-        _appStateService.appTopBarState.configParameters['leftColumnClick'] = cancelContestDetails;
+        setupContestInfoTopBar(false, cancelContestDetails);
       break;
     }
   }
@@ -137,8 +138,9 @@ class EnterContestComp implements DetachAware {
         : new Money.from(Money.CURRENCY_GOLD, 0);
   }
 
-  String get printableAvailableSalary => StringUtils.parseSalary(availableSalary);
-
+  String get printableCurrentSalary => contest != null? StringUtils.parseSalary(contest.salaryCap - availableSalary) : "-";
+  String get printableSalaryCap => contest != null? StringUtils.parseSalary(contest.salaryCap) : "-";
+  
   // Comprobamos si tenemos recursos suficientes para pagar el torneo (salvo que estemos editando el contestEntry)
   bool get enoughResourcesForEntryFee =>
       contest == null || !_profileService.isLoggedIn || _profileService.user.hasMoney(moneyNeeded);
@@ -205,7 +207,18 @@ class EnterContestComp implements DetachAware {
                    this._flashMessage, this._rootElement, this._tutorialService) {
     
 
-    _appStateService.appTopBarState.activeState = AppTopBarState.SUBSECTION_CONFIG;
+    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection('''
+      <div class="contest-topbar-info">
+        <div class="time-section">
+          <div class="contest-flag"></div>
+          <div class="column-start-hour"></div>
+        </div>
+        <div class="contest-name-section">
+          <div class="contest-name"></div>
+          <div class="contest-description"></div>
+        </div>
+      </div>
+    ''', rightColumn: "<i class='material-icons'>&#xE88F;</i>");
     _appStateService.appSecondaryTabBarState.tabList = [];
     _appStateService.appTabBarState.show = false;
     sectionActive = LINEUP_FIELD_SELECTOR;
@@ -293,7 +306,72 @@ class EnterContestComp implements DetachAware {
 
     subscribeToLeaveEvent();
   }
+  
+  void setupContestInfoTopBar(bool showInfoButton, Function backFunction, [Function infoFunction]) {
+    if(contest == null) return;
+    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection('''
+      <div class="contest-topbar-info">
+        <div class="time-section">
+          <div class="contest-flag ${getSourceFlag(contest)}"></div>
+          <div class="column-start-hour ${isSoon(contest.startDate)? 'start-soon' : ''}"> ${timeInfo(contest.startDate)}</div>
+        </div>
+        <div class="contest-name-section">
+          <div class="contest-name">${contest.name}</div>
+          <div class="contest-description">${contest.description}</div>
+        </div>
+      </div>
+    ''', rightColumn: showInfoButton? "<i class='material-icons'>&#xE88F;</i>" : AppTopBarState.EMPTY);
 
+    _appStateService.appTopBarState.activeState.onLeftColumn = backFunction;
+    _appStateService.appTopBarState.activeState.onRightColumn = infoFunction;
+  }
+  
+  
+  String getSourceFlag(Contest contest) {
+    String ret = "flag  flag-icon-background ";
+    switch(contest.competitionType){
+      case "LEAGUE_ES":
+        ret += "flag-icon-es";
+      break;
+      case "LEAGUE_UK":
+        ret += "flag-icon-gb-eng";
+      break;
+      case "CHAMPIONS":
+        ret += "flag-icon-eu";
+      break;
+      default:
+        ret += "flag-icon-es";
+      break;
+    }
+    return ret;
+  }
+  num timeLeft(DateTime date) {
+    Duration duration = DateTimeService.getTimeLeft(date);
+    int secondsLeft = duration.inSeconds;
+    return secondsLeft;
+  }
+  String timeInfo(DateTime date) {
+    // Avisamos 2 horas antes...
+    int secondsLeft = timeLeft(date);
+    if (secondsLeft >= 0 && secondsLeft < SOON_SECONDS) {
+      int minutes = secondsLeft ~/ 60;
+      int seconds = secondsLeft - (minutes * 60);
+      
+      if (secondsLeft < VERY_SOON_SECONDS) {
+        String timeFormatted = (seconds >= 10) ?  "$minutes:$seconds" :  "$minutes:0$seconds";
+        return getLocalizedText("verySoonHint", substitutions: {"TIME": timeFormatted});
+      } else {
+        return getLocalizedText("soonHint", substitutions: {"TIME": minutes});
+      }
+    }
+    return DateTimeService.formatTimeShort(date);
+  }
+  
+  bool isSoon(DateTime date) {
+    int secondsLeft = timeLeft(date);
+    return secondsLeft >= 0 && secondsLeft < SOON_SECONDS;
+  }
+  
   void refreshInfoFromContest() {
     
     loadingService.isLoading = false;
@@ -303,7 +381,9 @@ class EnterContestComp implements DetachAware {
                                                      "created": contest.isAuthor(_profileService.user),
                                                      "contest id": contest.contestId,
                                                      "is editing": editingContestEntry});
-
+    
+    setupContestInfoTopBar(true, () => _router.go('lobby', {}));
+    
     if (_profileService.isLoggedIn && !contest.canEnter(_profileService.user) && !editingContestEntry) {
       cannotEnterMessageRedirect();
       return;
@@ -503,6 +583,20 @@ class EnterContestComp implements DetachAware {
     var soccerPlayer = allSoccerPlayers.firstWhere((soccerPlayer) => soccerPlayer.id == soccerPlayerId, orElse: () => null);
     if (soccerPlayer != null) {
       _tryToAddSoccerPlayerToLineup(soccerPlayer);
+    }
+  }
+  
+  void generateAutomaticLineup() {
+    if (contest != null) {
+      _contestsService.generateLineup(contest, _formationId)
+        .then( (List<InstanceSoccerPlayer> lineup) {
+          deleteFantasyTeam();
+          lineup.forEach( (instance) {
+            if (instance != null) {
+              addSoccerPlayerToLineup(instance.id);
+            }
+          });
+        });
     }
   }
 

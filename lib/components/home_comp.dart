@@ -57,7 +57,7 @@ class HomeComp implements DetachAware {
             this.loadingService, this._refreshTimersService, this._promosService,
             TutorialService tutorialService) {
     loadingService.isLoading = true;
-    _appStateService.appTopBarState.activeState = AppTopBarState.HIDDEN_CONFIG;
+    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.hidden();
     _appStateService.appSecondaryTabBarState.tabList = [];
     //contestTileHTML = isContestTileEnabled ? defaultPromo['html'] : defaultPromoWithTutorial['html'];
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
@@ -65,6 +65,8 @@ class HomeComp implements DetachAware {
 
     GameMetrics.logEvent(GameMetrics.HOME, {"logged": _profileService.isLoggedIn});
   }
+  
+  
 
 
   static String getStaticLocalizedText(key) {

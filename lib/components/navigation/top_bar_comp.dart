@@ -26,26 +26,37 @@ class TopBarComp {
     
     return _lastState = _appStateService.appTopBarState.activeState;
   }
-  Map get configParameters => _appStateService.appTopBarState.configParameters;
   
-  String get layoutCssClass => currentState.layout == AppTopBarState.THREE_COLUMNS ? "three-columns" :
-                               currentState.layout == AppTopBarState.ONE_COLUMN ? "one-column" : "hidden-bar";
+  String get layoutCssClass => currentState.leftColumn != AppTopBarState.EMPTY || currentState.rightColumn != AppTopBarState.EMPTY ? "three-columns" :
+                               currentState.centerColumn != AppTopBarState.EMPTY ? "one-column" : "hidden-bar";
   
-  String get leftColumnHTML => currentState.layout == AppTopBarState.THREE_COLUMNS ? _getHtmlModule(currentState.elements[0]) : '';
-  String get centerColumnHTML => currentState.layout == AppTopBarState.NONE_COLUMNS? '' : _getHtmlModule(currentState.elements[currentState.layout == AppTopBarState.THREE_COLUMNS? 1 : 0]);
-  String get rightColumnHTML => currentState.layout == AppTopBarState.THREE_COLUMNS ? _getHtmlModule(currentState.elements[2]) : '';
-
+  bool get leftColumnIsBackButton => currentState.leftColumn == AppTopBarState.BACK_BUTTON;
+  
+  String get leftColumnHTML   => _columnHTML(currentState.leftColumn);
+  String get centerColumnHTML => _columnHTML(currentState.centerColumn);
+  String get rightColumnHTML  => _columnHTML(currentState.rightColumn);
+  
+  String _columnHTML(String s) => s == AppTopBarState.EMPTY ? '' : 
+                                  s == AppTopBarState.BACK_BUTTON ? "<i class='material-icons'>&#xE5C4;</i>" :
+                                  s;
+  
   TopBarComp(this._router, this._loadingService, this._view, this._rootElement, 
                 this._dateTimeService, this._profileService, this._templateService, 
                 this._catalogService, this._appStateService, this._scrDet) {}
 
   void onLeftColumnClick() {
-    if (currentState.layout == AppTopBarState.THREE_COLUMNS) {
-      _appStateService.appTopBarState.configParameters["leftColumnClick"]();
+    if (leftColumnIsBackButton) {
+      _appStateService.appTopBarState.activeState.onLeftColumn();
+    }
+  }
+  void onRightColumnClick() {
+    if (currentState.rightColumn != AppTopBarState.EMPTY) {
+      _appStateService.appTopBarState.activeState.onRightColumn();
     }
   }
   
   // LAYOUT ELEMENTS
+  /*
   String _backButton([String clas = ""]) {
     return "<div class='back-button $clas'><i class='material-icons'>&#xE5C4;</i></div>";
   }
@@ -134,7 +145,8 @@ class TopBarComp {
 
     return goldString;
   }
-
+  */
+  
   Element _rootElement;
   View _view;
   Router _router;

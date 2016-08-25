@@ -48,32 +48,35 @@ class AppSecondaryTabBarTab {
 }
 
 class AppTopBarState {
-  // LAYOUTS
-  static const String THREE_COLUMNS = "THREE_COLUMNS";
-  static const String ONE_COLUMN = "ONE_COLUMN";
-  static const String NONE_COLUMNS = "NONE";
-
   // COMPONENTS
-  static const String CREATE_CONTEST_BUTTON = "CREATE_CONTEST_BUTTON";
-  static const String LIVE_CONTESTS = "LIVE_CONTEST_BUTTON";
-  static const String BACK_BUTTON = "BACK_BUTTON";
-  static const String USER_CURRENCIES = "USER_CURRENCIES";
-  static const String TITLE_LABEL = "TITLE";
-  static const String EMPTY = "EMPTY";
+  static const String BACK_BUTTON = "__BACK_BUTTON__";
+  static const String EMPTY = "__EMPTY__";
   
-  // PRECONFIGURATIONS
-  static AppTopBarStateConfig HIDDEN_CONFIG     = new AppTopBarStateConfig(NONE_COLUMNS, const[]);
-  static AppTopBarStateConfig USER_DATA_CONFIG  = new AppTopBarStateConfig(THREE_COLUMNS, const[CREATE_CONTEST_BUTTON, USER_CURRENCIES, LIVE_CONTESTS]);
-  static AppTopBarStateConfig SUBSECTION_CONFIG = new AppTopBarStateConfig(THREE_COLUMNS, const[BACK_BUTTON, TITLE_LABEL, EMPTY]);
-  static AppTopBarStateConfig SECTION_CONFIG    = new AppTopBarStateConfig(ONE_COLUMN, const[TITLE_LABEL]);
-  
-  AppTopBarStateConfig activeState = HIDDEN_CONFIG;
-  Map configParameters = { "title" : "FURBORCUATRO", "leftColumnClick": () => {} };
+  AppTopBarStateConfig activeState = new AppTopBarStateConfig.hidden();
 }
 class AppTopBarStateConfig {
-  String layout;
-  List<String> elements;
-  AppTopBarStateConfig(this.layout, this.elements);
+  String leftColumn;
+  String centerColumn;
+  String rightColumn;
+  Function onLeftColumn = (){};
+  Function onRightColumn = (){};
+  
+  AppTopBarStateConfig({this.leftColumn: AppTopBarState.EMPTY, 
+                        this.centerColumn: AppTopBarState.EMPTY, 
+                        this.rightColumn: AppTopBarState.EMPTY, 
+                        this.onLeftColumn,
+                        this.onRightColumn});
+  
+  AppTopBarStateConfig.hidden() {
+    this.leftColumn = AppTopBarState.EMPTY;
+    this.centerColumn = AppTopBarState.EMPTY;
+    this.rightColumn = AppTopBarState.EMPTY;
+  }
+  
+  AppTopBarStateConfig.subSection(this.centerColumn, {this.rightColumn: AppTopBarState.EMPTY}) {
+    this.leftColumn = AppTopBarState.BACK_BUTTON;
+  }
+  
 }
 
 class AppTabBarState {

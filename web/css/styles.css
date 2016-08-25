@@ -6191,7 +6191,7 @@ body {
 }
 /*
 div#mainApp
-  top-bar#mainTopBar
+  top-bar#mainToapBar
   secondary-tab-bar
 
   div#mainWrapper.wrapper-content-container
@@ -6220,7 +6220,7 @@ div#mainApp
   display: flex;
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 .wrapper-content-container > * {
   flex: 1;
@@ -6892,59 +6892,13 @@ lineup-field-selector {
   position: relative;
   flex: 1;
 }
-.lineup-actions-wrapper {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-flow: row nowrap;
-  flex-flow: row nowrap;
-  flex: 0 0 70px;
-  padding: 7px;
-}
-.lineup-actions-wrapper div {
-  flex: 1;
-  padding: 7px;
-}
-.lineup-actions-wrapper div button {
-  background-image: -webkit-linear-gradient(top, #0d75a6 0%, #0c4c6a 100%);
-  background-image: linear-gradient(to bottom, #0d75a6 0%, #0c4c6a 100%);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0d75a6', endColorstr='#ff0c4c6a', GradientType=0);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
-  font-size: 10pt;
-  color: #ffffff;
-  text-transform: inherit;
-  text-align: inherit;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  padding: 10px;
-  border: none;
-  width: 100%;
-  text-transform: uppercase;
-  cursor: pointer;
-  text-align: center;
-  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
-  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
-  border: 0;
-  outline-offset: 0px;
-  outline: none;
-}
-.lineup-actions-wrapper div button:hover,
-.lineup-actions-wrapper div button:active,
-.lineup-actions-wrapper div button:focus {
-  border: 0;
-  outline-offset: 0px;
-  outline: none;
-}
 .lineup-formation-selector-wrapper {
   flex: 0 0 36px;
   position: relative;
   margin-left: auto;
   margin-right: 15px;
   text-align: right;
+  margin-top: 8px;
 }
 .lineup-formation-selector-wrapper .lineup-formation-label {
   font-family: 'Fjalla One', sans-serif;
@@ -14193,9 +14147,11 @@ top-bar {
 }
 .three-columns .left-column,
 .one-column .left-column {
-  flex: 0 0 50px;
+  flex: 0 0 40px;
   height: 25px;
   cursor: pointer;
+  text-align: right;
+  padding: 0 4px 0 8px;
 }
 .three-columns .main-column,
 .one-column .main-column {
@@ -14219,6 +14175,12 @@ top-bar {
 .one-column .right-column {
   flex: 0 0 50px;
   height: 25px;
+  text-align: center;
+  padding-right: 8px;
+}
+.three-columns .right-column .material-icons,
+.one-column .right-column .material-icons {
+  cursor: pointer;
 }
 .three-columns .left-column {
   cursor: pointer;
@@ -15764,6 +15726,125 @@ enter-contest {
 .lineup-selector-section .salary-info-wrapper .current-salary-amount,
 .lineup-selector-section .salary-info-wrapper .limit-salary-amount {
   color: #fa9c19;
+}
+.contest-topbar-info {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+}
+.contest-topbar-info .time-section {
+  flex: 0 0 50px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  justify-content: center;
+  text-align: center;
+  margin-right: 8px;
+}
+.contest-topbar-info .contest-flag {
+  flex: 0 0 20px;
+  margin-bottom: 3px;
+}
+.contest-topbar-info .column-start-hour {
+  flex: 1;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #757993;
+  text-transform: inherit;
+  text-align: inherit;
+  text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+}
+.contest-topbar-info .contest-name-section {
+  flex: 1;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  white-space: nowrap;
+}
+.contest-topbar-info .contest-name {
+  flex: 1;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
+  font-size: 12pt;
+  color: #ffffff;
+  text-transform: inherit;
+  text-align: inherit;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  overflow: hidden;
+  margin-right: 5px;
+}
+.contest-topbar-info .contest-description {
+  flex: 1;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #757993;
+  text-transform: inherit;
+  text-align: inherit;
+  text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  overflow: hidden;
+  margin-right: 5px;
+}
+.lineup-actions-wrapper {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  flex: 0 0 55px;
+  border-bottom: 1px solid rgba(210, 210, 210, 0.3);
+}
+.lineup-actions-wrapper div {
+  flex: 1;
+  padding: 8px;
+}
+.lineup-actions-wrapper div button {
+  background-image: -webkit-linear-gradient(top, #0d75a6 0%, #0c4c6a 100%);
+  background-image: linear-gradient(to bottom, #0d75a6 0%, #0c4c6a 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0d75a6', endColorstr='#ff0c4c6a', GradientType=0);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #ffffff;
+  text-transform: inherit;
+  text-align: inherit;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  padding: 10px;
+  border: none;
+  width: 100%;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-align: center;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
+  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
+  border: 0;
+  outline-offset: 0px;
+  outline: none;
+  height: 38px;
+}
+.lineup-actions-wrapper div button:hover,
+.lineup-actions-wrapper div button:active,
+.lineup-actions-wrapper div button:focus {
+  border: 0;
+  outline-offset: 0px;
+  outline: none;
 }
 /*.enter-contest-tabs {
 	.tabs-navigation(2);

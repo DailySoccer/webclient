@@ -1,11 +1,11 @@
 <section class="lineup-selector-section" ng-show="isLineupFieldSelectorActive" >
-  <contest-header id="contestHeader" 
+  <!--contest-header id="contestHeader" 
                   contest="contest" 
                   contest-id="contestId" 
                   view-state="ACTIVE" 
                   show-matches="false" 
                   on-info-click="onContestInfoClick"
-                  ng-if="contest != null"></contest-header>
+                  ng-if="contest != null"></contest-header-->
   
   <!--div class="button-wrapper-block" ng-if="isSelectingSoccerPlayer && scrDet.isXsScreen">
     <button type="button" class="btn-cancel-player-selection" ng-click="cancelPlayerSelection()" ng-show="isSelectingSoccerPlayer">{{getLocalizedText("buttoncancel")}}</button>
@@ -21,6 +21,14 @@
     </div>
   </div-->
   
+  <div class="lineup-actions-wrapper">  
+    <div class="lineup-clean-btn-wrapper">
+      <button type="button" class="btn-clean-lineup-list" ng-click="resetLineup()">Limpiar alineación</button>
+    </div>
+    <div class="lineup-clean-btn-wrapper">
+      <button type="button" class="btn-automatic-lineup" ng-click="generateAutomaticLineup()">Alineación automática</button>
+    </div>
+  </div>
   <lineup-field-selector not-enough-resources="!enoughResourcesForEntryFee"
                          resource="resourceName"
                          has-max-players-same-team="playersInSameTeamInvalid"
@@ -28,15 +36,13 @@
                          manager-level="playerManagerLevel"
                          lineup-slots="lineupSlots"
                          on-lineup-slot-selected="onLineupSlotSelected(slotIndex)"
-                         on-lineup-clear-request="resetLineup()"
-                         on-automatic-lineup-request="onLineupSlotSelected(slotIndex)"
                          formation-id="formationId"
                          lineup-formation="lineupFormation"></lineup-field-selector>
   <div class="contest-id">ID: {{contest.contestId.toUpperCase()}}</div>
-  <button class="confirm-btn">Confirmar</button>
+  <button class="confirm-btn" ng-click="createFantasyTeam()">Confirmar</button>
   <div class="salary-info-wrapper">
-    <div class="current-salary"><span class="current-salary-label">Presupuesto </span><span class="current-salary-amount">45.000</span></div>
-    <div class="limit-salary"><span class="limit-salary-label">Límite </span><span class="limit-salary-amount">60.000</span></div>
+    <div class="current-salary"><span class="current-salary-label">Presupuesto </span><span class="current-salary-amount" ng-class="{'red-numbers': availableSalary < 0 }">{{formatCurrency(printableCurrentSalary)}}</span></div>
+    <div class="limit-salary"><span class="limit-salary-label">Límite </span><span class="limit-salary-amount">{{formatCurrency(printableSalaryCap)}}</span></div>
   </div>
 </section>
 <section class="soccer-player-list-section" ng-if="isSelectingSoccerPlayerActive">

@@ -12,9 +12,11 @@ top-bar {
   align-items: center;
   
 	.left-column {
-    .flex-elem-fixed(50px);
+    .flex-elem-fixed(40px);
 	  height: 25px;
     cursor: pointer;
+    text-align: right;
+    padding: 0 4px 0 8px;
 	}
 	.main-column {
 		.flex-elem-fluid();
@@ -29,6 +31,11 @@ top-bar {
 	.right-column {
     .flex-elem-fixed(50px);
 	  height: 25px;
+    text-align: center;
+    padding-right: 8px;
+    .material-icons {
+      cursor: pointer;
+    }
 	}
 }
 

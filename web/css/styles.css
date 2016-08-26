@@ -6220,7 +6220,8 @@ div#mainApp
   display: flex;
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
-  overflow-y: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .wrapper-content-container > * {
   flex: 1;
@@ -13994,13 +13995,8 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   padding: 1px 5px;
 }
 tab-bar {
-  flex: 0 0 auto;
+  flex: 0 0 100px;
   text-align: center;
-  background-color: #0a2938;
-  border-top: 2px solid rgba(210, 210, 210, 0.3);
-}
-.tab-bar-wrapper {
-  height: 100px;
   background-image: url(../images/tabBar/BottomBarBg.png);
 }
 .tab-bar-item {
@@ -14011,7 +14007,7 @@ tab-bar {
 }
 .tab-bar-item.active {
   background-image: url(../images/tabBar/BottomBarMenuElementActive.png);
-  background-size: cover;
+  background-size: 100% 100%;
 }
 .tab-bar-item-name {
   font-family: 'Fjalla One', sans-serif;
@@ -14156,6 +14152,7 @@ top-bar {
 .three-columns .main-column,
 .one-column .main-column {
   flex: 1;
+  text-align: center;
 }
 .three-columns .main-column .user-currencies,
 .one-column .main-column .user-currencies {
@@ -15781,7 +15778,7 @@ enter-contest {
   font-size: 12pt;
   color: #ffffff;
   text-transform: inherit;
-  text-align: inherit;
+  text-align: left;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   overflow: hidden;
   margin-right: 5px;
@@ -15792,8 +15789,8 @@ enter-contest {
   font-weight: 700;
   font-size: 10pt;
   color: #757993;
-  text-transform: inherit;
-  text-align: inherit;
+  text-transform: none;
+  text-align: left;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
   overflow: hidden;
   margin-right: 5px;

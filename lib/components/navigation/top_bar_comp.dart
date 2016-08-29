@@ -35,7 +35,9 @@ class TopBarComp {
   String get leftColumnHTML   => _columnHTML(currentState.leftColumn);
   String get centerColumnHTML => _columnHTML(currentState.centerColumn);
   String get rightColumnHTML  => _columnHTML(currentState.rightColumn);
-  
+
+  String get specialLayoutClass => currentState.layoutClass;
+      
   String _columnHTML(String s) => s == AppTopBarState.EMPTY ? '' : 
                                   s == AppTopBarState.BACK_BUTTON ? "<i class='material-icons'>&#xE5C4;</i>" :
                                   s;

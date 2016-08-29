@@ -59,6 +59,7 @@ class AppTopBarStateConfig {
   String leftColumn;
   String centerColumn;
   String rightColumn;
+  String layoutClass;
   Function onLeftColumn = (){};
   Function onCenterColumn = (){};
   Function onRightColumn = (){};

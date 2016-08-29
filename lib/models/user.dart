@@ -33,6 +33,8 @@ class User {
   String deviceUUID;
   String facebookID;
   
+  //List<UserNotification> get UnreadNotifiacions => notifications.where((UserNotification n) => !n.readed);
+  
   String get profileImage {
     Map image = FBLogin.profileImage(facebookID);
     String url;

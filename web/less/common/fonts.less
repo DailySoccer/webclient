@@ -7,45 +7,33 @@
 .text_shadowing(@theColor) when (iscolor(@theColor)) {
 	text-shadow: 1px 1px 1px rgba(red(@theColor), green(@theColor), blue(@theColor), 0.004);
 }
-
-.mainfont_bold(@theFontSize, @theFontColor:inherit, @align:inherit, @transform: inherit) {
-	font-family: @mainFont;
-	font-weight: 700;
+.setFontProperties (@theFontSize, @theFontColor:inherit, @align:inherit, @transform: inherit) {
 	font-size: @theFontSize;
 	color: @theFontColor;
 	text-transform: @transform;
 	text-align: @align;
-	
 	.text_shadowing(@theFontColor);
+}
+.mainfont_bold(@theFontSize, @theFontColor:inherit, @align:inherit, @transform: inherit) {
+	.setFontProperties(@theFontSize, @theFontColor, @align, @transform);
+	font-family: @mainFont;
+	font-weight: 700;	
 }
 .mainfont_light(@theFontSize, @theFontColor:inherit, @align:inherit, @transform: inherit) {
+	.setFontProperties(@theFontSize, @theFontColor, @align, @transform);
 	font-family: @mainFont;
 	font-weight: 500;	
-	font-size: @theFontSize;
-	color: @theFontColor;
-	text-transform: @transform;
-	text-align: @align;
-	
-	.text_shadowing(@theFontColor);
 }
-
-.bodyfont_bold(@theFontSize, @theFontColor:inherit) {
+.bodyfont_bold(@theFontSize, @theFontColor:inherit, @align:inherit, @transform: inherit) {
+	.setFontProperties(@theFontSize, @theFontColor, @align, @transform);
 	font-family: @bodyFont;
 	font-weight: 700;
-	font-size: @theFontSize;
-	color: @theFontColor;
-	
-	.text_shadowing(@theFontColor);
 }
-.bodyfont_light(@theFontSize, @theFontColor:inherit) {
+.bodyfont_light(@theFontSize, @theFontColor:inherit, @align:inherit, @transform: inherit) {
+	.setFontProperties(@theFontSize, @theFontColor, @align, @transform);
 	font-family: @bodyFont;
-	font-weight: 500;	
-	font-size: @theFontSize;
-	color: @theFontColor;
-	
-	.text_shadowing(@theFontColor);
+	font-weight: 500;
 }
-
 /*
 OLD FONTS
 */

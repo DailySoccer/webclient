@@ -1292,6 +1292,10 @@
     ,"serverError"                      :
     {
       "connection-error"                : "Error de conexión..."
+    },
+    "topBar"                            : 
+    {
+      "level"                           : "nivel"
     }
   }
 }

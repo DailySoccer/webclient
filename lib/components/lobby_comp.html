@@ -1,31 +1,23 @@
 <div id="lobbyRoot">
-
-  <!-- Header de Promociones -->
-  <promos id="promosComponent"></promos>
-
-  <!-- Barra azul de información -->
-  <div id="lobbyTopInfobar">
-    <p>{{infoBarText}}</p>
+  
+  <div class="challenge-your-friends" ng-if="showCreateContest">
+    <span class="text">{{getStaticLocalizedText("challengeyourfriendstext")}}</span>
+    <button ng-click="onCreateContestClick()">{{getStaticLocalizedText("challengeyourfriendsbutton")}}</button>
   </div>
 
-  <!-- Filtros y Ordenación -->
-  <contest-filters-comp id="contestFiltersRoot"
-                        contests-list="contestsService.activeContests" contest-count="contestCount"
-                        on-sort-order-change="onSortOrderChange(sortParams)" on-filter-change="onFilterChange(filterList)"></contest-filters-comp>
+  <!-- Temporalmente pongo la imagen del calendario (maquetar mas adelante). -->
+  <!--week-calendar on-day-selected="onSelectedDayChange(day)" dates="dayList"></week-calendar-->
 
   <!-- Lista de concursos -->
   <contests-list  id="activeContestList"
-                  sorting="lobbySorting"
-                  contests-list="contestsService.activeContests"
-                  competition-type-filter="lobbyFilters['FILTER_COMPETITION']"
-                  tournament-type-filter="lobbyFilters['FILTER_TOURNAMENT']"
-                  salary-cap-filter="lobbyFilters['FILTER_TIER']"
-                  entry-fee-filter="lobbyFilters['FILTER_ENTRY_FEE']"
-                  name-filter="lobbyFilters['FILTER_CONTEST_NAME']"
-                  on-action-click='onActionClick(contest)'
-                  on-row-click="onRowClick(contest)" action-button-title="'PLAY'"
-                  contest-count="contestCount">
+                      contests-list="currentContestList"
+                      on-action-click='onActionClick(contest)'
+                      on-row-click="onRowClick(contest)"
+                      action-button-title="'>'"
+                      show-date="true">
   </contests-list>
-<!-- Punto de insercion de nuestra ruta hija contest-info -->
-<ng-view  ng-show="!loadingService.isLoading"></ng-view>
+  
+  <!-- Punto de insercion de nuestra ruta hija contest-info (modal) -->
+  <ng-view  ng-show="!loadingService.isLoading"></ng-view>
+  
 </div>

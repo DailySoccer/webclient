@@ -6051,6 +6051,14 @@ OLD FONTS
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d3d3d', endColorstr='#010201', GradientType=0);
   /* IE6-9 */
 }
+.black-gradient-inverse {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#30373a+0,171718+50,232324+51,222222+100 */
+  background: #30373a;
+  background: -moz-linear-gradient(top, #30373a 0%, #171718 49%, #232324 51%, #222222 100%);
+  background: -webkit-linear-gradient(top, #30373a 0%, #171718 49%, #232324 51%, #222222 100%);
+  background: linear-gradient(to bottom, #30373a 0%, #171718 49%, #232324 51%, #222222 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#30373a', endColorstr='#222222', GradientType=0);
+}
 .dark-green-bluish-gradient {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#102127+0,102127+49,03151b+51,03151b+100 */
   background: #102127;
@@ -6069,13 +6077,13 @@ OLD FONTS
   background-image: linear-gradient(to bottom, #0d75a6 0%, #0c4c6a 100%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0d75a6', endColorstr='#ff0c4c6a', GradientType=0);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
   padding: 10px;
   border: none;
   width: 100%;
@@ -6184,7 +6192,6 @@ body {
 }
 body {
   background-color: #000000;
-  background-image: url("../images/landingBackground.jpg");
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
@@ -6398,37 +6405,37 @@ contest-header .name-section {
   flex: 1;
 }
 contest-header .name-section .contest-name {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 12pt;
   color: #ffffff;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
   text-transform: uppercase;
   flex: 1;
 }
 contest-header .name-section .contest-description {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 10pt;
   color: #757993;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
   flex: 1;
 }
 contest-header .more-info {
   flex: 0 0 25px;
   padding: 6px 0 0 0;
   text-align: right;
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
   cursor: pointer;
 }
 contest-header .more-info i {
@@ -6448,22 +6455,22 @@ contest-header .prize-section {
   text-align: center;
 }
 contest-header .prize-section .prize-count {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 13pt;
   color: #ffffff;
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-}
-contest-header .prize-section .prize-description {
   font-family: 'Fjalla One', sans-serif;
   font-weight: 700;
+}
+contest-header .prize-section .prize-description {
   font-size: 10pt;
   color: #757993;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
 }
 contest-header .price-section {
   display: -webkit-box;
@@ -6479,22 +6486,22 @@ contest-header .price-section {
   text-align: center;
 }
 contest-header .price-section .price-count {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 13pt;
   color: #ffffff;
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-}
-contest-header .price-section .price-description {
   font-family: 'Fjalla One', sans-serif;
   font-weight: 700;
+}
+contest-header .price-section .price-description {
   font-size: 10pt;
   color: #757993;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
 }
 contest-header .fit-icon-size {
   width: 17px;
@@ -6553,13 +6560,13 @@ contest-header .prize-managerpoints::after {
   background-image: linear-gradient(to bottom, #0d75a6 0%, #0c4c6a 100%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0d75a6', endColorstr='#ff0c4c6a', GradientType=0);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
   padding: 10px;
   border: none;
   width: 100%;
@@ -6595,13 +6602,13 @@ contest-header .prize-managerpoints::after {
   height: 24px;
 }
 .lineup-selector-slot .soccer-player-name {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
   position: relative;
   text-align: center;
   display: block;
@@ -6617,13 +6624,13 @@ contest-header .prize-managerpoints::after {
   background-image: linear-gradient(to bottom, #686868 0%, #2f2e2e 100%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff686868', endColorstr='#ff2f2e2e', GradientType=0);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 9pt;
   color: #fa9c19;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16), 0 1px 2px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16), 0 1px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16), 0 1px 2px rgba(0, 0, 0, 0.3);
@@ -6902,13 +6909,13 @@ lineup-field-selector {
   margin-top: 8px;
 }
 .lineup-formation-selector-wrapper .lineup-formation-label {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 12pt;
   color: #ffffff;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
   text-transform: uppercase;
   position: relative;
   margin-right: 3px;
@@ -6916,13 +6923,13 @@ lineup-field-selector {
   margin-left: auto;
 }
 .lineup-formation-selector-wrapper .lineup-formation-dropdown {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 12pt;
   color: #000000;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
   background-color: #ffffff;
   border-radius: 1px;
   padding: 7px 30px 7px 10px;
@@ -6943,13 +6950,13 @@ lineup-field-selector {
   outline: none;
 }
 .lineup-formation-selector-wrapper .lineup-formation-dropdown-caret {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 12pt;
   color: #000000;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
   background-color: #ffffff;
   position: relative;
   border: 0;
@@ -7002,13 +7009,13 @@ contests-list {
   background-color: #181818;
 }
 contests-list .contestDateSeparator {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 13pt;
   color: #fa9c19;
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
   border-bottom: 3px solid #fa9c19;
   padding: 10px;
 }
@@ -7024,6 +7031,7 @@ contests-list .contestSlot {
   background-color: #242529;
   border-bottom: 2px solid #000000;
   margin-bottom: 10px;
+  padding: 10px 0;
 }
 contests-list .time-section {
   flex: 0 0 66px;
@@ -7034,13 +7042,13 @@ contests-list .time-section .contest-flag {
   margin: 10px auto 5px auto;
 }
 contests-list .time-section .column-start-time {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 10pt;
   color: #757993;
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
   padding-bottom: 11px;
 }
 contests-list .name-section {
@@ -7055,22 +7063,22 @@ contests-list .name-section {
   justify-content: center;
 }
 contests-list .name-section .contest-name {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 13pt;
   color: #ffffff;
   text-transform: uppercase;
   text-align: none;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-}
-contests-list .name-section .contest-description {
   font-family: 'Fjalla One', sans-serif;
   font-weight: 700;
+}
+contests-list .name-section .contest-description {
   font-size: 10pt;
   color: #757993;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
 }
 contests-list .prize-section {
   display: -webkit-box;
@@ -7080,26 +7088,26 @@ contests-list .prize-section {
   display: flex;
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
-  flex: 0 0 60px;
+  flex: 0 0 80px;
   justify-content: center;
 }
 contests-list .prize-section .prize-count {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 13pt;
   color: #ffffff;
   text-transform: uppercase;
   text-align: none;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-}
-contests-list .prize-section .prize-description {
   font-family: 'Fjalla One', sans-serif;
   font-weight: 700;
+}
+contests-list .prize-section .prize-description {
   font-size: 10pt;
   color: #757993;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
 }
 contests-list .price-section {
   display: -webkit-box;
@@ -7113,22 +7121,22 @@ contests-list .price-section {
   justify-content: center;
 }
 contests-list .price-section .price-count {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 13pt;
   color: #ffffff;
   text-transform: uppercase;
   text-align: none;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-}
-contests-list .price-section .price-description {
   font-family: 'Fjalla One', sans-serif;
   font-weight: 700;
+}
+contests-list .price-section .price-description {
   font-size: 10pt;
   color: #757993;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
 }
 contests-list .action-section {
   display: -webkit-box;
@@ -7192,7 +7200,7 @@ contests-list .contestSlot.special .price-section {
   left: 50%;
   top: 90px;
   background-image: url('../images/special_contest_inner_box.png');
-  width: 106px;
+  width: 120px;
   text-align: center;
 }
 contests-list .contestSlot.special .prize-section .prize-count,
@@ -7214,10 +7222,10 @@ contests-list .contestSlot.special .price-section .price-description {
   padding: 5px 10px;
 }
 contests-list .contestSlot.special .prize-section {
-  margin-left: -115px;
+  margin-left: -120px;
 }
 contests-list .contestSlot.special .price-section {
-  margin-left: 9px;
+  margin-left: 14px;
 }
 modal-window {
   position: absolute;
@@ -7238,13 +7246,13 @@ modal-window.hidden-window {
   display: flex;
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
   font-size: 10pt;
   color: #ffffff;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
   background-color: #ffffff;
   margin: 16px 8px;
 }
@@ -7266,13 +7274,13 @@ modal-window.hidden-window {
 }
 .modal-window-title {
   flex: 1;
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
   font-size: 13pt;
   color: #ffffff;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
   text-transform: uppercase;
   padding: 2px 0;
 }
@@ -7502,13 +7510,13 @@ contest-info .header-section {
   -webkit-flex-flow: row nowrap;
   flex-flow: row nowrap;
   justify-content: center;
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
   font-size: 14pt;
   color: #fa9c19;
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
   height: 60px;
   align-items: center;
 }
@@ -7521,13 +7529,13 @@ contest-info .info-header {
   -webkit-flex-flow: row nowrap;
   flex-flow: row nowrap;
   justify-content: center;
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
   font-size: 14pt;
   color: #fa9c19;
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
   height: 60px;
   align-items: center;
   border-bottom: 1px solid #2f2e2e;
@@ -7552,13 +7560,13 @@ contest-info .info-header .price-description {
 }
 contest-info .info-header .prize-count,
 contest-info .info-header .price-count {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
   font-size: 14pt;
   color: #ffffff;
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
 }
 contest-info .matches-involved {
   background-color: #242529;
@@ -7578,24 +7586,24 @@ contest-info .matches-involved .match {
 }
 contest-info .matches-involved .team {
   flex: 0 0 30px;
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
   font-size: 10pt;
   color: rgba(210, 210, 210, 0.3);
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(210, 210, 210, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
   margin: 0 15px;
 }
 contest-info .matches-involved .date {
   flex: 1;
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
   font-size: 10pt;
   color: #757993;
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
 }
 contest-info .contestant-list .contestant-element {
   display: -webkit-box;
@@ -7605,13 +7613,13 @@ contest-info .contestant-list .contestant-element {
   display: flex;
   -webkit-flex-flow: row nowrap;
   flex-flow: row nowrap;
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
   font-size: 10pt;
   color: #757993;
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
   border-bottom: solid 1px #757993;
   height: 40px;
   align-items: center;
@@ -12413,14 +12421,14 @@ fieldset[disabled] .fantasy-team-list .fantasy-team-slot .column-score .change-b
     max-height: none;
   }
 }
-#lobbyf2pRoot {
-  background-color: #dcdcdc;
+#lobbyRoot {
+  background-color: #181818;
 }
-lobbyf2p week-calendar {
+lobby week-calendar {
   clear: both;
   display: block;
 }
-lobbyf2p week-calendar .week-calendar {
+lobby week-calendar .week-calendar {
   margin-top: 0;
 }
 .challenge-your-friends {
@@ -12612,16 +12620,54 @@ fieldset[disabled] .challenge-your-friends button {
   display: block;
   clear: both;
 }
-@media (max-width: 768px) {
-  .challenge-your-friends {
-    text-align: center;
-  }
-  .challenge-your-friends .text {
-    display: none;
-  }
-  .challenge-your-friends button {
-    float: none;
-  }
+.global-lobby .three-columns .left-column {
+  flex: 0 0 120px;
+}
+.global-lobby .three-columns .right-column {
+  flex: 0 0 75px;
+}
+.lobby-topbar-left {
+  font-size: 12pt;
+  color: #59add5;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  border-right: 1px solid rgba(210, 210, 210, 0.3);
+  cursor: pointer;
+}
+.lobby-topbar-center {
+  font-size: 12pt;
+  color: #fa9c19;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+}
+.lobby-topbar-right {
+  font-size: 12pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  border-left: 1px solid rgba(210, 210, 210, 0.3);
+  cursor: pointer;
+  position: relative;
+}
+.lobby-topbar-right .tab-bar-item-badge {
+  left: 0;
+  top: 3px;
+  min-width: 22px;
+  min-height: 20px;
+  line-height: 12px;
+  padding: 5px;
+  font-size: 9pt;
+  text-shadow: 0 0 0;
 }
 main-menu-f2p {
   display: block;
@@ -13995,9 +14041,19 @@ fieldset[disabled] #mainMenu #menuNotLoggedIn .button-wrapper .button-join {
   padding: 1px 5px;
 }
 tab-bar {
-  flex: 0 0 100px;
+  flex: 0 0 auto;
   text-align: center;
-  background-image: url(../images/tabBar/BottomBarBg.png);
+  background-color: #0a2938;
+  border-top: 2px solid rgba(210, 210, 210, 0.3);
+}
+.tab-bar-wrapper {
+  height: 100px;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#30373a+0,171718+50,232324+51,222222+100 */
+  background: #30373a;
+  background: -moz-linear-gradient(top, #30373a 0%, #171718 49%, #232324 51%, #222222 100%);
+  background: -webkit-linear-gradient(top, #30373a 0%, #171718 49%, #232324 51%, #222222 100%);
+  background: linear-gradient(to bottom, #30373a 0%, #171718 49%, #232324 51%, #222222 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#30373a', endColorstr='#222222', GradientType=0);
 }
 .tab-bar-item {
   position: relative;
@@ -14007,16 +14063,16 @@ tab-bar {
 }
 .tab-bar-item.active {
   background-image: url(../images/tabBar/BottomBarMenuElementActive.png);
-  background-size: 100% 100%;
+  background-size: cover;
 }
 .tab-bar-item-name {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
   font-size: 11pt;
   color: #757993;
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
   display: block;
 }
 .tab-bar-item-badge {
@@ -14144,7 +14200,6 @@ top-bar {
 .three-columns .left-column,
 .one-column .left-column {
   flex: 0 0 40px;
-  height: 25px;
   cursor: pointer;
   text-align: right;
   padding: 0 4px 0 8px;
@@ -14152,7 +14207,6 @@ top-bar {
 .three-columns .main-column,
 .one-column .main-column {
   flex: 1;
-  text-align: center;
 }
 .three-columns .main-column .user-currencies,
 .one-column .main-column .user-currencies {
@@ -14171,7 +14225,6 @@ top-bar {
 .three-columns .right-column,
 .one-column .right-column {
   flex: 0 0 50px;
-  height: 25px;
   text-align: center;
   padding-right: 8px;
 }
@@ -14183,13 +14236,13 @@ top-bar {
   cursor: pointer;
 }
 .columns-layout {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
   font-size: 14pt;
   color: #ffffff;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
   text-transform: uppercase;
   height: 55px;
 }
@@ -14981,13 +15034,13 @@ soccer-player-stats {
   -webkit-flex-flow: row nowrap;
   flex-flow: row nowrap;
   background-color: #181818;
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
   font-size: 12pt;
   color: #ffffff;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
   border-bottom: 2px solid rgba(210, 210, 210, 0.3);
 }
 .soccer-player-stats-header-tshirt {
@@ -15028,22 +15081,22 @@ soccer-player-stats {
   flex: 1;
 }
 .soccer-player-stats-header-description .soccer-player-name-team .soccer-player-pos-team {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
   font-size: 10pt;
   color: #757993;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
-}
-.soccer-player-stats-header-description .soccer-player-name-team .soccer-player-name {
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
+}
+.soccer-player-stats-header-description .soccer-player-name-team .soccer-player-name {
   font-size: 18pt;
   color: #ffffff;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
   white-space: nowrap;
   overflow: hidden;
   margin-right: 10px;
@@ -15054,13 +15107,13 @@ soccer-player-stats {
   background-image: linear-gradient(to bottom, #0d75a6 0%, #0c4c6a 100%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0d75a6', endColorstr='#ff0c4c6a', GradientType=0);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
   padding: 10px;
   border: none;
   width: 100%;
@@ -15094,13 +15147,13 @@ soccer-player-stats {
 }
 .soccer-player-stats-info .soccer-player-stat-resume-item {
   flex: 1;
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
   font-size: 16pt;
   color: #757993;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
 }
 .soccer-player-stats-info .soccer-player-fantasy-points {
   text-align: left;
@@ -15142,13 +15195,13 @@ soccer-player-stats {
 }
 .soccer-player-stats-tabs input + label {
   flex: 1;
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
   font-size: 10pt;
   color: #757993;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
   padding: 15px 10px 7px 10px;
   margin: 0 0 1px 0;
   text-align: center;
@@ -15168,13 +15221,13 @@ soccer-player-stats {
   display: block;
 }
 .soccer-player-stats-tab-pane {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
   font-size: 8pt;
   color: #757993;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
 }
 .soccer-player-stats-tab-pane#season-stats-tab-content {
   margin: 20px auto;
@@ -15191,25 +15244,25 @@ soccer-player-stats {
 }
 .soccer-player-stats-tab-pane .season-stats-header {
   flex: 0 0 75px;
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 10pt;
   color: #757993;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
   border: 1px solid #242529;
   padding: 5px 15px;
 }
 .soccer-player-stats-tab-pane .season-stats-value {
   flex: 0 0 75px;
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
   font-size: 10pt;
   color: #757993;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
   border: 1px solid #242529;
   padding: 5px 15px;
 }
@@ -15246,32 +15299,32 @@ soccer-player-stats {
   overflow-y: hidden;
 }
 .per-match-stats-table-years-row:nth-child(1) {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 10pt;
   color: #757993;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
-}
-.per-match-stats-table-data-row:nth-child(2) {
   font-family: 'Fjalla One', sans-serif;
   font-weight: 700;
+}
+.per-match-stats-table-data-row:nth-child(2) {
   font-size: 8pt;
   color: #757993;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
   border-top: 1px solid #757993;
 }
 .per-match-stats-table-data-row:nth-child(3) {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 8pt;
   color: #0d75a6;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
 }
 /*#modalSoccerPlayerStats {	
 	.modal-properties-default();*/
@@ -15632,13 +15685,13 @@ enter-contest {
   flex: 1;
 }
 .lineup-selector-section .contest-id {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
   font-size: 10pt;
   color: #ffffff;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
   background-color: transparent;
   position: relative;
   margin: 0 10px;
@@ -15652,13 +15705,13 @@ enter-contest {
   background-image: linear-gradient(to bottom, #0d75a6 0%, #0c4c6a 100%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0d75a6', endColorstr='#ff0c4c6a', GradientType=0);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
   padding: 10px;
   border: none;
   width: 100%;
@@ -15692,13 +15745,13 @@ enter-contest {
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#102127', endColorstr='#03151b', GradientType=0);
   /* IE6-9 */
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
   font-size: 10pt;
   color: #ffffff;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -15752,13 +15805,13 @@ enter-contest {
 }
 .contest-topbar-info .column-start-hour {
   flex: 1;
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 10pt;
   color: #757993;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
 }
 .contest-topbar-info .contest-name-section {
   flex: 1;
@@ -15773,25 +15826,25 @@ enter-contest {
 }
 .contest-topbar-info .contest-name {
   flex: 1;
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 12pt;
   color: #ffffff;
   text-transform: inherit;
-  text-align: left;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
   overflow: hidden;
   margin-right: 5px;
 }
 .contest-topbar-info .contest-description {
   flex: 1;
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 10pt;
   color: #757993;
   text-transform: none;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
   overflow: hidden;
   margin-right: 5px;
 }
@@ -15815,13 +15868,13 @@ enter-contest {
   background-image: linear-gradient(to bottom, #0d75a6 0%, #0c4c6a 100%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0d75a6', endColorstr='#ff0c4c6a', GradientType=0);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 10pt;
   color: #ffffff;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
   padding: 10px;
   border: none;
   width: 100%;
@@ -16749,13 +16802,13 @@ soccer-players-scalinglist {
   display: flex;
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
   font-size: 12pt;
   color: #ffffff;
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
   text-transform: uppercase;
   position: relative;
   background-color: #242529;
@@ -26643,6 +26696,11 @@ fieldset[disabled] .deprecated-version-screen button {
   outline: none !important;
   color: #ffffff;
 }
+/*
+	A collection of all country flags in SVG — plus the CSS for easier integration
+	Github: https://github.com/lipis/flag-icon-css
+	Demo: http://flag-icon-css.lip.is/
+*/
 .flag-icon-background {
   background-size: contain;
   background-position: 50%;

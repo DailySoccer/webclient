@@ -13,6 +13,7 @@ import 'package:webclient/services/payment_service.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/utils/host_server.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Injectable()
 class AppStateService {
@@ -62,6 +63,10 @@ class AppTopBarStateConfig {
   Function onCenterColumn = (){};
   Function onRightColumn = (){};
   
+  String getLocalizedText(key, {substitutions: null}) {
+     return StringUtils.translate(key, "topBar", substitutions);
+   }
+  
   AppTopBarStateConfig({this.leftColumn: AppTopBarState.EMPTY, 
                         this.centerColumn: AppTopBarState.EMPTY, 
                         this.rightColumn: AppTopBarState.EMPTY, 
@@ -78,6 +83,75 @@ class AppTopBarStateConfig {
   AppTopBarStateConfig.subSection(this.centerColumn, {this.rightColumn: AppTopBarState.EMPTY}) {
     this.leftColumn = AppTopBarState.BACK_BUTTON;
   }
+
+  AppTopBarStateConfig.userBar(ProfileService profileService, Router router) {
+    leftColumn = '''
+      <div class="lobby-topbar-left">
+        <img class="gold-image" src="images/topBar/icon_user_profile.png">
+        <span class="level">''' +  getLocalizedText("level") + '''</span>
+        <span class="level">''' + (profileService.user != null ? profileService.user.trueSkill.toString() : "") + '''</span>
+      </div>
+    ''';
+    centerColumn = '''
+      <div class="lobby-topbar-center">
+        <span class="coins-count">''' + (profileService.user != null ? profileService.user.balance.toString() : "0") + '''</span>
+        <img class="gold-image" src="images/topBar/icon_coin_big.png">
+        <img class="gold-image" src="images/topBar/icon_add_more_coins.png">
+      </div>
+    ''';
+    rightColumn= '''
+      <div class="lobby-topbar-right">
+        ''' + getNotificationCount(profileService) + '''          
+        <img class="gold-image" src="images/topBar/icon_Bell.png">
+      </div>
+    ''';
+    onLeftColumn = (){
+      router.go("profile", {});
+    };
+    onCenterColumn = (){
+      router.go("shop", {});
+    };
+    onRightColumn = (){
+      router.go("notifications", {});
+    };
+  }
+  
+  String getNotificationCount(ProfileService ps) {
+    if (ps.user == null)
+      return "";
+    
+    int notifCount = 3;//ps.user.notifications.length;
+    
+    if (notifCount > 0) 
+      return ''' <span class="tab-bar-item-badge has-notifications">''' + notifCount.toString() + '''</span> ''';
+        
+    return "";
+  }
+  
+  /*
+  _appStateService.appTopBarState.activeState = new AppTopBarStateConfig(
+       leftColumn: '''
+        <div class="lobby-topbar-left">
+          <img class="gold-image" src="images/topBar/icon_user_profile.png">
+          <span class="level">''' +  getLocalizedText("level") + '''</span><span class="level">''' + skillPoints + '''</span>
+         </div>
+       ''', 
+      centerColumn: '''
+         <div class="lobby-topbar-center">
+           <span class="coins-count">''' + "1250" + '''</span>
+          <img class="gold-image" src="images/topBar/icon_coin_big.png">
+          <img class="gold-image" src="images/topBar/icon_add_more_coins.png">
+        </div>
+      ''',
+       rightColumn: '''
+        <div class="lobby-topbar-right">
+        <span class="tab-bar-item-badge has-notifications">''' + "1" + '''</span>          
+         <img class="gold-image" src="images/topBar/icon_Bell.png">
+         </div>
+       ''');
+  
+  */
+  
   
 }
 

@@ -56,7 +56,7 @@ import 'package:webclient/components/navigation/deprecated_version_screen_comp.d
 import 'package:webclient/components/flash_messages_comp.dart';
 import 'package:webclient/components/modal_comp.dart';
 import 'package:webclient/components/paginator_comp.dart';
-import 'package:webclient/components/lobby_f2p_comp.dart';
+import 'package:webclient/components/lobby_comp.dart';
 import 'package:webclient/components/home_comp.dart';
 import 'package:webclient/components/promos_comp.dart';
 import 'package:webclient/components/simple_promo_f2p_comp.dart';
@@ -125,7 +125,6 @@ import 'package:webclient/utils/game_info.dart';
 //import 'package:webclient/components/landing_page_1_slide_comp.dart';
 //import 'package:webclient/components/navigation/main_menu_slide_comp.dart';
 //import 'package:webclient/components/contest_filters_comp.dart';
-//import 'package:webclient/components/lobby_comp.dart';
 //import 'package:webclient/components/simple_promo_viewer_comp.dart';
 //import 'package:webclient/components/contests_list_comp.dart';
 //import 'package:webclient/components/contest_header_comp.dart';
@@ -208,7 +207,7 @@ class WebClientApp extends Module {
     bind(ModalComp);
     bind(LoginComp);
     bind(JoinComp);
-    bind(LobbyF2PComp);
+    bind(LobbyComp);
     bind(HomeComp);
     bind(ContestsListComp);
     bind(PromosComp);
@@ -271,7 +270,6 @@ class WebClientApp extends Module {
     //bind(TransactionHistoryComp);
     //bind(LandingPage1SlideComp);
     //bind(MainMenuSlideComp);
-    //bind(LobbyComp);
 
     //bind(ContestsListComp);
     //bind(SimplePromoViewerComp);
@@ -432,7 +430,7 @@ class WebClientApp extends Module {
       ,'lobby': ngRoute(
           path: '/lobby',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ALWAYS),
-          viewHtml: '<lobbyf2p></lobbyf2p>',
+          viewHtml: '<lobby></lobby>',
           mount: {
             'contest_info': ngRoute(
                 path: '/contest_info/:contestId',

@@ -31,6 +31,7 @@ class TopBarComp {
                                currentState.centerColumn != AppTopBarState.EMPTY ? "one-column" : "hidden-bar";
   
   bool get leftColumnIsBackButton => currentState.leftColumn == AppTopBarState.BACK_BUTTON;
+  bool get notificationsActive => _appStateService.notificacionsActive;
   
   String get leftColumnHTML   => _columnHTML(currentState.leftColumn);
   String get centerColumnHTML => _columnHTML(currentState.centerColumn);

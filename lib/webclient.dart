@@ -416,11 +416,11 @@ class WebClientApp extends Module {
             )
           }*/
       )
-      ,'notifications': ngRoute(
+     /*,'notifications': ngRoute(
           path: '/notifications',
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<notifications></notifications>'
-      )
+      )*/
       ,'home': ngRoute(
           defaultRoute: true,
           path: '/home',

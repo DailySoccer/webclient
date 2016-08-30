@@ -36,6 +36,8 @@ class AppStateService {
   AppTabBarState _appTabBarState;
   AppTopBarState _appTopBarState;
   AppSecondaryTabBarState _appSecondaryTabBarState;
+
+  bool notificacionsActive = false;
   
   static AppStateService _instance;
 }
@@ -151,7 +153,8 @@ class AppTopBarStateConfig {
       router.go("shop", {});
     };
     onRightColumn = (){
-      router.go("notifications", {});
+      //router.go("notifications", {});
+      AppStateService.Instance.notificacionsActive = true;
     };
     layoutClass = "user-bar";
   }

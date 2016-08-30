@@ -19,6 +19,7 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/utils/game_info.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/services/payment_service.dart';
+import 'package:webclient/services/app_state_service.dart';
 
 @Component(
     selector: 'shop-comp',
@@ -43,7 +44,11 @@ class ShopComp implements DetachAware{
     return StringUtils.translate(key, group, substitutions);
   }
 
-  ShopComp(this._flashMessage, this._profileService, this._catalogService, this._tutorialService, this._paymentService) {
+  ShopComp(this._flashMessage, this._profileService, this._catalogService, this._tutorialService, this._paymentService, this._appStateService, this._router) {
+    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection(getLocalizedText("name"));
+    _appStateService.appTopBarState.activeState.onLeftColumn = GoBack;
+        
+    
     goldProducts = [];
     energyProducts = [];
     
@@ -60,12 +65,13 @@ class ShopComp implements DetachAware{
     }
     
     _catalogService.getCatalog()
-      .then((catalog) {
+    //TOTO: descomentar en versión final
+      /*.then((catalog) {
         // Esperar a que iTunes Connect / Play Store actualice correctamente los productos de GOLD
         return _paymentService.waitingForReady();
-      })
+      })*/
       .then((_) {
-        for (Product info in _catalogService.products.where((g) => g.gained.isGold && g.isValid)) {
+        for (Product info in _catalogService.products.where((g) => g.gained.isGold /*&& g.isValid*/)) {
           Map gProduct = {};
           gProduct["id"]             = info.id;
           gProduct["storeId"]        = info.storeId;
@@ -94,6 +100,10 @@ class ShopComp implements DetachAware{
     
     GameMetrics.logEvent(GameMetrics.SHOP_ENTERED);
     _tutorialService.triggerEnter("shop", component: this, activateIfNeeded: false);
+  }
+  
+  void GoBack() {
+    _router.go("lobby", {});
   }
 
   void buyGold(String id) {
@@ -185,10 +195,12 @@ class ShopComp implements DetachAware{
 
   bool get canBuyEnergy => _profileService.user.energyBalance.amount < User.MAX_ENERGY;
 
+  Router _router;
   FlashMessagesService _flashMessage;
   ProfileService _profileService;
   CatalogService _catalogService;
   TutorialService _tutorialService;
   PaymentService _paymentService;
+  AppStateService _appStateService;
 }
 

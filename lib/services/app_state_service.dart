@@ -115,13 +115,14 @@ class AppTopBarStateConfig {
     onRightColumn = (){
       router.go("notifications", {});
     };
+    layoutClass = "user-bar";
   }
   
   String getNotificationCount(ProfileService ps) {
     if (ps.user == null)
       return "";
     
-    int notifCount = 3;//ps.user.notifications.length;
+    int notifCount = ps.user.notifications.length;
     
     if (notifCount > 0) 
       return ''' <span class="tab-bar-item-badge has-notifications">''' + notifCount.toString() + '''</span> ''';

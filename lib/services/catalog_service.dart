@@ -90,7 +90,8 @@ class CatalogService {
                 return gProduct;
               }).toList();
 
-              JsUtils.runJavascript(null, "registerConsumable", [productsGold], 'epicStore');
+              //TODO: descomentar en versión final
+              //JsUtils.runJavascript(null, "registerConsumable", [productsGold], 'epicStore');
             }
             completer.complete(products);
           });

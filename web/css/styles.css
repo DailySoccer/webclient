@@ -5658,16 +5658,6 @@ scoring-rules:after,
 #transactionHistoryRoot .transaction-headers:after,
 #transactionHistoryRoot .transaction-row:before,
 #transactionHistoryRoot .transaction-row:after,
-#mainShopCompWrapper:before,
-#mainShopCompWrapper:after,
-#mainShopCompWrapper .header:before,
-#mainShopCompWrapper .header:after,
-#mainShopCompWrapper .content:before,
-#mainShopCompWrapper .content:after,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item:before,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item:after,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .item-title:before,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .item-title:after,
 #goldShopComp .content:before,
 #goldShopComp .content:after,
 #trainerPointsShopComp .content:before,
@@ -5801,11 +5791,6 @@ scoring-rules:after,
 #addFundsContent .scores-wrapper:after,
 #transactionHistoryRoot .transaction-headers:after,
 #transactionHistoryRoot .transaction-row:after,
-#mainShopCompWrapper:after,
-#mainShopCompWrapper .header:after,
-#mainShopCompWrapper .content:after,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item:after,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .item-title:after,
 #goldShopComp .content:after,
 #trainerPointsShopComp .content:after,
 #goldShopComp .products-wrapper:after,
@@ -6106,19 +6091,19 @@ OLD FONTS
   margin-left: 5px;
   top: 1px;
   /*@media (min-width: @screen-sm-min) {
-      float: right;
-      width: 27px;
-      height: 27px;
-      margin-left: 0px;
-      top: 0px;
-    }*/
+    float: right;
+    width: 27px;
+    height: 27px;
+    margin-left: 0px;
+    top: 0px;
+  }*/
 }
 .entry-fee-energy::after {
   content: " ";
   background-image: url("../images/icon-lightning-xs.png");
   /*@media (min-width: @screen-sm-min) {
-      background-image: url("@{images}/icon-lightning-lg.png");
-    }*/
+    background-image: url("@{images}/icon-lightning-lg.png");
+  }*/
   width: 17px;
   height: 17px;
   position: relative;
@@ -6126,12 +6111,12 @@ OLD FONTS
   margin-left: 5px;
   top: 1px;
   /*@media (min-width: @screen-sm-min) {
-      float: right;
-      width: 27px;
-      height: 27px;
-      margin-left: 0px;
-      top: 0px;
-    }*/
+    float: right;
+    width: 27px;
+    height: 27px;
+    margin-left: 0px;
+    top: 0px;
+  }*/
   top: 2px;
 }
 .entry-fee-coin::after,
@@ -6139,8 +6124,8 @@ OLD FONTS
   content: " ";
   background-image: url("../images/icon-coin-xs.png");
   /*@media (min-width: @screen-sm-min) {
-      background-image: url("@{images}/icon-coin-lg.png");
-    }*/
+    background-image: url("@{images}/icon-coin-lg.png");
+  }*/
   width: 17px;
   height: 17px;
   position: relative;
@@ -6148,19 +6133,19 @@ OLD FONTS
   margin-left: 5px;
   top: 1px;
   /*@media (min-width: @screen-sm-min) {
-      float: right;
-      width: 27px;
-      height: 27px;
-      margin-left: 0px;
-      top: 0px;
-    }*/
+    float: right;
+    width: 27px;
+    height: 27px;
+    margin-left: 0px;
+    top: 0px;
+  }*/
 }
 .prize-managerpoints::after {
   content: " ";
   background-image: url("../images/icon-star-xs.png");
   /*@media (min-width: @screen-sm-min) {
-      background-image: url("@{images}/icon-star-lg.png");
-    }*/
+    background-image: url("@{images}/icon-star-lg.png");
+  }*/
   width: 17px;
   height: 17px;
   position: relative;
@@ -6168,12 +6153,61 @@ OLD FONTS
   margin-left: 5px;
   top: 1px;
   /*@media (min-width: @screen-sm-min) {
-      float: right;
-      width: 27px;
-      height: 27px;
-      margin-left: 0px;
-      top: 0px;
-    }*/
+    float: right;
+    width: 27px;
+    height: 27px;
+    margin-left: 0px;
+    top: 0px;
+  }*/
+}
+.user-bar.three-columns .left-column {
+  flex: 0 0 120px;
+}
+.user-bar.three-columns .right-column {
+  flex: 0 0 75px;
+}
+.lobby-topbar-left {
+  font-size: 12pt;
+  color: #59add5;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  border-right: 1px solid rgba(210, 210, 210, 0.3);
+  cursor: pointer;
+}
+.lobby-topbar-center {
+  font-size: 12pt;
+  color: #fa9c19;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+}
+.lobby-topbar-right {
+  font-size: 12pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  border-left: 1px solid rgba(210, 210, 210, 0.3);
+  cursor: pointer;
+  position: relative;
+}
+.lobby-topbar-right .tab-bar-item-badge {
+  left: 0;
+  top: 3px;
+  min-width: 22px;
+  min-height: 20px;
+  line-height: 12px;
+  padding: 5px;
+  font-size: 9pt;
+  text-shadow: 0 0 0;
 }
 html,
 body {
@@ -9352,665 +9386,121 @@ fieldset[disabled] #addFundsContent .add-founds-box button.add-funds-button {
 #transactionHistoryRoot .transaction-row .field-balance .red-numbers {
   color: #ff0000;
 }
-.global-shop #mainWrapper {
-  background-color: #ffffff;
-}
-#mainShopCompWrapper {
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 0;
-}
-#mainShopCompWrapper > .navbar-header,
-#mainShopCompWrapper > .navbar-collapse {
-  margin-right: -15px;
-  margin-left: -15px;
-}
-@media (min-width: 768px) {
-  #mainShopCompWrapper > .navbar-header,
-  #mainShopCompWrapper > .navbar-collapse {
-    margin-right: 0;
-    margin-left: 0;
-  }
-}
-#mainShopCompWrapper .gold {
-  content: " ";
-  background-image: url("../images/icon-coin-lg.png");
-  width: 27px;
-  height: 27px;
-  display: inline-block;
-  vertical-align: middle;
+shop-comp .money-slot {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
   position: relative;
-}
-#mainShopCompWrapper .header {
-  margin-left: 0;
-  margin-right: 0;
-}
-#mainShopCompWrapper .header .shop-banner {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-#mainShopCompWrapper .content {
-  margin-left: 0;
-  margin-right: 0;
-  padding: 15px;
-}
-#mainShopCompWrapper .content .money-layout {
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 2px;
-  height: 390px;
-  position: relative;
-  cursor: pointer;
-  height: auto;
-  padding: 0;
-}
-@media (min-width: 768px) {
-  #mainShopCompWrapper .content .money-layout {
-    float: left;
-    width: 75%;
-  }
-}
-#mainShopCompWrapper .content .money-layout .tile {
-  padding: 15px;
-  height: 100%;
-  background-color: #000000;
-}
-#mainShopCompWrapper .content .money-tile-wrapper {
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 2px;
-  height: 195px;
-  position: relative;
-  cursor: pointer;
-  padding: 5px;
-}
-@media (min-width: 768px) {
-  #mainShopCompWrapper .content .money-tile-wrapper {
-    float: left;
-    width: 33.33333333%;
-  }
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile {
-  padding: 15px;
-  height: 100%;
-  background-color: #000000;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile {
-  padding: 0;
-  background-color: transparent;
-  cursor: default;
-  position: relative;
-  background-image: url("../images/shopItemBg.jpg");
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-size: cover;
-  border-radius: 10px;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .header {
-  height: 35px;
-  text-align: center;
-  position: relative;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .header .title {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 11pt;
-  color: #0a2938;
-  text-shadow: 1px 1px 1px rgba(10, 41, 56, 0.004);
-  top: 8px;
-  position: relative;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content {
-  position: relative;
-  height: 150px;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .gold-icon {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 125px;
-  text-align: right;
-  height: 100%;
-  margin-right: 20px;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .gold-quantity {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
-  font-size: 20pt;
-  color: #0a2938;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 1px rgba(10, 41, 56, 0.004);
-  position: relative;
-  top: 35px;
-  background-color: #ffffff;
-  padding: 2px 5px;
-  border-radius: 6px;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .gold-quantity:after {
-  content: " ";
-  background-image: url("../images/icon-coin-lg.png");
-  width: 27px;
-  height: 27px;
-  display: inline-block;
-  vertical-align: middle;
-  position: relative;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper {
-  display: inline-block;
-  height: 30px;
-  position: absolute;
-  bottom: 15px;
-  width: 125px;
-  right: 0px;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price {
-  background-color: #428bca;
-  border-color: #357ebd;
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border-width: 0;
-  -webkit-transition: All 0.08s ease-out;
-  -moz-transition: All 0.08s ease-out;
-  -ms-transition: All 0.08s ease-out;
-  -o-transition: All 0.08s ease-out;
-  transition: All 0.08s ease-out;
-  font-size: 10pt;
-  background-color: #a1c931;
-  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
-  outline: none !important;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 14pt;
-  color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  width: 100%;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:hover,
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:focus,
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active,
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active,
-.open .dropdown-toggle#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price {
-  color: #ffffff;
-  background-color: #3276b1;
-  border-color: #285e8e;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active,
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active,
-.open .dropdown-toggle#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price {
-  background-image: none;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.disabled,
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price[disabled],
-fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price,
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.disabled:hover,
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price[disabled]:hover,
-fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:hover,
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.disabled:focus,
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price[disabled]:focus,
-fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:focus,
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.disabled:active,
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price[disabled]:active,
-fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active,
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.disabled.active,
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price[disabled].active,
-fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active {
-  background-color: #428bca;
-  border-color: #357ebd;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price .badge {
-  color: #428bca;
-  background-color: #ffffff;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:focus,
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active:focus,
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:hover,
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:focus {
-  color: #333333;
-  text-decoration: none;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active,
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.disabled,
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price[disabled],
-fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active,
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active {
-  box-shadow: none;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active:focus,
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active:focus {
-  color: #ffffff;
-  background-color: #b5d657;
-  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active:hover,
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active:hover {
-  color: #ffffff;
-  background-color: #b5d657;
-  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:focus {
-  background-color: #a1c931;
-  color: #ffffff;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:hover {
-  background-color: #acd142;
-  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
-  outline: none !important;
-  color: #ffffff;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:hover:focus {
-  background-color: #a1c931;
-  color: #ffffff;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:active,
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.active {
-  box-shadow: none;
-  background-color: #a1c931;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price:hover {
-  background-color: #acd142;
-  outline: none !important;
-  color: #ffffff;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.disabled,
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price[disabled],
-fieldset[disabled] #mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price {
-  background-color: #b5d657;
-  color: #ebebeb;
-  cursor: not-allowed !important;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .button-wrapper .price.close {
-  background-color: #a1c931;
-  outline: none !important;
-  color: #ffffff;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .free-increment {
-  width: 68px;
-  height: 42px;
-  background: transparent url("../images/BuyGoldFreeBase.png") no-repeat scroll 50% 0%;
-  position: absolute;
-  bottom: 45px;
-  width: 125px;
-  background-position-x: center;
-  background-repeat: no-repeat;
-  right: 15px;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .free-increment .free-increment-count {
-  display: block;
-  padding-top: 1px;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 15pt;
-  color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .content-info .price-wrapper .free-increment .free-increment-desc {
-  display: block;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 9pt;
-  color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  position: relative;
-  bottom: 4px;
-}
-#mainShopCompWrapper .content .money-tile-wrapper .tile .content .gold-item-popular {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-#mainShopCompWrapper .content .energy-layout {
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 2px;
-  height: 390px;
-  position: relative;
-  cursor: pointer;
-  padding: 5px;
-}
-@media (min-width: 768px) {
-  #mainShopCompWrapper .content .energy-layout {
-    float: left;
-    width: 25%;
-  }
-}
-#mainShopCompWrapper .content .energy-layout .tile {
-  padding: 15px;
-  height: 100%;
-  background-color: #000000;
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper {
-  cursor: default;
-  background-color: #0a2938;
-  background-repeat: no-repeat;
-  background-position: center top;
-  border-radius: 10px;
-  height: 380px;
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile {
-  padding: 15px;
-  background-color: transparent;
-  cursor: default;
-  position: relative;
-  min-height: 185px;
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item {
-  margin-left: 0;
-  margin-right: 0;
-  padding-bottom: 20px;
-  /*
-					.product+.product {
-						float: right;
-					}*/
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .item-title {
-  margin-left: 0;
-  margin-right: 0;
-  text-align: center;
-  padding-bottom: 10px;
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .item-title span {
-  position: relative;
-  float: left;
-  width: 33.33333333%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  vertical-align: middle;
-  padding: 0;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 10pt;
-  color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  text-transform: uppercase;
-  margin-top: 30px;
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .item-title div {
-  position: relative;
-  float: left;
-  width: 33.33333333%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 0 0 0 8px;
-  vertical-align: middle;
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product {
-  text-align: center;
-  padding: 0;
-  border: 1px solid #59add5;
-  border-radius: 3px;
-  margin: 0px 10px 30px 10px;
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .energy-description {
-  margin-top: 5px;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 10pt;
-  color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  text-transform: uppercase;
-  text-align: center;
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .product-image {
-  margin: 5px 0 10px 0;
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button {
-  background-color: #428bca;
-  border-color: #357ebd;
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border-width: 0;
-  -webkit-transition: All 0.08s ease-out;
-  -moz-transition: All 0.08s ease-out;
-  -ms-transition: All 0.08s ease-out;
-  -o-transition: All 0.08s ease-out;
-  transition: All 0.08s ease-out;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 10pt;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  background-color: #a1c931;
-  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
-  color: #ffffff;
-  outline: none !important;
-  width: 100px;
-  padding: 3px;
+  height: 120px;
+  align-items: center;
+  background-color: #242529;
   margin-bottom: 10px;
-  margin-right: auto;
-  margin-left: auto;
-  display: block;
+  padding: 0 15px;
 }
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button:hover,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button:focus,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button:active,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button.active,
-.open .dropdown-toggle#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button {
+shop-comp .gold-item-popular {
+  position: absolute;
+  top: 0;
+  left: 25px;
+}
+shop-comp .gold-icon {
+  height: 100%;
+}
+shop-comp .description {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  flex: 1;
+  align-items: center;
+}
+shop-comp .description .name {
+  font-size: 12pt;
   color: #ffffff;
-  background-color: #3276b1;
-  border-color: #285e8e;
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button:active,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button.active,
-.open .dropdown-toggle#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button {
-  background-image: none;
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button.disabled,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button[disabled],
-fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button.disabled:hover,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button[disabled]:hover,
-fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button:hover,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button.disabled:focus,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button[disabled]:focus,
-fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button:focus,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button.disabled:active,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button[disabled]:active,
-fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button:active,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button.disabled.active,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button[disabled].active,
-fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button.active {
-  background-color: #428bca;
-  border-color: #357ebd;
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button .badge {
-  color: #428bca;
-  background-color: #ffffff;
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button:focus,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button:active:focus,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button:hover,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button:focus {
-  color: #333333;
-  text-decoration: none;
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button:active,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button.disabled,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button[disabled],
-fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button:active,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button.active {
-  box-shadow: none;
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button:active:focus,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button.active:focus {
-  color: #ffffff;
-  background-color: #b5d657;
-  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button:active:hover,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button.active:hover {
-  color: #ffffff;
-  background-color: #b5d657;
-  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button:focus {
-  background-color: #a1c931;
-  color: #ffffff;
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button:hover {
-  background-color: #acd142;
-  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
-  outline: none !important;
-  color: #ffffff;
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button:hover:focus {
-  background-color: #a1c931;
-  color: #ffffff;
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button:active,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button.active {
-  box-shadow: none;
-  background-color: #a1c931;
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button:hover {
-  background-color: #acd142;
-  outline: none !important;
-  color: #ffffff;
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button.disabled,
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button[disabled],
-fieldset[disabled] #mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button {
-  background-color: #b5d657;
-  color: #ebebeb;
-  cursor: not-allowed !important;
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button.close {
-  background-color: #a1c931;
-  outline: none !important;
-  color: #ffffff;
-}
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button .quantity {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 14pt;
-  color: #ffffff;
+  text-transform: uppercase;
+  text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  vertical-align: middle;
-  margin-left: 5px;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
+  padding-top: 5px;
 }
-#mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .product .button-wrapper .refill-button .quantity:after {
-  content: " ";
-  background-image: url("../images/icon-coin-lg.png");
-  width: 27px;
-  height: 27px;
-  display: inline-block;
-  vertical-align: middle;
-  position: relative;
-  margin-left: 10px;
-}
-#mainShopCompWrapper .content .energy-refill-counter {
+shop-comp .description .coins-count {
+  font-size: 42pt;
+  color: #fa9c19;
+  text-transform: uppercase;
   text-align: center;
-}
-#mainShopCompWrapper .content .energy-refill-counter .no-purchasable {
-  padding: 0 10px 18px;
-}
-#mainShopCompWrapper .content .energy-refill-counter .energy-icon {
-  margin: 20px auto 20px auto;
-}
-#mainShopCompWrapper .content .energy-refill-counter .product-time-left {
-  display: block;
-  text-align: center;
+  text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
-  font-size: 20pt;
-  color: #59add5;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
 }
-#mainShopCompWrapper .content .energy-refill-counter .energy-description {
-  margin: 0 10px;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 10pt;
+shop-comp .price {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  flex: 0 0 100px;
+  align-items: center;
+}
+shop-comp .price .free-increment {
+  font-size: 12pt;
   color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  text-transform: uppercase;
   text-align: center;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
+  height: 35px;
+  padding-top: 2px;
+}
+shop-comp .price .buy-button {
+  background-image: -webkit-linear-gradient(top, #0d75a6 0%, #0c4c6a 100%);
+  background-image: linear-gradient(to bottom, #0d75a6 0%, #0c4c6a 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0d75a6', endColorstr='#ff0c4c6a', GradientType=0);
+  font-size: 10pt;
+  text-transform: inherit;
+  text-align: inherit;
+  font-family: 'Fjalla One', sans-serif;
+  padding: 10px;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
+  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
+  border: 0;
+  outline-offset: 0px;
+  outline: none;
+  font-size: 12pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  background: #a1c931;
+  background: -moz-linear-gradient(top, #a1c931 0%, #749516 100%);
+  background: -webkit-linear-gradient(top, #a1c931 0%, #749516 100%);
+  background: linear-gradient(to bottom, #a1c931 0%, #749516 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a1c931', endColorstr='#749516', GradientType=0);
+  padding: 15px;
+  margin-bottom: 15px;
+}
+shop-comp .price .buy-button:hover,
+shop-comp .price .buy-button:active,
+shop-comp .price .buy-button:focus {
+  border: 0;
+  outline-offset: 0px;
+  outline: none;
 }
 #goldShopComp,
 #trainerPointsShopComp {
@@ -12610,55 +12100,6 @@ fieldset[disabled] .challenge-your-friends button {
   content: "";
   display: block;
   clear: both;
-}
-.global-lobby .three-columns .left-column {
-  flex: 0 0 120px;
-}
-.global-lobby .three-columns .right-column {
-  flex: 0 0 75px;
-}
-.lobby-topbar-left {
-  font-size: 12pt;
-  color: #59add5;
-  text-transform: uppercase;
-  text-align: center;
-  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
-  border-right: 1px solid rgba(210, 210, 210, 0.3);
-  cursor: pointer;
-}
-.lobby-topbar-center {
-  font-size: 12pt;
-  color: #fa9c19;
-  text-transform: uppercase;
-  text-align: center;
-  text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
-  cursor: pointer;
-}
-.lobby-topbar-right {
-  font-size: 12pt;
-  color: #ffffff;
-  text-transform: uppercase;
-  text-align: center;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
-  border-left: 1px solid rgba(210, 210, 210, 0.3);
-  cursor: pointer;
-  position: relative;
-}
-.lobby-topbar-right .tab-bar-item-badge {
-  left: 0;
-  top: 3px;
-  min-width: 22px;
-  min-height: 20px;
-  line-height: 12px;
-  padding: 5px;
-  font-size: 9pt;
-  text-shadow: 0 0 0;
 }
 main-menu-f2p {
   display: block;
@@ -23176,11 +22617,6 @@ users-list#usersList > .epic-tooltip {
 #homeRoot #addFundsContent .scores-wrapper,
 #homeRoot #transactionHistoryRoot .transaction-headers,
 #homeRoot #transactionHistoryRoot .transaction-row,
-#homeRoot #mainShopCompWrapper,
-#homeRoot #mainShopCompWrapper .header,
-#homeRoot #mainShopCompWrapper .content,
-#homeRoot #mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item,
-#homeRoot #mainShopCompWrapper .content .energy-tiles-wrapper .tile .energy-item .item-title,
 #homeRoot #goldShopComp .content,
 #homeRoot #trainerPointsShopComp .content,
 #homeRoot #goldShopComp .products-wrapper,
@@ -28278,9 +27714,6 @@ fieldset[disabled] .deprecated-version-screen button {
 .global-landing-page .wrapper-content-container > .main-content-container {
   width: 100%;
   height: 100%;
-}
-.global-logged-in .wrapper-content-container {
-  max-width: 970px;
 }
 .btn {
   border-width: 0;

@@ -1,263 +1,53 @@
-.global-shop #mainWrapper {
-	background-color: @white;
-}
-
-#mainShopCompWrapper {
-	@item-height: 195;
-	@quantity-font-size: 20pt;
-
-	.container-fluid();
-	padding: 0;
-	
-	.gold {
-		.addIcon("icon-coin-lg.png", 27px, 27px);
+shop-comp {
+	.money-slot {
+		.flex-container-row();
 		position: relative;
+		height: 120px;
+		align-items: center;
+		background-color: @grey-dark;
+		margin-bottom: 10px;
+		padding: 0 15px;
 	}
-	
-	.header {
-		.make-row(0);
-		.shop-banner {
-			.img-responsive();
+	.gold-item-popular {
+	    position: absolute;
+    	top: 0;
+    	left: 25px;
+	}
+	.gold-icon {
+		//.flex-elem-fixed(100px);
+		height: 100%;
+	}
+	.description {
+		.flex-container-col();
+		.flex-elem-fluid();
+		align-items: center;
+		.name {
+			.mainfont_bold(12pt, @white, center,uppercase);
+			padding-top: 5px;
+		}
+		.coins-count {
+			.mainfont_light(42pt, @orange, center,uppercase);
 		}
 	}
-	.content {
-		.make-row(0);
-		padding: 15px;
-
-		.money-layout {
-			
-			.make-tile(9, 2, @item-height);
-			height: auto;
-			padding: 0;
-			//background-color: @greyLight;
+	.price {
+		.flex-container-col();
+		.flex-elem-fixed(100px);
+		align-items: center;
+		.free-increment {
+			.mainfont_bold(12pt, @white, center,uppercase);
+			height: 35px;
+			padding-top: 2px;
 		}
-		
-		.money-tile-wrapper {
-			.make-tile(4,1, @item-height);
-			padding: 5px;
-
-			.tile {
-				padding: 0;
-				background-color: transparent;
-				cursor: default;
-				position: relative;
-				background-image: url("@{images}/shopItemBg.jpg");
-				background-repeat: no-repeat;
-				background-position: center top;
-				background-size: cover;
-				border-radius: 10px;
-				.header{
-					height: 35px;
-					text-align: center;
-					position: relative;
-
-					.title {
-						.opensans_bold(11pt, @blueUltraDark);
-						top: 8px;
-						position: relative;
-					}
-				}
-				.content{
-					position: relative;
-					height: 150px;
-
-					.gold-icon{
-						.img-responsive();
-						position: absolute;
-						top: 0;
-						left: 0;
-					}
-					@price-widht: 125px;
-					.content-info {
-						position: absolute;
-						right: 0;
-						top: 0;
-						width: @price-widht;
-						text-align: right;
-						height: 100%;
-						margin-right: 20px;
-
-						.gold-quantity{
-							.exo_light(@quantity-font-size, @blueUltraDark);
-							position: relative;
-							top: 35px;
-							background-color: @white;
-							padding: 2px 5px;
-							border-radius: 6px;
-							&:after{
-								.gold();
-							}
-						}
-						
-						.price-wrapper{
-							.button-wrapper{
-								display: inline-block;
-								height: 30px;
-								position: absolute;
-								bottom: 15px;
-								width: @price-widht;
-								right: 0px;
-
-								.price {									
-									.btn-primary();
-									.opensans_normal(14pt, @white);
-									width: 100%;									
-								}
-							}
-							.free-increment {
-								.size(68px, 42px);
-								background: transparent url("@{images}/BuyGoldFreeBase.png") no-repeat scroll 50% 0%;
-								position: absolute;
-								bottom: 45px;
-								width: @price-widht;
-								background-position-x: center;
-								background-repeat: no-repeat;
-								right: 15px;
-
-								.free-increment-count {
-									display: block; 
-									padding-top: 1px;
-									.opensans_bold(15pt, @white);
-								}
-
-								.free-increment-desc {
-									display: block;
-									.opensans_bold(9pt, @white);
-									position: relative;
-									bottom: 4px;
-								}
-							}
-						}
-					}
-
-					.gold-item-popular {
-						position: absolute;
-						top: 0;
-						left: 0;
-					}
-
-				}
-
-			}
-		}
-
-		.energy-layout {
-			.make-tile(3, 2, @item-height);
-			padding: 5px;
-
-		}
-
-		.energy-tiles-wrapper {
-			cursor: default;
-			//background-color: @black;
-			//background-image: url("@{images}/energyBg.png");
-			background-color: @blueUltraDark;
-			background-repeat: no-repeat;
-			background-position: center top;
-			border-radius: 10px;
-			height: 380px;
-
-
-			.tile {
-				padding: 15px;
-				background-color: transparent;
-				cursor: default;
-				position: relative;
-				min-height: 185px;
-				
-				.energy-item {
-					.make-row(0);
-					padding-bottom: 20px;
-					
-					.item-title {
-						.make-row(0);
-						text-align: center;
-						span {
-							.make-xs-column(4);
-							vertical-align: middle;
-							padding: 0;
-							.opensans_bold(10pt, @white);
-							text-transform: uppercase;
-							margin-top: 30px;
-						}
-						div {
-							.make-xs-column(4);
-							padding: 0 0 0 8px;
-							vertical-align: middle;
-						}
-						padding-bottom: 10px;
-					}
-					/*
-					.product+.product {
-						float: right;
-					}*/
-					.product {
-						text-align: center;
-						padding: 0;
-						border: 1px solid @blueLight;
-						border-radius: 3px;
-						//margin-bottom: 20px;
-						margin: 0px 10px 30px 10px;
- 						
-						.energy-description {
-							margin-top: 5px;
-							.opensans_bold(10pt, @white);
-							text-transform: uppercase;
-							text-align: center;
-						}
-						
-						.product-image {
-							margin: 5px 0 10px 0;
-						}
-
-						.button-wrapper {
-							
-							.refill-button{
-								.btn-primary();
-								width: 100px;
-								padding: 3px;
-								margin-bottom: 10px;
-								margin-right: auto;
-								margin-left: auto;
-								display: block;
-								
-								.quantity {
-									.opensans_bold(14pt, @white);
-									vertical-align: middle;
-									margin-left: 5px;
-									
-									&:after{
-										.gold();
-										margin-left: 10px;
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		
-		.energy-refill-counter {
-			text-align: center;
-			.no-purchasable {
-				padding: 0 10px 18px;
-			}
-			.energy-icon {
-				margin: 20px auto 20px auto;
-			}
-
-			.product-time-left {
-				display: block;
-				text-align: center;
-				.exo_light(20pt, @blueLight);
-			}
-			
-			.energy-description {
-				margin: 0 10px;
-				.opensans_normal(10pt, @white);
-				text-align: center;
-			}
+		.buy-button {
+			.default-button();
+			.bodyfont_bold(12pt, @white, center,uppercase);
+			background: #a1c931;
+			background: -moz-linear-gradient(top,  #a1c931 0%, #749516 100%);
+			background: -webkit-linear-gradient(top,  #a1c931 0%,#749516 100%);
+			background: linear-gradient(to bottom,  #a1c931 0%,#749516 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1c931', endColorstr='#749516',GradientType=0 );
+			padding: 15px;
+    		margin-bottom: 15px;
 		}
 	}
 }

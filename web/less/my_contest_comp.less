@@ -2,11 +2,25 @@ my-contests {
   .flex-elem-fluid();
   background-color: @soft-black;
 }
-/*
-.resume-bar{
-	.make-row(0);
-	background-color: @blueDark;
+.contest-list-section {
+  .flex-elem-fluid();
+  .flex-container-col();
+}
 
+.resume-bar {
+  .flex-elem-fixed(26px);
+	background-color: @soft-black;
+  text-align: center;
+  .mainfont_light(9pt, @grey-bluish);
+  border-bottom: 1px solid @grey-translucid;
+  border-top: 2px solid @black;
+  
+  .information-no-contest {
+    margin: 3px;
+    display: block;
+    text-align: center;
+  }
+  /*
 	.info{
 		.make-sm-column(6);
 		.make-sm-column-push(3);
@@ -15,8 +29,8 @@ my-contests {
 			.opensans_bold(9pt, @orange);	
 		}
 		text-align: center;
-	}
-	.information-no-contest{
+	}*/
+	/*.information-no-contest{
 		.make-xs-column(12);
 		.opensans_bold(9pt, @white);
 		padding: 10px 10px 12px;
@@ -26,9 +40,9 @@ my-contests {
 		@media (max-width: @screen-xs-max) {
 			.opensans_bold(7pt, @white);
 		}
-	}
+	}*/
 }
-
+/*
 .contest-count{
 	background-color: @orange;
 	.make-border(1px, solid, @white, 20px);

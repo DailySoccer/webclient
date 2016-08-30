@@ -29,15 +29,10 @@
       <button type="button" class="btn-automatic-lineup" ng-click="generateAutomaticLineup()">Alineación automática</button>
     </div>
   </div>
-  <lineup-field-selector not-enough-resources="!enoughResourcesForEntryFee"
-                         resource="resourceName"
-                         has-max-players-same-team="playersInSameTeamInvalid"
-                         has-negative-balance="isNegativeBalance"
-                         manager-level="playerManagerLevel"
-                         lineup-slots="lineupSlots"
+  <lineup-field-selector lineup-slots="lineupSlots"
+                         lineup-formation="lineupFormation"
                          on-lineup-slot-selected="onLineupSlotSelected(slotIndex)"
-                         formation-id="formationId"
-                         lineup-formation="lineupFormation"></lineup-field-selector>
+                         formation-id="formationId"></lineup-field-selector>
   <div class="contest-id">ID: {{contest.contestId.toUpperCase()}}</div>
   <button class="confirm-btn" ng-click="createFantasyTeam()">Confirmar</button>
   <div class="salary-info-wrapper">

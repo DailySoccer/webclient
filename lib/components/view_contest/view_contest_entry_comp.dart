@@ -19,6 +19,9 @@ import 'package:webclient/models/user.dart';
 import 'package:webclient/utils/fblogin.dart';
 import 'package:webclient/utils/game_info.dart';
 import 'package:webclient/utils/host_server.dart';
+import 'package:webclient/components/enter_contest/soccer_player_listitem.dart';
+import 'package:webclient/models/field_pos.dart';
+import 'package:webclient/services/app_state_service.dart';
 
 @Component(
    selector: 'view-contest-entry',
@@ -30,6 +33,12 @@ class ViewContestEntryComp {
   LoadingService loadingService;
 
   ContestEntry mainPlayer;
+  String get formationId => mainPlayer != null? mainPlayer.formation : ContestEntry.FORMATION_442;
+  void set formationId(id) { 
+    if (mainPlayer != null) mainPlayer.formation = id; 
+  }
+  List<SoccerPlayerListItem> lineupSlots = [];
+  List<String> get lineupFormation => FieldPos.FORMATIONS[formationId];
   dynamic selectedOpponent;
   String contestId;
 
@@ -70,9 +79,14 @@ class ViewContestEntryComp {
     return StringUtils.translate(key, "viewcontestentry", substitutions);
   }
 
-  ViewContestEntryComp(this._routeProvider, this.scrDet, this._contestsService,
+  ViewContestEntryComp(this._routeProvider, this.scrDet, this._contestsService, this._appStateService,
                        this._profileService, this._router, this.loadingService, TutorialService tutorialService) {
     loadingService.isLoading = true;
+    
+    setupContestInfoTopBar(false, () => _router.go('my_contests', {"section": "upcoming"}));
+    //_appStateService.appTopBarState.activeState = new AppTopBarStateConfig.contestSection(contest, false, () => _router.go('lobby', {}));
+    _appStateService.appSecondaryTabBarState.tabList = [];
+    _appStateService.appTabBarState.show = false;
 
     _viewContestEntryMode = _routeProvider.route.parameters['viewContestEntryMode'];
     contestId = _routeProvider.route.parameters['contestId'];
@@ -83,8 +97,20 @@ class ViewContestEntryComp {
       .then((_) {
         loadingService.isLoading = false;
         contest = _contestsService.lastContest;
+        setupContestInfoTopBar(true, () => _router.go('my_contests', {"section": "upcoming"}), onContestInfoClick);
+        _appStateService.appSecondaryTabBarState.tabList = [];
+        _appStateService.appTabBarState.show = false;
+        
         mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
-
+        
+        mainPlayer.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
+          num managerLevel = 0;
+          if (_profileService.isLoggedIn) {
+            managerLevel = _profileService.user.managerLevel;
+          }
+          lineupSlots.add(new SoccerPlayerListItem(instanceSoccerPlayer, managerLevel, contest));
+        });
+        
         updatedDate = DateTimeService.now;
         if(!_contestsService.lastContest.isHistory && !_contestsService.lastContest.isLive) {
           GameMetrics.logEvent(GameMetrics.UPCOMING_CONTEST);
@@ -95,6 +121,18 @@ class ViewContestEntryComp {
       }, test: (error) => error is ServerError);
   }
 
+  void onContestInfoClick() {
+    //sectionActive = CONTEST_INFO;
+  }
+  
+  void setupContestInfoTopBar(bool showInfoButton, Function backFunction, [Function infoFunction]) {
+    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.contestSection(contest, showInfoButton, backFunction, infoFunction);
+  }
+  void onLineupSlotSelected(slotIndex) {
+    SoccerPlayerListItem soccerPlayer = lineupSlots[slotIndex];
+    
+  }
+  
   void tabChange(String tab) {
     List<dynamic> allContentTab = document.querySelectorAll(".tab-pane");
     allContentTab.forEach((element) => element.classes.remove('active'));
@@ -185,6 +223,7 @@ class ViewContestEntryComp {
 
   ProfileService _profileService;
   ContestsService _contestsService;
+  AppStateService _appStateService;
 
   String _viewContestEntryMode;
 }

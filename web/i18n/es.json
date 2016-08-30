@@ -494,7 +494,10 @@
       "points"                          : "Puntos",
       "position"                        : "Puesto:",
       "today"                           : "Hoy",
-      "tomorrow"                        : "Mañana",
+      "tomorrow"                        : "Mañana"
+    }
+    ,"contest"                          :
+    {
       "soonHint"                        : "Faltan<br>@TIME min",
       "verySoonHint"                    : "Faltan<br>@TIME"
     }

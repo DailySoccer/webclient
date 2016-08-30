@@ -1,6 +1,6 @@
 
 <!-- LIVE CONTESTS -->
-<section class="tab-pane" id="live-contest-content"  ng-if="tabIsLive">
+<section class="contest-list-section" id="live-contest-content"  ng-if="tabIsLive">
   <!-- Barra de resumen de actividad -->
   <div class="resume-bar"><span class="information-no-contest">{{liveContestsMessage}}</span></div>
 
@@ -25,7 +25,7 @@
 </section>
 
 <!-- WAITING CONTESTS -->
-<section class="tab-pane" id="waiting-contest-content" ng-if="tabIsWaiting">
+<section class="contest-list-section" id="waiting-contest-content" ng-if="tabIsWaiting">
   <div class="resume-bar"><span class="information-no-contest">{{waitingContestsMessage}}</span></div>
 
   <div ng-unless="loadingService.isLoading" ng-switch="hasWaitingContests">
@@ -49,7 +49,7 @@
 </section>
 
 <!-- HISTORY CONTESTS -->
-<section class="tab-pane" id="history-contest-content" ng-if="tabIsHistory">
+<section class="contest-list-section" id="history-contest-content" ng-if="tabIsHistory">
   <div class="resume-bar"><span class="information-no-contest">{{historyContestsMessage}}</span></div>
 
   <div ng-unless="loadingService.isLoading" ng-switch="hasHistoryContests">

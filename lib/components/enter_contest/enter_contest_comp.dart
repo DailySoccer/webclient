@@ -37,9 +37,6 @@ import 'package:webclient/components/enter_contest/soccer_player_listitem.dart';
     useShadowDom: false
 )
 class EnterContestComp implements DetachAware {
-
-  static const num SOON_SECONDS = 2 * 60 * 60;
-  static const num VERY_SOON_SECONDS = 30 * 60;
   
   static const String ERROR_RETRY_OP = "ERROR_RETRY_OP";
   static const String ERROR_CONTEST_NOT_ACTIVE = "ERROR_CONTEST_NOT_ACTIVE";
@@ -206,7 +203,7 @@ class EnterContestComp implements DetachAware {
                    this._contestsService, this.loadingService, this._profileService, this._catalogService,
                    this._flashMessage, this._rootElement, this._tutorialService) {
     
-
+    /*
     _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection('''
       <div class="contest-topbar-info">
         <div class="time-section">
@@ -219,6 +216,10 @@ class EnterContestComp implements DetachAware {
         </div>
       </div>
     ''', rightColumn: "<i class='material-icons'>&#xE88F;</i>");
+    
+    */
+    setupContestInfoTopBar(false, () => _router.go('lobby', {}));
+    //_appStateService.appTopBarState.activeState = new AppTopBarStateConfig.contestSection(contest, false, () => _router.go('lobby', {}));
     _appStateService.appSecondaryTabBarState.tabList = [];
     _appStateService.appTabBarState.show = false;
     sectionActive = LINEUP_FIELD_SELECTOR;
@@ -308,68 +309,7 @@ class EnterContestComp implements DetachAware {
   }
   
   void setupContestInfoTopBar(bool showInfoButton, Function backFunction, [Function infoFunction]) {
-    if(contest == null) return;
-    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection('''
-      <div class="contest-topbar-info">
-        <div class="time-section">
-          <div class="contest-flag ${getSourceFlag(contest)}"></div>
-          <div class="column-start-hour ${isSoon(contest.startDate)? 'start-soon' : ''}"> ${timeInfo(contest.startDate)}</div>
-        </div>
-        <div class="contest-name-section">
-          <div class="contest-name">${contest.name}</div>
-          <div class="contest-description">${contest.description}</div>
-        </div>
-      </div>
-    ''', rightColumn: showInfoButton? "<i class='material-icons'>&#xE88F;</i>" : AppTopBarState.EMPTY);
-
-    _appStateService.appTopBarState.activeState.onLeftColumn = backFunction;
-    _appStateService.appTopBarState.activeState.onRightColumn = infoFunction;
-  }
-  
-  
-  String getSourceFlag(Contest contest) {
-    String ret = "flag  flag-icon-background ";
-    switch(contest.competitionType){
-      case "LEAGUE_ES":
-        ret += "flag-icon-es";
-      break;
-      case "LEAGUE_UK":
-        ret += "flag-icon-gb-eng";
-      break;
-      case "CHAMPIONS":
-        ret += "flag-icon-eu";
-      break;
-      default:
-        ret += "flag-icon-es";
-      break;
-    }
-    return ret;
-  }
-  num timeLeft(DateTime date) {
-    Duration duration = DateTimeService.getTimeLeft(date);
-    int secondsLeft = duration.inSeconds;
-    return secondsLeft;
-  }
-  String timeInfo(DateTime date) {
-    // Avisamos 2 horas antes...
-    int secondsLeft = timeLeft(date);
-    if (secondsLeft >= 0 && secondsLeft < SOON_SECONDS) {
-      int minutes = secondsLeft ~/ 60;
-      int seconds = secondsLeft - (minutes * 60);
-      
-      if (secondsLeft < VERY_SOON_SECONDS) {
-        String timeFormatted = (seconds >= 10) ?  "$minutes:$seconds" :  "$minutes:0$seconds";
-        return getLocalizedText("verySoonHint", substitutions: {"TIME": timeFormatted});
-      } else {
-        return getLocalizedText("soonHint", substitutions: {"TIME": minutes});
-      }
-    }
-    return DateTimeService.formatTimeShort(date);
-  }
-  
-  bool isSoon(DateTime date) {
-    int secondsLeft = timeLeft(date);
-    return secondsLeft >= 0 && secondsLeft < SOON_SECONDS;
+    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.contestSection(contest, showInfoButton, backFunction, infoFunction);
   }
   
   void refreshInfoFromContest() {

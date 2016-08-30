@@ -1,5 +1,5 @@
 <div class="lineup-field-selector" ng-class="getLineupClassname()">
-  <div class="lineup-formation-selector-wrapper">
+  <div class="lineup-formation-selector-wrapper" ng-if="formationIsModifiable">
     <span class="lineup-formation-label">{{getLocalizedText('formation')}}</span>
     <select name="lineup-formation-dropdown" id="lineup-formation-dropdown" ng-model="formationId" class="lineup-formation-dropdown">
       <option ng-repeat="key in formationList" ng-value="key" >{{formationToString(key)}}</option>
@@ -29,8 +29,8 @@
     </div>
   </div>
   
-  <div class="alert alert-danger alert-dismissible alert-red-numbers" ng-class="{'active':alertNotEnoughResources}" role="alert" ng-bind-html="getLocalizedText('not-enough-resources')"></div>
+  <!--div class="alert alert-danger alert-dismissible alert-red-numbers" ng-class="{'active':alertNotEnoughResources}" role="alert" ng-bind-html="getLocalizedText('not-enough-resources')"></div>
   <div class="alert alert-danger alert-dismissible alert-red-numbers" ng-class="{'active':alertNegativeBalance}" role="alert" ng-bind-html="getLocalizedText('wastedsalarycap')"></div>
-  <div class="alert alert-danger alert-max-players-same-team" ng-class="{'active':alertMaxPlayersSameTeamExceed}" role="alert" ng-bind-html="getLocalizedText('maxplayersteam')"></div>
+  <div class="alert alert-danger alert-max-players-same-team" ng-class="{'active':alertMaxPlayersSameTeamExceed}" role="alert" ng-bind-html="getLocalizedText('maxplayersteam')"></div-->
   
 </div>

@@ -15,10 +15,11 @@ import 'package:webclient/components/enter_contest/soccer_player_listitem.dart';
     useShadowDom: false
 )
 class LineupFieldSelectorComp {
-
+/*
   @NgOneWay("not-enough-resources")
   bool alertNotEnoughResources;
-
+*/
+  /*
   @NgOneWay("resource")
   String resource;
 
@@ -30,9 +31,12 @@ class LineupFieldSelectorComp {
 
   @NgOneWay("manager-level")
   num managerLevel = 0;
-
+*/
+  @NgOneWay("formation-is-modifiable")
+  bool formationIsModifiable = true;
+  
   @NgOneWay("lineup-slots")
-  List<dynamic> lineupSlots = [];
+  List<SoccerPlayerListItem> lineupSlots = [];
 
   @NgOneWay("lineup-formation")
   List<String> lineupFormation = FieldPos.FORMATIONS[ContestEntry.FORMATION_442];
@@ -49,7 +53,7 @@ class LineupFieldSelectorComp {
   String get MAX_PLAYERS_SAME_TEAM => Contest.MAX_PLAYERS_SAME_TEAM.toString();
 
   String getLocalizedText(key, [Map substitutions]) {
-    return StringUtils.translate(key, "lineupselector", {"MAX_PLAYERS_SAME_TEAM": MAX_PLAYERS_SAME_TEAM, "RESOURCE": resource});
+    return StringUtils.translate(key, "lineupselector", substitutions/*, {"MAX_PLAYERS_SAME_TEAM": MAX_PLAYERS_SAME_TEAM, "RESOURCE": resource}*/);
   }
 
   LineupFieldSelectorComp();

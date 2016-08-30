@@ -19,6 +19,11 @@ import 'package:webclient/models/template_soccer_team.dart';
 import 'package:webclient/models/template_soccer_player.dart';
 
 class Contest {
+
+  static const num SOON_SECONDS = 2 * 60 * 60;
+  static const num VERY_SOON_SECONDS = 30 * 60;
+  
+  
   static const MAX_PLAYERS_SAME_TEAM = 4;
 
   // Tipos de Torneos (deducidos por las características del Contest: maxEntries ~ premios)
@@ -419,7 +424,59 @@ class Contest {
   bool canEnter(User user) {
     return !isFull && hasLevel(user.managerLevel.toInt(), user.trueSkill);
   }
+  
 
+  String getLocalizedText(key, {substitutions: null}) {
+    return StringUtils.translate(key, "contest", substitutions);
+  }
+  
+  bool isSoon() {
+    int secondsLeft = timeLeft(startDate);
+    return secondsLeft >= 0 && secondsLeft < SOON_SECONDS;
+  }
+  num timeLeft(DateTime date) {
+    Duration duration = DateTimeService.getTimeLeft(date);
+    int secondsLeft = duration.inSeconds;
+    return secondsLeft;
+  }
+  String timeInfo() {
+    // Avisamos 2 horas antes...
+    int secondsLeft = timeLeft(startDate);
+    if (secondsLeft >= 0 && secondsLeft < SOON_SECONDS) {
+      int minutes = secondsLeft ~/ 60;
+      int seconds = secondsLeft - (minutes * 60);
+      
+      if (secondsLeft < VERY_SOON_SECONDS) {
+        String timeFormatted = (seconds >= 10) ?  "$minutes:$seconds" :  "$minutes:0$seconds";
+        return getLocalizedText("verySoonHint", substitutions: {"TIME": timeFormatted});
+      } else {
+        return getLocalizedText("soonHint", substitutions: {"TIME": minutes});
+      }
+    }
+    return DateTimeService.formatTimeShort(startDate);
+  }
+  
+  String getSourceFlag() {
+    String ret = "flag  flag-icon-background ";
+    switch(competitionType){
+      case "LEAGUE_ES":
+        ret += "flag-icon-es";
+      break;
+      case "LEAGUE_UK":
+        ret += "flag-icon-gb-eng";
+      break;
+      case "CHAMPIONS":
+        ret += "flag-icon-eu";
+      break;
+      default:
+        ret += "flag-icon-es";
+      break;
+    }
+    return ret;
+  }
+
+  
+  
   String _name;
   String _namePattern;
   Prize _prize;

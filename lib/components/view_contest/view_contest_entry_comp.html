@@ -1,22 +1,28 @@
-<section ng-show="!loadingService.isLoading">
-  <contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header>
+<!--section ng-show="!loadingService.isLoading"-->
+
+  <lineup-field-selector lineup-slots="lineupSlots"
+                         on-lineup-slot-selected="onLineupSlotSelected(slotIndex)"
+                         formation-id="formationId"
+                         lineup-formation="lineupFormation"
+                         formation-is-modifiable="false"></lineup-field-selector>
+                         
+  <!--contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header-->
   
   <!--<div class="separator-bar"></div>-->
-  <div class="info-complete-bar" ng-if="!isModeViewing">
+  <!--div class="info-complete-bar" ng-if="!isModeViewing">
     <p class="important-info" ng-if="isModeCreated">{{getLocalizedText("created")}}</p>
     <p class="important-info" ng-if="isModeEdited">{{getLocalizedText("edited")}}</p>
     <p class="important-info" ng-if="isModeSwapped">{{getLocalizedText("swapped")}}</p>
     <h2 ng-if="showInviteButton" ng-click="onInviteFriends()" class="invite-friends">{{getLocalizedText("invite_text")}}</h2>
     <p class="complementary-info">{{getLocalizedText("tip")}}</p>
-  </div>
+  </div-->
   
   
-  <friends-bar user-list="filteredFriendList" on-challenge="onChallenge(user)"></friends-bar>
+  <!--friends-bar user-list="filteredFriendList" on-challenge="onChallenge(user)"></friends-bar-->
   
   
-  <div id="viewContestEntry" ng-switch="scrDet.isXsScreen" >
+  <!--div id="viewContestEntry" ng-switch="scrDet.isXsScreen" >
     <div ng-switch-when="true">
-      <!-- Tabs de la versión XS -->
       <ul class="view-contest-entry-tabs" id="viewContestEntryTab" >
         <li class="active"><tab ng-click="tabChange('userFantasyTeam')" data-toggle="tab">{{getLocalizedText("yourlineup")}}</tab></li>
         <li><tab ng-click="tabChange('usersList')" data-toggle="tab">{{getLocalizedText("users")}}</tab></li>
@@ -33,31 +39,17 @@
 
 
     <div class="view-contest-entry-actions-wrapper">
-    <!-- Nuevos Bottons Autocentrables-->
       <div class="new-row">
         <div class="autocentered-buttons-wrapper">
           <div ng-if="scrDet.isXsScreen" class="button-box"><button type="button" class="ok-button" ng-click="goToParent()">{{getLocalizedText("backtocontests")}}</button></div>
-          <!--div class="button-box"  ng-if="isModeViewing || isModeEdited"><button type="button" class="cancel-button" ng-click="confirmContestCancellation()">{{getLocalizedText("cancel")}}</button></div-->
           <div ng-if="!scrDet.isXsScreen" class="button-box ok"><button type="button" class="ok-button" ng-click="goToParent()">{{getLocalizedText("backtocontests")}}</button></div>
         </div>
       </div>
-    <!-- End Nuevos Bottons Autocentrables-->
-
-
-      <!--Viejos Bottons
-      <div class="button-wrapper">
-        <button type="button" class="btn-cancel-contest" ng-click="cancelContestEntry()">ABANDON</button>
-      </div>
-      <div class="button-wrapper">
-        <button type="button" class="btn-back-contest" ng-click="goToParent()">SAVE CHANGES</button>
-      </div>
-      End Viejos Bottons-->
 
     </div>
-    <div class="clear-fix-bottom"></div>
-  </div>
+  </div-->
   
-  <div class="share-methods-modal-content" id="shareMethodsContent">
+  <!--div class="share-methods-modal-content" id="shareMethodsContent">
     <div class="share-method">
       <p>Puedes compartir el enlace del torneo en tu perfil de Facebook</p>
       <social-share parameters-by-map="sharingInfo" inline inline-xs></social-share>
@@ -70,7 +62,7 @@
              ng-mouseup="onShareTextareaFocus($event)" ng-click="onShareTextareaFocus($event)"
              ng-focus="onShareTextareaFocus($event)" ng-model="inviteUrl" readonly autofocus>
     </div>
-  </div>
+  </div-->
   
-<ng-view></ng-view>
-</section>
+<!--ng-view></ng-view-->
+<!--/section-->

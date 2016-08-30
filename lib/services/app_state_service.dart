@@ -14,6 +14,7 @@ import 'package:webclient/utils/js_utils.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/models/contest.dart';
 
 @Injectable()
 class AppStateService {
@@ -83,6 +84,43 @@ class AppTopBarStateConfig {
   
   AppTopBarStateConfig.subSection(this.centerColumn, {this.rightColumn: AppTopBarState.EMPTY}) {
     this.leftColumn = AppTopBarState.BACK_BUTTON;
+  }
+  
+  AppTopBarStateConfig.contestSection(Contest contest, bool showInfoButton, Function backFunction, [Function infoFunction]) {
+    if (contest == null) {
+      this.centerColumn = '''
+        <div class="contest-topbar-info">
+          <div class="time-section">
+            <div class="contest-flag"></div>
+            <div class="column-start-hour"></div>
+          </div>
+          <div class="contest-name-section">
+            <div class="contest-name"></div>
+            <div class="contest-description"></div>
+          </div>
+        </div>
+      '''; 
+      this.rightColumn = AppTopBarState.EMPTY;
+      this.leftColumn = AppTopBarState.BACK_BUTTON;
+    } else {
+      this.centerColumn = '''
+        <div class="contest-topbar-info">
+          <div class="time-section">
+            <div class="contest-flag ${contest.getSourceFlag()}"></div>
+            <div class="column-start-hour ${contest.isSoon()? 'start-soon' : ''}"> ${contest.timeInfo()}</div>
+          </div>
+          <div class="contest-name-section">
+            <div class="contest-name">${contest.name}</div>
+            <div class="contest-description">${contest.description}</div>
+          </div>
+        </div>
+      '''; 
+      this.rightColumn = showInfoButton? "<i class='material-icons'>&#xE88F;</i>" : AppTopBarState.EMPTY;
+      this.leftColumn = AppTopBarState.BACK_BUTTON;
+    }
+    this.onLeftColumn = backFunction;
+    this.onRightColumn = showInfoButton? infoFunction : (){};
+    this.onCenterColumn = showInfoButton? infoFunction : (){};
   }
 
   AppTopBarStateConfig.userBar(ProfileService profileService, Router router) {

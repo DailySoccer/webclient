@@ -94,3 +94,40 @@
       text-shadow: 0 0 0;
   }
 }
+
+.contest-topbar-info {
+  .flex-container-row();
+  
+  .time-section {
+    .flex-elem-fixed(50px);
+    .flex-container-col();
+    .flex-container-content-centered();
+    text-align: center;
+    margin-right: 8px;
+  }
+  .contest-flag {
+    .flex-elem-fixed(20px);
+    margin-bottom: 3px;
+  }
+  .column-start-hour {
+    .flex-elem-fluid();
+    .mainfont_bold(10pt, @grey-bluish);
+  }
+  .contest-name-section {
+    .flex-elem-fluid();
+    .flex-container-col();
+    white-space: nowrap;
+  }
+  .contest-name {
+    .flex-elem-fluid();
+    .mainfont_bold(12pt, @white, left);
+    overflow: hidden;
+    margin-right: 5px;
+  }
+  .contest-description {
+    .flex-elem-fluid();
+    .mainfont_bold(10pt, @grey-bluish, left, none);
+    overflow: hidden;
+    margin-right: 5px;
+  }
+}

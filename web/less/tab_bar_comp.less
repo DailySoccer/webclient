@@ -1,12 +1,10 @@
 tab-bar {
   .flex-elem-fixed(auto);
-	text-align: center;
-	background-color: @blueUltraDark;
-	border-top: 2px solid @grey-translucid;
 }
 .tab-bar-wrapper {
   height: 100px;
-  //background-image: url(../images/tabBar/BottomBarBg.png);
+	text-align: center;
+  background-image: url(../images/tabBar/BottomBarBg.png);
   .black-gradient-inverse();
 }
 .tab-bar-item {
@@ -16,9 +14,10 @@ tab-bar {
 	cursor: pointer;
 	&.active {
 		background-image: url(../images/tabBar/BottomBarMenuElementActive.png);
-		background-size: cover;
+    background-size: 100% 100%;
 	}
 }
+
 .tab-bar-item-name {
 	.mainfont_light(11pt, @grey-bluish, center, uppercase);
 	display: block;

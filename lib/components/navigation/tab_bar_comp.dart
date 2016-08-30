@@ -59,7 +59,8 @@ class TabBarComp {
              MY_CONTESTS  : new TabBarItemComp( _router, 
                                                 name: "Proximos",
                                                 iconImage: "images/TabBar/Button_Nexts.png", 
-                                                destination: "my_contests"),
+                                                destination: "my_contests",
+                                                parameters: {"section": "upcoming"}),
              CONTESTS     : new TabBarItemComp( _router, 
                                                 name: "Torneos",
                                                 iconImage: "images/TabBar/Button_Contests.png", 
@@ -67,7 +68,8 @@ class TabBarComp {
              LIVE_CONESTS : new TabBarItemComp( _router, 
                                                 name: "En Vivo",  
                                                 iconImage: "images/TabBar/Button_Lives.png", 
-                                                destination: "live_contest"),
+                                                destination: "my_contests",
+                                                parameters: {"section": "live"}),
              SCOUTING     : new TabBarItemComp( _router, 
                                                 name: "Ojeador",
                                                 iconImage: "images/TabBar/Button_Scouting.png",
@@ -98,7 +100,12 @@ class TabBarItemComp {
   String iconImage = "";
   String destination = "";
   int notificationsCount = 0;
-  bool get isActive => _router.activePath[0].name == destination;
+  bool get isActive {
+    bool b = _router.activePath[0].name == destination;
+    parameters.forEach((k,v) => b = b && (_router.activePath[0].parameters[k] == v));
+    
+    return b;
+  }
   Map parameters = {};
   
   TabBarItemComp(Router router, {String name: "", String iconImage: "", String destination: "", Map parameters: const {}, int notificationsCount: 0}) {

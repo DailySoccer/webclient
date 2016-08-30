@@ -46,7 +46,7 @@ class ContestsListComp {
 
   @NgOneWay("action-button-title")
   String actionButtonTitle = "VER";
-  
+
   @NgOneWay("show-date")
   bool showDate = false;
   

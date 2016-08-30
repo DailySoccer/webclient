@@ -1,6 +1,6 @@
 <div ng-repeat="contest in currentContestList.elements track by contest.contesId">
     <!-- Separador de fecha -->
-    <div class="contestDateSeparator" ng-if="idDifferentDate($index)">
+    <div class="contestDateSeparator" ng-if="idDifferentDate($index) && showDate">
       <span>{{dateSeparatorText(contest.startDate)}}</span>
     </div>
     <!-- Slot de Concurso -->

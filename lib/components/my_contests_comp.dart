@@ -13,6 +13,7 @@ import 'dart:async';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/services/app_state_service.dart';
 
 @Component(
   selector: 'my-contests',
@@ -23,6 +24,10 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
   static const String TAB_WAITING = "waiting";
   static const String TAB_LIVE = "live";
   static const String TAB_HISTORY = "history";
+
+  bool get tabIsLive => _tabSelected == TAB_LIVE;
+  bool get tabIsWaiting => _tabSelected == TAB_WAITING;
+  bool get tabIsHistory => _tabSelected == TAB_HISTORY;
 
   ContestsService contestsService;
   LoadingService loadingService;
@@ -66,10 +71,15 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
     return StringUtils.translate(key, "mycontest");
   }
 
-  MyContestsComp(this.loadingService, this._profileService, this._refreshTimersService, this.contestsService, this._router, this._routeProvider,
+  MyContestsComp(this.loadingService, this._profileService, this._appStateService, this._refreshTimersService, this.contestsService, this._router, this._routeProvider,
                      this._flashMessage, this._rootElement, TutorialService tutorialService) {
 
     loadingService.isLoading = true;
+    
+    //_appStateService.appTopBarState.activeState = new AppTopBarStateConfig.hidden();
+    //_appStateService.appTopBarState.activeState = AppTopBarState.USER_DATA_CONFIG;
+    _appStateService.appTabBarState.show = true;
+    _appStateService.appSecondaryTabBarState.tabList = [];
 
     _tabSelected = TAB_LIVE;
 
@@ -136,7 +146,7 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
   }
 
   void tabChange(String tab) {
-
+    /*
     //Cambiamos el activo del tab
     _rootElement.querySelectorAll("#myContestMenuTabs li").classes.remove('active');
     _rootElement.querySelector("#" + tab.replaceAll("content", "tab")).classes.add("active");
@@ -150,6 +160,7 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
 
     Element contentTab = document.querySelector("#" + tab);
     contentTab.classes.add("active");
+    */
 
     _tabSelected = tab.contains(TAB_WAITING)    ? TAB_WAITING
                     : tab.contains(TAB_LIVE)    ? TAB_LIVE
@@ -190,4 +201,5 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
   RefreshTimersService _refreshTimersService;
 
   String _tabSelected = TAB_LIVE;
+  AppStateService _appStateService;
 }

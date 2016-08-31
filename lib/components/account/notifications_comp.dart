@@ -120,6 +120,33 @@ class NotificationsComp {
     return sharingInfoCache.containsKey(notification['id']);
   }
   
+  String getNotificationIcon(String nId) {
+    String ret = "";
+    
+    switch(nId) {
+      case UserNotification.ACHIEVEMENT_EARNED:
+        ret = "icon-notification-achievement.png";
+      break;
+      case UserNotification.CONTEST_CANCELLED:
+      case UserNotification.CONTEST_FINISHED:
+      case UserNotification.CONTEST_INVITATIONS:
+      case UserNotification.DAILY_CHALLENGE_ENABLED:
+      case UserNotification.DUEL_FINISHED:
+      case UserNotification.OFICIAL_CONTEST_START:
+      case UserNotification.NEW_SPECIAL_EVENT_ACTIVE:
+        ret = "icon-notification-contest.png";
+      break;
+      default:
+        ret = "icon-notification-default.png";
+      break;
+    }
+    
+    return "images/notifications/" + ret;
+  }
+  
+  void cleanNiotifications () {
+    print ("Borrando todas las notificaciones");    
+  }
 
   Map emptyShareInfo = {};
   Map<String, Map> sharingInfoCache = {};

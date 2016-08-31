@@ -1,17 +1,22 @@
 notifications {
-	.flex-container-col();
+	
+	.notification-wrapper  {
+		.flex-container-col();
+		padding: 15px 15px 0 15px;
+		border-bottom: 1px solid @white;		
+	}
 	.notification-slot {
 		.flex-elem-fixed(auto);
 		.flex-container-row();
-		//.flex-container-content-centered();
 		border-bottom: 1px solid @black;
+		align-items: baseline;
 
-		.icon-wrapper {
+		.notification-icon-wrapper {
 			.flex-elem-fixed(55px);
 		}
 		.notification-info-wrapper {
 			.flex-elem-fluid();
-			padding: 15px;
+			padding: 15px 0 15px 15px;
 		}
 		.notification-title {
 			.flex-elem-fluid();
@@ -21,292 +26,26 @@ notifications {
 			.flex-container-row();
 			justify-content: flex-end;
 			align-items: center;
-			padding-top: 15px;
+			padding-top: 5px;
 		}
 		.notification-main-action{
 			.flex-elem-fluid();
-			.mainfont_bold(10pt, @blue, left, uppercase);
+			.mainfont_bold(11pt, @blue, left, uppercase);
+			cursor: pointer;
 		}
 		.notification-dismiss-action{
-			.flex-elem-fixed(50px);
+			.flex-elem-fixed(24px);
 			.mainfont_bold(10pt, @blue, right, uppercase);
-
-		}
-	}
-}
-
-
-/*
-@cell-height: 130px;
-
-.global-notifications #mainWrapper {
-	background-color: @white;
-}
-
-#notificationsComp {
-	.container-fluid();
-	padding: 0;
-
-	.notification-list-wrapper {
-		.container-fluid();
-		padding: 15px;
-
-		
-		.notification {
-			.make-row(0);
-			margin: 10px 0;
-			position: relative;			
-			min-height: 130px;
-			border-radius: 5px;
-			border: 2px solid @white;
-			background-color: @tramaMed;
-			.make-shadow(0px, 4px, 8px, 1px, @greyUltraDark, 0.2);
-			
-			&:hover {
-				.make-shadow(0px, 4px, 8px, 1px, @greyUltraDark, 0.5);
-			}
-			
-			achievement {
-				position: relative;
-				display: block;
-			}
-
-			.achievement {
-				display: block;
-				margin: 0 auto;
-				max-with: 140px;
-
-				.achievement-name, .achievement-description {
-					.hidden();
-				}
-			}
-
-			.main-info {
-				.make-sm-column(4);
-				.make-xs-column(12);
-				background-color: @blueDark;
-				text-align: center;
-				height: @cell-height;
-				display: table;
-
-				.wrapper {
-					display: table-cell;
-					vertical-align: middle;
-				}
-
-				.name {
-					.exo_light(15pt, @white);
-					display: block;					
-					padding: 5px 0;
-					margin-left:auto;
-					margin-right:auto;
-				}
-
-				.date {
-					.opensans_normal(11pt, @white);
-					display: block;
-					padding: 5px 0;
-					margin-left:auto;
-					margin-right:auto;
-				}
-			}
-
-			.additional-info {
-				.make-sm-column(8);
-				.make-xs-column(12);
-				display: table;
-				height: @cell-height;
-
-				.wrapper {
-					display: table-cell;
-					vertical-align: middle;
-				}
-
-				.description {
-					.opensans_normal(11pt, @greyDark);
-					padding: 0 50px 0px 20px;
-				}
-
-				.button-wrapper {
-					display: inline-block;					
-					height: 34px;
-					margin-top:  20px;
-					margin-left: 20px;
-					.btn-primary {
-						vertical-align: middle;
-					}
-					social-share {
-						display: inline-block;
-						height: 20px;
-						vertical-align: middle;
-					}
-				}
-			}
-		}
-
-		.close-button {
-			position: absolute;
-			top: 15px;
-			right: 15px;
 			cursor: pointer;
-			.addIcon("alertCloseButton.png", 23px, 23px);
 		}
-
-		.uncommon {
-			background-image: url("@{images}/achievementNotificationBg.jpg");
-			background-repeat: no-repeat;
-			background-position: center top;
-			background-size: cover;
-			text-align: center;
+	}
+	.notification-clear-section {
+		.flex-container-row();
+		justify-content: flex-end;
+		padding: 15px 15px;
+		i {
 			cursor: pointer;
-
-			.main-info { 
-				.make-xs-column(12); 
-				background-color: transparent;
-				height: auto;
-				.name {
-					.exo_light(24pt, @blueDark);
-					padding: 0 0 15px 0;
-				}
-				.date {	
-					.opensans_normal(11pt, @greyUltraDark);	
-					padding: 0 0 15px 0;
-				}
-			}
-
-			.additional-info { 
-				.make-xs-column(12);
-				height: 35px;
-				.button-wrapper {
-					margin-top: 0;
-					margin-left: 0;
-					.btn-primary {
-						.hidden();
-					}
-				}
-			}
-		}
-		.notification-list-empty {
-			text-align: center;
-			margin: 100px 0;
-			.exo_light(20pt, @greyUltraDark);
 		}
 	}
-	
+
 }
-
-@media (max-width: @screen-xs-max) {
-	
-	#notificationsComp {
-
-		.notification-list-wrapper {
-			padding: 5px 10px;
-
-			.notification {
-				
-				.main-info {
-					height: 70px;
-					.wrapper {
-						padding-right: 30px;
-						.name {	
-							padding: 0;
-						}
-						.date {
-							font-size: 9pt;
-							padding: 0;
-						}
-					}
-				}
-
-				.additional-info {
-					height: auto;
-					padding: 10px 15px;
-
-					.description {
-						padding: 0;
-					}
-
-					.button-wrapper {
-						margin-top:  10px;
-						margin-left: 0px;
-						height: auto;
-						//.container(0);
-						
-						social-share {
-							display: block;
-						}
-						.social-share-wrapper {
-							margin: 10px 0px 10px -10px;
-						}
-						
-					}
-				}
-			}
-			
-			.close-button {
-				.addIcon("alertCloseButtonLight.png", 23px, 23px);
-			}
-			.uncommon {
-				.main-info .wrapper {
-					padding-right: 0px;
-					.name {	
-						font-size: 18pt;
-					}
-				}
-				.additional-info .button-wrapper .social-share-wrapper {
-					margin: 10px 0;
-				}
-			}
-		}
-
-	}
-}
-
-
-#alertRoot.achievementEarned {
-	
-	.panel {
-		background-image: url("@{images}/BgModalesEspeciales.jpg");
-		background-size: cover;
-		background-repeat: no-repeat;
-	}
-
-	.alert-content-title {
-		.exo_bold(18pt, @blueDark);
-		margin-top: 10px;
-		&.large {
-			.exo_light(24pt, @blueDark);
-			padding-bottom: 0;
-		}
-		@media (max-width: @screen-xs-max) {
-			.exo_bold(14pt, @blueDark);
-			margin-top: 10px;
-			&.large {
-				.exo_light(18pt, @blueDark);
-				padding-bottom: 0;
-			}
-		}
-	}
-	.achievment-earned-icon-wrapper {
-		display: block;
-		position: relative;
-		.achievement {
-			padding: 0;
-		}
-		.gold-image {
-			display: block;
-			position: relative;
-			margin: 0px auto -60px auto;
-		}
-		.achievement-description {
-			display: none;
-		}
-	}
-	.alert-content-subtitle {
-		vertical-align: middle;
-		.exo_light(14pt, @blueDark);
-		margin-bottom: 20px;
-	}
-	
-}
-*/

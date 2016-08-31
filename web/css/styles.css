@@ -7388,7 +7388,6 @@ modal-window.hidden-window {
   cursor: pointer;
 }
 .modal-window-content {
-  padding: 15px 15px;
   background-color: #242529;
   overflow-y: auto;
 }
@@ -24219,7 +24218,7 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
 .achievement.SkillLevel .achievement-level {
   background-color: #214a5f;
 }
-notifications {
+notifications .notification-wrapper {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -24227,6 +24226,8 @@ notifications {
   display: flex;
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
+  padding: 15px 15px 0 15px;
+  border-bottom: 1px solid #ffffff;
 }
 notifications .notification-slot {
   flex: 0 0 auto;
@@ -24238,13 +24239,14 @@ notifications .notification-slot {
   -webkit-flex-flow: row nowrap;
   flex-flow: row nowrap;
   border-bottom: 1px solid #000000;
+  align-items: baseline;
 }
-notifications .notification-slot .icon-wrapper {
+notifications .notification-slot .notification-icon-wrapper {
   flex: 0 0 55px;
 }
 notifications .notification-slot .notification-info-wrapper {
   flex: 1;
-  padding: 15px;
+  padding: 15px 0 15px 15px;
 }
 notifications .notification-slot .notification-title {
   flex: 1;
@@ -24266,20 +24268,21 @@ notifications .notification-slot .notification-actions-wrapper {
   flex-flow: row nowrap;
   justify-content: flex-end;
   align-items: center;
-  padding-top: 15px;
+  padding-top: 5px;
 }
 notifications .notification-slot .notification-main-action {
   flex: 1;
-  font-size: 10pt;
+  font-size: 11pt;
   color: #0d75a6;
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
   font-family: 'Fjalla One', sans-serif;
   font-weight: 700;
+  cursor: pointer;
 }
 notifications .notification-slot .notification-dismiss-action {
-  flex: 0 0 50px;
+  flex: 0 0 24px;
   font-size: 10pt;
   color: #0d75a6;
   text-transform: uppercase;
@@ -24287,281 +24290,22 @@ notifications .notification-slot .notification-dismiss-action {
   text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
   font-family: 'Fjalla One', sans-serif;
   font-weight: 700;
+  cursor: pointer;
 }
-/*
-@cell-height: 130px;
-
-.global-notifications #mainWrapper {
-	background-color: @white;
+notifications .notification-clear-section {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  padding: 15px 15px;
 }
-
-#notificationsComp {
-	.container-fluid();
-	padding: 0;
-
-	.notification-list-wrapper {
-		.container-fluid();
-		padding: 15px;
-
-		
-		.notification {
-			.make-row(0);
-			margin: 10px 0;
-			position: relative;			
-			min-height: 130px;
-			border-radius: 5px;
-			border: 2px solid @white;
-			background-color: @tramaMed;
-			.make-shadow(0px, 4px, 8px, 1px, @greyUltraDark, 0.2);
-			
-			&:hover {
-				.make-shadow(0px, 4px, 8px, 1px, @greyUltraDark, 0.5);
-			}
-			
-			achievement {
-				position: relative;
-				display: block;
-			}
-
-			.achievement {
-				display: block;
-				margin: 0 auto;
-				max-with: 140px;
-
-				.achievement-name, .achievement-description {
-					.hidden();
-				}
-			}
-
-			.main-info {
-				.make-sm-column(4);
-				.make-xs-column(12);
-				background-color: @blueDark;
-				text-align: center;
-				height: @cell-height;
-				display: table;
-
-				.wrapper {
-					display: table-cell;
-					vertical-align: middle;
-				}
-
-				.name {
-					.exo_light(15pt, @white);
-					display: block;					
-					padding: 5px 0;
-					margin-left:auto;
-					margin-right:auto;
-				}
-
-				.date {
-					.opensans_normal(11pt, @white);
-					display: block;
-					padding: 5px 0;
-					margin-left:auto;
-					margin-right:auto;
-				}
-			}
-
-			.additional-info {
-				.make-sm-column(8);
-				.make-xs-column(12);
-				display: table;
-				height: @cell-height;
-
-				.wrapper {
-					display: table-cell;
-					vertical-align: middle;
-				}
-
-				.description {
-					.opensans_normal(11pt, @greyDark);
-					padding: 0 50px 0px 20px;
-				}
-
-				.button-wrapper {
-					display: inline-block;					
-					height: 34px;
-					margin-top:  20px;
-					margin-left: 20px;
-					.btn-primary {
-						vertical-align: middle;
-					}
-					social-share {
-						display: inline-block;
-						height: 20px;
-						vertical-align: middle;
-					}
-				}
-			}
-		}
-
-		.close-button {
-			position: absolute;
-			top: 15px;
-			right: 15px;
-			cursor: pointer;
-			.addIcon("alertCloseButton.png", 23px, 23px);
-		}
-
-		.uncommon {
-			background-image: url("@{images}/achievementNotificationBg.jpg");
-			background-repeat: no-repeat;
-			background-position: center top;
-			background-size: cover;
-			text-align: center;
-			cursor: pointer;
-
-			.main-info { 
-				.make-xs-column(12); 
-				background-color: transparent;
-				height: auto;
-				.name {
-					.exo_light(24pt, @blueDark);
-					padding: 0 0 15px 0;
-				}
-				.date {	
-					.opensans_normal(11pt, @greyUltraDark);	
-					padding: 0 0 15px 0;
-				}
-			}
-
-			.additional-info { 
-				.make-xs-column(12);
-				height: 35px;
-				.button-wrapper {
-					margin-top: 0;
-					margin-left: 0;
-					.btn-primary {
-						.hidden();
-					}
-				}
-			}
-		}
-		.notification-list-empty {
-			text-align: center;
-			margin: 100px 0;
-			.exo_light(20pt, @greyUltraDark);
-		}
-	}
-	
+notifications .notification-clear-section i {
+  cursor: pointer;
 }
-
-@media (max-width: @screen-xs-max) {
-	
-	#notificationsComp {
-
-		.notification-list-wrapper {
-			padding: 5px 10px;
-
-			.notification {
-				
-				.main-info {
-					height: 70px;
-					.wrapper {
-						padding-right: 30px;
-						.name {	
-							padding: 0;
-						}
-						.date {
-							font-size: 9pt;
-							padding: 0;
-						}
-					}
-				}
-
-				.additional-info {
-					height: auto;
-					padding: 10px 15px;
-
-					.description {
-						padding: 0;
-					}
-
-					.button-wrapper {
-						margin-top:  10px;
-						margin-left: 0px;
-						height: auto;
-						//.container(0);
-						
-						social-share {
-							display: block;
-						}
-						.social-share-wrapper {
-							margin: 10px 0px 10px -10px;
-						}
-						
-					}
-				}
-			}
-			
-			.close-button {
-				.addIcon("alertCloseButtonLight.png", 23px, 23px);
-			}
-			.uncommon {
-				.main-info .wrapper {
-					padding-right: 0px;
-					.name {	
-						font-size: 18pt;
-					}
-				}
-				.additional-info .button-wrapper .social-share-wrapper {
-					margin: 10px 0;
-				}
-			}
-		}
-
-	}
-}
-
-
-#alertRoot.achievementEarned {
-	
-	.panel {
-		background-image: url("@{images}/BgModalesEspeciales.jpg");
-		background-size: cover;
-		background-repeat: no-repeat;
-	}
-
-	.alert-content-title {
-		.exo_bold(18pt, @blueDark);
-		margin-top: 10px;
-		&.large {
-			.exo_light(24pt, @blueDark);
-			padding-bottom: 0;
-		}
-		@media (max-width: @screen-xs-max) {
-			.exo_bold(14pt, @blueDark);
-			margin-top: 10px;
-			&.large {
-				.exo_light(18pt, @blueDark);
-				padding-bottom: 0;
-			}
-		}
-	}
-	.achievment-earned-icon-wrapper {
-		display: block;
-		position: relative;
-		.achievement {
-			padding: 0;
-		}
-		.gold-image {
-			display: block;
-			position: relative;
-			margin: 0px auto -60px auto;
-		}
-		.achievement-description {
-			display: none;
-		}
-	}
-	.alert-content-subtitle {
-		vertical-align: middle;
-		.exo_light(14pt, @blueDark);
-		margin-bottom: 20px;
-	}
-	
-}
-*/
 .favorites-wrapper .enter-contest-soccer-players-wrapper {
   width: 100% !important;
 }

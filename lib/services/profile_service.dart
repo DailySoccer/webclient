@@ -265,7 +265,11 @@ class ProfileService {
           UserNotification shown = achievementNotifs[0];
           int aditionalCount = achievementNotifs.length - 1;
           String aditionalAchievemetsKey = aditionalCount > 1? 'aditional-achievements' : 'aditional-achievement-single';
-
+         
+          
+          // TODO: Chequear esto antes de la version final.
+          // ¿Necesitamos mostrar notificacioens de logros al iniciar?
+          /*
           modalShow(""
                    , '''
                     <div class="content-wrapper">
@@ -288,7 +292,12 @@ class ProfileService {
                  )
                  .then((_) => router.go('notifications', {}))
                  .catchError((_) => print('error'));
-
+                 
+          */
+        
+         
+        
+         
         }
         _wasLoggedInForTriggerPopUp = ProfileService.instance.isLoggedIn;
       });

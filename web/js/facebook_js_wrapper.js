@@ -22,6 +22,11 @@ var facebookApiWrapper = {
     tryCall(callback);
   },
   */
+  
+	waitForFacebook: function (callback) {
+	  
+        callback();
+	},
   login: function(callback) {
     //console.log(" - FB REQUEST => Login");
     facebookConnectPlugin.login(["public_profile", "email", "user_friends"],

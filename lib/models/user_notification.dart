@@ -70,13 +70,17 @@ class UserNotification {
   }
 
   String _generateDescription() {
+    if (info == null)
+      return "";
+    
     String name = "";
 
     switch(topic) {
       case CONTEST_FINISHED:
       case CONTEST_CANCELLED:
       case DUEL_FINISHED:
-        name = info["contestName"].trim();
+        if (info.containsKey("contestName"))
+          name = info["contestName"].trim();
         break;
     }
 

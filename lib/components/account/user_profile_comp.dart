@@ -265,7 +265,7 @@ class UserProfileComp {
   
 
   void modalSelectAccount(Map deviceAccount, Map cloudAccount) {
-    Element modalWindow = querySelector("#modalWindow");
+    Element modalWindow = querySelector("modal-window");
   
     void onClose(String eventCallback) {
       
@@ -337,7 +337,7 @@ class UserProfileComp {
   
   void modalConfirmAccount(Map account, Function onBackButton) {
   
-    Element modalWindow = querySelector("#modalWindow");
+    Element modalWindow = querySelector("modal-window");
   
     void onClose(String eventCallback) {
       closeModal(modalWindow);
@@ -426,7 +426,7 @@ class UserProfileComp {
   }
   void modalSelectServerBind() {
     
-      Element modalWindow = querySelector("#modalWindow");
+      Element modalWindow = querySelector("modal-window");
     
       void onClose(String eventCallback) {
         switch (eventCallback) {
@@ -481,7 +481,7 @@ class UserProfileComp {
   }
   void modalFacebookBindConfirm() {
     
-      Element modalWindow = querySelector("#modalWindow");
+      Element modalWindow = querySelector("modal-window");
     
       void onClose(String eventCallback) {
         switch (eventCallback) {

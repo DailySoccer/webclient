@@ -8,6 +8,9 @@ import 'package:intl/intl.dart';
 import 'package:webclient/models/user_notification.dart';
 import 'package:webclient/utils/fblogin.dart';
 
+// TODO:  eliminar este import
+import 'package:webclient/models/achievement.dart';
+
 class User {
   static const String UUID_EMAIL = "@uuid.e11";
   static const int MINUTES_TO_RELOAD_ENERGY = 60;
@@ -198,14 +201,26 @@ class User {
       List<String> achievementList = jsonMap["achievements"];
       achievementList.forEach( (achievementId) => achievements.add(achievementId) );
     }
-
+     
+    //TODO: TEST: Incluir notificaciones al usuario    
+    jsonMap["notifications"] = [
+        { "_id": '0', "topic": UserNotification.ACHIEVEMENT_EARNED, "info" : { "achievement": Achievement.WON_OFFICIAL_CONTESTS_LEVEL_1 } },
+        { "_id": '1', "topic": UserNotification.CONTEST_FINISHED,   "info" : { "contestId": "---" } },
+        { "_id": '2', "topic": UserNotification.CONTEST_CANCELLED,  "info" : { "contestId": "---" } },
+        { "_id": '3', "topic": UserNotification.MANAGER_LEVEL_UP,   "info" : { "level": 2 } },
+        { "_id": '4', "topic": UserNotification.MANAGER_LEVEL_DOWN, "info" : { "level": 1 } }
+    ];
+    //notifications = test_notifications.map((test_notification) => new UserNotification.fromJsonObject(test_notification)).toList();
     if (jsonMap.containsKey("notifications")) {
       notifications = jsonMap["notifications"].map((jsonMap) => new UserNotification.fromJsonObject(jsonMap) ).toList();
 
       // Ordenarlos en orden decreciente (reciente -> antiguo)
       notifications.sort((el1, el2) => el2.createdAt.compareTo(el1.createdAt));
     }
+    
 
+    
+    
     if (jsonMap.containsKey("favorites")) {
       favorites = jsonMap["favorites"];
     }

@@ -2,6 +2,7 @@ library modal_window;
 
 import 'package:angular/angular.dart';
 import 'dart:html';
+import 'package:webclient/services/app_state_service.dart';
 
 @Component(
     selector: 'modal-window',
@@ -24,6 +25,7 @@ class ModalWindow {
   
   void close() {
     show = false;
+    AppStateService.Instance.notificacionsActive = false;
   }
   
   ModalWindow(this._rootElement);

@@ -19,7 +19,7 @@ Future<bool> modalShow(String title, String content, {String modalSize: "lg",
   String globalRootId = 'alertRoot';
 
   Completer completer = new Completer();
-  Element modalWindow = querySelector("#modalWindow");
+  Element modalWindow = querySelector("modal-window");
   bool result = false;
 
   void completeWithResult() {

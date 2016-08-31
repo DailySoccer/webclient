@@ -6,16 +6,14 @@ modal-window {
   left: 0;
   right: 0;
   bottom: 0;
-  
   &.hidden-window {
     display: none;
   }
-  
 }
 .modal-window-frame {
   .flex-container-col();
   .mainfont_light(10pt, @white);
-  background-color: @white;
+  //background-color: @white;
   margin: 5vh 16px 0 16px;
   height: 90vh;
 }
@@ -23,7 +21,7 @@ modal-window {
   .flex-elem-fixed(50px);
   .flex-container-row();
   .black-gradient();
-  padding: 15px 5px;
+  padding: 15px 15px;
 }
 .modal-window-title {
   .flex-elem-fluid(1);
@@ -32,8 +30,12 @@ modal-window {
   padding: 2px 0;
 }
 .modal-window-close-btt {
-  .flex-elem-fixed(32px);
+  .flex-elem-fixed(24px);
   color: @white;
   cursor: pointer;
 }
-
+.modal-window-content {
+  padding: 15px 15px;
+  background-color: @grey-dark;
+  overflow-y: auto;
+}

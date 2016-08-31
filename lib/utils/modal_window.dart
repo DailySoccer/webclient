@@ -10,6 +10,8 @@ import 'dart:html';
 )
 class ModalWindow {
 
+  @NgOneWay("show-header")
+  bool showHeader = true;
 
   @NgOneWay("title")
   String title;
@@ -20,8 +22,7 @@ class ModalWindow {
     else this._rootElement.classes.remove("hidden-window");
   }
   
-  void onClose() {
-    print("asdasdasd");
+  void close() {
     show = false;
   }
   

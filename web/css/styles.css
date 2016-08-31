@@ -6077,6 +6077,11 @@ OLD FONTS
   outline-offset: 0px;
   outline: none;
 }
+.default-button:disabled {
+  color: #757993;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 .fit-icon-size {
   width: 17px;
   height: 17px;
@@ -6329,7 +6334,7 @@ div#mainApp
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background-color: #dcdcdc;
+  background-color: #242529;
 }
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -6686,6 +6691,11 @@ contest-header .prize-managerpoints::after {
   border: 0;
   outline-offset: 0px;
   outline: none;
+}
+.lineup-selector-slot .iconButtonSelect:disabled {
+  color: #757993;
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 .lineup-selector-slot .iconButtonSelect i {
   width: 24px;
@@ -9566,6 +9576,11 @@ shop-comp .price .buy-button:focus {
   border: 0;
   outline-offset: 0px;
   outline: none;
+}
+shop-comp .price .buy-button:disabled {
+  color: #757993;
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 #goldShopComp,
 #trainerPointsShopComp {
@@ -13773,27 +13788,6 @@ my-contests {
   font-weight: 500;
   border-bottom: 1px solid rgba(210, 210, 210, 0.3);
   border-top: 2px solid #000000;
-  /*
-	.info{
-		.make-sm-column(6);
-		.make-sm-column-push(3);
-		padding: 7px 10px 12px;
-		.info-available-money{
-			.opensans_bold(9pt, @orange);	
-		}
-		text-align: center;
-	}*/
-  /*.information-no-contest{
-		.make-xs-column(12);
-		.opensans_bold(9pt, @white);
-		padding: 10px 10px 12px;
-		text-align: center;
-		min-height: 39px;
-		padding: 10px;
-		@media (max-width: @screen-xs-max) {
-			.opensans_bold(7pt, @white);
-		}
-	}*/
 }
 .resume-bar .information-no-contest {
   margin: 3px;
@@ -14326,6 +14320,11 @@ soccer-player-stats {
   border: 0;
   outline-offset: 0px;
   outline: none;
+}
+.soccer-player-stats-header-description .soccer-player-stats-header-button-add:disabled {
+  color: #757993;
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 .soccer-player-stats-info {
   flex: 0 0 40px;
@@ -14923,6 +14922,34 @@ enter-contest {
   outline-offset: 0px;
   outline: none;
 }
+.lineup-selector-section .confirm-btn:disabled {
+  color: #757993;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.lineup-selector-section .lineup-config-error {
+  flex: 0 0 40px;
+  font-size: 10pt;
+  color: #ffffff;
+  text-transform: inherit;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 500;
+  background-color: #8d0000;
+  padding: 4px;
+  line-height: 1.1;
+}
+.lineup-selector-section .lineup-config-error-title {
+  font-size: 10pt;
+  color: #ffffff;
+  text-transform: inherit;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  display: block;
+}
 .lineup-selector-section .salary-info-wrapper {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#102127+0,102127+49,03151b+51,03151b+100 */
   background: #102127;
@@ -14966,77 +14993,6 @@ enter-contest {
 .lineup-selector-section .salary-info-wrapper .current-salary-amount,
 .lineup-selector-section .salary-info-wrapper .limit-salary-amount {
   color: #fa9c19;
-}
-.contest-topbar-info {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-flow: row nowrap;
-  flex-flow: row nowrap;
-}
-.contest-topbar-info .time-section {
-  flex: 0 0 50px;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-flow: column nowrap;
-  flex-flow: column nowrap;
-  justify-content: center;
-  text-align: center;
-  margin-right: 8px;
-}
-.contest-topbar-info .contest-flag {
-  flex: 0 0 20px;
-  margin-bottom: 3px;
-}
-.contest-topbar-info .column-start-hour {
-  flex: 1;
-  font-size: 10pt;
-  color: #757993;
-  text-transform: inherit;
-  text-align: inherit;
-  text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
-}
-.contest-topbar-info .contest-name-section {
-  flex: 1;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-flow: column nowrap;
-  flex-flow: column nowrap;
-  white-space: nowrap;
-}
-.contest-topbar-info .contest-name {
-  flex: 1;
-  font-size: 12pt;
-  color: #ffffff;
-  text-transform: inherit;
-  text-align: left;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
-  overflow: hidden;
-  margin-right: 5px;
-}
-.contest-topbar-info .contest-description {
-  flex: 1;
-  font-size: 10pt;
-  color: #757993;
-  text-transform: none;
-  text-align: left;
-  text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
-  overflow: hidden;
-  margin-right: 5px;
 }
 .lineup-actions-wrapper {
   display: -webkit-box;
@@ -15085,6 +15041,11 @@ enter-contest {
   border: 0;
   outline-offset: 0px;
   outline: none;
+}
+.lineup-actions-wrapper div button:disabled {
+  color: #757993;
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 /*.enter-contest-tabs {
 	.tabs-navigation(2);
@@ -16091,9 +16052,6 @@ soccer-players-scalinglist .column-addbtn {
   padding: 7px 8px;
   align-items: center;
   border-bottom: 2px solid #000000;
-}
-.global-enter-contest .wrapper-content-container::-webkit-scrollbar-track {
-  background-color: #242529;
 }
 /*
 // Tabla de ordenacion en la cabecera del listado de jugadores
@@ -21307,6 +21265,121 @@ view-contest-entry {
 }
 view-contest-entry lineup-field-selector {
   flex: 1;
+}
+view-contest-entry .contest-entry-section {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  flex: 1;
+}
+view-contest-entry .contest-info-section {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  flex: 1;
+}
+view-contest-entry .confirm-btn {
+  background-image: -webkit-linear-gradient(top, #0d75a6 0%, #0c4c6a 100%);
+  background-image: linear-gradient(to bottom, #0d75a6 0%, #0c4c6a 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0d75a6', endColorstr='#ff0c4c6a', GradientType=0);
+  font-size: 10pt;
+  color: #ffffff;
+  text-transform: inherit;
+  text-align: inherit;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
+  padding: 10px;
+  border: none;
+  width: 100%;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-align: center;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
+  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
+  border: 0;
+  outline-offset: 0px;
+  outline: none;
+  flex: 0 0 40px;
+}
+view-contest-entry .confirm-btn:hover,
+view-contest-entry .confirm-btn:active,
+view-contest-entry .confirm-btn:focus {
+  border: 0;
+  outline-offset: 0px;
+  outline: none;
+}
+view-contest-entry .confirm-btn:disabled {
+  color: #757993;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+view-contest-entry .salary-info-wrapper {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#102127+0,102127+49,03151b+51,03151b+100 */
+  background: #102127;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #102127 0%, #102127 49%, #03151b 51%, #03151b 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #102127 0%, #102127 49%, #03151b 51%, #03151b 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #102127 0%, #102127 49%, #03151b 51%, #03151b 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#102127', endColorstr='#03151b', GradientType=0);
+  /* IE6-9 */
+  font-size: 10pt;
+  color: #ffffff;
+  text-transform: inherit;
+  text-align: inherit;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  flex: 0 0 36px;
+  padding: 9px;
+  text-align: center;
+}
+view-contest-entry .salary-info-wrapper .current-salary {
+  flex: 1;
+}
+view-contest-entry .salary-info-wrapper .limit-salary {
+  flex: 1;
+}
+view-contest-entry .salary-info-wrapper .current-salary-label,
+view-contest-entry .salary-info-wrapper .limit-salary-label {
+  color: #757993;
+}
+view-contest-entry .salary-info-wrapper .current-salary-amount,
+view-contest-entry .salary-info-wrapper .limit-salary-amount {
+  color: #fa9c19;
+}
+view-contest-entry .edit-contest-entry-tip {
+  font-size: 12pt;
+  color: #ffffff;
+  text-transform: inherit;
+  text-align: inherit;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  flex: 0 0 auto;
+  text-align: center;
+  padding: 8px 16px;
+  border-bottom: 1px solid rgba(210, 210, 210, 0.3);
 }
 /*.global-history-contest #mainWrapper.wrapper-content-container,
 .global-view-contest-entry #mainWrapper.wrapper-content-container,

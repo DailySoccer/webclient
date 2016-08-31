@@ -90,7 +90,7 @@ class EnterContestComp implements DetachAware {
     _sectionActive = section;
     switch(_sectionActive) {
       case LINEUP_FIELD_SELECTOR:
-        setupContestInfoTopBar(true, () => _router.go('lobby', {}), onContestInfoClick);
+        setupContestInfoTopBar(true, cancelCreateLineup, onContestInfoClick);
       break;
       case SELECTING_SOCCER_PLAYER:
         _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Elige un ${fieldPosFilter.fullName}");
@@ -135,7 +135,7 @@ class EnterContestComp implements DetachAware {
         : new Money.from(Money.CURRENCY_GOLD, 0);
   }
 
-  String get printableCurrentSalary => contest != null? StringUtils.parseSalary(contest.salaryCap - availableSalary) : "-";
+  String get printableCurrentSalary => contest != null? StringUtils.parseSalary(availableSalary) : "-";
   String get printableSalaryCap => contest != null? StringUtils.parseSalary(contest.salaryCap) : "-";
   
   // Comprobamos si tenemos recursos suficientes para pagar el torneo (salvo que estemos editando el contestEntry)
@@ -218,7 +218,7 @@ class EnterContestComp implements DetachAware {
     ''', rightColumn: "<i class='material-icons'>&#xE88F;</i>");
     
     */
-    setupContestInfoTopBar(false, () => _router.go('lobby', {}));
+    setupContestInfoTopBar(false, cancelCreateLineup);
     //_appStateService.appTopBarState.activeState = new AppTopBarStateConfig.contestSection(contest, false, () => _router.go('lobby', {}));
     _appStateService.appSecondaryTabBarState.tabList = [];
     _appStateService.appTabBarState.show = false;
@@ -298,7 +298,8 @@ class EnterContestComp implements DetachAware {
       .catchError((ServerError error) {
         // Si estamos editando un contestEntry y el server nos indica un fallo (generalmente es porque el usuario "no tiene permiso"), nos saldremos de la pantalla
         if (editingContestEntry) {
-          _router.go("lobby", {});
+          cancelCreateLineup();
+          //_router.go("lobby", {});
         }
         else {
           _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
@@ -322,7 +323,7 @@ class EnterContestComp implements DetachAware {
                                                      "contest id": contest.contestId,
                                                      "is editing": editingContestEntry});
     
-    setupContestInfoTopBar(true, () => _router.go('lobby', {}));
+    setupContestInfoTopBar(true, cancelCreateLineup);
     
     if (_profileService.isLoggedIn && !contest.canEnter(_profileService.user) && !editingContestEntry) {
       cannotEnterMessageRedirect();
@@ -370,8 +371,8 @@ class EnterContestComp implements DetachAware {
           , onBackdropClick: true
           , aditionalClass: "cannotEnter"
         )
-        .then((_) => _router.go('lobby', {}))
-        .catchError((_) => _router.go('lobby', {}));
+        .then((_) => cancelCreateLineup())
+        .catchError((_) => cancelCreateLineup());
   }
   
   void cannotEnterMessageRedirect() {
@@ -427,8 +428,8 @@ class EnterContestComp implements DetachAware {
           , onBackdropClick: true
           , aditionalClass: "cannotEnter"
         )
-        .then((_) => _router.go('lobby', {}))
-        .catchError((_) => _router.go('lobby', {}));
+        .then((_) => cancelCreateLineup())
+        .catchError((_) => cancelCreateLineup());
   }
 
   void updateFavorites() {
@@ -465,6 +466,7 @@ class EnterContestComp implements DetachAware {
       return;
     }
   }
+  bool get isLineupFilled => !lineupSlots.any((soccerPlayer) => soccerPlayer == null);
 
   void resetLineup() {
     lineupSlots = new List.filled(lineupFormation.length, null);
@@ -887,6 +889,14 @@ class EnterContestComp implements DetachAware {
   void onContestInfoClick() {
     sectionActive = CONTEST_INFO;
   }
+  
+  void cancelCreateLineup() {
+    if (editingContestEntry) {
+      _router.go('my_contests', {'section': 'upcoming'});
+    } else {
+      _router.go('lobby', {});
+    }
+  }
 
   void cancelContestDetails() {
     sectionActive = LINEUP_FIELD_SELECTOR;
@@ -947,6 +957,10 @@ class EnterContestComp implements DetachAware {
       }
     });
   }
+  
+  bool get isThereAnyLineupConfigError => playersInSameTeamInvalid || availableSalary < 0;
+  String get lineupConfigErrorText => isThereAnyLineupConfigError? getLocalizedText(playersInSameTeamInvalid? 'alert-max-players-same-team' :'alert-negative-budget'): '';
+  
 
   void saveContestEntryFromJson(String key, String json) {
     GameInfo.assign(key, json);

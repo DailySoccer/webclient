@@ -1,11 +1,24 @@
 <!--section ng-show="!loadingService.isLoading"-->
 
+<section class="contest-entry-section" ng-show="isLineupFieldContestEntryActive">
+  <div class="edit-contest-entry-tip">{{getLocalizedText("tip")}}</div>
+  <!--button class="confirm-btn" ng-click="createFantasyTeam()">Modificar</button-->
   <lineup-field-selector lineup-slots="lineupSlots"
                          on-lineup-slot-selected="onLineupSlotSelected(slotIndex)"
                          formation-id="formationId"
                          lineup-formation="lineupFormation"
                          formation-is-modifiable="false"></lineup-field-selector>
                          
+  <button class="confirm-btn" ng-click="editTeam()">Modificar</button>
+  <div class="salary-info-wrapper">
+    <div class="current-salary"><span class="current-salary-label">Presupuesto </span><span class="current-salary-amount" ng-class="{'red-numbers': availableSalary < 0 }">{{formatCurrency(printableCurrentSalary)}}</span></div>
+    <div class="limit-salary"><span class="limit-salary-label">Límite </span><span class="limit-salary-amount">{{formatCurrency(printableSalaryCap)}}</span></div>
+  </div>
+</section>
+
+<section class="contest-info-section" ng-show="isContestInfoActive">
+  <contest-info the-contest="contest" ng-if="contest != null"></contest-info>
+</section>
   <!--contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header-->
   
   <!--<div class="separator-bar"></div>-->

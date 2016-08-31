@@ -75,8 +75,8 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
                      this._flashMessage, this._rootElement, TutorialService tutorialService) {
 
     loadingService.isLoading = true;
-    
-    //_appStateService.appTopBarState.activeState = new AppTopBarStateConfig.hidden();
+
+    _refreshTopBar();
     //_appStateService.appTopBarState.activeState = AppTopBarState.USER_DATA_CONFIG;
     _appStateService.appTabBarState.show = true;
     _appStateService.appSecondaryTabBarState.tabList = [];
@@ -85,7 +85,12 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
 
     tutorialService.triggerEnter("my-contests");
 
+    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR, _refreshTopBar);
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
+  }
+  
+  void _refreshTopBar() {
+    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router);
   }
   
   void _refreshMyContests() {
@@ -128,6 +133,7 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
 
   void detach() {
     _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS);
+    _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR);
   }
 
   void gotoSection(String section) {

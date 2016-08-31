@@ -29,6 +29,9 @@ import 'package:webclient/services/app_state_service.dart';
    useShadowDom: false
 )
 class ViewContestEntryComp {
+  static const String LINEUP_FIELD_CONTEST_ENTRY = "LINEUP_FIELD_CONTEST_ENTRY";
+  static const String CONTEST_INFO = "CONTEST_INFO";
+
   ScreenDetectorService scrDet;
   LoadingService loadingService;
 
@@ -38,6 +41,7 @@ class ViewContestEntryComp {
     if (mainPlayer != null) mainPlayer.formation = id; 
   }
   List<SoccerPlayerListItem> lineupSlots = [];
+  num availableSalary = 0;
   List<String> get lineupFormation => FieldPos.FORMATIONS[formationId];
   dynamic selectedOpponent;
   String contestId;
@@ -48,6 +52,9 @@ class ViewContestEntryComp {
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
 
+  String get printableCurrentSalary => contest != null? StringUtils.parseSalary(contest.salaryCap - availableSalary) : "-";
+  String get printableSalaryCap => contest != null? StringUtils.parseSalary(contest.salaryCap) : "-";
+  
   String get _getKeyForCurrentUserContest => (_profileService.isLoggedIn ? _profileService.user.userId : 'guest') + '#' + contest.contestId;
 
   bool get showInviteButton => (contest != null) ?  contest.maxEntries != contest.contestEntries.length : false;
@@ -58,6 +65,22 @@ class ViewContestEntryComp {
   bool get isModeEdited  => _viewContestEntryMode == "edited";  // Venimos de editarla a traves de enter_contest.
   bool get isModeSwapped => _viewContestEntryMode == "swapped"; // Acabamos de crearla pero el servidor nos cambio a otro concurso pq el nuestro estaba lleno.
 
+  bool get isLineupFieldContestEntryActive => sectionActive == LINEUP_FIELD_CONTEST_ENTRY;
+  bool get isContestInfoActive => sectionActive == CONTEST_INFO;
+
+  String _sectionActive = LINEUP_FIELD_CONTEST_ENTRY;
+  void set sectionActive(String section) { 
+    _sectionActive = section;
+    switch(_sectionActive) {
+      case LINEUP_FIELD_CONTEST_ENTRY:
+        setupContestInfoTopBar(true, () => _router.go('lobby', {}), onContestInfoClick);
+      break;
+      case CONTEST_INFO:
+        setupContestInfoTopBar(false, cancelContestDetails);
+      break;
+    }
+  }
+  String get sectionActive => _sectionActive;
 
   String get fbTitle => FacebookService.titleOfInscription();
   String get fbDescription => FacebookService.descriptionOfInscription();
@@ -77,6 +100,10 @@ class ViewContestEntryComp {
   
   String getLocalizedText(key, [Map substitutions]) {
     return StringUtils.translate(key, "viewcontestentry", substitutions);
+  }
+
+  String formatCurrency(String amount) {
+    return StringUtils.formatCurrency(amount);
   }
 
   ViewContestEntryComp(this._routeProvider, this.scrDet, this._contestsService, this._appStateService,
@@ -111,6 +138,9 @@ class ViewContestEntryComp {
           lineupSlots.add(new SoccerPlayerListItem(instanceSoccerPlayer, managerLevel, contest));
         });
         
+        availableSalary = 0;
+        lineupSlots.forEach((item) => availableSalary += item.salary);
+        
         updatedDate = DateTimeService.now;
         if(!_contestsService.lastContest.isHistory && !_contestsService.lastContest.isLive) {
           GameMetrics.logEvent(GameMetrics.UPCOMING_CONTEST);
@@ -122,7 +152,16 @@ class ViewContestEntryComp {
   }
 
   void onContestInfoClick() {
-    //sectionActive = CONTEST_INFO;
+    sectionActive = CONTEST_INFO;
+  }
+  void cancelContestDetails() {
+    sectionActive = LINEUP_FIELD_CONTEST_ENTRY;
+  }
+
+  void editTeam() {
+    _router.go('enter_contest', { "contestId": mainPlayer.contest.contestId ,
+                                  "contestEntryId": mainPlayer.contestEntryId,
+                                  "parent": _routeProvider.parameters["parent"]});
   }
   
   void setupContestInfoTopBar(bool showInfoButton, Function backFunction, [Function infoFunction]) {

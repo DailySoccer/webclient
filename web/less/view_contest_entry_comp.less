@@ -3,9 +3,54 @@ view-contest-entry {
   lineup-field-selector {
     .flex-elem-fluid();
   }
+  .contest-entry-section {
+    .flex-container-col();
+    .flex-elem-fluid();
+  }
+  .contest-info-section {
+    .flex-container-col();
+    .flex-elem-fluid();
+  }
+
+  .confirm-btn {
+    .default-button();
+    .flex-elem-fixed(40px);
+  }
+
+  .salary-info-wrapper {
+    .dark-green-bluish-gradient();
+    .mainfont_light(10pt, @white);
+    .flex-container-row();
+    .flex-elem-fixed(36px);
+    padding: 9px;
+
+    text-align: center;
+
+    .current-salary {
+      .flex-elem-fluid();
+    }
+    .limit-salary {
+      .flex-elem-fluid();
+    }
+    .current-salary-label,
+    .limit-salary-label {
+      color: @grey-bluish;
+    }
+    .current-salary-amount,
+    .limit-salary-amount {
+      color: @orange;
+    }
+  }
+  
+  .edit-contest-entry-tip {
+    .mainfont_light(12pt, @white);
+    .flex-elem-fixed(auto);
+    text-align: center;
+    padding: 8px 16px;
+    border-bottom: 1px solid @grey-translucid;
+  }
+  
 }
-
-
 /*.global-history-contest #mainWrapper.wrapper-content-container,
 .global-view-contest-entry #mainWrapper.wrapper-content-container,
 .global-live-contest #mainWrapper.wrapper-content-container {

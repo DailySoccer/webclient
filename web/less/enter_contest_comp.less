@@ -31,6 +31,17 @@ enter-contest {
     .default-button();
     .flex-elem-fixed(40px);
   }
+  .lineup-config-error {
+    .flex-elem-fixed(40px);
+    .bodyfont_light(10pt, @white, center);
+    background-color: @red-dark;
+    padding: 4px;
+    line-height: 1.1;
+  }
+  .lineup-config-error-title {
+    .bodyfont_bold(10pt, @white, center);
+    display: block;
+  }
 
   .salary-info-wrapper {
     .dark-green-bluish-gradient();
@@ -57,43 +68,6 @@ enter-contest {
     }
   }
 }
-.contest-topbar-info {
-  .flex-container-row();
-  
-  .time-section {
-    .flex-elem-fixed(50px);
-    .flex-container-col();
-    .flex-container-content-centered();
-    text-align: center;
-    margin-right: 8px;
-  }
-  .contest-flag {
-    .flex-elem-fixed(20px);
-    margin-bottom: 3px;
-  }
-  .column-start-hour {
-    .flex-elem-fluid();
-    .mainfont_bold(10pt, @grey-bluish);
-  }
-  .contest-name-section {
-    .flex-elem-fluid();
-    .flex-container-col();
-    white-space: nowrap;
-  }
-  .contest-name {
-    .flex-elem-fluid();
-    .mainfont_bold(12pt, @white, left);
-    overflow: hidden;
-    margin-right: 5px;
-  }
-  .contest-description {
-    .flex-elem-fluid();
-    .mainfont_bold(10pt, @grey-bluish, left, none);
-    overflow: hidden;
-    margin-right: 5px;
-  }
-}
-
 
 .lineup-actions-wrapper {
   .flex-container-row();

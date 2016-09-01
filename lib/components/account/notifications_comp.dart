@@ -146,6 +146,7 @@ class NotificationsComp {
   
   void cleanNiotifications () {
     print ("Borrando todas las notificaciones");    
+    notificationList.forEach((notif)  => closeNotification(notif['d']));
   }
 
   Map emptyShareInfo = {};

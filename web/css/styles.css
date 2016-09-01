@@ -24306,6 +24306,25 @@ notifications .notification-clear-section {
 notifications .notification-clear-section i {
   cursor: pointer;
 }
+notifications .notification-list-empty {
+  flex: 1;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  font-size: 14pt;
+  color: #757993;
+  text-transform: uppercase;
+  text-align: left;
+  text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
+  padding-bottom: 15px;
+  align-items: center;
+}
 .favorites-wrapper .enter-contest-soccer-players-wrapper {
   width: 100% !important;
 }

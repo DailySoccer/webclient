@@ -9,7 +9,7 @@
       <div class="notification-title">{{notification.name}}</div>
       <div class="notification-actions-wrapper">
         <div class="notification-main-action" ng-if="notification.link.name != ''" ng-click="goToLink(notification.link.url)">{{notification.link.name}}</div>
-        <div class="notification-dismiss-action" ng-click="closeNotification(x.id)"><i class="material-icons">&#xE872;</i></div>
+        <div class="notification-dismiss-action" ng-click="closeNotification(notification.id)"><i class="material-icons">&#xE872;</i></div>
       </div>
     </div>
   </div>
@@ -20,4 +20,4 @@
   
 </div>
 
-<div class="notification-clear-section"><i class="material-icons" ng-click="cleanNiotifications()">&#xE0B8;</i></div>
+<div class="notification-clear-section" ng-if="notificationList.length > 0"><i class="material-icons" ng-click="cleanNiotifications()">&#xE0B8;</i></div>

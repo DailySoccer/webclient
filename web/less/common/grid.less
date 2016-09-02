@@ -20,7 +20,7 @@
   flex-flow: column nowrap;
 }
 
-.flex-elem-fixed(@width: 50px) {
+.flex-elem-fixed(@width: auto) {
   flex: 0 0 @width;
 }
 .flex-elem-fluid(@proportion: 1) {
@@ -28,6 +28,6 @@
 }
 
 // use with fixed content
-.flex-container-content-centered() {
+.flex-container-content-centered {
   justify-content: center;
 }

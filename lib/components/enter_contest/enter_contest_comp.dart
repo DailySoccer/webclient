@@ -111,6 +111,7 @@ class EnterContestComp implements DetachAware {
   bool get isSelectingSoccerPlayerActive => sectionActive == SELECTING_SOCCER_PLAYER;
   bool get isSoccerPlayerStatsActive => sectionActive == SOCCER_PLAYER_STATS;
   bool get isContestInfoActive => sectionActive == CONTEST_INFO;
+  bool isLineupFinished = false;
   
   InstanceSoccerPlayer selectedInstanceSoccerPlayer;
 
@@ -768,7 +769,7 @@ class EnterContestComp implements DetachAware {
     if (editingContestEntry) {
       _contestsService.editContestEntry(contestEntryId, formationId, lineupSlots.map((player) => player["id"]).toList())
         .then((_) {
-          num managerLevel = playerManagerLevel;
+          //num managerLevel = playerManagerLevel;
           Iterable boughtPlayers = lineupSlots.where((c) => c.moneyToBuy.amount > 0);
                    
           GameMetrics.logEvent(GameMetrics.TEAM_MODIFIED, {"type": contest.isSimulation? 'virtual' : 'oficial',
@@ -787,9 +788,10 @@ class EnterContestComp implements DetachAware {
                                                           "players bought": boughtPlayers.length,
                                                           "contest id": contest.contestId });
           _teamConfirmed = true;
-          _router.go('view_contest_entry', { "contestId": contest.contestId,
+          isLineupFinished = true;
+          /*_router.go('view_contest_entry', { "contestId": contest.contestId,
                                              "parent": _routeProvider.parameters["parent"],
-                                             "viewContestEntryMode": "edited"});
+                                             "viewContestEntryMode": "edited"});*/
           
         })
         .catchError((ServerError error) => _errorCreating(error));
@@ -827,7 +829,7 @@ class EnterContestComp implements DetachAware {
                                                           "value": contest.entryFee.toStringWithCurrency()});
 
             _teamConfirmed = true;
-
+            /*
             if (isCreatingContest) {
               _router.go( 'view_contest_entry', {
                             "contestId": contestId,
@@ -842,7 +844,9 @@ class EnterContestComp implements DetachAware {
                             "parent": _routeProvider.parameters["parent"],
                             "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"
                 });
-            }
+            }*/
+
+            isLineupFinished = true;
           })
           .catchError((ServerError error) => _errorCreating(error));
     }
@@ -896,6 +900,12 @@ class EnterContestComp implements DetachAware {
     } else {
       _router.go('lobby', {});
     }
+  }
+  
+  void goUpcomingContest() {
+    _router.go('view_contest_entry', {"contestId": contest.contestId, 
+                                      "parent": "my_contests", 
+                                      "viewContestEntryMode": "viewing"});
   }
 
   void cancelContestDetails() {

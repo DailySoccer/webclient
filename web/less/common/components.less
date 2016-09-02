@@ -1,13 +1,11 @@
 .default-button {
   #gradient.vertical(@blue-gradient-light, @blue-gradient-dark);
-  .mainfont_bold(10pt, @white);
+  .mainfont_bold(10pt, @white, center, uppercase);
+  .elevation(2);
   padding: 10px;
   border: none;
   width: 100%;
-  text-transform: uppercase;
   cursor: pointer;
-  text-align: center;
-  .elevation(2);
   border: 0;
   outline-offset: 0px;
   outline: none;
@@ -20,6 +18,27 @@
   
   &:disabled {
     color: @grey-bluish;
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.flat-button {
+  .mainfont_bold(11pt, @blue, center, uppercase);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  border: 0;
+  outline-offset: 0px;
+  outline: none;
+  
+  &:hover, &:active, &:focus {
+    border: none;
+    outline-offset: 0px;
+    outline: none;
+  }
+  
+  &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }

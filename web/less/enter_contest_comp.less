@@ -84,6 +84,33 @@ enter-contest {
   }
 }
 
+.lineup-finished-modal {
+  .modal-window-content {
+    .flex-container-col();
+    .flex-elem-fixed(auto);
+    padding: 25px 15px 10px 15px;
+  }
+}
+.lineup-finished-title {
+  .mainfont_bold(14pt, @orange, center, uppercase);
+  .flex-elem-fluid(1);
+  margin-bottom: 15px;
+}
+.lineup-finished-text {
+  .bodyfont_light(10pt, @white, center);
+  .flex-elem-fluid(1);
+  padding: 0px 20px;
+  margin-bottom: 40px;
+}
+.lineup-finished-actions-wrapper {
+  .flex-elem-fixed(30px);
+  .flex-container-row();
+  justify-content: space-between;
+  button {
+    .flat-button();
+  }
+}
+
 // Tabs menu
 /*.enter-contest-tabs {
 	.tabs-navigation(2);

@@ -1,4 +1,5 @@
 modal-window {
+  .flex-container-row();
   position: absolute;
   z-index: 1000;
   background-color: rgba(0, 0, 0, 0.65);
@@ -6,16 +7,29 @@ modal-window {
   left: 0;
   right: 0;
   bottom: 0;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  
   &.hidden-window {
     display: none;
+  }
+  &.small .modal-window-frame {
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
   }
 }
 .modal-window-frame {
   .flex-container-col();
+  .flex-elem-fluid();
   .mainfont_light(10pt, @white);
-  //background-color: @white;
-  margin: 5vh 16px 0 16px;
+  align-self: center;
+  margin: 0 16px;
+  background-color: @grey-dark;
   height: 90vh;
+  .elevation(5);
 }
 .modal-window-header {
   .flex-elem-fixed(50px);
@@ -35,6 +49,5 @@ modal-window {
   cursor: pointer;
 }
 .modal-window-content {
-  background-color: @grey-dark;
   overflow-y: auto;
 }

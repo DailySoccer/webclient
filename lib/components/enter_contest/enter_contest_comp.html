@@ -46,3 +46,13 @@
 <section class="contest-info-section" ng-show="isContestInfoActive">
   <contest-info the-contest="contest" ng-if="contest != null"></contest-info>
 </section>
+
+<!-- CONTEST INFO -->
+<modal-window class="lineup-finished-modal small" show-header="false" show-window="isLineupFinished">
+  <div class="lineup-finished-title">¡Enhorabuena!<br>Has completado tu alineación con éxito</div>
+  <div class="lineup-finished-text">Recuerda que puedes modificar la alineación tantas veces como quieras hasta que el torneo comience</div>
+  <div class="lineup-finished-actions-wrapper">
+    <button class="lineup-finished-back-lobby" ng-click="cancelCreateLineup()">Volver a torneos</button>
+    <button class="lineup-finished-view-lineup" ng-click="goUpcomingContest()">Ver alineación</button>
+  </div>
+</modal-window>

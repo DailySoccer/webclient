@@ -4,6 +4,6 @@
   <div class="right-column" ng-bind-html-unsafe="rightColumnHTML" ng-click="onRightColumnClick()"></div>
 </div>
 
-<modal-window title="'Mensajes de futbolcuatro'" show-window="notificationsActive">
+<modal-window title="'Mensajes de futbolcuatro'" show-window="notificationsActive" ng-class="{'small' : !hasNotification}">
   <notifications></notifications>
 </modal-window>

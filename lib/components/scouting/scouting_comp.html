@@ -1,7 +1,7 @@
 <div id="enter-contest-wrapper" class="favorites-wrapper" >
 
   <!-- header title -->
-  <div class="default-section-header">{{getLocalizedText("title")}}</div>
+  <!--div class="default-section-header">{{getLocalizedText("title")}}</div-->
 
   <!-- Nav tabs -->
   <ul class="enter-contest-tabs" role="tablist">
@@ -17,14 +17,16 @@
         <div class="tab-pane active" id="spanish-league">
             <scouting-league team-list="teamListES" soccer-player-list="allSoccerPlayersES" 
                              on-action-button="onFavoritesChange(soccerPlayer)" id-sufix="'ES'"
-                             favorites-player-list="favoritesPlayers"></scouting-league>
+                             favorites-player-list="favoritesPlayers"
+                             filter-pos="fieldPosFilter"></scouting-league>
         </div>
         
         <!-- El otro tab, el del contest-info  -->
         <div class="tab-pane" id="premier-league">
             <scouting-league team-list="teamListUK" soccer-player-list="allSoccerPlayersUK" 
                              on-action-button="onFavoritesChange(soccerPlayer)" id-sufix="'UK'"
-                             favorites-player-list="favoritesPlayers"></scouting-league>
+                             favorites-player-list="favoritesPlayers"
+                             filter-pos="fieldPosFilter"></scouting-league>
         </div>
 
       </div>

@@ -13657,74 +13657,32 @@ tab-bar {
 }
 .secondary-tab-bar-wrapper {
   flex: 0 0 30px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  padding: 0 15px;
+  height: 40px;
+  align-items: flex-end;
 }
 .secondary-tabbar-tab {
-  height: 30px;
-  font-family: 'Open Sans', sans-serif;
+  font-size: 14pt;
+  color: rgba(210, 210, 210, 0.3);
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(210, 210, 210, 0.004);
+  font-family: 'Fjalla One', sans-serif;
   font-weight: 700;
-  font-size: 10pt;
-  color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  background-color: #0a2938;
+  flex: 1;
   border: 0;
-  border-top: 1px solid #ffffff;
   cursor: pointer;
   text-align: center;
-  /*
-	button {
-		display: block;
-	}*/
 }
-.secondary-tabbar-tab.tabs-count-1 {
-  position: relative;
-  float: left;
-  width: 100%;
-  min-height: 1px;
-  padding-left: 0;
-  padding-right: 0;
-}
-.secondary-tabbar-tab.tabs-count-2 {
-  position: relative;
-  float: left;
-  width: 50%;
-  min-height: 1px;
-  padding-left: 0;
-  padding-right: 0;
-}
-.secondary-tabbar-tab.tabs-count-3 {
-  position: relative;
-  float: left;
-  width: 33.33333333%;
-  min-height: 1px;
-  padding-left: 0;
-  padding-right: 0;
-}
-.secondary-tabbar-tab.tabs-count-4 {
-  position: relative;
-  float: left;
-  width: 25%;
-  min-height: 1px;
-  padding-left: 0;
-  padding-right: 0;
-}
-.secondary-tabbar-tab.tabs-count-5 {
-  position: relative;
-  float: left;
-  width: 20%;
-  min-height: 1px;
-  padding-left: 0;
-  padding-right: 0;
-}
-.secondary-tabbar-tab.tabs-count-6 {
-  position: relative;
-  float: left;
-  width: 16.66666667%;
-  min-height: 1px;
-  padding-left: 0;
-  padding-right: 0;
-}
-.secondary-tabbar-tab + .secondary-tabbar-tab {
-  border-left: 1px solid #ffffff;
+.secondary-tabbar-tab.active {
+  border-bottom: 3px solid #ffffff;
+  color: #ffffff;
 }
 top-bar {
   flex: 0 0 55px;
@@ -16128,6 +16086,12 @@ soccer-players-scalinglist .column-addbtn {
   flex: 0 0 34px;
   padding: 0 5px;
   cursor: pointer;
+}
+soccer-players-scalinglist .column-addbtn.addFav {
+  color: rgba(210, 210, 210, 0.3);
+}
+soccer-players-scalinglist .column-addbtn.removeFav {
+  color: #59add5;
 }
 .soccer-player-table-header {
   display: -webkit-box;

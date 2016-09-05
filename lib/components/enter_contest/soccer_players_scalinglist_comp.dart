@@ -99,6 +99,9 @@ class SoccerPlayersScalingListComp {
     sortListByField('Pos', invert: false);
   }
 
+  @NgOneWay("is-scouting-list")
+  bool isScoutingList;  
+  
   @NgCallback("on-info-click")
   Function onInfoClick;
 

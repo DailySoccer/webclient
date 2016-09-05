@@ -14,6 +14,10 @@ import 'package:webclient/models/competition.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/models/template_soccer_player.dart';
+import 'package:webclient/components/enter_contest/soccer_player_listitem.dart';
+import 'package:webclient/services/app_state_service.dart';
+import 'package:webclient/models/field_pos.dart';
+import 'package:webclient/services/refresh_timers_service.dart';
 
 @Component(
     selector: 'scouting',
@@ -24,21 +28,29 @@ class ScoutingComp implements DetachAware {
 
   LoadingService loadingService;
 
-  List<dynamic> favoritesPlayers = [];
+  List<SoccerPlayerListItem> favoritesPlayers = [];
 
-  List<dynamic> allSoccerPlayersES;
+  //List<dynamic> allSoccerPlayersES;
+  List<SoccerPlayerListItem> allSoccerPlayersES;
   List<Map<String, String>> teamListES = [];
   bool leagueES_isLoading;
-  List<dynamic> allSoccerPlayersUK;
+  //List<dynamic> allSoccerPlayersUK;
+  List<SoccerPlayerListItem> allSoccerPlayersUK;
   List<Map<String, String>> teamListUK = [];
   bool leagueUK_isLoading;
   static bool favoritesIsSaving = false;
   bool thereIsNewFavorites;
+  num managerLevel = 0;
+  
+
+  FieldPos fieldPosFilter = FieldPos.GOALKEEPER;
 
   String currentTab = 'spanish-league';
 
   InstanceSoccerPlayer selectedInstanceSoccerPlayer;
-
+  
+  
+  
   String getLocalizedText(key, {substitutions: null}) {
     return StringUtils.translate(key, "favorites", substitutions);
   }
@@ -47,10 +59,30 @@ class ScoutingComp implements DetachAware {
     return StringUtils.formatCurrency(amount);
   }
 
-  ScoutingComp(this._routeProvider, this._router, this.loadingService, this._profileService, this._soccerPlayerService) {
+  ScoutingComp(this._routeProvider, this._router, this.loadingService, this._profileService, this._soccerPlayerService, this._appStateService, this._refreshTimersService) {
+    if (_profileService.isLoggedIn) {
+      managerLevel = _profileService.user.managerLevel;
+    }
+    refreshTopBar();
+    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR, refreshTopBar);
+    
+    _appStateService.appSecondaryTabBarState.tabList = [
+      new AppSecondaryTabBarTab("POR", () => fieldPosFilter = FieldPos.GOALKEEPER, () => fieldPosFilter == FieldPos.GOALKEEPER),
+      new AppSecondaryTabBarTab("DEF", () => fieldPosFilter = FieldPos.DEFENSE, () => fieldPosFilter == FieldPos.DEFENSE),
+      new AppSecondaryTabBarTab("MED", () => fieldPosFilter = FieldPos.MIDDLE, () => fieldPosFilter == FieldPos.MIDDLE),
+      new AppSecondaryTabBarTab("DEL", () => fieldPosFilter = FieldPos.FORWARD, () => fieldPosFilter == FieldPos.FORWARD)
+    ];
+    _appStateService.appTabBarState.show = true;
+    
+    
     loadData();
     thereIsNewFavorites = false;
     GameMetrics.logEvent(GameMetrics.SCOUTING);
+  }
+  
+
+  void refreshTopBar() {
+    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router);
   }
 
   void loadData() {
@@ -66,9 +98,15 @@ class ScoutingComp implements DetachAware {
           List<SoccerTeam> soccerTeams = info["soccerTeams"];
 
           print ("InstanceSoccerPlayers UK: ${instanceSoccerPlayers.length}");
-          allSoccerPlayersUK = new List<dynamic>();
+          //allSoccerPlayersUK = new List<dynamic>();
+          
+          allSoccerPlayersUK = new List<SoccerPlayerListItem>();
           teamListUK = [];
+          
+          
           instanceSoccerPlayers.forEach( (InstanceSoccerPlayer instance) {
+            allSoccerPlayersUK.add( new SoccerPlayerListItem(instance, managerLevel, null));
+            /*
             allSoccerPlayersUK.add({
               "instanceSoccerPlayer": instance,
               "id": instance.id,
@@ -84,6 +122,7 @@ class ScoutingComp implements DetachAware {
               "playedMatches": instance.soccerPlayer.getPlayedMatchesForCompetition(Competition.LEAGUE_UK_ID),
               "salary": instance.salary
             });
+          */
           });
           soccerTeams.forEach((team) {
             teamListUK.add({"id": team.templateSoccerTeamId, "name": team.name, "shortName": team.shortName});
@@ -102,10 +141,17 @@ class ScoutingComp implements DetachAware {
           List<SoccerTeam> soccerTeams = info["soccerTeams"];
 
           print ("InstanceSoccerPlayers ES: ${instanceSoccerPlayers.length}");
-          allSoccerPlayersES = new List<dynamic>();
+          //allSoccerPlayersES = new List<dynamic>();
+          allSoccerPlayersES = new List<SoccerPlayerListItem>();
           teamListES = [];
+          
+         
+              
           instanceSoccerPlayers.forEach( (InstanceSoccerPlayer instance) {
             if (instance.soccerPlayer.name != TemplateSoccerPlayer.UNKNOWN) {
+              allSoccerPlayersES.add( new SoccerPlayerListItem(instance, managerLevel, null));
+              
+              /*
               allSoccerPlayersES.add({
                 "instanceSoccerPlayer": instance,
                 "id": instance.id,
@@ -121,6 +167,7 @@ class ScoutingComp implements DetachAware {
                 "playedMatches": instance.soccerPlayer.getPlayedMatchesForCompetition(Competition.LEAGUE_ES_ID),
                 "salary": instance.salary
               });
+              */
             }
             else {
               // Con la caché de TemplateSoccerPlayers es posible que recibamos futbolistas "desconocidos"
@@ -141,8 +188,8 @@ class ScoutingComp implements DetachAware {
   void updateFavorites() {
     favoritesPlayers.clear();
     favoritesPlayers.addAll(_profileService.user.favorites.map((playerId) =>
-        allSoccerPlayersES.firstWhere( (player) => player['id'] == playerId,
-            orElse: () => allSoccerPlayersES.firstWhere( (player) => player['id'] == playerId,
+        allSoccerPlayersES.firstWhere( (player) => player.id == playerId,
+            orElse: () => allSoccerPlayersES.firstWhere( (player) => player.id == playerId,
             orElse: () => null))
       ).where( (d) => d != null));
   }
@@ -169,8 +216,9 @@ class ScoutingComp implements DetachAware {
   }
 
   void detach() {
+    _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR);
+    
     /*_routeHandle.discard();
-
     if (_retryOpTimer != null && _retryOpTimer.isActive) {
       _retryOpTimer.cancel();
     }*/
@@ -196,7 +244,7 @@ class ScoutingComp implements DetachAware {
       thereIsNewFavorites = false;
       favoritesIsSaving = true;
       evaluateTabLoading();
-      _soccerPlayerService.setFavorites(favoritesPlayers.map((player) => player["id"]).toList())
+      _soccerPlayerService.setFavorites(favoritesPlayers.map((player) => player.id).toList())
           .then( (_) {
               favoritesIsSaving = false;
               evaluateTabLoading();
@@ -211,4 +259,6 @@ class ScoutingComp implements DetachAware {
 
   SoccerPlayerService _soccerPlayerService;
   ProfileService _profileService;
+  AppStateService _appStateService;
+  RefreshTimersService _refreshTimersService;
 }

@@ -32,6 +32,7 @@ class TopBarComp {
   
   bool get leftColumnIsBackButton => currentState.leftColumn == AppTopBarState.BACK_BUTTON;
   bool get notificationsActive => _appStateService.notificacionsActive;
+  bool get hasNotification => _profileService.user.notifications.length > 0;
   
   String get leftColumnHTML   => _columnHTML(currentState.leftColumn);
   String get centerColumnHTML => _columnHTML(currentState.centerColumn);

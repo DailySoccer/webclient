@@ -27,21 +27,28 @@ class SoccerPlayerListItem {
   int get playedMatches => _playedMatches;
   int get salary => instanceSoccerPlayer.salary;
   int get level => instanceSoccerPlayer.level;
-  Money get moneyToBuy => instanceSoccerPlayer.moneyToBuy(_contest, _playerManagerLevel);
+  Money get moneyToBuy => _contest == null ? new Money.zero() : instanceSoccerPlayer.moneyToBuy(_contest, _playerManagerLevel);
 
   SoccerPlayerListItem(this._instanceSoccerPlayer, this._playerManagerLevel, this._contest) {
-    _optaCompetitionId = _contest.optaCompetitionId;
-    _fullNameNormalized = StringUtils.normalize(instanceSoccerPlayer.soccerPlayer.name).toUpperCase();
-    _matchEvent = _instanceSoccerPlayer.soccerTeam.matchEvent;
-    
-    String shortNameTeamA = _matchEvent.soccerTeamA.shortName;
-    String shortNameTeamB = _matchEvent.soccerTeamB.shortName;
-    _matchEventNameHTML = (_instanceSoccerPlayer.soccerTeam.templateSoccerTeamId == _matchEvent.soccerTeamA.templateSoccerTeamId)
-               ? "<strong>$shortNameTeamA</strong> - $shortNameTeamB"
-               : "$shortNameTeamA - <strong>$shortNameTeamB</strong>";
 
-    _fantasyPoints = instanceSoccerPlayer.soccerPlayer.getFantasyPointsForCompetition(_optaCompetitionId);
-    _playedMatches = instanceSoccerPlayer.soccerPlayer.getPlayedMatchesForCompetition(_optaCompetitionId);
+    _matchEvent = _instanceSoccerPlayer.soccerTeam.matchEvent;    
+  // En la lista del ojeador, no necesitamos estos datos.
+    if (_contest != null) {
+      _optaCompetitionId = _contest.optaCompetitionId;
+      _fantasyPoints = instanceSoccerPlayer.soccerPlayer.getFantasyPointsForCompetition(_optaCompetitionId);
+      _playedMatches = instanceSoccerPlayer.soccerPlayer.getPlayedMatchesForCompetition(_optaCompetitionId);
+       
+      String shortNameTeamA = _matchEvent.soccerTeamA.shortName;
+      String shortNameTeamB = _matchEvent.soccerTeamB.shortName;
+      _matchEventNameHTML = (_instanceSoccerPlayer.soccerTeam.templateSoccerTeamId == _matchEvent.soccerTeamA.templateSoccerTeamId)
+        ? "<strong>$shortNameTeamA</strong> - $shortNameTeamB"
+        : "$shortNameTeamA - <strong>$shortNameTeamB</strong>";
+    }
+    else {
+      _matchEventNameHTML = _instanceSoccerPlayer.soccerTeam.name;
+    }
+    _fullNameNormalized = StringUtils.normalize(instanceSoccerPlayer.soccerPlayer.name).toUpperCase();
+   
   }
 
   InstanceSoccerPlayer _instanceSoccerPlayer = null;

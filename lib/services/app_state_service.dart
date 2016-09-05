@@ -48,7 +48,8 @@ class AppSecondaryTabBarState {
 class AppSecondaryTabBarTab {
   String text;
   Function action;
-  AppSecondaryTabBarTab(this.text, this.action);
+  Function isActive;
+  AppSecondaryTabBarTab(this.text, this.action, this.isActive);
 }
 
 class AppTopBarState {

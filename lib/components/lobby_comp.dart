@@ -64,8 +64,8 @@ class LobbyComp implements DetachAware {
         </div>
       ''');
     */  
-    RefreshTopBar();
-    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR, RefreshTopBar);
+    refreshTopBar();
+    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR, refreshTopBar);
     
     _appStateService.appSecondaryTabBarState.tabList = [];
     _appStateService.appTabBarState.show = true;   
@@ -162,7 +162,7 @@ class LobbyComp implements DetachAware {
     }
   }
 
-  void RefreshTopBar() {
+  void refreshTopBar() {
     _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router);
   }
   

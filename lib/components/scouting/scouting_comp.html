@@ -1,4 +1,4 @@
-<div id="enter-contest-wrapper" class="favorites-wrapper" >
+<section id="enter-contest-wrapper" class="favorites-wrapper" ng-show="isSoccerPlayerListActive" >
 
   <!-- header title -->
   <!--div class="default-section-header">{{getLocalizedText("title")}}</div-->
@@ -15,24 +15,38 @@
 
         <!-- Tab del contenido normal de seleccion de lineup -->
         <div class="tab-pane active" id="spanish-league">
-            <scouting-league team-list="teamListES" soccer-player-list="allSoccerPlayersES" 
-                             on-action-button="onFavoritesChange(soccerPlayer)" id-sufix="'ES'"
+            <scouting-league team-list="teamListES" 
+                             soccer-player-list="allSoccerPlayersES" 
+                             on-action-button="onFavoritesChange(soccerPlayer)"
+                             on-info-button = "onSoccerPlayerInfo(soccerPlayer)"
+                             id-sufix="'ES'"
                              favorites-player-list="favoritesPlayers"
-                             filter-pos="fieldPosFilter"></scouting-league>
+                             filter-pos="fieldPosFilter"
+                             only-favorites="onlyFavorites"></scouting-league>
         </div>
         
         <!-- El otro tab, el del contest-info  -->
-        <div class="tab-pane" id="premier-league">
-            <scouting-league team-list="teamListUK" soccer-player-list="allSoccerPlayersUK" 
-                             on-action-button="onFavoritesChange(soccerPlayer)" id-sufix="'UK'"
+        <!--div class="tab-pane" id="premier-league">
+            <scouting-league team-list="teamListUK" 
+                             soccer-player-list="allSoccerPlayersUK" 
+                             on-action-button="onFavoritesChange(soccerPlayer)"
+                             on-info-button = "onSoccerPlayerInfo(soccerPlayer)"
+                             id-sufix="'UK'"
                              favorites-player-list="favoritesPlayers"
-                             filter-pos="fieldPosFilter"></scouting-league>
-        </div>
+                             filter-pos="fieldPosFilter"
+                             only-favorites="onlyFavorites"></scouting-league>
+        </div-->
 
       </div>
     </div>
   </div>
 
-</div>
+</section>
+
+
+<!-- SOCCER PLAYER STATS -->
+<section class="soccer-player-list-section" ng-show="isSoccerPlayerStatsActive">
+  <soccer-player-stats instance-soccer-player-id="selectedPlayerId" selectable-player="false"></soccer-player-stats>
+</section>
 
 <ng-view></ng-view>

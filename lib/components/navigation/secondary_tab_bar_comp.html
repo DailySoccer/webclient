@@ -1,5 +1,4 @@
 <div class="secondary-tab-bar-wrapper" ng-if="tabs != null && tabs.length > 0">
-    <div ng-repeat="tab in tabs" class="secondary-tabbar-tab" ng-class="[nTabsClass, (tab.isActive() ? 'active' : '')]" ng-click="tab.action()">
-      {{tab.text}}
+    <div ng-repeat="tab in tabs" class="secondary-tabbar-tab" ng-class="[nTabsClass, (tab.isActive() ? 'active' : '')]" ng-click="tab.action()" ng-bind-html-unsafe="tab.text"> 
     </div>
 </div>

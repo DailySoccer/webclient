@@ -9,6 +9,7 @@ import 'package:webclient/models/field_pos.dart';
 import "package:webclient/models/instance_soccer_player.dart";
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/components/modal_comp.dart';
+import 'package:webclient/components/enter_contest/soccer_player_listitem.dart';
 
 @Component(
     selector: 'scouting-league',
@@ -18,17 +19,17 @@ import 'package:webclient/components/modal_comp.dart';
 class ScoutingLeagueComp implements DetachAware {
 
   LoadingService loadingService;
-  List<dynamic> _allSoccerPlayers;
+  List<SoccerPlayerListItem> _allSoccerPlayers;
   List<dynamic> _favoritesPlayers;
   bool onlyFavorites = false;
 
   List<Map<String, String>> _teamList = [];
 
   @NgOneWay('soccer-player-list')
-  void set allSoccerPlayers(List<dynamic> players) {
+  void set allSoccerPlayers(List<SoccerPlayerListItem> players) {
     _allSoccerPlayers = players;
   }
-  List<dynamic> get allSoccerPlayers => _allSoccerPlayers;
+  List<SoccerPlayerListItem> get allSoccerPlayers => _allSoccerPlayers;
 
   @NgTwoWay('favorites-player-list')
   void set favoritesPlayers(List<dynamic> players) {
@@ -44,6 +45,9 @@ class ScoutingLeagueComp implements DetachAware {
 
   @NgCallback('on-action-button')
   Function onSoccerPlayerAction;
+  
+  @NgCallback('on-info-button')
+  Function onInfoPlayerButton;
 
   void onSoccerPlayerActionButton(var soccerPlayer) {
     onSoccerPlayerAction({"soccerPlayer": soccerPlayer});
@@ -60,7 +64,7 @@ class ScoutingLeagueComp implements DetachAware {
   
   String nameFilter;
   String teamFilter;
-
+ 
   InstanceSoccerPlayer selectedInstanceSoccerPlayer;
 
   String getLocalizedText(key, {substitutions: null}) {
@@ -98,14 +102,16 @@ class ScoutingLeagueComp implements DetachAware {
   }
 
   void onRowClick(String soccerPlayerId) {
-    ModalComp.open(_router, "scouting.soccer_player_stats", {
+    /*ModalComp.open(_router, "scouting.soccer_player_stats", {
         "soccerPlayerId": soccerPlayerId,
-        "selectable": (favoritesPlayers.firstWhere((soccerPlayer) => soccerPlayer["id"] == soccerPlayerId, orElse: () => null) == null)
+        "selectable": (favoritesPlayers.firstWhere((soccerPlayer) => soccerPlayer.id == soccerPlayerId, orElse: () => null) == null)
       }, addSoccerPlayerToFavorite);
+    */
+    onInfoPlayerButton({'soccerPlayer': _allSoccerPlayers.firstWhere((player) => player.id == soccerPlayerId)});
   }
 
   void addSoccerPlayerToFavorite(String soccerPlayerId) {
-    var soccerPlayer = allSoccerPlayers.firstWhere((soccerPlayer) => soccerPlayer["id"] == soccerPlayerId, orElse: () => null);
+    var soccerPlayer = allSoccerPlayers.firstWhere((soccerPlayer) => soccerPlayer.id == soccerPlayerId, orElse: () => null);
     onSoccerPlayerActionButton(soccerPlayer);
   }
 

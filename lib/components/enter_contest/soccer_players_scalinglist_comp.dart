@@ -208,9 +208,9 @@ class SoccerPlayersScalingListComp {
   
   void _setFilter(String key, dynamic valor) {
     // En movil no permitimos nunca poner el filtro vacio!
-    if (_scrDet.isXsScreen && key == FILTER_POSITION && valor == null) {
+    /*if (_scrDet.isXsScreen && key == FILTER_POSITION && valor == null) {
       return;
-    }
+    }*/
 
     _filterList[key] = valor;
     _refreshFilters();

@@ -44,12 +44,42 @@ class ScoutingComp implements DetachAware {
   
 
   FieldPos fieldPosFilter = FieldPos.GOALKEEPER;
+  bool onlyFavorites = false;
 
   String currentTab = 'spanish-league';
 
-  InstanceSoccerPlayer selectedInstanceSoccerPlayer;
+ SoccerPlayerListItem selectedInstanceSoccerPlayer;
+  
+  static const String SOCCER_PLAYER_STATS = "SOCCER_PLAYER_STATS";
+  static const String SOCCER_PLAYERS_LIST = "SOCCER_PLAYERS_LIST";
   
   
+  String _sectionActive = SOCCER_PLAYERS_LIST;
+  
+  void set sectionActive(String section) { 
+    _sectionActive = section;
+    switch(_sectionActive) {
+      case SOCCER_PLAYERS_LIST:        
+        refreshTopBar();
+        _appStateService.appSecondaryTabBarState.tabList = tabList;
+      break;
+      case SOCCER_PLAYER_STATS:
+        _appStateService.appSecondaryTabBarState.tabList = [];
+        _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Estadísticas");
+        _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerDetails;
+      break;
+    }
+  }
+  String get sectionActive => _sectionActive;
+
+  bool get isSoccerPlayerListActive => sectionActive == SOCCER_PLAYERS_LIST;
+  bool get isSoccerPlayerStatsActive => sectionActive == SOCCER_PLAYER_STATS;
+  String get selectedPlayerId => selectedInstanceSoccerPlayer != null ? selectedInstanceSoccerPlayer.id : ""; 
+  List<AppSecondaryTabBarTab> tabList = [];
+  
+  void cancelPlayerDetails() {
+    sectionActive = SOCCER_PLAYERS_LIST;
+  }
   
   String getLocalizedText(key, {substitutions: null}) {
     return StringUtils.translate(key, "favorites", substitutions);
@@ -65,23 +95,32 @@ class ScoutingComp implements DetachAware {
     }
     refreshTopBar();
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR, refreshTopBar);
-    
-    _appStateService.appSecondaryTabBarState.tabList = [
-      new AppSecondaryTabBarTab("POR", () => fieldPosFilter = FieldPos.GOALKEEPER, () => fieldPosFilter == FieldPos.GOALKEEPER),
-      new AppSecondaryTabBarTab("DEF", () => fieldPosFilter = FieldPos.DEFENSE, () => fieldPosFilter == FieldPos.DEFENSE),
-      new AppSecondaryTabBarTab("MED", () => fieldPosFilter = FieldPos.MIDDLE, () => fieldPosFilter == FieldPos.MIDDLE),
-      new AppSecondaryTabBarTab("DEL", () => fieldPosFilter = FieldPos.FORWARD, () => fieldPosFilter == FieldPos.FORWARD)
+     
+    tabList = [
+      new AppSecondaryTabBarTab("POR",                                        () => setFilter(FieldPos.GOALKEEPER, false),() => FieldPos.GOALKEEPER == fieldPosFilter),
+      new AppSecondaryTabBarTab("DEF",                                        () => setFilter(FieldPos.DEFENSE, false),   () => FieldPos.DEFENSE == fieldPosFilter),
+      new AppSecondaryTabBarTab("MED",                                        () => setFilter(FieldPos.MIDDLE, false),    () => FieldPos.MIDDLE == fieldPosFilter),
+      new AppSecondaryTabBarTab("DEL",                                        () => setFilter(FieldPos.FORWARD, false),   () => FieldPos.FORWARD == fieldPosFilter),
+      new AppSecondaryTabBarTab('''<i class="material-icons">&#xE838;</i>''', () => setFilter(null, true),                () => onlyFavorites)
     ];
-    _appStateService.appTabBarState.show = true;
-    
+
+    _appStateService.appSecondaryTabBarState.tabList = tabList;
+    _appStateService.appTabBarState.show = true;    
     
     loadData();
     thereIsNewFavorites = false;
     GameMetrics.logEvent(GameMetrics.SCOUTING);
   }
   
-
+  void setFilter(FieldPos fieldpos, bool onlyfavs) {
+    fieldPosFilter = fieldpos;
+    onlyFavorites = onlyfavs;    
+  }
+  
   void refreshTopBar() {
+    if (isSoccerPlayerStatsActive)
+      return;
+    
     _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router);
   }
 
@@ -224,6 +263,11 @@ class ScoutingComp implements DetachAware {
     }*/
   }
 
+  void onSoccerPlayerInfo(SoccerPlayerListItem soccerPlayer) {
+    selectedInstanceSoccerPlayer = soccerPlayer;
+    sectionActive  = SOCCER_PLAYER_STATS;
+  }
+  
   void onFavoritesChange(var soccerPlayer) {
     if (!(leagueES_isLoading || leagueES_isLoading)) {
       thereIsNewFavorites = favoritesIsSaving;

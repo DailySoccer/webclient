@@ -24396,6 +24396,25 @@ notifications .notification-list-empty {
   padding-bottom: 15px;
   align-items: center;
 }
+scouting {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+}
+.soccer-player-list-section {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  flex: 1;
+}
 .favorites-wrapper .enter-contest-soccer-players-wrapper {
   width: 100% !important;
 }

@@ -20,7 +20,9 @@ class ScoutingLeagueComp implements DetachAware {
 
   LoadingService loadingService;
   List<SoccerPlayerListItem> _allSoccerPlayers;
-  List<dynamic> _favoritesPlayers;
+  List<SoccerPlayerListItem> _favoritesPlayers;
+  
+  @NgOneWay('only-favorites')
   bool onlyFavorites = false;
 
   List<Map<String, String>> _teamList = [];
@@ -32,10 +34,10 @@ class ScoutingLeagueComp implements DetachAware {
   List<SoccerPlayerListItem> get allSoccerPlayers => _allSoccerPlayers;
 
   @NgTwoWay('favorites-player-list')
-  void set favoritesPlayers(List<dynamic> players) {
+  void set favoritesPlayers(List<SoccerPlayerListItem> players) {
     _favoritesPlayers = players;
   }
-  List<dynamic> get favoritesPlayers => _favoritesPlayers;
+  List<SoccerPlayerListItem> get favoritesPlayers => _favoritesPlayers;
 
   @NgOneWay('team-list')
   void set teamList(List<Map<String, String>> teams) {

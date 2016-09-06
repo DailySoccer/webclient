@@ -24062,29 +24062,32 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
     border-top: 1px solid #0a2938;
   }
 }
-#achievement-list-wrapper {
-  padding: 20px 10px;
-  background-color: #ffffff;
+achievement-list {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  padding: 15px;
+  background-color: #181818;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
-#achievement-list-wrapper .achievement {
-  float: left;
-  width: 100%;
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
+achievement-list .achievement-count {
+  flex: 1 100%;
+  font-size: 14pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
 }
-@media (min-width: 768px) {
-  #achievement-list-wrapper .achievement {
-    float: left;
-    width: 33.33333333%;
-  }
-}
-@media (min-width: 1200px) {
-  #achievement-list-wrapper .achievement {
-    float: left;
-    width: 25%;
-  }
+achievement-list achievement {
+  flex: 0 0 auto;
+  width: 180px;
 }
 .achievement {
   text-align: center;
@@ -24131,12 +24134,13 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
   vertical-align: middle;
 }
 .achievement .achievement-name {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 14pt;
   color: #434343;
-  text-transform: uppercase;
+  text-transform: inherit;
+  text-align: inherit;
   text-shadow: 1px 1px 1px rgba(67, 67, 67, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
 }
 .achievement .achievement-level {
   background-color: #434343;
@@ -24159,14 +24163,15 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
   vertical-align: middle;
 }
 .achievement.Training .achievement-name {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 14pt;
-  color: #214a5f;
-  text-transform: uppercase;
+  color: #fa9c19;
+  text-transform: inherit;
+  text-align: inherit;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
 }
 .achievement.Training .achievement-level {
-  background-color: #214a5f;
+  background-color: #fa9c19;
 }
 .achievement.Oficial .achievement-icon {
   content: " ";
@@ -24177,14 +24182,15 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
   vertical-align: middle;
 }
 .achievement.Oficial .achievement-name {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 14pt;
-  color: #214a5f;
-  text-transform: uppercase;
+  color: #fa9c19;
+  text-transform: inherit;
+  text-align: inherit;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
 }
 .achievement.Oficial .achievement-level {
-  background-color: #214a5f;
+  background-color: #fa9c19;
 }
 .achievement.ManagerLevel .achievement-icon {
   content: " ";
@@ -24195,14 +24201,15 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
   vertical-align: middle;
 }
 .achievement.ManagerLevel .achievement-name {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 14pt;
-  color: #214a5f;
-  text-transform: uppercase;
+  color: #fa9c19;
+  text-transform: inherit;
+  text-align: inherit;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
 }
 .achievement.ManagerLevel .achievement-level {
-  background-color: #214a5f;
+  background-color: #fa9c19;
 }
 .achievement.Player .achievement-icon {
   content: " ";
@@ -24213,14 +24220,15 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
   vertical-align: middle;
 }
 .achievement.Player .achievement-name {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 14pt;
-  color: #214a5f;
-  text-transform: uppercase;
+  color: #fa9c19;
+  text-transform: inherit;
+  text-align: inherit;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
 }
 .achievement.Player .achievement-level {
-  background-color: #214a5f;
+  background-color: #fa9c19;
 }
 .achievement.SkillLevel .achievement-icon {
   content: " ";
@@ -24231,14 +24239,15 @@ fieldset[disabled] .tutorial-row .tutorial-tile .button-go-tutorial {
   vertical-align: middle;
 }
 .achievement.SkillLevel .achievement-name {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
   font-size: 14pt;
-  color: #214a5f;
-  text-transform: uppercase;
+  color: #fa9c19;
+  text-transform: inherit;
+  text-align: inherit;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
 }
 .achievement.SkillLevel .achievement-level {
-  background-color: #214a5f;
+  background-color: #fa9c19;
 }
 notifications .notification-wrapper {
   display: -webkit-box;

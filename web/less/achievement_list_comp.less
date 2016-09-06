@@ -1,10 +1,17 @@
-#achievement-list-wrapper {
-	padding: 20px 10px;
-	background-color: @white;
-	.achievement {
-		.make-xs-column(12);
-		.make-sm-column(4);
-		.make-lg-column(3);
+achievement-list {
+	.flex-container-row();
+	padding: 15px;
+	background-color: @soft-black;	
+	justify-content: space-around;
+	flex-wrap: wrap;
+	.achievement-count {
+		flex: 1 100%;
+		.mainfont_light(14pt, @white, center, uppercase);
+	}
+
+	achievement {
+		.flex-elem-fixed();
+		width: 180px;
 	}
 
 }

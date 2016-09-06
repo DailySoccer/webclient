@@ -24,10 +24,11 @@ class AchievementListComp {
     _userShown = userShown;
   }
 
+  String earneds;
   bool achievementEarned(achievementKey) => _userShown != null? _userShown.hasAchievement(achievementKey) : false;
 
   AchievementListComp ( this.profileService /*, this.loadingService*/) {
-  /*  
+  
     // TEST: Dar premios al usuario
     if (profileService.isLoggedIn) {
       profileService.user.achievements.add(Achievement.PLAYED_VIRTUAL_CONTESTS_LEVEL_1);
@@ -39,7 +40,17 @@ class AchievementListComp {
       profileService.user.achievements.add(Achievement.GOALKEEPER_SAVES_SHOTS_LEVEL_1);
       profileService.user.achievements.add(Achievement.MANAGER_LEVEL_5);
     }
-  */
+  
+    countAchievementsEarned();
+  }
+  
+  void countAchievementsEarned() {
+    int count = 0;
+    achievementList.forEach((ach) {
+        if (achievementEarned(ach.id))
+          count++;
+    });
+    earneds = count.toString();
   }
   
   List<Achievement> achievementList = Achievement.AVAILABLES.map( (achievementMap) => new Achievement.fromJsonObject(achievementMap)).toList();

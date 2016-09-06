@@ -48,7 +48,7 @@ class ScoutingComp implements DetachAware {
 
   String currentTab = 'spanish-league';
 
- SoccerPlayerListItem selectedInstanceSoccerPlayer;
+  SoccerPlayerListItem selectedInstanceSoccerPlayer;
   
   static const String SOCCER_PLAYER_STATS = "SOCCER_PLAYER_STATS";
   static const String SOCCER_PLAYERS_LIST = "SOCCER_PLAYERS_LIST";

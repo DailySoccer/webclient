@@ -1,10 +1,32 @@
-<section>
+
+<section class="view-contest-section" ng-show="isLineupFieldContestEntryActive">
+  <user-shortinfo-bar user="mainPlayer"></user-shortinfo-bar>
+  
+  <lineup-field-selector lineup-slots="lineupSlots"
+                         on-lineup-slot-selected="onLineupSlotSelected(slotIndex)"
+                         formation-id="formationId"
+                         lineup-formation="lineupFormation"
+                         formation-is-modifiable="false"></lineup-field-selector>
+                         
+  <button class="make-change-btn" ng-click="editTeam()">3 Cambios Disponibles <i class="material-icons">&#xE8D5;</i></button>
+  <div class="salary-info-wrapper">
+    <div class="current-salary"><span class="current-salary-label">Presupuesto </span><span class="current-salary-amount" ng-class="{'red-numbers': availableSalary < 0 }">{{formatCurrency(printableCurrentSalary)}}</span></div>
+    <div class="limit-salary"><span class="limit-salary-label">Límite </span><span class="limit-salary-amount">{{formatCurrency(printableSalaryCap)}}</span></div>
+  </div>
+</section>
+
+<section class="contest-info-section" ng-if="isContestInfoActive">
+  <contest-info the-contest="contest" ng-if="contest != null"></contest-info>
+</section>
+
+
+<!--section>
 
   <contest-header id="contestHeader" contest="contest" contest-id="contestId" match-filter="matchFilter" show-filter="isMakingChange"></contest-header>
 
   <div id="viewContestRoot" ng-switch="scrDet.isXsScreen" ng-class="{ 'making-change-state': isMakingChange }">
     <div ng-switch-when="true">
-     <!-- Tabs de la versión XS -->
+     <!-- Tabs de la versión XS ->
       <ul class="view-contest-tabs" id="liveContestTab" >
         <li class="active"> <tab id="userFantasyTeamTab" ng-click="tabChange('userFantasyTeam')">{{getLocalizedText("yourlineup")}}</tab></li>
         <li>                <tab id="usersListTab" ng-click="tabChange('usersList')">{{getLocalizedText("users")}}</tab></li>
@@ -62,7 +84,7 @@
       </div>
     </div>
     <div class="contest-id-bar">
-      <!--div class="contest-id">CHANGES AVAILABLE: {{numAvailableChanges}} || SALARY: {{remainingSalary}} ({{lineupCost}}/{{maxSalary}}) || PLAYER: {{changingSalaryPlayer}} || ID: {{contest.contestId.toUpperCase()}}</div-->
+      <!--div class="contest-id">CHANGES AVAILABLE: {{numAvailableChanges}} || SALARY: {{remainingSalary}} ({{lineupCost}}/{{maxSalary}}) || PLAYER: {{changingSalaryPlayer}} || ID: {{contest.contestId.toUpperCase()}}</div->
       <div class="contest-id">ID: {{contest.contestId.toUpperCase()}}</div>
     </div>
     <div class="clear-fix-bottom"></div>
@@ -70,4 +92,4 @@
 
 </section>
 
-<ng-view></ng-view>
+<ng-view></ng-view-->

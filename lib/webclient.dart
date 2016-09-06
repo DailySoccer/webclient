@@ -94,6 +94,7 @@ import 'package:webclient/components/view_contest/view_contest_entry_comp.dart';
 import 'package:webclient/components/view_contest/view_contest_comp.dart';
 import 'package:webclient/components/view_contest/fantasy_team_comp.dart';
 import 'package:webclient/components/view_contest/users_list_comp.dart';
+import 'package:webclient/components/view_contest/user_shortinfo_bar_comp.dart';
 import 'package:webclient/components/view_contest/teams_panel_comp.dart';
 
 import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
@@ -225,6 +226,7 @@ class WebClientApp extends Module {
     bind(ViewContestEntryComp);
     bind(FantasyTeamComp);
     bind(UsersListComp);
+    bind(UserShortinfoBarComp);
     bind(TeamsPanelComp);
     //bind(WelcomeComp);
     bind(WeekCalendar);

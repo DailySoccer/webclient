@@ -1,3 +1,47 @@
+view-contest {
+  .flex-container-col();
+}
+.view-contest-section {
+  .flex-elem-fluid();
+  .flex-container-col();
+  lineup-field-selector {
+    .flex-elem-fluid();
+  }
+  .make-change-btn {
+    .default-button();
+    .flex-elem-fixed(40px);
+    .material-icons {
+      vertical-align: middle;
+    }
+  }
+  .salary-info-wrapper {
+    .dark-green-bluish-gradient();
+    .mainfont_light(10pt, @white);
+    .flex-container-row();
+    .flex-elem-fixed(36px);
+    padding: 9px;
+
+    text-align: center;
+
+    .current-salary {
+      .flex-elem-fluid();
+    }
+    .limit-salary {
+      .flex-elem-fluid();
+    }
+    .current-salary-label,
+    .limit-salary-label {
+      color: @grey-bluish;
+    }
+    .current-salary-amount,
+    .limit-salary-amount {
+      color: @orange;
+    }
+  }
+}
+
+
+/*
 #viewContestRoot {
 	@media (min-width: @screen-sm-min) {
 		//padding-top: 20px;	// Quitar cuando haya mas componentes, usar un espaciador vertical
@@ -111,3 +155,4 @@
 		}
 	}
 }
+*/

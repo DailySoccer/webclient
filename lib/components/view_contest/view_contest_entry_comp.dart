@@ -111,7 +111,6 @@ class ViewContestEntryComp {
     loadingService.isLoading = true;
     
     setupContestInfoTopBar(false, () => _router.go('my_contests', {"section": "upcoming"}));
-    //_appStateService.appTopBarState.activeState = new AppTopBarStateConfig.contestSection(contest, false, () => _router.go('lobby', {}));
     _appStateService.appSecondaryTabBarState.tabList = [];
     _appStateService.appTabBarState.show = false;
 

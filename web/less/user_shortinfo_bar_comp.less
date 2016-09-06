@@ -1,0 +1,23 @@
+user-shortinfo-bar {
+  .flex-container-row();
+  .flex-elem-fixed(auto);
+  padding: 8px 16px;
+  background-color: @grey-dark;
+  border-bottom: 1px solid @grey-translucid;
+}
+
+.user-shortinfo-name-column {
+  .flex-elem-fluid();
+}
+.user-shortinfo-rank-column { // supports 999º
+  .flex-elem-fixed(50px);
+}
+.user-shortinfo-points-column { // supports 9999,99 points
+  .flex-elem-fixed(65px);
+}
+.user-shortinfo-header {
+  .mainfont_bold(9pt, @grey-translucid, left, uppercase);
+}
+.user-shortinfo-data {
+  .mainfont_light(14pt, @blueLight, left, uppercase);
+}

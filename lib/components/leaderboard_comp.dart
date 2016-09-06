@@ -10,6 +10,8 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/achievement.dart';
 import 'package:webclient/services/facebook_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/services/app_state_service.dart';
+import 'package:webclient/services/refresh_timers_service.dart';
 
 
 @Component(
@@ -20,6 +22,10 @@ import 'package:webclient/utils/game_metrics.dart';
 
 class LeaderboardComp implements ShadowRootAware{
 
+  static const String RANKING_BEST_PLAYERS = "RANKING_BEST_PLAYERS";
+  static const String RANKING_MOST_RICH = "RANKING_MOST_RICH";
+  static const String ACHIEVEMENTS = "ACHIEVEMENTS";
+  
   int USERS_TO_SHOW = 7;
 
   String playerPointsHint = '';
@@ -28,6 +34,8 @@ class LeaderboardComp implements ShadowRootAware{
   LoadingService loadingService;
 
   String userId = null;
+
+  
 
   bool isThePlayer(id) => id == userId/*get del singleton*/;
   bool get isLoggedPlayer => _profileService.user != null && userId == _profileService.user.userId;
@@ -69,7 +77,40 @@ class LeaderboardComp implements ShadowRootAware{
     return StringUtils.translate(key, group, substitutions);
   }
 
-  LeaderboardComp (LeaderboardService leaderboardService, this.loadingService, this._profileService, this._router, this._routeProvider, this._rootElement) {
+  
+  String _sectionActive = RANKING_BEST_PLAYERS;
+  
+  void set sectionActive(String section) { 
+    _sectionActive = section;
+    switch(_sectionActive) {
+      case RANKING_BEST_PLAYERS:        
+        refreshTopBar();
+        _appStateService.appSecondaryTabBarState.tabList = tabList;
+      break;
+      case RANKING_MOST_RICH:
+        _appStateService.appSecondaryTabBarState.tabList = [];
+        _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Estadísticas");
+        _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerDetails;
+      break;
+      case ACHIEVEMENTS:
+        _appStateService.appSecondaryTabBarState.tabList = [];
+        _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Estadísticas");
+        _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerDetails;
+      break;
+    }
+  }
+  String get sectionActive => _sectionActive;
+  
+  bool get isRankingBestPlayersActive => sectionActive == RANKING_BEST_PLAYERS;
+  bool get isRankingMostRichActive => sectionActive == RANKING_MOST_RICH;
+  bool get isAchievementsActive => sectionActive == ACHIEVEMENTS;
+  
+  List<AppSecondaryTabBarTab> tabList = [];
+  
+  LeaderboardComp ( LeaderboardService leaderboardService, this.loadingService, 
+                    this._profileService, this._appStateService, this._refreshTimersService, 
+                    this._router, this._routeProvider, this._rootElement) {
+    
     loadingService.isLoading = true;
     userId = 'null';
     if (_routeProvider.parameters.containsKey("userId")) {
@@ -113,6 +154,17 @@ class LeaderboardComp implements ShadowRootAware{
 
         loadingService.isLoading = false;
       });
+    
+      tabList = [
+            new AppSecondaryTabBarTab("RANKING DE JUGONES", () => sectionActive = RANKING_BEST_PLAYERS, () => isRankingBestPlayersActive),
+            new AppSecondaryTabBarTab("RANKING DE FORADOS", () => sectionActive = RANKING_MOST_RICH,    () => isRankingMostRichActive),
+            new AppSecondaryTabBarTab("LOGROS",             () => sectionActive = ACHIEVEMENTS,         () => isAchievementsActive)
+      ];
+    
+      refreshTopBar();
+      _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR, refreshTopBar);
+      _appStateService.appSecondaryTabBarState.tabList = tabList;
+      _appStateService.appTabBarState.show = true;
   }
 
   /*
@@ -143,7 +195,20 @@ class LeaderboardComp implements ShadowRootAware{
     contentTab.classes.add("active");
   }
 
+  void refreshTopBar() {
+    if (isRankingBestPlayersActive || isRankingMostRichActive || isAchievementsActive)
+      return;
+    
+    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router);
+  }
 
+  //TODO: esta función para volver al perfil de usuario.
+  void cancelPlayerDetails() {
+    print("Cancelado... hay que volver al Perfil de usuario");
+  }
+  
+  
+  
   @override
   void onShadowRoot(ShadowRoot shadowRoot) {
     var section = _routeProvider.parameters["section"];
@@ -167,7 +232,10 @@ class LeaderboardComp implements ShadowRootAware{
   Router _router;
   RouteProvider _routeProvider;
   ProfileService _profileService;
+  AppStateService _appStateService;
+  RefreshTimersService _refreshTimersService;
   Element _rootElement;
+  
 
 
 }

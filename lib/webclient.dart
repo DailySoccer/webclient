@@ -66,6 +66,7 @@ import 'package:webclient/components/scoring_rules_comp.dart';
 import 'package:webclient/components/contest_header_comp.dart';
 import 'package:webclient/components/leaderboard_comp.dart';
 import 'package:webclient/components/leaderboard_table_comp.dart';
+import 'package:webclient/components/ranking_comp.dart';
 import 'package:webclient/components/my_contests_comp.dart';
 //import 'package:webclient/components/welcome_comp.dart';
 import 'package:webclient/components/week_calendar_comp.dart';
@@ -216,6 +217,7 @@ class WebClientApp extends Module {
     bind(PaginatorComp);
     bind(LeaderboardComp);
     bind(LeaderboardTableComp);
+    bind(RankingComp);
     bind(ContestHeaderComp);
     bind(ContestInfoComp);
     bind(ScoringRulesComp);

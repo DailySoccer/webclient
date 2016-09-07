@@ -21,10 +21,10 @@ import 'package:webclient/services/refresh_timers_service.dart';
 )
 
 class LeaderboardComp implements ShadowRootAware{
-
-  static const String RANKING_BEST_PLAYERS = "RANKING_BEST_PLAYERS";
-  static const String RANKING_MOST_RICH = "RANKING_MOST_RICH";
-  static const String ACHIEVEMENTS = "ACHIEVEMENTS";
+  static const String MAIN_RANKING          = "MAIN_RANKING";
+  static const String RANKING_BEST_PLAYERS  = "RANKING_BEST_PLAYERS";
+  static const String RANKING_MOST_RICH     = "RANKING_MOST_RICH";
+  static const String ACHIEVEMENTS          = "ACHIEVEMENTS";
   
   int USERS_TO_SHOW = 7;
 
@@ -78,21 +78,25 @@ class LeaderboardComp implements ShadowRootAware{
   }
 
   
-  String _sectionActive = RANKING_BEST_PLAYERS;
+  String _sectionActive = MAIN_RANKING;
   
   void set sectionActive(String section) { 
     _sectionActive = section;
     switch(_sectionActive) {
+      case MAIN_RANKING:
+        refreshTopBar();
+        _appStateService.appTabBarState.show = true;
+      break;
       case RANKING_BEST_PLAYERS:        
         //refreshTopBar();
         _appStateService.appSecondaryTabBarState.tabList = tabList;
-        _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Perfil");
+        _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Rankings");
         _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerDetails;
         _appStateService.appTabBarState.show = false;
       break;
       case RANKING_MOST_RICH:
         _appStateService.appSecondaryTabBarState.tabList = tabList;
-        _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Perfil");
+        _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Rankings");
         _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerDetails;
         _appStateService.appTabBarState.show = false;
       break;
@@ -102,11 +106,12 @@ class LeaderboardComp implements ShadowRootAware{
         _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerDetails;
         _appStateService.appTabBarState.show = false;
       break;
-    }
-    
+    }    
   }
+  
   String get sectionActive => _sectionActive;
   
+  bool get isMainRankingPlayersActive => sectionActive == MAIN_RANKING;
   bool get isRankingBestPlayersActive => sectionActive == RANKING_BEST_PLAYERS;
   bool get isRankingMostRichActive => sectionActive == RANKING_MOST_RICH;
   bool get isAchievementsActive => sectionActive == ACHIEVEMENTS;
@@ -168,7 +173,7 @@ class LeaderboardComp implements ShadowRootAware{
       
       //refreshTopBar();
       //_appStateService.appSecondaryTabBarState.tabList = tabList;
-      sectionActive = RANKING_BEST_PLAYERS;
+      sectionActive = MAIN_RANKING;
       
       _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR, refreshTopBar);
   }
@@ -212,8 +217,6 @@ class LeaderboardComp implements ShadowRootAware{
   void cancelPlayerDetails() {
     print("Cancelado... hay que volver al Perfil de usuario");
   }
-  
-  
   
   @override
   void onShadowRoot(ShadowRoot shadowRoot) {

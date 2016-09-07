@@ -17582,6 +17582,16 @@ leaderboard .leaderboard-column-name {
 leaderboard .leaderboard-column-score {
   flex: 0 0 100px;
 }
+ranking {
+  padding: 15px;
+  font-size: 14pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-align: left;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
+}
 #loginRoot,
 #joinRoot,
 #rememberPasswordRoot {

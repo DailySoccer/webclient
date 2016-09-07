@@ -1,3 +1,4 @@
+<ranking ng-show="!loadingService.isLoading && isMainRankingPlayersActive"></ranking>
 <leaderboard-table  share-info="sharingInfoTrueSkill" show-header="true" highlight-element="playerPointsInfo" 
                     table-elements="pointsUserList" rows="USERS_TO_SHOW" points-column-label="pointsColumnName" 
                     hint="playerPointsHint" ng-show="!loadingService.isLoading && isRankingBestPlayersActive">

@@ -14,7 +14,6 @@ class InstanceSoccerPlayer {
   static const String STATE_NOT_PLAYED = "NOT PLAYED";
   static const String STATE_PLAYING = "PLAYING";
   static const String STATE_PLAYED = "PLAYED";
-  static const String STATE_UNKNOWN = "UNKNOWN";
   
   static List<int> LEVEL_SALARY = [
     5600, 5700, 5800, 5900, 6000, 6200, 6400, 6700, 7500, 8000, 13000
@@ -34,7 +33,7 @@ class InstanceSoccerPlayer {
   FieldPos fieldPos;
   int salary;
   
-  String playState = STATE_UNKNOWN;
+  String playState = STATE_NOT_PLAYED;
 
   int _level = -1;
   set level(lvl) => _level = lvl;

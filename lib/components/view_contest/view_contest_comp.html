@@ -6,9 +6,12 @@
                          on-lineup-slot-selected="onLineupSlotSelected(slotIndex)"
                          formation-id="formationId"
                          lineup-formation="lineupFormation"
-                         formation-is-modifiable="false"></lineup-field-selector>
+                         formation-is-modifiable="false"
+                         show-salary="displayChangeablePlayers"
+                         is-live="true"
+                         highlight-changeables="displayChangeablePlayers"></lineup-field-selector>
                          
-  <button class="make-change-btn" ng-click="editTeam()">3 Cambios Disponibles <i class="material-icons">&#xE8D5;</i></button>
+  <button class="make-change-btn" ng-click="swichDisplayChangeablePlayers()">3 Cambios Disponibles <i class="material-icons">&#xE8D5;</i></button>
   <div class="salary-info-wrapper">
     <div class="current-salary"><span class="current-salary-label">Presupuesto </span><span class="current-salary-amount" ng-class="{'red-numbers': availableSalary < 0 }">{{formatCurrency(printableCurrentSalary)}}</span></div>
     <div class="limit-salary"><span class="limit-salary-label">Límite </span><span class="limit-salary-amount">{{formatCurrency(printableSalaryCap)}}</span></div>
@@ -19,6 +22,38 @@
   <contest-info the-contest="contest" ng-if="contest != null"></contest-info>
 </section>
 
+<section class="rivals-list-section" ng-if="isRivalsListActive">
+  <div class="rivals-list-table-header">
+    <div class="rivals-list-column-position">Pos.</div>
+    <div class="rivals-list-column-name">Nombre</div>
+    <div class="rivals-list-column-timeleft">T.R.</div>
+    <div class="rivals-list-column-points">Puntos</div>
+  </div>
+  <div class="rivals-list-table-body">
+    <div class="rivals-list-table-row" ng-repeat="rival in rivalList" ng-class="{'current-user-row': isMainPlayer(rival)}" ng-click="onUserClick(rival)">
+      <div class="rivals-list-column-position">{{ $index + 1 }}</div>
+      <div class="rivals-list-column-name">{{name(rival)}}</div>
+      <div class="rivals-list-column-timeleft">{{percentLeft(rival)}}</div>
+      <div class="rivals-list-column-points">{{points(rival)}}</div>
+    </div>
+  </div>
+</section>
+
+<section class="view-comparative-section" ng-show="isComparativeActive">
+  <user-shortinfo-bar user="selectedOpponent"></user-shortinfo-bar>
+  
+  <lineup-field-selector lineup-slots="opponentLineupSlots"
+                         on-lineup-slot-selected="nothing()"
+                         formation-id="opponentFormationId"
+                         lineup-formation="opponentLineupFormation"
+                         formation-is-modifiable="false"
+                         show-salary="false"
+                         is-live="true"></lineup-field-selector>
+  <div class="salary-info-wrapper">
+    <div class="current-salary"><span class="current-salary-label">Presupuesto </span><span class="current-salary-amount">{{formatCurrency(printableOpponentSalary)}}</span></div>
+    <div class="limit-salary"><span class="limit-salary-label">Límite </span><span class="limit-salary-amount">{{formatCurrency(printableSalaryCap)}}</span></div>
+  </div>
+</section>
 
 <!--section>
 

@@ -35,26 +35,94 @@ import 'package:webclient/components/enter_contest/soccer_player_listitem.dart';
 class ViewContestComp implements DetachAware {
   static const String LINEUP_FIELD_CONTEST_ENTRY = "LINEUP_FIELD_CONTEST_ENTRY";
   static const String CONTEST_INFO = "CONTEST_INFO";
+  static const String RIVALS_LIST = "RIVALS_LIST";
+  static const String COMPARATIVE = "COMPARATIVE";
+  
+  void nothing() {}
   
   ScreenDetectorService scrDet;
   LoadingService loadingService;
 
-  ContestEntry mainPlayer;
-  ContestEntry selectedOpponent;
+  ContestEntry _mainPlayer;
+  void set mainPlayer(player) {
+    _mainPlayer = player;
+    // The list is created every call. In order to stabilize the list,
+    // it is generated only when mainPlayer change
+    _rivalList = player.contest.contestEntriesOrderByPoints;
+
+    updateSoccerPlayerStates(_mainPlayer);
+    availableSalary = 0;
+    lineupSlots = [];
+    _mainPlayer.instanceSoccerPlayers.forEach((item) {
+      lineupSlots.add(new SoccerPlayerListItem(item, _profileService.user.managerLevel, contest));
+      availableSalary += item.salary;
+    });
+  }
+  ContestEntry get mainPlayer => _mainPlayer;
+
+  ContestEntry _selectedOpponent;
+  void set selectedOpponent(ContestEntry player) {
+    _selectedOpponent = player;
+    
+    if(tabList.length == 2) {
+      tabList.add(new AppSecondaryTabBarTab(_selectedOpponent.user.nickName,                                        
+                                            () { sectionActive = COMPARATIVE; },
+                                            () => sectionActive == COMPARATIVE));
+    } else {
+      tabList[2].text = _selectedOpponent.user.nickName;
+    }
+    
+  
+    updateSoccerPlayerStates(_selectedOpponent);
+    opponentLineupSlots = [];
+    availableOpponentSalary = 0;
+    _selectedOpponent.instanceSoccerPlayers.forEach((item) {
+      opponentLineupSlots.add(new SoccerPlayerListItem(item, _profileService.user.managerLevel, contest));
+      availableOpponentSalary += item.salary;
+    });
+  }
+  
+  ContestEntry get selectedOpponent => _selectedOpponent;
+  List<SoccerPlayerListItem> opponentLineupSlots = [];
+  String get opponentFormationId => selectedOpponent != null? selectedOpponent.formation : ContestEntry.FORMATION_442;
+  void set opponentFormationId(id) { if (selectedOpponent != null) selectedOpponent.formation = id; }
+  List<String> get opponentLineupFormation => FieldPos.FORMATIONS[opponentFormationId];
+  num availableOpponentSalary = 0;
+  String get printableOpponentSalary => contest != null? StringUtils.parseSalary(contest.salaryCap - availableOpponentSalary) : "-";
+    
+  
+  List<ContestEntry> _rivalList = [];
+  List<ContestEntry> get rivalList => _rivalList;
+  
+  bool isMainPlayer(ContestEntry entry) { return entry.user.userId == mainPlayer.user.userId; }
+
+  String name(ContestEntry entry) => entry.user.nickName;
+  String points(ContestEntry entry) => StringUtils.parseFantasyPoints(entry.currentLivePoints);
+  String percentLeft(ContestEntry entry) => "${entry.percentLeft}%";
 
   List<AppSecondaryTabBarTab> tabList;
   bool get isLineupFieldContestEntryActive => sectionActive == LINEUP_FIELD_CONTEST_ENTRY;
   bool get isContestInfoActive => sectionActive == CONTEST_INFO;
+  bool get isRivalsListActive  => sectionActive == RIVALS_LIST;
+  bool get isComparativeActive => sectionActive == COMPARATIVE;
   
   String _sectionActive = LINEUP_FIELD_CONTEST_ENTRY;
+  String _lastSectionActive = LINEUP_FIELD_CONTEST_ENTRY;
   void set sectionActive(String section) { 
+    if (_sectionActive != CONTEST_INFO) {
+      _lastSectionActive = _sectionActive;
+    }
     _sectionActive = section;
     switch(_sectionActive) {
-      case LINEUP_FIELD_CONTEST_ENTRY:
-        setupContestInfoTopBar(true, () => _router.go('lobby', {}), onContestInfoClick);
-      break;
       case CONTEST_INFO:
         setupContestInfoTopBar(false, cancelContestDetails);
+        _appStateService.appSecondaryTabBarState.tabList = [];
+      break;
+      case LINEUP_FIELD_CONTEST_ENTRY:
+      case COMPARATIVE:
+      case RIVALS_LIST:
+        setupContestInfoTopBar(true, () => _router.go('lobby', {}), onContestInfoClick);
+        _appStateService.appSecondaryTabBarState.tabList = tabList;
       break;
     }
   }
@@ -124,14 +192,11 @@ class ViewContestComp implements DetachAware {
 
     tabList = [
       new AppSecondaryTabBarTab("Alineación",                                        
-                                () => {},
-                                () => true),
+                                () { sectionActive = LINEUP_FIELD_CONTEST_ENTRY; },
+                                () => sectionActive == LINEUP_FIELD_CONTEST_ENTRY),
       new AppSecondaryTabBarTab("Rivales",                                        
-                                () => {},
-                                () => false),
-      new AppSecondaryTabBarTab("Comparativa",                                        
-                                () => {},
-                                () => false),
+                                () { sectionActive = RIVALS_LIST; },
+                                () => sectionActive == RIVALS_LIST),
     ];
 
     _appStateService.appSecondaryTabBarState.tabList = tabList;
@@ -174,12 +239,6 @@ class ViewContestComp implements DetachAware {
           print("NO LOGGED IN ------------------------------------------------------------------------------------------");
         }
         
-        updateSoccerPlayerStates();
-        availableSalary = 0;
-        mainPlayer.instanceSoccerPlayers.forEach((item) {
-          lineupSlots.add(new SoccerPlayerListItem(item, _profileService.user.managerLevel, contest));
-          availableSalary += item.salary;
-        });
 
         // En el caso de los tipos de torneo 1vs1 el oponente se autoselecciona
         if(contest.tournamentType == Contest.TOURNAMENT_HEAD_TO_HEAD) {
@@ -218,7 +277,7 @@ class ViewContestComp implements DetachAware {
     sectionActive = CONTEST_INFO;
   }
   void cancelContestDetails() {
-    sectionActive = LINEUP_FIELD_CONTEST_ENTRY;
+    sectionActive = _lastSectionActive;
   }
 
   String formatCurrency(String amount) {
@@ -249,7 +308,6 @@ class ViewContestComp implements DetachAware {
             mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
           }
           
-          updateSoccerPlayerStates();
         })
         .catchError((ServerError error) {
           _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
@@ -271,8 +329,8 @@ class ViewContestComp implements DetachAware {
         }, test: (error) => error is ServerError);
   }
   
-  void updateSoccerPlayerStates() {
-    mainPlayer.instanceSoccerPlayers.forEach( _updateSingleSoccerPlayerState );
+  void updateSoccerPlayerStates(ContestEntry player) {
+    player.instanceSoccerPlayers.forEach( _updateSingleSoccerPlayerState );
   }
   
   void _updateSingleSoccerPlayerState(InstanceSoccerPlayer i) {
@@ -281,10 +339,10 @@ class ViewContestComp implements DetachAware {
                   match.isStarted  ? InstanceSoccerPlayer.STATE_PLAYING :
                           /*Else*/   InstanceSoccerPlayer.STATE_NOT_PLAYED;
   }
-
+  
   void onUserClick(ContestEntry contestEntry, {preventViewOpponent: false}) {
     if (contestEntry.contestEntryId == mainPlayer.contestEntryId) {
-      tabChange('userFantasyTeam');
+      sectionActive = LINEUP_FIELD_CONTEST_ENTRY;
     }
     else {
       switch (_routeProvider.route.name)
@@ -300,7 +358,7 @@ class ViewContestComp implements DetachAware {
             tabLabel.text  = lastOpponentSelected;
           }
           if(!preventViewOpponent) {
-            tabChange('opponentFantasyTeam');
+            sectionActive = COMPARATIVE;
           }
         break;
       }
@@ -327,6 +385,12 @@ class ViewContestComp implements DetachAware {
     if (tabButton != null) {
       tabButton.parent.classes.add("active");
     }
+  }
+  
+  bool displayChangeablePlayers = false;
+  
+  void swichDisplayChangeablePlayers() {
+    displayChangeablePlayers = !displayChangeablePlayers;
   }
 
   void closePlayerChanges() => onRequestChange();

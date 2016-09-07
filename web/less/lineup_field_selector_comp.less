@@ -10,7 +10,6 @@
   margin-left: -(@slot-width/2);
   height: @slot-height;
   margin-top: -(@slot-height/2);
-  
   .team-shirt-image {
     width: 48px;
     height: 48px;
@@ -66,6 +65,7 @@
     color: @grey-bluish;
     top: 27px;
   }
+  .playing .column-dfp { color: @blueLight; }
 }
 
 @import "lineup_field_selector_352_comp.less";
@@ -92,6 +92,16 @@ lineup-field-selector {
 .lineup-selector-wrapper {
   position: relative;
   .flex-elem-fluid();
+}
+
+.lineup-selector-wrapper.changing-mode {
+  .lineup-selector-slot-info {
+    opacity: 0.5;
+    &.not-played {
+      opacity: 1;
+      box-shadow: 0 0 10px -5px @white;
+    }
+  }
 }
 
 .lineup-formation-selector-wrapper {

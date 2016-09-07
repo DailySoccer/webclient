@@ -21,6 +21,11 @@ class SoccerPlayerListItem {
   String get matchId => _matchEvent.templateMatchEventId;
   String get matchEventNameHTML => _matchEventNameHTML;
   SoccerTeam get soccerTeam => _instanceSoccerPlayer.soccerTeam;
+  String get livePoints => _instanceSoccerPlayer.printableCurrentLivePoints;
+
+  bool get isPlaying => _instanceSoccerPlayer.playState == InstanceSoccerPlayer.STATE_PLAYING;
+  bool get hasPlayed => _instanceSoccerPlayer.playState == InstanceSoccerPlayer.STATE_PLAYED;
+  bool get hasNotPlayed => _instanceSoccerPlayer.playState == InstanceSoccerPlayer.STATE_NOT_PLAYED;
 
   //String get remainingMatchTime => "";
   int get fantasyPoints => _fantasyPoints;
@@ -48,7 +53,7 @@ class SoccerPlayerListItem {
       _matchEventNameHTML = _instanceSoccerPlayer.soccerTeam.name;
     }
     _fullNameNormalized = StringUtils.normalize(instanceSoccerPlayer.soccerPlayer.name).toUpperCase();
-   
+    
   }
 
   InstanceSoccerPlayer _instanceSoccerPlayer = null;

@@ -21,6 +21,11 @@ class UserShortinfoBarComp {
     return StringUtils.translate(key, "userlist");
   }
 
+  String get clasification =>  (player != null) ? player.contest.getUserPosition(player).toString() : "-";
+  String get name =>  (player != null) ? player.user.nickName : " ";
+  String get points =>     (player != null) ? StringUtils.parseFantasyPoints(player.currentLivePoints) : "0";
+  String get percentLeft => (player != null) ? "${player.percentLeft}%" : "-";
+
   UserShortinfoBarComp(this._routeProvider, this._profileService);
 
   Contest _contest;

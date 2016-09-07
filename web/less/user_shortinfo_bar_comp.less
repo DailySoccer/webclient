@@ -8,6 +8,9 @@ user-shortinfo-bar {
 
 .user-shortinfo-name-column {
   .flex-elem-fluid();
+  .user-shortinfo-data {
+    margin-right: 10px;
+  }
 }
 .user-shortinfo-rank-column { // supports 999º
   .flex-elem-fixed(50px);
@@ -17,7 +20,10 @@ user-shortinfo-bar {
 }
 .user-shortinfo-header {
   .mainfont_bold(9pt, @grey-translucid, left, uppercase);
+  white-space: nowrap;
 }
 .user-shortinfo-data {
   .mainfont_light(14pt, @blueLight, left, uppercase);
+  white-space: nowrap;
+  overflow: hidden;
 }

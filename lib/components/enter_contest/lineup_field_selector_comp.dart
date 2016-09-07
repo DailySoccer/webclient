@@ -50,6 +50,23 @@ class LineupFieldSelectorComp {
     _formationId = value;
   }
 
+  @NgOneWay("show-salary")
+  bool showSalary = true;
+  
+  @NgOneWay("is-live")
+  bool isLive = false;
+  
+  @NgOneWay("highlight-changeables")
+  bool highlightChangeables = false;
+  
+  bool showLivePoints(SoccerPlayerListItem item) { 
+    return (item.isPlaying || item.hasPlayed) && isLive;
+  }
+  
+  bool canBeChanged() {
+    
+  }
+  
   String get MAX_PLAYERS_SAME_TEAM => Contest.MAX_PLAYERS_SAME_TEAM.toString();
 
   String getLocalizedText(key, [Map substitutions]) {

@@ -1,23 +1,29 @@
 leaderboard {
 	.flex-container-col();
 	background-color: @soft-black;
-	//padding: 25px;
-
+	overflow: hidden;
 	leaderboard-table {
 		.flex-elem-fluid();
 		.flex-container-col();
+		overflow: hidden;
 	}
-
 	.leaderboard-table-header {
 		.flex-container-row();
+		.flex-elem-fixed(auto);
 		.mainfont_light(14pt, @white, center, uppercase);
 		background-color: @grey-dark;
 		padding: 15px 0;
 		border-top: 1px solid @grey-translucid;
 		border-bottom: 2px solid @grey-translucid;
 	}
+	.leaderboard-data-wrapper {
+  		overflow-y: scroll;
+		.flex-elem-fluid();
+		.flex-container-col();
+	}
 	.leaderboard-table-data {
-		.flex-container-row();
+		.flex-container-row();		
+		.flex-elem-fixed(auto);
 		.mainfont_light(14pt, @grey-translucid, center, uppercase);
 		padding: 15px 0;
 		border-bottom: 1px solid @grey-translucid;

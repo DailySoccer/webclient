@@ -17505,6 +17505,7 @@ leaderboard {
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
   background-color: #181818;
+  overflow: hidden;
 }
 leaderboard leaderboard-table {
   flex: 1;
@@ -17515,6 +17516,7 @@ leaderboard leaderboard-table {
   display: flex;
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
+  overflow: hidden;
 }
 leaderboard .leaderboard-table-header {
   display: -webkit-box;
@@ -17524,6 +17526,7 @@ leaderboard .leaderboard-table-header {
   display: flex;
   -webkit-flex-flow: row nowrap;
   flex-flow: row nowrap;
+  flex: 0 0 auto;
   font-size: 14pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -17536,6 +17539,17 @@ leaderboard .leaderboard-table-header {
   border-top: 1px solid rgba(210, 210, 210, 0.3);
   border-bottom: 2px solid rgba(210, 210, 210, 0.3);
 }
+leaderboard .leaderboard-data-wrapper {
+  overflow-y: scroll;
+  flex: 1;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+}
 leaderboard .leaderboard-table-data {
   display: -webkit-box;
   display: -moz-box;
@@ -17544,6 +17558,7 @@ leaderboard .leaderboard-table-data {
   display: flex;
   -webkit-flex-flow: row nowrap;
   flex-flow: row nowrap;
+  flex: 0 0 auto;
   font-size: 14pt;
   color: rgba(210, 210, 210, 0.3);
   text-transform: uppercase;

@@ -1,269 +1,38 @@
-#leaderboard-wrapper {
+leaderboard {
+	.flex-container-col();
+	background-color: @soft-black;
+	//padding: 25px;
 
-	.default-section-header {
-		.header-title {
-			.make-xs-column(12);
-			.make-sm-column(9);
-			@media (max-width: @screen-xs-max) {
-				padding-left: 5px;
-				padding-right: 5px;
-			}
-		}
-
-		friend-info.visited-user {
-			.make-xs-column(12);
-			.make-sm-column(3);
-			padding: 0px 5px;
-			margin: -20px 0;
-			
-			@media (max-width: @screen-xs-max) {
-				padding: 5px 5px 0 5px;
-				margin: 0px;
-				.friend-element-wrapper {
-					margin: 0px;
-					text-align: left;
-					.friend-picture {
-						display: none;
-					}
-					.friend-name {
-						padding: 5px 10px;
-						margin: 0;
-						display: inline-block;
-					}
-				}
-			}
-		}
+	leaderboard-table {
+		.flex-elem-fluid();
+		.flex-container-col();
 	}
-	
-  padding-bottom: 40px;
-  
-	#leaderboard-header-wrapper {
-		
-		display: block;
-		background-color: @tramaBlue;
-		/*background-image: url('@{images}/leaderboardBackground.png');
-		background-size: cover;
-		background-position: center bottom;
-		background-repeat: no-repeat;*/
-		padding: 10px 10px;
-		
-		h1 {
-			.exo_light(25pt, @blueHyperDark);
-			text-transform: initial;
-			
-			text-align: center;
-			margin: 20px;
-		}
-		
-		.rankings-wrapper {
-			display: block;
-			padding-top: 35px;
-			
-			.ranking {
-				
-				//display: inline-block;
-				
-				&.ranking-by-points {
-					.make-xs-column(5);
-					padding: 0px;
-					
-				}
-				&.ranking-by-money {
-					.make-xs-column-offset(2);
-					.make-xs-column(5);
-					float: right;
-					text-align: right;
-					
-				}
-				
-				.ranking-position {
-					.exo_light(25pt, @white);
-					
-					@media (min-width: @screen-sm-min) {
-						padding-right: 10px;
-					}
-				}
-				
-				.ranking-info {
-					
-					@media (min-width: @screen-sm-min) {
-						display: inline-block;
-					}
-					
-					span {
-						display: block;
-					}
-					
-					.ranking-name {
-						.exo_light(8pt, @white);
-						.hidden-xs();
-					}
-					.ranking-value {
-						.exo_light(8pt, @orange);
-						
-						@media (min-width: @screen-sm-min) {
-							text-align: left;
-						}
-					}
-				
-				
-				}
-			}
-		}
-		
+
+	.leaderboard-table-header {
+		.flex-container-row();
+		.mainfont_light(14pt, @white, center, uppercase);
+		background-color: @grey-dark;
+		padding: 15px 0;
+		border-top: 1px solid @grey-translucid;
+		border-bottom: 2px solid @grey-translucid;
 	}
-	
-	.leaderboard-tabs {
-		.tabs-navigation(3);
-		
-		.leaderboard-tab:before {
-			margin-right: 10px;
-			background-repeat: no-repeat;
-			background-position: center center;
-			@media (max-width: @screen-xs-max) {
-				margin: 0px auto;
-				position: relative;
-				display: block;
-			}
-		}
-		.top-money-tab:before {
-			.addIcon('icon-Ranking-Monedas.png', 32px, 50px);
-		}
-		.top-points-tab:before {
-			.addIcon('icon-Ranking-Skill.png', 32px, 50px);
-		}
-		.achievements-tab:before {
-			.addIcon('achivements-icon.png', 33px, 50px);
-		}
-		.leaderboard-tab {
-			@media (max-width: @screen-xs-max) {
-				.text-hide();
-			}
-		}
-		.leaderboard-tab:before {
-			@media (max-width: @screen-xs-max) {
-				margin: 0px auto;
-				position: relative;
-				display: block;
-			}
-		}
-		
+	.leaderboard-table-data {
+		.flex-container-row();
+		.mainfont_light(14pt, @grey-translucid, center, uppercase);
+		padding: 15px 0;
+		border-bottom: 1px solid @grey-translucid;
 	}
-	
-	.tabs .tab-content .tab-pane .leaderboard-table {
-		.container-fluid();
-		.clean-paddings();
-		
-		.leaderboard-table-header {
-			.leaderboard-table-element {
-				.exo_bold(10pt, @blueDark);
-				background-color: @white;
-			}
-		}
-		.leaderboard-table-data {
-			background-color: @greyLight;
-			
-			.leaderboard-table-element {
-				margin-bottom: 2px;
-				
-				.exo_bold(10pt, @greyDark);
-				background-color: @greyUltraLight;
-				
-				&.player-position {
-					.exo_bold(10pt, @white);
-					background-color: @greyUltraDark;
-				}
-				
-			}
-		}
-		
-		.leaderboard-table-element {
-			
-			.make-row(0);
-			
-			
-			@media (min-width: @screen-sm-min) {
-				padding: 0px 50px;
-			}
-						
-			.leaderboard-column {
-				padding: 20px;
-				social-share {
-					height: 20px;
-				}
-			}
-			.leaderboard-name-hint-wrapper {
-				.make-xs-column(7);
-				.make-sm-column(9);
-				padding: 0;
-			}
-			
-			.leaderboard-table-position {
-				.make-xs-column(2);
-				.make-sm-column(1);
-			}
-			.leaderboard-table-name {
-				.make-xs-column(12);
-				.make-sm-column(6);
-				padding-left: 0;
-				padding-right: 0;
-				@media (max-width: @screen-xs-max) {
-					padding-top: 20px;
-					padding-bottom: 5px;
-				}
-			}
-			.leaderboard-table-hint {
-				.make-xs-column(12);
-				.make-sm-column(6);
-				padding-left: 0;
-				padding-right: 0;
-				&.empty {
-					.hidden-xs();
-				}
-				@media (max-width: @screen-xs-max) {
-					padding-top: 5px;
-					padding-bottom: 0px;
-				}
-				
-				@media (max-width: @screen-xs-max) {
-					social-share[inline] {
-						height: 35px;
-
-						.social-share-wrapper {
-							margin-left: -10px;
-							facebook-share,
-							.facebook-share-wrapper { 
-								display: inline-block; 
-								margin-bottom: 0;
-							}
-
-							twitter-share,
-							.twitter-share-wrapper { 
-								display: inline-block; 
-								margin-top: 0; 
-								.twitter-share-button{
-									margin: 0;
-								}
-							}
-
-							.facebook-share-wrapper .facebook-share-button { 
-								margin-bottom: 0;
-								margin-left: 0;
-							}
-						}
-
-					}
-				}
-			}
-			.leaderboard-table-skillpoints {
-				.make-xs-column(3);
-				.make-sm-column(2);
-				padding-left: 5px;
-				text-align: right;
-			}
-			
-		}
+	.leaderboard-table-data.player-position {
+		color: @blueLight;
 	}
-	
+	.leaderboard-column-position {
+		.flex-elem-fixed(100px);
+	}
+	.leaderboard-column-name {
+		.flex-elem-fluid();
+		text-align: left;
+	}
+	.leaderboard-column-score {
+		.flex-elem-fixed(100px);
+	}
 }
-

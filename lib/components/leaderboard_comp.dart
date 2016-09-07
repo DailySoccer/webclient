@@ -84,20 +84,26 @@ class LeaderboardComp implements ShadowRootAware{
     _sectionActive = section;
     switch(_sectionActive) {
       case RANKING_BEST_PLAYERS:        
-        refreshTopBar();
+        //refreshTopBar();
         _appStateService.appSecondaryTabBarState.tabList = tabList;
+        _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Perfil");
+        _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerDetails;
+        _appStateService.appTabBarState.show = false;
       break;
       case RANKING_MOST_RICH:
-        _appStateService.appSecondaryTabBarState.tabList = [];
-        _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Estadísticas");
+        _appStateService.appSecondaryTabBarState.tabList = tabList;
+        _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Perfil");
         _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerDetails;
+        _appStateService.appTabBarState.show = false;
       break;
       case ACHIEVEMENTS:
-        _appStateService.appSecondaryTabBarState.tabList = [];
-        _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Estadísticas");
+        _appStateService.appSecondaryTabBarState.tabList = tabList;
+        _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Perfil");
         _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerDetails;
+        _appStateService.appTabBarState.show = false;
       break;
     }
+    
   }
   String get sectionActive => _sectionActive;
   
@@ -122,7 +128,6 @@ class LeaderboardComp implements ShadowRootAware{
     } else if(_profileService.isLoggedIn) {
       userId = _profileService.user.userId;
     }
-
 
     leaderboardService.getUsers()
       .then((List<User> users) {
@@ -160,11 +165,12 @@ class LeaderboardComp implements ShadowRootAware{
             new AppSecondaryTabBarTab("RANKING DE FORADOS", () => sectionActive = RANKING_MOST_RICH,    () => isRankingMostRichActive),
             new AppSecondaryTabBarTab("LOGROS",             () => sectionActive = ACHIEVEMENTS,         () => isAchievementsActive)
       ];
-    
-      refreshTopBar();
+      
+      //refreshTopBar();
+      //_appStateService.appSecondaryTabBarState.tabList = tabList;
+      sectionActive = RANKING_BEST_PLAYERS;
+      
       _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR, refreshTopBar);
-      _appStateService.appSecondaryTabBarState.tabList = tabList;
-      _appStateService.appTabBarState.show = true;
   }
 
   /*
@@ -235,7 +241,4 @@ class LeaderboardComp implements ShadowRootAware{
   AppStateService _appStateService;
   RefreshTimersService _refreshTimersService;
   Element _rootElement;
-  
-
-
 }

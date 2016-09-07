@@ -4,6 +4,7 @@ import 'dart:html';
 import 'dart:math';
 import 'package:angular/angular.dart';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/services/profile_service.dart';
 //import 'package:webclient/utils/html_utils.dart';
 //import 'package:webclient/services/screen_detector_service.dart';
 //import 'package:webclient/services/screen_detector_service.dart';
@@ -31,8 +32,8 @@ class LeaderboardTableComp {
   
   String playerHint = 'Eres un crack!!';
   
-  bool isThePlayer(id) => id == highlightedElement['id'];
-  String get playerName => getLocalizedText("the-player");
+  bool isThePlayer(id) => id == _profileService.user.userId;//highlightedElement['id'];
+  //String get playerName => getLocalizedText("the-player");
   
   int rows = 0;
   List<Map> tableElements = null;
@@ -43,7 +44,7 @@ class LeaderboardTableComp {
     return StringUtils.translate(key, group);
   }
   
-  LeaderboardTableComp () {
+  LeaderboardTableComp (this._profileService) {
     //_streamListener = _scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
   }
   /*
@@ -113,5 +114,7 @@ class LeaderboardTableComp {
     rows = value;
     calculateShownElements();
   }
+  
+  ProfileService _profileService;
   
 }

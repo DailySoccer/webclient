@@ -70,7 +70,11 @@ class LeaderboardTableComp {
   */
   
   void calculateShownElements() {
-    if (rows != 0 && tableElements != null && highlightedElement['id'] != '') {
+    if (highlightedElement == null) {
+      if (tableElements != null)
+       shownElements = tableElements.take(rows).toList();
+    }
+    else if (rows != 0 && tableElements != null && highlightedElement['id'] != '') {
       int pos = highlightedElement['id'] != ''? highlightedElement['position'] : 0;
       //primera posicion calculada a partir del elemento iluminado
       int firstPosition = max(pos - ((rows-1) / 2).floor(), 1) - 1;
@@ -89,8 +93,8 @@ class LeaderboardTableComp {
   
   @NgOneWay("table-elements")
   void set tableValues(List<Map> value) {
-    tableElements = value;
-    calculateShownElements();
+      tableElements = value;
+      calculateShownElements();
   }
   
   @NgOneWay("highlight-element")

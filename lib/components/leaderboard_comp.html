@@ -1,12 +1,15 @@
-<ranking ng-show="!loadingService.isLoading && isMainRankingPlayersActive"></ranking>
+<ranking on-show-ranking-points="showPointsRanking()" on-show-ranking-money="showMoneyRanking()" 
+         ng-if="!loadingService.isLoading && isMainRankingPlayersActive">
+</ranking>
+ 
 <leaderboard-table  share-info="sharingInfoTrueSkill" show-header="true" highlight-element="playerPointsInfo" 
                     table-elements="pointsUserList" rows="USERS_TO_SHOW" points-column-label="pointsColumnName" 
-                    hint="playerPointsHint" ng-show="!loadingService.isLoading && isRankingBestPlayersActive">
+                    hint="playerPointsHint" ng-if="!loadingService.isLoading && isRankingBestPlayersActive">
 </leaderboard-table>
 
 <leaderboard-table  share-info="sharingInfoGold" show-header="true" highlight-element="playerMoneyInfo" 
                     table-elements="moneyUserList" rows="USERS_TO_SHOW" points-column-label="moneyColumnName" 
-                    hint="playerMoneyHint" ng-show="!loadingService.isLoading && isRankingMostRichActive">
+                    hint="playerMoneyHint" ng-if="!loadingService.isLoading && isRankingMostRichActive">
 </leaderboard-table>
 
 <achievement-list user="userShown" ng-show="!loadingService.isLoading && isAchievementsActive">

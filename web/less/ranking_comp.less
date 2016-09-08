@@ -1,0 +1,76 @@
+ranking {
+	overflow: auto;
+	.mainfont_light(14pt, @blueLight, left, uppercase);
+	.ranking-wrapper { position: relative;}
+	.user-points-data {
+		.flex-container-row();
+		.dark-limits-grey-inside();
+		.mainfont_light(12pt, @blueLight, left, uppercase);
+		justify-content: flex-end;
+		border-bottom: 1px solid @grey-bluish;
+		padding: 15px 15px 5px 135px;
+	}
+	.user-money-data {
+		.mainfont_light(12pt, @orange, left, uppercase);
+		.dark-limits-grey-inside();
+		.flex-container-row();
+		justify-content: flex-start;
+		border-bottom: 1px solid @grey-bluish;
+		padding: 15px 135px 5px 15px;
+	}
+	.ranking-title {
+		.flex-elem-fluid();
+		.mainfont_light(14pt, @blueLight, left, uppercase);
+		padding-top: 20px;
+	}
+	.ranking-points-title{
+		.ranking-title();
+		text-align: right;
+		border-bottom: 1px solid @grey-bluish;
+    	padding: 40px 15px 5px 0;
+	}
+	.ranking-money-title {
+		.ranking-title();
+		color: @orange;
+		border-bottom: 1px solid @grey-bluish;
+    	padding: 40px 0 5px 15px;
+	}
+	.first-column {
+		.flex-container-col();
+		.flex-elem-fluid();
+		align-self: flex-end;
+		overflow: hidden;
+    	white-space: nowrap;
+	}
+	.second-column {
+		.flex-container-col();
+		.flex-elem-fixed(65px);
+	}
+	.third-column {
+		.flex-container-col();
+		.flex-elem-fixed(65px);
+	}
+	.ranking-label {
+		font-size: 10pt;
+		color: @grey-bluish;
+	}
+	.user-name {}
+	.user-position {}
+	.user-points {}
+	.ranking-points-logo {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+	}
+	.ranking-money-logo {
+		position: absolute;
+		top: 0px;
+		right: 0px;
+	}
+	leaderboard-table {
+		background-color: @grey-dark;
+	}
+	.ranking-button {
+		.default-button();
+	}
+}

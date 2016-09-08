@@ -24,7 +24,7 @@ leaderboard {
 	.leaderboard-table-data {
 		.flex-container-row();		
 		.flex-elem-fixed(auto);
-		.mainfont_light(14pt, @grey-translucid, center, uppercase);
+		.mainfont_light(14pt, @grey-bluish, center, uppercase);
 		padding: 15px 0;
 		border-bottom: 1px solid @grey-translucid;
 	}
@@ -40,5 +40,16 @@ leaderboard {
 	}
 	.leaderboard-column-score {
 		.flex-elem-fixed(100px);
+	}
+
+	// stylos de la versión minimizada que hay en el ranking
+	leaderboard-table[minimized] {
+		.leaderboard-data-wrapper {
+			overflow-y: auto;	
+		}
+		.leaderboard-table-data {
+			border: none;
+			padding: 5px 0;
+		}
 	}
 }

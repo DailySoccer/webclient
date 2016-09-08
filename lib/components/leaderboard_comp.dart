@@ -85,22 +85,38 @@ class LeaderboardComp implements ShadowRootAware{
     switch(_sectionActive) {
       case MAIN_RANKING:
         refreshTopBar();
+        tabList = [];
+        _appStateService.appSecondaryTabBarState.tabList = tabList;
         _appStateService.appTabBarState.show = true;
       break;
       case RANKING_BEST_PLAYERS:        
-        //refreshTopBar();
+        tabList = [
+          new AppSecondaryTabBarTab("RANKING DE JUGONES", () => sectionActive = RANKING_BEST_PLAYERS, () => isRankingBestPlayersActive),
+          new AppSecondaryTabBarTab("RANKING DE FORADOS", () => sectionActive = RANKING_MOST_RICH,    () => isRankingMostRichActive),
+          new AppSecondaryTabBarTab("LOGROS",             () => sectionActive = ACHIEVEMENTS,         () => isAchievementsActive)
+        ];
         _appStateService.appSecondaryTabBarState.tabList = tabList;
         _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Rankings");
         _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerDetails;
         _appStateService.appTabBarState.show = false;
       break;
-      case RANKING_MOST_RICH:
+      case RANKING_MOST_RICH:        
+        tabList = [
+          new AppSecondaryTabBarTab("RANKING DE JUGONES", () => sectionActive = RANKING_BEST_PLAYERS, () => isRankingBestPlayersActive),
+          new AppSecondaryTabBarTab("RANKING DE FORADOS", () => sectionActive = RANKING_MOST_RICH,    () => isRankingMostRichActive),
+          new AppSecondaryTabBarTab("LOGROS",             () => sectionActive = ACHIEVEMENTS,         () => isAchievementsActive)
+        ];
         _appStateService.appSecondaryTabBarState.tabList = tabList;
         _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Rankings");
         _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerDetails;
         _appStateService.appTabBarState.show = false;
       break;
-      case ACHIEVEMENTS:
+      case ACHIEVEMENTS:        
+        tabList = [
+          new AppSecondaryTabBarTab("RANKING DE JUGONES", () => sectionActive = RANKING_BEST_PLAYERS, () => isRankingBestPlayersActive),
+          new AppSecondaryTabBarTab("RANKING DE FORADOS", () => sectionActive = RANKING_MOST_RICH,    () => isRankingMostRichActive),
+          new AppSecondaryTabBarTab("LOGROS",             () => sectionActive = ACHIEVEMENTS,         () => isAchievementsActive)
+        ];
         _appStateService.appSecondaryTabBarState.tabList = tabList;
         _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Perfil");
         _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerDetails;
@@ -164,12 +180,6 @@ class LeaderboardComp implements ShadowRootAware{
 
         loadingService.isLoading = false;
       });
-    
-      tabList = [
-            new AppSecondaryTabBarTab("RANKING DE JUGONES", () => sectionActive = RANKING_BEST_PLAYERS, () => isRankingBestPlayersActive),
-            new AppSecondaryTabBarTab("RANKING DE FORADOS", () => sectionActive = RANKING_MOST_RICH,    () => isRankingMostRichActive),
-            new AppSecondaryTabBarTab("LOGROS",             () => sectionActive = ACHIEVEMENTS,         () => isAchievementsActive)
-      ];
       
       //refreshTopBar();
       //_appStateService.appSecondaryTabBarState.tabList = tabList;
@@ -207,15 +217,15 @@ class LeaderboardComp implements ShadowRootAware{
   }
 
   void refreshTopBar() {
-    if (isRankingBestPlayersActive || isRankingMostRichActive || isAchievementsActive)
+    if (isRankingBestPlayersActive || isRankingMostRichActive || isAchievementsActive) {
       return;
-    
+    }
     _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router);
   }
 
   //TODO: esta función para volver al perfil de usuario.
   void cancelPlayerDetails() {
-    print("Cancelado... hay que volver al Perfil de usuario");
+    sectionActive = MAIN_RANKING;
   }
   
   @override
@@ -236,6 +246,14 @@ class LeaderboardComp implements ShadowRootAware{
         tabChange('achievements-content');
       break;
     }
+  }
+
+  void showPointsRanking() {
+    sectionActive = RANKING_BEST_PLAYERS;
+  }
+  
+  void showMoneyRanking() {
+    sectionActive = RANKING_MOST_RICH;
   }
 
   Router _router;

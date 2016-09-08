@@ -35,7 +35,7 @@ class SoccerPlayerListItem {
   Money get moneyToBuy => _contest == null ? new Money.zero() : instanceSoccerPlayer.moneyToBuy(_contest, _playerManagerLevel);
 
   SoccerPlayerListItem(this._instanceSoccerPlayer, this._playerManagerLevel, this._contest) {
-
+    
     _matchEvent = _instanceSoccerPlayer.soccerTeam.matchEvent;    
   // En la lista del ojeador, no necesitamos estos datos.
     if (_contest != null) {

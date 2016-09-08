@@ -1,9 +1,11 @@
 soccer-players-scalinglist {
 	.flex-container-col();
+  .flex-elem-fluid();
 	.mainfont_light(12pt, @white);
   text-transform: uppercase;
   position: relative;
   background-color: @grey-dark;
+  overflow: hidden;
   
   .column-info, .column-header .column-info {
     .flex-elem-fixed(34px);
@@ -61,7 +63,9 @@ soccer-players-scalinglist {
 
 .soccer-player-table-header {
 	.flex-container-row();
-  padding: 5px 8px;
+  .flex-elem-fixed(38px);
+  .elevation(3);
+  padding: 5px 14px 5px 8px;
   align-items: center;
   .column-header {
     color: @grey-bluish;
@@ -70,13 +74,25 @@ soccer-players-scalinglist {
 
 .soccer-player-table-body {
 	.flex-container-col();
+  .flex-elem-fluid();
+  overflow-y: scroll;
   
   .soccer-players-list-slot {
 	  .flex-container-row();
+    .flex-elem-fixed(64px);
     padding: 7px 8px;
     align-items: center;
     border-bottom: 2px solid @black;
+    &.not-available {
+			opacity: 0.3;
+      pointer-events: none;
+      .column-info,
+      .column-addbtn {
+		    opacity: 0;
+      }
+		}
   }
+  
 }
 
 

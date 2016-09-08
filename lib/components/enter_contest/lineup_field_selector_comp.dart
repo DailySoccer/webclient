@@ -96,7 +96,6 @@ class LineupFieldSelectorComp {
     Money money = slot.moneyToBuy;
     return money.amount <= 0 ? '' : '<span class="coins-amount">${money.toInt()}</span>';
   }
-
   String getPrintableFormation() {
     return (FORMATION_TO_STRING.containsKey(formationId)? FORMATION_TO_STRING[formationId] : FORMATION_TO_STRING[ContestEntry.FORMATION_442]);
   }

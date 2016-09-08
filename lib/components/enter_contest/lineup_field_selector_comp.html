@@ -16,6 +16,7 @@
 
       <div ng-if="slot != null" class="lineup-selector-slot-info" ng-class="{'playing': slot.isPlaying, 'not-played': slot.hasNotPlayed}">
         <!--div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div-->
+        <img src="images/team-shirts/_glow.png" class="team-shirt-glow">
         <img ng-src="{{getImgPerSoccerTeam(slot)}}" class="team-shirt-image">
         <span class="soccer-player-name">{{slot.fullName}}</span>
         <!--div class="column-primary-info">

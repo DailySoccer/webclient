@@ -2,6 +2,7 @@ view-contest {
   .flex-container-col();
   overflow: hidden;
 }
+.soccer-player-list-section,
 .view-comparative-section,
 .view-contest-section {
   .flex-elem-fluid();
@@ -100,6 +101,77 @@ view-contest {
 .rivals-list-column-points {
   .flex-elem-fixed(55px);
 }
+
+
+.change-soccer-player-confirm-modal .modal-window-content {
+  padding: 16px 12px 8px 12px;
+  .flex-container-col();
+  .flex-elem-fluid();
+}
+.change-soccer-player-confirm-content {
+  .flex-container-col();
+  .flex-elem-fluid();
+  color: @grey-bluish;
+  text-align: center;
+  padding-bottom: 30px;
+}
+.change-soccer-player-confirm-question {
+  .flex-elem-fixed(auto);
+  .mainfont_light(14pt, @grey-light, center);
+  padding: 5px 0 10px 0;
+}
+.change-soccer-player-changing-players {
+  .flex-container-row();
+  .flex-elem-fluid();
+  padding-left: 35px;
+}
+.change-soccer-player-changing-labels {
+  .flex-container-col();
+  .flex-elem-fixed(auto);
+  padding-right: 5px;
+  border-right: 1px solid @grey-translucid;
+  
+  .change-soccer-player {
+    &.player-old {
+      padding-bottom: 24px;
+      text-align: right;
+    }
+    &.player-new {
+      .mainfont_light(12pt, @white, center, uppercase);
+      text-align: right;
+    }
+  }
+}
+.change-soccer-player-changing-data {
+  .flex-container-col();
+  .flex-elem-fluid();
+}
+.change-soccer-player {
+  &.player-old {
+    .mainfont_light(10pt, @grey-translucid, center, uppercase);
+  }
+  &.player-new {
+    .mainfont_bold(12pt, @white, center, uppercase);
+  }
+}
+.change-soccer-player-actions-wrapper {
+  .flex-elem-fixed(30px);
+  .flex-container-row();
+  justify-content: flex-end;
+  button {
+    .flat-button();
+    padding: 5px 5px;
+    
+    &.change-soccer-player-cancel {
+      padding-right: 20px;
+    }
+  }
+}
+
+/*
+.change-soccer-player-confirm {
+  .flat-button();
+}*/
 
 /*
 #viewContestRoot {

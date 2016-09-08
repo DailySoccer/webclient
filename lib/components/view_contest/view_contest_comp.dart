@@ -27,6 +27,8 @@ import 'package:webclient/components/modal_comp.dart';
 import 'package:webclient/utils/game_info.dart';
 import 'package:webclient/services/app_state_service.dart';
 import 'package:webclient/components/enter_contest/soccer_player_listitem.dart';
+import 'package:webclient/models/user.dart';
+import 'package:source_span/src/utils.dart';
 
 @Component(
     selector: 'view-contest',
@@ -37,8 +39,9 @@ class ViewContestComp implements DetachAware {
   static const String CONTEST_INFO = "CONTEST_INFO";
   static const String RIVALS_LIST = "RIVALS_LIST";
   static const String COMPARATIVE = "COMPARATIVE";
+  static const String SOCCER_PLAYER_LIST = "SOCCER_PLAYER_LIST";
+  static const String SOCCER_PLAYER_STATS = "SOCCER_PLAYER_STATS";
   
-  void nothing() {}
   
   ScreenDetectorService scrDet;
   LoadingService loadingService;
@@ -60,6 +63,14 @@ class ViewContestComp implements DetachAware {
   }
   ContestEntry get mainPlayer => _mainPlayer;
 
+  num get playerManagerLevel {
+    num result = _profileService.isLoggedIn ? _profileService.user.managerLevel : 0;
+    if (contest != null) {
+      result = (contest.simulation) ? User.MAX_MANAGER_LEVEL : min(result, contest.maxManagerLevel);
+    }
+    return result;
+  }
+  
   ContestEntry _selectedOpponent;
   void set selectedOpponent(ContestEntry player) {
     _selectedOpponent = player;
@@ -105,6 +116,9 @@ class ViewContestComp implements DetachAware {
   bool get isContestInfoActive => sectionActive == CONTEST_INFO;
   bool get isRivalsListActive  => sectionActive == RIVALS_LIST;
   bool get isComparativeActive => sectionActive == COMPARATIVE;
+  bool get isSelectingSoccerPlayerActive => sectionActive == SOCCER_PLAYER_LIST;
+  bool get isSoccerPlayerStatsActive => sectionActive == SOCCER_PLAYER_STATS;
+  bool isConfirmModalOn = false;
   
   String _sectionActive = LINEUP_FIELD_CONTEST_ENTRY;
   String _lastSectionActive = LINEUP_FIELD_CONTEST_ENTRY;
@@ -114,11 +128,24 @@ class ViewContestComp implements DetachAware {
     }
     _sectionActive = section;
     switch(_sectionActive) {
+      case SOCCER_PLAYER_LIST:
+        _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Elige un ${fieldPosFilter.fullName}");
+        _appStateService.appTopBarState.activeState.onLeftColumn = closePlayerChanges;
+        _appStateService.appSecondaryTabBarState.tabList = [];
+      break;
+      case SOCCER_PLAYER_STATS:
+        _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Estadísticas");
+        _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerDetails;
+      break;
       case CONTEST_INFO:
         setupContestInfoTopBar(false, cancelContestDetails);
         _appStateService.appSecondaryTabBarState.tabList = [];
       break;
       case LINEUP_FIELD_CONTEST_ENTRY:
+        setupContestInfoTopBar(true, () => _router.go('lobby', {}), onContestInfoClick);
+        _appStateService.appSecondaryTabBarState.tabList = tabList;
+        updateLineupSlots();
+      break;
       case COMPARATIVE:
       case RIVALS_LIST:
         setupContestInfoTopBar(true, () => _router.go('lobby', {}), onContestInfoClick);
@@ -137,6 +164,7 @@ class ViewContestComp implements DetachAware {
 
   num availableSalary = 0;
   
+  String get printableSalaryForChange => contest != null? StringUtils.parseSalary((contest.salaryCap - availableSalary) + changingPlayer.salary) : "-";
   String get printableCurrentSalary => contest != null? StringUtils.parseSalary(contest.salaryCap - availableSalary) : "-";
   String get printableSalaryCap => contest != null? StringUtils.parseSalary(contest.salaryCap) : "-";
   
@@ -151,6 +179,10 @@ class ViewContestComp implements DetachAware {
   String nameFilter;
   FieldPos fieldPosFilter;
   bool onlyFavorites = false;
+  String instanceSoccerPlayerDisplayInfo = null;
+  
+  InstanceSoccerPlayer changingPlayer;
+  InstanceSoccerPlayer newSoccerPlayer;
   
   int get numAvailableChanges => mainPlayer != null ? mainPlayer.numAvailableChanges : 0;
   Money get changePrice => mainPlayer != null ? mainPlayer.changePrice() : ContestEntry.DEFAULT_PRICE;
@@ -162,20 +194,20 @@ class ViewContestComp implements DetachAware {
 
   bool get isLive => _routeProvider.route.name.contains("live_contest");
   bool get showChanges => contest != null? (contest.isLive && numAvailableChanges > 0 && _profileService.isLoggedIn && contest.containsContestEntryWithUser(_profileService.user.userId)) : false;
-  bool isMakingChange = false;
+  //bool isMakingChange = false;
 
   String get salaryCap => contest.printableSalaryCap;
   
   int get maxSalary => contest != null ? contest.salaryCap : 0;
   int get lineupCost => mainPlayer != null? mainPlayer.instanceSoccerPlayers.fold(0, (sum, i) => sum += i.salary) : 0;
   int get remainingSalary => maxSalary - lineupCost;
-  int get remainingSalaryChangingPlayer => remainingSalary + (_changingPlayer == null? 0 : _changingPlayer.salary);
-  int get changingSalaryPlayer => (_changingPlayer == null? 0 : _changingPlayer.salary);
+  int get remainingSalaryChangingPlayer => remainingSalary + (changingPlayer == null? 0 : changingPlayer.salary);
+  int get changingSalaryPlayer => (changingPlayer == null? 0 : changingPlayer.salary);
 
   List<ContestEntry> get contestEntries => (contest != null) ? contest.contestEntries : null;
   List<ContestEntry> get contestEntriesOrderByPoints => (contest != null) ? contest.contestEntriesOrderByPoints : null;
 
-  String get changingPlayerId => _changingPlayer != null? _changingPlayer.id : null;
+  String get changingPlayerId => changingPlayer != null? changingPlayer.id : null;
   
   int get userManagerLevel => _profileService.isLoggedIn? _profileService.user.managerLevel.toInt() : 0;
 
@@ -279,7 +311,14 @@ class ViewContestComp implements DetachAware {
   void cancelContestDetails() {
     sectionActive = _lastSectionActive;
   }
-
+  void cancelSoccerPlayerSelection() {
+    sectionActive = LINEUP_FIELD_CONTEST_ENTRY;
+  }
+  void cancelPlayerDetails() {
+    sectionActive = SOCCER_PLAYER_LIST;
+    //scrDet.scrollTo('.enter-contest-actions-wrapper', smooth: true, duration: 200, offset: -querySelector('#mainAppMenu').offsetHeight, ignoreInDesktop: true);
+  }
+  
   String formatCurrency(String amount) {
     return StringUtils.formatCurrency(amount);
   }
@@ -389,29 +428,54 @@ class ViewContestComp implements DetachAware {
   
   bool displayChangeablePlayers = false;
   
-  void swichDisplayChangeablePlayers() {
-    displayChangeablePlayers = !displayChangeablePlayers;
+  String changesButtonText() {
+    if (displayChangeablePlayers == true) {
+      return "Cancelar Cambio";
+    } else if (numAvailableChanges == 0){
+      return "No hay cambios disponibles";
+    } else {
+      return "$numAvailableChanges Cambios disponibles";
+    }
+  }
+  void switchDisplayChangeablePlayers() {
+    if (numAvailableChanges == 0) {
+      displayChangeablePlayers = false;
+    } else {
+      displayChangeablePlayers = !displayChangeablePlayers;
+    }
+  }
+  void onLineupSlotSelected(int slotIndex) {
+    if (!displayChangeablePlayers) return;
+    onRequestChange(lineupSlots[slotIndex].instanceSoccerPlayer);
+  }
+  void onSoccerPlayerInfoClick(String soccerPlayerId) {
+    //ModalComp.open(_router, "enter_contest.soccer_player_stats", { "instanceSoccerPlayerId":soccerPlayerId, "selectable":isSlotAvailableForSoccerPlayer(soccerPlayerId)}, addSoccerPlayerToLineup);
+    sectionActive = SOCCER_PLAYER_STATS;
+    instanceSoccerPlayerDisplayInfo = soccerPlayerId;
   }
 
-  void closePlayerChanges() => onRequestChange();
+  void closePlayerChanges() {
+    isConfirmModalOn = false;
+    displayChangeablePlayers = false;
+    cancelSoccerPlayerSelection();
+  }
   void onRequestChange([InstanceSoccerPlayer requestedSoccerPlayer = null]) {
     if (requestedSoccerPlayer == null) {
-      isMakingChange = false;
+      sectionActive = LINEUP_FIELD_CONTEST_ENTRY;
     } else {
-      isMakingChange = !isMakingChange;
+      fieldPosFilter = requestedSoccerPlayer.fieldPos;
+      sectionActive = SOCCER_PLAYER_LIST;
     }
 
-    if (isMakingChange) {
-      int intId = 0;
+    if (isSelectingSoccerPlayerActive) {
 
-      _changingPlayer = requestedSoccerPlayer;
+      changingPlayer = requestedSoccerPlayer;
 
       //allSoccerPlayers = [];
       if (allSoccerPlayers == null) {
         _contestsService.getSoccerPlayersAvailablesToChange(contest.contestId)
           .then((List<InstanceSoccerPlayer> instanceSoccerPlayers) {
               allSoccerPlayers = [];
-              lineupSlots = [];
               _allInstanceSoccerPlayers = instanceSoccerPlayers;
               
               refreshAllSoccerPlayerList();
@@ -432,11 +496,11 @@ class ViewContestComp implements DetachAware {
         updateFavorites();
       }
     } else {
-      _changingPlayer = null;
+      changingPlayer = null;
     }
 
-    if (_changingPlayer != null) {
-      fieldPosFilter = _changingPlayer.fieldPos;
+    if (changingPlayer != null) {
+      fieldPosFilter = changingPlayer.fieldPos;
       print("CLICKED: ${requestedSoccerPlayer.soccerPlayer.name}");
     }
   }
@@ -467,7 +531,7 @@ class ViewContestComp implements DetachAware {
   bool _showSoccerPlayer(InstanceSoccerPlayer instanceSoccerPlayer) {
     if (instanceSoccerPlayer.playState == InstanceSoccerPlayer.STATE_NOT_PLAYED && remainingSalaryChangingPlayer >= instanceSoccerPlayer.salary) {
       String newSoccerTeamId = instanceSoccerPlayer.soccerPlayer.soccerTeam.templateSoccerTeamId;
-      int sameTeamCount = mainPlayer.instanceSoccerPlayers.where((i) => i.soccerTeam.templateSoccerTeamId == newSoccerTeamId && i.id != _changingPlayer.id).length;
+      int sameTeamCount = mainPlayer.instanceSoccerPlayers.where((i) => i.soccerTeam.templateSoccerTeamId == newSoccerTeamId && i.id != changingPlayer.id).length;
       return sameTeamCount < 4;
     }
     return false;
@@ -509,12 +573,17 @@ class ViewContestComp implements DetachAware {
   }
 
   void updateLineupSlots() {
+    if (!isLineupFieldContestEntryActive) { return; }
     lineupSlots = [];
     mainPlayer.instanceSoccerPlayers.forEach( (i) {
-        SoccerPlayerListItem slot = allSoccerPlayers.firstWhere( (soccerPlayer) => soccerPlayer.id == i.id, orElse: () => null);
-        if (slot != null) {
-          lineupSlots.add(slot);
-        }
+      
+      InstanceSoccerPlayer instanceSoccerPlayer = _allInstanceSoccerPlayers.firstWhere( (soccerPlayer) => soccerPlayer.id == i.id, orElse: () => i);
+      SoccerPlayerListItem slot = new SoccerPlayerListItem(instanceSoccerPlayer, _profileService.user.managerLevel, contest);
+      
+      //SoccerPlayerListItem slot = allSoccerPlayers.firstWhere( (soccerPlayer) => soccerPlayer.id == i.id, orElse: () => null);
+      if (slot != null) {
+        lineupSlots.add(slot);
+      }
     });
   }
   
@@ -541,21 +610,24 @@ class ViewContestComp implements DetachAware {
     onChangeSoccerPlayer(soccerPlayer.instanceSoccerPlayer);
   }
   
+  void hideConfirmModal() {
+    isConfirmModalOn = false;
+  }
   void onChangeSoccerPlayer(var instanceSoccerPlayer) {
-    _newSoccerPlayer = instanceSoccerPlayer;
+    newSoccerPlayer = instanceSoccerPlayer;
     
     //Check Soccer team
-    String newSoccerTeamId = _newSoccerPlayer.soccerPlayer.soccerTeam.templateSoccerTeamId;
+    String newSoccerTeamId = newSoccerPlayer.soccerPlayer.soccerTeam.templateSoccerTeamId;
     
-    int sameTeamCount = mainPlayer.instanceSoccerPlayers.where((i) => i.soccerTeam.templateSoccerTeamId == newSoccerTeamId && i.id != _changingPlayer.id).length;
+    int sameTeamCount = mainPlayer.instanceSoccerPlayers.where((i) => i.soccerTeam.templateSoccerTeamId == newSoccerTeamId && i.id != changingPlayer.id).length;
     bool isSameTeamOk = sameTeamCount < 4;
     
     //Check Salary
-    int salary = remainingSalary + _changingPlayer.salary - _newSoccerPlayer.salary;
+    int salary = remainingSalary + changingPlayer.salary - newSoccerPlayer.salary;
     bool isSalaryOk = salary >= 0;
     
     //Check gold
-    Money goldNeeded = _newSoccerPlayer.moneyToBuy(contest, _profileService.user.managerLevel);
+    Money goldNeeded = newSoccerPlayer.moneyToBuy(contest, _profileService.user.managerLevel);
     goldNeeded = goldNeeded.plus(mainPlayer.changePrice());
     bool isGoldOk = _profileService.user.goldBalance.amount >= goldNeeded.amount;
     
@@ -563,8 +635,8 @@ class ViewContestComp implements DetachAware {
     bool areAvailableChanges = numAvailableChanges > 0;
     
     if (isSameTeamOk && isSalaryOk && areAvailableChanges && isGoldOk) {
-      
-      modalShow("",
+      isConfirmModalOn = true;
+      /*modalShow("",
                 '''
                 <p>${getLocalizedText('change-player-modal', 
                                       substitutions: {'SOCCER_PLAYER1': _changingPlayer.soccerPlayer.name, 
@@ -578,7 +650,7 @@ class ViewContestComp implements DetachAware {
               ).then((_) {
                 _changeSoccerPlayer(_newSoccerPlayer, goldNeeded);
               })
-              .catchError((_) {});
+              .catchError((_) {});*/
       
     } else {
       if (!isSameTeamOk){
@@ -594,12 +666,19 @@ class ViewContestComp implements DetachAware {
     }
   }
   
-  void _changeSoccerPlayer(var instanceSoccerPlayer, Money goldNeeded) {
-    InstanceSoccerPlayer newSoccerPlayer = instanceSoccerPlayer;
+  String get confirmChangesModalText {
+    if (!isConfirmModalOn) return '';
+    
+    return "${getLocalizedText('change-player-modal', 
+                  substitutions: {'SOCCER_PLAYER1': "<span class='change-soccer-player player-old'> ${changingPlayer.soccerPlayer.name}</span>", 
+                                  'SOCCER_PLAYER2': "<span class='change-soccer-player player-new'> ${newSoccerPlayer.soccerPlayer.name}</span>"})}";
+  }
+  
+  void changeSoccerPlayer() {
     loadingService.isLoading = true;
     
     _contestsService.changeSoccerPlayer(mainPlayer.contestEntryId, 
-                  _changingPlayer.soccerPlayer.templateSoccerPlayerId, 
+                  changingPlayer.soccerPlayer.templateSoccerPlayerId, 
                   newSoccerPlayer.soccerPlayer.templateSoccerPlayerId)
             .then((_) {
               _turnZone.run(() {
@@ -613,7 +692,11 @@ class ViewContestComp implements DetachAware {
               if (error.isRetryOpError) {
                 _retryOpTimer = new Timer(const Duration(seconds:3), () => onChangeSoccerPlayer(newSoccerPlayer));
               } else {
-                _showMsgError(error, goldNeeded.amount.toInt());
+                print("EEEEEERRRROOOORRR!!!!!!!!!!!!");
+                print("EEEEEERRRROOOORRR!!!!!!!!!!!!");
+                print("EEEEEERRRROOOORRR!!!!!!!!!!!!");
+                print("EEEEEERRRROOOORRR!!!!!!!!!!!!");
+                //_showMsgError(error, goldNeeded.amount.toInt());
               }
             }, test: (error) => error is ServerError)
             .whenComplete(() {
@@ -704,7 +787,7 @@ class ViewContestComp implements DetachAware {
       //   Necesitamos ejecutar la transición "dentro" de angular (en caso contrario, se produce una excepción)
       _turnZone.run(() {
         // Registramos dónde tendría que navegar al tener éxito en "add_funds"
-        String hash = "#/live_contest/my_contests/${contestId}/change/${_changingPlayer.soccerPlayer.templateSoccerPlayerId}/${_newSoccerPlayer.soccerPlayer.templateSoccerPlayerId}";
+        String hash = "#/live_contest/my_contests/${contestId}/change/${changingPlayer.soccerPlayer.templateSoccerPlayerId}/${newSoccerPlayer.soccerPlayer.templateSoccerPlayerId}";
         String url = "${window.location.origin}${window.location.pathname}$hash";
         GameInfo.assign("add_gold_success", url);
         _router.go('shop.buy', {});
@@ -713,6 +796,8 @@ class ViewContestComp implements DetachAware {
 
     _tutorialService.triggerEnter("alert-not-enough-resources");
   }
+  
+  void nothing() {}
   
 
   VmTurnZone _turnZone;
@@ -724,8 +809,6 @@ class ViewContestComp implements DetachAware {
   RefreshTimersService _refreshTimersService;
   ContestsService _contestsService;
   TutorialService _tutorialService;
-  InstanceSoccerPlayer _changingPlayer;
-  InstanceSoccerPlayer _newSoccerPlayer;
   List<InstanceSoccerPlayer> _allInstanceSoccerPlayers;
   
   String _sourceSoccerPlayerIdToChange;

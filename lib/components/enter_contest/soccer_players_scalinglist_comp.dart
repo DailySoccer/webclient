@@ -78,6 +78,9 @@ class SoccerPlayersScalingListComp {
   @NgOneWay("hide-lineup-players")
   bool hideLineupPlayers = false;
   
+  @NgOneWay("disable-played-players")
+  bool disablePlayedCharacters = false;
+  
   @NgOneWay("additional-gold-price")
   Money additionalGoldPrice = new Money.zeroFrom(Money.CURRENCY_GOLD);
 
@@ -168,7 +171,8 @@ class SoccerPlayersScalingListComp {
     return !lineupFilter.contains(player);
   }
   bool soccerPlayerIsAvailable(SoccerPlayerListItem player) {
-    return player.moneyToBuy.toInt() == 0;
+    //return player.fantasyPoints != 0;
+    return !disablePlayedCharacters || player.hasNotPlayed;
   }
   String getActionButton(SoccerPlayerListItem player) {
     bool addButton = isAddAction(player);

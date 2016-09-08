@@ -401,7 +401,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
   }
 
   void onAddClicked() {
-    ModalComp.close(currentInfoData['id']);
+    //ModalComp.close(currentInfoData['id']);
   }
 
   SoccerPlayerService _soccerPlayerService;

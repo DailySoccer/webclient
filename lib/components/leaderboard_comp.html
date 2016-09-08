@@ -1,5 +1,6 @@
-<ranking on-show-ranking-points="showPointsRanking()" on-show-ranking-money="showMoneyRanking()" 
-         ng-if="!loadingService.isLoading && isMainRankingPlayersActive">
+<ranking  ranking-points-data="pointsUserList" ranking-money-data="moneyUserList"
+          on-show-ranking-points="showPointsRanking()" on-show-ranking-money="showMoneyRanking()" 
+          ng-if="!loadingService.isLoading && isMainRankingPlayersActive">
 </ranking>
  
 <leaderboard-table  share-info="sharingInfoTrueSkill" show-header="true" highlight-element="playerPointsInfo" 

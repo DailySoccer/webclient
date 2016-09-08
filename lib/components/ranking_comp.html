@@ -2,16 +2,16 @@
   <div class="ranking-points-title">Ranking de Jugones</div>
   <div class="user-points-data">
     <div class="first-column">
-      <div class="ranking-label">Nivel: {{profileService.user.managerLevel}}</div>
+      <div class="ranking-label">Nivel: {{profileService.user.managerLevel.floor()}}</div>
       <div class="user-name">{{profileService.user.nickName}}</div> 
     </div>
     <div class="second-column">
       <div class="ranking-label">CLAS.</div>
-      <div class="user-position">888888º</div> 
+      <div class="user-position">{{myPointsData['position']}}</div> 
     </div>
     <div class="third-column">
       <div class="ranking-label">PUNTOS</div>
-      <div class="user-points">88888,88</div> 
+      <div class="user-points">{{myPointsData['points']}}</div> 
     </div>
   </div>
   <img class="ranking-points-logo" src="images/ranking/rankingPointsLogo.png" alt="logo ranking jugones">
@@ -28,11 +28,11 @@
     </div>
     <div class="second-column">
       <div class="ranking-label">CLAS.</div>
-      <div class="user-pos-value">888888º</div> 
+      <div class="user-pos-value">{{myMoneyData['position']}}</div> 
     </div>
     <div class="third-column">
       <div class="ranking-label">MONEDAS</div>
-      <div class="user-points">888888</div> 
+      <div class="user-points">{{myMoneyData['points']}}</div> 
     </div>
   </div>
   <img class="ranking-money-logo" src="images/ranking/rankingMoneyLogo.png" alt="logo ranking forrados">

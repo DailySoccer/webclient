@@ -17,18 +17,33 @@ import 'package:webclient/models/user.dart';
 
 class RankingComp {
  
+  @NgOneWay('ranking-points-data')
+    set pointsList(List<Map> value) {
+    if (value != null) {
+      pointsUserList = value;
+      myPointsData = pointsUserList.where((user) => user['id'] == profileService.user.userId).first;
+    }
+  }
+  List<Map> pointsUserList;
+  
+  @NgOneWay('ranking-money-data')
+  set moneyList(List<Map> value) {
+    if (value != null) {
+      moneyUserList = value;
+      myMoneyData = moneyUserList.where((user) => user['id'] == profileService.user.userId).first;
+    }
+  }
+  List<Map> moneyUserList;
+  
+  Map myPointsData;
+  Map myMoneyData;
   
   @NgCallback('on-show-ranking-points')
   Function showPointsRanking;
   
   @NgCallback('on-show-ranking-money')
   Function showMoneyRanking;
-  
-  List<Map> pointsUserList;
-  List<Map> moneyUserList;
-  
-  //bool isThePlayer(id) => id == profileService.user.userId;
-  
+    
   LoadingService loadingService;
   ProfileService profileService;
   
@@ -36,35 +51,10 @@ class RankingComp {
   String getLocalizedText(key, [group = "ranking"]) { return StringUtils.translate(key, group); }
   
   RankingComp (this.loadingService, LeaderboardService leaderboardService, this.profileService) {
+    if (myPointsData != null)
+      myPointsData = pointsUserList.where((user) => user['id'] == profileService.user.userId).first;
     
-    loadingService.isLoading = true;
-    userId = profileService.user.userId;
-
-    leaderboardService.getUsers().then((List<User> users) {
-      List<User> pointsUserListTmp = new List<User>.from(users);
-      List<User> moneyUserListTmp = new List<User>.from(users);
-
-      pointsUserListTmp.sort( (User u1, User u2) => u2.trueSkill.compareTo(u1.trueSkill) );
-      moneyUserListTmp.sort( (User u1, User u2) => u2.earnedMoney.compareTo(u1.earnedMoney) );
-
-      int i = 1;
-      pointsUserList = pointsUserListTmp.map((User u) => {
-        'position': i++,
-        'id': u.userId,
-        'name': u.nickName,
-        'points': StringUtils.parseTrueSkill(u.trueSkill)
-      }).toList();
-
-      i = 1;
-      moneyUserList = moneyUserListTmp.map((User u) => {
-        'position': i++,
-        'id': u.userId,
-        'name': u.nickName,
-        'points': u.earnedMoney
-      }).toList();
-
-      loadingService.isLoading = false;
-    });       
+     // myMoneyData = moneyUserList.where((user) => user['id'] == profileService.user.userId).first;
   }
   
   void showFullPointsRanking() {

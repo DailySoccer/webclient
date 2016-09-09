@@ -18,7 +18,7 @@
   </div>
 </section>
 
-<section class="contest-info-section" ng-if="isContestInfoActive">
+<section class="contest-info-section" ng-show="isContestInfoActive">
   <contest-info the-contest="contest" ng-if="contest != null"></contest-info>
 </section>
 
@@ -80,6 +80,17 @@
   <soccer-player-stats contest-id="contest.contestId" instance-soccer-player-id="instanceSoccerPlayerDisplayInfo" selectable-player="false"></soccer-player-stats>
 </section>
 
+
+<modal-window class="soccer-player-gameplays small" show-header="true" title="'Puntos de jugador'" show-window="isGameplaysModalOn">
+  <div class="soccer-player-gameplays-name">
+    <div class="gameplays-label">{{gameplaysPlayer.name}}</div>
+    <div class="gameplays-data">{{gameplaysPlayer.livePoints}}</div>
+  </div>
+  <div class="soccer-player-gameplays-data" ng-repeat="gameplay in soccerPlayerGameplays">
+    <div class="gameplays-label">{{gameplay['name']}}</div>
+    <div class="gameplays-data">{{gameplay['points']}}</div>
+  </div>
+</modal-window>
 
 <modal-window class="change-soccer-player-confirm-modal small" show-header="false" show-window="isConfirmModalOn">
   <div class="change-soccer-player-confirm-content">

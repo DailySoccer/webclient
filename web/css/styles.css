@@ -6072,32 +6072,6 @@ OLD FONTS
   opacity: 0.5;
   cursor: not-allowed;
 }
-.flat-button {
-  font-size: 11pt;
-  color: #0d75a6;
-  text-transform: uppercase;
-  text-align: center;
-  text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  border: 0;
-  outline-offset: 0px;
-  outline: none;
-}
-.flat-button:hover,
-.flat-button:active,
-.flat-button:focus {
-  border: none;
-  outline-offset: 0px;
-  outline: none;
-}
-.flat-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
 .fit-icon-size {
   width: 17px;
   height: 17px;
@@ -6663,8 +6637,17 @@ contest-header .prize-managerpoints::after {
   margin-top: -24px;
 }
 .lineup-selector-slot .team-shirt-image {
+  position: relative;
   width: 48px;
   height: 48px;
+}
+.lineup-selector-slot .team-shirt-glow {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  width: 60px;
+  height: 60px;
+  display: none;
 }
 .lineup-selector-slot .iconButtonSelect {
   background-image: -webkit-linear-gradient(top, #0d75a6 0%, #0c4c6a 100%);
@@ -7014,15 +6997,25 @@ lineup-field-selector {
   flex-flow: column nowrap;
 }
 .lineup-selector-wrapper {
-  position: relative;
   flex: 1;
+  position: relative;
+  transition: background .3s ease;
+}
+.lineup-selector-wrapper .lineup-selector-slot-info {
+  transition: opacity .3s ease;
+}
+.lineup-selector-wrapper.changing-mode {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 .lineup-selector-wrapper.changing-mode .lineup-selector-slot-info {
-  opacity: 0.5;
+  opacity: 0.3;
 }
 .lineup-selector-wrapper.changing-mode .lineup-selector-slot-info.not-played {
   opacity: 1;
   box-shadow: 0 0 10px -5px #ffffff;
+}
+.lineup-selector-wrapper.changing-mode .lineup-selector-slot-info.not-played .team-shirt-glow {
+  display: block;
 }
 .lineup-formation-selector-wrapper {
   flex: 0 0 36px;
@@ -7378,6 +7371,7 @@ modal-window.small .modal-window-frame {
   margin-left: auto;
   margin-right: auto;
   height: auto;
+  max-height: 95vh;
 }
 .modal-window-frame {
   display: -webkit-box;
@@ -11786,6 +11780,7 @@ view-contest {
   flex-flow: column nowrap;
   overflow: hidden;
 }
+.soccer-player-list-section,
 .view-comparative-section,
 .view-contest-section {
   flex: 1;
@@ -11797,10 +11792,12 @@ view-contest {
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
 }
+.soccer-player-list-section lineup-field-selector,
 .view-comparative-section lineup-field-selector,
 .view-contest-section lineup-field-selector {
   flex: 1;
 }
+.soccer-player-list-section .make-change-btn,
 .view-comparative-section .make-change-btn,
 .view-contest-section .make-change-btn {
   background-image: -webkit-linear-gradient(top, #0d75a6 0%, #0c4c6a 100%);
@@ -11826,26 +11823,32 @@ view-contest {
   outline: none;
   flex: 0 0 40px;
 }
+.soccer-player-list-section .make-change-btn:hover,
 .view-comparative-section .make-change-btn:hover,
 .view-contest-section .make-change-btn:hover,
+.soccer-player-list-section .make-change-btn:active,
 .view-comparative-section .make-change-btn:active,
 .view-contest-section .make-change-btn:active,
+.soccer-player-list-section .make-change-btn:focus,
 .view-comparative-section .make-change-btn:focus,
 .view-contest-section .make-change-btn:focus {
   border: 0;
   outline-offset: 0px;
   outline: none;
 }
+.soccer-player-list-section .make-change-btn:disabled,
 .view-comparative-section .make-change-btn:disabled,
 .view-contest-section .make-change-btn:disabled {
   color: #757993;
   opacity: 0.5;
   cursor: not-allowed;
 }
+.soccer-player-list-section .make-change-btn .material-icons,
 .view-comparative-section .make-change-btn .material-icons,
 .view-contest-section .make-change-btn .material-icons {
   vertical-align: middle;
 }
+.soccer-player-list-section .salary-info-wrapper,
 .view-comparative-section .salary-info-wrapper,
 .view-contest-section .salary-info-wrapper {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#102127+0,102127+49,03151b+51,03151b+100 */
@@ -11877,22 +11880,28 @@ view-contest {
   padding: 9px;
   text-align: center;
 }
+.soccer-player-list-section .salary-info-wrapper .current-salary,
 .view-comparative-section .salary-info-wrapper .current-salary,
 .view-contest-section .salary-info-wrapper .current-salary {
   flex: 1;
 }
+.soccer-player-list-section .salary-info-wrapper .limit-salary,
 .view-comparative-section .salary-info-wrapper .limit-salary,
 .view-contest-section .salary-info-wrapper .limit-salary {
   flex: 1;
 }
+.soccer-player-list-section .salary-info-wrapper .current-salary-label,
 .view-comparative-section .salary-info-wrapper .current-salary-label,
 .view-contest-section .salary-info-wrapper .current-salary-label,
+.soccer-player-list-section .salary-info-wrapper .limit-salary-label,
 .view-comparative-section .salary-info-wrapper .limit-salary-label,
 .view-contest-section .salary-info-wrapper .limit-salary-label {
   color: #757993;
 }
+.soccer-player-list-section .salary-info-wrapper .current-salary-amount,
 .view-comparative-section .salary-info-wrapper .current-salary-amount,
 .view-contest-section .salary-info-wrapper .current-salary-amount,
+.soccer-player-list-section .salary-info-wrapper .limit-salary-amount,
 .view-comparative-section .salary-info-wrapper .limit-salary-amount,
 .view-contest-section .salary-info-wrapper .limit-salary-amount {
   color: #fa9c19;
@@ -11983,6 +11992,202 @@ view-contest {
 .rivals-list-column-points {
   flex: 0 0 55px;
 }
+.change-soccer-player-confirm-modal .modal-window-content {
+  padding: 16px 12px 8px 12px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  flex: 1;
+}
+.change-soccer-player-confirm-content {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  flex: 1;
+  color: #757993;
+  text-align: center;
+  padding-bottom: 30px;
+}
+.change-soccer-player-confirm-question {
+  flex: 0 0 auto;
+  font-size: 14pt;
+  color: #cacdcf;
+  text-transform: inherit;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(202, 205, 207, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  padding: 5px 0 10px 0;
+}
+.change-soccer-player-changing-players {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  flex: 1;
+  padding-left: 35px;
+}
+.change-soccer-player-changing-labels {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  flex: 0 0 auto;
+  padding-right: 5px;
+  border-right: 1px solid rgba(210, 210, 210, 0.3);
+}
+.change-soccer-player-changing-labels .change-soccer-player.player-old {
+  padding-bottom: 24px;
+  text-align: right;
+}
+.change-soccer-player-changing-labels .change-soccer-player.player-new {
+  font-size: 12pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  text-align: right;
+}
+.change-soccer-player-changing-data {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  flex: 1;
+}
+.change-soccer-player.player-old {
+  font-size: 10pt;
+  color: rgba(210, 210, 210, 0.3);
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(210, 210, 210, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+}
+.change-soccer-player.player-new {
+  font-size: 12pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
+}
+.change-soccer-player-actions-wrapper {
+  flex: 0 0 30px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+}
+.change-soccer-player-actions-wrapper button {
+  font-size: 11pt;
+  color: #0d75a6;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  border: 0;
+  outline-offset: 0px;
+  outline: none;
+  padding: 5px 5px;
+}
+.change-soccer-player-actions-wrapper button:hover,
+.change-soccer-player-actions-wrapper button:active,
+.change-soccer-player-actions-wrapper button:focus {
+  border: none;
+  outline-offset: 0px;
+  outline: none;
+}
+.change-soccer-player-actions-wrapper button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.change-soccer-player-actions-wrapper button.change-soccer-player-cancel {
+  padding-right: 20px;
+}
+.soccer-player-gameplays modal-window-content {
+  margin-bottom: 20px;
+}
+.soccer-player-gameplays-name {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  flex: 0 0 30px;
+  font-size: 16pt;
+  color: #59add5;
+  text-transform: uppercase;
+  text-align: left;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  border-bottom: 1px solid #cacdcf;
+}
+.soccer-player-gameplays-name .gameplays-label,
+.soccer-player-gameplays-name .gameplays-data {
+  padding: 12px;
+}
+.soccer-player-gameplays-data {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  flex: 0 0 auto;
+  font-size: 12pt;
+  color: #cacdcf;
+  text-transform: uppercase;
+  text-align: left;
+  text-shadow: 1px 1px 1px rgba(202, 205, 207, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(210, 210, 210, 0.3);
+}
+.gameplays-label {
+  flex: 1;
+  padding: 8px 8px 8px 24px;
+}
+.gameplays-data {
+  flex: 0 0 54px;
+  padding: 8px;
+}
+/*
+.change-soccer-player-confirm {
+  .flat-button();
+}*/
 /*
 #viewContestRoot {
 	@media (min-width: @screen-sm-min) {
@@ -14922,6 +15127,7 @@ enter-contest {
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
   background-color: #000000;
+  overflow: hidden;
 }
 .lineup-selector-section,
 .soccer-player-list-section,
@@ -14934,6 +15140,9 @@ enter-contest {
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
   flex: 1;
+}
+.soccer-player-list-section {
+  overflow: hidden;
 }
 .lineup-selector-section contest-header {
   flex: 0 0 55px;
@@ -16088,6 +16297,7 @@ soccer-players-scalinglist {
   display: flex;
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
+  flex: 1;
   font-size: 12pt;
   color: #ffffff;
   text-transform: inherit;
@@ -16098,6 +16308,7 @@ soccer-players-scalinglist {
   text-transform: uppercase;
   position: relative;
   background-color: #242529;
+  overflow: hidden;
 }
 soccer-players-scalinglist .column-info,
 soccer-players-scalinglist .column-header .column-info {
@@ -16167,7 +16378,11 @@ soccer-players-scalinglist .column-addbtn.removeFav {
   display: flex;
   -webkit-flex-flow: row nowrap;
   flex-flow: row nowrap;
-  padding: 5px 8px;
+  flex: 0 0 38px;
+  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
+  -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
+  padding: 5px 14px 5px 8px;
   align-items: center;
 }
 .soccer-player-table-header .column-header {
@@ -16181,6 +16396,8 @@ soccer-players-scalinglist .column-addbtn.removeFav {
   display: flex;
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
+  flex: 1;
+  overflow-y: scroll;
 }
 .soccer-player-table-body .soccer-players-list-slot {
   display: -webkit-box;
@@ -16190,9 +16407,18 @@ soccer-players-scalinglist .column-addbtn.removeFav {
   display: flex;
   -webkit-flex-flow: row nowrap;
   flex-flow: row nowrap;
+  flex: 0 0 64px;
   padding: 7px 8px;
   align-items: center;
   border-bottom: 2px solid #000000;
+}
+.soccer-player-table-body .soccer-players-list-slot.not-available {
+  opacity: 0.3;
+  pointer-events: none;
+}
+.soccer-player-table-body .soccer-players-list-slot.not-available .column-info,
+.soccer-player-table-body .soccer-players-list-slot.not-available .column-addbtn {
+  opacity: 0;
 }
 /*
 // Tabla de ordenacion en la cabecera del listado de jugadores

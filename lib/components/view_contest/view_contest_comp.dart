@@ -118,6 +118,7 @@ class ViewContestComp implements DetachAware {
   bool get isComparativeActive => sectionActive == COMPARATIVE;
   bool get isSelectingSoccerPlayerActive => sectionActive == SOCCER_PLAYER_LIST;
   bool get isSoccerPlayerStatsActive => sectionActive == SOCCER_PLAYER_STATS;
+  bool isGameplaysModalOn = false;
   bool isConfirmModalOn = false;
   
   String _sectionActive = LINEUP_FIELD_CONTEST_ENTRY;
@@ -183,6 +184,13 @@ class ViewContestComp implements DetachAware {
   
   InstanceSoccerPlayer changingPlayer;
   InstanceSoccerPlayer newSoccerPlayer;
+  SoccerPlayerListItem _gameplaysPlayer;
+  void set gameplaysPlayer(SoccerPlayerListItem player) {
+    _gameplaysPlayer = player;
+    soccerPlayerGameplays = player.instanceSoccerPlayer.printableLivePointsPerOptaEvent;
+  }
+  SoccerPlayerListItem get gameplaysPlayer => _gameplaysPlayer;
+  List<Map> soccerPlayerGameplays = [];
   
   int get numAvailableChanges => mainPlayer != null ? mainPlayer.numAvailableChanges : 0;
   Money get changePrice => mainPlayer != null ? mainPlayer.changePrice() : ContestEntry.DEFAULT_PRICE;
@@ -264,11 +272,9 @@ class ViewContestComp implements DetachAware {
 
         if (_profileService.isLoggedIn && contest.containsContestEntryWithUser(_profileService.user.userId)) {
           mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
-          print("LOGGED IN ------------------------------------------------------------------------------------------");
         }
         else {
           mainPlayer = contest.contestEntriesOrderByPoints.first;
-          print("NO LOGGED IN ------------------------------------------------------------------------------------------");
         }
         
 
@@ -444,10 +450,19 @@ class ViewContestComp implements DetachAware {
       displayChangeablePlayers = !displayChangeablePlayers;
     }
   }
+  
   void onLineupSlotSelected(int slotIndex) {
-    if (!displayChangeablePlayers) return;
-    onRequestChange(lineupSlots[slotIndex].instanceSoccerPlayer);
+    SoccerPlayerListItem player = lineupSlots[slotIndex];
+    if (displayChangeablePlayers) {
+      onRequestChange(player.instanceSoccerPlayer);
+    } else {
+      if (player.isPlaying || player.hasPlayed) {
+        gameplaysPlayer = player;
+        isGameplaysModalOn = true;
+      }
+    }
   }
+  
   void onSoccerPlayerInfoClick(String soccerPlayerId) {
     //ModalComp.open(_router, "enter_contest.soccer_player_stats", { "instanceSoccerPlayerId":soccerPlayerId, "selectable":isSlotAvailableForSoccerPlayer(soccerPlayerId)}, addSoccerPlayerToLineup);
     sectionActive = SOCCER_PLAYER_STATS;
@@ -577,10 +592,10 @@ class ViewContestComp implements DetachAware {
     lineupSlots = [];
     mainPlayer.instanceSoccerPlayers.forEach( (i) {
       
-      InstanceSoccerPlayer instanceSoccerPlayer = _allInstanceSoccerPlayers.firstWhere( (soccerPlayer) => soccerPlayer.id == i.id, orElse: () => i);
+      InstanceSoccerPlayer instanceSoccerPlayer = _allInstanceSoccerPlayers != null? _allInstanceSoccerPlayers.firstWhere( (soccerPlayer) => soccerPlayer.id == i.id, orElse: () => i) : i;
       SoccerPlayerListItem slot = new SoccerPlayerListItem(instanceSoccerPlayer, _profileService.user.managerLevel, contest);
       
-      //SoccerPlayerListItem slot = allSoccerPlayers.firstWhere( (soccerPlayer) => soccerPlayer.id == i.id, orElse: () => null);
+      //SoccerPlayerListItem slot = allSoccerPlayers.firstWhere( (soccerPlayer) => soccerPlayer.id == i.id, orElse: () => i);
       if (slot != null) {
         lineupSlots.add(slot);
       }

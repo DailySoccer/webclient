@@ -167,6 +167,35 @@ view-contest {
     }
   }
 }
+.soccer-player-gameplays modal-window-content {
+  margin-bottom: 20px;
+}
+.soccer-player-gameplays-name {
+  .flex-container-row();
+  .flex-elem-fixed(30px);
+  .mainfont_light(16pt, @blueLight, left, uppercase);
+  border-bottom: 1px solid @grey-light;
+  
+  .gameplays-label,
+  .gameplays-data {
+    padding: 12px;
+  }
+}
+.soccer-player-gameplays-data {
+  .flex-container-row();
+  .flex-elem-fixed(auto);
+  .mainfont_light(12pt, @grey-light, left, uppercase);
+  border-bottom: 1px solid @grey-translucid;
+}
+.gameplays-label {
+  .flex-elem-fluid();
+  padding: 8px 8px 8px 24px;
+}
+.gameplays-data {
+  .flex-elem-fixed(54px);
+  padding: 8px;
+}
+
 
 /*
 .change-soccer-player-confirm {

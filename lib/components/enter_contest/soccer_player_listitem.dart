@@ -22,6 +22,7 @@ class SoccerPlayerListItem {
   String get matchEventNameHTML => _matchEventNameHTML;
   SoccerTeam get soccerTeam => _instanceSoccerPlayer.soccerTeam;
   String get livePoints => _instanceSoccerPlayer.printableCurrentLivePoints;
+  String get name => _instanceSoccerPlayer.soccerPlayer.name;
 
   bool get isPlaying => _instanceSoccerPlayer.playState == InstanceSoccerPlayer.STATE_PLAYING;
   bool get hasPlayed => _instanceSoccerPlayer.playState == InstanceSoccerPlayer.STATE_PLAYED;

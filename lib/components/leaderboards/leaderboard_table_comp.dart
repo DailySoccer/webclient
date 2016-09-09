@@ -12,7 +12,7 @@ import 'package:webclient/services/profile_service.dart';
 
 @Component(
     selector: 'leaderboard-table',
-    templateUrl: 'packages/webclient/components/leaderboard_table_comp.html',
+    templateUrl: 'packages/webclient/components/leaderboards/leaderboard_table_comp.html',
     useShadowDom: false
 )
 

@@ -47,6 +47,7 @@ class ShopComp implements DetachAware{
   ShopComp(this._flashMessage, this._profileService, this._catalogService, this._tutorialService, this._paymentService, this._appStateService, this._router) {
     _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection(getLocalizedText("name"));
     _appStateService.appTopBarState.activeState.onLeftColumn = GoBack;
+    _appStateService.appTabBarState.show = false;
         
     
     goldProducts = [];

@@ -14,7 +14,7 @@ import 'package:webclient/services/server_error.dart';
 import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/models/user_notification.dart';
 import 'package:webclient/utils/html_utils.dart';
-import 'package:webclient/components/achievement_comp.dart';
+import 'package:webclient/components/leaderboards/achievement_comp.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/utils/fblogin.dart';
 import 'package:webclient/utils/host_server.dart';

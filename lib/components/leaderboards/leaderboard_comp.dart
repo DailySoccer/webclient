@@ -16,7 +16,7 @@ import 'package:webclient/services/refresh_timers_service.dart';
 
 @Component(
     selector: 'leaderboard',
-    templateUrl: 'packages/webclient/components/leaderboard_comp.html',
+    templateUrl: 'packages/webclient/components/leaderboards/leaderboard_comp.html',
     useShadowDom: false
 )
 

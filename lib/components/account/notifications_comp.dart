@@ -8,7 +8,7 @@ import 'package:webclient/models/user_notification.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/utils/html_utils.dart';
-import 'package:webclient/components/achievement_comp.dart';
+import 'package:webclient/components/leaderboards/achievement_comp.dart';
 import 'package:webclient/services/facebook_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
 

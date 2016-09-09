@@ -7,7 +7,7 @@ import 'package:webclient/models/achievement.dart';
 
 @Component(
     selector: 'achievement',
-    templateUrl: 'packages/webclient/components/achievement_comp.html',
+    templateUrl: 'packages/webclient/components/leaderboards/achievement_comp.html',
     useShadowDom: false
 )
 

@@ -9,7 +9,7 @@ import 'package:webclient/models/user.dart';
 
 @Component(
     selector: 'achievement-list',
-    templateUrl: 'packages/webclient/components/achievement_list_comp.html',
+    templateUrl: 'packages/webclient/components/leaderboards/achievement_list_comp.html',
     useShadowDom: false
 )
 

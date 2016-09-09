@@ -11,7 +11,7 @@ import 'package:webclient/models/user.dart';
 
 @Component(
     selector: 'ranking',
-    templateUrl: 'packages/webclient/components/ranking_comp.html',
+    templateUrl: 'packages/webclient/components/leaderboards/ranking_comp.html',
     useShadowDom: false
 )
 

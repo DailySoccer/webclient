@@ -99,7 +99,7 @@ soccer-player-stats {
 .soccer-player-stats-content {
   .flex-elem-fluid();
   .flex-container-col();
-  background-color: @white;
+  //background-color: @white;
 }
 
 .soccer-player-stats-tabs {
@@ -123,7 +123,7 @@ soccer-player-stats {
   }
 }
 .soccer-player-stats-tab-pane {
-  background-color: @white;
+  //background-color: @white;
   .flex-elem-fluid();
 }
 
@@ -134,7 +134,7 @@ soccer-player-stats {
   display: block;
 }
 .soccer-player-stats-tab-pane {
-  .mainfont_light(8pt, @grey-bluish);
+  .mainfont_light(8pt, @white);
   &#season-stats-tab-content {
     margin: 20px auto;
   }
@@ -146,13 +146,13 @@ soccer-player-stats {
   }
   .season-stats-header{
     .flex-elem-fixed(75px);
-    .mainfont_bold(10pt, @grey-bluish);
+    .mainfont_bold(10pt, @blue);
     border: 1px solid @grey-dark;
     padding: 5px 15px;
   }
   .season-stats-value {
     .flex-elem-fixed(75px);
-    .mainfont_light(10pt, @grey-bluish);
+    .mainfont_light(10pt, @white);
     border: 1px solid @grey-dark;
     padding: 5px 15px;
   }
@@ -195,6 +195,10 @@ soccer-player-stats {
 }
 .per-match-stats-table-data-row:nth-child(3) {
   .mainfont_bold(8pt, @blue);
+}
+.noMatchesPlayed {
+	.mainfont_bold(14pt, @white, center, uppercase);
+	padding: 50px;
 }
 
 /*#modalSoccerPlayerStats {	

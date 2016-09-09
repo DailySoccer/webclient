@@ -1,23 +1,17 @@
-<div id="lobbyRoot">
-  
-  <!--div class="challenge-your-friends" ng-if="showCreateContest">
-    <span class="text">{{getStaticLocalizedText("challengeyourfriendstext")}}</span>
-    <button ng-click="onCreateContestClick()">{{getStaticLocalizedText("challengeyourfriendsbutton")}}</button>
-  </div-->
-
-  <!-- Temporalmente pongo la imagen del calendario (maquetar mas adelante). -->
-  <!--week-calendar on-day-selected="onSelectedDayChange(day)" dates="dayList"></week-calendar-->
-
-  <!-- Lista de concursos -->
-  <contests-list  id="activeContestList"
-                      contests-list="currentContestList"
-                      on-action-click='onActionClick(contest)'
-                      on-row-click="onRowClick(contest)"
-                      action-button-title="'>'"
-                      show-date="true">
-  </contests-list>
-  
-  <!-- Punto de insercion de nuestra ruta hija contest-info (modal) -->
-  <ng-view  ng-show="!loadingService.isLoading"></ng-view>
-  
+<!-- Lista de concursos -->
+<div class="contest-list-wrapper">
+    <contests-list  id="activeContestList"
+                  contests-list="currentContestList"
+                  on-action-click='onActionClick(contest)'
+                  on-row-click="onRowClick(contest)"
+                  action-button-title="'>'"
+                  show-date="true">
+    </contests-list>
 </div>
+
+<!-- Descomentar cuando hablitemos la funcionalidad de crear torneos -->
+<!--button class="create-custom-contest-button" ng-click="onCreateContestClick()">{{getStaticLocalizedText("challengeyourfriendsbutton")}}</button-->
+
+<!-- Punto de insercion de nuestra ruta hija contest-info (modal) -->
+<ng-view  ng-show="!loadingService.isLoading"></ng-view>
+

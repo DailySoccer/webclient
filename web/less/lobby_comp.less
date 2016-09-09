@@ -2,14 +2,21 @@
 	background-color: @soft-black;	
 }
 lobby{
-	week-calendar {
-		clear: both;
-		display: block;
-		.week-calendar {
-			margin-top: 0;
-		}
+	overflow: hidden;
+	.contest-list-wrapper {
+		overflow-y: scroll;
+	}
+	.flex-container-col();
+		.contest-list-wrapper {
+		.flex-elem-fluid();
+	}
+	.create-custom-contest-button {
+		.default-button();
+		.flex-elem-fixed(40px);
 	}
 }
+
+/*
 .challenge-your-friends {
 	.make-xs-column(12);
 	float: none;
@@ -37,3 +44,4 @@ lobby{
 		clear: both;
 	}
 }
+*/

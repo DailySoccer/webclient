@@ -14742,7 +14742,7 @@ soccer-player-stats {
   flex-flow: row nowrap;
 }
 .match-stats-table-wrapper .start-year-column {
-  border-left: 1px solid #242529;
+  border-left: 1px solid #cacdcf;
 }
 .match-stats-table-wrapper .start-year-column:nth-child(1) {
   border-left: none;
@@ -14755,7 +14755,7 @@ soccer-player-stats {
   padding-bottom: 6px;
 }
 .per-match-stats-headers-table-wrapper .per-match-stats-row-header {
-  border-right: 1px solid #242529;
+  border-right: 1px solid #cacdcf;
   padding-right: 6px;
 }
 .per-match-stats-table-wrapper {
@@ -14765,22 +14765,22 @@ soccer-player-stats {
 }
 .per-match-stats-table-years-row:nth-child(1) {
   font-size: 10pt;
-  color: #757993;
+  color: #cacdcf;
   text-transform: inherit;
   text-align: inherit;
-  text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  text-shadow: 1px 1px 1px rgba(202, 205, 207, 0.004);
   font-family: 'Fjalla One', sans-serif;
   font-weight: 700;
 }
 .per-match-stats-table-data-row:nth-child(2) {
   font-size: 8pt;
-  color: #757993;
+  color: #cacdcf;
   text-transform: inherit;
   text-align: inherit;
-  text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  text-shadow: 1px 1px 1px rgba(202, 205, 207, 0.004);
   font-family: 'Fjalla One', sans-serif;
   font-weight: 700;
-  border-top: 1px solid #757993;
+  border-top: 1px solid #cacdcf;
 }
 .per-match-stats-table-data-row:nth-child(3) {
   font-size: 8pt;

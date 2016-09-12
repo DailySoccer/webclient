@@ -54,7 +54,11 @@ document.onreadystatechange = function () {
 document.addEventListener('deviceready', function () {
   console.log(" # DEVICE READY EVENT - FB");
   fbIsInit = true;
-
+  
+  console.log(" # DEVICE READY EVENT - Comscore");
+  ComScorePlugin.setCustomerData("13184057", "15f020eaf9d74aaec3b72f6be73feff4");
+  
+  
   console.log(" # DEVICE READY EVENT - SHOP");
   if (!window.store) {
     window.serverLoggerServere('Store not available');

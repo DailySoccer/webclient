@@ -131,12 +131,12 @@ class AppTopBarStateConfig {
       <div class="lobby-topbar-left">
         <img class="gold-image" src="images/topBar/icon_user_profile.png">
         <span class="level">''' +  getLocalizedText("level") + '''</span>
-        <span class="level">''' + (profileService.user != null ? profileService.user.trueSkill.toString() : "") + '''</span>
+        <span class="level">''' + (profileService.isLoggedIn ? profileService.user.trueSkill.toString() : "") + '''</span>
       </div>
     ''';
     centerColumn = '''
       <div class="lobby-topbar-center">
-        <span class="coins-count">''' + (profileService.user != null ? profileService.user.balance.toString() : "0") + '''</span>
+        <span class="coins-count">''' + (profileService.isLoggedIn ? profileService.user.balance.toString() : "0") + '''</span>
         <img class="gold-image" src="images/topBar/icon_coin_big.png">
         <img class="gold-image" src="images/topBar/icon_add_more_coins.png">
       </div>
@@ -161,8 +161,7 @@ class AppTopBarStateConfig {
   }
   
   String getNotificationCount(ProfileService ps) {
-    if (ps.user == null)
-      return "";
+    if (!ps.isLoggedIn) return "";
     
     int notifCount = ps.user.notifications.length;
     

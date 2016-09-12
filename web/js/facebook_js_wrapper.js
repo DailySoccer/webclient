@@ -25,11 +25,11 @@ var facebookApiWrapper = {
   
 	waitForFacebook: function (callback) {
 	  
-        callback();
+        //callback();
 	},
   login: function(callback) {
     //console.log(" - FB REQUEST => Login");
-    facebookConnectPlugin.login(["public_profile", "email", "user_friends"],
+    /*facebookConnectPlugin.login(["public_profile", "email", "user_friends"],
         function (info) {
           //console.log(" - FB REQUEST => Login r:" + info);
           callback(info);
@@ -37,12 +37,12 @@ var facebookApiWrapper = {
         function (error) {
           console.warn(error)
         }
-      );
+      );*/
   },
 
   loginStatus: function (callback) {
     //console.log(" - FB REQUEST => LoginStatus");
-    facebookConnectPlugin.getLoginStatus(
+    /*facebookConnectPlugin.getLoginStatus(
         function (info ) {
           //console.log(" - FB REQUEST => LoginStatus r:" + info);
           callback(info);
@@ -50,11 +50,11 @@ var facebookApiWrapper = {
         function (error) {
           console.log(error)
         }
-      );
+      );*/
   },
 	permissions: function (callback) {
 		//console.log(" - FB REQUEST => Permissions");
-		facebookConnectPlugin.api('/me/permissions',
+		/*facebookConnectPlugin.api('/me/permissions',
 				["public_profile", "email", "user_friends"],
 				function (response) {
 					if (response && !response.error) {
@@ -66,10 +66,10 @@ var facebookApiWrapper = {
 				function (error) {
 					console.log(error)
 				}
-			);
+			);*/
 	},
 	profileInfo: function(callback) {
-		facebookConnectPlugin.api('/me?fields=picture,id,name,email', ["public_profile", "email", "user_friends"],
+		/*facebookConnectPlugin.api('/me?fields=picture,id,name,email', ["public_profile", "email", "user_friends"],
       function(response) {
          if (response && !response.error) {
            response['error'] = false;
@@ -85,9 +85,9 @@ var facebookApiWrapper = {
            callback(response);
          }
        },
-      function (error) { console.log(error) });
+      function (error) { console.log(error) });*/
 	},
-  profilePhoto: function(callback) {
+  profilePhoto: function(callback) {/*
 		facebookConnectPlugin.api('/me?fields=picture,id,name,email', ["public_profile", "email", "user_friends"],
       function(response) {
          if (response && !response.error) {
@@ -104,9 +104,9 @@ var facebookApiWrapper = {
            callback(response);
          }
        },
-      function (error) { console.log(error) });
+      function (error) { console.log(error) });*/
   },
-  friends: function (facebookId, callback) {
+  friends: function (facebookId, callback) {/*
     //console.log(" - FB REQUEST => ProfileFriends");
     facebookConnectPlugin.api('/me/friends?fields=picture,id', ["public_profile", "email", "user_friends"],
         function(response) {
@@ -128,9 +128,9 @@ var facebookApiWrapper = {
             callback({ error: response.error });
           }
          },
-        function (error) { console.log(error) });
+        function (error) { console.log(error) });*/
   },
-  share: function (params) {
+  share: function (params) {/*
     dartCallback = params.dartCallback || function() {};
     facebookConnectPlugin.showDialog(
         {
@@ -144,7 +144,7 @@ var facebookApiWrapper = {
             title: params.title
         },
         function (response) { dartCallback(); },
-        function (response) { serverLoggerInfo(JSON.stringify(response)) });
+        function (response) { serverLoggerInfo(JSON.stringify(response)) });*/
   }
 
 };
@@ -313,7 +313,7 @@ function facebookShare(params) {
 var facebookParseXFBMLActiveSelectors = [];
 
 function facebookParseXFBML(cssSelector) {
-  if (facebookParseXFBMLActiveSelectors.indexOf(cssSelector) != -1) {
+  /*if (facebookParseXFBMLActiveSelectors.indexOf(cssSelector) != -1) {
     return;
   }
   facebookParseXFBMLActiveSelectors.push(cssSelector);
@@ -338,5 +338,5 @@ function facebookParseXFBML(cssSelector) {
     }
   }
   facebookApiWrapper.waitForFacebook(function() { fbCheck = true; });
-  parse();
+  parse();*/
 }

@@ -171,8 +171,10 @@ soccer-player-stats {
   .table {
     margin-bottom: 0px;
   }
+  .table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th {
+  	background-color: @grey-dark;	
+  }
 }
-
 .per-match-stats-headers-table-wrapper {
   .flex-elem-fixed(32px);
   .per-match-stats-row-header {

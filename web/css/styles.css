@@ -14625,6 +14625,10 @@ soccer-player-stats {
 .match-stats-table-wrapper .table {
   margin-bottom: 0px;
 }
+.match-stats-table-wrapper .table-striped > tbody > tr:nth-child(odd) > td,
+.match-stats-table-wrapper .table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: #242529;
+}
 .per-match-stats-headers-table-wrapper {
   flex: 0 0 32px;
   padding-bottom: 6px;

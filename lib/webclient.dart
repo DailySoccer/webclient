@@ -358,8 +358,8 @@ class WebClientApp extends Module {
           path: '/remember_password',
           preEnter: (RoutePreEnterEvent e) =>
               _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_OUT),
-          viewHtml: '<remember-password></remember-password>'),
-      'user_profile': ngRoute(
+          viewHtml: '<remember-password></remember-password>')
+      ,'user_profile': ngRoute(
           path: '/user_profile',
           preEnter: (RoutePreEnterEvent e) =>
               _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
@@ -375,12 +375,12 @@ class WebClientApp extends Module {
             preEnter: (RoutePreEnterEvent e) =>
                 _preEnterPage(e, router, visibility: _ALWAYS),
             viewHtml: '''<modal window-size="'md'"><join is-modal="true"></join></modal>''')
-      }),
-      'edit_profile': ngRoute(
-              path: '/edit_profile',
-              preEnter: (RoutePreEnterEvent e) =>
-                  _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
-              viewHtml: '<edit-personal-data></edit-personal-data>')
+      })
+      ,'edit_profile': ngRoute(
+        path: '/edit_profile',
+        preEnter: (RoutePreEnterEvent e) =>
+            _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+        viewHtml: '<edit-personal-data></edit-personal-data>')
 
           /*
       ,'add_funds': ngRoute(
@@ -400,20 +400,19 @@ class WebClientApp extends Module {
           viewHtml: '<transaction-history></transaction-history>'
       )
       */
-          ,
-      'shop': ngRoute(
+      ,'shop': ngRoute(
           path: '/shop',
           preEnter: (RoutePreEnterEvent e) =>
               _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<shop-comp></shop-comp>',
           mount: {
-        'buy': ngRoute(path: '/buy'),
-        'response': ngRoute(
-            path: '/response/:result',
-            preEnter: (RoutePreEnterEvent e) => _preEnterPagePayment(e, router),
-            //preLeave: (RoutePreLeaveEvent e) => _preLeavePagePayment(e, router),
-            viewHtml: '<payment-response></payment-response>')
-      }
+            'buy': ngRoute(path: '/buy'),
+            'response': ngRoute(
+                path: '/response/:result',
+                preEnter: (RoutePreEnterEvent e) => _preEnterPagePayment(e, router),
+                //preLeave: (RoutePreLeaveEvent e) => _preLeavePagePayment(e, router),
+                viewHtml: '<payment-response></payment-response>')
+          }
 
               /*,mount: {
             'gold': ngRoute(
@@ -435,30 +434,36 @@ class WebClientApp extends Module {
           preEnter: (RoutePreEnterEvent e) => _preEnterPage(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
           viewHtml: '<notifications></notifications>'
       )*/
-          ,
-      'home': ngRoute(
+      ,'achievements': ngRoute(
+          path: '/achievements/',
+          preEnter: (RoutePreEnterEvent e) =>
+              _preEnterMycontest(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
+          viewHtml: '<achievement-list></achievement-list')
+      ,'home': ngRoute(
           defaultRoute: true,
           path: '/home',
           preEnter: (RoutePreEnterEvent e) =>
               _preEnterPage(e, router, visibility: _ALWAYS),
-          viewHtml: '<home></home>'),
-      'lobby': ngRoute(
+          viewHtml: '<home></home>')
+       ,'lobby': ngRoute(
           path: '/lobby',
           preEnter: (RoutePreEnterEvent e) =>
               _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<lobby></lobby>',
           mount: {
-        'contest_info': ngRoute(
-            path: '/contest_info/:contestId',
-            viewHtml: '<contest-info></contest-info>'),
-        'view_promo': ngRoute(
-            path: '/view_promo/:promoCodeName',
-            preEnter: (RoutePreEnterEvent e) {
-          PromosService.configurePromosService(e.parameters['promoCodeName']);
-          _preEnterPage(e, router, visibility: _ALWAYS);
-        })
-      }),
-      'tutorial_list': ngRoute(
+            'contest_info': ngRoute(
+              path: '/contest_info/:contestId',
+              viewHtml: '<contest-info></contest-info>'),
+            'view_promo': ngRoute(
+              path: '/view_promo/:promoCodeName',
+              preEnter: (RoutePreEnterEvent e) {
+                PromosService.configurePromosService(e.parameters['promoCodeName']);
+                _preEnterPage(e, router, visibility: _ALWAYS);
+              }
+            )
+          }
+        )
+        ,'tutorial_list': ngRoute(
           path: '/tutorial_list',
           preEnter: (RoutePreEnterEvent e) =>
               _preEnterPage(e, router, visibility: _ALWAYS),
@@ -589,11 +594,13 @@ class WebClientApp extends Module {
               _preEnterPage(e, router, visibility: _ALWAYS),
           viewHtml: '<scouting></scouting>',
           mount: {
-        'soccer_player_stats': ngRoute(
+          'soccer_player_stats': ngRoute(
             path: '/soccer_player_stats/:soccerPlayerId/selectable/:selectable',
             viewHtml: '<soccer-player-stats></soccer-player-stats>')
-      })
-    });
+          }
+        )
+      }
+    );
   }
 
   Future _waitingjQueryReady() {

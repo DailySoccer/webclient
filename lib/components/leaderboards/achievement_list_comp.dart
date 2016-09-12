@@ -5,6 +5,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/models/achievement.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/models/user.dart';
+import 'package:webclient/services/app_state_service.dart';
 
 
 @Component(
@@ -21,13 +22,16 @@ class AchievementListComp {
 */
   @NgOneWay("user")
   void set user(User userShown) {
-    _userShown = userShown;
+    if (userShown != null)
+      _userShown = userShown;
+    else
+      _userShown = profileService.user;
   }
 
   String earneds;
   bool achievementEarned(achievementKey) => _userShown != null? _userShown.hasAchievement(achievementKey) : false;
 
-  AchievementListComp ( this.profileService /*, this.loadingService*/) {
+  AchievementListComp ( this.profileService, this._appStateService, this._router /*, this.loadingService*/) {
   
     // TEST: Dar premios al usuario
     if (profileService.isLoggedIn) {
@@ -42,6 +46,16 @@ class AchievementListComp {
     }
   
     countAchievementsEarned();
+    
+    _appStateService.appSecondaryTabBarState.tabList = [];
+    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Listado de Logros");
+    _appStateService.appTopBarState.activeState.onLeftColumn = GoBack;
+    _appStateService.appTabBarState.show = false;
+    
+  }
+  
+  void GoBack() {
+    _router.go("user_profile", {});
   }
   
   void countAchievementsEarned() {
@@ -56,4 +70,6 @@ class AchievementListComp {
   List<Achievement> achievementList = Achievement.AVAILABLES.map( (achievementMap) => new Achievement.fromJsonObject(achievementMap)).toList();
   
   User _userShown = null;
+  AppStateService _appStateService;
+  Router _router;
 }

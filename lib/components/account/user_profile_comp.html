@@ -16,13 +16,13 @@
       </div>
     </div>
     <div class="data-action">
-      <button class="action-button" ng-click="editPersonalData()">{{getLocalizedText("buttonedit")}}</button>
+      <button class="action-button" ng-click="editPersonalData()">EDITAR</button>
    </div>
   </div>  
   <!-- ORO -->
   <div class="pocket-data profile-section">
     <div class="data-header">
-        <span class="data-header-title">{{getLocalizedText("wallet")}}</span>
+        <span class="data-header-title">ORO</span>
     </div>
     <div class="data-content">
       <div class="data-row">
@@ -32,13 +32,29 @@
       </div>
     </div>
     <div class="data-action">
-      <button class="action-button" ng-click="goBuyGold()">{{getLocalizedText("buttonbuy")}}</button>
+      <button class="action-button" ng-click="goBuyGold()">COMPRAR</button>
+    </div>
+  </div>
+    <!-- ACHIEVEMENTS -->
+  <div class="pocket-data profile-section">
+    <div class="data-header">
+        <span class="data-header-title">LOGROS</span>
+    </div>
+    <div class="data-content">
+      <div class="data-row">
+        <div class="wrapper-box">
+          <span class="data-value-big">{{achievementsEarned}} de {{achievementList.length.toString()}} LOGROS CONSEGUIDOS</span>
+        </div>
+      </div>
+    </div>
+    <div class="data-action">
+      <button class="action-button" ng-click="goAchievements()">VER LOGROS</button>
     </div>
   </div>  
   <!-- CLASIFICACIONES -->
   <div class="ranking-data profile-section">
     <div class="data-header">
-      <span class="data-header-title">{{getLocalizedText("ranking")}}</span>
+      <span class="data-header-title">CLASEFICACIÓN</span>
     </div>
     <div class="data-content">
       <div class="single-ranking-info wrapper-box">
@@ -53,7 +69,7 @@
       </div>
     </div>
     <div class="data-action">
-      <button class="action-button" ng-click="goLeaderboard()">{{getLocalizedText("buttonrankingtable")}}</button>
+      <button class="action-button" ng-click="goLeaderboard()">VER RANKINGS</button>
     </div>
   </div>
 </div>

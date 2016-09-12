@@ -7,7 +7,6 @@ import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/utils/string_utils.dart';
-import 'package:webclient/models/achievement.dart';
 import 'package:webclient/services/facebook_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/app_state_service.dart';
@@ -24,7 +23,6 @@ class LeaderboardComp implements ShadowRootAware, DetachAware{
   static const String MAIN_RANKING          = "MAIN_RANKING";
   static const String RANKING_BEST_PLAYERS  = "RANKING_BEST_PLAYERS";
   static const String RANKING_MOST_RICH     = "RANKING_MOST_RICH";
-  static const String ACHIEVEMENTS          = "ACHIEVEMENTS";
   
   int USERS_TO_SHOW = 7;
 
@@ -42,15 +40,11 @@ class LeaderboardComp implements ShadowRootAware, DetachAware{
   bool get showShare => isLoggedPlayer;
   User userShown = null;
 
-  int get achievementsEarned => Achievement.AVAILABLES.where( (achievement) => userShown != null? userShown.hasAchievement(achievement["id"]) : false).length;
-
   String get pointsColumnName => getLocalizedText("trueskill");
   String get moneyColumnName => getLocalizedText("gold");
 
   String get trueskillTabTitle    => getLocalizedText("trueskill_tab",    substitutions: {"PLAYER_POSITION": playerPointsInfo['position']});
   String get goldTabTitle         => getLocalizedText("gold_tab",         substitutions: {"PLAYER_POSITION": playerMoneyInfo['position']});
-  String get achievementsTabTitle => getLocalizedText("achievements_tab", substitutions: {"PLAYER_ACHIEVEMENTS": achievementsEarned,
-                                                                                          "TOTAL_ACHIEVEMENTS": Achievement.AVAILABLES.length});
 
   List<Map> pointsUserList;
   List<Map> moneyUserList;
@@ -82,47 +76,28 @@ class LeaderboardComp implements ShadowRootAware, DetachAware{
   
   void set sectionActive(String section) { 
     _sectionActive = section;
+    tabList = [
+      new AppSecondaryTabBarTab("RANKING DE JUGONES", () => sectionActive = RANKING_BEST_PLAYERS, () => isRankingBestPlayersActive),
+      new AppSecondaryTabBarTab("RANKING DE FORADOS", () => sectionActive = RANKING_MOST_RICH,    () => isRankingMostRichActive)
+    ];
+    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Rankings");
+    _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerDetails;
     switch(_sectionActive) {
       case MAIN_RANKING:
         refreshTopBar();
-        tabList = [];
-        _appStateService.appSecondaryTabBarState.tabList = tabList;
+        tabList = [];        
         _appStateService.appTabBarState.show = true;
       break;
-      case RANKING_BEST_PLAYERS:        
-        tabList = [
-          new AppSecondaryTabBarTab("RANKING DE JUGONES", () => sectionActive = RANKING_BEST_PLAYERS, () => isRankingBestPlayersActive),
-          new AppSecondaryTabBarTab("RANKING DE FORADOS", () => sectionActive = RANKING_MOST_RICH,    () => isRankingMostRichActive),
-          new AppSecondaryTabBarTab("LOGROS",             () => sectionActive = ACHIEVEMENTS,         () => isAchievementsActive)
-        ];
-        _appStateService.appSecondaryTabBarState.tabList = tabList;
+      case RANKING_BEST_PLAYERS:
+        _appStateService.appTabBarState.show = false;
+      break;
+      case RANKING_MOST_RICH:
         _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Rankings");
         _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerDetails;
         _appStateService.appTabBarState.show = false;
       break;
-      case RANKING_MOST_RICH:        
-        tabList = [
-          new AppSecondaryTabBarTab("RANKING DE JUGONES", () => sectionActive = RANKING_BEST_PLAYERS, () => isRankingBestPlayersActive),
-          new AppSecondaryTabBarTab("RANKING DE FORADOS", () => sectionActive = RANKING_MOST_RICH,    () => isRankingMostRichActive),
-          new AppSecondaryTabBarTab("LOGROS",             () => sectionActive = ACHIEVEMENTS,         () => isAchievementsActive)
-        ];
-        _appStateService.appSecondaryTabBarState.tabList = tabList;
-        _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Rankings");
-        _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerDetails;
-        _appStateService.appTabBarState.show = false;
-      break;
-      case ACHIEVEMENTS:        
-        tabList = [
-          new AppSecondaryTabBarTab("RANKING DE JUGONES", () => sectionActive = RANKING_BEST_PLAYERS, () => isRankingBestPlayersActive),
-          new AppSecondaryTabBarTab("RANKING DE FORADOS", () => sectionActive = RANKING_MOST_RICH,    () => isRankingMostRichActive),
-          new AppSecondaryTabBarTab("LOGROS",             () => sectionActive = ACHIEVEMENTS,         () => isAchievementsActive)
-        ];
-        _appStateService.appSecondaryTabBarState.tabList = tabList;
-        _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Perfil");
-        _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerDetails;
-        _appStateService.appTabBarState.show = false;
-      break;
-    }    
+    }
+    _appStateService.appSecondaryTabBarState.tabList = tabList;
   }
   
   String get sectionActive => _sectionActive;
@@ -130,7 +105,6 @@ class LeaderboardComp implements ShadowRootAware, DetachAware{
   bool get isMainRankingPlayersActive => sectionActive == MAIN_RANKING;
   bool get isRankingBestPlayersActive => sectionActive == RANKING_BEST_PLAYERS;
   bool get isRankingMostRichActive => sectionActive == RANKING_MOST_RICH;
-  bool get isAchievementsActive => sectionActive == ACHIEVEMENTS;
   
   List<AppSecondaryTabBarTab> tabList = [];
   
@@ -221,7 +195,7 @@ class LeaderboardComp implements ShadowRootAware, DetachAware{
   }
 
   void refreshTopBar() {
-    if (isRankingBestPlayersActive || isRankingMostRichActive || isAchievementsActive) {
+    if (isRankingBestPlayersActive || isRankingMostRichActive) {
       return;
     }
     _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router);
@@ -244,10 +218,6 @@ class LeaderboardComp implements ShadowRootAware, DetachAware{
       case "money":
         GameMetrics.logEvent(GameMetrics.LEADERBOARD, {'value': 'money'});
         tabChange('money-content');
-      break;
-      case "achievements":
-        GameMetrics.logEvent(GameMetrics.ACHIEVEMENTS);
-        tabChange('achievements-content');
       break;
     }
   }

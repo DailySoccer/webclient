@@ -1,3 +1,64 @@
+.profile-content {
+	.flex-container-col();
+	background-color: @grey-dark;
+}
+.profile-section {
+	.flex-elem-fluid();
+	.flex-container-col();
+}
+.wrapper-box {
+	.flex-elem-fluid();
+	.flex-container-col();
+	align-items: center;
+}
+.data-content {
+	.mainfont_bold(10pt, @grey-bluish, left, uppercase);
+	padding: 15px 15px 0px 15px;
+}
+.data-header {
+	.mainfont_bold(14pt, @orange, center, uppercase);
+	.elevation(3);
+	padding: 10px 0;
+    background-color: @soft-black;
+    border-bottom: 1px solid @grey-translucid;
+}
+.data-row {
+    margin-bottom: 14px;
+}
+.data-value {
+	font-weight: 500;
+}
+.data-action {
+	.flex-elem-fluid();
+	.flex-container-col();
+	padding: 15px;
+    align-items: center;
+}
+.action-button {
+	.default-button();
+	width: 200px;
+}
+.data-value-big {
+	.mainfont_bold(20pt, @grey-bluish, center, uppercase);
+}
+.ranking-data .data-content {
+	.flex-elem-fluid();
+	.flex-container-row();
+	align-items: center;
+}
+.single-ranking-info {
+	.flex-elem-fluid();
+	padding: 15px;
+}
+.ranking-position {
+	color: @blueLight;
+}
+.single-ranking-info .data-value-big {
+	padding: 10px;
+}
+
+
+/*
 .global-user-profile #mainWrapper.wrapper-content-container {
 	background-color: @white;
 }
@@ -379,3 +440,4 @@
 		max-width: 200px;
 	}
 }
+*/

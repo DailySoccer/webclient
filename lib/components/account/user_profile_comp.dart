@@ -18,6 +18,7 @@ import 'package:webclient/components/backdrop_comp.dart';
 import 'dart:html';
 import 'package:webclient/utils/fblogin.dart';
 import 'package:webclient/utils/host_server.dart';
+import 'package:webclient/services/app_state_service.dart';
 
 @Component(
     selector: 'user-profile',
@@ -45,7 +46,7 @@ class UserProfileComp {
     return StringUtils.translate(key, group);
   }
 
-  UserProfileComp(this._router, this._profileService, this._contestsService, this.loadingService, LeaderboardService leaderboardService) {
+  UserProfileComp(this._router, this._profileService, this._contestsService, this._appStateService, this.loadingService, LeaderboardService leaderboardService) {
     loadingService.isLoading = true;
     _fbLogin = new FBLogin(_router, _profileService, fbLoginCallback);
     leaderboardService.getUsers()
@@ -87,10 +88,22 @@ class UserProfileComp {
         'name': "<unknown>",
         'points': 0
       });
+      
+      // Topbar y bottombar
+      
+      _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("PERFIL");
+      _appStateService.appTopBarState.activeState.onLeftColumn = GoBack;
+      _appStateService.appTabBarState.show = false;
+      _appStateService.appSecondaryTabBarState.tabList = [];
 
       loadingService.isLoading = false;
     });
+    
     GameMetrics.logEvent(GameMetrics.USER_PROFILE);
+  }
+  
+  void GoBack() {
+    _router.go("lobby", {});
   }
 
   String get rankingPointsPosition {
@@ -113,7 +126,7 @@ class UserProfileComp {
     _router.go('shop', {});
   }
   void goLeaderboard() { 
-    _router.go('leaderboard', {'section': 'points', 'userId': _profileService.user.userId});
+    _router.go('leaderboard', {'userId': _profileService.user.userId});
   }
 
   Future fbLoginCallback(String accessToken, String id, String name, String email) {
@@ -533,6 +546,7 @@ class UserProfileComp {
 
   ProfileService _profileService;
   ContestsService _contestsService;
+  AppStateService _appStateService;
   Router _router;
   FBLogin _fbLogin;
 }

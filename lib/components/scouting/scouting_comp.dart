@@ -131,6 +131,8 @@ class ScoutingComp implements DetachAware {
     int intId = 0;
 
     void loadUKData() {
+      
+      
       _soccerPlayerService.getSoccerPlayersByCompetition(Competition.LEAGUE_UK_ID)
         .then((Map info) {
           List<InstanceSoccerPlayer> instanceSoccerPlayers = info["instanceSoccerPlayers"];
@@ -220,7 +222,7 @@ class ScoutingComp implements DetachAware {
           leagueES_isLoading = false;
           evaluateTabLoading();
           updateFavorites();
-          loadUKData();
+          //loadUKData();
         });
   }
 

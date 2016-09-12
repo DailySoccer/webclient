@@ -20,7 +20,7 @@ import 'package:webclient/services/refresh_timers_service.dart';
     useShadowDom: false
 )
 
-class LeaderboardComp implements ShadowRootAware{
+class LeaderboardComp implements ShadowRootAware, DetachAware{
   static const String MAIN_RANKING          = "MAIN_RANKING";
   static const String RANKING_BEST_PLAYERS  = "RANKING_BEST_PLAYERS";
   static const String RANKING_MOST_RICH     = "RANKING_MOST_RICH";
@@ -195,6 +195,10 @@ class LeaderboardComp implements ShadowRootAware{
     e.classes.add("active");
   }
   */
+  
+  void detach() {
+      _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR);
+  }
   void gotoSection(String section) {
     _router.go('leaderboard', {'section':section, 'userId': userId});
   }

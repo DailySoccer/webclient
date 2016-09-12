@@ -49,9 +49,9 @@ class TopBarComp {
                 this._catalogService, this._appStateService, this._scrDet) {}
 
   void onLeftColumnClick() {
-    if (leftColumnIsBackButton) {
+   // if (leftColumnIsBackButton) {
       _appStateService.appTopBarState.activeState.onLeftColumn();
-    }
+   // }
   }
   void onCenterColumnClick() {
     if (currentState.centerColumn != AppTopBarState.EMPTY) {

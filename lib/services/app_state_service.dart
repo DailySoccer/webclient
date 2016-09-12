@@ -148,7 +148,7 @@ class AppTopBarStateConfig {
       </div>
     ''';
     onLeftColumn = (){
-      router.go("profile", {});
+      router.go("user_profile", {});
     };
     onCenterColumn = (){
       router.go("shop", {});

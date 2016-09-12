@@ -5714,14 +5714,6 @@ scoring-rules:after,
 #usersListRoot .user-row:after,
 #usersListRoot .users-table-header:before,
 #usersListRoot .users-table-header:after,
-.profile-content:before,
-.profile-content:after,
-.profile-content .profile-section .data-header:before,
-.profile-content .profile-section .data-header:after,
-.profile-content .profile-section .data-content:before,
-.profile-content .profile-section .data-content:after,
-.modal-select-account#alertRoot .panel .form-description .account-resume-box:before,
-.modal-select-account#alertRoot .panel .form-description .account-resume-box:after,
 #maintenance-wrapper .maintenance-content:before,
 #maintenance-wrapper .maintenance-content:after,
 #simplePromoF2PRoot:before,
@@ -5803,10 +5795,6 @@ scoring-rules:after,
 #joinRoot .acceptTermsAndConditionsWrapper:after,
 #usersListRoot .user-row:after,
 #usersListRoot .users-table-header:after,
-.profile-content:after,
-.profile-content .profile-section .data-header:after,
-.profile-content .profile-section .data-content:after,
-.modal-select-account#alertRoot .panel .form-description .account-resume-box:after,
 #maintenance-wrapper .maintenance-content:after,
 #simplePromoF2PRoot:after,
 .week-calendar:after,
@@ -13862,6 +13850,10 @@ top-bar {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d3d3d', endColorstr='#010201', GradientType=0);
   /* IE6-9 */
   border-bottom: 1px solid rgba(210, 210, 210, 0.3);
+  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
+  -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
+  z-index: 1;
 }
 .three-columns,
 .one-column {
@@ -20050,1298 +20042,529 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
     padding-right: 15px;
   }
 }
-.global-user-profile #mainWrapper.wrapper-content-container {
-  background-color: #ffffff;
-}
 .profile-content {
-  margin-left: 0;
-  margin-right: 0;
-  background-color: #ffffff;
-  padding-left: 0px;
-  padding-right: 0px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  background-color: #242529;
 }
-.profile-content .profile-section {
-  position: relative;
+.profile-section {
+  flex: 1;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
 }
-.profile-content .profile-section .data-header {
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 0px;
-  padding-right: 0px;
-  padding: 15px 0px 10px 0px;
-  text-align: center;
-  margin-bottom: 0px;
+.wrapper-box {
+  flex: 1;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  align-items: center;
 }
-.profile-content .profile-section .data-header .data-header-title {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
-  font-size: 12pt;
-  color: #214a5f;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
-}
-@media (min-width: 768px) {
-  .profile-content .profile-section .data-header .data-header-title {
-    font-family: 'Fjalla One', sans-serif;
-    font-weight: 700;
-    font-size: 20pt;
-    color: #214a5f;
-    text-transform: uppercase;
-    text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
-  }
-}
-.profile-content .profile-section .data-content {
-  margin-left: 0;
-  margin-right: 0;
-  padding: 10px 15px 25px 15px;
-}
-@media (min-width: 768px) {
-  .profile-content .profile-section .data-content {
-    min-height: 130px;
-  }
-}
-@media (min-width: 768px) {
-  .profile-content .profile-section .data-content .wrapper-box {
-    border-radius: 5px;
-    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5) inset;
-    padding: 10px 20px;
-    display: inline-block;
-    margin: 0px auto;
-  }
-}
-.profile-content .profile-section .data-action {
-  min-height: 80px;
-  padding: 0px 0px 30px 0px;
-  margin: 10px;
-  border-bottom: 1px dotted #000000;
-  text-align: center;
-}
-@media (min-width: 768px) {
-  .profile-content .profile-section .data-action {
-    border-bottom: 0px none #000000;
-    padding: 0px 0px 0px 0px;
-    margin: 0px;
-  }
-}
-.profile-content .profile-section .data-action .action-button {
-  color: #333333;
-  background-color: #ffffff;
-  border-color: #cccccc;
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border-width: 0;
-  -webkit-transition: All 0.08s ease-out;
-  -moz-transition: All 0.08s ease-out;
-  -ms-transition: All 0.08s ease-out;
-  -o-transition: All 0.08s ease-out;
-  transition: All 0.08s ease-out;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  background-color: #59add5;
-  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
-  outline: none !important;
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
+.data-content {
   font-size: 10pt;
-  color: #ffffff;
+  color: #757993;
   text-transform: uppercase;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  padding: 12px 12px;
-  width: 100%;
-  max-width: 300px;
-  margin: 0px auto;
-}
-.profile-content .profile-section .data-action .action-button:hover,
-.profile-content .profile-section .data-action .action-button:focus,
-.profile-content .profile-section .data-action .action-button:active,
-.profile-content .profile-section .data-action .action-button.active,
-.open .dropdown-toggle.profile-content .profile-section .data-action .action-button {
-  color: #333333;
-  background-color: #ebebeb;
-  border-color: #adadad;
-}
-.profile-content .profile-section .data-action .action-button:active,
-.profile-content .profile-section .data-action .action-button.active,
-.open .dropdown-toggle.profile-content .profile-section .data-action .action-button {
-  background-image: none;
-}
-.profile-content .profile-section .data-action .action-button.disabled,
-.profile-content .profile-section .data-action .action-button[disabled],
-fieldset[disabled] .profile-content .profile-section .data-action .action-button,
-.profile-content .profile-section .data-action .action-button.disabled:hover,
-.profile-content .profile-section .data-action .action-button[disabled]:hover,
-fieldset[disabled] .profile-content .profile-section .data-action .action-button:hover,
-.profile-content .profile-section .data-action .action-button.disabled:focus,
-.profile-content .profile-section .data-action .action-button[disabled]:focus,
-fieldset[disabled] .profile-content .profile-section .data-action .action-button:focus,
-.profile-content .profile-section .data-action .action-button.disabled:active,
-.profile-content .profile-section .data-action .action-button[disabled]:active,
-fieldset[disabled] .profile-content .profile-section .data-action .action-button:active,
-.profile-content .profile-section .data-action .action-button.disabled.active,
-.profile-content .profile-section .data-action .action-button[disabled].active,
-fieldset[disabled] .profile-content .profile-section .data-action .action-button.active {
-  background-color: #ffffff;
-  border-color: #cccccc;
-}
-.profile-content .profile-section .data-action .action-button .badge {
-  color: #ffffff;
-  background-color: #333333;
-}
-.profile-content .profile-section .data-action .action-button:focus,
-.profile-content .profile-section .data-action .action-button:active:focus,
-.profile-content .profile-section .data-action .action-button.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-.profile-content .profile-section .data-action .action-button:hover,
-.profile-content .profile-section .data-action .action-button:focus {
-  color: #333333;
-  text-decoration: none;
-}
-.profile-content .profile-section .data-action .action-button:active,
-.profile-content .profile-section .data-action .action-button.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-.profile-content .profile-section .data-action .action-button.disabled,
-.profile-content .profile-section .data-action .action-button[disabled],
-fieldset[disabled] .profile-content .profile-section .data-action .action-button {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
-.profile-content .profile-section .data-action .action-button:active,
-.profile-content .profile-section .data-action .action-button.active {
-  box-shadow: none;
-}
-.profile-content .profile-section .data-action .action-button:active:focus,
-.profile-content .profile-section .data-action .action-button.active:focus {
-  color: #ffffff;
-  background-color: #82c1df;
-  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
-}
-.profile-content .profile-section .data-action .action-button:active:hover,
-.profile-content .profile-section .data-action .action-button.active:hover {
-  color: #ffffff;
-  background-color: #82c1df;
-  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
-}
-.profile-content .profile-section .data-action .action-button:focus {
-  background-color: #59add5;
-  color: #ffffff;
-}
-.profile-content .profile-section .data-action .action-button:hover {
-  background-color: #6db7da;
-  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
-  outline: none !important;
-  color: #ffffff;
-}
-.profile-content .profile-section .data-action .action-button:hover:focus {
-  background-color: #59add5;
-  color: #ffffff;
-}
-.profile-content .profile-section .data-action .action-button:active,
-.profile-content .profile-section .data-action .action-button.active {
-  box-shadow: none;
-  background-color: #59add5;
-}
-.profile-content .profile-section .data-action .action-button:hover {
-  background-color: #6db7da;
-  outline: none !important;
-  color: #ffffff;
-}
-.profile-content .profile-section .data-action .action-button.disabled,
-.profile-content .profile-section .data-action .action-button[disabled],
-fieldset[disabled] .profile-content .profile-section .data-action .action-button {
-  background-color: #82c1df;
-  color: #ebebeb;
-  cursor: not-allowed !important;
-}
-.profile-content .profile-section .data-action .action-button.close {
-  background-color: #59add5;
-  outline: none !important;
-  color: #ffffff;
-}
-.profile-content .profile-section.binding-info .data-content {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
-  font-size: 12pt;
-  color: #ffffff;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  background-color: #214a5f;
-  height: auto;
-  min-height: 0;
-  padding: 10px 15px;
-}
-.profile-content .profile-section.binding-actions .data-content {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 10pt;
-  color: #214a5f;
-  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
-  text-align: center;
-  margin: 10px;
-  padding: 0px;
-}
-@media (min-width: 768px) {
-  .profile-content .profile-section.binding-actions .data-content {
-    min-height: 0px;
-  }
-}
-.profile-content .profile-section.binding-actions .data-action {
-  padding-bottom: 0px;
-  border: 0px;
-  min-height: 0;
-}
-.profile-content .profile-section.binding-actions .data-action .action-button {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 10pt;
-  color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  margin: 0px 1%;
-  width: 48%;
-}
-.profile-content .profile-section.binding-actions .data-action .action-button.facebook-button {
-  background-color: #4a65a0;
-}
-.profile-content .profile-section.binding-actions .data-action .action-button.server-button {
-  background-color: #fe4110;
-}
-.profile-content .profile-section.binding-actions .data-action.single-button .action-button {
-  width: 98%;
-  margin: 0px auto;
-}
-.profile-content .profile-section.personal-data .data-header {
   text-align: left;
-  padding: 10px 12px;
-  background-color: #214a5f;
-}
-.profile-content .profile-section.personal-data .data-header .data-header-title {
-  color: #ffffff;
-}
-.profile-content .profile-section.personal-data .data-content .data-key {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 9pt;
-  color: #214a5f;
-  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
-  line-height: 25pt;
-}
-.profile-content .profile-section.personal-data .data-content .data-value {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 9pt;
-  color: #214a5f;
-  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
-  line-height: 25pt;
-  margin-left: 8px;
-}
-@media (min-width: 768px) {
-  .profile-content .profile-section.personal-data {
-    border-bottom: 1px dotted #000000;
-  }
-  .profile-content .profile-section.personal-data .data-action {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-  }
-  .profile-content .profile-section.personal-data .data-action .action-button {
-    padding: 7px 20px;
-    width: auto;
-  }
-}
-.profile-content .profile-section.pocket-data {
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 0px;
-}
-@media (min-width: 768px) {
-  .profile-content .profile-section.pocket-data {
-    float: left;
-    width: 50%;
-  }
-}
-.profile-content .profile-section.pocket-data .data-content {
-  text-align: center;
-}
-.profile-content .profile-section.pocket-data .data-content .data-value-coins {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
-  font-size: 25pt;
-  color: #000000;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
-}
-.profile-content .profile-section.pocket-data .data-content .coin-icon {
-  vertical-align: baseline;
-  margin-left: 5px;
-}
-@media (min-width: 768px) {
-  .profile-content .profile-section.pocket-data .data-content .data-value-coins {
-    font-family: 'Fjalla One', sans-serif;
-    font-weight: 500;
-    font-size: 35pt;
-    color: #000000;
-    text-transform: uppercase;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
-  }
-  .profile-content .profile-section.pocket-data .data-content .coin-icon {
-    width: 32px;
-    height: 32px;
-  }
-  .profile-content .profile-section.pocket-data .data-content .wrapper-box {
-    padding: 22px 20px;
-  }
-}
-.profile-content .profile-section.pocket-data .data-action .action-button {
-  background-color: #428bca;
-  border-color: #357ebd;
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border-width: 0;
-  -webkit-transition: All 0.08s ease-out;
-  -moz-transition: All 0.08s ease-out;
-  -ms-transition: All 0.08s ease-out;
-  -o-transition: All 0.08s ease-out;
-  transition: All 0.08s ease-out;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  background-color: #a1c931;
-  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
-  outline: none !important;
+  text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
   font-family: 'Fjalla One', sans-serif;
   font-weight: 700;
-  font-size: 10pt;
-  color: #ffffff;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  padding: 12px 12px;
+  padding: 15px 15px 0px 15px;
 }
-.profile-content .profile-section.pocket-data .data-action .action-button:hover,
-.profile-content .profile-section.pocket-data .data-action .action-button:focus,
-.profile-content .profile-section.pocket-data .data-action .action-button:active,
-.profile-content .profile-section.pocket-data .data-action .action-button.active,
-.open .dropdown-toggle.profile-content .profile-section.pocket-data .data-action .action-button {
-  color: #ffffff;
-  background-color: #3276b1;
-  border-color: #285e8e;
-}
-.profile-content .profile-section.pocket-data .data-action .action-button:active,
-.profile-content .profile-section.pocket-data .data-action .action-button.active,
-.open .dropdown-toggle.profile-content .profile-section.pocket-data .data-action .action-button {
-  background-image: none;
-}
-.profile-content .profile-section.pocket-data .data-action .action-button.disabled,
-.profile-content .profile-section.pocket-data .data-action .action-button[disabled],
-fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .action-button,
-.profile-content .profile-section.pocket-data .data-action .action-button.disabled:hover,
-.profile-content .profile-section.pocket-data .data-action .action-button[disabled]:hover,
-fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .action-button:hover,
-.profile-content .profile-section.pocket-data .data-action .action-button.disabled:focus,
-.profile-content .profile-section.pocket-data .data-action .action-button[disabled]:focus,
-fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .action-button:focus,
-.profile-content .profile-section.pocket-data .data-action .action-button.disabled:active,
-.profile-content .profile-section.pocket-data .data-action .action-button[disabled]:active,
-fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .action-button:active,
-.profile-content .profile-section.pocket-data .data-action .action-button.disabled.active,
-.profile-content .profile-section.pocket-data .data-action .action-button[disabled].active,
-fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .action-button.active {
-  background-color: #428bca;
-  border-color: #357ebd;
-}
-.profile-content .profile-section.pocket-data .data-action .action-button .badge {
-  color: #428bca;
-  background-color: #ffffff;
-}
-.profile-content .profile-section.pocket-data .data-action .action-button:focus,
-.profile-content .profile-section.pocket-data .data-action .action-button:active:focus,
-.profile-content .profile-section.pocket-data .data-action .action-button.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-.profile-content .profile-section.pocket-data .data-action .action-button:hover,
-.profile-content .profile-section.pocket-data .data-action .action-button:focus {
-  color: #333333;
-  text-decoration: none;
-}
-.profile-content .profile-section.pocket-data .data-action .action-button:active,
-.profile-content .profile-section.pocket-data .data-action .action-button.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-.profile-content .profile-section.pocket-data .data-action .action-button.disabled,
-.profile-content .profile-section.pocket-data .data-action .action-button[disabled],
-fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .action-button {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
-.profile-content .profile-section.pocket-data .data-action .action-button:active,
-.profile-content .profile-section.pocket-data .data-action .action-button.active {
-  box-shadow: none;
-}
-.profile-content .profile-section.pocket-data .data-action .action-button:active:focus,
-.profile-content .profile-section.pocket-data .data-action .action-button.active:focus {
-  color: #ffffff;
-  background-color: #b5d657;
-  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
-}
-.profile-content .profile-section.pocket-data .data-action .action-button:active:hover,
-.profile-content .profile-section.pocket-data .data-action .action-button.active:hover {
-  color: #ffffff;
-  background-color: #b5d657;
-  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
-}
-.profile-content .profile-section.pocket-data .data-action .action-button:focus {
-  background-color: #a1c931;
-  color: #ffffff;
-}
-.profile-content .profile-section.pocket-data .data-action .action-button:hover {
-  background-color: #acd142;
-  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
-  outline: none !important;
-  color: #ffffff;
-}
-.profile-content .profile-section.pocket-data .data-action .action-button:hover:focus {
-  background-color: #a1c931;
-  color: #ffffff;
-}
-.profile-content .profile-section.pocket-data .data-action .action-button:active,
-.profile-content .profile-section.pocket-data .data-action .action-button.active {
-  box-shadow: none;
-  background-color: #a1c931;
-}
-.profile-content .profile-section.pocket-data .data-action .action-button:hover {
-  background-color: #acd142;
-  outline: none !important;
-  color: #ffffff;
-}
-.profile-content .profile-section.pocket-data .data-action .action-button.disabled,
-.profile-content .profile-section.pocket-data .data-action .action-button[disabled],
-fieldset[disabled] .profile-content .profile-section.pocket-data .data-action .action-button {
-  background-color: #b5d657;
-  color: #ebebeb;
-  cursor: not-allowed !important;
-}
-.profile-content .profile-section.pocket-data .data-action .action-button.close {
-  background-color: #a1c931;
-  outline: none !important;
-  color: #ffffff;
-}
-@media (min-width: 768px) {
-  .profile-content .profile-section.pocket-data {
-    border-right: 1px dotted #000000;
-  }
-}
-.profile-content .profile-section.ranking-data {
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 0px;
-}
-@media (min-width: 768px) {
-  .profile-content .profile-section.ranking-data {
-    float: left;
-    width: 50%;
-  }
-}
-.profile-content .profile-section.ranking-data .data-content {
-  padding-right: 50px;
-  padding-left: 50px;
-}
-@media (max-width: 480px) {
-  .profile-content .profile-section.ranking-data .data-content {
-    padding-right: 0px;
-    padding-left: 0px;
-  }
-}
-.profile-content .profile-section.ranking-data .data-content .single-ranking-info {
-  text-align: center;
-  position: relative;
-  float: left;
-  width: 47.5%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-.profile-content .profile-section.ranking-data .data-content .single-ranking-info .ranking-badge {
-  width: 32px;
-  height: 32px;
-}
-.profile-content .profile-section.ranking-data .data-content .single-ranking-info .ranking-position {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
-  font-size: 25pt;
-  color: #214a5f;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
-  display: block;
-  margin-bottom: -5px;
-}
-.profile-content .profile-section.ranking-data .data-content .single-ranking-info .ranking-score {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
-  font-size: 10pt;
+.data-header {
+  font-size: 14pt;
   color: #fa9c19;
   text-transform: uppercase;
-  text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
-  display: block;
-}
-.profile-content .profile-section.ranking-data .data-content .single-ranking-info.ranking-by-money {
-  margin-left: 5%;
-}
-.profile-content .profile-section.ranking-data .data-action {
-  border-bottom: 0px none #000000;
-}
-.modal-bind-join-login#alertRoot .panel,
-.modal-select-account#alertRoot .panel {
-  background-color: #e7e7e7;
-}
-.modal-bind-join-login#alertRoot .panel .panel-body,
-.modal-select-account#alertRoot .panel .panel-body {
-  padding-bottom: 35px;
-}
-.modal-bind-join-login#alertRoot .panel .form-description .close-button,
-.modal-select-account#alertRoot .panel .form-description .close-button {
-  color: #214a5f;
-  font-size: 20pt;
-  float: right;
-  width: 18pt;
-  height: 14pt;
-  cursor: pointer;
-  line-height: 14pt;
-}
-.modal-bind-join-login#alertRoot .panel .form-description .back-button,
-.modal-select-account#alertRoot .panel .form-description .back-button {
-  color: #214a5f;
-  font-size: 20pt;
-  float: left;
-  width: 18pt;
-  height: 14pt;
-  cursor: pointer;
-  line-height: 14pt;
-}
-.modal-bind-join-login#alertRoot .panel .form-description h1,
-.modal-select-account#alertRoot .panel .form-description h1 {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
-  font-size: 12pt;
-  color: #214a5f;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 1px rgba(33, 74, 95, 0.004);
-  margin-top: 0;
-}
-.modal-bind-join-login#alertRoot .panel .form-description .back-button + h1,
-.modal-select-account#alertRoot .panel .form-description .back-button + h1 {
-  margin-right: 18pt;
-}
-.modal-bind-join-login#alertRoot .panel .form-description .close-button + h1,
-.modal-select-account#alertRoot .panel .form-description .close-button + h1 {
-  margin-left: 18pt;
-}
-.modal-bind-join-login#alertRoot .panel .form-description p,
-.modal-select-account#alertRoot .panel .form-description p {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 12pt;
-  color: #0d75a6;
-  text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
-  padding-top: 25px;
-  max-width: 280px;
-  margin: 15px auto;
-}
-.modal-bind-join-login#alertRoot .panel .form-description p + p,
-.modal-select-account#alertRoot .panel .form-description p + p {
-  padding-top: 0;
-}
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button {
-  background-color: #428bca;
-  border-color: #357ebd;
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
   text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border-width: 0;
-  -webkit-transition: All 0.08s ease-out;
-  -moz-transition: All 0.08s ease-out;
-  -ms-transition: All 0.08s ease-out;
-  -o-transition: All 0.08s ease-out;
-  transition: All 0.08s ease-out;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  background-color: #a1c931;
-  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
-  outline: none !important;
+  text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
   font-family: 'Fjalla One', sans-serif;
   font-weight: 700;
+  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
+  -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
+  padding: 10px 0;
+  background-color: #181818;
+  border-bottom: 1px solid rgba(210, 210, 210, 0.3);
+}
+.data-row {
+  margin-bottom: 14px;
+}
+.data-value {
+  font-weight: 500;
+}
+.data-action {
+  flex: 1;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  padding: 15px;
+  align-items: center;
+}
+.action-button {
+  background-image: -webkit-linear-gradient(top, #0d75a6 0%, #0c4c6a 100%);
+  background-image: linear-gradient(to bottom, #0d75a6 0%, #0c4c6a 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0d75a6', endColorstr='#ff0c4c6a', GradientType=0);
   font-size: 10pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
+  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
+  padding: 10px;
+  border: none;
   width: 100%;
+  cursor: pointer;
+  border: 0;
+  outline-offset: 0px;
+  outline: none;
+  width: 200px;
+}
+.action-button:hover,
+.action-button:active,
+.action-button:focus {
+  border: 0;
+  outline-offset: 0px;
+  outline: none;
+}
+.action-button:disabled {
+  color: #757993;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.data-value-big {
+  font-size: 20pt;
+  color: #757993;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
+}
+.ranking-data .data-content {
+  flex: 1;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+.single-ranking-info {
+  flex: 1;
+  padding: 15px;
+}
+.ranking-position {
+  color: #59add5;
+}
+.single-ranking-info .data-value-big {
   padding: 10px;
 }
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button:hover,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button:hover,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:hover,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button:hover,
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button:focus,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button:focus,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:focus,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button:focus,
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button:active,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button:active,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:active,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button:active,
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button.active,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button.active,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.active,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button.active,
-.open .dropdown-toggle.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button,
-.open .dropdown-toggle.modal-select-account#alertRoot .panel .form-description button.confirm-button,
-.open .dropdown-toggle.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button,
-.open .dropdown-toggle.modal-select-account#alertRoot .panel .form-description button.bind-type-button {
-  color: #ffffff;
-  background-color: #3276b1;
-  border-color: #285e8e;
+/*
+.global-user-profile #mainWrapper.wrapper-content-container {
+	background-color: @white;
 }
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button:active,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button:active,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:active,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button:active,
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button.active,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button.active,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.active,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button.active,
-.open .dropdown-toggle.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button,
-.open .dropdown-toggle.modal-select-account#alertRoot .panel .form-description button.confirm-button,
-.open .dropdown-toggle.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button,
-.open .dropdown-toggle.modal-select-account#alertRoot .panel .form-description button.bind-type-button {
-  background-image: none;
+
+.profile-content {
+	.make-row(0);
+	background-color: @white;
+	.clean-paddings();
+	
+	.profile-section {
+		position: relative;
+		.data-header {
+			.make-row(0);
+			.clean-paddings();
+			padding: 15px 0px 10px 0px;
+			text-align: center;
+			
+			.data-header-title {
+				.exo_bold(12pt, @blueDark);
+				@media (min-width: @screen-sm-min) {
+					.exo_bold(20pt, @blueDark);
+				}
+			}
+			margin-bottom: 0px;
+		}
+		
+		.data-content {
+			.make-row(0);
+			padding: 10px 15px 25px 15px;
+			
+			@media (min-width: @screen-sm-min) {
+				min-height: 130px;
+			}
+			
+			.wrapper-box {
+				@media (min-width: @screen-sm-min) {
+					border-radius: 5px;
+					box-shadow: 1px 1px 7px rgba(0,0,0,0.5) inset;
+					padding: 10px 20px;
+					display: inline-block;
+					margin: 0px auto;
+				}
+			}
+		}
+		
+		.data-action {
+			min-height: 80px;
+			padding: 0px 0px 30px 0px;
+			margin: 10px;
+			border-bottom: 1px dotted @black;
+			text-align: center;
+			
+			@media (min-width: @screen-sm-min) {
+				border-bottom: 0px none @black;
+				padding: 0px 0px 0px 0px;
+				margin: 0px;
+			}
+			.action-button {
+				.btn-default();
+				.exo_bold(10pt, @white);
+				padding: 12px 12px;
+				width: 100%;
+				max-width: 300px;
+				margin: 0px auto;
+			}
+		}
+		&.binding-info {
+			.data-content {
+				.exo_bold(12pt, @white);
+				background-color: @blueDark;
+				height: auto;
+				min-height: 0;
+				padding: 10px 15px;
+			}
+		}
+		&.binding-actions {
+			.data-content {
+				.opensans_bold(10pt, @blueDark);
+				text-align: center;
+				margin: 10px;
+				padding: 0px;
+				
+				@media (min-width: @screen-sm-min) {
+					min-height: 0px;
+				}
+
+			}
+			.data-action {
+				.action-button {
+					.opensans_bold(10pt, @white);
+					margin: 0px 1%;
+					width: 48%;
+					&.facebook-button {
+						background-color: @blueFB;
+					}
+					&.server-button {
+						background-color: @redCuatro;
+					}
+				}
+				&.single-button .action-button {
+					width: 98%;
+					margin: 0px auto;
+				}
+				padding-bottom: 0px;
+				border: 0px;
+				min-height: 0;
+			}
+			.data-action.facebook-logged .facebook-logged-message {
+				
+			}
+		}
+		
+		&.personal-data {
+			.data-header{
+
+				text-align: left;
+				padding: 10px 12px;
+				background-color: @blueDark;
+				.data-header-title {
+					color: @white;
+				}
+			}
+			
+			.data-content {
+				.data-key {
+					.opensans_bold(9pt, @blueDark);
+					line-height: 25pt;
+				}
+				
+				.data-value {
+					.opensans_normal(9pt, @blueDark);
+					line-height: 25pt;
+					margin-left: 8px;
+				}
+			}
+			@media (min-width: @screen-sm-min ) {
+				border-bottom: 1px dotted @black;
+				.data-action {
+					position: absolute;
+					top: 10px;
+					right: 15px;
+					.action-button {
+						padding: 7px 20px;
+						width: auto;
+					}
+				}
+			}
+
+		}
+
+		
+		&.pocket-data {
+			.make-sm-column(6);
+			padding: 0px;
+			
+			.data-content {
+				text-align: center;
+				.data-value-coins {
+					.exo_light(25pt, @black);
+				}
+				.coin-icon {
+					vertical-align: baseline;
+					margin-left: 5px;
+				}
+				
+				@media (min-width: @screen-sm-min) {
+					.data-value-coins {
+						.exo_light(35pt, @black);
+					}
+					.coin-icon {
+						width: 32px;
+						height: 32px;
+					}
+					.wrapper-box {
+							padding: 22px 20px;
+					}
+					
+				}
+				
+			}
+			
+			.data-action .action-button {
+				.btn-primary();
+				.exo_bold(10pt, @white);
+				padding: 12px 12px;
+			}
+			@media (min-width: @screen-sm-min) {
+				border-right: 1px dotted @black;
+			}
+		}
+		
+		&.ranking-data {
+			.make-sm-column(6);
+			padding: 0px;
+			
+			.data-content {
+				padding-right: 50px;
+				padding-left: 50px;
+				
+				@media (max-width: @screen-xs-min) {
+					padding-right: 0px;
+					padding-left: 0px;
+				}
+				
+				.single-ranking-info {
+					text-align: center;
+					.make-xs-column(5.7);
+					
+					.ranking-badge {
+						width: 32px;
+						height: 32px;
+					}
+					.ranking-position {
+						.exo_light(25pt, @blueDark);
+						display: block;
+						margin-bottom: -5px;
+					}
+					.ranking-score {
+						.exo_bold(10pt, @orange);
+						display: block;
+					}
+					
+					&.ranking-by-money {
+						//.make-xs-column-offset(@columns) correction
+						margin-left: percentage((0.6 / @grid-columns));
+					}
+				}
+			}
+			
+			.data-action {
+				border-bottom: 0px none @black;
+			}
+		}
+
+	}
+	
 }
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button.disabled,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button.disabled,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.disabled,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button.disabled,
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button[disabled],
-.modal-select-account#alertRoot .panel .form-description button.confirm-button[disabled],
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button[disabled],
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button[disabled],
-fieldset[disabled] .modal-bind-join-login#alertRoot .panel .form-description button.confirm-button,
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.confirm-button,
-fieldset[disabled] .modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button,
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.bind-type-button,
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button.disabled:hover,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button.disabled:hover,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.disabled:hover,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button.disabled:hover,
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button[disabled]:hover,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button[disabled]:hover,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button[disabled]:hover,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button[disabled]:hover,
-fieldset[disabled] .modal-bind-join-login#alertRoot .panel .form-description button.confirm-button:hover,
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.confirm-button:hover,
-fieldset[disabled] .modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:hover,
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.bind-type-button:hover,
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button.disabled:focus,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button.disabled:focus,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.disabled:focus,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button.disabled:focus,
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button[disabled]:focus,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button[disabled]:focus,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button[disabled]:focus,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button[disabled]:focus,
-fieldset[disabled] .modal-bind-join-login#alertRoot .panel .form-description button.confirm-button:focus,
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.confirm-button:focus,
-fieldset[disabled] .modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:focus,
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.bind-type-button:focus,
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button.disabled:active,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button.disabled:active,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.disabled:active,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button.disabled:active,
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button[disabled]:active,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button[disabled]:active,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button[disabled]:active,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button[disabled]:active,
-fieldset[disabled] .modal-bind-join-login#alertRoot .panel .form-description button.confirm-button:active,
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.confirm-button:active,
-fieldset[disabled] .modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:active,
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.bind-type-button:active,
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button.disabled.active,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button.disabled.active,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.disabled.active,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button.disabled.active,
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button[disabled].active,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button[disabled].active,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button[disabled].active,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button[disabled].active,
-fieldset[disabled] .modal-bind-join-login#alertRoot .panel .form-description button.confirm-button.active,
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.confirm-button.active,
-fieldset[disabled] .modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.active,
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.bind-type-button.active {
-  background-color: #428bca;
-  border-color: #357ebd;
+
+.modal-bind-join-login#alertRoot .panel,
+.modal-select-account#alertRoot .panel {
+	background-color: @greyLighter;
+	.panel-body {
+		padding-bottom: 35px;
+	}
+	.form-description {
+		.close-button {
+			color: @blueDark;
+			font-size: 20pt;
+			float: right;
+			width: 18pt;
+			height: 14pt;
+			cursor: pointer;
+			line-height: 14pt;
+		}
+		.back-button {
+			color: @blueDark;
+			font-size: 20pt;
+			float: left;
+			width: 18pt;
+			height: 14pt;
+			cursor: pointer;
+			line-height: 14pt;
+		}
+		h1 {
+			.exo_bold(12pt, @blueDark);
+			margin-top: 0;
+		}
+		
+		.back-button + h1 {
+			margin-right: 18pt;
+		}
+		.close-button + h1 {
+			margin-left: 18pt;
+		}
+		p {
+			.opensans_normal(12pt, @blueMed);
+			padding-top: 25px;
+			max-width: 280px;
+			margin: 15px auto;
+		}
+		p + p {
+			padding-top: 0;
+		}
+		button.confirm-button,
+		button.bind-type-button {
+			.btn-primary();
+			.exo_bold(10pt, @white);
+			width: 100%;
+			padding: 10px;
+		}
+		button.confirm-button {
+			margin-top: 20px;
+		}
+	}
 }
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button .badge,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button .badge,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button .badge,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button .badge {
-  color: #428bca;
-  background-color: #ffffff;
+
+.modal-select-account#alertRoot .panel .form-description{
+	.account-resume-box {
+		.make-row();
+		margin: 0;
+		
+		.account-resume-username,
+		.account-resume-gold,
+		.account-resume-played,
+		.account-resume-level,
+		.account-resume-playing {
+			background-color: @white;
+			.opensans_normal(8pt, @greyMedDark);
+			border: 1px solid @greyMed;
+		}
+		
+		.account-resume-username {
+			.make-xs-column(12);
+			padding: 5px 5px;
+			font-size: 12pt;
+			border-bottom: none;
+		}
+		
+		.account-resume-gold,
+		.account-resume-played,
+		.account-resume-level,
+		.account-resume-playing {
+			.make-xs-column(6);
+			padding: 10px 5px;
+			text-align: left;
+		}
+		
+		.account-resume-gold,
+		.account-resume-played {
+			border-bottom: none;
+		}
+		.account-resume-gold,
+		.account-resume-level {
+			border-right: none;
+		}
+		
+		.account-resume-gold:before {
+			content: "";
+			.addIcon("icon-coin-xs.png", 17px, 17px);
+			background-size: 17px 17px;
+			margin-right: 5px;
+		}
+		.account-resume-level:before {
+			content: "";
+			.addIcon("icon-star-xs.png", 17px, 17px);
+			background-size: 17px 17px;
+			margin-right: 5px;
+		}
+		.account-resume-played:before {
+			content: "";
+			.addIcon("VincularCuentaTrophy.png", 17px, 17px);
+			background-size: 17px 17px;
+			margin-right: 5px;
+		}
+		.account-resume-playing:before {
+			content: "";
+			.addIcon("VincularCuentaBall.png", 17px, 17px);
+			background-size: 17px 17px;
+			margin-right: 5px;
+		}
+	}
+	button.cloud-button, 
+	button.device-button {
+		.btn-primary();
+		.make-xs-column(12);
+		.exo_bold(10pt, @white);
+		border-radius: 2px;
+		vertical-align: middle;
+		i {
+			margin-left: 10px;
+			vertical-align: middle;
+		}
+	}
+	button.cloud-button {
+		margin-bottom: 20px;
+	}
+	p {
+		margin: 15px auto;
+		max-width: 200px;
+	}
 }
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button:focus,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button:focus,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:focus,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button:focus,
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button:active:focus,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button:active:focus,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:active:focus,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button:active:focus,
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button.active:focus,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button.active:focus,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.active:focus,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button:hover,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button:hover,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:hover,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button:hover,
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button:focus,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button:focus,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:focus,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button:focus {
-  color: #333333;
-  text-decoration: none;
-}
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button:active,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button:active,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:active,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button:active,
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button.active,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button.active,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.active,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button.disabled,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button.disabled,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.disabled,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button.disabled,
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button[disabled],
-.modal-select-account#alertRoot .panel .form-description button.confirm-button[disabled],
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button[disabled],
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button[disabled],
-fieldset[disabled] .modal-bind-join-login#alertRoot .panel .form-description button.confirm-button,
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.confirm-button,
-fieldset[disabled] .modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button,
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.bind-type-button {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button:active,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button:active,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:active,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button:active,
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button.active,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button.active,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.active,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button.active {
-  box-shadow: none;
-}
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button:active:focus,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button:active:focus,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:active:focus,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button:active:focus,
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button.active:focus,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button.active:focus,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.active:focus,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button.active:focus {
-  color: #ffffff;
-  background-color: #b5d657;
-  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
-}
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button:active:hover,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button:active:hover,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:active:hover,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button:active:hover,
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button.active:hover,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button.active:hover,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.active:hover,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button.active:hover {
-  color: #ffffff;
-  background-color: #b5d657;
-  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
-}
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button:focus,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button:focus,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:focus,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button:focus {
-  background-color: #a1c931;
-  color: #ffffff;
-}
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button:hover,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button:hover,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:hover,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button:hover {
-  background-color: #acd142;
-  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
-  outline: none !important;
-  color: #ffffff;
-}
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button:hover:focus,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button:hover:focus,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:hover:focus,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button:hover:focus {
-  background-color: #a1c931;
-  color: #ffffff;
-}
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button:active,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button:active,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:active,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button:active,
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button.active,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button.active,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.active,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button.active {
-  box-shadow: none;
-  background-color: #a1c931;
-}
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button:hover,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button:hover,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button:hover,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button:hover {
-  background-color: #acd142;
-  outline: none !important;
-  color: #ffffff;
-}
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button.disabled,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button.disabled,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.disabled,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button.disabled,
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button[disabled],
-.modal-select-account#alertRoot .panel .form-description button.confirm-button[disabled],
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button[disabled],
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button[disabled],
-fieldset[disabled] .modal-bind-join-login#alertRoot .panel .form-description button.confirm-button,
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.confirm-button,
-fieldset[disabled] .modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button,
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.bind-type-button {
-  background-color: #b5d657;
-  color: #ebebeb;
-  cursor: not-allowed !important;
-}
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button.close,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button.close,
-.modal-bind-join-login#alertRoot .panel .form-description button.bind-type-button.close,
-.modal-select-account#alertRoot .panel .form-description button.bind-type-button.close {
-  background-color: #a1c931;
-  outline: none !important;
-  color: #ffffff;
-}
-.modal-bind-join-login#alertRoot .panel .form-description button.confirm-button,
-.modal-select-account#alertRoot .panel .form-description button.confirm-button {
-  margin-top: 20px;
-}
-.modal-select-account#alertRoot .panel .form-description .account-resume-box {
-  margin-left: -15px;
-  margin-right: -15px;
-  margin: 0;
-}
-.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-username,
-.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-gold,
-.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-played,
-.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-level,
-.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-playing {
-  background-color: #ffffff;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 8pt;
-  color: #818181;
-  text-shadow: 1px 1px 1px rgba(129, 129, 129, 0.004);
-  border: 1px solid #afafaf;
-}
-.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-username {
-  position: relative;
-  float: left;
-  width: 100%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 5px 5px;
-  font-size: 12pt;
-  border-bottom: none;
-}
-.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-gold,
-.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-played,
-.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-level,
-.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-playing {
-  position: relative;
-  float: left;
-  width: 50%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 10px 5px;
-  text-align: left;
-}
-.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-gold,
-.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-played {
-  border-bottom: none;
-}
-.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-gold,
-.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-level {
-  border-right: none;
-}
-.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-gold:before {
-  content: "";
-  content: " ";
-  background-image: url("../images/icon-coin-xs.png");
-  width: 17px;
-  height: 17px;
-  display: inline-block;
-  vertical-align: middle;
-  background-size: 17px 17px;
-  margin-right: 5px;
-}
-.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-level:before {
-  content: "";
-  content: " ";
-  background-image: url("../images/icon-star-xs.png");
-  width: 17px;
-  height: 17px;
-  display: inline-block;
-  vertical-align: middle;
-  background-size: 17px 17px;
-  margin-right: 5px;
-}
-.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-played:before {
-  content: "";
-  content: " ";
-  background-image: url("../images/VincularCuentaTrophy.png");
-  width: 17px;
-  height: 17px;
-  display: inline-block;
-  vertical-align: middle;
-  background-size: 17px 17px;
-  margin-right: 5px;
-}
-.modal-select-account#alertRoot .panel .form-description .account-resume-box .account-resume-playing:before {
-  content: "";
-  content: " ";
-  background-image: url("../images/VincularCuentaBall.png");
-  width: 17px;
-  height: 17px;
-  display: inline-block;
-  vertical-align: middle;
-  background-size: 17px 17px;
-  margin-right: 5px;
-}
-.modal-select-account#alertRoot .panel .form-description button.cloud-button,
-.modal-select-account#alertRoot .panel .form-description button.device-button {
-  background-color: #428bca;
-  border-color: #357ebd;
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border-width: 0;
-  -webkit-transition: All 0.08s ease-out;
-  -moz-transition: All 0.08s ease-out;
-  -ms-transition: All 0.08s ease-out;
-  -o-transition: All 0.08s ease-out;
-  transition: All 0.08s ease-out;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  background-color: #a1c931;
-  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
-  outline: none !important;
-  position: relative;
-  float: left;
-  width: 100%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
-  font-size: 10pt;
-  color: #ffffff;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  border-radius: 2px;
-  vertical-align: middle;
-}
-.modal-select-account#alertRoot .panel .form-description button.cloud-button:hover,
-.modal-select-account#alertRoot .panel .form-description button.device-button:hover,
-.modal-select-account#alertRoot .panel .form-description button.cloud-button:focus,
-.modal-select-account#alertRoot .panel .form-description button.device-button:focus,
-.modal-select-account#alertRoot .panel .form-description button.cloud-button:active,
-.modal-select-account#alertRoot .panel .form-description button.device-button:active,
-.modal-select-account#alertRoot .panel .form-description button.cloud-button.active,
-.modal-select-account#alertRoot .panel .form-description button.device-button.active,
-.open .dropdown-toggle.modal-select-account#alertRoot .panel .form-description button.cloud-button,
-.open .dropdown-toggle.modal-select-account#alertRoot .panel .form-description button.device-button {
-  color: #ffffff;
-  background-color: #3276b1;
-  border-color: #285e8e;
-}
-.modal-select-account#alertRoot .panel .form-description button.cloud-button:active,
-.modal-select-account#alertRoot .panel .form-description button.device-button:active,
-.modal-select-account#alertRoot .panel .form-description button.cloud-button.active,
-.modal-select-account#alertRoot .panel .form-description button.device-button.active,
-.open .dropdown-toggle.modal-select-account#alertRoot .panel .form-description button.cloud-button,
-.open .dropdown-toggle.modal-select-account#alertRoot .panel .form-description button.device-button {
-  background-image: none;
-}
-.modal-select-account#alertRoot .panel .form-description button.cloud-button.disabled,
-.modal-select-account#alertRoot .panel .form-description button.device-button.disabled,
-.modal-select-account#alertRoot .panel .form-description button.cloud-button[disabled],
-.modal-select-account#alertRoot .panel .form-description button.device-button[disabled],
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.cloud-button,
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.device-button,
-.modal-select-account#alertRoot .panel .form-description button.cloud-button.disabled:hover,
-.modal-select-account#alertRoot .panel .form-description button.device-button.disabled:hover,
-.modal-select-account#alertRoot .panel .form-description button.cloud-button[disabled]:hover,
-.modal-select-account#alertRoot .panel .form-description button.device-button[disabled]:hover,
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.cloud-button:hover,
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.device-button:hover,
-.modal-select-account#alertRoot .panel .form-description button.cloud-button.disabled:focus,
-.modal-select-account#alertRoot .panel .form-description button.device-button.disabled:focus,
-.modal-select-account#alertRoot .panel .form-description button.cloud-button[disabled]:focus,
-.modal-select-account#alertRoot .panel .form-description button.device-button[disabled]:focus,
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.cloud-button:focus,
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.device-button:focus,
-.modal-select-account#alertRoot .panel .form-description button.cloud-button.disabled:active,
-.modal-select-account#alertRoot .panel .form-description button.device-button.disabled:active,
-.modal-select-account#alertRoot .panel .form-description button.cloud-button[disabled]:active,
-.modal-select-account#alertRoot .panel .form-description button.device-button[disabled]:active,
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.cloud-button:active,
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.device-button:active,
-.modal-select-account#alertRoot .panel .form-description button.cloud-button.disabled.active,
-.modal-select-account#alertRoot .panel .form-description button.device-button.disabled.active,
-.modal-select-account#alertRoot .panel .form-description button.cloud-button[disabled].active,
-.modal-select-account#alertRoot .panel .form-description button.device-button[disabled].active,
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.cloud-button.active,
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.device-button.active {
-  background-color: #428bca;
-  border-color: #357ebd;
-}
-.modal-select-account#alertRoot .panel .form-description button.cloud-button .badge,
-.modal-select-account#alertRoot .panel .form-description button.device-button .badge {
-  color: #428bca;
-  background-color: #ffffff;
-}
-.modal-select-account#alertRoot .panel .form-description button.cloud-button:focus,
-.modal-select-account#alertRoot .panel .form-description button.device-button:focus,
-.modal-select-account#alertRoot .panel .form-description button.cloud-button:active:focus,
-.modal-select-account#alertRoot .panel .form-description button.device-button:active:focus,
-.modal-select-account#alertRoot .panel .form-description button.cloud-button.active:focus,
-.modal-select-account#alertRoot .panel .form-description button.device-button.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-.modal-select-account#alertRoot .panel .form-description button.cloud-button:hover,
-.modal-select-account#alertRoot .panel .form-description button.device-button:hover,
-.modal-select-account#alertRoot .panel .form-description button.cloud-button:focus,
-.modal-select-account#alertRoot .panel .form-description button.device-button:focus {
-  color: #333333;
-  text-decoration: none;
-}
-.modal-select-account#alertRoot .panel .form-description button.cloud-button:active,
-.modal-select-account#alertRoot .panel .form-description button.device-button:active,
-.modal-select-account#alertRoot .panel .form-description button.cloud-button.active,
-.modal-select-account#alertRoot .panel .form-description button.device-button.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-.modal-select-account#alertRoot .panel .form-description button.cloud-button.disabled,
-.modal-select-account#alertRoot .panel .form-description button.device-button.disabled,
-.modal-select-account#alertRoot .panel .form-description button.cloud-button[disabled],
-.modal-select-account#alertRoot .panel .form-description button.device-button[disabled],
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.cloud-button,
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.device-button {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
-.modal-select-account#alertRoot .panel .form-description button.cloud-button:active,
-.modal-select-account#alertRoot .panel .form-description button.device-button:active,
-.modal-select-account#alertRoot .panel .form-description button.cloud-button.active,
-.modal-select-account#alertRoot .panel .form-description button.device-button.active {
-  box-shadow: none;
-}
-.modal-select-account#alertRoot .panel .form-description button.cloud-button:active:focus,
-.modal-select-account#alertRoot .panel .form-description button.device-button:active:focus,
-.modal-select-account#alertRoot .panel .form-description button.cloud-button.active:focus,
-.modal-select-account#alertRoot .panel .form-description button.device-button.active:focus {
-  color: #ffffff;
-  background-color: #b5d657;
-  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
-}
-.modal-select-account#alertRoot .panel .form-description button.cloud-button:active:hover,
-.modal-select-account#alertRoot .panel .form-description button.device-button:active:hover,
-.modal-select-account#alertRoot .panel .form-description button.cloud-button.active:hover,
-.modal-select-account#alertRoot .panel .form-description button.device-button.active:hover {
-  color: #ffffff;
-  background-color: #b5d657;
-  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
-}
-.modal-select-account#alertRoot .panel .form-description button.cloud-button:focus,
-.modal-select-account#alertRoot .panel .form-description button.device-button:focus {
-  background-color: #a1c931;
-  color: #ffffff;
-}
-.modal-select-account#alertRoot .panel .form-description button.cloud-button:hover,
-.modal-select-account#alertRoot .panel .form-description button.device-button:hover {
-  background-color: #acd142;
-  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
-  outline: none !important;
-  color: #ffffff;
-}
-.modal-select-account#alertRoot .panel .form-description button.cloud-button:hover:focus,
-.modal-select-account#alertRoot .panel .form-description button.device-button:hover:focus {
-  background-color: #a1c931;
-  color: #ffffff;
-}
-.modal-select-account#alertRoot .panel .form-description button.cloud-button:active,
-.modal-select-account#alertRoot .panel .form-description button.device-button:active,
-.modal-select-account#alertRoot .panel .form-description button.cloud-button.active,
-.modal-select-account#alertRoot .panel .form-description button.device-button.active {
-  box-shadow: none;
-  background-color: #a1c931;
-}
-.modal-select-account#alertRoot .panel .form-description button.cloud-button:hover,
-.modal-select-account#alertRoot .panel .form-description button.device-button:hover {
-  background-color: #acd142;
-  outline: none !important;
-  color: #ffffff;
-}
-.modal-select-account#alertRoot .panel .form-description button.cloud-button.disabled,
-.modal-select-account#alertRoot .panel .form-description button.device-button.disabled,
-.modal-select-account#alertRoot .panel .form-description button.cloud-button[disabled],
-.modal-select-account#alertRoot .panel .form-description button.device-button[disabled],
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.cloud-button,
-fieldset[disabled] .modal-select-account#alertRoot .panel .form-description button.device-button {
-  background-color: #b5d657;
-  color: #ebebeb;
-  cursor: not-allowed !important;
-}
-.modal-select-account#alertRoot .panel .form-description button.cloud-button.close,
-.modal-select-account#alertRoot .panel .form-description button.device-button.close {
-  background-color: #a1c931;
-  outline: none !important;
-  color: #ffffff;
-}
-.modal-select-account#alertRoot .panel .form-description button.cloud-button i,
-.modal-select-account#alertRoot .panel .form-description button.device-button i {
-  margin-left: 10px;
-  vertical-align: middle;
-}
-.modal-select-account#alertRoot .panel .form-description button.cloud-button {
-  margin-bottom: 20px;
-}
-.modal-select-account#alertRoot .panel .form-description p {
-  margin: 15px auto;
-  max-width: 200px;
-}
+*/
 view-contest-entry {
   display: -webkit-box;
   display: -moz-box;
@@ -22655,10 +21878,6 @@ users-list#usersList > .epic-tooltip {
 #homeRoot #joinRoot .acceptTermsAndConditionsWrapper,
 #homeRoot #usersListRoot .user-row,
 #homeRoot #usersListRoot .users-table-header,
-#homeRoot .profile-content,
-#homeRoot .profile-content .profile-section .data-header,
-#homeRoot .profile-content .profile-section .data-content,
-#homeRoot .modal-select-account#alertRoot .panel .form-description .account-resume-box,
 #homeRoot #maintenance-wrapper .maintenance-content,
 #homeRoot #simplePromoF2PRoot,
 #homeRoot .week-calendar,

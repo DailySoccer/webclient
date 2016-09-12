@@ -7,11 +7,9 @@
 	objects = {
 /* Begin PBXBuildFile section */
 		0306C076BA7A4C398496080B /* CDVInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 713EE76E5D054B3CB2EDBCBB /* CDVInAppBrowser.m */; };
-		0FAF99D003904393A61F2A8A /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 418C81B7794C4375A44131BB /* FBSDKShareKit.framework */; };
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		2339590A094B433AAA83C602 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6310ECD94B0D4A43B1554539 /* StoreKit.framework */; };
-		27591E0824C04353BA348102 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327F096CDAF84BBBA026B338 /* FBSDKLoginKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		301BF552109A68D80062928A /* libCordova.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF535109A57CC0062928A /* libCordova.a */; };
 		302D95F114D2391D003F00A1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 302D95EF14D2391D003F00A1 /* MainViewController.m */; };
@@ -32,11 +30,9 @@
 		30C1856619D5FC0A00212699 /* icon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30C1856519D5FC0A00212699 /* icon-60@3x.png */; };
 		30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FC414816E50CA1004E6F35 /* icon-72@2x.png */; };
 		3F2A443427DA46AAB12E9C3E /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 986D2C176EFF4A79BEB3907B /* CDVStatusBar.m */; };
-		4B6949BC9C64417190EEF960 /* FacebookConnectPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BC4DB772D04376A8208B33 /* FacebookConnectPlugin.m */; };
 		50CB70DB8B7F4E9297EC97B6 /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D98E544EE0541C5A4A75781 /* CDVLogger.m */; };
 		5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */; };
 		6C08FE39C2014C5B9BE47C9C /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F924D8D15EB405FB879D2EC /* CDVSplashScreen.m */; };
-		7E0AF34B35234D2D9360954F /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB75C05CED4B4814BF9EAA64 /* FBSDKCoreKit.framework */; };
 		7E7966DE1810823500FA85AD /* icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D41810823500FA85AD /* icon-40.png */; };
 		7E7966DF1810823500FA85AD /* icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D51810823500FA85AD /* icon-40@2x.png */; };
 		7E7966E01810823500FA85AD /* icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D61810823500FA85AD /* icon-50.png */; };
@@ -51,10 +47,13 @@
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		D8DCBB7274DF4BBE802EC3CF /* AppVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 783CF0E07E794A6FA93C87E4 /* AppVersion.m */; };
 		EF24C34ED44B4815810AD82E /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 5164C9F23DA04BD1A520A76B /* CDVDevice.m */; };
-		FB5FF10047B64FF28EF756B9 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 909ED2193B1442739C9FC565 /* Bolts.framework */; };
 		605B92A5987A49B5894E3EFB /* InAppPurchase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7FFC1251D1406287EDFFFE /* InAppPurchase.m */; };
 		C2A2537436104D7B9F0EF9CE /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 02BB6AFFBC6B48AF89C6E8AD /* SKProduct+LocalizedPrice.m */; };
 		AA5F215B2F2B408F9B5D3F8B /* FileUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 190BBCFE72BA433BBEC1285B /* FileUtility.m */; };
+		622EEBBD9C4344898D5D558B /* ComScorePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 732C94D60E71455883EA4485 /* ComScorePlugin.m */; };
+		A74AD2823900400FB5FE1A28 /* libcomScore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA314B59AD974B0784DCD5E3 /* libcomScore.a */; };
+		95897DD316B041DD8A272042 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21B370C6F0E423B92E61198 /* SystemConfiguration.framework */; };
+		5F87E8C98E574ABC990B29A5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2A75DE174AD440DA9922CEA /* Security.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +75,6 @@
 
 /* Begin PBXFileReference section */
 		19ABA08FF2CE4FC9917503C4 /* CDVStatusBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVStatusBar.h; path = "cordova-plugin-statusbar/CDVStatusBar.h"; sourceTree = "<group>"; };
-		1A1BA3A79D3648DAAF6728A0 /* FacebookConnectPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FacebookConnectPlugin.h; path = "cordova-plugin-facebook4/FacebookConnectPlugin.h"; sourceTree = "<group>"; };
 		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* FutbolCuatro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FutbolCuatro.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,11 +101,8 @@
 		30B4F2FF19D5E07200D9F7D8 /* Default-Landscape-736h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape-736h.png"; sourceTree = "<group>"; };
 		30C1856519D5FC0A00212699 /* icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-60@3x.png"; sourceTree = "<group>"; };
 		30FC414816E50CA1004E6F35 /* icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72@2x.png"; sourceTree = "<group>"; };
-		327F096CDAF84BBBA026B338 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "FutbolCuatro/Plugins/cordova-plugin-facebook4/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* FutbolCuatro-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FutbolCuatro-Prefix.pch"; sourceTree = "<group>"; };
 		387B15843A4D406696A66762 /* CDVSplashScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVSplashScreen.h; path = "cordova-plugin-splashscreen/CDVSplashScreen.h"; sourceTree = "<group>"; };
-		418C81B7794C4375A44131BB /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "FutbolCuatro/Plugins/cordova-plugin-facebook4/FBSDKShareKit.framework"; sourceTree = "<group>"; };
-		46BC4DB772D04376A8208B33 /* FacebookConnectPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FacebookConnectPlugin.m; path = "cordova-plugin-facebook4/FacebookConnectPlugin.m"; sourceTree = "<group>"; };
 		5164C9F23DA04BD1A520A76B /* CDVDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVDevice.m; path = "cordova-plugin-device/CDVDevice.m"; sourceTree = "<group>"; };
 		595F767093B24606A649DB71 /* AppVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppVersion.h; path = "cordova-plugin-app-version/AppVersion.h"; sourceTree = "<group>"; };
 		5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -128,13 +123,11 @@
 		7E7966DD1810823500FA85AD /* icon-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-small@2x.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* FutbolCuatro-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "FutbolCuatro-Info.plist"; path = "../FutbolCuatro-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		8F924D8D15EB405FB879D2EC /* CDVSplashScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVSplashScreen.m; path = "cordova-plugin-splashscreen/CDVSplashScreen.m"; sourceTree = "<group>"; };
-		909ED2193B1442739C9FC565 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "FutbolCuatro/Plugins/cordova-plugin-facebook4/Bolts.framework"; sourceTree = "<group>"; };
 		95E0D5C33E564C9C887464AD /* CDVViewController+SplashScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CDVViewController+SplashScreen.m"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.m"; sourceTree = "<group>"; };
 		986D2C176EFF4A79BEB3907B /* CDVStatusBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVStatusBar.m; path = "cordova-plugin-statusbar/CDVStatusBar.m"; sourceTree = "<group>"; };
 		D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
 		D59FD83C61464152A97BB1BC /* CDVDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVDevice.h; path = "cordova-plugin-device/CDVDevice.h"; sourceTree = "<group>"; };
 		DA16771066E549EBB2E2EC07 /* CDVViewController+SplashScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CDVViewController+SplashScreen.h"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.h"; sourceTree = "<group>"; };
-		EB75C05CED4B4814BF9EAA64 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "FutbolCuatro/Plugins/cordova-plugin-facebook4/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		EB87FDF21871DA7A0020F90C /* merges */ = {isa = PBXFileReference; lastKnownFileType = folder; name = merges; path = ../../merges; sourceTree = "<group>"; };
 		EB87FDF31871DA8E0020F90C /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
@@ -145,6 +138,25 @@
 		6DED1E171FD249B483DB33B1 /* InAppPurchase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "InAppPurchase.h"; path = "cc.fovea.cordova.purchase/InAppPurchase.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		72119B78336249D18FAC5952 /* SKProduct+LocalizedPrice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SKProduct+LocalizedPrice.h"; path = "cc.fovea.cordova.purchase/SKProduct+LocalizedPrice.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		4D14C9F212CB466BAF92E001 /* FileUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "FileUtility.h"; path = "cc.fovea.cordova.purchase/FileUtility.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		732C94D60E71455883EA4485 /* ComScorePlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "ComScorePlugin.m"; path = "com.comscoreplugin/ComScorePlugin.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		EA314B59AD974B0784DCD5E3 /* libcomScore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcomScore.a"; path = "FutbolCuatro/Plugins/com.comscoreplugin/libcomScore.a"; sourceTree = "<group>"; fileEncoding = 4; };
+		0394D851455343A19386F51A /* ComScorePlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ComScorePlugin.h"; path = "com.comscoreplugin/ComScorePlugin.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		49FC2D437F8A4A11B93A039D /* CSApplicationState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CSApplicationState.h"; path = "com.comscoreplugin/CSApplicationState.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		71856A793EC846E2A3D258C5 /* CSCacheFlusher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CSCacheFlusher.h"; path = "com.comscoreplugin/CSCacheFlusher.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		7B70B650CE3D4EB786EF43FD /* CSCensus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CSCensus.h"; path = "com.comscoreplugin/CSCensus.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		E0DBA1CEA69E49C38B3C8572 /* CSComScore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CSComScore.h"; path = "com.comscoreplugin/CSComScore.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		BF6E999DD65D4FF38B8A22E3 /* CSCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CSCore.h"; path = "com.comscoreplugin/CSCore.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		BD38683F9B4D45ECB2AC67D1 /* CSEventType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CSEventType.h"; path = "com.comscoreplugin/CSEventType.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		8DCFD271BEF5464492C11567 /* CSKeepAlive.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CSKeepAlive.h"; path = "com.comscoreplugin/CSKeepAlive.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		350D50643EEA42E3A5B41CF0 /* CSMeasurementDispatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CSMeasurementDispatcher.h"; path = "com.comscoreplugin/CSMeasurementDispatcher.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		3B65595EDCF6401D8EB94601 /* CSNotificationsObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CSNotificationsObserver.h"; path = "com.comscoreplugin/CSNotificationsObserver.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		22A257A82FF74D2FB33876CD /* CSOfflineCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CSOfflineCache.h"; path = "com.comscoreplugin/CSOfflineCache.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		F73FB1F6ADF04E2C8BD2A6B4 /* CSSessionState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CSSessionState.h"; path = "com.comscoreplugin/CSSessionState.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		1B34C613466A46E29FBEF2C1 /* CSStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CSStorage.h"; path = "com.comscoreplugin/CSStorage.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		4176C487496F4436836FC1FF /* CSTaskExecutor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CSTaskExecutor.h"; path = "com.comscoreplugin/CSTaskExecutor.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		D40B63688A6C4C99968C9F15 /* CSTransmissionMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CSTransmissionMode.h"; path = "com.comscoreplugin/CSTransmissionMode.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		F21B370C6F0E423B92E61198 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "SystemConfiguration.framework"; path = "System/Library/Frameworks/SystemConfiguration.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
+		A2A75DE174AD440DA9922CEA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Security.framework"; path = "System/Library/Frameworks/Security.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,10 +169,9 @@
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
 				2339590A094B433AAA83C602 /* StoreKit.framework in Frameworks */,
-				FB5FF10047B64FF28EF756B9 /* Bolts.framework in Frameworks */,
-				7E0AF34B35234D2D9360954F /* FBSDKCoreKit.framework in Frameworks */,
-				27591E0824C04353BA348102 /* FBSDKLoginKit.framework in Frameworks */,
-				0FAF99D003904393A61F2A8A /* FBSDKShareKit.framework in Frameworks */,
+				A74AD2823900400FB5FE1A28 /* libcomScore.a in Frameworks */,
+				95897DD316B041DD8A272042 /* SystemConfiguration.framework in Frameworks */,
+				5F87E8C98E574ABC990B29A5 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,10 +245,9 @@
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 				305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */,
 				6310ECD94B0D4A43B1554539 /* StoreKit.framework */,
-				909ED2193B1442739C9FC565 /* Bolts.framework */,
-				EB75C05CED4B4814BF9EAA64 /* FBSDKCoreKit.framework */,
-				327F096CDAF84BBBA026B338 /* FBSDKLoginKit.framework */,
-				418C81B7794C4375A44131BB /* FBSDKShareKit.framework */,
+				EA314B59AD974B0784DCD5E3 /* libcomScore.a */,
+				F21B370C6F0E423B92E61198 /* SystemConfiguration.framework */,
+				A2A75DE174AD440DA9922CEA /* Security.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -255,8 +265,6 @@
 			children = (
 				5D98E544EE0541C5A4A75781 /* CDVLogger.m */,
 				23A3DD4AD7284CC99CEEC536 /* CDVLogger.h */,
-				46BC4DB772D04376A8208B33 /* FacebookConnectPlugin.m */,
-				1A1BA3A79D3648DAAF6728A0 /* FacebookConnectPlugin.h */,
 				713EE76E5D054B3CB2EDBCBB /* CDVInAppBrowser.m */,
 				70450DB6B3A245258902E318 /* CDVInAppBrowser.h */,
 				8F924D8D15EB405FB879D2EC /* CDVSplashScreen.m */,
@@ -275,6 +283,22 @@
 				6DED1E171FD249B483DB33B1 /* InAppPurchase.h */,
 				72119B78336249D18FAC5952 /* SKProduct+LocalizedPrice.h */,
 				4D14C9F212CB466BAF92E001 /* FileUtility.h */,
+				732C94D60E71455883EA4485 /* ComScorePlugin.m */,
+				0394D851455343A19386F51A /* ComScorePlugin.h */,
+				49FC2D437F8A4A11B93A039D /* CSApplicationState.h */,
+				71856A793EC846E2A3D258C5 /* CSCacheFlusher.h */,
+				7B70B650CE3D4EB786EF43FD /* CSCensus.h */,
+				E0DBA1CEA69E49C38B3C8572 /* CSComScore.h */,
+				BF6E999DD65D4FF38B8A22E3 /* CSCore.h */,
+				BD38683F9B4D45ECB2AC67D1 /* CSEventType.h */,
+				8DCFD271BEF5464492C11567 /* CSKeepAlive.h */,
+				350D50643EEA42E3A5B41CF0 /* CSMeasurementDispatcher.h */,
+				3B65595EDCF6401D8EB94601 /* CSNotificationsObserver.h */,
+				22A257A82FF74D2FB33876CD /* CSOfflineCache.h */,
+				F73FB1F6ADF04E2C8BD2A6B4 /* CSSessionState.h */,
+				1B34C613466A46E29FBEF2C1 /* CSStorage.h */,
+				4176C487496F4436836FC1FF /* CSTaskExecutor.h */,
+				D40B63688A6C4C99968C9F15 /* CSTransmissionMode.h */,
 			);
 			name = Plugins;
 			path = FutbolCuatro/Plugins;
@@ -465,7 +489,6 @@
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
 				50CB70DB8B7F4E9297EC97B6 /* CDVLogger.m in Sources */,
-				4B6949BC9C64417190EEF960 /* FacebookConnectPlugin.m in Sources */,
 				0306C076BA7A4C398496080B /* CDVInAppBrowser.m in Sources */,
 				6C08FE39C2014C5B9BE47C9C /* CDVSplashScreen.m in Sources */,
 				B6902EE1F68246C38E0D63D6 /* CDVViewController+SplashScreen.m in Sources */,
@@ -475,6 +498,7 @@
 				605B92A5987A49B5894E3EFB /* InAppPurchase.m in Sources */,
 				C2A2537436104D7B9F0EF9CE /* SKProduct+LocalizedPrice.m in Sources */,
 				AA5F215B2F2B408F9B5D3F8B /* FileUtility.m in Sources */,
+				622EEBBD9C4344898D5D558B /* ComScorePlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +522,10 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"FutbolCuatro/Plugins/cordova-plugin-facebook4\"",
+					"\"FutbolCuatro/Plugins/cordova-plugin-facebook4\"",
+					"\"FutbolCuatro/Plugins/cordova-plugin-facebook4\"",
+					"\"FutbolCuatro/Plugins/cordova-plugin-facebook4\"",
 					"\"FutbolCuatro/Plugins/cordova-plugin-facebook4\"",
 					"\"FutbolCuatro/Plugins/cordova-plugin-facebook4\"",
 					"\"FutbolCuatro/Plugins/cordova-plugin-facebook4\"",
@@ -527,6 +555,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.epiceleven.futbolcuatro;
 				PRODUCT_NAME = FutbolCuatro;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/FutbolCuatro/Plugins/com.comscoreplugin\"",
+				);
 			};
 			name = Debug;
 		};
@@ -539,6 +571,10 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"FutbolCuatro/Plugins/cordova-plugin-facebook4\"",
+					"\"FutbolCuatro/Plugins/cordova-plugin-facebook4\"",
+					"\"FutbolCuatro/Plugins/cordova-plugin-facebook4\"",
+					"\"FutbolCuatro/Plugins/cordova-plugin-facebook4\"",
 					"\"FutbolCuatro/Plugins/cordova-plugin-facebook4\"",
 					"\"FutbolCuatro/Plugins/cordova-plugin-facebook4\"",
 					"\"FutbolCuatro/Plugins/cordova-plugin-facebook4\"",
@@ -566,6 +602,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.epiceleven.futbolcuatro;
 				PRODUCT_NAME = FutbolCuatro;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/FutbolCuatro/Plugins/com.comscoreplugin\"",
+				);
 			};
 			name = Release;
 		};

@@ -71,6 +71,10 @@
                         {
                             "xml": "<feature name=\"InAppPurchase\"><param name=\"ios-package\" value=\"InAppPurchase\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"ComScorePlugin\"><param name=\"ios-package\" value=\"ComScorePlugin\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -115,11 +119,6 @@
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         },
-        "cordova-plugin-facebook4": {
-            "APP_ID": "1684730951797091",
-            "APP_NAME": "Fútbol Cuatro",
-            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
-        },
         "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         },
@@ -140,6 +139,9 @@
         },
         "cc.fovea.cordova.purchase": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
+        },
+        "com.comscoreplugin": {
+            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         }
     },
     "dependent_plugins": {},
@@ -158,14 +160,6 @@
             "pluginId": "cordova-plugin-console",
             "clobbers": [
                 "cordova.logger"
-            ]
-        },
-        {
-            "file": "plugins/cordova-plugin-facebook4/www/facebook-native.js",
-            "id": "cordova-plugin-facebook4.FacebookConnectPlugin",
-            "pluginId": "cordova-plugin-facebook4",
-            "clobbers": [
-                "facebookConnectPlugin"
             ]
         },
         {
@@ -215,6 +209,14 @@
             "pluginId": "cc.fovea.cordova.purchase",
             "clobbers": [
                 "store"
+            ]
+        },
+        {
+            "file": "plugins/com.comscoreplugin/www/ComScorePlugin.js",
+            "id": "com.comscoreplugin.ComScorePlugin",
+            "pluginId": "com.comscoreplugin",
+            "clobbers": [
+                "window.ComScorePlugin"
             ]
         }
     ]

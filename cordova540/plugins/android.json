@@ -20,11 +20,6 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         },
-        "cordova-plugin-facebook4": {
-            "APP_ID": "1684730951797091",
-            "APP_NAME": "Fútbol Cuatro",
-            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
-        },
         "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         },
@@ -35,6 +30,9 @@
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         },
         "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
+        },
+        "com.comscoreplugin": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         }
     },

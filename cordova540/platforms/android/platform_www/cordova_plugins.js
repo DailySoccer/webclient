@@ -1,6 +1,14 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
+        "file": "plugins/cc.fovea.cordova.purchase/www/store-android.js",
+        "id": "cc.fovea.cordova.purchase.InAppBillingPlugin",
+        "pluginId": "cc.fovea.cordova.purchase",
+        "clobbers": [
+            "store"
+        ]
+    },
+    {
         "file": "plugins/cordova-plugin-app-version/www/AppVersionPlugin.js",
         "id": "cordova-plugin-app-version.AppVersionPlugin",
         "pluginId": "cordova-plugin-app-version",
@@ -14,14 +22,6 @@ module.exports = [
         "pluginId": "cordova-plugin-device",
         "clobbers": [
             "device"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-facebook4/www/facebook-native.js",
-        "id": "cordova-plugin-facebook4.FacebookConnectPlugin",
-        "pluginId": "cordova-plugin-facebook4",
-        "clobbers": [
-            "facebookConnectPlugin"
         ]
     },
     {
@@ -56,11 +56,11 @@ module.exports = [
         "runs": true
     },
     {
-        "file": "plugins/cc.fovea.cordova.purchase/www/store-android.js",
-        "id": "cc.fovea.cordova.purchase.InAppBillingPlugin",
-        "pluginId": "cc.fovea.cordova.purchase",
+        "file": "plugins/com.comscoreplugin/www/ComScorePlugin.js",
+        "id": "com.comscoreplugin.ComScorePlugin",
+        "pluginId": "com.comscoreplugin",
         "clobbers": [
-            "store"
+            "window.ComScorePlugin"
         ]
     }
 ];

@@ -17,14 +17,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/cordova-plugin-facebook4/www/facebook-native.js",
-        "id": "cordova-plugin-facebook4.FacebookConnectPlugin",
-        "pluginId": "cordova-plugin-facebook4",
-        "clobbers": [
-            "facebookConnectPlugin"
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
         "id": "cordova-plugin-inappbrowser.inappbrowser",
         "pluginId": "cordova-plugin-inappbrowser",
@@ -71,6 +63,14 @@ module.exports = [
         "pluginId": "cc.fovea.cordova.purchase",
         "clobbers": [
             "store"
+        ]
+    },
+    {
+        "file": "plugins/com.comscoreplugin/www/ComScorePlugin.js",
+        "id": "com.comscoreplugin.ComScorePlugin",
+        "pluginId": "com.comscoreplugin",
+        "clobbers": [
+            "window.ComScorePlugin"
         ]
     }
 ];

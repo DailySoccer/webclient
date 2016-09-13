@@ -3,17 +3,31 @@
 }
 lobby{
 	overflow: hidden;
+	.flex-container-row();
+  
 	.contest-list-wrapper {
-		overflow-y: scroll;
-	}
-	.flex-container-col();
-		.contest-list-wrapper {
+	  .flex-container-col();
 		.flex-elem-fluid();
+    justify-content: flex-start;
+		overflow-y: scroll;
 	}
 	.create-custom-contest-button {
 		.default-button();
 		.flex-elem-fixed(40px);
 	}
+  
+}
+.lobby-contest-list-no-contests-wrapper {
+  .flex-container-col();
+  .flex-elem-fluid();
+  justify-content: center;
+  
+  .lobby-contest-list-no-contests {
+    .flex-container-col();
+    .flex-elem-fixed(auto);
+    .mainfont_bold(12pt, @grey-bluish, center, uppercase);
+    justify-content: center;
+  }
 }
 
 /*

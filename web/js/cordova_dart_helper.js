@@ -1,3 +1,6 @@
+window.onApplicationPause = typeof onApplicationPause !== 'undefined' ? onApplicationPause : function() {};
+window.onApplicationResume = typeof onApplicationResume !== 'undefined' ? onApplicationResume : function() {};
+
 function getUUID(cb) {
   if (typeof cordova === 'undefined') {
     cb("UUID-UUID-UUID-UUID");
@@ -96,6 +99,7 @@ document.addEventListener('deviceready', function () {
     console.log(" # RESUME");
   }, false);
 }, false);
+
 
 window.serverLoggerInfo = window.serverLoggerInfo || function(text) {
   if (typeof serverLoggerInfoCB !== "undefined" && serverLoggerInfoCB != null) {

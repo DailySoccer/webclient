@@ -41,8 +41,82 @@ div#mainApp
   overflow-y: auto;
   overflow-x: hidden;
  
+  &.loading-data {
+    display: none;
+  }
   & > * {
 	 .flex-elem-fluid();
+  }
+}
+
+.loading-service-is-loading {
+	.flex-elem-fluid();
+  .flex-container-col();
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: none;
+  background-color: @soft-black;
+  &.loading-data {
+    .flex-container-col();
+  }
+  .loading-spinner-cuatro {
+    margin-right: 15px;
+  }
+  .loading-text {
+    .mainfont_bold(12pt, @white, center);
+  }
+}
+
+@keyframes spinning-rotation {
+    0%   {transform: rotate(0deg);}
+    15%  {transform: rotate(0deg);}
+    85%  {transform: rotate(360deg);}
+    100% {transform: rotate(360deg);}
+}
+
+.loading-spinner-cuatro {
+  display: block;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  .spinner-base-circle {
+    background-color: @grey-light;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    transform: translate(-25px, -25px);
+    display: block;
+    border-radius: 100%;
+  }
+  .spinner-orbital-base {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: block;
+    transform: rotate(0deg);
+
+    animation-name: spinning-rotation;
+    animation-duration: 1.2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+  }
+  .spinner-orbital-circle {
+    background-color: @grey-light;
+    width: 17px;
+    height: 17px;
+    position: absolute;
+    top: 24px;
+    left: 87px;
+    transform: translate(-10px, -10px);
+    display: block;
+    border-radius: 100%;
   }
 }
 

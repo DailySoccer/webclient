@@ -29,9 +29,11 @@ class LobbyComp implements DetachAware {
 
   String get today => DateTimeService.today;
 
-  Map<String,List<Contest>> contestListByDay;
+  Map<String, List<Contest>> contestListByDay;
   List<Contest> currentContestList;
   List<Map> dayList = new List<Map>();
+
+  bool get isContestListEmpty => !loadingService.isLoading && currentContestList != null && currentContestList.length == 0;
 
   String getLocalizedText(key, {substitutions: null}) {
     return StringUtils.translate(key, "lobby", substitutions);
@@ -174,17 +176,22 @@ class LobbyComp implements DetachAware {
   void refreshActiveContest() {
     _contestsService.refreshActiveContests()
       .then((_) {
-        updateDayList();
+        //updateDayList();
+        updateContestList();
         loadingService.isLoading = false;
       });
   }
 
+  void updateContestList() {
+    currentContestList = _contestsService.activeContests;
+    //currentContestList = [];
+  }
+  
   void updateDayList() {
     dayList = new List<Map>();
     contestListByDay = new Map<String,List<Contest>>();
     DateTime current = DateTimeService.now;
     List<Contest> serverContestList = _contestsService.activeContests;
-
     
     const int WEEK_DAYS_COUNT = 1; //7; 
     for(int i = 0; i < WEEK_DAYS_COUNT; i++) {

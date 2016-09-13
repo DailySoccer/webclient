@@ -84,27 +84,31 @@ class GameMetrics {
     if (TutorialService.isActivated) return;
     
     if (!email.endsWith("test.com")) DeltaDNAService.instance.sendEvent('newPlayer', {'email': email});
-        
+    /* 
     if (!email.endsWith("test.com") && JsUtils.existsContext(["mixpanel", "alias"])) {
       JsUtils.runJavascript(null, "alias", email, "mixpanel");
     }
     else {
       Logger.root.info("mixPanel: aliasMixpanel not found");
     }
+    
+    */
   }
 
-  static void identifyMixpanel(String email) {
+  static void identify(String email) {
     if (TutorialService.isActivated)
       return;
 
     if (!email.endsWith("test.com")) DeltaDNAService.instance.sendEvent('newPlayer', {'email': email});
-    
+    /*
     if (!email.endsWith("test.com") && JsUtils.existsContext(["mixpanel", "identify"])) {
       JsUtils.runJavascript(null, "identify", email, "mixpanel");
     }
     else {
       Logger.root.info("mixPanel: identifyMixpanel not found");
     }
+    
+    */
   }
 
   static void logEvent(String eventName, [Map params]) {
@@ -113,7 +117,7 @@ class GameMetrics {
     }
     
     DeltaDNAService.instance.sendEvent(eventName, params);
-    
+    /*
     if (JsUtils.existsContext(["mixpanel", "track"])) {
       if (params != null && !params.isEmpty) {
         JsUtils.runJavascript(null, "track", [eventName, params], "mixpanel");
@@ -125,6 +129,8 @@ class GameMetrics {
     else {
       Logger.root.info("mixPanel: logEvent not found");
     }
+    
+    */
   }
 
   static void peopleSet(Map params) {
@@ -132,33 +138,40 @@ class GameMetrics {
       return;
 
     DeltaDNAService.instance.sendEvent(PEOPLE_SET, params);
-    
+    /*
     if (JsUtils.existsContext(["mixpanel", "people", "set"])) {
       JsUtils.runJavascript(null, "set", params, ["mixpanel","people"]);
     }
     else {
       Logger.root.info("mixPanel: peopleSet not found");
     }
+    
+    */
   }
 
   // Not used
   static void peopleCharge(double charge) {
     if (TutorialService.isActivated)
       return;
-    
+    /*
     if (JsUtils.existsContext(["mixpanel","people", "track_charge"])) {
       JsUtils.runJavascript(null, "track_charge", charge, ["mixpanel","people"]);
     }
     else {
       Logger.root.info("mixPanel: peopleCharge not found");
     }
+     
+    */
  }
 
   // Google Track, NOT Mixpanel.
   static void trackConversion(bool remarketing_only) {
+    /*
     if (HostServer.isEpicEleven) {
       JsUtils.runJavascript(null, "conversion", [remarketing_only]);
     }
+    
+    */
   }
   
   static String eventsDateString() {

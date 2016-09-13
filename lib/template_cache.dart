@@ -508,69 +508,78 @@ tc.put("packages/webclient/components/account/shop_comp.html", new HttpResponse(
 </div>
 
 <ng-view></ng-view>"""));
-tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpResponse(200, r"""<div id="viewProfileContent">
-  <div class="default-section-header">{{getLocalizedText('title')}}</div>
-  <div class="profile-content">
-
-    <!--div class="binding-actions profile-section" ng-if="!isLoggedByFacebook">
-      <div class="data-content">
-        <span>Vincula tu cuenta a un perfil</span>
+tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpResponse(200, r"""<div class="profile-content">
+  <!-- INFORMACION PERSONAL -->
+  <div class="personal-data profile-section">
+    <div class="data-content">
+      <div class="data-row">
+        <span class="data-key">{{getLocalizedText("fullname")}}: </span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span>
       </div>
-      <div class="data-action" ng-class="{'single-button': !isLoggedByUUID}" >
-        <button class="action-button facebook-button" ng-click="bindWithFacebook()">{{getLocalizedText("bind-facebook-btt")}}</button>
-        <button class="action-button server-button" ng-if="isLoggedByUUID" ng-click="bindWithServer()">{{getLocalizedText("bind-server-btt")}}</button>
+      <div class="data-row">
+        <span class="data-key">{{getLocalizedText("nick")}}: </span><span class="data-value">{{userData.nickName}}</span>
       </div>
-    </div>
-    <div class="binding-info profile-section" ng-if="isLoggedByFacebook">
-      <div class="data-content">
-        <span>Cuenta vinculada con facebook</span>
+      <div class="data-row" ng-if="userData.canChangeEmail">
+        <span class="data-key">{{getLocalizedText("email")}}: </span><span class="data-value">{{userData.email}}</span>
       </div>
-    </div-->
-    
-    <div class="personal-data profile-section">
-      <div class="data-content">
-        <div class="data-row"><span class="data-key">{{getLocalizedText("fullname")}}:</span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span></div>
-        <div class="data-row"><span class="data-key">{{getLocalizedText("nick")}}:</span><span class="data-value">{{userData.nickName}}</span></div>
-        <div class="data-row" ng-if="userData.canChangeEmail"><span class="data-key">{{getLocalizedText("email")}}:</span><span class="data-value">{{userData.email}}</span></div>
-        <div class="data-row" ng-if="userData.canChangePassword"><span class="data-key">{{getLocalizedText("pass")}}:</span><span class="data-value">********</span></div>
-      </div>
-      <div class="data-action">
-        <button class="action-button edit-button" ng-click="editPersonalData()">{{getLocalizedText("buttonedit")}}</button>
-     </div>
-    </div>
-    
-    <div class="pocket-data profile-section">
-      <div class="data-header">
-          <span class="data-header-title">{{getLocalizedText("wallet")}}</span>
-      </div>
-      <div class="data-content">
-        <div class="data-row">
-          <div class="wrapper-box"> <span class="data-value-coins">{{userData.balance}}</span><img class="coin-icon" src="images/icon-coin-lg.png"> </div>
-        </div>
-      </div>
-      <div class="data-action">
-        <button class="action-button buy-button" ng-click="goBuyGold()">{{getLocalizedText("buttonbuy")}}</button>
+      <div class="data-row" ng-if="userData.canChangePassword">
+        <span class="data-key">{{getLocalizedText("pass")}}: </span><span class="data-value">********</span>
       </div>
     </div>
-    <div class="ranking-data profile-section">
-      <div class="data-header">
-        <span class="data-header-title">{{getLocalizedText("ranking")}}</span>
-      </div>
-      <div class="data-content">
-        <div class="single-ranking-info ranking-by-points wrapper-box">
-          <img class="ranking-badge" src="images/icon-Ranking-Skill-Blue.png">
-          <span class="ranking-position" ng-show="!loadingService.isLoading">{{rankingPointsPosition}}º</span>
-          <span class="ranking-score" ng-show="!loadingService.isLoading">{{rankingPoints}} {{getLocalizedText("abrevpoints", "common")}}</span>
+    <div class="data-action">
+      <button class="action-button" ng-click="editPersonalData()">EDITAR</button>
+   </div>
+  </div>  
+  <!-- ORO -->
+  <div class="pocket-data profile-section">
+    <div class="data-header">
+        <span class="data-header-title">ORO</span>
+    </div>
+    <div class="data-content">
+      <div class="data-row">
+        <div class="wrapper-box">
+          <span class="data-value-big">{{userData.balance}} <img class="coin-icon" src="images/icon-coin-lg.png"></span>
         </div>
-        <div class="single-ranking-info ranking-by-money wrapper-box">
-          <img class="ranking-badge" src="images/icon-coin-lg.png">
-          <span class="ranking-position" ng-show="!loadingService.isLoading">{{rankingMoneyPosition}}º</span>
-          <span class="ranking-score" ng-show="!loadingService.isLoading">{{rankingMoney}}</span>
+      </div>
+    </div>
+    <div class="data-action">
+      <button class="action-button" ng-click="goBuyGold()">COMPRAR</button>
+    </div>
+  </div>
+    <!-- ACHIEVEMENTS -->
+  <div class="pocket-data profile-section">
+    <div class="data-header">
+        <span class="data-header-title">LOGROS</span>
+    </div>
+    <div class="data-content">
+      <div class="data-row">
+        <div class="wrapper-box">
+          <span class="data-value-big">{{achievementsEarned}} de {{achievementList.length.toString()}} LOGROS CONSEGUIDOS</span>
         </div>
       </div>
-      <div class="data-action">
-        <button class="action-button ranking-table-button" ng-click="goLeaderboard()">{{getLocalizedText("buttonrankingtable")}}</button>
+    </div>
+    <div class="data-action">
+      <button class="action-button" ng-click="goAchievements()">VER LOGROS</button>
+    </div>
+  </div>  
+  <!-- CLASIFICACIONES -->
+  <div class="ranking-data profile-section">
+    <div class="data-header">
+      <span class="data-header-title">CLASEFICACIÓN</span>
+    </div>
+    <div class="data-content">
+      <div class="single-ranking-info wrapper-box">
+        <div class="ranking-position" ng-show="!loadingService.isLoading">Por puntuación </div>
+        <div class="data-value-big" ng-show="!loadingService.isLoading">{{rankingPointsPosition}}º</div>
+        <div class="data-value" ng-show="!loadingService.isLoading">({{rankingPoints}})</div>
       </div>
+      <div class="single-ranking-info wrapper-box">
+        <div class="ranking-position" ng-show="!loadingService.isLoading">Por ganancias </div>
+        <div class="data-value-big" ng-show="!loadingService.isLoading">{{rankingMoneyPosition}}º</div>
+        <div class="data-value" ng-show="!loadingService.isLoading">({{rankingMoney}})</div>
+      </div>
+    </div>
+    <div class="data-action">
+      <button class="action-button" ng-click="goLeaderboard()">VER RANKINGS</button>
     </div>
   </div>
 </div>
@@ -1281,10 +1290,7 @@ tc.put("packages/webclient/components/leaderboards/leaderboard_comp.html", new H
 <leaderboard-table  share-info="sharingInfoGold" show-header="true" highlight-element="playerMoneyInfo" 
                     table-elements="moneyUserList" rows="USERS_TO_SHOW" points-column-label="moneyColumnName" 
                     hint="playerMoneyHint" ng-if="!loadingService.isLoading && isRankingMostRichActive">
-</leaderboard-table>
-
-<achievement-list user="userShown" ng-show="!loadingService.isLoading && isAchievementsActive">
-</achievement-list>"""));
+</leaderboard-table>"""));
 tc.put("packages/webclient/components/leaderboards/leaderboard_table_comp.html", new HttpResponse(200, r"""<div class="leaderboard-table-header" ng-show="isHeaded">
     <div class="leaderboard-column-position">{{getLocalizedText("abrevposition")}}</div>
     <div class="leaderboard-column-name">{{getLocalizedText("name")}}</div>
@@ -1726,15 +1732,18 @@ tc.put("packages/webclient/components/legalese_and_help/tutorials_comp.html", ne
   </div>
 </div>"""));
 tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"""<!-- Lista de concursos -->
-<div class="contest-list-wrapper">
+<section class="contest-list-wrapper">
     <contests-list  id="activeContestList"
                   contests-list="currentContestList"
                   on-action-click='onActionClick(contest)'
                   on-row-click="onRowClick(contest)"
                   action-button-title="'>'"
-                  show-date="true">
+                  show-date="true"
+                  ng-show="!isContestListEmpty">
     </contests-list>
-</div>
+    <span class="lobby-contest-list-no-contests" ng-show="isContestListEmpty">No hay torneos disponibles en este momento</span>
+</section>
+
 
 <!-- Descomentar cuando hablitemos la funcionalidad de crear torneos -->
 <!--button class="create-custom-contest-button" ng-click="onCreateContestClick()">{{getStaticLocalizedText("challengeyourfriendsbutton")}}</button-->

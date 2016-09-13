@@ -807,7 +807,7 @@ class EnterContestComp implements DetachAware {
               GameMetrics.logEvent(GameMetrics.PLAYER_BOUGHT, {"value": cost, "name": c.instanceSoccerPlayer.soccerPlayer.name});
             });
 
-            GameMetrics.identifyMixpanel(_profileService.user.email);
+            GameMetrics.identify(_profileService.user.email);
             GameMetrics.logEvent(GameMetrics.TEAM_CREATED, {"type": contest.isSimulation? 'virtual' : 'oficial',
                                                             "is created by user": contest.isAuthor(_profileService.user),
                                                             "is custom contest": contest.isCustomContest() || contest.isAuthor(_profileService.user),

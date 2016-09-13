@@ -1,13 +1,18 @@
 <!-- Lista de concursos -->
-<div class="contest-list-wrapper">
+<section class="contest-list-wrapper">
     <contests-list  id="activeContestList"
                   contests-list="currentContestList"
                   on-action-click='onActionClick(contest)'
                   on-row-click="onRowClick(contest)"
                   action-button-title="'>'"
-                  show-date="true">
+                  show-date="true"
+                  ng-show="!isContestListEmpty">
     </contests-list>
-</div>
+    <div class="lobby-contest-list-no-contests-wrapper">
+      <span class="lobby-contest-list-no-contests" ng-show="isContestListEmpty">No hay torneos disponibles en este momento</span>
+    </div>
+</section>
+
 
 <!-- Descomentar cuando hablitemos la funcionalidad de crear torneos -->
 <!--button class="create-custom-contest-button" ng-click="onCreateContestClick()">{{getStaticLocalizedText("challengeyourfriendsbutton")}}</button-->

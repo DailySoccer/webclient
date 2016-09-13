@@ -179,7 +179,7 @@ class ProfileService {
         refreshFriendList();
       }
       
-      GameMetrics.identifyMixpanel(user.email);
+      GameMetrics.identify(user.email);
       GameMetrics.peopleSet({"email": user.email, "last_login": GameMetrics.eventsDateString()});
     }
     else {
@@ -197,10 +197,12 @@ class ProfileService {
   }
 
   void _tryProfileLoad() {
+    Logger.root.info("ProfileService: Trying Profile Load");
     var storedSessionToken = GameInfo.get('sessionToken');
     var storedUser = GameInfo.get('user');
 
     if (storedSessionToken != null && storedUser != null) {
+      Logger.root.info("ProfileService: Trying Profile Load -> Stored Profile");
       _setProfile(storedSessionToken, JSON.decode(storedUser), false);
 
       // Cuando se resetea la DB, los logins siguen siendo validos (stormpath) pero se vuelven a crear los usuarios.
@@ -227,6 +229,7 @@ class ProfileService {
       }, test: (error) => error is ServerError);
     }
     else {
+      Logger.root.info("ProfileService: Trying Profile Load -> getUUID");
       JsUtils.runJavascript(null, "getUUID", [(uuid) => loginWithUUID(uuid)]);
     }
   }
@@ -235,7 +238,8 @@ class ProfileService {
     Logger.root.info("UUID: $uuid");
     
     if (HostServer.isAndroidPlatform || HostServer.isiOSPlatform) {
-      // deviceLogin(uuid);
+      Logger.root.info("DeviceLogin With UUID: $uuid");
+      deviceLogin(uuid);
     }
   }
   

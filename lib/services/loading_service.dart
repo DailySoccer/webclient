@@ -22,7 +22,7 @@ class LoadingService {
       print("TODO: Llega un disable demasiado pronto");
     }
   }
-
+  
   LoadingService() {
     _instance = this;
     

@@ -26,80 +26,62 @@ import 'package:webclient/services/refresh_timers_service.dart';
 )
 class ScoutingComp implements DetachAware {
 
+  static bool favoritesIsSaving = false;
+  static const String SOCCER_PLAYER_STATS = "SOCCER_PLAYER_STATS";
+  static const String SOCCER_PLAYERS_LIST = "SOCCER_PLAYERS_LIST";
+    
   LoadingService loadingService;
 
   List<SoccerPlayerListItem> favoritesPlayers = [];
-
-  //List<dynamic> allSoccerPlayersES;
   List<SoccerPlayerListItem> allSoccerPlayersES;
-  List<Map<String, String>> teamListES = [];
-  bool leagueES_isLoading;
-  //List<dynamic> allSoccerPlayersUK;
+  List<Map<String, String>> teamListES = [];  
   List<SoccerPlayerListItem> allSoccerPlayersUK;
-  List<Map<String, String>> teamListUK = [];
-  bool leagueUK_isLoading;
-  static bool favoritesIsSaving = false;
-  bool thereIsNewFavorites;
+  List<Map<String, String>> teamListUK = [];  
+
   num managerLevel = 0;
   
-
   FieldPos fieldPosFilter = FieldPos.GOALKEEPER;
+  
+  bool leagueES_isLoading;
+  bool leagueUK_isLoading;
   bool onlyFavorites = false;
-
-  String currentTab = 'spanish-league';
-
+  bool thereIsNewFavorites;
+  
   SoccerPlayerListItem selectedInstanceSoccerPlayer;
   
-  static const String SOCCER_PLAYER_STATS = "SOCCER_PLAYER_STATS";
-  static const String SOCCER_PLAYERS_LIST = "SOCCER_PLAYERS_LIST";
-  
-  
   String _sectionActive = SOCCER_PLAYERS_LIST;
+  String get sectionActive => _sectionActive;
   
   void set sectionActive(String section) { 
     _sectionActive = section;
     switch(_sectionActive) {
       case SOCCER_PLAYERS_LIST:        
         refreshTopBar();
-        _appStateService.appSecondaryTabBarState.tabList = tabList;
-        _appStateService.appTabBarState.show = true; 
+        _appStateService.appSecondaryTabBarState.tabList = _tabList;
       break;
       case SOCCER_PLAYER_STATS:
         _appStateService.appSecondaryTabBarState.tabList = [];
         _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Estadísticas");
-        _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerDetails;
-        _appStateService.appTabBarState.show = false; 
+        _appStateService.appTopBarState.activeState.onLeftColumn = goBack;
+        _appStateService.appTabBarState.show = true; 
         
       break;
     }
   }
-  String get sectionActive => _sectionActive;
 
   bool get isSoccerPlayerListActive => sectionActive == SOCCER_PLAYERS_LIST;
   bool get isSoccerPlayerStatsActive => sectionActive == SOCCER_PLAYER_STATS;
+  
   String get selectedPlayerId => selectedInstanceSoccerPlayer != null ? selectedInstanceSoccerPlayer.id : ""; 
-  List<AppSecondaryTabBarTab> tabList = [];
-  
-  void cancelPlayerDetails() {
-    sectionActive = SOCCER_PLAYERS_LIST;
-  }
-  
-  String getLocalizedText(key, {substitutions: null}) {
-    return StringUtils.translate(key, "favorites", substitutions);
-  }
 
-  String formatCurrency(String amount) {
-    return StringUtils.formatCurrency(amount);
-  }
-
-  ScoutingComp(this._routeProvider, this._router, this.loadingService, this._profileService, this._soccerPlayerService, this._appStateService, this._refreshTimersService) {
+  ScoutingComp(this._router, this.loadingService, this._profileService, this._soccerPlayerService, this._appStateService, this._refreshTimersService) {
     if (_profileService.isLoggedIn) {
       managerLevel = _profileService.user.managerLevel;
     }
     refreshTopBar();
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR, refreshTopBar);
      
-    tabList = [
+    _tabList = [
       new AppSecondaryTabBarTab("POR",                                        () => setFilter(FieldPos.GOALKEEPER, false),() => FieldPos.GOALKEEPER == fieldPosFilter),
       new AppSecondaryTabBarTab("DEF",                                        () => setFilter(FieldPos.DEFENSE, false),   () => FieldPos.DEFENSE == fieldPosFilter),
       new AppSecondaryTabBarTab("MED",                                        () => setFilter(FieldPos.MIDDLE, false),    () => FieldPos.MIDDLE == fieldPosFilter),
@@ -107,12 +89,20 @@ class ScoutingComp implements DetachAware {
       new AppSecondaryTabBarTab('''<i class="material-icons">&#xE838;</i>''', () => setFilter(null, true),                () => onlyFavorites)
     ];
 
-    _appStateService.appSecondaryTabBarState.tabList = tabList;
+    _appStateService.appSecondaryTabBarState.tabList = _tabList;
     _appStateService.appTabBarState.show = true;    
     
     loadData();
     thereIsNewFavorites = false;
     GameMetrics.logEvent(GameMetrics.SCOUTING);
+  }
+  
+  void detach() {
+    _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR);
+  }
+  
+  void goBack() {
+    sectionActive = SOCCER_PLAYERS_LIST;
   }
   
   void setFilter(FieldPos fieldpos, bool onlyfavs) {
@@ -131,104 +121,71 @@ class ScoutingComp implements DetachAware {
     loadingService.isLoading = true;
     leagueES_isLoading = true;
     leagueUK_isLoading = true;
-    int intId = 0;
 
     void loadUKData() {
-      
-      
       _soccerPlayerService.getSoccerPlayersByCompetition(Competition.LEAGUE_UK_ID)
         .then((Map info) {
           List<InstanceSoccerPlayer> instanceSoccerPlayers = info["instanceSoccerPlayers"];
           List<SoccerTeam> soccerTeams = info["soccerTeams"];
-
-          print ("InstanceSoccerPlayers UK: ${instanceSoccerPlayers.length}");
-          //allSoccerPlayersUK = new List<dynamic>();
           
           allSoccerPlayersUK = new List<SoccerPlayerListItem>();
           teamListUK = [];
           
-          
-          instanceSoccerPlayers.forEach( (InstanceSoccerPlayer instance) {
-            allSoccerPlayersUK.add( new SoccerPlayerListItem(instance, managerLevel, null));
-            /*
-            allSoccerPlayersUK.add({
-              "instanceSoccerPlayer": instance,
-              "id": instance.id,
-              "intId": intId++,
-              "fieldPos": instance.fieldPos,
-              "fieldPosSortOrder": instance.fieldPos.sortOrder,
-              "fullName": instance.soccerPlayer.name,
-              "fullNameNormalized": StringUtils.normalize(instance.soccerPlayer.name).toUpperCase(),
-              "matchId" :  instance.soccerTeam.templateSoccerTeamId,
-              "matchEventName": instance.soccerTeam.name.toUpperCase(),
-              "remainingMatchTime": "-",
-              "fantasyPoints": instance.soccerPlayer.getFantasyPointsForCompetition(Competition.LEAGUE_UK_ID),
-              "playedMatches": instance.soccerPlayer.getPlayedMatchesForCompetition(Competition.LEAGUE_UK_ID),
-              "salary": instance.salary
-            });
-          */
-          });
-          soccerTeams.forEach((team) {
-            teamListUK.add({"id": team.templateSoccerTeamId, "name": team.name, "shortName": team.shortName});
-          });
-
-          leagueUK_isLoading = false;
-          updateFavorites();
-          evaluateTabLoading();
-        });
-    }
-
-
-    _soccerPlayerService.getSoccerPlayersByCompetition(Competition.LEAGUE_ES_ID)
-        .then((Map info) {
-          List<InstanceSoccerPlayer> instanceSoccerPlayers = info["instanceSoccerPlayers"];
-          List<SoccerTeam> soccerTeams = info["soccerTeams"];
-
-          print ("InstanceSoccerPlayers ES: ${instanceSoccerPlayers.length}");
-          //allSoccerPlayersES = new List<dynamic>();
-          allSoccerPlayersES = new List<SoccerPlayerListItem>();
-          teamListES = [];
-          
-         
-              
           instanceSoccerPlayers.forEach( (InstanceSoccerPlayer instance) {
             if (instance.soccerPlayer.name != TemplateSoccerPlayer.UNKNOWN) {
-              allSoccerPlayersES.add( new SoccerPlayerListItem(instance, managerLevel, null));
-              
-              /*
-              allSoccerPlayersES.add({
-                "instanceSoccerPlayer": instance,
-                "id": instance.id,
-                "intId": intId++,
-                "fieldPos": instance.fieldPos,
-                "fieldPosSortOrder": instance.fieldPos.sortOrder,
-                "fullName": instance.soccerPlayer.name,
-                "fullNameNormalized": StringUtils.normalize(instance.soccerPlayer.name).toUpperCase(),
-                "matchId" :  instance.soccerTeam.templateSoccerTeamId,
-                "matchEventName": instance.soccerTeam.name.toUpperCase(),
-                "remainingMatchTime": "-",
-                "fantasyPoints": instance.soccerPlayer.getFantasyPointsForCompetition(Competition.LEAGUE_ES_ID),
-                "playedMatches": instance.soccerPlayer.getPlayedMatchesForCompetition(Competition.LEAGUE_ES_ID),
-                "salary": instance.salary
-              });
-              */
-            }
-            else {
+              allSoccerPlayersUK.add( new SoccerPlayerListItem(instance, managerLevel, null));
+            } else {
               // Con la caché de TemplateSoccerPlayers es posible que recibamos futbolistas "desconocidos"
               Logger.root.severe("WTF 1013: Bad SoccerPlayer: ${instance.soccerPlayer.templateSoccerPlayerId}");
             }
+          });          
+          soccerTeams.forEach((team) {
+            teamListUK.add({"id": team.templateSoccerTeamId, "name": team.name, "shortName": team.shortName});
           });
+          updateFavorites();
+          
+          leagueUK_isLoading = false;
+        }
+      );
+    }
+    void loadESData() {
+      _soccerPlayerService.getSoccerPlayersByCompetition(Competition.LEAGUE_ES_ID)
+        .then((Map info) {
+          List<InstanceSoccerPlayer> instanceSoccerPlayers = info["instanceSoccerPlayers"];
+          List<SoccerTeam> soccerTeams = info["soccerTeams"];
+  
+          allSoccerPlayersES = new List<SoccerPlayerListItem>();
+          teamListES = [];
+          
+          instanceSoccerPlayers.forEach((InstanceSoccerPlayer instance) {
+            if (instance.soccerPlayer.name != TemplateSoccerPlayer.UNKNOWN) {
+              allSoccerPlayersES.add( new SoccerPlayerListItem(instance, managerLevel, null));
+            } else {
+              // Con la caché de TemplateSoccerPlayers es posible que recibamos futbolistas "desconocidos"
+              Logger.root.severe("WTF 1013: Bad SoccerPlayer: ${instance.soccerPlayer.templateSoccerPlayerId}");
+            }
+          });        
           soccerTeams.forEach((team) {
             teamListES.add({"id": team.templateSoccerTeamId, "name": team.name, "shortName": team.shortName});
           });
-
-          leagueES_isLoading = false;
-          evaluateTabLoading();
           updateFavorites();
+          
+          leagueES_isLoading = false;
+          // Para evitar la carga simultanea y sobrecarga de peticiones, concatenamos la llamada a la liga UK trás la liga ES.
           //loadUKData();
-        });
+        }
+      );
+    }
+    
+    loadESData();
+    loadingService.isLoading = false;
   }
 
+  void onSoccerPlayerInfo(SoccerPlayerListItem soccerPlayer) {
+    selectedInstanceSoccerPlayer = soccerPlayer;
+    sectionActive  = SOCCER_PLAYER_STATS;
+  }
+  
   void updateFavorites() {
     favoritesPlayers.clear();
     favoritesPlayers.addAll(_profileService.user.favorites.map((playerId) =>
@@ -236,41 +193,6 @@ class ScoutingComp implements DetachAware {
             orElse: () => allSoccerPlayersES.firstWhere( (player) => player.id == playerId,
             orElse: () => null))
       ).where( (d) => d != null));
-  }
-
-  Future getContentJson(String fileName) {
-    var completer = new Completer();
-    HttpRequest.getString(fileName).then((json) {
-        completer.complete(JSON.decode(json));
-      });
-
-    return completer.future;
-  }
-
-  void tabChange(String tab) {
-    querySelectorAll("#enter-contest-wrapper .tab-pane").classes.remove('active');
-    querySelector("#${tab}").classes.add("active");
-    currentTab = tab;
-  }
-
-  void evaluateTabLoading() {
-    loadingService.isLoading = (currentTab == 'spanish-league' && leagueES_isLoading) ||
-                               (currentTab == 'premier-league' && leagueUK_isLoading) ||
-                               favoritesIsSaving;
-  }
-
-  void detach() {
-    _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR);
-    
-    /*_routeHandle.discard();
-    if (_retryOpTimer != null && _retryOpTimer.isActive) {
-      _retryOpTimer.cancel();
-    }*/
-  }
-
-  void onSoccerPlayerInfo(SoccerPlayerListItem soccerPlayer) {
-    selectedInstanceSoccerPlayer = soccerPlayer;
-    sectionActive  = SOCCER_PLAYER_STATS;
   }
   
   void onFavoritesChange(var soccerPlayer) {
@@ -283,7 +205,6 @@ class ScoutingComp implements DetachAware {
         // TODO: control max
         favoritesPlayers.add(soccerPlayer);
       }
-
       saveFavorites();
     }
   }
@@ -292,20 +213,19 @@ class ScoutingComp implements DetachAware {
     if (!favoritesIsSaving) {
       thereIsNewFavorites = false;
       favoritesIsSaving = true;
-      evaluateTabLoading();
       _soccerPlayerService.setFavorites(favoritesPlayers.map((player) => player.id).toList())
-          .then( (_) {
-              favoritesIsSaving = false;
-              evaluateTabLoading();
-              if (thereIsNewFavorites) saveFavorites();
-            });
+        .then( (_) {
+            favoritesIsSaving = false;
+            if (thereIsNewFavorites) saveFavorites();
+        }
+      );
     }
   }
 
+  List<AppSecondaryTabBarTab> _tabList = [];
+  
   Router _router;
-  RouteProvider _routeProvider;
-  String _parent;
-
+  
   SoccerPlayerService _soccerPlayerService;
   ProfileService _profileService;
   AppStateService _appStateService;

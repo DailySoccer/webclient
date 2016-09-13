@@ -16,7 +16,7 @@ class ScalingList<T> {
   }
   
   void set elements(List<T> list) {
-    if (list == null || list.isEmpty) return;
+    if (list == null) return;
     _fullList = list;
     _processList();
   }

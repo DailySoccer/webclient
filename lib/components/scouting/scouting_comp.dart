@@ -62,11 +62,14 @@ class ScoutingComp implements DetachAware {
       case SOCCER_PLAYERS_LIST:        
         refreshTopBar();
         _appStateService.appSecondaryTabBarState.tabList = tabList;
+        _appStateService.appTabBarState.show = true; 
       break;
       case SOCCER_PLAYER_STATS:
         _appStateService.appSecondaryTabBarState.tabList = [];
         _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Estadísticas");
         _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerDetails;
+        _appStateService.appTabBarState.show = false; 
+        
       break;
     }
   }

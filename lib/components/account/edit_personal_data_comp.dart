@@ -7,6 +7,7 @@ import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/server_error.dart';
 import 'dart:html';
 import 'package:webclient/utils/string_utils.dart';
+import 'package:webclient/services/app_state_service.dart';
 
 @Component(
     selector: 'edit-personal-data',
@@ -92,7 +93,17 @@ class EditPersonalDataComp implements ShadowRootAware{
     return StringUtils.translate(key, "editprofile", sustitutions);
   }
 
-  EditPersonalDataComp(this._profileManager, this.loadingService, this._router);
+  EditPersonalDataComp(this._profileManager, this.loadingService, this._router, this._appStateService) {
+    // Topbar y bottombar        
+    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Editar perfil");
+    _appStateService.appTopBarState.activeState.onLeftColumn = GoBack;
+    _appStateService.appTabBarState.show = false;
+    _appStateService.appSecondaryTabBarState.tabList = [];
+  }
+  
+  void GoBack() {
+    _router.go("user_profile", {});
+  }
 
   void init() {
     //switch NEWSLETTER/OFERTAS ESPECIALES
@@ -127,6 +138,7 @@ class EditPersonalDataComp implements ShadowRootAware{
     _editedNickName  = _profileManager.user.nickName;
     _editedPassword       = "";
     _editedRepeatPassword = "";
+    
     validateAll();
   }
 
@@ -246,6 +258,7 @@ class EditPersonalDataComp implements ShadowRootAware{
   }
 
   ProfileService _profileManager;
+  AppStateService _appStateService;
   Router _router;
   bool _acceptNewsletter;
   bool _acceptGameAlerts;

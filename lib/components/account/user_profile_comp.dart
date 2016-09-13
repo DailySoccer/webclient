@@ -94,8 +94,7 @@ class UserProfileComp {
           'points': 0
         });
         
-        // Topbar y bottombar
-        
+        // Topbar y bottombar        
         _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("PERFIL");
         _appStateService.appTopBarState.activeState.onLeftColumn = GoBack;
         _appStateService.appTabBarState.show = false;

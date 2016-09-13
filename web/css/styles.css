@@ -5640,16 +5640,6 @@ scoring-rules:before,
 scoring-rules:after,
 .panel-points .punctuation:before,
 .panel-points .punctuation:after,
-#personalDataContent .header:before,
-#personalDataContent .header:after,
-#personalDataContent .content:before,
-#personalDataContent .content:after,
-#personalDataContent .data-content:before,
-#personalDataContent .data-content:after,
-#personalDataContent .subscriptions-content:before,
-#personalDataContent .subscriptions-content:after,
-#personalDataContent .save-changes-content:before,
-#personalDataContent .save-changes-content:after,
 #addFundsContent .pay-faq-block .pay-faq-title:before,
 #addFundsContent .pay-faq-block .pay-faq-title:after,
 #addFundsContent .scores-wrapper:before,
@@ -5758,11 +5748,6 @@ scoring-rules:after,
 #teamsPanelComp #teamsPanelRoot .teams-container:after,
 scoring-rules:after,
 .panel-points .punctuation:after,
-#personalDataContent .header:after,
-#personalDataContent .content:after,
-#personalDataContent .data-content:after,
-#personalDataContent .subscriptions-content:after,
-#personalDataContent .save-changes-content:after,
 #addFundsContent .pay-faq-block .pay-faq-title:after,
 #addFundsContent .scores-wrapper:after,
 #transactionHistoryRoot .transaction-headers:after,
@@ -7938,680 +7923,96 @@ scoring-rules #scoringForForwards .rules-content {
 #scoringForForwards {
   padding-bottom: 15px;
 }
-#personalDataContent {
-  background-color: #f8f8f8;
+.edit-form {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
 }
-#personalDataContent .edit-personal-data-header {
-  background-color: #214a5f;
-  line-height: 60px;
+.content {
+  padding: 15px;
+  background-color: #181818;
+  align-items: center;
 }
-#personalDataContent .edit-personal-data-header .header-title {
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
-  font-size: 20pt;
+.content-field {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  flex: 1;
+  font-size: 10pt;
   color: #ffffff;
   text-transform: uppercase;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   text-align: left;
-  padding-left: 20px;
-}
-#personalDataContent .edit-personal-data-header button.close {
-  float: right;
-  font-size: 21px;
-  font-weight: bold;
-  line-height: 1;
-  color: #000000;
-  text-shadow: 0 1px 0 #ffffff;
-  opacity: 0.2;
-  filter: alpha(opacity=20);
-  color: #ffffff;
-  opacity: 0.5;
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 20pt;
-}
-#personalDataContent .edit-personal-data-header button.close:hover,
-#personalDataContent .edit-personal-data-header button.close:focus {
-  color: #000000;
-  text-decoration: none;
-  cursor: pointer;
-  opacity: 0.5;
-  filter: alpha(opacity=50);
-}
-button#personalDataContent .edit-personal-data-header button.close {
-  padding: 0;
-  cursor: pointer;
-  background: transparent;
-  border: 0;
-  -webkit-appearance: none;
-}
-#personalDataContent .edit-personal-data-header button.close:hover {
-  font-size: 20pt;
-  color: #ffffff;
-  opacity: 1;
-}
-#personalDataContent .header {
-  margin-left: 0;
-  margin-right: 0;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 10pt;
-  color: #ffffff;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  padding-top: 5px;
-  padding-bottom: 5px;
-  background-color: #214a5f;
-  text-align: center;
-  position: relative;
-}
-#personalDataContent .header .btn-cancel {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-}
-#personalDataContent .header button.close {
-  float: right;
-  font-size: 21px;
-  font-weight: bold;
-  line-height: 1;
-  color: #000000;
-  text-shadow: 0 1px 0 #ffffff;
-  opacity: 0.2;
-  filter: alpha(opacity=20);
-  color: #ffffff;
-  opacity: 0.5;
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 20pt;
-}
-#personalDataContent .header button.close:hover,
-#personalDataContent .header button.close:focus {
-  color: #000000;
-  text-decoration: none;
-  cursor: pointer;
-  opacity: 0.5;
-  filter: alpha(opacity=50);
-}
-button#personalDataContent .header button.close {
-  padding: 0;
-  cursor: pointer;
-  background: transparent;
-  border: 0;
-  -webkit-appearance: none;
-}
-#personalDataContent .header button.close:hover {
-  font-size: 20pt;
-  color: #ffffff;
-  opacity: 1;
-}
-#personalDataContent .header .header-title {
-  position: relative;
-  float: left;
-  width: 100%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
-  font-size: 20pt;
+  padding: 0 15px 20px 15px;
+}
+.text-input {
+  margin: 5px 0;
+  color: #000000;
+}
+.save-changes-content {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  flex: 1;
+  padding: 15px;
+}
+.action-button-save {
+  background-image: -webkit-linear-gradient(top, #0d75a6 0%, #0c4c6a 100%);
+  background-image: linear-gradient(to bottom, #0d75a6 0%, #0c4c6a 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0d75a6', endColorstr='#ff0c4c6a', GradientType=0);
+  font-size: 10pt;
   color: #ffffff;
   text-transform: uppercase;
+  text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
+  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
+  padding: 10px;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  border: 0;
+  outline-offset: 0px;
+  outline: none;
+}
+.action-button-save:hover,
+.action-button-save:active,
+.action-button-save:focus {
+  border: 0;
+  outline-offset: 0px;
+  outline: none;
+}
+.action-button-save:disabled {
+  color: #757993;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.err-text {
+  font-size: 10pt;
+  color: #ff0000;
+  text-transform: uppercase;
   text-align: left;
-}
-#personalDataContent .field-padding {
-  padding-bottom: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-#personalDataContent .content {
-  margin-left: 0;
-  margin-right: 0;
-}
-@media (min-width: 768px) {
-  #personalDataContent .content {
-    padding: 20px 100px;
-  }
-}
-@media (max-width: 767px) {
-  #personalDataContent .content {
-    padding-top: 20px;
-  }
-}
-#personalDataContent .data-content {
-  margin-left: 0;
-  margin-right: 0;
-}
-@media (min-width: 768px) {
-  #personalDataContent .data-content {
-    padding: 20px 100px;
-  }
-}
-@media (max-width: 767px) {
-  #personalDataContent .data-content {
-    padding-top: 20px;
-  }
-}
-@media (min-width: 992px) {
-  #personalDataContent .data-content {
-    padding: 20px 20px;
-  }
-}
-#personalDataContent .content-field {
-  position: relative;
-  float: left;
-  width: 100%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-bottom: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-@media (min-width: 768px) {
-  #personalDataContent .content-field {
-    float: left;
-    width: 50%;
-  }
-}
-#personalDataContent .content-field input {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 8pt;
-  color: #777777;
-  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
-}
-#personalDataContent .content-field-block {
-  position: relative;
-  float: left;
-  width: 100%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-bottom: 10px;
-}
-#personalDataContent .content-field-block:before,
-#personalDataContent .content-field-block:after {
-  content: " ";
-  display: table;
-}
-#personalDataContent .content-field-block:after {
-  clear: both;
-}
-#personalDataContent .content-field-block:before,
-#personalDataContent .content-field-block:after {
-  content: " ";
-  display: table;
-}
-#personalDataContent .content-field-block:after {
-  clear: both;
-}
-#personalDataContent .err-text {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 8pt;
-  color: #ff0000;
   text-shadow: 1px 1px 1px rgba(255, 0, 0, 0.004);
-}
-#personalDataContent .subscriptions-content {
-  margin-left: 0;
-  margin-right: 0;
-}
-@media (min-width: 768px) {
-  #personalDataContent .subscriptions-content {
-    padding: 20px 100px;
-  }
-}
-@media (max-width: 767px) {
-  #personalDataContent .subscriptions-content {
-    padding-top: 20px;
-  }
-}
-#personalDataContent .subscription-wrapper {
-  background-color: #afd3e4;
-  border-radius: 10px;
-  border: 1px solid #afafaf;
-  display: inline-block;
-  width: 100%;
-  line-height: 25px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-#personalDataContent .subscription-wrapper:before,
-#personalDataContent .subscription-wrapper:after {
-  content: " ";
-  display: table;
-}
-#personalDataContent .subscription-wrapper:after {
-  clear: both;
-}
-#personalDataContent .subscription-wrapper:before,
-#personalDataContent .subscription-wrapper:after {
-  content: " ";
-  display: table;
-}
-#personalDataContent .subscription-wrapper:after {
-  clear: both;
-}
-#personalDataContent .subscription-label {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 8pt;
-  color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  padding-left: 10px;
-  float: left;
-}
-#personalDataContent .check-wrapper {
-  padding-right: 10px;
-  float: right;
-}
-#personalDataContent .save-changes-content {
-  margin-left: 0;
-  margin-right: 0;
-}
-@media (min-width: 768px) {
-  #personalDataContent .save-changes-content {
-    padding: 0 100px 20px 100px;
-  }
-}
-@media (max-width: 767px) {
-  #personalDataContent .save-changes-content {
-    padding: 0 20px 20px 20px;
-  }
-}
-#personalDataContent .save-changes-content .forms-wrapper-button {
-  float: left;
-  width: 100%;
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  height: 30px;
-  margin-top: 10px;
-}
-@media (min-width: 768px) {
-  #personalDataContent .save-changes-content .forms-wrapper-button {
-    float: left;
-    width: 50%;
-  }
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save {
-  display: block;
-  width: 100%;
-  padding-left: 0;
-  padding-right: 0;
-  background-color: #428bca;
-  border-color: #357ebd;
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border-width: 0;
-  -webkit-transition: All 0.08s ease-out;
-  -moz-transition: All 0.08s ease-out;
-  -ms-transition: All 0.08s ease-out;
-  -o-transition: All 0.08s ease-out;
-  transition: All 0.08s ease-out;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 10pt;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  background-color: #a1c931;
-  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
-  color: #ffffff;
-  outline: none !important;
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:hover,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:focus,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:active,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save.active,
-.open .dropdown-toggle#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save {
-  color: #ffffff;
-  background-color: #3276b1;
-  border-color: #285e8e;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:active,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save.active,
-.open .dropdown-toggle#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save {
-  background-image: none;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save.disabled,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save[disabled],
-fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save.disabled:hover,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save[disabled]:hover,
-fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:hover,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save.disabled:focus,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save[disabled]:focus,
-fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:focus,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save.disabled:active,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save[disabled]:active,
-fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:active,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save.disabled.active,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save[disabled].active,
-fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save.active {
-  background-color: #428bca;
-  border-color: #357ebd;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save .badge {
-  color: #428bca;
-  background-color: #ffffff;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:focus,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:active:focus,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:hover,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:focus {
-  color: #333333;
-  text-decoration: none;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:active,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save.disabled,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save[disabled],
-fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:active,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save.active {
-  box-shadow: none;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:active:focus,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save.active:focus {
-  color: #ffffff;
-  background-color: #b5d657;
-  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:active:hover,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save.active:hover {
-  color: #ffffff;
-  background-color: #b5d657;
-  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:focus {
-  background-color: #a1c931;
-  color: #ffffff;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:hover {
-  background-color: #acd142;
-  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
-  outline: none !important;
-  color: #ffffff;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:hover:focus {
-  background-color: #a1c931;
-  color: #ffffff;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:active,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save.active {
-  box-shadow: none;
-  background-color: #a1c931;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save:hover {
-  background-color: #acd142;
-  outline: none !important;
-  color: #ffffff;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save.disabled,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save[disabled],
-fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save {
-  background-color: #b5d657;
-  color: #ebebeb;
-  cursor: not-allowed !important;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-save.close {
-  background-color: #a1c931;
-  outline: none !important;
-  color: #ffffff;
-}
-@media (min-width: 992px) {
-  #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save {
-    float: left;
-    width: 50%;
-  }
-}
-@media (min-width: 992px) {
-  #personalDataContent .save-changes-content .forms-wrapper-button .action-button-save {
-    left: 50%;
-  }
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel {
-  display: block;
-  width: 100%;
-  padding-left: 0;
-  padding-right: 0;
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border-width: 0;
-  -webkit-transition: All 0.08s ease-out;
-  -moz-transition: All 0.08s ease-out;
-  -ms-transition: All 0.08s ease-out;
-  -o-transition: All 0.08s ease-out;
-  transition: All 0.08s ease-out;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 10pt;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  background-color: #afafaf;
-  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);
-  color: #ffffff;
-  outline: none !important;
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:focus,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:active:focus,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:hover,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:focus {
-  color: #333333;
-  text-decoration: none;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:active,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel.disabled,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel[disabled],
-fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:active,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel.active {
-  box-shadow: none;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:active:focus,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel.active:focus {
-  color: #ffffff;
-  background-color: #c9c9c9;
-  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:active:hover,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel.active:hover {
-  color: #ffffff;
-  background-color: #c9c9c9;
-  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.45);
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:focus {
-  background-color: #afafaf;
-  color: #ffffff;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:hover {
-  background-color: #bcbcbc;
-  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
-  outline: none !important;
-  color: #ffffff;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:hover:focus {
-  background-color: #afafaf;
-  color: #ffffff;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:active,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel.active {
-  box-shadow: none;
-  background-color: #afafaf;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel:hover {
-  background-color: #bcbcbc;
-  outline: none !important;
-  color: #ffffff;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel.disabled,
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel[disabled],
-fieldset[disabled] #personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel {
-  background-color: #c9c9c9;
-  color: #ebebeb;
-  cursor: not-allowed !important;
-}
-#personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel.close {
-  background-color: #afafaf;
-  outline: none !important;
-  color: #ffffff;
-}
-@media (min-width: 992px) {
-  #personalDataContent .save-changes-content .forms-wrapper-button .action-button-cancel {
-    float: left;
-    width: 50%;
-  }
-}
-.control-wrapper-bottom-space {
-  padding-bottom: 10px;
-}
-.text-label {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 8pt;
-  color: #777777;
-  text-shadow: 1px 1px 1px rgba(119, 119, 119, 0.004);
-}
-.errorDetected {
-  position: relative;
-  -webkit-animation: appear-from-right-keyframes 0.5s;
-  -moz-animation: appear-from-right-keyframes 0.5s;
-  -ms-animation: appear-from-right-keyframes 0.5s;
-  -o-animation: appear-from-right-keyframes 0.5s;
-  animation: appear-from-right-keyframes 0.5s;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 8pt;
-  color: #ff0000;
-  text-shadow: 1px 1px 1px rgba(255, 0, 0, 0.004);
-}
-@-webkit-keyframes appear-from-right-keyframes {
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
-}
-@-moz-keyframes appear-from-right-keyframes {
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
-}
-@-o-keyframes appear-from-right-keyframes {
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
-}
-@keyframes appear-from-right-keyframes {
-  0% {
-    left: 100px;
-    opacity: 0;
-  }
-  100% {
-    left: 0px;
-    opacity: 1;
-  }
-}
-#changePasswordBox .form-description {
-  margin: 10px 0;
-}
-.panel-body {
-  min-height: 60px;
-}
-.panel-heading {
-  min-height: 59px;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
 }
 #addFundsContent {
   padding-bottom: 40px;
@@ -21845,11 +21246,6 @@ users-list#usersList > .epic-tooltip {
 #homeRoot #teamsPanelComp #teamsPanelRoot .teams-container,
 #homeRoot scoring-rules,
 #homeRoot .panel-points .punctuation,
-#homeRoot #personalDataContent .header,
-#homeRoot #personalDataContent .content,
-#homeRoot #personalDataContent .data-content,
-#homeRoot #personalDataContent .subscriptions-content,
-#homeRoot #personalDataContent .save-changes-content,
 #homeRoot #addFundsContent .pay-faq-block .pay-faq-title,
 #homeRoot #addFundsContent .scores-wrapper,
 #homeRoot #transactionHistoryRoot .transaction-headers,

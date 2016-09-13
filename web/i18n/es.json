@@ -133,10 +133,10 @@
     {
       "title"                           : "EDITAR PERFIL",
       "name"                            : "Nombre",
-      "lastname"                        : "Primer apellido",
+      "lastname"                        : "apellidos",
       "username"                        : "Nombre de usuario",
       "mail"                            : "Correo electrónico",
-      "passrequires"                    : "Contraseña (Rellena ambos campos para actualizar tu contraseña)",
+      "passrequires"                    : "Contraseña",
       "pass"                            : "Contraseña",
       "repass"                          : "Repite la contraseña",
       "notifications"                   : "NOTIFICACIONES",

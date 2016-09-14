@@ -23179,6 +23179,8 @@ scouting {
   display: flex;
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
+  flex: 1;
+  overflow: hidden;
 }
 .soccer-player-list-section {
   display: -webkit-box;
@@ -23189,6 +23191,28 @@ scouting {
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
   flex: 1;
+}
+scouting-league {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  flex: 1;
+  overflow: hidden;
+}
+.favorites-wrapper {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  flex: 1;
+  overflow: hidden;
 }
 .favorites-wrapper .enter-contest-soccer-players-wrapper {
   width: 100% !important;

@@ -51,11 +51,11 @@ class ScoutingLeagueComp implements DetachAware {
   
   @NgCallback('on-info-button')
   Function onInfoPlayerButton;
-  /*
+
   void onSoccerPlayerActionButton(var soccerPlayer) {
     onSoccerPlayerAction({"soccerPlayer": soccerPlayer});
   }
-  */
+
   String idSufix;
   @NgOneWay('id-sufix')
   void set identifier(String id) {

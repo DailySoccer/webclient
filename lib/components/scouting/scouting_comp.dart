@@ -143,8 +143,6 @@ class ScoutingComp implements DetachAware {
             teamListUK.add({"id": team.templateSoccerTeamId, "name": team.name, "shortName": team.shortName});
           });
           updateFavorites();
-          
-          leagueUK_isLoading = false;
         }
       );
     }
@@ -196,7 +194,7 @@ class ScoutingComp implements DetachAware {
   }
   
   void onFavoritesChange(var soccerPlayer) {
-    if (!(leagueES_isLoading || leagueUK_isLoading)) {
+    if (!(leagueES_isLoading /*|| leagueUK_isLoading*/)) {
       thereIsNewFavorites = favoritesIsSaving;
       int indexOfPlayer = favoritesPlayers.indexOf(soccerPlayer);
       if (indexOfPlayer != -1) {

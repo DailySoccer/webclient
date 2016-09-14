@@ -34,12 +34,13 @@ contest-info {
 		    justify-content: space-between;
 		}
 		.team {
-			.flex-elem-fixed(30px);
+			
+			.flex-elem-fluid();
 			.mainfont_light(10pt, @grey-translucid, center, uppercase);
 			margin: 0 15px;	
 		}
 		.date {
-			.flex-elem-fluid();
+			.flex-elem-fixed(auto);
 			.mainfont_light(10pt, @grey-bluish, center, uppercase);
 		}
 	}

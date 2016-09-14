@@ -7850,7 +7850,7 @@ contest-info .matches-involved .match {
   justify-content: space-between;
 }
 contest-info .matches-involved .team {
-  flex: 0 0 30px;
+  flex: 1;
   font-size: 10pt;
   color: rgba(210, 210, 210, 0.3);
   text-transform: uppercase;
@@ -7861,7 +7861,7 @@ contest-info .matches-involved .team {
   margin: 0 15px;
 }
 contest-info .matches-involved .date {
-  flex: 1;
+  flex: 0 0 auto;
   font-size: 10pt;
   color: #757993;
   text-transform: uppercase;

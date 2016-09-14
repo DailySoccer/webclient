@@ -20,9 +20,9 @@
   <!--Partidos dentro del concurso-->
   <div class="matches-involved">
       <div class="match" ng-repeat="match in currentInfoData['matchesInvolved']">
-          <div class="team">{{match.soccerTeamA.shortName}}</div>
+          <div class="team">{{match.soccerTeamA.name}}</div>
           <div class="date">{{formatMatchDate(match.startDate)}}</div>
-          <div class="team">{{match.soccerTeamB.shortName}}</div>
+          <div class="team">{{match.soccerTeamB.name}}</div>
       </div>
   </div>
   

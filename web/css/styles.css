@@ -15222,6 +15222,8 @@ soccer-players-list:after {
   font-size: 9pt;
   color: #59add5;
   text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  white-space: nowrap;
+  overflow: hidden;
 }
 @media (max-width: 767px) {
   .soccer-players-list .soccer-players-list-slot .soccer-player-info .column-primary-info .match-event-name,
@@ -15757,6 +15759,8 @@ soccer-players-scalinglist .column-primary-info {
   flex-flow: column nowrap;
   padding: 0 5px;
   text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
 }
 soccer-players-scalinglist .column-primary-info .soccer-player-name {
   white-space: nowrap;
@@ -15764,6 +15768,8 @@ soccer-players-scalinglist .column-primary-info .soccer-player-name {
 }
 soccer-players-scalinglist .column-primary-info .match-event-name {
   color: #757993;
+  white-space: nowrap;
+  overflow: hidden;
 }
 soccer-players-scalinglist .column-primary-info .match-event-name strong {
   font-weight: 500;

@@ -196,7 +196,7 @@ class ScoutingComp implements DetachAware {
   }
   
   void onFavoritesChange(var soccerPlayer) {
-    if (!(leagueES_isLoading || leagueES_isLoading)) {
+    if (!(leagueES_isLoading || leagueUK_isLoading)) {
       thereIsNewFavorites = favoritesIsSaving;
       int indexOfPlayer = favoritesPlayers.indexOf(soccerPlayer);
       if (indexOfPlayer != -1) {

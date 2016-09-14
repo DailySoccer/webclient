@@ -1,23 +1,12 @@
-<!-- Este sera el selector de partidos en "grande", con botones-->
-<!--teams-filter team-list="teamList" selected-option="teamFilter" id-sufix="idSufix"></teams-filter-->
-
-<div class="enter-contest-soccer-players-wrapper">
-    <!--soccer-players-filter show-on-xs="true" name-filter="nameFilter" field-pos-filter="fieldPosFilter" only-favorites="onlyFavorites"></soccer-players-filter-->
-    <!--soccer-players-list soccer-players="allSoccerPlayers"
-                         lineup-filter="favoritesPlayers" manager-level="10" 
-                         favorites-list="favoritesPlayers" only-favorites="onlyFavorites"
-                         field-pos-filter="fieldPosFilter" name-filter="nameFilter" match-filter="teamFilter"
-                         on-row-click="onRowClick(soccerPlayerId)"
-                         on-action-click="onSoccerPlayerActionButton(soccerPlayer)"></soccer-players-list-->
-     <soccer-players-scalinglist  soccer-players="allSoccerPlayers"
-                                  lineup-filter="favoritesPlayers"
-                                  manager-level="10"
-                                  favorites-list="favoritesPlayers" 
-                                  only-favorites="onlyFavorites"
-                                  field-pos-filter="fieldPosFilter" 
-                                  name-filter="nameFilter" 
-                                  match-filter="teamFilter"
-                                  on-info-click="onRowClick(soccerPlayerId)"
-                                  on-action-click="onSoccerPlayerActionButton(soccerPlayer)"
-                                  is-scouting-list="true"></soccer-players-scalinglist>
-</div>
+ <soccer-players-scalinglist  soccer-players="allSoccerPlayers"
+                              lineup-filter="favoritesPlayers"
+                              manager-level="10"
+                              favorites-list="favoritesPlayers" 
+                              only-favorites="onlyFavorites"
+                              field-pos-filter="fieldPosFilter" 
+                              name-filter="nameFilter" 
+                              match-filter="teamFilter"
+                              on-info-click="onRowClick(soccerPlayerId)"
+                              on-action-click="onSoccerPlayerActionButton(soccerPlayer)"
+                              is-scouting-list="true">
+                            </soccer-players-scalinglist>

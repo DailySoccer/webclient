@@ -43,6 +43,7 @@ class ScoutingLeagueComp implements DetachAware {
   void set teamList(List<Map<String, String>> teams) {
     _teamList = teams;
   }
+
   List<Map<String, String>> get teamList => _teamList;
 
   @NgCallback('on-action-button')
@@ -50,11 +51,11 @@ class ScoutingLeagueComp implements DetachAware {
   
   @NgCallback('on-info-button')
   Function onInfoPlayerButton;
-
+  /*
   void onSoccerPlayerActionButton(var soccerPlayer) {
     onSoccerPlayerAction({"soccerPlayer": soccerPlayer});
   }
-
+  */
   String idSufix;
   @NgOneWay('id-sufix')
   void set identifier(String id) {
@@ -66,7 +67,7 @@ class ScoutingLeagueComp implements DetachAware {
   
   String nameFilter;
   String teamFilter;
- 
+/*
   InstanceSoccerPlayer selectedInstanceSoccerPlayer;
 
   String getLocalizedText(key, {substitutions: null}) {
@@ -76,12 +77,11 @@ class ScoutingLeagueComp implements DetachAware {
   String formatCurrency(String amount) {
     return StringUtils.formatCurrency(amount);
   }
-
-  ScoutingLeagueComp(this._routeProvider, this._router) {
-    removeAllFilters();
-    //_parent = _routeProvider.parameters["parent"];
+*/
+  ScoutingLeagueComp() {
+    //removeAllFilters();
   }
-
+  /*
   Future getContentJson(String fileName) {
     var completer = new Completer();
     HttpRequest.getString(fileName).then((json) {
@@ -94,7 +94,7 @@ class ScoutingLeagueComp implements DetachAware {
     querySelectorAll("#enter-contest-wrapper .tab-pane").classes.remove('active');
     querySelector("#${tab}").classes.add("active");
   }
-
+*/
   void detach() {
     /*_routeHandle.discard();
 
@@ -104,14 +104,9 @@ class ScoutingLeagueComp implements DetachAware {
   }
 
   void onRowClick(String soccerPlayerId) {
-    /*ModalComp.open(_router, "scouting.soccer_player_stats", {
-        "soccerPlayerId": soccerPlayerId,
-        "selectable": (favoritesPlayers.firstWhere((soccerPlayer) => soccerPlayer.id == soccerPlayerId, orElse: () => null) == null)
-      }, addSoccerPlayerToFavorite);
-    */
     onInfoPlayerButton({'soccerPlayer': _allSoccerPlayers.firstWhere((player) => player.id == soccerPlayerId)});
   }
-
+  /*
   void addSoccerPlayerToFavorite(String soccerPlayerId) {
     var soccerPlayer = allSoccerPlayers.firstWhere((soccerPlayer) => soccerPlayer.id == soccerPlayerId, orElse: () => null);
     onSoccerPlayerActionButton(soccerPlayer);
@@ -122,10 +117,6 @@ class ScoutingLeagueComp implements DetachAware {
     nameFilter = null;
     teamFilter = null;
   }
-
-  Router _router;
-  RouteProvider _routeProvider;
-  String _parent;
-
+*/
   Element alertMaxplayerInSameTeam;
 }

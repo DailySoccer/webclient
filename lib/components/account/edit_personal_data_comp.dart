@@ -96,7 +96,7 @@ class EditPersonalDataComp implements ShadowRootAware{
   EditPersonalDataComp(this._profileManager, this.loadingService, this._router, this._appStateService) {
     // Topbar y bottombar        
     _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Editar perfil");
-    _appStateService.appTopBarState.activeState.onLeftColumn = GoBack;
+    _appStateService.appTopBarState.activeState.onLeftColumn = AppTopBarState.GOBACK;
     _appStateService.appTabBarState.show = false;
     _appStateService.appSecondaryTabBarState.tabList = [];
   }

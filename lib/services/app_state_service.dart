@@ -1,5 +1,5 @@
 library app_state_service;
-
+import 'dart:html';
 import 'dart:async';
 import 'dart:math';
 import 'dart:collection';
@@ -56,6 +56,10 @@ class AppTopBarState {
   // COMPONENTS
   static const String BACK_BUTTON = "__BACK_BUTTON__";
   static const String EMPTY = "__EMPTY__";
+  
+  static void GOBACK() {
+    window.history.back();
+  }
   
   AppTopBarStateConfig activeState = new AppTopBarStateConfig.hidden();
 }

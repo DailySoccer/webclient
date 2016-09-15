@@ -36,8 +36,8 @@ class RefreshTimersService {
     window.onBlur.listen( (_) => _focus = false );
     window.onFocus.listen( (_) => _focus = true );
     
-    JsUtils.setJavascriptFunction('onApplicationPause', () => _focus = false);
-    JsUtils.setJavascriptFunction('onApplicationResume', () => _focus = true);
+    JsUtils.setJavascriptFunction('dartOnApplicationPause', () => _focus = false);
+    JsUtils.setJavascriptFunction('dartOnApplicationResume', () => _focus = true);
   }
 
   Timer addRefreshTimer(String name, Function updateFunction, [String timerName] ) {

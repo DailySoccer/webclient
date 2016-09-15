@@ -22,7 +22,7 @@ import 'package:webclient/services/app_state_service.dart';
 )
 class MyContestsComp implements DetachAware, ShadowRootAware {
   static const String TAB_WAITING = "waiting";
-  static const String TAB_LIVE = "live";
+  static const String TAB_LIVE    = "live";
   static const String TAB_HISTORY = "history";
 
   bool get tabIsLive => _tabSelected == TAB_LIVE;

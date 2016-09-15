@@ -564,9 +564,9 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
   <!--Partidos dentro del concurso-->
   <div class="matches-involved">
       <div class="match" ng-repeat="match in currentInfoData['matchesInvolved']">
-          <div class="team">{{match.soccerTeamA.shortName}}</div>
+          <div class="team">{{match.soccerTeamA.name}}</div>
           <div class="date">{{formatMatchDate(match.startDate)}}</div>
-          <div class="team">{{match.soccerTeamB.shortName}}</div>
+          <div class="team">{{match.soccerTeamB.name}}</div>
       </div>
   </div>
   
@@ -850,7 +850,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
   <contest-info the-contest="contest" ng-if="contest != null"></contest-info>
 </section>
 
-<!-- CONTEST INFO -->
+<!-- LINEUP FINISHED -->
 <modal-window class="lineup-finished-modal small" show-header="false" show-window="isLineupFinished">
   <div class="lineup-finished-title">¡Enhorabuena!<br>Has completado tu alineación con éxito</div>
   <div class="lineup-finished-text">Recuerda que puedes modificar la alineación tantas veces como quieras hasta que el torneo comience</div>
@@ -1690,8 +1690,8 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
 <!-- Descomentar cuando hablitemos la funcionalidad de crear torneos -->
 <!--button class="create-custom-contest-button" ng-click="onCreateContestClick()">{{getStaticLocalizedText("challengeyourfriendsbutton")}}</button-->
 
-<!-- Punto de insercion de nuestra ruta hija contest-info (modal) -->
-<ng-view  ng-show="!loadingService.isLoading"></ng-view>
+<!-- Punto de insercion de nuestra ruta hija contest-info (modal)
+<ng-view  ng-show="!loadingService.isLoading"></ng-view> -->
 
 """));
 tc.put("packages/webclient/components/modal_comp.html", new HttpResponse(200, r"""<div id="modalRoot" class="modal" tabindex="-1" role="dialog">
@@ -2259,7 +2259,7 @@ tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new 
   </div>
   <div class="change-soccer-player-actions-wrapper">
     <button class="change-soccer-player-cancel" ng-click="hideConfirmModal()">Cancelar</button>
-    <button class="change-soccer-player-confirm" ng-click="changeSoccerPlayer()">Realizar Sustitución</button>
+    <button class="change-soccer-player-confirm" ng-click="makeSoccerPlayerSubstitution()">Realizar Sustitución</button>
   </div>
 </modal-window>
 

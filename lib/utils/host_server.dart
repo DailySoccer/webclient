@@ -8,7 +8,9 @@ class HostServer {
 
   static String CURRENT_VERSION = "";
 
-  static String DOMAIN = "http://52ae5bf3.ngrok.io"; // "http://dailysoccer-staging.herokuapp.com";
+  //static String DOMAIN = "http://dailysoccer-staging.herokuapp.com";
+  static String DOMAIN = "http://futbolcuatro.epiceleven.com";
+  //static String DOMAIN = "http://52ae5bf3.ngrok.io";
   
   // Global que apunta al servidor Host. Obligatorio usarla cuando vas a hacer una llamada al servidor
   static String get url {
@@ -72,7 +74,10 @@ class HostServer {
 
   static String get platform {
     if (_platform == null || _platform.isEmpty) {
-      JsUtils.runJavascript(null, "getPlatform", [(String platform) => _platform = platform.toLowerCase()]);
+      JsUtils.runJavascript(null, "getPlatform", [(String platform) {
+        _platform = platform.toLowerCase();
+        Logger.root.info("JS Platform Fetched: $_platform");
+      }]);
     }
     return _platform;
   }

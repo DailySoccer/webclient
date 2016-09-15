@@ -1,13 +1,13 @@
 library scouting_comp;
 
-import 'dart:html';
-import 'dart:async';
-import 'dart:convert';
+//import 'dart:html';
+//import 'dart:async';
+//import 'dart:convert';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/loading_service.dart';
 import "package:webclient/models/soccer_team.dart";
 import "package:webclient/models/instance_soccer_player.dart";
-import 'package:webclient/utils/string_utils.dart';
+//import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/soccer_player_service.dart';
 import 'package:webclient/models/competition.dart';

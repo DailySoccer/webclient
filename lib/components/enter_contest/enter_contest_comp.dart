@@ -6,7 +6,6 @@ import 'dart:convert';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
-import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/server_error.dart';
 import 'package:webclient/models/field_pos.dart';
@@ -60,7 +59,7 @@ class EnterContestComp implements DetachAware {
   static const String SOCCER_PLAYER_STATS = "SOCCER_PLAYER_STATS";
   static const String CONTEST_INFO = "CONTEST_INFO";
 
-  ScreenDetectorService scrDet;
+  //ScreenDetectorService scrDet;
   LoadingService loadingService;
 
   Contest contest;
@@ -88,13 +87,19 @@ class EnterContestComp implements DetachAware {
   String _sectionActive = LINEUP_FIELD_SELECTOR;
   void set sectionActive(String section) { 
     _sectionActive = section;
+    _appStateService.appSecondaryTabBarState.tabList = [];
     switch(_sectionActive) {
       case LINEUP_FIELD_SELECTOR:
         setupContestInfoTopBar(true, cancelCreateLineup, onContestInfoClick);
       break;
       case SELECTING_SOCCER_PLAYER:
+        _tabList = [
+                         new AppSecondaryTabBarTab("TODOS LOS JUGADORES",                        () => setFilter(false), () => !onlyFavorites),
+                         new AppSecondaryTabBarTab('''<i class="material-icons">&#xE838;</i>''', () => setFilter(true),  () => onlyFavorites)
+        ];
         _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Elige un ${fieldPosFilter.fullName}");
         _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerSelection;
+        _appStateService.appSecondaryTabBarState.tabList = _tabList;
       break;
       case SOCCER_PLAYER_STATS:
         _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Estadísticas");
@@ -105,6 +110,10 @@ class EnterContestComp implements DetachAware {
       break;
     }
   }
+  void setFilter(bool onlyfavs) {
+    onlyFavorites = onlyfavs;    
+  }
+  
   String get sectionActive => _sectionActive;
 
   bool get isLineupFieldSelectorActive => sectionActive == LINEUP_FIELD_SELECTOR;
@@ -200,25 +209,10 @@ class EnterContestComp implements DetachAware {
     return StringUtils.formatCurrency(amount);
   }
 
-  EnterContestComp(this._routeProvider, this._router, this.scrDet, this._appStateService,
+  EnterContestComp(this._routeProvider, this._router, this._appStateService,
                    this._contestsService, this.loadingService, this._profileService, this._catalogService,
                    this._flashMessage, this._rootElement, this._tutorialService) {
     
-    /*
-    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection('''
-      <div class="contest-topbar-info">
-        <div class="time-section">
-          <div class="contest-flag"></div>
-          <div class="column-start-hour"></div>
-        </div>
-        <div class="contest-name-section">
-          <div class="contest-name"></div>
-          <div class="contest-description"></div>
-        </div>
-      </div>
-    ''', rightColumn: "<i class='material-icons'>&#xE88F;</i>");
-    
-    */
     setupContestInfoTopBar(false, cancelCreateLineup);
     //_appStateService.appTopBarState.activeState = new AppTopBarStateConfig.contestSection(contest, false, () => _router.go('lobby', {}));
     _appStateService.appSecondaryTabBarState.tabList = [];
@@ -260,9 +254,6 @@ class EnterContestComp implements DetachAware {
           "editing" : getLocalizedText("errordefaultediting")
       },
     };
-
-    scrDet.scrollTo('#mainApp');
-
     resetLineup();
 
     _parent = _routeProvider.parameters["parent"];
@@ -1113,7 +1104,6 @@ class EnterContestComp implements DetachAware {
   ElementList<dynamic> _totalSalaryTexts;
 
   Timer _retryOpTimer;
-  ScreenDetectorService _scrDet;
 
   RouteHandle _routeHandle;
 
@@ -1123,4 +1113,5 @@ class EnterContestComp implements DetachAware {
   Element _rootElement;
   Element alertMaxplayerInSameTeam;
   AppStateService _appStateService;
+  List<AppSecondaryTabBarTab> _tabList = [];
 }

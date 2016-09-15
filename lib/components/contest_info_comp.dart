@@ -9,7 +9,6 @@ import 'package:webclient/models/money.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
-import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/components/modal_comp.dart';
 import 'package:webclient/services/server_error.dart';
@@ -41,9 +40,7 @@ class ContestInfoComp implements DetachAware {
     return StringUtils.translate(key, "contestinfo");
   }
 
-  ContestInfoComp(ScreenDetectorService scrDet, RouteProvider routeProvider, this.loadingService, this._router, this._contestsService, this._profileService, this._flashMessage) {
-
-    _streamListener = scrDet.mediaScreenWidth.listen(onScreenWidthChange);
+  ContestInfoComp(RouteProvider routeProvider, this.loadingService, this._router, this._contestsService, this._profileService, this._flashMessage) {
 
     isModal = (_router.activePath.length > 0) && (_router.activePath.first.name == 'lobby');
 
@@ -73,16 +70,7 @@ class ContestInfoComp implements DetachAware {
       }, test: (error) => error is ServerError);
   }
 
-  void detach() {
-    _streamListener.cancel();
-  }
-
-  void onScreenWidthChange(String msg) {
-    // Solo nos mostramos como modal en desktop
-    if (isModal) {
-      ModalComp.close();
-    }
-  }
+  void detach() {}
 
   void updateContestInfo() {
     Logger.root.info("ContestInfoComp --> updateContestInfo");
@@ -177,7 +165,6 @@ class ContestInfoComp implements DetachAware {
     return mainContestEntry.prize;
   }
  
-  var _streamListener;
   Router _router;
 
   ContestsService _contestsService;

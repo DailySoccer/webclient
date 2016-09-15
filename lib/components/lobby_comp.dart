@@ -1,16 +1,15 @@
 library lobby_comp;
 
-import 'dart:async';
+//import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
-import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/utils/game_metrics.dart';
-import 'package:webclient/utils/html_utils.dart';
+//import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/tutorial/tutorial_iniciacion.dart';
 import 'package:webclient/utils/string_utils.dart';
@@ -23,7 +22,6 @@ import 'package:webclient/services/app_state_service.dart';
   useShadowDom: false
 )
 class LobbyComp implements DetachAware {
-  ScreenDetectorService scrDet;
   LoadingService loadingService;
   DateTime selectedDate = null;
 
@@ -43,29 +41,7 @@ class LobbyComp implements DetachAware {
   
   
   LobbyComp(RouteProvider routeProvider, this._router, this._appStateService, this._refreshTimersService, this._contestsService, 
-            GuildService guildService, this.scrDet, this.loadingService, this._profileService, TutorialService tutorialService) {
-    /*
-    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig(
-      leftColumn: '''
-        <div class="lobby-topbar-left">
-          <img class="gold-image" src="images/topBar/icon_user_profile.png">
-          <span class="level">''' +  getLocalizedText("level") + '''</span><span class="level">''' + skillPoints + '''</span>
-        </div>
-      ''', 
-      centerColumn: '''
-        <div class="lobby-topbar-center">
-          <span class="coins-count">''' + "1250" + '''</span>
-          <img class="gold-image" src="images/topBar/icon_coin_big.png">
-          <img class="gold-image" src="images/topBar/icon_add_more_coins.png">
-        </div>
-      ''',
-      rightColumn: '''
-        <div class="lobby-topbar-right">
-        <span class="tab-bar-item-badge has-notifications">''' + "1" + '''</span>          
-        <img class="gold-image" src="images/topBar/icon_Bell.png">
-        </div>
-      ''');
-    */  
+            GuildService guildService, this.loadingService, this._profileService, TutorialService tutorialService) {
     refreshTopBar();
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR, refreshTopBar);
     
@@ -236,12 +212,7 @@ class LobbyComp implements DetachAware {
 
   // Mostramos la ventana modal con la información de ese torneo, si no es la versión movil.
   void onRowClick(Contest contest) {
-    if (scrDet.isDesktop) {
-      _router.go('lobby.contest_info', { "contestId": contest.contestId });
-    }
-    else {
       onActionClick(contest);
-    }
   }
 
   void detach() {

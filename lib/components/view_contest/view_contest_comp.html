@@ -1,4 +1,5 @@
 
+<!-- USER LINEUP SECTION -->
 <section class="view-contest-section" ng-show="isLineupFieldContestEntryActive">
   <user-shortinfo-bar user="mainPlayer"></user-shortinfo-bar>
   
@@ -18,10 +19,12 @@
   </div>
 </section>
 
+<!-- CONTEST INFO SECTION -->
 <section class="contest-info-section" ng-show="isContestInfoActive">
   <contest-info the-contest="contest" ng-if="contest != null"></contest-info>
 </section>
 
+<!-- RIVALS SECTION -->
 <section class="rivals-list-section" ng-if="isRivalsListActive">
   <div class="rivals-list-table-header">
     <div class="rivals-list-column-position">Pos.</div>
@@ -39,6 +42,7 @@
   </div>
 </section>
 
+<!-- COMPARE LINEUPS SECTION -->
 <section class="view-comparative-section" ng-show="isComparativeActive">
   <user-shortinfo-bar user="selectedOpponent"></user-shortinfo-bar>
   
@@ -109,7 +113,7 @@
   </div>
   <div class="change-soccer-player-actions-wrapper">
     <button class="change-soccer-player-cancel" ng-click="hideConfirmModal()">Cancelar</button>
-    <button class="change-soccer-player-confirm" ng-click="changeSoccerPlayer()">Realizar Sustitución</button>
+    <button class="change-soccer-player-confirm" ng-click="makeSoccerPlayerSubstitution()">Realizar Sustitución</button>
   </div>
 </modal-window>
 

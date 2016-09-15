@@ -35,8 +35,12 @@ class LineupSelectorComp {
   @NgOneWay("contest")
   Contest contest;
 
+  List<SoccerPlayerListItem> _lineupSlots = [];
   @NgOneWay("lineup-slots")
-  List<dynamic> lineupSlots = [];
+  void set lineupSlots(List<SoccerPlayerListItem> slots) {
+    _lineupSlots = slots;
+  }
+  List<SoccerPlayerListItem> get lineupSlots => _lineupSlots;
 
   @NgOneWay("lineup-formation")
   List<String> lineupFormation = FieldPos.FORMATIONS[ContestEntry.FORMATION_442];

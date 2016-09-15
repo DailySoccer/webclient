@@ -481,10 +481,10 @@ class WebClientApp extends Module {
           mount: {
         'soccer_player_stats': ngRoute(
             path: '/soccer_player_stats/:instanceSoccerPlayerId/selectable/:selectable',
-            viewHtml: '<soccer-player-stats></soccer-player-stats>'),
+            viewHtml: '<soccer-player-stats></soccer-player-stats>')/*,
         'change': ngRoute(
             path: '/change/:sourceSoccerPlayerId/:targetSoccerPlayerId',
-            viewHtml: '')
+            viewHtml: '')*/
       }),
       'slc': ngRoute(
           path: '/slc/:contestId',

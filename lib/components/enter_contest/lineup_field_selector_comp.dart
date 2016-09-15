@@ -34,9 +34,13 @@ class LineupFieldSelectorComp {
 */
   @NgOneWay("formation-is-modifiable")
   bool formationIsModifiable = true;
-  
+
+  List<SoccerPlayerListItem> _lineupSlots = [];
   @NgOneWay("lineup-slots")
-  List<SoccerPlayerListItem> lineupSlots = [];
+  void set lineupSlots(List<SoccerPlayerListItem> slots) {
+    _lineupSlots = slots;
+  }
+  List<SoccerPlayerListItem> get lineupSlots => _lineupSlots;
 
   @NgOneWay("lineup-formation")
   List<String> lineupFormation = FieldPos.FORMATIONS[ContestEntry.FORMATION_442];

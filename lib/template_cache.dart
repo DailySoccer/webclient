@@ -80,119 +80,59 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
 
   </div>
 </div>"""));
-tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new HttpResponse(200, r"""<div id="personalDataContent" ng-show="!loadingService.isLoading" ng-cloack>
+tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new HttpResponse(200, r"""<form id="editPersonalDataForm" class="edit-form" ng-submit="saveChanges()" role="form" autocomplete="off" ng-show="!loadingService.isLoading">
+  <div class="content">
+  
+    <!-- Nombre -->
+    <div class="content-field">
+      <span id="lblPassword" class="text-label">{{getLocalizedText("name")}}</span>
+      <input id="txtName" class="text-input" type="text" maxlength="{{MAX_NAME_LENGTH}}" ng-model="editedFirstName" placeholder="{{getLocalizedText('name')}}" class="form-control"  tabindex="1">
+    </div>
+    
+    <!-- Apellidos -->
+    <div class="content-field">      
+      <span id="lblPassword" class="text-label">{{getLocalizedText("lastname")}}</span>
+      <input id="txtLastName" class="text-input" type="text" maxlength="{{MAX_SURNAME_LENGTH}}"ng-model="editedLastName" placeholder="{{getLocalizedText('lastname')}}" class="form-control" tabindex="2">
+    </div>
+    
+    <!-- Nickname -->
+    <div class="content-field">
+      <span id="lblPassword" class="text-label">{{getLocalizedText("username")}}</span>      
+      <input id="txtNickName" class="text-input" type="text" maxlength="{{MAX_NICKNAME_LENGTH}}" ng-model="editedNickName" placeholder="{{getLocalizedText('username')}}" class="form-control" tabindex="3" autocapitalize="off">
+      <!-- Error de nickName -->
+      <div id="nickNameErrorContainer" class="content-field-block errorDetected" ng-if="nicknameErrorText != ''">
+        <div id="nickNameErrorLabel" class="err-text">{{nicknameErrorText}}</div>
+      </div>
+    </div>
 
-  <div class="edit-personal-data-header">
-    <span class="header-title">{{getLocalizedText("title")}}</span>
-  </div>
-  <form id="editPersonalDataForm" class="form-horizontal" ng-submit="saveChanges()" role="form" autocomplete="off">
-    <div class="content">
-      <!-- Nombre -->
-      <div class="content-field">
-        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">{{getLocalizedText("name")}}</span></div>
-        <div class="control-wrapper">
-          <input id="txtName" type="text" maxlength="{{MAX_NAME_LENGTH}}" ng-model="editedFirstName" placeholder="{{getLocalizedText('name')}}" class="form-control"  tabindex="1">
-        </div>
+    <!-- Correo Electrónico -->
+    <div class="content-field" ng-if="userData.canChangeEmail">
+      <span id="lblPassword" class="text-label">{{getLocalizedText("mail")}}</span>      
+      <input id="txtEmail" class="text-input" type="email" ng-model="editedEmail" placeholder="{{getLocalizedText('mail')}}" class="form-control" tabindex="4" autocapitalize="off">
+      <!-- Error de mail -->
+      <div id="emailErrorContainer" class="content-field-block errorDetected" ng-if="emailErrorText != ''">
+        <div id="emailErrorLabel" class="err-text">{{emailErrorText}}</div>
       </div>
-      <!-- Apellidos -->
-      <div class="content-field">
-        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">{{getLocalizedText("lastname")}}</span></div>
-        <div class="control-wrapper">
-          <input id="txtLastName" type="text" maxlength="{{MAX_SURNAME_LENGTH}}"ng-model="editedLastName" placeholder="{{getLocalizedText('lastname')}}" class="form-control" tabindex="2">
-        </div>
-      </div>
-      <!-- Nickname -->
-      <div class="content-field">
-        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">{{getLocalizedText("username")}}</span></div>
-        <div class="control-wrapper">
-          <input id="txtNickName" type="text" maxlength="{{MAX_NICKNAME_LENGTH}}" ng-model="editedNickName" placeholder="{{getLocalizedText('username')}}" class="form-control" tabindex="3" autocapitalize="off">
-        </div>
-        <!-- Error de nickName -->
-        <div id="nickNameErrorContainer" class="content-field-block errorDetected" ng-if="nicknameErrorText != ''">
-          <div id="nickNameErrorLabel" class="err-text">{{nicknameErrorText}}</div>
-        </div>
-      </div>
+    </div>
 
-      <!-- Correo Electrónico -->
-      <div class="content-field" ng-if="userData.canChangeEmail">
-        <div class="control-wrapper-bottom-space"><span id="lblPassword" class="text-label">{{getLocalizedText("mail")}}</span></div>
-        <div class="control-wrapper">
-          <input id="txtEmail" type="email" ng-model="editedEmail" placeholder="{{getLocalizedText('mail')}}" class="form-control" tabindex="4" autocapitalize="off">
-        </div>
-        <!-- Error de mail -->
-        <div id="emailErrorContainer" class="content-field-block errorDetected" ng-if="emailErrorText != ''">
-          <div id="emailErrorLabel" class="err-text">{{emailErrorText}}</div>
-        </div>
-      </div>
-
-      <!-- Label Contraseña -->
-      <div class="content-field-block" ng-if="userData.canChangePassword">
-        <div class="control-wrapper"><span id="lblPassword" class="text-label">{{getLocalizedText("passrequires")}}</span></div>
-      </div>
-      <!-- Contraseña -->
-      <div class="content-field" ng-if="userData.canChangePassword">
-        <div class="control-wrapper"><input id="txtPassword" type="password" ng-model="editedPassword" placeholder="{{getLocalizedText('pass')}}" class="form-control" tabindex="5" autocapitalize="off"></div>
-      </div>
-      <!-- Repetir Contraseña -->
-      <div class="content-field" ng-if="userData.canChangePassword">
-        <div class="control-wrapper"><input id="txtRepeatPassword" type="password" ng-model="editedRepeatPassword" placeholder="{{getLocalizedText('repass')}}" class="form-control" tabindex="6" autocapitalize="off"></div>
-      </div>
-      
+    <!-- Label Contraseña -->
+    <div class="content-field" ng-if="userData.canChangePassword">
+      <span id="lblPassword" class="text-label">{{getLocalizedText("passrequires")}}</span>
+      <input id="txtPassword" class="text-input" type="password" ng-model="editedPassword" placeholder="{{getLocalizedText('pass')}}" class="form-control" tabindex="5" autocapitalize="off">
+      <input id="txtRepeatPassword" class="text-input" type="password" ng-model="editedRepeatPassword" placeholder="{{getLocalizedText('repass')}}" class="form-control" tabindex="6" autocapitalize="off">
       <!-- Error de contraseñas -->
-      <div id="passwordErrorContainer" class="content-field-block errorDetected" ng-if="passwordErrorText != ''">
+      <div id="passwordErrorContainer" class="errorDetected" ng-if="passwordErrorText != ''">
         <div id="passwordErrorLabel" class="err-text">{{passwordErrorText}}</div>
-        <!--  WTF: delete <div class="control-wrapper"><span id="lblPasswordIntructions" class="text-label">Asegúrate al menos que tiene 8 caracteres y que no contiene espacios</span></div> -->
-      </div>
-      <!-- Pais, Region y Ciudad
-      <div class="content-field">
-        <div class="control-wrapper"><input id="txtCountry" type="text" ng-model="country" placeholder="País" class="form-control"></div>
-      </div>
-
-      <div class="content-field">
-        <div class="control-wrapper"><input id="txtRegion" type="text" ng-model="region" placeholder="Región" class="form-control"></div>
-      </div>
-
-      <div class="content-field">
-        <div class="control-wrapper"><input id="txtCity" type="text" ng-model="city" placeholder="Ciudad" class="form-control"></div>
-      </div>
-       -->
-    </div>
-  <!-- Notificaciones -->
-    <!--div class="header">{{getLocalizedText("notifications")}}</div>
-    <div class="subscriptions-content">
-
-      <div class="content-field-block">
-
-        <div class="subscription-wrapper">
-          <div class="subscription-label">{{getLocalizedText("newletternotifications")}}</div>
-          <div class="check-wrapper"> <input type="checkbox" id="inputNewsletter" name="switchNewsletter"> </div>
-        </div>
-
-        <div class="subscription-wrapper">
-          <div class="subscription-label">{{getLocalizedText("gamenotifications")}}</div>
-          <div class="check-wrapper"> <input type="checkbox" name="switchGameAlerts"> </div>
-        </div>
-
-        <div class="subscription-wrapper">
-          <div class="subscription-label">{{getLocalizedText("transfernotifications")}}</div>
-          <div class="check-wrapper"> <input type="checkbox" name="switchsoccerPlayerAlerts"> </div>
-        </div>
-
-      </div>
-
-    </div-->
-
-    <div class="save-changes-content">
-      <div class="forms-wrapper-button">
-        <button id="btnSubmit" class="action-button-save" ng-disabled="!canSave" type="submit">{{getLocalizedText("buttonsave")}}</button>
-      </div>
-      <div class="forms-wrapper-button">
-        <button id="btnSubmit" class="action-button-cancel" ng-click="exit($event)">{{getLocalizedText("buttoncancel")}}</button>
       </div>
     </div>
+    
+  </div>
 
-  </form>
-</div>"""));
+  <div class="content-field">
+    <button id="btnSubmit" class="action-button-save" ng-disabled="!canSave" type="submit">{{getLocalizedText("buttonsave")}}</button>
+  </div>
+
+</form>"""));
 tc.put("packages/webclient/components/account/join_comp.html", new HttpResponse(200, r"""<div id="joinRoot" ng-show="!loadingService.isLoading" ng-class="{'air':!isModal}">
   <div id="signupbox" class="main-box" ng-class="{'air':!isModal}">
 
@@ -1275,7 +1215,7 @@ tc.put("packages/webclient/components/home_comp.html", new HttpResponse(200, r""
 </div>"""));
 tc.put("packages/webclient/components/leaderboards/achievement_comp.html", new HttpResponse(200, r"""<div ng-bind-html="theHtml"></div>"""));
 tc.put("packages/webclient/components/leaderboards/achievement_list_comp.html", new HttpResponse(200, r"""<div class="achievement-count"> {{earneds}} de {{achievementList.length.toString()}} LOGROS CONSEGUIDOS</div>
-<achievement ng-repeat="achiev in achievementList" enabled="achievementEarned(achiev.id)" key="achiev.id"></achievement>
+<achievement ng-repeat="achiev in achievementList" owned="achievementEarned(achiev.id)" key="achiev"></achievement>
 """));
 tc.put("packages/webclient/components/leaderboards/leaderboard_comp.html", new HttpResponse(200, r"""<ranking  ranking-points-data="pointsUserList" ranking-money-data="moneyUserList"
           on-show-ranking-points="showPointsRanking()" on-show-ranking-money="showMoneyRanking()" 
@@ -1741,7 +1681,9 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
                   show-date="true"
                   ng-show="!isContestListEmpty">
     </contests-list>
-    <span class="lobby-contest-list-no-contests" ng-show="isContestListEmpty">No hay torneos disponibles en este momento</span>
+    <div class="lobby-contest-list-no-contests-wrapper">
+      <span class="lobby-contest-list-no-contests" ng-show="isContestListEmpty">No hay torneos disponibles en este momento</span>
+    </div>
 </section>
 
 
@@ -1959,13 +1901,7 @@ tc.put("packages/webclient/components/scoring_rules_comp.html", new HttpResponse
   </div>
 </div>"""));
 tc.put("packages/webclient/components/scouting/scouting_comp.html", new HttpResponse(200, r"""<section class="favorites-wrapper" ng-show="isSoccerPlayerListActive" >
-  <!-- header title -->
-  <!--div class="default-section-header">{{getLocalizedText("title")}}</div-->
-  <div id="enterContest">
-    <div class="tabs">
-      <div class="tab-content">
-        <!-- Tab del contenido normal de seleccion de lineup -->
-        <div class="tab-pane active" id="spanish-league">
+
             <scouting-league team-list="teamListES" 
                              soccer-player-list="allSoccerPlayersES" 
                              on-action-button="onFavoritesChange(soccerPlayer)"
@@ -1974,50 +1910,32 @@ tc.put("packages/webclient/components/scouting/scouting_comp.html", new HttpResp
                              favorites-player-list="favoritesPlayers"
                              filter-pos="fieldPosFilter"
                              only-favorites="onlyFavorites"></scouting-league>
-        </div>        
-        <!-- El otro tab, el del contest-info  -->
-        <div class="tab-pane" id="premier-league">
-            <scouting-league team-list="teamListUK" 
+            <!--scouting-league team-list="teamListUK" 
                              soccer-player-list="allSoccerPlayersUK" 
                              on-action-button="onFavoritesChange(soccerPlayer)"
                              on-info-button = "onSoccerPlayerInfo(soccerPlayer)"
                              id-sufix="'UK'"
                              favorites-player-list="favoritesPlayers"
                              filter-pos="fieldPosFilter"
-                             only-favorites="onlyFavorites"></scouting-league>
-        </div>
-      </div>
-    </div>
-  </div>
+                             only-favorites="onlyFavorites"></scouting-league-->
 </section>
+
 <!-- SOCCER PLAYER STATS -->
 <section class="soccer-player-list-section" ng-show="isSoccerPlayerStatsActive">
   <soccer-player-stats instance-soccer-player-id="selectedPlayerId" selectable-player="false"></soccer-player-stats>
-</section>
-<ng-view></ng-view>"""));
-tc.put("packages/webclient/components/scouting/scouting_league_comp.html", new HttpResponse(200, r"""<!-- Este sera el selector de partidos en "grande", con botones-->
-<!--teams-filter team-list="teamList" selected-option="teamFilter" id-sufix="idSufix"></teams-filter-->
-
-<div class="enter-contest-soccer-players-wrapper">
-    <!--soccer-players-filter show-on-xs="true" name-filter="nameFilter" field-pos-filter="fieldPosFilter" only-favorites="onlyFavorites"></soccer-players-filter-->
-    <!--soccer-players-list soccer-players="allSoccerPlayers"
-                         lineup-filter="favoritesPlayers" manager-level="10" 
-                         favorites-list="favoritesPlayers" only-favorites="onlyFavorites"
-                         field-pos-filter="fieldPosFilter" name-filter="nameFilter" match-filter="teamFilter"
-                         on-row-click="onRowClick(soccerPlayerId)"
-                         on-action-click="onSoccerPlayerActionButton(soccerPlayer)"></soccer-players-list-->
-     <soccer-players-scalinglist  soccer-players="allSoccerPlayers"
-                                  lineup-filter="favoritesPlayers"
-                                  manager-level="10"
-                                  favorites-list="favoritesPlayers" 
-                                  only-favorites="onlyFavorites"
-                                  field-pos-filter="fieldPosFilter" 
-                                  name-filter="nameFilter" 
-                                  match-filter="teamFilter"
-                                  on-info-click="onRowClick(soccerPlayerId)"
-                                  on-action-click="onSoccerPlayerActionButton(soccerPlayer)"
-                                  is-scouting-list="true"></soccer-players-scalinglist>
-</div>"""));
+</section>"""));
+tc.put("packages/webclient/components/scouting/scouting_league_comp.html", new HttpResponse(200, r""" <soccer-players-scalinglist  soccer-players="allSoccerPlayers"
+                              lineup-filter="favoritesPlayers"
+                              manager-level="10"
+                              favorites-list="favoritesPlayers" 
+                              only-favorites="onlyFavorites"
+                              field-pos-filter="fieldPosFilter" 
+                              name-filter="nameFilter" 
+                              match-filter="teamFilter"
+                              on-info-click="onRowClick(soccerPlayerId)"
+                              on-action-click="onSoccerPlayerActionButton(soccerPlayer)"
+                              is-scouting-list="true">
+                            </soccer-players-scalinglist>"""));
 tc.put("packages/webclient/components/scouting/teams_filter_comp.html", new HttpResponse(200, r"""<div class="teams-toggler-wrapper">
   <div id="teamsToggler" type="button" class="teams-toggler"  ng-click="toggleTeamsPanel()" 
        ng-class="{'toggleOff': !isTeamsPanelOpen, 'toggleOn': isTeamsPanelOpen }"  data-toggle="collapse" 
@@ -2227,6 +2145,7 @@ tc.put("packages/webclient/components/view_contest/users_list_comp.html", new Ht
 
 </div>"""));
 tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new HttpResponse(200, r"""
+<!-- USER LINEUP SECTION -->
 <section class="view-contest-section" ng-show="isLineupFieldContestEntryActive">
   <user-shortinfo-bar user="mainPlayer"></user-shortinfo-bar>
   
@@ -2246,10 +2165,12 @@ tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new 
   </div>
 </section>
 
+<!-- CONTEST INFO SECTION -->
 <section class="contest-info-section" ng-show="isContestInfoActive">
   <contest-info the-contest="contest" ng-if="contest != null"></contest-info>
 </section>
 
+<!-- RIVALS SECTION -->
 <section class="rivals-list-section" ng-if="isRivalsListActive">
   <div class="rivals-list-table-header">
     <div class="rivals-list-column-position">Pos.</div>
@@ -2267,6 +2188,7 @@ tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new 
   </div>
 </section>
 
+<!-- COMPARE LINEUPS SECTION -->
 <section class="view-comparative-section" ng-show="isComparativeActive">
   <user-shortinfo-bar user="selectedOpponent"></user-shortinfo-bar>
   

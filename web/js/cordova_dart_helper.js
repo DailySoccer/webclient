@@ -85,32 +85,12 @@ document.addEventListener('deviceready', function () {
   console.log(" # DEVICE READY EVENT - FB");
   fbIsInit = true;
   
-  console.log(" # DEVICE READY EVENT - SHOP");
-  if (!window.store) {
-    window.serverLoggerServere('Store not available');
-    return;
-  }
+  epicStore.ready();
 
   /* use when configure CSS
   var platform = device.platform.toLowerCase();
   document.getElementsByTagName('body')[0].className = platform;
   */
-
-  store.verbosity = store.INFO;
-
-  // Enable remote receipt validation
-  // store.validator = "https://api.fovea.cc:1982/check-purchase";
-
-  // Log all errors
-  store.error(function(error) {
-    window.serverLoggerServere('Store Error => ' + error.code + ': ' + error.message);
-  });
-
-  store.ready(function() {
-    store.refresh();
-    paymentServiceReady();
-    console.log("# STORE READY");
-  });
 
   document.addEventListener("pause", function() {
     onApplicationPause();

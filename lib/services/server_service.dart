@@ -114,6 +114,7 @@ abstract class ServerService {
   Future<Map> addMemberToGuild(String userId);
   Future<Map> removeMember(String userId);
   Future<Map> removeFromGuild();
+  Future<Map> getGuildLeaderboard();
   
   // Suscripción a eventos
   void        subscribe(dynamic id, {Function onSuccess, Function onError});
@@ -473,6 +474,10 @@ class DailySoccerServer implements ServerService {
   
   Future<Map> removeFromGuild() {
     return _innerServerCall("${HostServer.url}/remove_from_guild", retryTimes: -1);
+  }
+  
+  Future<Map> getGuildLeaderboard() {
+    return _innerServerCall("${HostServer.url}/get_guild_leaderboard", retryTimes: -1);
   }
   
   void cancelAllAndReload() {

@@ -5,6 +5,25 @@ STORE
 var epicStoreIsInit = false;
 
 var epicStore = {
+
+  ready: function(){
+	  if (!window.store) {
+	    window.serverLoggerServere('Store not available');
+	    return;
+	  }
+	  store.verbosity = store.INFO;
+	  // Log all errors
+	  store.error(function(error) {
+	    window.serverLoggerServere('Store Error => ' + error.code + ': ' + error.message);
+	  });
+	
+	  store.ready(function() {
+	    store.validator = getDomain()+"/store/validator";
+	    store.refresh();
+	    paymentServiceReady();
+	    console.log("# STORE READY ");
+	  });
+  },
   afterInit: function (callback) {
     var tryCall;
     tryCall = function (callback) {
@@ -44,31 +63,14 @@ var epicStore = {
       store.when(productList[i]['storeId']).cancelled(function(p) {
         console.log("Cancelled: " + p['id']);
       });
-      store.when(productList[i]['storeId']).approved(function (order) {
-        console.log("You got an " + order + "!");
-
-        /*
-        console.log("Product.id: " + order['id']);
-        console.log("Product.alias: " + order['alias']);
-        console.log("Product.type: " + order['type']);
-        console.log("Product.state: " + order['state']);
-        console.log("Product.title: " + order['title']);
-        console.log("Product.description: " + order['description']);
-        console.log("Product.price: " + order['price']);
-        console.log("Product.currency: " + order['currency']);
-        console.log("Product.loaded: " + order['loaded']);
-        console.log("Product.valid: " + order['valid']);
-        console.log("Product.canPurchase: " + order['canPurchase']);
-        console.log("Product.owned: " + order['owned']);
-        console.log("Product.downloading: " + order['downloading']);
-        console.log("Product.downloaded: " + order['downloaded']);
-        console.log("Product.transaction: " + order['transaction']);
-        console.log("Product.transaction.type: " + order['transaction']['type']);
-        console.log("Product.transaction.id: " + order['transaction']['id']);
-        */
-
-        paymentServiceCheckout(order, order['alias'], order['transaction']['type'], order['transaction']['id']);
+  	  store.when(productList[i]['storeId']).approved(function (order) {
+  	  	console.log(" # DEVICE READY EVENT - SHOP -> store.approved");
+      	order.verify();
       });
+      store.when(productList[i]['storeId']).verified(function (order) {
+      	console.log(" # DEVICE READY EVENT - SHOP -> store.verified");
+        paymentServiceCheckout(order, order['alias'], order['transaction']['type'], order['transaction']['purchaseToken']); // order['transaction']['id']
+      });    
     }
     store.refresh();
   },

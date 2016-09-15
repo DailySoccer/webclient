@@ -1,5 +1,6 @@
 my-contests {
-  .flex-elem-fluid();
+  //.flex-elem-fluid();
+  .flex-container-col();
   background-color: @soft-black;
 }
 .contest-list-section {
@@ -8,18 +9,42 @@ my-contests {
 }
 
 .resume-bar {
-  .flex-elem-fixed(26px);
-	background-color: @soft-black;
-  text-align: center;
-  .mainfont_light(9pt, @grey-bluish);
-  border-bottom: 1px solid @grey-translucid;
-  border-top: 2px solid @black;
+	.mainfont_light(9pt, @grey-bluish);
+	.flex-container-row	();
+	.flex-elem-fixed(40px);
+  	border-bottom: 1px solid @grey-translucid;
+  	align-items: center;
   
-  .information-no-contest {
-    margin: 3px;
-    display: block;
-    text-align: center;
-  }
+	.information-no-contest {
+		.flex-elem-fluid();
+		text-align: center;
+  	}
+}
+.no-contest-sup-wrapper {
+  .flex-elem-fluid();
+  .flex-container-col();
+}
+.no-contests-wrapper {
+	.flex-elem-fluid();
+  	.flex-container-col();
+  	padding: 20px;
+  	align-items: center;
+  	justify-content: center;
+}
+.no-contests-content {
+	.flex-elem-fluid();
+  	.flex-elem-fixed();
+	.mainfont_light(12pt, @grey-bluish, center, uppercase);
+	align-items: center;
+}
+.no-contests-text strong {
+	color: @blueLight;
+}
+
+.btn-go-to-contest {
+	.default-button();
+	width: 50%;
+	margin-top: 15px;
 }
 
 /*

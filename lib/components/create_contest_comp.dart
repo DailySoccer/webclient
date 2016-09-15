@@ -267,7 +267,6 @@ class CreateContestComp  {
     updateTemplatesPerStyle();
   }
 
-
   Map<String, List<TemplateContest>> templatesPerStyle = {
     Contest.TOURNAMENT_HEAD_TO_HEAD: [],
     Contest.TOURNAMENT_LEAGUE: []

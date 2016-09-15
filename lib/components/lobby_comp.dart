@@ -1,6 +1,6 @@
 library lobby_comp;
 
-//import 'dart:async';
+import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
@@ -9,7 +9,6 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/utils/game_metrics.dart';
-//import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/tutorial/tutorial_iniciacion.dart';
 import 'package:webclient/utils/string_utils.dart';

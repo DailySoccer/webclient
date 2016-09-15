@@ -1,8 +1,6 @@
 <div id="createContest">
 
-  <!-- header title -->
-  <div class="default-section-header">{{getLocalizedText('create_contest')}}</div>
-
+  <!-- NOMBRE DEL TORNEO -->
   <div class="create-contest-section-wrapper name-section">
     <div class="create-contest-section">
       <div class="title">{{getLocalizedText("name")}}</div>
@@ -15,7 +13,8 @@
     </div>
   </div>
 
-  <div class="create-contest-section-wrapper">
+  <!-- TIPO DEL TORNEO -->
+  <!--div class="create-contest-section-wrapper">
     <div class="create-contest-section">
       <div class="title">{{getLocalizedText("contest_type")}}</div>
       <div class="data-input-wrapper contest-type">
@@ -35,9 +34,10 @@
         </span>
       </div>
     </div>
-  </div>
+  </div-->
 
-  <div class="create-contest-section-wrapper">
+  <!-- COMPETICION -->
+  <!--div class="create-contest-section-wrapper">
     <div class="create-contest-section">
       <div class="title">{{getLocalizedText("competition")}}</div>
       <div class="data-input-wrapper competition">
@@ -57,8 +57,9 @@
         </span>
       </div>
     </div>
-  </div>
+  </div-->
 
+  <!-- RIVALES -->
   <div class="create-contest-section-wrapper">
     <div class="create-contest-section">
       <div class="title">{{getLocalizedText("rivals")}}</div>
@@ -89,7 +90,8 @@
     </div>
   </div>
   
-  <div class="create-contest-section-wrapper event-section">
+  <!-- EVENTO -->
+  <!--div class="create-contest-section-wrapper event-section">
     <div class="create-contest-section">
       <div class="title">{{getLocalizedText("event")}}</div>
       <div class="data-input-wrapper contest-template">
@@ -103,9 +105,10 @@
         </select>
       </div>
     </div> 
-  </div>
+  </div-->
 
-  <div class="create-contest-section-wrapper date-section">
+  <!-- FECHA -->
+  <!--div class="create-contest-section-wrapper date-section">
     <div class="create-contest-section">
       <div class="title">{{getLocalizedText("date")}}<span class="annotation" ng-if="contestType == TYPE_OFICIAL">{{getLocalizedText("fixed_hour_warning")}}</span></div>
       <div class="data-input-wrapper date">
@@ -123,11 +126,13 @@
 
       </div>
     </div>
-  </div>
-
-  <teams-panel id="teamsPanelComp" panel-open="true" template-contest="selectedTemplate" button-text="getLocalizedText('matches_title')"></teams-panel>
+  </div-->
   
-  <div class="create-contest-section-wrapper large">
+  <!-- PARTIDOS -->
+  <!--teams-panel id="teamsPanelComp" panel-open="true" template-contest="selectedTemplate" button-text="getLocalizedText('matches_title')"></teams-panel-->
+  
+  <!-- PREMIOS -->
+  <!--div class="create-contest-section-wrapper large">
     <div class="create-contest-section" ng-if="selectedTemplate != null">
       <div class="title">Premios</div>
       <div class="data-input-wrapper entry-fee">
@@ -143,7 +148,7 @@
           <span>{{prizeType}}</span>
         </div>
         
-        <!--span class="data-element">
+        <!- -span class="data-element">
           <input id="contestFee_1E_3MP" type="radio" value="1E_3MP" name="entry-fee">
           <label for="contestFee_1E_3MP"><span class="entry-fee-value energy">1</span> por <span class="entry-fee-value manager-points">3</span></label>
         </span>
@@ -151,10 +156,10 @@
         <span class="data-element">
           <input id="contestFee_1G_3G" type="radio" value="1G_3G" name="entry-fee">
           <label for="contestFee_1G_3G"><span class="entry-fee-value gold">1</span> por <span class="entry-fee-value gold">3</span></label>
-        </span-->
+        </span- ->
       </div>
     </div>
-  </div>
+  </div-->
 
 
   <div class="create-contest-section-wrapper large">

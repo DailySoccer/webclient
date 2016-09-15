@@ -758,7 +758,7 @@ class EnterContestComp implements DetachAware {
     }
 
     if (editingContestEntry) {
-      _contestsService.editContestEntry(contestEntryId, formationId, lineupSlots.map((player) => player["id"]).toList())
+      _contestsService.editContestEntry(contestEntryId, formationId, lineupSlots.map((player) => player.id).toList())
         .then((_) {
           //num managerLevel = playerManagerLevel;
           Iterable boughtPlayers = lineupSlots.where((c) => c.moneyToBuy.amount > 0);

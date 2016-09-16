@@ -17,6 +17,8 @@ import 'package:webclient/components/account/notifications_comp.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/template_service.dart';
 import 'package:webclient/services/app_state_service.dart';
+import 'package:webclient/models/achievement.dart';
+import 'package:webclient/models/user.dart';
 
 @Component(
   selector: 'home',
@@ -45,6 +47,13 @@ class HomeComp implements DetachAware {
   bool get isHistoryTileEnabled => isMyContestTilesEnabled;
   bool get isBlogTileEnabled => true;
   bool get isHowItWorksEnabled => true;
+  
+  List<Achievement> achievementList = Achievement.AVAILABLES.map( (achievementMap) => new Achievement.fromJsonObject(achievementMap)).toList();
+  String achievementsEarned;
+  bool achievementEarned(achievementKey) => user != null? user.hasAchievement(achievementKey) : false;
+
+  User get user => _profileService.user;
+  
   String get CreateContestTileText => !userIsLogged? getLocalizedText('create_contest_text_nolog') :
                                             !tutorialIsDone? getLocalizedText('create_contest_text_notut') :
                                                              getLocalizedText('create_contest_text_logNtut');
@@ -57,17 +66,31 @@ class HomeComp implements DetachAware {
             this.loadingService, this._refreshTimersService, this._promosService,
             TutorialService tutorialService) {
     loadingService.isLoading = true;
-    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.hidden();
+    
+    refreshTopBar();
     _appStateService.appSecondaryTabBarState.tabList = [];
-    //contestTileHTML = isContestTileEnabled ? defaultPromo['html'] : defaultPromoWithTutorial['html'];
-    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
-    //_profileService.triggerNotificationsPopUp(_router);
+    _appStateService.appTabBarState.show = true;
 
+    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
+    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR, refreshTopBar);
+
+    countAchievementsEarned(); 
+    
     GameMetrics.logEvent(GameMetrics.HOME, {"logged": _profileService.isLoggedIn});
   }
   
+  void countAchievementsEarned() {
+     int count = 0;
+     achievementList.forEach((ach) {
+         if (achievementEarned(ach.id))
+           count++;
+     });
+     achievementsEarned = count.toString();
+   }
   
-
+  void refreshTopBar() {
+    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router, true);
+  }
 
   static String getStaticLocalizedText(key) {
     return StringUtils.translate(key, "home");

@@ -6151,6 +6151,7 @@ OLD FONTS
 }
 .lobby-topbar-center.nickname {
   color: #59add5;
+  cursor: default;
 }
 .lobby-topbar-right {
   font-size: 12pt;
@@ -21085,437 +21086,309 @@ users-list#usersList > .epic-tooltip {
   opacity: 0.5;
   filter: alpha(opacity=50);
 }
-.global-home #mainWrapper {
-  background: none;
+home {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  flex: 1;
 }
-#homeRoot .home-tile-wrapper {
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 2px;
-  height: 300px;
-  position: relative;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-@media (min-width: 768px) {
-  #homeRoot .home-tile-wrapper {
-    float: left;
-    width: 33.33333333%;
-  }
-}
-#homeRoot .home-tile-wrapper .tile {
-  padding: 15px;
-  height: 100%;
-  background-color: #000000;
-}
-#homeRoot .home-tile-wrapper .home-tile-content {
-  padding: 1px;
-  height: 100%;
-  position: relative;
-  background: rgba(255, 255, 255, 0.2);
-  background: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 0%, #ffffff 100%);
-  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(255, 255, 255, 0.2)), color-stop(100%, #ffffff));
-  background: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 0%, #ffffff 100%);
-  background: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 0%, #ffffff 100%);
-  background: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 0%, #ffffff 100%);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, #ffffff 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1);
-}
-#homeRoot .home-tile-wrapper .tile {
-  background-color: #000000;
+home .main-info-wrapper {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  background-image: url("../images/main-info-wrapper-bg.jpg");
   background-size: cover;
-  background-position: center bottom;
-  background-repeat: no-repeat;
+  background-position: bottom;
+  align-items: center;
+  padding: 15px;
 }
-#homeRoot .home-tile-wrapper .tile .tile-title {
-  display: block;
-  position: relative;
+home .info-column {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  flex: 1;
+}
+home .label {
+  flex: 1;
+  font-size: 14pt;
+  color: #fa9c19;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
   font-family: 'Fjalla One', sans-serif;
   font-weight: 700;
-  font-size: 14pt;
-  color: #ffffff;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
-#homeRoot .home-tile-wrapper .tile .tile-title:after {
-  content: "";
-  display: block;
-  position: relative;
-  width: 70px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  margin-top: 5px;
-}
-#homeRoot .home-tile-wrapper .tile .tile-info {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 10pt;
-  color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  max-width: 200px;
-  margin: 10px 0 5px 0;
-  display: inline-block;
-}
-#homeRoot .home-tile-wrapper .tile-action {
-  content: " ";
-  background-image: url("../images/ht_IconoGo.png");
-  width: 32px;
-  height: 32px;
-  display: inline-block;
-  vertical-align: middle;
-  float: right;
-}
-#homeRoot .home-tile-wrapper.disabled .tile-action {
-  content: " ";
-  background-image: url("../images/ht_IconoLock.png");
-  width: 32px;
-  height: 32px;
-  display: inline-block;
-  vertical-align: middle;
-  float: right;
-}
-#homeRoot .home-tile-wrapper.disabled .tile {
-  cursor: not-allowed;
-}
-#homeRoot .vertical-layout-tilling {
-  cursor: default;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 2px;
-  height: 300px;
-  position: relative;
-  cursor: pointer;
-  padding: 0;
-}
-@media (min-width: 768px) {
-  #homeRoot .vertical-layout-tilling {
-    float: left;
-    width: 33.33333333%;
-  }
-}
-#homeRoot .vertical-layout-tilling .tile {
-  padding: 15px;
-  height: 100%;
-  background-color: #000000;
-}
-#homeRoot #myContestsTile .home-tile-wrapper {
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 2px;
-  height: 100px;
-  position: relative;
-  cursor: pointer;
-}
-@media (min-width: 768px) {
-  #homeRoot #myContestsTile .home-tile-wrapper {
-    float: left;
-    width: 100%;
-  }
-}
-#homeRoot #myContestsTile .home-tile-wrapper .tile {
-  padding: 15px;
-  height: 100%;
-  background-color: #000000;
-}
-#homeRoot #manageTile .home-tile-wrapper {
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 2px;
-  height: 150px;
-  position: relative;
-  cursor: pointer;
-}
-@media (min-width: 768px) {
-  #homeRoot #manageTile .home-tile-wrapper {
-    float: left;
-    width: 100%;
-  }
-}
-#homeRoot #manageTile .home-tile-wrapper .tile {
-  padding: 15px;
-  height: 100%;
-  background-color: #000000;
-}
-#homeRoot #helpTile #blogTile.home-tile-wrapper {
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 2px;
-  height: 200px;
-  position: relative;
-  cursor: pointer;
-}
-@media (min-width: 768px) {
-  #homeRoot #helpTile #blogTile.home-tile-wrapper {
-    float: left;
-    width: 100%;
-  }
-}
-#homeRoot #helpTile #blogTile.home-tile-wrapper .tile {
-  padding: 15px;
-  height: 100%;
-  background-color: #000000;
-}
-#homeRoot #helpTile #howitworksTile.home-tile-wrapper {
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 2px;
-  height: 100px;
-  position: relative;
-  cursor: pointer;
-}
-@media (min-width: 768px) {
-  #homeRoot #helpTile #howitworksTile.home-tile-wrapper {
-    float: left;
-    width: 100%;
-  }
-}
-#homeRoot #helpTile #howitworksTile.home-tile-wrapper .tile {
-  padding: 15px;
-  height: 100%;
-  background-color: #000000;
-}
-#homeRoot #contestTile .tile {
-  background-image: url("../images/ht_ModuloTorneoBGPlay.jpg");
-}
-#homeRoot #createContestTile .tile {
-  background-image: url("../images/ht_ModuloRetaBG.jpg");
-}
-#homeRoot #scoutingTile .tile {
-  background-image: url("../images/ht_ModuloOjeadorBG.jpg");
-}
-#homeRoot #upcomingTile .tile {
-  background-image: url("../images/ht_ModuloProximosBG.jpg");
-}
-#homeRoot #liveTile .tile {
-  background-image: url("../images/ht_ModuloEnVivoBG.jpg");
-}
-#homeRoot #historyTile .tile {
-  background-image: url("../images/ht_ModuloHistoricoBG.jpg");
-}
-#homeRoot #blogTile .tile {
-  background-image: url("../images/ht_ModuloMisterBG.jpg");
-}
-#homeRoot #howitworksTile .tile {
-  background-image: url("../images/ht_ModuloOjeadorBG.jpg");
-}
-#homeRoot #contestTile.home-tile-wrapper {
-  margin-top: 20px;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding: 2px;
-  height: 300px;
-  position: relative;
-  cursor: pointer;
-}
-@media (min-width: 768px) {
-  #homeRoot #contestTile.home-tile-wrapper {
-    float: left;
-    width: 100%;
-  }
-}
-#homeRoot #contestTile.home-tile-wrapper .tile {
-  padding: 15px;
-  height: 100%;
-  background-color: #000000;
-}
-#homeRoot #contestTile.home-tile-wrapper .tile .tile-title {
-  margin-top: 40px;
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
-  font-size: 30pt;
-  color: #ffffff;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  line-height: 45px;
-}
-#homeRoot #contestTile.home-tile-wrapper .tile .tile-title:after {
-  width: 85px;
-  margin-top: 5px;
-  margin-bottom: 15px;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.75);
-}
-#homeRoot #contestTile.home-tile-wrapper .tile .tile-title.real:before {
-  content: "";
-  content: " ";
-  background-image: url("../images/trophy_light.png");
-  width: 42px;
-  height: 42px;
-  display: inline-block;
-  vertical-align: middle;
-  margin-top: -20px;
-  display: block;
-}
-#homeRoot #contestTile.home-tile-wrapper .tile .tile-title.virtual:before {
-  content: "";
-  content: " ";
-  background-image: url("../images/trophy_light.png");
-  width: 42px;
-  height: 42px;
-  display: inline-block;
-  vertical-align: middle;
-  margin-top: -20px;
-  display: block;
-}
-#homeRoot #contestTile.home-tile-wrapper .tile .tile-info {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 14pt;
-  color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  max-width: 450px;
-}
-#homeRoot #contestTile.home-tile-wrapper .tile .tile-info .promo-date,
-#homeRoot #contestTile.home-tile-wrapper .tile .tile-info .promo-description {
-  display: block;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 10pt;
-  color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-}
-#homeRoot #contestTile.home-tile-wrapper .tile .tile-action {
-  display: block;
-  float: none;
-  margin-top: 20px;
-}
-#homeRoot #myContestsTile .home-tile-wrapper .tile .tile-title {
-  color: #59add5;
-}
-#homeRoot #myContestsTile .home-tile-wrapper .tile .tile-info .num-contest-info {
-  background-color: #0d75a6;
-  border-radius: 5px;
-  padding: 5px;
-  min-width: 30px;
-  display: inline-block;
+home .icon {
+  flex: 1;
   text-align: center;
-  vertical-align: bottom;
 }
-#homeRoot #myContestsTile .home-tile-wrapper .tile .tile-info .num-contest-info.virtual {
-  text-align: left;
-  min-width: 90px;
-  vertical-align: bottom;
+home .amount {
+  flex: 1;
+  font-size: 14pt;
+  color: #757993;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
 }
-#homeRoot #myContestsTile .home-tile-wrapper .tile .tile-info .num-contest-info.virtual:before {
-  content: "";
-  margin: 1px 5px -1px 5px;
-  content: " ";
-  background-image: url("../images/ht_IconoEntrenamiento.png");
-  width: 17px;
-  height: 20px;
-  display: inline-block;
-  vertical-align: middle;
+/*
+.global-home #mainWrapper {
+	background: none;
 }
-#homeRoot #myContestsTile .home-tile-wrapper .tile .tile-info .num-contest-info.real {
-  text-align: left;
-  min-width: 90px;
-  vertical-align: bottom;
+
+#homeRoot {
+	
+	.home-tile-wrapper {
+		.make-tile(4, 3);
+		.user-select(none);
+		
+		.home-tile-content {
+			padding: 1px;
+			height: 100%;
+			position: relative;
+			
+			background: rgba(255,255,255,0.2);
+			background: -moz-linear-gradient(-45deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,1) 100%);
+			background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(255,255,255,0.2)), color-stop(100%, rgba(255,255,255,1)));
+			background: -webkit-linear-gradient(-45deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,1) 100%);
+			background: -o-linear-gradient(-45deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,1) 100%);
+			background: -ms-linear-gradient(-45deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,1) 100%);
+			background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,1) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1 );
+		}
+		
+		.tile {
+			
+			background-color: @black;
+			//background-image: url("@{images}/landingBackground.jpg");
+			background-size: cover;
+			background-position: center bottom;
+			background-repeat: no-repeat;
+			
+			.tile-title {
+				display: block;
+				position: relative;
+				.exo_bold(14pt, @white);
+				
+				&:after {
+					content: "";
+					display: block;
+					position: relative;
+					width: 70px;
+					border-bottom: 1px solid fade(@white, 50%);
+					margin-top: 5px;
+				}
+			}
+				
+			.tile-info {
+				.opensans_normal(10pt, @white);
+				max-width: 200px;
+				margin: 10px 0 5px 0;
+				display: inline-block;
+			}
+			
+		}
+		
+		.tile-action { //enabled
+			.addIcon("ht_IconoGo.png", 32px, 32px);
+			float: right;
+		}
+		
+		&.disabled .tile-action {
+			.addIcon("ht_IconoLock.png", 32px, 32px);
+			float: right;
+		}
+		&.disabled .tile {
+			cursor: not-allowed;
+		}
+	}
+
+	.vertical-layout-tilling {
+		cursor: default;
+		.make-tile(4, 3);
+		padding: 0;
+	}
+	
+	
+	#myContestsTile .home-tile-wrapper {
+		.make-tile(12, 1);
+	}
+	#manageTile .home-tile-wrapper {
+		.make-tile(12, 1.5);
+	}
+	#helpTile {
+		#blogTile.home-tile-wrapper {
+			.make-tile(12, 2);
+		}
+		#howitworksTile.home-tile-wrapper {
+			.make-tile(12, 1);
+		}
+	}
+
+	#contestTile .tile {
+		background-image: url("@{images}/ht_ModuloTorneoBGPlay.jpg");
+	}
+
+	
+	#createContestTile .tile {
+		background-image: url("@{images}/ht_ModuloRetaBG.jpg");
+	}
+	#scoutingTile .tile {
+		background-image: url("@{images}/ht_ModuloOjeadorBG.jpg");
+	}
+	
+	
+	#upcomingTile .tile {
+		background-image: url("@{images}/ht_ModuloProximosBG.jpg");
+	}
+	#liveTile .tile {
+		background-image: url("@{images}/ht_ModuloEnVivoBG.jpg");
+	}
+	#historyTile .tile {
+		background-image: url("@{images}/ht_ModuloHistoricoBG.jpg");
+	}
+	
+	
+	#blogTile .tile {
+		background-image: url("@{images}/ht_ModuloMisterBG.jpg");
+	}
+	#howitworksTile .tile {
+		background-image: url("@{images}/ht_ModuloOjeadorBG.jpg");
+	}
+	
+	
+	#contestTile.home-tile-wrapper {
+		margin-top: 20px;
+		.make-tile(12, 3);
+		
+		.tile {
+			.tile-title {
+				margin-top: 40px;
+				&:after {
+					width: 85px;
+					margin-top: 5px;
+					margin-bottom: 15px;
+					border-bottom: 2px solid fade(@white, 75%);
+				}
+				.exo_light(30pt, @white);
+				line-height: 45px;
+				
+				&.real:before {
+					content: "";
+					.addIcon("trophy_light.png", 42px, 42px);
+					margin-top: -20px;
+					display: block;
+				}
+				&.virtual:before {
+					content: "";
+					.addIcon("trophy_light.png", 42px, 42px);
+					margin-top: -20px;
+					display: block;
+				}
+			}
+
+			.tile-info {
+				.opensans_normal(14pt, @white);
+				max-width: 450px;
+				.promo-date,
+				.promo-description {
+					display: block;
+					.opensans_normal(10pt, @white);
+				}
+			}
+			.tile-action {	
+				display: block;
+				float: none;
+				margin-top: 20px;
+			}
+		}
+	}
+	
+	#myContestsTile .home-tile-wrapper {
+		.tile {
+			.tile-title {
+				color: @blueLight;
+			}
+			.tile-info {
+				.num-contest-info {
+					background-color: @blueMed;
+					border-radius: 5px;
+					padding: 5px;
+					min-width: 30px;
+					display: inline-block;
+					text-align: center;
+					vertical-align: bottom;
+					
+					&.virtual {
+						text-align: left;
+						min-width: 90px;
+						vertical-align: bottom;
+						&:before {
+							content: "";
+							margin: 1px 5px -1px 5px;
+							.addIcon("ht_IconoEntrenamiento.png", 17px, 20px);
+						}
+					}
+					&.real {
+						text-align: left;
+						min-width: 90px;
+						vertical-align: bottom;
+						&:before {
+							content: "";
+							margin: 1px 5px -1px 5px;
+							.addIcon("ht_IconoOficial.png", 20px, 20px);
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	#blogTile .tile {
+		.tile-title {
+			color: @greyMed;
+		}
+		.tile-blog-author {
+			color: @greyMed;
+			.opensans_normal(10pt, @white);
+			font-style: italic;
+			position: absolute;
+			display: block;
+			bottom: 20px;
+		}
+		.tile-action {
+			position: absolute;
+			right: 20px;
+			bottom: 20px;
+		}
+	}
+	
+	#howitworksTile .tile {
+		.tile-title {
+			color: @greyMed;
+		}
+	}
+	
+	
+	
+	.clearfix {
+		padding-bottom: 20px;
+	}
 }
-#homeRoot #myContestsTile .home-tile-wrapper .tile .tile-info .num-contest-info.real:before {
-  content: "";
-  margin: 1px 5px -1px 5px;
-  content: " ";
-  background-image: url("../images/ht_IconoOficial.png");
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-  vertical-align: middle;
-}
-#homeRoot #blogTile .tile .tile-title {
-  color: #afafaf;
-}
-#homeRoot #blogTile .tile .tile-blog-author {
-  color: #afafaf;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 10pt;
-  color: #ffffff;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  font-style: italic;
-  position: absolute;
-  display: block;
-  bottom: 20px;
-}
-#homeRoot #blogTile .tile .tile-action {
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-}
-#homeRoot #howitworksTile .tile .tile-title {
-  color: #afafaf;
-}
-#homeRoot .clearfix,
-#homeRoot .container,
-#homeRoot .container-fluid,
-#homeRoot .row,
-#homeRoot .form-horizontal .form-group,
-#homeRoot .btn-toolbar,
-#homeRoot .btn-group-vertical > .btn-group,
-#homeRoot .nav,
-#homeRoot .navbar,
-#homeRoot .navbar-header,
-#homeRoot .navbar-collapse,
-#homeRoot .pager,
-#homeRoot .panel-body,
-#homeRoot .modal-footer,
-#homeRoot #teamsPanelComp,
-#homeRoot #teamsPanelComp #teamsPanelRoot .teams-comp-bar,
-#homeRoot #teamsPanelComp #teamsPanelRoot .teams-container,
-#homeRoot scoring-rules,
-#homeRoot .panel-points .punctuation,
-#homeRoot #addFundsContent .pay-faq-block .pay-faq-title,
-#homeRoot #addFundsContent .scores-wrapper,
-#homeRoot #transactionHistoryRoot .transaction-headers,
-#homeRoot #transactionHistoryRoot .transaction-row,
-#homeRoot #goldShopComp .content,
-#homeRoot #trainerPointsShopComp .content,
-#homeRoot #goldShopComp .products-wrapper,
-#homeRoot #trainerPointsShopComp .products-wrapper,
-#homeRoot #energyshopComp .content,
-#homeRoot #energyshopComp .products-wrapper,
-#homeRoot .fantasy-team-list,
-#homeRoot .fantasy-team-list .soccer-player-row,
-#homeRoot .soccer-player-statistics,
-#homeRoot #mainMenu #desktopMenu,
-#homeRoot #promosComponent,
-#homeRoot .soccer-player-list-header-table,
-#homeRoot .soccer-players-list .soccer-players-list-slot,
-#homeRoot .soccer-players-filter,
-#homeRoot .lineup-selector .lineup-formation-selector-wrapper,
-#homeRoot .lineup-selector #formationsPanelRoot .formations-container,
-#homeRoot #loginRoot,
-#homeRoot #joinRoot,
-#homeRoot #rememberPasswordRoot,
-#homeRoot .panel .form-horizontal,
-#homeRoot #welcomeRoot,
-#homeRoot #welcomeRoot .panel .panel-body .panel-description,
-#homeRoot #loginBox .form-group,
-#homeRoot #joinRoot .form-group,
-#homeRoot #loginBox .acceptTermsAndConditionsWrapper,
-#homeRoot #joinRoot .acceptTermsAndConditionsWrapper,
-#homeRoot #usersListRoot .user-row,
-#homeRoot #usersListRoot .users-table-header,
-#homeRoot #maintenance-wrapper .maintenance-content,
-#homeRoot #simplePromoF2PRoot,
-#homeRoot .week-calendar,
-#homeRoot .week-calendar .week-days-wrapper,
-#homeRoot #helpInfo .scores-wrapper,
-#homeRoot .tutorial-row,
-#homeRoot .friends-bar-wrapper,
-#homeRoot .default-section-header,
-#homeRoot .modal-properties-default,
-#homeRoot .modal-properties-default .modal-content,
-#homeRoot .lineup-selector .lineup-selector-slot {
-  padding-bottom: 20px;
-}
+*/
 .global-tutorial-list #mainWrapper {
   background: none;
 }

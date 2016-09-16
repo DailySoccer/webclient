@@ -134,8 +134,7 @@ class AppTopBarStateConfig {
     String leftColAux = isHomeBar ? '' : '''
               <span class="level">''' +  getLocalizedText("level") + '''</span>
               <span class="level">''' + (profileService.isLoggedIn ? profileService.user.trueSkill.toString() : "") + '''</span> 
-            ''';
-    
+            ''';  
     
     leftColumn = '''
       <div class="lobby-topbar-left">
@@ -168,7 +167,8 @@ class AppTopBarStateConfig {
       router.go("user_profile", {});
     };
     onCenterColumn = (){
-      router.go("shop", {});
+      if (!isHomeBar)
+        router.go("shop", {});
     };
     onRightColumn = (){
       //router.go("notifications", {});

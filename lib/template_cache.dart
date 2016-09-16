@@ -630,182 +630,177 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
   <div id="loadingRowSpinner"><div class="spinner" role="progressbar"><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-0-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(0deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-1-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(27deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-2-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(55deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-3-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(83deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-4-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(110deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-5-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(138deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-6-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(166deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-7-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(193deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-8-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(221deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-9-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(249deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-10-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(276deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-11-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(304deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-12-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(332deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div></div></div>
 </div>
 """));
-tc.put("packages/webclient/components/create_contest_comp.html", new HttpResponse(200, r"""<div id="createContest">
-
+tc.put("packages/webclient/components/create_contest_comp.html", new HttpResponse(200, r"""
+<div class="create-contest-section-wrapper name-section">
   <!-- NOMBRE DEL TORNEO -->
-  <div class="create-contest-section-wrapper name-section">
-    <div class="create-contest-section">
-      <div class="title">{{getLocalizedText("name")}}</div>
-      <div class="data-input-wrapper contest-name">
-        <input id="contestNameInput" type="text" ng-model="contestName" tabindex="1"
-               placeholder="{{placeholderName}}" maxlength="{{MAX_LENGTH_CONTEST_NAME}}"
-               class="form-control ng-binding ng-pristine ng-touched">
-        <span class="contest-name-length">{{MAX_LENGTH_CONTEST_NAME - contestName.length}}</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- TIPO DEL TORNEO -->
-  <!--div class="create-contest-section-wrapper">
-    <div class="create-contest-section">
-      <div class="title">{{getLocalizedText("contest_type")}}</div>
-      <div class="data-input-wrapper contest-type">
-        <span class="data-element">
-          <input id="contestOficial" type="radio" value="oficial" name="contestType" 
-                 ng-value="TYPE_OFICIAL" ng-model="contestType"
-                 ng-class="{'disabled-radio': templatesPerTypeList[TYPE_OFICIAL].isEmpty }"
-                 ng-disabled="templatesPerTypeList[TYPE_OFICIAL].isEmpty">
-          <label for="contestOficial"><span class="icon"></span>{{getLocalizedText("oficial")}}</label>
-        </span>
-        <span class="data-element">
-          <input id="contestTraining" type="radio" value="training" name="contestType"
-                 ng-value="TYPE_TRAINING" ng-model="contestType"
-                 ng-class="{'disabled-radio': templatesPerTypeList[TYPE_TRAINING].isEmpty }"
-                 ng-disabled="templatesPerTypeList[TYPE_TRAINING].isEmpty">
-          <label for="contestTraining"><span class="icon"></span>{{getLocalizedText("training")}}</label>
-        </span>
-      </div>
-    </div>
-  </div-->
-
-  <!-- COMPETICION -->
-  <!--div class="create-contest-section-wrapper">
-    <div class="create-contest-section">
-      <div class="title">{{getLocalizedText("competition")}}</div>
-      <div class="data-input-wrapper competition">
-        <span class="data-element">
-          <input id="contestLeague" type="radio" value="LEAGUE_ES" name="competition"
-                 ng-value="LEAGUE_ES" ng-model="selectedCompetition"
-                 ng-class="{'disabled-radio': templatesPerCompetitionList[LEAGUE_ES].isEmpty }"
-                 ng-disabled="templatesPerCompetitionList[LEAGUE_ES].isEmpty">
-          <label for="contestLeague"><span class="icon"></span>{{getLocalizedText("spanish_league")}}</label>
-        </span>
-        <span class="data-element">
-          <input id="contestPremiere" type="radio" value="LEAGUE_UK" name="competition"
-                 ng-class="{'disabled-radio': templatesPerCompetitionList[LEAGUE_UK].isEmpty }"
-                 ng-value="LEAGUE_UK" ng-model="selectedCompetition"
-                 ng-disabled="templatesPerCompetitionList[LEAGUE_UK].isEmpty">
-          <label for="contestPremiere"><span class="icon"></span>{{getLocalizedText("premier_league")}}</label>
-        </span>
-      </div>
-    </div>
-  </div-->
-
-  <!-- RIVALES -->
-  <div class="create-contest-section-wrapper">
-    <div class="create-contest-section">
-      <div class="title">{{getLocalizedText("rivals")}}</div>
-      <div class="data-input-wrapper contest-style">
-        <span class="data-element">
-          <input id="contestHeadToHead" type="radio" value="headToHead" name="contestStyle"
-                 ng-value="STYLE_HEAD_TO_HEAD" ng-model="contestStyle"
-                 ng-class="{'disabled-radio': templatesPerStyle[STYLE_HEAD_TO_HEAD].isEmpty }"
-                 ng-disabled="templatesPerStyle[STYLE_HEAD_TO_HEAD].isEmpty">
-          <label for="contestHeadToHead"><span class="icon"></span>{{getLocalizedText("head_to_head")}}</label>
-        </span>
-        <span class="data-element">
-          <input id="contestOpen" type="radio" value="league" name="contestStyle"
-                 ng-value="STYLE_LEAGUE" ng-model="contestStyle"
-                 ng-class="{'disabled-radio': templatesPerStyle[STYLE_LEAGUE].isEmpty }"
-                 ng-disabled="templatesPerStyle[STYLE_LEAGUE].isEmpty">
-          <label for="contestOpen"><span class="icon"></span>{{getLocalizedText("league")}}
-            <select name="contestLeagueCountSelector" id="contestLeagueCountSelector"
-                    class="form-control contest-league-count-selector dropdown-toggle" ng-model="selectedLeaguePlayerCount">
-
-              <option ng-repeat="count in leaguePlayerCountList" id="option-contest-count-{{count}}"
-                      value="{{$index + 1}}" ng-value="count">{{count == -1? getLocalizedText("no_limit") : count}}</option>
-
-            </select>
-          </label>
-        </span>
-      </div>
+  <div class="create-contest-section">
+    <div class="title">{{getLocalizedText("name")}}</div>
+    <div class="data-input-wrapper contest-name">
+      <input id="contestNameInput" type="text" ng-model="contestName" tabindex="1"
+             placeholder="{{placeholderName}}" maxlength="{{MAX_LENGTH_CONTEST_NAME}}"
+             class="form-control ng-binding ng-pristine ng-touched">
+      <span class="contest-name-length">{{MAX_LENGTH_CONTEST_NAME - contestName.length}}</span>
     </div>
   </div>
   
-  <!-- EVENTO -->
-  <!--div class="create-contest-section-wrapper event-section">
-    <div class="create-contest-section">
-      <div class="title">{{getLocalizedText("event")}}</div>
-      <div class="data-input-wrapper contest-template">
-        <select ng-disabled="printableTemplateList.length == 0" name="contestTemplateSelector" id="contestTemplateSelector"
-                class="form-control contest-template-selector dropdown-toggle" ng-model="selectedTemplate" >
+  <!-- RIVALES -->
+  <div class="create-contest-section">
+    <div class="title">{{getLocalizedText("rivals")}}</div>
+    <div class="data-input-wrapper contest-style">
+      <span class="data-element">
+        <input id="contestHeadToHead" type="radio" value="headToHead" name="contestStyle"
+               ng-value="STYLE_HEAD_TO_HEAD" ng-model="contestStyle"
+               ng-class="{'disabled-radio': templatesPerStyle[STYLE_HEAD_TO_HEAD].isEmpty }"
+               ng-disabled="templatesPerStyle[STYLE_HEAD_TO_HEAD].isEmpty">
+        <label for="contestHeadToHead"><span class="icon"></span>{{getLocalizedText("head_to_head")}}</label>
+      </span>
+      <span class="data-element">
+        <input id="contestOpen" type="radio" value="league" name="contestStyle"
+               ng-value="STYLE_LEAGUE" ng-model="contestStyle"
+               ng-class="{'disabled-radio': templatesPerStyle[STYLE_LEAGUE].isEmpty }"
+               ng-disabled="templatesPerStyle[STYLE_LEAGUE].isEmpty">
+        <label for="contestOpen">
+          <span class="icon"></span>
+          <span class="label">{{getLocalizedText("league")}}</span>
+          <select name="contestLeagueCountSelector" id="contestLeagueCountSelector" class="form-control contest-league-count-selector dropdown-toggle" ng-model="selectedLeaguePlayerCount">
+            <option ng-repeat="count in leaguePlayerCountList" id="option-contest-count-{{count}}" value="{{$index + 1}}" ng-value="count">{{count == -1? getLocalizedText("no_limit") : count}}</option>
+          </select>
+        </label>
+      </span>
+    </div>
+  </div>
+  
+</div>
+<!-- BOTON ACEPTAR -->
+<button type="button" class="btn-confirm-contest" ng-click="createContest()" ng-disabled="!isComplete">{{getLocalizedText("create_contest_btt")}}</button>
 
-          <option id="option-contest-select-contest" value="" ng-value="null" ng-bind="comboDefaultText"></option>
+<!--div class="create-contest-section-wrapper">
+  <div class="create-contest-section">
+    <div class="data-input-wrapper confirm-button-wrapper">
+    </div>      
+  </div>
+</div-->
 
-          <option ng-repeat="template in printableTemplateList" id="option-contest-template-{{template.templateContestId}}"
-                  value="{{$index + 1}}" ng-value="template">{{template.name}}</option>
+<!-- TIPO DEL TORNEO -->
+<!--div class="create-contest-section-wrapper">
+  <div class="create-contest-section">
+    <div class="title">{{getLocalizedText("contest_type")}}</div>
+    <div class="data-input-wrapper contest-type">
+      <span class="data-element">
+        <input id="contestOficial" type="radio" value="oficial" name="contestType" 
+               ng-value="TYPE_OFICIAL" ng-model="contestType"
+               ng-class="{'disabled-radio': templatesPerTypeList[TYPE_OFICIAL].isEmpty }"
+               ng-disabled="templatesPerTypeList[TYPE_OFICIAL].isEmpty">
+        <label for="contestOficial"><span class="icon"></span>{{getLocalizedText("oficial")}}</label>
+      </span>
+      <span class="data-element">
+        <input id="contestTraining" type="radio" value="training" name="contestType"
+               ng-value="TYPE_TRAINING" ng-model="contestType"
+               ng-class="{'disabled-radio': templatesPerTypeList[TYPE_TRAINING].isEmpty }"
+               ng-disabled="templatesPerTypeList[TYPE_TRAINING].isEmpty">
+        <label for="contestTraining"><span class="icon"></span>{{getLocalizedText("training")}}</label>
+      </span>
+    </div>
+  </div>
+</div-->
+
+<!-- COMPETICION -->
+<!--div class="create-contest-section-wrapper">
+  <div class="create-contest-section">
+    <div class="title">{{getLocalizedText("competition")}}</div>
+    <div class="data-input-wrapper competition">
+      <span class="data-element">
+        <input id="contestLeague" type="radio" value="LEAGUE_ES" name="competition"
+               ng-value="LEAGUE_ES" ng-model="selectedCompetition"
+               ng-class="{'disabled-radio': templatesPerCompetitionList[LEAGUE_ES].isEmpty }"
+               ng-disabled="templatesPerCompetitionList[LEAGUE_ES].isEmpty">
+        <label for="contestLeague"><span class="icon"></span>{{getLocalizedText("spanish_league")}}</label>
+      </span>
+      <span class="data-element">
+        <input id="contestPremiere" type="radio" value="LEAGUE_UK" name="competition"
+               ng-class="{'disabled-radio': templatesPerCompetitionList[LEAGUE_UK].isEmpty }"
+               ng-value="LEAGUE_UK" ng-model="selectedCompetition"
+               ng-disabled="templatesPerCompetitionList[LEAGUE_UK].isEmpty">
+        <label for="contestPremiere"><span class="icon"></span>{{getLocalizedText("premier_league")}}</label>
+      </span>
+    </div>
+  </div>
+</div-->
+
+<!-- EVENTO -->
+<!--div class="create-contest-section-wrapper event-section">
+  <div class="create-contest-section">
+    <div class="title">{{getLocalizedText("event")}}</div>
+    <div class="data-input-wrapper contest-template">
+      <select ng-disabled="printableTemplateList.length == 0" name="contestTemplateSelector" id="contestTemplateSelector"
+              class="form-control contest-template-selector dropdown-toggle" ng-model="selectedTemplate" >
+
+        <option id="option-contest-select-contest" value="" ng-value="null" ng-bind="comboDefaultText"></option>
+
+        <option ng-repeat="template in printableTemplateList" id="option-contest-template-{{template.templateContestId}}"
+                value="{{$index + 1}}" ng-value="template">{{template.name}}</option>
+      </select>
+    </div>
+  </div> 
+</div-->
+
+<!-- FECHA -->
+<!--div class="create-contest-section-wrapper date-section">
+  <div class="create-contest-section">
+    <div class="title">{{getLocalizedText("date")}}<span class="annotation" ng-if="contestType == TYPE_OFICIAL">{{getLocalizedText("fixed_hour_warning")}}</span></div>
+    <div class="data-input-wrapper date">
+      <week-calendar id="createContestCalendar" disabled="contestType == TYPE_OFICIAL" selected-date="selectedDate" on-day-selected="onSelectedDayChange(day)" dates="dayList"></week-calendar>
+
+      <div class="contest-hour-selector-wrapper">
+        <select ng-disabled="contestType == TYPE_OFICIAL" name="contestHourSelector" id="contestHourSelector"
+                class="form-control contest-hour-selector dropdown-toggle" ng-model="selectedHour">
+
+          <option ng-repeat="hour in hourList" id="option-contest-hour-{{hour}}"
+                  value="{{$index + 1}}" ng-value="hour">{{hour}}:{{selectedMinutesText}}</option>
+
         </select>
       </div>
-    </div> 
-  </div-->
 
-  <!-- FECHA -->
-  <!--div class="create-contest-section-wrapper date-section">
-    <div class="create-contest-section">
-      <div class="title">{{getLocalizedText("date")}}<span class="annotation" ng-if="contestType == TYPE_OFICIAL">{{getLocalizedText("fixed_hour_warning")}}</span></div>
-      <div class="data-input-wrapper date">
-        <week-calendar id="createContestCalendar" disabled="contestType == TYPE_OFICIAL" selected-date="selectedDate" on-day-selected="onSelectedDayChange(day)" dates="dayList"></week-calendar>
-
-        <div class="contest-hour-selector-wrapper">
-          <select ng-disabled="contestType == TYPE_OFICIAL" name="contestHourSelector" id="contestHourSelector"
-                  class="form-control contest-hour-selector dropdown-toggle" ng-model="selectedHour">
-
-            <option ng-repeat="hour in hourList" id="option-contest-hour-{{hour}}"
-                    value="{{$index + 1}}" ng-value="hour">{{hour}}:{{selectedMinutesText}}</option>
-
-          </select>
-        </div>
-
-      </div>
-    </div>
-  </div-->
-  
-  <!-- PARTIDOS -->
-  <!--teams-panel id="teamsPanelComp" panel-open="true" template-contest="selectedTemplate" button-text="getLocalizedText('matches_title')"></teams-panel-->
-  
-  <!-- PREMIOS -->
-  <!--div class="create-contest-section-wrapper large">
-    <div class="create-contest-section" ng-if="selectedTemplate != null">
-      <div class="title">Premios</div>
-      <div class="data-input-wrapper entry-fee">
-        <span class="data-element">
-          <div class="entry-fee-values-wrapper">
-          <span class="entry-fee-value" ng-class="{'gold' :contestType == TYPE_OFICIAL, 'energy': contestType != TYPE_OFICIAL}">{{entryFee.toInt()}}</span> 
-          por 
-          <span class="entry-fee-value" ng-class="{'gold' :contestType == TYPE_OFICIAL, 'manager-points': contestType != TYPE_OFICIAL}">{{computedPrize}}</span>
-          </div>
-        </span>
-        <div>
-          <span>Repartición de premios: </span>
-          <span>{{prizeType}}</span>
-        </div>
-        
-        <!- -span class="data-element">
-          <input id="contestFee_1E_3MP" type="radio" value="1E_3MP" name="entry-fee">
-          <label for="contestFee_1E_3MP"><span class="entry-fee-value energy">1</span> por <span class="entry-fee-value manager-points">3</span></label>
-        </span>
-        
-        <span class="data-element">
-          <input id="contestFee_1G_3G" type="radio" value="1G_3G" name="entry-fee">
-          <label for="contestFee_1G_3G"><span class="entry-fee-value gold">1</span> por <span class="entry-fee-value gold">3</span></label>
-        </span- ->
-      </div>
-    </div>
-  </div-->
-
-
-  <div class="create-contest-section-wrapper large">
-    <div class="create-contest-section">
-      <div class="data-input-wrapper confirm-button-wrapper">
-        <button type="button" class="btn-confirm-contest"
-                ng-click="createContest()"
-                ng-disabled="!isComplete">{{getLocalizedText("create_contest_btt")}}</button>
-      </div>
     </div>
   </div>
+</div-->
 
-  <div class="clearfix"></div>
-</div>"""));
+<!-- PARTIDOS -->
+<!--teams-panel id="teamsPanelComp" panel-open="true" template-contest="selectedTemplate" button-text="getLocalizedText('matches_title')"></teams-panel-->
+
+<!-- PREMIOS -->
+<!--div class="create-contest-section-wrapper">
+  <div class="create-contest-section" ng-if="selectedTemplate != null">
+    <div class="title">Premios</div>
+    <div class="data-input-wrapper entry-fee">
+      <span class="data-element">
+        <div class="entry-fee-values-wrapper">
+        <span class="entry-fee-value" ng-class="{'gold' :contestType == TYPE_OFICIAL, 'energy': contestType != TYPE_OFICIAL}">{{entryFee.toInt()}}</span> 
+        por 
+        <span class="entry-fee-value" ng-class="{'gold' :contestType == TYPE_OFICIAL, 'manager-points': contestType != TYPE_OFICIAL}">{{computedPrize}}</span>
+        </div>
+      </span>
+      <div>
+        <span>Repartición de premios: </span>
+        <span>{{prizeType}}</span>
+      </div>
+      
+      <!- -span class="data-element">
+        <input id="contestFee_1E_3MP" type="radio" value="1E_3MP" name="entry-fee">
+        <label for="contestFee_1E_3MP"><span class="entry-fee-value energy">1</span> por <span class="entry-fee-value manager-points">3</span></label>
+      </span>
+      
+      <span class="data-element">
+        <input id="contestFee_1G_3G" type="radio" value="1G_3G" name="entry-fee">
+        <label for="contestFee_1G_3G"><span class="entry-fee-value gold">1</span> por <span class="entry-fee-value gold">3</span></label>
+      </span- ->
+    </div>
+  </div>
+</div-->
+
+
+
+"""));
 tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", new HttpResponse(200, r"""
 <!-- LINEUP FIELD -->
 <section class="lineup-selector-section" ng-show="isLineupFieldSelectorActive" >
@@ -1113,17 +1108,38 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_scalinglist_c
     
   </div>
 </div>"""));
-tc.put("packages/webclient/components/home_comp.html", new HttpResponse(200, r"""<div id="homeRoot">
-  <!--
+tc.put("packages/webclient/components/home_comp.html", new HttpResponse(200, r"""<div class="main-info-wrapper">
+  <div class="info-column">
+    <div class="label">ORO</div>
+    <div  class="icon"><img src="images/ORO.png"></div>
+    <div class=amount>{{user.goldBalance}}</div>
+  </div>
+  <div class="info-column">
+    <div class="label">NIVEL</div>
+    <div  class="icon"><img src="images/nivel6.png"></div>
+    <div class=amount>ROOKIE</div>
+  </div>
+  <div class="info-column">
+    <div class="label">LOGROS</div>
+    <div  class="icon"><img src="images/logros.png"></div>
+    <div class=amount>{{achievementsEarned}} / {{achievementList.length.toString()}}</div>
+  </div>
+</div>
+
+<div class="next-contest-wrapper">
+</div>
+
+<!-- div id="homeRoot">
+  <! --
   Torneos
   Tutorial
   Blog
   Crear Torneos
   Torneos en directo
   Scouting??
-  -->
+  -- >
   
-  <div id="contestTile" class="home-tile-wrapper enabled" ng-click="onContestsClick()">
+  <!--div id="contestTile" class="home-tile-wrapper enabled" ng-click="onContestsClick()">
     <div class="home-tile-content">
       <div class="tile">
         <div ng-bind-html="contestTileHTML"></div>
@@ -1217,7 +1233,7 @@ tc.put("packages/webclient/components/home_comp.html", new HttpResponse(200, r""
   </div>
   
   <div class="clearfix"></div>
-</div>"""));
+</div-->"""));
 tc.put("packages/webclient/components/leaderboards/achievement_comp.html", new HttpResponse(200, r"""<div ng-bind-html="theHtml"></div>"""));
 tc.put("packages/webclient/components/leaderboards/achievement_list_comp.html", new HttpResponse(200, r"""<div class="achievement-count"> {{earneds}} de {{achievementList.length.toString()}} LOGROS CONSEGUIDOS</div>
 <achievement ng-repeat="achiev in achievementList" owned="achievementEarned(achiev.id)" key="achiev"></achievement>

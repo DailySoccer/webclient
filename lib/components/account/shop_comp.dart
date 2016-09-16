@@ -45,12 +45,13 @@ class ShopComp implements DetachAware{
     return StringUtils.translate(key, group, substitutions);
   }
 
-  ShopComp(this._flashMessage, this._profileService, this._catalogService, this._tutorialService, this._paymentService, this._appStateService, this._router) {
+  ShopComp(this._loadingService, this._flashMessage, this._profileService, this._catalogService, this._tutorialService, this._paymentService, this._appStateService, this._router) {
     _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection(getLocalizedText("name"));
     _appStateService.appTopBarState.activeState.onLeftColumn = AppTopBarState.GOBACK;
     _appStateService.appTabBarState.show = false;
     _appStateService.appSecondaryTabBarState.tabList = [];
-        
+    
+    _loadingService.isLoading = true;
     
     goldProducts = [];
     energyProducts = [];
@@ -98,6 +99,7 @@ class ShopComp implements DetachAware{
           gProduct["purchasable"]    = true;
           goldProducts.add(gProduct);
         }
+        _loadingService.isLoading = false;
       });
     
     GameMetrics.logEvent(GameMetrics.SHOP_ENTERED);
@@ -204,5 +206,7 @@ class ShopComp implements DetachAware{
   TutorialService _tutorialService;
   PaymentService _paymentService;
   AppStateService _appStateService;
+
+  LoadingService _loadingService;
 }
 

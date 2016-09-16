@@ -1,264 +1,266 @@
-.global-create-contest #mainContent.main-content-container {
-	background-color: @white;
-}
-
-#createContest {
+create-contest {
+	.flex-container-col();
+	justify-content: space-between;
+	background-color: @soft-black;
 	
 	.create-contest-section-wrapper {
-		.make-sm-column(6);
-		.make-xs-column(12);
-		height: 130px;
-		
-		@media (max-width: @screen-xs-max) {
-			height: 190px;
-			
-			&.event-section {
-				height: 130px;
-			}
-			&.name-section {
-				height: 130px;
-			}
-			&.date-section {
-				height: 140px;
-			}
-		
+		.flex-container-col();
+		.flex-elem-fixed(auto);
+	}
+	.create-contest-section {
+		.flex-container-col();
+		.flex-elem-fixed(auto);
+		.mainfont_light(12pt, @grey-bluish, left, uppercase);
+		padding: 15px;
+		background-color: @grey-dark;
+		border-bottom: 2px solid @black;
+		margin-bottom: 10px;
+	}
+	.data-input-wrapper {
+		.flex-container-row();
+		.flex-elem-fluid();
+		align-items: center;
+	}
+	.contest-name-length {
+		.flex-elem-fixed(30px);
+		text-align: center;
+	}
+	.title {
+		.flex-elem-fluid();
+		.mainfont_bold(12pt, @grey-bluish, left, uppercase);
+		margin-bottom: 10px;
+	}
+	.btn-confirm-contest {
+		.default-button();
+		.flex-elem-fixed(auto);
+	}
+	.data-element {
+		.flex-container-row();
+		.flex-elem-fluid();
+		input[type="radio"] {
+			display: none;
 		}
-		
-		padding: 2px;
-		position: relative;
-		
-		&.large { 
-			.make-sm-column(12); 
-			padding: 2px;
-			height: auto;
+		input[type="radio"] + label {
+			// aqui el estilo normal
+			.mainfont_light(10pt, @grey-translucid, left, uppercase);
+			border: 1px solid transparent;
+			border-radius: 5px;
+			padding: 5px 5px;
+			display: block;
+			vertical-align: middle;
+			.icon {
+				margin-right: 10px;
+				vertical-align: middle;
+			}
+			cursor: pointer;
 		}
-		
-		.create-contest-section {
-			background-color: @greyUltraLight;
-			position: relative;
-			padding: 15px;
-			height: 100%;
-			
-			.opensans_normal(10pt, @greyDark);
-			.title {
-				.opensans_bold(12pt, @greyDark);
-				margin-bottom: 20px;
-				.annotation {
-					.opensans_normal(10pt, @greyMed);
-					font-style: italic;
-					margin-left: 20px;
-				}
-			}
-			.data-input-wrapper {
-
-				.data-element {
-					.make-xs-column(12);
-					.make-sm-column(6);
-					padding: 0;
-					
-					input[type="radio"] {
-						display: none;
-					}
-					input[type="radio"] + label {
-						// aqui el estilo normal
-						.opensans_normal(10pt, @greyDark);
-						border: 1px solid transparent;
-						border-radius: 5px;
-						padding: 5px 5px;
-						display: block;
-						vertical-align: middle;
-						.icon {
-							margin-right: 10px;
-							vertical-align: middle;
-						}
-						cursor: pointer;
-					}
-					input[type="radio"]:checked + label {
-						background-color: @white;
-						border: 1px solid @greyUltraDark;
-						border-radius: 5px;
-					}
-					input[type="radio"].disabled-radio + label {
-						opacity: 0.3;
-						cursor: auto;
-					}
-					
-				}
-				&.competition .data-element{
-					//.make-xs-column(4);
-					padding: 0;
-					
-					input[type="radio"] + label .icon {
-						margin: 0 5px 0 0;
-					}
-				}
-				
-				&.entry-fee {
-					height: auto;
-					.opensans_normal(12pt, @greyUltraDark);
-					
-					.data-element {
-						.make-xs-column(12);
-						.make-sm-column(4);
-						padding: 0 15px 0 0;
-
-						.entry-fee-values-wrapper {
-							border: 1px solid transparent;
-							border-radius: 5px;
-							display: block;
-							vertical-align: middle;
-							.opensans_normal(12pt, @greyDark);
-							padding: 5px 15px;
-							margin: 0;
-							
-							.icon {
-								margin-right: 10px;
-								vertical-align: middle;
-							}
-							
-							.entry-fee-value:after {
-								.opensans_normal(14pt, @greyDark);
-							}
-							.entry-fee-value:after {
-								margin: 0 5px;
-							}
-						}
-					}
-		
-					&:after {
-						clear: both;
-						content: "";
-						display: block; 
-					}
-				}
-				
-				.addIcon44(@img) {
-					.addIcon(@img, 44px, 44px);
-				}
-				
-				// Contest type
-				#contestOficial + label .icon {
-					.addIcon44("icon-oficial.png");
-				}
-				#contestTraining + label .icon {
-					.addIcon44("icon-training.png");
-				}
-				
-				// Competition
-				#contestLeague + label .icon {
-					.addIcon44("icon-league.png");
-				}
-				#contestPremiere + label .icon {
-					.addIcon44("icon-premiere.png");
-				}
-				#contestChampions + label .icon {
-					.addIcon44("icon-champions.png");
-				}
-				
-				// Contest Style
-				#contestHeadToHead + label .icon {
-					.addIcon44("icon-headToHead.png");
-				}
-				#contestOpen + label .icon {
-						.addIcon44("icon-open.png");
-				}
-				
-				input[type="radio"]#contestOpen + label .contest-league-count-selector {
-					.make-xs-column(6);
-					float: right;
-					margin-top: 5px;
-					display: none;
-				}
-				input[type="radio"]#contestOpen:checked + label .contest-league-count-selector {
-					display: block;
-				}
-				
-				// Opponent type
-				#contestAny + label .icon {
-					.addIcon44("icon-any.png");
-				}
-				#contestFriends + label .icon {
-					.addIcon44("icon-friends.png");
-				}
-				
-				// Entry Fee
-				&.entry-fee .entry-fee-values-wrapper .energy:after {
-					content: "";
-					.addIcon("icon-lightning-lg.png", 27px, 27px);
-				}
-				&.entry-fee .entry-fee-values-wrapper .manager-points:after {
-					content: "";
-					.addIcon("icon-star-lg.png", 27px, 27px);
-				}
-				&.entry-fee .entry-fee-values-wrapper .gold:after {
-					content: "";
-					.addIcon("icon-coin-lg.png", 27px, 27px);
-				}
-				
-				&.contest-template {
-					margin: 30px 0;
-					select.contest-template-selector {
-						width: auto;
-						max-width: 100%;
-						overflow: hidden;
-						display: inline-block;
-						padding: 7px 10% 7px 15px;
-						-webkit-appearance: none;
-						-moz-appearance: none;
-						appearance: none;
-						cursor: pointer;
-						background-color: @white;
-						background: @white url("@{images}/arrowDownBlack.png") no-repeat 95% 50%;
-					}
-					/*&:after {
-						content: "";
-						.addIcon("arrowDownBlack.png", 20px, 20px);
-						margin-left: -35px;
-					}*/
-				}
-				
-				&.contest-name {
-					margin: 30px 0;
-					
-					#contestNameInput {
-						.make-xs-column(10);
-					}
-					
-					.contest-name-length {
-						.make-xs-column(2);
-						.opensans_normal(14pt, @greyDark);
-					}
-				}
-				
-				.btn-confirm-contest {
-					.btn-primary();
-					.btn-block();
-					width: 300px;
-					margin: 0px auto;
-					position: relative;
-					.opensans_normal(12pt, @white);
-				}
-				
-			}
-			/*
-			.entry-fee {
-				.opensans_normal(12pt, @black);
-				.entry-fee-amount {
-					&.gold:after {
-						content: "";
-						display: inline-block;
-						.addIcon("icon-coin-lg.png", 27px, 27px);
-					}
-					&.energy:after {
-						content: "";
-						display: inline-block;
-						.addIcon("icon-lightning-lg.png", 27px, 27px);
-					}
-				}
-			}*/
+		input[type="radio"]:checked + label {
+			background-color: @soft-black;
+			border: 1px solid @blueLight;
+			color: @blueLight;
+			border-radius: 5px;
+		}
+		input[type="radio"].disabled-radio + label {
+			opacity: 0.3;
+			cursor: auto;
+		}
+		input[type="radio"] + label .icon {
+			margin: 0 5px 0 0;
 		}
 	}
+	.addIcon44(@img) {
+		.addIcon(@img, 44px, 44px);
+	}		
 	
+	// Contest Style
+	label {
+		.flex-container-row();
+		.flex-elem-fluid();
+	}
+	label + .icon {
+		.flex-elem-fixed(44px);
+	}
+	#contestOpen + label .option-label {
+	 	.flex-elem-fluid();
+	 	text-align: left;
+	}
+	// Visibilidad y comportamiento del contest-league-count-selector 
+	input[type="radio"]#contestOpen + label {
+		.flex-container-row();
+		 align-items: center;
+	}
+	input[type="radio"]#contestOpen + label .contest-league-count-selector {		
+		.flex-elem-fluid();
+		display: none;
+	}
+	input[type="radio"]#contestOpen:checked + label .contest-league-count-selector {
+		.flex-elem-fixed(90px);
+		display: flex;
+	}
+	// iconos activosd especificos de la sección de rivales
+	input[type="radio"]#contestHeadToHead + label .icon {
+		.addIcon44("icon-headToHead.png");
+	}
+	input[type="radio"]#contestHeadToHead:checked + label .icon {
+		.addIcon44("icon-headToHead-active.png");
+	}
+	input[type="radio"]#contestOpen + label .icon {
+		.addIcon44("icon-open.png");			
+	}	
+	input[type="radio"]#contestOpen:checked + label .icon {
+		.addIcon44("icon-open-active.png");
+	}
+}
+	/*
+	.data-input-wrapper {
+		
+		
+	
+		
+		.entry-fee {
+			height: auto;
+			.opensans_normal(12pt, @greyUltraDark);
+			
+			.data-element {
+				.make-xs-column(12);
+				.make-sm-column(4);
+				padding: 0 15px 0 0;
+
+				.entry-fee-values-wrapper {
+					border: 1px solid transparent;
+					border-radius: 5px;
+					display: block;
+					vertical-align: middle;
+					.opensans_normal(12pt, @greyDark);
+					padding: 5px 15px;
+					margin: 0;
+					
+					.icon {
+						margin-right: 10px;
+						vertical-align: middle;
+					}
+					
+					.entry-fee-value:after {
+						.opensans_normal(14pt, @greyDark);
+					}
+					.entry-fee-value:after {
+						margin: 0 5px;
+					}
+				}
+			}
+
+			&:after {
+				clear: both;
+				content: "";
+				display: block; 
+			}
+		}
+		
+		.addIcon44(@img) {
+			.addIcon(@img, 44px, 44px);
+		}
+		
+		// Contest type
+		#contestOficial + label .icon {
+			.addIcon44("icon-oficial.png");
+		}
+		#contestTraining + label .icon {
+			.addIcon44("icon-training.png");
+		}
+		
+		// Competition
+		#contestLeague + label .icon {
+			.addIcon44("icon-league.png");
+		}
+		#contestPremiere + label .icon {
+			.addIcon44("icon-premiere.png");
+		}
+		#contestChampions + label .icon {
+			.addIcon44("icon-champions.png");
+		}
+		
+		// Contest Style
+		#contestHeadToHead + label .icon {
+			.addIcon44("icon-headToHead.png");
+		}
+		#contestOpen + label .icon {
+				.addIcon44("icon-open.png");
+		}
+		
+		input[type="radio"]#contestOpen + label .contest-league-count-selector {
+			.make-xs-column(6);
+			float: right;
+			margin-top: 5px;
+			display: none;
+		}
+		input[type="radio"]#contestOpen:checked + label .contest-league-count-selector {
+			display: block;
+		}
+		
+		// Opponent type
+		#contestAny + label .icon {
+			.addIcon44("icon-any.png");
+		}
+		#contestFriends + label .icon {
+			.addIcon44("icon-friends.png");
+		}
+		
+		// Entry Fee
+		.entry-fee .entry-fee-values-wrapper .energy:after {
+			content: "";
+			.addIcon("icon-lightning-lg.png", 27px, 27px);
+		}
+		.entry-fee .entry-fee-values-wrapper .manager-points:after {
+			content: "";
+			.addIcon("icon-star-lg.png", 27px, 27px);
+		}
+		.entry-fee .entry-fee-values-wrapper .gold:after {
+			content: "";
+			.addIcon("icon-coin-lg.png", 27px, 27px);
+		}
+		
+		.contest-template {
+			margin: 30px 0;
+			select.contest-template-selector {
+				width: auto;
+				max-width: 100%;
+				overflow: hidden;
+				display: inline-block;
+				padding: 7px 10% 7px 15px;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				cursor: pointer;
+				background-color: @white;
+				background: @white url("@{images}/arrowDownBlack.png") no-repeat 95% 50%;
+			}
+		}
+		/*
+		.contest-name {
+			margin: 30px 0;
+			
+			#contestNameInput {
+				.make-xs-column(10);
+			}
+			
+			.contest-name-length {
+				.make-xs-column(2);
+				.opensans_normal(14pt, @greyDark);
+			}
+		}
+		*/
+		/*
+		.btn-confirm-contest {
+			.btn-primary();
+			.btn-block();
+			width: 300px;
+			margin: 0px auto;
+			position: relative;
+			.opensans_normal(12pt, @white);
+		}
+		* /
+	}
+
 	#teamsPanelComp {
 		clear: both;
 	}
@@ -308,10 +310,8 @@
 	#teamsToggler {
 		text-align: center;
 	}
-	
-	
 }
-
+*/
 
 
 

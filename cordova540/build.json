@@ -1,0 +1,18 @@
+{
+    "android": {
+        "debug": {
+            "keystore": "futbolcuatro.keystore",
+            "storePassword": "epiceleven",
+            "alias": "futbolcuatro",
+            "password" : "epiceleven",
+            "keystoreType": "jks"
+        },
+        "release": {
+            "keystore": "futbolcuatro.keystore",
+            "storePassword": "epiceleven",
+            "alias": "futbolcuatro",
+            "password" : "epiceleven",
+            "keystoreType": "jks"
+        }
+    }
+}

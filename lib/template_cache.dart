@@ -632,9 +632,7 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
 """));
 tc.put("packages/webclient/components/create_contest_comp.html", new HttpResponse(200, r"""<div id="createContest">
 
-  <!-- header title -->
-  <div class="default-section-header">{{getLocalizedText('create_contest')}}</div>
-
+  <!-- NOMBRE DEL TORNEO -->
   <div class="create-contest-section-wrapper name-section">
     <div class="create-contest-section">
       <div class="title">{{getLocalizedText("name")}}</div>
@@ -647,7 +645,8 @@ tc.put("packages/webclient/components/create_contest_comp.html", new HttpRespons
     </div>
   </div>
 
-  <div class="create-contest-section-wrapper">
+  <!-- TIPO DEL TORNEO -->
+  <!--div class="create-contest-section-wrapper">
     <div class="create-contest-section">
       <div class="title">{{getLocalizedText("contest_type")}}</div>
       <div class="data-input-wrapper contest-type">
@@ -667,9 +666,10 @@ tc.put("packages/webclient/components/create_contest_comp.html", new HttpRespons
         </span>
       </div>
     </div>
-  </div>
+  </div-->
 
-  <div class="create-contest-section-wrapper">
+  <!-- COMPETICION -->
+  <!--div class="create-contest-section-wrapper">
     <div class="create-contest-section">
       <div class="title">{{getLocalizedText("competition")}}</div>
       <div class="data-input-wrapper competition">
@@ -689,8 +689,9 @@ tc.put("packages/webclient/components/create_contest_comp.html", new HttpRespons
         </span>
       </div>
     </div>
-  </div>
+  </div-->
 
+  <!-- RIVALES -->
   <div class="create-contest-section-wrapper">
     <div class="create-contest-section">
       <div class="title">{{getLocalizedText("rivals")}}</div>
@@ -721,7 +722,8 @@ tc.put("packages/webclient/components/create_contest_comp.html", new HttpRespons
     </div>
   </div>
   
-  <div class="create-contest-section-wrapper event-section">
+  <!-- EVENTO -->
+  <!--div class="create-contest-section-wrapper event-section">
     <div class="create-contest-section">
       <div class="title">{{getLocalizedText("event")}}</div>
       <div class="data-input-wrapper contest-template">
@@ -735,9 +737,10 @@ tc.put("packages/webclient/components/create_contest_comp.html", new HttpRespons
         </select>
       </div>
     </div> 
-  </div>
+  </div-->
 
-  <div class="create-contest-section-wrapper date-section">
+  <!-- FECHA -->
+  <!--div class="create-contest-section-wrapper date-section">
     <div class="create-contest-section">
       <div class="title">{{getLocalizedText("date")}}<span class="annotation" ng-if="contestType == TYPE_OFICIAL">{{getLocalizedText("fixed_hour_warning")}}</span></div>
       <div class="data-input-wrapper date">
@@ -755,11 +758,13 @@ tc.put("packages/webclient/components/create_contest_comp.html", new HttpRespons
 
       </div>
     </div>
-  </div>
-
-  <teams-panel id="teamsPanelComp" panel-open="true" template-contest="selectedTemplate" button-text="getLocalizedText('matches_title')"></teams-panel>
+  </div-->
   
-  <div class="create-contest-section-wrapper large">
+  <!-- PARTIDOS -->
+  <!--teams-panel id="teamsPanelComp" panel-open="true" template-contest="selectedTemplate" button-text="getLocalizedText('matches_title')"></teams-panel-->
+  
+  <!-- PREMIOS -->
+  <!--div class="create-contest-section-wrapper large">
     <div class="create-contest-section" ng-if="selectedTemplate != null">
       <div class="title">Premios</div>
       <div class="data-input-wrapper entry-fee">
@@ -775,7 +780,7 @@ tc.put("packages/webclient/components/create_contest_comp.html", new HttpRespons
           <span>{{prizeType}}</span>
         </div>
         
-        <!--span class="data-element">
+        <!- -span class="data-element">
           <input id="contestFee_1E_3MP" type="radio" value="1E_3MP" name="entry-fee">
           <label for="contestFee_1E_3MP"><span class="entry-fee-value energy">1</span> por <span class="entry-fee-value manager-points">3</span></label>
         </span>
@@ -783,10 +788,10 @@ tc.put("packages/webclient/components/create_contest_comp.html", new HttpRespons
         <span class="data-element">
           <input id="contestFee_1G_3G" type="radio" value="1G_3G" name="entry-fee">
           <label for="contestFee_1G_3G"><span class="entry-fee-value gold">1</span> por <span class="entry-fee-value gold">3</span></label>
-        </span-->
+        </span- ->
       </div>
     </div>
-  </div>
+  </div-->
 
 
   <div class="create-contest-section-wrapper large">
@@ -1688,11 +1693,10 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
 
 
 <!-- Descomentar cuando hablitemos la funcionalidad de crear torneos -->
-<!--button class="create-custom-contest-button" ng-click="onCreateContestClick()">{{getStaticLocalizedText("challengeyourfriendsbutton")}}</button-->
+<button class="create-custom-contest-button" ng-click="onCreateContestClick()">{{getStaticLocalizedText("challengeyourfriendsbutton")}}</button>
 
 <!-- Punto de insercion de nuestra ruta hija contest-info (modal)
 <ng-view  ng-show="!loadingService.isLoading"></ng-view> -->
-
 """));
 tc.put("packages/webclient/components/modal_comp.html", new HttpResponse(200, r"""<div id="modalRoot" class="modal" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-{{modalSize}}">
@@ -1706,22 +1710,22 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
 <!-- LIVE CONTESTS -->
 <section class="contest-list-section" id="live-contest-content"  ng-if="tabIsLive">
   <!-- Barra de resumen de actividad -->
-  <div class="resume-bar"><span class="information-no-contest">{{liveContestsMessage}}</span></div>
+  <div class="resume-bar">
+    <div class="information-no-contest">{{liveContestsMessage}}</div>
+  </div>
 
-  <div ng-unless="loadingService.isLoading" ng-switch="hasLiveContests">
+  <div ng-unless="loadingService.isLoading" ng-switch="hasLiveContests" class="no-contest-sup-wrapper">
     <!-- lista vacía -->
     <div class="no-contests-wrapper" ng-switch-when="false">
       <div class="no-contests-content">
-        <div class="default-info-text" ng-bind-html="getLocalizedText('nolives')"></div>
+        <div ng-bind-html="getLocalizedText('nolives')"></div>
         <div class="no-contests-text">{{getLocalizedText("nolivestip1")}} <strong data-toggle="tab" ng-click="gotoSection('upcoming')">{{getLocalizedText("nolivestip2")}}</strong> {{getLocalizedText("nolivestip3")}}</div>
       </div>
-      <div class="no-contest-bottom-row">
-        <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
-      </div>
+      <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
     </div>
     <!-- lista de concursos -->
     <div class="list-container" ng-switch-when="true">
-      <contests-list id="liveContests" contests-list="contestsService.liveContests" show-date="false"
+      <contests-list id="liveContests" contests-list="contestsService.liveContests" show-date="false" 
                      sorting="liveSortType" on-action-click='onLiveActionClick(contest)' on-row-click='onLiveActionClick(contest)'>
       </contests-list>
     </div>
@@ -1730,18 +1734,18 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
 
 <!-- WAITING CONTESTS -->
 <section class="contest-list-section" id="waiting-contest-content" ng-if="tabIsWaiting">
-  <div class="resume-bar"><span class="information-no-contest">{{waitingContestsMessage}}</span></div>
+  <div class="resume-bar">
+    <div class="information-no-contest">{{waitingContestsMessage}}</div>
+  </div>
 
-  <div ng-unless="loadingService.isLoading" ng-switch="hasWaitingContests">
+  <div ng-unless="loadingService.isLoading" ng-switch="hasWaitingContests" class="no-contest-sup-wrapper">
     <!-- lista vacía -->
     <div class="no-contests-wrapper" ng-switch-when="false">
       <div class="no-contests-content">
-        <div class="default-info-text" ng-bind-html="getLocalizedText('noupcomings')"></div>
+        <div ng-bind-html="getLocalizedText('noupcomings')"></div>
         <div class="no-contests-text">{{getLocalizedText("noupcomingstip1")}}</div>
       </div>
-      <div class="no-contest-bottom-row">
-        <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
-      </div>
+      <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
     </div>
     <!-- lista de concursos -->
     <div class="list-container" ng-switch-when="true">
@@ -1754,18 +1758,18 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
 
 <!-- HISTORY CONTESTS -->
 <section class="contest-list-section" id="history-contest-content" ng-if="tabIsHistory">
-  <div class="resume-bar"><span class="information-no-contest">{{historyContestsMessage}}</span></div>
+  <div class="resume-bar">
+    <div class="information-no-contest">{{historyContestsMessage}}</div>
+  </div>
 
-  <div ng-unless="loadingService.isLoading" ng-switch="hasHistoryContests">
+  <div ng-unless="loadingService.isLoading" ng-switch="hasHistoryContests" class="no-contest-sup-wrapper">
     <!-- lista vacía -->
     <div class="no-contests-wrapper" ng-switch-when="false">
       <div class="no-contests-content">
-        <div class="default-info-text" ng-bind-html="getLocalizedText('nohistorys')"></div>
+        <div ng-bind-html="getLocalizedText('nohistorys')"></div>
         <div class="no-contests-text">{{getLocalizedText("nohistoryestip")}}</div>
       </div>
-      <div class="no-contest-bottom-row">
-        <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
-      </div>
+      <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
     </div>
     <!-- lista de concursos -->
     <div class="list-container" ng-switch-when="true">

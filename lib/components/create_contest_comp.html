@@ -29,7 +29,7 @@
                ng-disabled="templatesPerStyle[STYLE_LEAGUE].isEmpty">
         <label for="contestOpen">
           <span class="icon"></span>
-          <span class="option-label">{{getLocalizedText("league")}}</span>
+          <span class="label">{{getLocalizedText("league")}}</span>
           <select name="contestLeagueCountSelector" id="contestLeagueCountSelector" class="form-control contest-league-count-selector dropdown-toggle" ng-model="selectedLeaguePlayerCount">
             <option ng-repeat="count in leaguePlayerCountList" id="option-contest-count-{{count}}" value="{{$index + 1}}" ng-value="count">{{count == -1? getLocalizedText("no_limit") : count}}</option>
           </select>

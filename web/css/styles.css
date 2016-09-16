@@ -6149,6 +6149,9 @@ OLD FONTS
   font-weight: 500;
   cursor: pointer;
 }
+.lobby-topbar-center.nickname {
+  color: #59add5;
+}
 .lobby-topbar-right {
   font-size: 12pt;
   color: #ffffff;

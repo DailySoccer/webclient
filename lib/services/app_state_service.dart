@@ -130,22 +130,35 @@ class AppTopBarStateConfig {
     this.onCenterColumn = showInfoButton? infoFunction : (){};
   }
 
-  AppTopBarStateConfig.userBar(ProfileService profileService, Router router) {
+  AppTopBarStateConfig.userBar(ProfileService profileService, Router router, [bool isHomeBar = false]) {
+    String leftColAux = isHomeBar ? '' : '''
+              <span class="level">''' +  getLocalizedText("level") + '''</span>
+              <span class="level">''' + (profileService.isLoggedIn ? profileService.user.trueSkill.toString() : "") + '''</span> 
+            ''';
+    
+    
     leftColumn = '''
       <div class="lobby-topbar-left">
         <img class="gold-image" src="images/topBar/icon_user_profile.png">
-        <span class="level">''' +  getLocalizedText("level") + '''</span>
-        <span class="level">''' + (profileService.isLoggedIn ? profileService.user.trueSkill.toString() : "") + '''</span>
+        $leftColAux
       </div>
     ''';
-    centerColumn = '''
-      <div class="lobby-topbar-center">
-        <span class="coins-count">''' + (profileService.isLoggedIn ? profileService.user.balance.toString() : "0") + '''</span>
-        <img class="gold-image" src="images/topBar/icon_coin_big.png">
-        <img class="gold-image" src="images/topBar/icon_add_more_coins.png">
-      </div>
-    ''';
-    rightColumn= '''
+    
+    if (!isHomeBar) {
+      centerColumn = '''
+        <div class="lobby-topbar-center">
+          <span class="coins-count">''' + (profileService.isLoggedIn ? profileService.user.balance.toString() : "0") + '''</span>
+          <img class="gold-image" src="images/topBar/icon_coin_big.png">
+          <img class="gold-image" src="images/topBar/icon_add_more_coins.png">
+        </div>
+      ''';
+    } else {
+      centerColumn = '''
+        <div class="lobby-topbar-center nickname">
+          <span>''' + (profileService.isLoggedIn ? profileService.user.nickName : " ") + '''</span>
+        </div>''';
+    }
+    rightColumn = '''
       <div class="lobby-topbar-right">
         ''' + getNotificationCount(profileService) + '''          
         <img class="gold-image" src="images/topBar/icon_Bell.png">

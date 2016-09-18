@@ -257,7 +257,7 @@ class HomeComp implements DetachAware {
     _router.go('shop', {});
   }
   void goHistory() {
-    _router.go('history_contest', {"contestId": "", "parent": ""});
+    _router.go('my_contests', {"section": "history"});
   }
 
   void detach() {

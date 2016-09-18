@@ -262,6 +262,7 @@ class HomeComp implements DetachAware {
 
   void detach() {
     _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS);
+    _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR);
     _nextTournamentInfoTimer.cancel();
   }
 

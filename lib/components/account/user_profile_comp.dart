@@ -96,7 +96,8 @@ class UserProfileComp {
         
         // Topbar y bottombar        
         _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("PERFIL");
-        _appStateService.appTopBarState.activeState.onLeftColumn = GoBack;
+        //_appStateService.appTopBarState.activeState.onLeftColumn = GoBack;
+        _appStateService.appTopBarState.activeState.onLeftColumn = AppTopBarState.GOBACK;
         _appStateService.appTabBarState.show = false;
         _appStateService.appSecondaryTabBarState.tabList = [];
       }
@@ -116,9 +117,9 @@ class UserProfileComp {
     achievementsEarned = count.toString();
   }
   
-  void GoBack() {
+  /*void GoBack() {
     _router.go("lobby", {});
-  }
+  }*/
 
   String get rankingPointsPosition {
     return playerSkillInfo['position'].toString();

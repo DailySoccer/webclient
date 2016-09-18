@@ -23,6 +23,7 @@ class TabBarComp {
   static const String CONTESTS = "CONTEST";
   static const String LIVE_CONESTS = "LIVE_CONTESTS";
   static const String SCOUTING = "SCOUTING";
+  static const String HOME = "HOME";
   
   Map<String, TabBarItemComp> tabs = {};
 
@@ -45,6 +46,10 @@ class TabBarComp {
   TabBarItemComp get scoutingTab    {
     tabs[SCOUTING].notificationsCount = _appStateService.appTabBarState.scoutingNotifications;
     return tabs[SCOUTING];
+  }
+  TabBarItemComp get homeTab    {
+    tabs[HOME].notificationsCount = 0;
+    return tabs[HOME];
   }
   
   bool get isShown => _appStateService.appTabBarState.show;
@@ -71,6 +76,10 @@ class TabBarComp {
                                                 iconImage: "images/tabBar/Button_Lives.png", 
                                                 destination: "my_contests",
                                                 parameters: {"section": "live"}),
+             HOME     : new TabBarItemComp( _router, 
+                                                name: "HOME",
+                                                iconImage: "images/tabBar/Button_Home.png",
+                                                destination: "home"),
              SCOUTING     : new TabBarItemComp( _router, 
                                                 name: "Ojeador",
                                                 iconImage: "images/tabBar/Button_Scouting.png",

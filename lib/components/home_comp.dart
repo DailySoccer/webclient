@@ -19,6 +19,8 @@ import 'package:webclient/services/template_service.dart';
 import 'package:webclient/services/app_state_service.dart';
 import 'package:webclient/models/achievement.dart';
 import 'package:webclient/models/user.dart';
+import 'package:webclient/models/contest.dart';
+import 'package:webclient/services/datetime_service.dart';
 
 @Component(
   selector: 'home',
@@ -62,6 +64,16 @@ class HomeComp implements DetachAware {
   static const String PROMO_CODE_NAME_LOGOFF = "Home Contest Tile LogOff";
   Map currentPromo = null;
 
+  String infoBarText = "";
+  void _calculateInfoBarText() {
+    Contest nextContest = contestsService.getAvailableNextContest();
+    infoBarText = nextContest == null? "" : "SIGUIENTE TORNEO: ${nextContest.name.toUpperCase()} - ${_calculateTimeToNextTournament()}";
+  }
+
+  String _calculateTimeToNextTournament() {
+    return DateTimeService.formatTimeLeft(DateTimeService.getTimeLeft( contestsService.getAvailableNextContest().startDate ) );
+  }  
+  
   HomeComp(this._router, this._profileService, this._appStateService, this.contestsService, this._flashMessage,
             this.loadingService, this._refreshTimersService, this._promosService,
             TutorialService tutorialService) {
@@ -75,6 +87,10 @@ class HomeComp implements DetachAware {
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR, refreshTopBar);
 
     countAchievementsEarned(); 
+    
+    contestsService.refreshActiveContests();
+    
+    _nextTournamentInfoTimer = new Timer.periodic(new Duration(seconds: 1), (Timer t) => _calculateInfoBarText());
     
     GameMetrics.logEvent(GameMetrics.HOME, {"logged": _profileService.isLoggedIn});
   }
@@ -226,8 +242,27 @@ class HomeComp implements DetachAware {
     window.open("http://www.futbolcuatro.com/ayuda/", "_system");
   }
 
+  void goNextContest() {
+    Contest nextContest = contestsService.getAvailableNextContest();
+    if (nextContest != null)
+      _router.go('enter_contest', { "contestId": nextContest.contestId, "parent": "lobby", "contestEntryId": "none" });
+    else
+      _router.go('lobby', {});
+  } 
+  
+  void goScouting(){
+    _router.go('scouting', {});
+  } 
+  void goShop() {
+    _router.go('shop', {});
+  }
+  void goHistory() {
+    _router.go('history_contest', {"contestId": "", "parent": ""});
+  }
+
   void detach() {
     _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS);
+    _nextTournamentInfoTimer.cancel();
   }
 
   ProfileService _profileService;
@@ -236,5 +271,6 @@ class HomeComp implements DetachAware {
   RefreshTimersService _refreshTimersService;
   PromosService _promosService;
   AppStateService _appStateService;
+  Timer _nextTournamentInfoTimer;
 
 }

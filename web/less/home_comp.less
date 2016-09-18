@@ -17,7 +17,7 @@ home {
 	}
 	.label {
 		.flex-elem-fluid();
-		.mainfont_bold(14pt, @orange, center, uppercase);
+		.mainfont_bold(12pt, @orange, center, uppercase);
 	}
 	.icon {
 		.flex-elem-fluid();
@@ -28,6 +28,53 @@ home {
 		.mainfont_bold(14pt, @grey-bluish, center, uppercase);
 	}
 
+	.next-contest-wrapper {
+		.flex-container-col();	
+		.flex-elem-fixed(auto);
+		.elevation(3);
+		padding: 50px 20px;
+		align-items: center;
+		background-color: @soft-black;
+		z-index: 1;
+	}
+	.next-contest-label {
+		.mainfont_bold(10pt, @grey-translucid, center, uppercase);
+		.flex-elem-fluid();
+	}
+	.goto-next-contest-button {
+		.flex-elem-fluid();
+		.default-button();
+		margin-top: 25px;
+		padding: 15px;
+		font-size: 16pt;
+		width: 250px
+	}
+	
+	.action-buttons-wrapper {
+		.flex-container-row();
+		.flex-elem-fluid();
+		background-color: @grey-dark;
+	}
+	.button-scout, .button-history {
+		.flex-elem-fluid();
+		.flex-container-col();
+		text-align: center;
+		justify-content: center;
+		cursor: pointer;
+	}
+	.button-shop {
+		.button-scout();
+		border-right: 1px solid @white;
+		border-left: 1px solid @white;
+		cursor: pinter;
+	}
+	.image-container {
+		.flex-elem-fixed(auto);
+	}
+	.button-label {
+		.mainfont_bold(10pt, @grey-translucid, center, uppercase);
+		.flex-elem-fixed(auto);
+	}
 }
 /*
 .global-home #mainWrapper {

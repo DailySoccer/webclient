@@ -17,6 +17,23 @@
 </div>
 
 <div class="next-contest-wrapper">
+  <div class="next-contest-label">{{infoBarText}}</div>
+  <button class="goto-next-contest-button" ng-click="goNextContest()">JUGAR</button>
+</div>
+
+<div class="action-buttons-wrapper">
+  <div class="button-scout" ng-click="goScouting()">
+    <div class="image-container"><img src="images/ojeador.png" alt="ojeador"></div>
+    <div class="button-label">OJEADOR</div>
+  </div>
+  <div class="button-shop" ng-click="goShop()">
+    <div class="image-container"><img src="images/tienda.png" alt="tienda"></div>
+    <div class="button-label">TIENDA</div>
+  </div>
+  <div class="button-history" ng-click="goHistory()">
+    <div class="image-container"><img src="images/historico.png" alt="historico"></div>
+    <div class="button-label">HISTÓRICO</div>
+  </div>
 </div>
 
 <!-- div id="homeRoot">

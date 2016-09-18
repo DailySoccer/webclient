@@ -21134,7 +21134,7 @@ home .info-column {
 }
 home .label {
   flex: 1;
-  font-size: 14pt;
+  font-size: 12pt;
   color: #fa9c19;
   text-transform: uppercase;
   text-align: center;
@@ -21155,6 +21155,127 @@ home .amount {
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
   font-family: 'Fjalla One', sans-serif;
   font-weight: 700;
+}
+home .next-contest-wrapper {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  flex: 0 0 auto;
+  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
+  -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
+  padding: 50px 20px;
+  align-items: center;
+  background-color: #181818;
+  z-index: 1;
+}
+home .next-contest-label {
+  font-size: 10pt;
+  color: rgba(210, 210, 210, 0.3);
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(210, 210, 210, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
+  flex: 1;
+}
+home .goto-next-contest-button {
+  flex: 1;
+  background-image: -webkit-linear-gradient(top, #0d75a6 0%, #0c4c6a 100%);
+  background-image: linear-gradient(to bottom, #0d75a6 0%, #0c4c6a 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0d75a6', endColorstr='#ff0c4c6a', GradientType=0);
+  font-size: 10pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
+  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
+  padding: 10px;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  border: 0;
+  outline-offset: 0px;
+  outline: none;
+  margin-top: 25px;
+  padding: 15px;
+  font-size: 16pt;
+  width: 250px;
+}
+home .goto-next-contest-button:hover,
+home .goto-next-contest-button:active,
+home .goto-next-contest-button:focus {
+  border: 0;
+  outline-offset: 0px;
+  outline: none;
+}
+home .goto-next-contest-button:disabled {
+  color: #757993;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+home .action-buttons-wrapper {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  flex: 1;
+  background-color: #242529;
+}
+home .button-scout,
+home .button-history {
+  flex: 1;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  text-align: center;
+  justify-content: center;
+  cursor: pointer;
+}
+home .button-shop {
+  flex: 1;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  text-align: center;
+  justify-content: center;
+  cursor: pointer;
+  border-right: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  cursor: pinter;
+}
+home .image-container {
+  flex: 0 0 auto;
+}
+home .button-label {
+  font-size: 10pt;
+  color: rgba(210, 210, 210, 0.3);
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(210, 210, 210, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
+  flex: 0 0 auto;
 }
 /*
 .global-home #mainWrapper {

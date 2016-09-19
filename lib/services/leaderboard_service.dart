@@ -7,10 +7,12 @@ import 'package:angular/angular.dart';
 import "package:webclient/services/server_service.dart";
 import "package:webclient/models/user.dart";
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/services/refresh_timers_service.dart';
 
 @Injectable()
 class LeaderboardService {
-    
+  static int SECONDS_TO_REFRESH_RANKING_POSITION = 1;
+  
   static const List<Map> trueSkillDataList = const [
     const {
       'id' : 1,
@@ -85,9 +87,11 @@ class LeaderboardService {
     return 'nivel' + currentTrueSkillData['id'].toString() + '.png';
   }
   
+  Timer uppdateMyLeaderBoradData;
   
   LeaderboardService(this._server, this._profileService){
     calculateMyTrueSkillData();
+    uppdateMyLeaderBoradData = new Timer(new Duration(seconds: SECONDS_TO_REFRESH_RANKING_POSITION), calculateMyTrueSkillData);    
   }
 
   Future<List<User>> getUsers() {

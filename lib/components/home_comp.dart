@@ -96,7 +96,7 @@ class HomeComp implements DetachAware {
 
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR, refreshTopBar);
-    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_RANKING_POSITION, refreshRankingPosition);
+    //_refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_RANKING_POSITION, refreshRankingPosition);
 
     countAchievementsEarned(); 
     
@@ -282,7 +282,7 @@ class HomeComp implements DetachAware {
   void detach() {
     _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS);
     _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR);
-    _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_RANKING_POSITION);
+    //_refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_RANKING_POSITION);
     _nextTournamentInfoTimer.cancel();
   }
 

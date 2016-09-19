@@ -19,6 +19,7 @@ import 'package:webclient/services/app_state_service.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/components/leaderboards/leaderboard_comp.dart';
+import 'package:webclient/services/leaderboard_service.dart';
 
 @Component(
     selector: 'scouting',
@@ -229,5 +230,5 @@ class ScoutingComp implements DetachAware {
   ProfileService _profileService;
   AppStateService _appStateService;
   RefreshTimersService _refreshTimersService;
-  LeaderboardComp _leaderBoardService;
+  LeaderboardService _leaderBoardService;
 }

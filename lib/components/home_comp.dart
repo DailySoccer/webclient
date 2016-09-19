@@ -123,7 +123,7 @@ class HomeComp implements DetachAware {
    }
   
   void refreshTopBar() {
-    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router, true);
+    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router, _leaderboardService, true);
   }
 
   static String getStaticLocalizedText(key) {

@@ -18,6 +18,7 @@ import 'package:webclient/components/enter_contest/soccer_player_listitem.dart';
 import 'package:webclient/services/app_state_service.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
+import 'package:webclient/components/leaderboards/leaderboard_comp.dart';
 
 @Component(
     selector: 'scouting',
@@ -74,7 +75,7 @@ class ScoutingComp implements DetachAware {
   
   String get selectedPlayerId => selectedInstanceSoccerPlayer != null ? selectedInstanceSoccerPlayer.id : ""; 
 
-  ScoutingComp(this._router, this.loadingService, this._profileService, this._soccerPlayerService, this._appStateService, this._refreshTimersService) {
+  ScoutingComp(this._router, this.loadingService, this._profileService, this._soccerPlayerService, this._appStateService, this._refreshTimersService, this._leaderBoardService) {
     if (_profileService.isLoggedIn) {
       managerLevel = _profileService.user.managerLevel;
     }
@@ -114,7 +115,7 @@ class ScoutingComp implements DetachAware {
     if (isSoccerPlayerStatsActive)
       return;
     
-    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router);
+    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router, _leaderBoardService);
   }
 
   void loadData() {
@@ -228,4 +229,5 @@ class ScoutingComp implements DetachAware {
   ProfileService _profileService;
   AppStateService _appStateService;
   RefreshTimersService _refreshTimersService;
+  LeaderboardComp _leaderBoardService;
 }

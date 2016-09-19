@@ -16,6 +16,7 @@ import 'dart:math';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/app_state_service.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/services/leaderboard_service.dart';
 
 @Component(
   selector: 'create-contest',
@@ -83,9 +84,9 @@ class CreateContestComp  {
   String get prizeType => Prize.typeNames[_selectedTemplate.prizeType].toUpperCase();
   int get computedPrize => prizePool.amount.toInt();
 
-  CreateContestComp(this._router, this._contestsService, this._appStateService, this._profileService) {
+  CreateContestComp(this._router, this._contestsService, this._appStateService, this._profileService, this._leaderboardService) {
     
-    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router);
+    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router, _leaderboardService);
     _appStateService.appSecondaryTabBarState.tabList = [];
     _appStateService.appTabBarState.show = true;
     
@@ -332,5 +333,6 @@ class CreateContestComp  {
   AppStateService _appStateService;
   ProfileService _profileService;
   Router _router;
+  LeaderboardService _leaderboardService;
 }
 

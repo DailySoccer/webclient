@@ -15,6 +15,7 @@ import 'package:logging/logging.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/contest.dart';
+import 'package:webclient/services/leaderboard_service.dart';
 
 @Injectable()
 class AppStateService {
@@ -130,10 +131,10 @@ class AppTopBarStateConfig {
     this.onCenterColumn = showInfoButton? infoFunction : (){};
   }
 
-  AppTopBarStateConfig.userBar(ProfileService profileService, Router router, [bool isHomeBar = false]) {
+  AppTopBarStateConfig.userBar(ProfileService profileService, Router router, LeaderboardService leaderBoardService, [bool isHomeBar = false]) {
     String leftColAux = isHomeBar ? '' : '''
-              <span class="level">''' +  getLocalizedText("level") + '''</span>
-              <span class="level">''' + (profileService.isLoggedIn ? profileService.user.trueSkill.toString() : "") + '''</span> 
+              <span class="level">''' +  leaderBoardService.myTrueSkillName + /*'''</span>
+              <span class="level">''' + (profileService.isLoggedIn ? profileService.user.trueSkill.toString() : "") + */'''</span> 
             ''';  
     
     leftColumn = '''

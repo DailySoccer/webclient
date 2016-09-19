@@ -14,6 +14,7 @@ import 'package:webclient/tutorial/tutorial_iniciacion.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/guild_service.dart';
 import 'package:webclient/services/app_state_service.dart';
+import 'package:webclient/services/leaderboard_service.dart';
 
 @Component(
   selector: 'lobby',
@@ -40,7 +41,7 @@ class LobbyComp implements DetachAware {
   
   
   LobbyComp(RouteProvider routeProvider, this._router, this._appStateService, this._refreshTimersService, this._contestsService, 
-            GuildService guildService, this.loadingService, this._profileService, TutorialService tutorialService) {
+            GuildService guildService, this.loadingService, this._profileService, TutorialService tutorialService, this._leaderboardService) {
     refreshTopBar();
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR, refreshTopBar);
     
@@ -140,7 +141,7 @@ class LobbyComp implements DetachAware {
   }
 
   void refreshTopBar() {
-    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router);
+    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router, _leaderboardService );
   }
   
   String getStaticLocalizedText(key) {
@@ -235,4 +236,5 @@ class LobbyComp implements DetachAware {
   RefreshTimersService _refreshTimersService;
   ContestsService _contestsService;
   AppStateService _appStateService;
+  LeaderboardService _leaderboardService;
 }

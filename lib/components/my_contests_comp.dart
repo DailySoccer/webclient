@@ -14,6 +14,7 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/app_state_service.dart';
+import 'package:webclient/services/leaderboard_service.dart';
 
 @Component(
   selector: 'my-contests',
@@ -72,7 +73,7 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
   }
 
   MyContestsComp(this.loadingService, this._profileService, this._appStateService, this._refreshTimersService, this.contestsService, this._router, this._routeProvider,
-                     this._flashMessage, this._rootElement, TutorialService tutorialService) {
+                     this._flashMessage, this._rootElement, TutorialService tutorialService, this._leaderboardService) {
 
     loadingService.isLoading = true;
 
@@ -90,7 +91,7 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
   }
   
   void _refreshTopBar() {
-    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router);
+    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router, _leaderboardService);
   }
   
   void _refreshMyContests() {
@@ -208,4 +209,6 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
 
   String _tabSelected = TAB_LIVE;
   AppStateService _appStateService;
+  
+  LeaderboardService _leaderboardService;
 }

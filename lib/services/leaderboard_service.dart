@@ -86,7 +86,9 @@ class LeaderboardService {
   }
   
   
-  LeaderboardService(this._server, this._profileService);
+  LeaderboardService(this._server, this._profileService){
+    calculateMyTrueSkillData();
+  }
 
   Future<List<User>> getUsers() {
     var completer = new Completer();

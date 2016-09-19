@@ -108,7 +108,7 @@ class LeaderboardComp implements ShadowRootAware, DetachAware{
   
   List<AppSecondaryTabBarTab> tabList = [];
   
-  LeaderboardComp ( LeaderboardService leaderboardService, this.loadingService, 
+  LeaderboardComp ( this._leaderboardService, this.loadingService, 
                     this._profileService, this._appStateService, this._refreshTimersService, 
                     this._router, this._routeProvider, this._rootElement) {
     
@@ -124,7 +124,7 @@ class LeaderboardComp implements ShadowRootAware, DetachAware{
       userId = _profileService.user.userId;
     }
 
-    leaderboardService.getUsers()
+    _leaderboardService.getUsers()
       .then((List<User> users) {
         List<User> pointsUserListTmp = new List<User>.from(users);
         List<User> moneyUserListTmp = new List<User>.from(users);
@@ -198,7 +198,7 @@ class LeaderboardComp implements ShadowRootAware, DetachAware{
     if (isRankingBestPlayersActive || isRankingMostRichActive) {
       return;
     }
-    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router);
+    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router, _leaderboardService);
   }
 
   //TODO: esta función para volver al perfil de usuario.
@@ -235,5 +235,6 @@ class LeaderboardComp implements ShadowRootAware, DetachAware{
   ProfileService _profileService;
   AppStateService _appStateService;
   RefreshTimersService _refreshTimersService;
+  LeaderboardService _leaderboardService;
   Element _rootElement;
 }

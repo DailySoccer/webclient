@@ -633,8 +633,11 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
 tc.put("packages/webclient/components/create_contest_comp.html", new HttpResponse(200, r"""
 
 <div class="create-contest-section-wrapper name-section">
-<div class="create-contest-title"></div>
-  <!-- NOMBRE DEL TORNEO -->
+  <!-- NOMBRE DEL TORNEO -->  
+  <div class="create-contest-title-wrapper">
+    <div class="title-num">1</div>
+    <div class="title-name">ELIGE EL NOMBRE DEL TORNEO</div>
+  </div>
   <div class="create-contest-section">
     <div class="title">{{getLocalizedText("name")}}</div>
     <div class="data-input-wrapper contest-name">
@@ -646,6 +649,10 @@ tc.put("packages/webclient/components/create_contest_comp.html", new HttpRespons
   </div>
   
   <!-- RIVALES -->
+  <div class="create-contest-title-wrapper">
+    <div class="title-num">2</div>
+    <div class="title-name">SELECCIONA EL NUMERO DE RIVALES</div>
+  </div>
   <div class="create-contest-section">
     <div class="title">{{getLocalizedText("rivals")}}</div>
     <div class="data-input-wrapper contest-style">
@@ -855,6 +862,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
 <!-- LINEUP FINISHED -->
 <modal-window class="lineup-finished-modal small" show-header="false" show-window="isLineupFinished">
   <div class="lineup-finished-title">¡Enhorabuena!<br>Has completado tu alineación con éxito</div>
+  <button class="lineup-finished-invite-friends" ng-click="inviteFriends()">Invita a tus amigos <i class="material-icons">&#xE7F0;</i></button>
   <div class="lineup-finished-text">Recuerda que puedes modificar la alineación tantas veces como quieras hasta que el torneo comience</div>
   <div class="lineup-finished-actions-wrapper">
     <button class="lineup-finished-back-lobby" ng-click="cancelCreateLineup()">Volver a torneos</button>
@@ -1729,7 +1737,7 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
 
 
 <!-- Descomentar cuando hablitemos la funcionalidad de crear torneos -->
-<button class="create-custom-contest-button" ng-click="onCreateContestClick()">{{getStaticLocalizedText("challengeyourfriendsbutton")}}</button>
+<button class="create-custom-contest-button" ng-click="inviteFriends()">{{getStaticLocalizedText("challengeyourfriendsbutton")}}</button>
 
 <!-- Punto de insercion de nuestra ruta hija contest-info (modal)
 <ng-view  ng-show="!loadingService.isLoading"></ng-view> -->
@@ -1828,10 +1836,9 @@ tc.put("packages/webclient/components/navigation/secondary_tab_bar_comp.html", n
 </div>"""));
 tc.put("packages/webclient/components/navigation/tab_bar_comp.html", new HttpResponse(200, r"""<div class="tab-bar-wrapper" ng-if="isShown">
   
-  <div class="tab-bar-item" ng-click="homeTab.goLocation()" ng-class="{'active': scoutingTab.isActive}">
+  <div class="tab-bar-item" ng-click="homeTab.goLocation()" ng-class="{'active': homeTab.isActive}">
     <img ng-src="{{homeTab.iconImage}}">
     <span class="tab-bar-item-name">{{homeTab.name}}</span>
-    <!--span class="tab-bar-item-badge" ng-class="{'has-notifications': scoutingTab.notificationsCount > 0}">{{scoutingTab.notificationsCount}}</span-->
   </div>
  
   <div class="tab-bar-item" ng-click="myContest.goLocation()" ng-class="{'active': myContest.isActive}">
@@ -2380,7 +2387,10 @@ tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new 
 tc.put("packages/webclient/components/view_contest/view_contest_entry_comp.html", new HttpResponse(200, r"""<!--section ng-show="!loadingService.isLoading"-->
 
 <section class="contest-entry-section" ng-show="isLineupFieldContestEntryActive">
-  <div class="edit-contest-entry-tip">{{getLocalizedText("tip")}}</div>
+  <div class="edit-contest-entry-tip">
+    {{getLocalizedText("tip")}}
+    <button class="view-contest-entry-invite-friends" ng-click="inviteFriends()">Invita a tus amigos <i class="material-icons">&#xE7F0;</i></button>
+  </div>
   <!--button class="confirm-btn" ng-click="createFantasyTeam()">Modificar</button-->
   <lineup-field-selector lineup-slots="lineupSlots"
                          on-lineup-slot-selected="onLineupSlotSelected(slotIndex)"

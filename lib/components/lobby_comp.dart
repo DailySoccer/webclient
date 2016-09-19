@@ -197,7 +197,6 @@ class LobbyComp implements DetachAware {
             date.year == c.startDate.year);
   }
 
-
   // Handler para el evento de entrar en un concurso
   void onActionClick(Contest contest) {
     _router.go('enter_contest', { "contestId": contest.contestId, "parent": "lobby", "contestEntryId": "none" });

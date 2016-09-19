@@ -68,6 +68,11 @@
 		4D8278FAB2DE4741AA405206 /* CULConfigXmlParser.h in Resources */ = {isa = PBXBuildFile; fileRef = 7C47220A85F8455EBBDF6A07 /* CULConfigXmlParser.h */; };
 		6493D739132D4B2B85E03E6F /* NSBundle+CULPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC2CEC8EA0E48399ACF53F8 /* NSBundle+CULPlugin.m */; };
 		1DB5E00F98B643CE9A5E2050 /* NSBundle+CULPlugin.h in Resources */ = {isa = PBXBuildFile; fileRef = BA0060F477A34A1A8ADA7003 /* NSBundle+CULPlugin.h */; };
+		A375821E1BE34A3EBC8123D3 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = DD28233DCA6E4CEAB8508DC0 /* NSString+URLEncoding.m */; };
+		747BFE6101BB48A0B0894DD2 /* SocialSharing.m in Sources */ = {isa = PBXBuildFile; fileRef = C270F2EFBDC94EFF8C57CC13 /* SocialSharing.m */; };
+		FBD35BBC6DB34F889FA8AA14 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E6E7AD9429F412D882F2658 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		282A880A63914378967ADCFE /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06797079D4546F49E8F8617 /* MessageUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		275DA1594006469699861F97 /* FutbolCuatro.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 4AA3C62FE5344E4B96BCC191 /* FutbolCuatro.entitlements */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -189,6 +194,13 @@
 		5C970179A961417A9E3D36A7 /* AppDelegate+CULPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "AppDelegate+CULPlugin.h"; path = "cordova-universal-links-plugin/AppDelegate+CULPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		B787CE9135084DE8975801B4 /* CDVPluginResult+CULPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVPluginResult+CULPlugin.h"; path = "cordova-universal-links-plugin/JS/CDVPluginResult+CULPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		478BB08C512B441EA156EB79 /* CDVInvokedUrlCommand+CULPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVInvokedUrlCommand+CULPlugin.h"; path = "cordova-universal-links-plugin/JS/CDVInvokedUrlCommand+CULPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		DD28233DCA6E4CEAB8508DC0 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSString+URLEncoding.m"; path = "cordova-plugin-x-socialsharing/NSString+URLEncoding.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		C270F2EFBDC94EFF8C57CC13 /* SocialSharing.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "SocialSharing.m"; path = "cordova-plugin-x-socialsharing/SocialSharing.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		736F7C587C7547A9BFFE0759 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSString+URLEncoding.h"; path = "cordova-plugin-x-socialsharing/NSString+URLEncoding.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		F4A56EF364814A4CBC9DBD07 /* SocialSharing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SocialSharing.h"; path = "cordova-plugin-x-socialsharing/SocialSharing.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		4E6E7AD9429F412D882F2658 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Social.framework"; path = "System/Library/Frameworks/Social.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
+		C06797079D4546F49E8F8617 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "MessageUI.framework"; path = "System/Library/Frameworks/MessageUI.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
+		4AA3C62FE5344E4B96BCC191 /* FutbolCuatro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = unknown; name = "FutbolCuatro.entitlements"; path = "FutbolCuatro.entitlements"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +216,8 @@
 				A74AD2823900400FB5FE1A28 /* libcomScore.a in Frameworks */,
 				95897DD316B041DD8A272042 /* SystemConfiguration.framework in Frameworks */,
 				5F87E8C98E574ABC990B29A5 /* Security.framework in Frameworks */,
+				FBD35BBC6DB34F889FA8AA14 /* Social.framework in Frameworks */,
+				282A880A63914378967ADCFE /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +279,7 @@
 				308D052D1370CCF300D202BF /* icons */,
 				308D05311370CCF300D202BF /* splash */,
 				8D1107310486CEB800E47090 /* FutbolCuatro-Info.plist */,
+				4AA3C62FE5344E4B96BCC191 /* FutbolCuatro.entitlements */,
 			);
 			name = Resources;
 			path = FutbolCuatro/Resources;
@@ -280,6 +295,8 @@
 				EA314B59AD974B0784DCD5E3 /* libcomScore.a */,
 				F21B370C6F0E423B92E61198 /* SystemConfiguration.framework */,
 				A2A75DE174AD440DA9922CEA /* Security.framework */,
+				4E6E7AD9429F412D882F2658 /* Social.framework */,
+				C06797079D4546F49E8F8617 /* MessageUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -349,6 +366,10 @@
 				5C970179A961417A9E3D36A7 /* AppDelegate+CULPlugin.h */,
 				B787CE9135084DE8975801B4 /* CDVPluginResult+CULPlugin.h */,
 				478BB08C512B441EA156EB79 /* CDVInvokedUrlCommand+CULPlugin.h */,
+				DD28233DCA6E4CEAB8508DC0 /* NSString+URLEncoding.m */,
+				C270F2EFBDC94EFF8C57CC13 /* SocialSharing.m */,
+				736F7C587C7547A9BFFE0759 /* NSString+URLEncoding.h */,
+				F4A56EF364814A4CBC9DBD07 /* SocialSharing.h */,
 			);
 			name = Plugins;
 			path = FutbolCuatro/Plugins;
@@ -507,6 +528,7 @@
 				7E7966E11810823500FA85AD /* icon-50@2x.png in Resources */,
 				7E7966E51810823500FA85AD /* icon-76@2x.png in Resources */,
 				30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */,
+				275DA1594006469699861F97 /* FutbolCuatro.entitlements in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,6 +585,8 @@
 				4D8278FAB2DE4741AA405206 /* CULConfigXmlParser.h in Resources */,
 				6493D739132D4B2B85E03E6F /* NSBundle+CULPlugin.m in Sources */,
 				1DB5E00F98B643CE9A5E2050 /* NSBundle+CULPlugin.h in Resources */,
+				A375821E1BE34A3EBC8123D3 /* NSString+URLEncoding.m in Sources */,
+				747BFE6101BB48A0B0894DD2 /* SocialSharing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,6 +647,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/FutbolCuatro/Plugins/com.comscoreplugin\"",
 				);
+				CODE_SIGN_ENTITLEMENTS = "FutbolCuatro/Resources/FutbolCuatro.entitlements";
 			};
 			name = Debug;
 		};
@@ -670,6 +695,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/FutbolCuatro/Plugins/com.comscoreplugin\"",
 				);
+				CODE_SIGN_ENTITLEMENTS = "FutbolCuatro/Resources/FutbolCuatro.entitlements";
 			};
 			name = Release;
 		};
@@ -715,6 +741,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "";
+				CODE_SIGN_ENTITLEMENTS = "FutbolCuatro/Resources/FutbolCuatro.entitlements";
 			};
 			name = Debug;
 		};
@@ -759,6 +786,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "";
+				CODE_SIGN_ENTITLEMENTS = "FutbolCuatro/Resources/FutbolCuatro.entitlements";
 			};
 			name = Release;
 		};

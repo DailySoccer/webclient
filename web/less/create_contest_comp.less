@@ -3,6 +3,11 @@ create-contest {
 	justify-content: space-between;
 	background-color: @soft-black;
 	
+	.create-contest-title {
+		.flex-elem-fixed(auto);
+		.mainfont_light(14pt, @orange, center, uppercase);
+		padding: 20px;
+	}
 	.create-contest-section-wrapper {
 		.flex-container-col();
 		.flex-elem-fixed(auto);
@@ -32,7 +37,9 @@ create-contest {
 	}
 	.btn-confirm-contest {
 		.default-button();
-		.flex-elem-fixed(auto);
+		.flex-elem-fixed(60px);
+		font-size: 16pt;
+
 	}
 	.data-element {
 		.flex-container-row();

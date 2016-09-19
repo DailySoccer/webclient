@@ -77,8 +77,8 @@ class LeaderboardComp implements ShadowRootAware, DetachAware{
   void set sectionActive(String section) { 
     _sectionActive = section;
     tabList = [
-      new AppSecondaryTabBarTab("RANKING DE JUGONES", () => sectionActive = RANKING_BEST_PLAYERS, () => isRankingBestPlayersActive),
-      new AppSecondaryTabBarTab("RANKING DE FORADOS", () => sectionActive = RANKING_MOST_RICH,    () => isRankingMostRichActive)
+      new AppSecondaryTabBarTab("RANKING DE HABILIDAD", () => sectionActive = RANKING_BEST_PLAYERS, () => isRankingBestPlayersActive),
+      new AppSecondaryTabBarTab("RANKING DE GANANCIAS", () => sectionActive = RANKING_MOST_RICH,    () => isRankingMostRichActive)
     ];
     _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Rankings");
     _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerDetails;

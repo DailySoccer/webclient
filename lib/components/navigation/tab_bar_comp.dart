@@ -77,7 +77,7 @@ class TabBarComp {
                                                 destination: "my_contests",
                                                 parameters: {"section": "live"}),
              HOME     : new TabBarItemComp( _router, 
-                                                name: "HOME",
+                                                name: "INICIO",
                                                 iconImage: "images/tabBar/Button_Home.png",
                                                 destination: "home"),
              SCOUTING     : new TabBarItemComp( _router, 

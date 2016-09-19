@@ -1,27 +1,24 @@
 top-bar {
   .flex-elem-fixed(55px);
-  height: 55px;
-  
   .black-gradient();
-  border-bottom: 1px solid @grey-translucid;
   .elevation(3);
-  z-index: 1;
+  height: 55px;
+  border-bottom: 1px solid @grey-translucid;
+  z-index: 1100;
 }
 .three-columns, .one-column {
-	text-align: center;
 	.flex-container-row();
-  	align-items: center;
-  
+	text-align: center;	
+  	align-items: center;  
 	.left-column {
 	    .flex-elem-fixed(40px);
-		//height: 25px;
 		cursor: pointer;
 	    text-align: right;
 	    padding: 0 4px 0 8px;
 	}
 	.main-column {
 		.flex-elem-fluid();
-    text-align: center;
+    	text-align: center;
 		.user-currencies {
 	    .flex-container-row();
 			.currency {
@@ -32,7 +29,6 @@ top-bar {
 	}
 	.right-column {
 	    .flex-elem-fixed(50px);
-		//height: 25px;
 	    text-align: center;
 	    padding-right: 8px;
 	    .material-icons {

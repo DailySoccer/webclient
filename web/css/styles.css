@@ -13373,7 +13373,6 @@ tab-bar {
 }
 top-bar {
   flex: 0 0 55px;
-  height: 55px;
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#3d3d3d+0,2a2929+49,1b1b1c+51,010201+100 */
   background: #2a2929;
   /* Old browsers */
@@ -13385,15 +13384,15 @@ top-bar {
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d3d3d', endColorstr='#010201', GradientType=0);
   /* IE6-9 */
-  border-bottom: 1px solid rgba(210, 210, 210, 0.3);
   -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
   -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
-  z-index: 1;
+  height: 55px;
+  border-bottom: 1px solid rgba(210, 210, 210, 0.3);
+  z-index: 1100;
 }
 .three-columns,
 .one-column {
-  text-align: center;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -13401,6 +13400,7 @@ top-bar {
   display: flex;
   -webkit-flex-flow: row nowrap;
   flex-flow: row nowrap;
+  text-align: center;
   align-items: center;
 }
 .three-columns .left-column,

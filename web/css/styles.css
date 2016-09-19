@@ -14903,6 +14903,38 @@ enter-contest {
   opacity: 0.5;
   cursor: not-allowed;
 }
+.lineup-finished-invite-friends {
+  flex: 0 0 auto;
+  font-size: 11pt;
+  color: #0d75a6;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  border: 0;
+  outline-offset: 0px;
+  outline: none;
+  margin-bottom: 15px;
+}
+.lineup-finished-invite-friends:hover,
+.lineup-finished-invite-friends:active,
+.lineup-finished-invite-friends:focus {
+  border: none;
+  outline-offset: 0px;
+  outline: none;
+}
+.lineup-finished-invite-friends:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.lineup-finished-invite-friends .material-icons {
+  vertical-align: bottom;
+  margin-left: 5px;
+}
 /*.enter-contest-tabs {
 	.tabs-navigation(2);
 }
@@ -20331,6 +20363,38 @@ view-contest-entry .edit-contest-entry-tip {
   text-align: center;
   padding: 8px 16px;
   border-bottom: 1px solid rgba(210, 210, 210, 0.3);
+}
+view-contest-entry .view-contest-entry-invite-friends {
+  font-size: 11pt;
+  color: #0d75a6;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 700;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  border: 0;
+  outline-offset: 0px;
+  outline: none;
+  display: block;
+  margin: 0 auto;
+}
+view-contest-entry .view-contest-entry-invite-friends:hover,
+view-contest-entry .view-contest-entry-invite-friends:active,
+view-contest-entry .view-contest-entry-invite-friends:focus {
+  border: none;
+  outline-offset: 0px;
+  outline: none;
+}
+view-contest-entry .view-contest-entry-invite-friends:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+view-contest-entry .view-contest-entry-invite-friends .material-icons {
+  vertical-align: bottom;
+  margin-left: 5px;
 }
 /*.global-history-contest #mainWrapper.wrapper-content-container,
 .global-view-contest-entry #mainWrapper.wrapper-content-container,

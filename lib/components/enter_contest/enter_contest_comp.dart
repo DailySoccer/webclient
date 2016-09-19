@@ -29,6 +29,8 @@ import 'package:webclient/utils/game_info.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/services/app_state_service.dart';
 import 'package:webclient/components/enter_contest/soccer_player_listitem.dart';
+import 'package:webclient/utils/js_utils.dart';
+import 'package:webclient/utils/host_server.dart';
 
 @Component(
     selector: 'enter-contest',
@@ -1086,6 +1088,10 @@ class EnterContestComp implements DetachAware {
 
     Money cost = contest.entryFee.isEnergy? contest.entryFee : coinsNeeded;
     return'${getLocalizedText("buttoncontinue")}: <span class="confirm-cost ${cost.isEnergy? "energy": "coins"}">${cost.amount.toInt()}</span>';
+  }
+  
+  void inviteFriends() {
+    JsUtils.runJavascript(null, "socialShare", ["Apuntate al torneo","${HostServer.domain}/sec?contestId=${contest.contestId}"]);
   }
 
   String get _getKeyForCurrentUserContest => (_profileService.isLoggedIn ? _profileService.user.userId : 'guest') + '#' + contest.optaCompetitionId;

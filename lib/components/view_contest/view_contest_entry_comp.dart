@@ -22,6 +22,7 @@ import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/components/enter_contest/soccer_player_listitem.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/services/app_state_service.dart';
+import 'package:webclient/utils/js_utils.dart';
 
 @Component(
    selector: 'view-contest-entry',
@@ -240,7 +241,11 @@ class ViewContestEntryComp {
     InputElement inputText = e.currentTarget;
     inputText.setSelectionRange(0, inviteUrl.length);
   }
-  
+
+  void inviteFriends() {
+    JsUtils.runJavascript(null, "socialShare", ["Apuntate al torneo","${HostServer.domain}/sec?contestId=${contest.contestId}"]);
+  }
+
   Map _sharingInfo = {};
   Map get sharingInfo {
     if (contest == null) return _sharingInfo;

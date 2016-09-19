@@ -631,7 +631,9 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
 </div>
 """));
 tc.put("packages/webclient/components/create_contest_comp.html", new HttpResponse(200, r"""
+
 <div class="create-contest-section-wrapper name-section">
+<div class="create-contest-title"></div>
   <!-- NOMBRE DEL TORNEO -->
   <div class="create-contest-section">
     <div class="title">{{getLocalizedText("name")}}</div>
@@ -672,7 +674,7 @@ tc.put("packages/webclient/components/create_contest_comp.html", new HttpRespons
   
 </div>
 <!-- BOTON ACEPTAR -->
-<button type="button" class="btn-confirm-contest" ng-click="createContest()" ng-disabled="!isComplete">{{getLocalizedText("create_contest_btt")}}</button>
+<button type="button" class="btn-confirm-contest" ng-click="createContest()" ng-disabled="!isComplete">ACEPTAR</button>
 
 <!--div class="create-contest-section-wrapper">
   <div class="create-contest-section">
@@ -1112,21 +1114,21 @@ tc.put("packages/webclient/components/home_comp.html", new HttpResponse(200, r""
   <div class="info-columns-wrapper">
     <div class="info-column gold">
       <div class="label">ORO</div>
-      <div  class="icon"><img src="images/ORO.png"></div>
+      <div  class="icon"><img src="images/home/oro.png"></div>
       <div class=amount>{{user.goldBalance}}</div>
     </div>
     <div class="info-column level">
       <div class="label">NIVEL</div>
-      <div  class="icon"><img src="images/nivel6.png"></div>
+      <div  class="icon"><img src="images/home/{{skillLevelImage}}"></div>
       <div class=amount>{{skillLevelName}}</div>
     </div>
     <div class="info-column achievements">
       <div class="label">LOGROS</div>
-      <div  class="icon"><img src="images/logros.png"></div>
+      <div  class="icon"><img src="images/home/logros.png"></div>
       <div class=amount>{{achievementsEarned}} / {{achievementList.length.toString()}}</div>
     </div>
   </div>
-  <div class="next-contest-wrapper">
+  <div class="next-contest-wrapper" ng-if="infoBarText != ''">
     <div class="next-contest-label">{{infoBarText}}</div>
     <button class="goto-next-contest-button" ng-click="goNextContest()">JUGAR</button>
   </div>
@@ -1134,15 +1136,15 @@ tc.put("packages/webclient/components/home_comp.html", new HttpResponse(200, r""
 
 <div class="action-buttons-wrapper">
   <div class="button-scout" ng-click="goScouting()">
-    <div class="image-container"><img src="images/ojeador.png" alt="ojeador"></div>
+    <div class="image-container"><img src="images/home/ojeador.png" alt="ojeador"></div>
     <div class="button-label">OJEADOR</div>
   </div>
   <div class="button-shop" ng-click="goShop()">
-    <div class="image-container"><img src="images/tienda.png" alt="tienda"></div>
+    <div class="image-container"><img src="images/home/tienda.png" alt="tienda"></div>
     <div class="button-label">TIENDA</div>
   </div>
   <div class="button-history" ng-click="goHistory()">
-    <div class="image-container"><img src="images/historico.png" alt="historico"></div>
+    <div class="image-container"><img src="images/home/historico.png" alt="historico"></div>
     <div class="button-label">HISTÓRICO</div>
   </div>
 </div>
@@ -1287,7 +1289,7 @@ tc.put("packages/webclient/components/leaderboards/leaderboard_table_comp.html",
   </div>
 </div>"""));
 tc.put("packages/webclient/components/leaderboards/ranking_comp.html", new HttpResponse(200, r"""<div class="ranking-wrapper">
-  <div class="ranking-points-title">Ranking de Jugones</div>
+  <div class="ranking-points-title">RANKING DE HABILIDAD</div>
   <div class="user-points-data">
     <div class="first-column">
       <div class="ranking-label">Nivel: {{profileService.user.managerLevel.floor()}}</div>
@@ -1308,7 +1310,7 @@ tc.put("packages/webclient/components/leaderboards/ranking_comp.html", new HttpR
 </div>
 
 <div class="ranking-wrapper">
-  <div class="ranking-money-title">Ranking de forrados</div>
+  <div class="ranking-money-title">RANKING DE GANANCIAS</div>
   <div class="user-money-data">
     <div class="first-column">
       <div class="user-level"></div>

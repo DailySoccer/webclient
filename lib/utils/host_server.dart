@@ -9,9 +9,9 @@ class HostServer {
   static String CURRENT_VERSION = "";
 
   static String DOMAIN = "http://dailysoccer-staging.herokuapp.com";
-  //static String DOMAIN = "http://futbolcuatro.epiceleven.com";
+  //static String DOMAIN = "http://backend.epiceleven.com";
   //static String DOMAIN = "http://52ae5bf3.ngrok.io";
-  
+   
   // Global que apunta al servidor Host. Obligatorio usarla cuando vas a hacer una llamada al servidor
   static String get url {
     String REMOTE_SERVER = DOMAIN;
@@ -38,7 +38,7 @@ class HostServer {
   }
   
   static String get domain {
-    String REMOTE_SERVER = "http://dailysoccer-staging.herokuapp.com";
+    String REMOTE_SERVER = "http://futbolcuatro.epiceleven.com"; //"http://dailysoccer-staging.herokuapp.com";
         
     if (_domain == null) {
       if (window.location.protocol.contains("file") || window.location.protocol.contains("chrome-extension")) {

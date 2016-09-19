@@ -1,7 +1,10 @@
 <!--section ng-show="!loadingService.isLoading"-->
 
 <section class="contest-entry-section" ng-show="isLineupFieldContestEntryActive">
-  <div class="edit-contest-entry-tip">{{getLocalizedText("tip")}}</div>
+  <div class="edit-contest-entry-tip">
+    {{getLocalizedText("tip")}}
+    <button class="view-contest-entry-invite-friends" ng-click="inviteFriends()">Invita a tus amigos <i class="material-icons">&#xE7F0;</i></button>
+  </div>
   <!--button class="confirm-btn" ng-click="createFantasyTeam()">Modificar</button-->
   <lineup-field-selector lineup-slots="lineupSlots"
                          on-lineup-slot-selected="onLineupSlotSelected(slotIndex)"

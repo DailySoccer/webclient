@@ -6123,7 +6123,7 @@ OLD FONTS
   }*/
 }
 .user-bar.three-columns .left-column {
-  flex: 0 0 120px;
+  flex: 0 0 auto;
 }
 .user-bar.three-columns .right-column {
   flex: 0 0 75px;
@@ -6138,6 +6138,7 @@ OLD FONTS
   font-weight: 500;
   border-right: 1px solid rgba(210, 210, 210, 0.3);
   cursor: pointer;
+  padding: 0 10px;
 }
 .lobby-topbar-center {
   font-size: 12pt;
@@ -13407,7 +13408,7 @@ top-bar {
 }
 .three-columns .left-column,
 .one-column .left-column {
-  flex: 0 0 40px;
+  flex: 0 0 auto;
   cursor: pointer;
   text-align: right;
   padding: 0 4px 0 8px;

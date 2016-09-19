@@ -1,6 +1,6 @@
 create-contest {
 	.flex-container-col();
-	justify-content: space-between;
+	justify-content: space-around;
 	background-color: @soft-black;
 	
 	.create-contest-title {
@@ -21,6 +21,27 @@ create-contest {
 		border-bottom: 2px solid @black;
 		margin-bottom: 10px;
 	}
+	.create-contest-title-wrapper {
+		.flex-container-col();
+		.flex-elem-fixed(auto);
+		padding: 15px;
+		align-items: center;
+	}
+	.title-num {
+		.flex-elem-fluid();
+		.mainfont_bold(25pt, @soft-black, center, uppercase);
+		background-color: @blueLight;
+		border-radius: 100%;
+	    padding-top: 7px;
+	    width: 60px;
+	    height: 60px;
+		margin-bottom: 5px;
+	}
+	.title-name {
+		.flex-elem-fluid();
+		.mainfont_light(14pt, @blueLight, center, uppercase);
+	}
+
 	.data-input-wrapper {
 		.flex-container-row();
 		.flex-elem-fluid();
@@ -38,8 +59,9 @@ create-contest {
 	.btn-confirm-contest {
 		.default-button();
 		.flex-elem-fixed(60px);
+		align-self: center;
 		font-size: 16pt;
-
+	    width: 250px;
 	}
 	.data-element {
 		.flex-container-row();

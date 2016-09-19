@@ -22,15 +22,15 @@ class TabBarComp {
   static const String MY_CONTESTS = "NEXTS";
   static const String CONTESTS = "CONTEST";
   static const String LIVE_CONESTS = "LIVE_CONTESTS";
-  static const String SCOUTING = "SCOUTING";
+  //static const String SCOUTING = "SCOUTING";
   static const String HOME = "HOME";
   
   Map<String, TabBarItemComp> tabs = {};
 
-  TabBarItemComp get leaderTab    {
-    tabs[LEADERBOARD].notificationsCount = _appStateService.appTabBarState.leaderNotifications;
-    return tabs[LEADERBOARD];
-  }
+  TabBarItemComp get homeTab    {
+    tabs[HOME].notificationsCount = 0;
+    return tabs[HOME];
+  }  
   TabBarItemComp get myContest    {
     tabs[MY_CONTESTS].notificationsCount = _appStateService.appTabBarState.myContestNotifications;
     return tabs[MY_CONTESTS];
@@ -43,47 +43,49 @@ class TabBarComp {
     tabs[LIVE_CONESTS].notificationsCount = _appStateService.appTabBarState.liveContestsNotifications;
     return tabs[LIVE_CONESTS];
   }
-  TabBarItemComp get scoutingTab    {
+  TabBarItemComp get leaderTab    {
+    tabs[LEADERBOARD].notificationsCount = _appStateService.appTabBarState.leaderNotifications;
+    return tabs[LEADERBOARD];
+  }
+  /*TabBarItemComp get scoutingTab    {
     tabs[SCOUTING].notificationsCount = _appStateService.appTabBarState.scoutingNotifications;
     return tabs[SCOUTING];
-  }
-  TabBarItemComp get homeTab    {
-    tabs[HOME].notificationsCount = 0;
-    return tabs[HOME];
-  }
+  }*/
+  
   
   bool get isShown => _appStateService.appTabBarState.show;
 
   TabBarComp(this._router, this._loadingService, this._view, this._rootElement, 
                 this._dateTimeService, this._profileService, this._templateService, 
                 this._catalogService, this._appStateService) {
-    tabs = { LEADERBOARD  : new TabBarItemComp( _router, 
-                                                name: "Ranking",
-                                                iconImage: "images/tabBar/Button_Ranking.png",
-                                                destination: "leaderboard",
-                                                parameters: {"userId": "me"}),
-             MY_CONTESTS  : new TabBarItemComp( _router, 
+    tabs = { 
+            HOME     : new TabBarItemComp( _router, 
+                                                name: "Inicio",
+                                                iconImage: "images/tabBar/Button_Home.png",
+                                                destination: "home"),
+            MY_CONTESTS  : new TabBarItemComp( _router, 
                                                 name: "Proximos",
                                                 iconImage: "images/tabBar/Button_Nexts.png", 
                                                 destination: "my_contests",
                                                 parameters: {"section": "upcoming"}),
-             CONTESTS     : new TabBarItemComp( _router, 
+            CONTESTS     : new TabBarItemComp( _router, 
                                                 name: "Torneos",
                                                 iconImage: "images/tabBar/Button_Contests.png", 
                                                 destination: "lobby"),
-             LIVE_CONESTS : new TabBarItemComp( _router, 
+            LIVE_CONESTS : new TabBarItemComp( _router, 
                                                 name: "En Vivo",  
                                                 iconImage: "images/tabBar/Button_Lives.png", 
                                                 destination: "my_contests",
                                                 parameters: {"section": "live"}),
-             HOME     : new TabBarItemComp( _router, 
-                                                name: "INICIO",
-                                                iconImage: "images/tabBar/Button_Home.png",
-                                                destination: "home"),
-             SCOUTING     : new TabBarItemComp( _router, 
+            LEADERBOARD  : new TabBarItemComp( _router, 
+                                                name: "Ranking",
+                                                iconImage: "images/tabBar/Button_Ranking.png",
+                                                destination: "leaderboard",
+                                                parameters: {"userId": "me"})/*,
+            SCOUTING     : new TabBarItemComp( _router, 
                                                 name: "Ojeador",
                                                 iconImage: "images/tabBar/Button_Scouting.png",
-                                                destination: "scouting")
+                                                destination: "scouting")*/
     };
   }
 

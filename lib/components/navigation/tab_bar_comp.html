@@ -1,9 +1,8 @@
 <div class="tab-bar-wrapper" ng-if="isShown">
   
-  <div class="tab-bar-item" ng-click="homeTab.goLocation()" ng-class="{'active': scoutingTab.isActive}">
+  <div class="tab-bar-item" ng-click="homeTab.goLocation()" ng-class="{'active': homeTab.isActive}">
     <img ng-src="{{homeTab.iconImage}}">
     <span class="tab-bar-item-name">{{homeTab.name}}</span>
-    <!--span class="tab-bar-item-badge" ng-class="{'has-notifications': scoutingTab.notificationsCount > 0}">{{scoutingTab.notificationsCount}}</span-->
   </div>
  
   <div class="tab-bar-item" ng-click="myContest.goLocation()" ng-class="{'active': myContest.isActive}">

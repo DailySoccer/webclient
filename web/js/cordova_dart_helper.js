@@ -72,7 +72,10 @@ document.onreadystatechange = function () {
   }
 }
 
-
+var universalLinksData = { "isEmpty": true };
+function getULData(callback) {
+  callback(JSON.stringify(universalLinksData));
+}
 
 document.addEventListener('deviceready', function () {
   console.log(" # DEVICE READY EVENT - Comscore");
@@ -86,6 +89,12 @@ document.addEventListener('deviceready', function () {
   fbIsInit = true;
   
   epicStore.ready();
+
+  console.log(" # DEVICE READY EVENT - UniversalLinks");
+  universalLinks.subscribe('e11Event', function(ev) {
+    universalLinksData = ev;
+    universalLinksData.isEmpty = false;
+  });
 
   /* use when configure CSS
   var platform = device.platform.toLowerCase();
@@ -101,6 +110,7 @@ document.addEventListener('deviceready', function () {
     onApplicationResume();
     console.log(" # RESUME");
   }, false);
+  
 }, false);
 
 

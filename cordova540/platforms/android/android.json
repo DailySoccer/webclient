@@ -68,6 +68,10 @@
                         {
                             "xml": "<feature name=\"ComScorePlugin\"><param name=\"android-package\" value=\"com.comscoreplugin.ComScorePlugin\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"UniversalLinks\"><param name=\"android-package\" value=\"com.nordnetab.cordova.ul.UniversalLinksPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -116,6 +120,9 @@
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         },
         "com.comscoreplugin": {
+            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
+        },
+        "cordova-universal-links-plugin": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         }
     },
@@ -182,6 +189,14 @@
             "pluginId": "com.comscoreplugin",
             "clobbers": [
                 "window.ComScorePlugin"
+            ]
+        },
+        {
+            "file": "plugins/cordova-universal-links-plugin/www/universal_links.js",
+            "id": "cordova-universal-links-plugin.universalLinks",
+            "pluginId": "cordova-universal-links-plugin",
+            "clobbers": [
+                "universalLinks"
             ]
         }
     ]

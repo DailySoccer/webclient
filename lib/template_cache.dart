@@ -1109,24 +1109,42 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_scalinglist_c
   </div>
 </div>"""));
 tc.put("packages/webclient/components/home_comp.html", new HttpResponse(200, r"""<div class="main-info-wrapper">
-  <div class="info-column">
-    <div class="label">ORO</div>
-    <div  class="icon"><img src="images/ORO.png"></div>
-    <div class=amount>{{user.goldBalance}}</div>
+  <div class="info-columns-wrapper">
+    <div class="info-column gold">
+      <div class="label">ORO</div>
+      <div  class="icon"><img src="images/ORO.png"></div>
+      <div class=amount>{{user.goldBalance}}</div>
+    </div>
+    <div class="info-column level">
+      <div class="label">NIVEL</div>
+      <div  class="icon"><img src="images/nivel6.png"></div>
+      <div class=amount>{{skillLevelName}}</div>
+    </div>
+    <div class="info-column achievements">
+      <div class="label">LOGROS</div>
+      <div  class="icon"><img src="images/logros.png"></div>
+      <div class=amount>{{achievementsEarned}} / {{achievementList.length.toString()}}</div>
+    </div>
   </div>
-  <div class="info-column">
-    <div class="label">NIVEL</div>
-    <div  class="icon"><img src="images/nivel6.png"></div>
-    <div class=amount>ROOKIE</div>
-  </div>
-  <div class="info-column">
-    <div class="label">LOGROS</div>
-    <div  class="icon"><img src="images/logros.png"></div>
-    <div class=amount>{{achievementsEarned}} / {{achievementList.length.toString()}}</div>
+  <div class="next-contest-wrapper">
+    <div class="next-contest-label">{{infoBarText}}</div>
+    <button class="goto-next-contest-button" ng-click="goNextContest()">JUGAR</button>
   </div>
 </div>
 
-<div class="next-contest-wrapper">
+<div class="action-buttons-wrapper">
+  <div class="button-scout" ng-click="goScouting()">
+    <div class="image-container"><img src="images/ojeador.png" alt="ojeador"></div>
+    <div class="button-label">OJEADOR</div>
+  </div>
+  <div class="button-shop" ng-click="goShop()">
+    <div class="image-container"><img src="images/tienda.png" alt="tienda"></div>
+    <div class="button-label">TIENDA</div>
+  </div>
+  <div class="button-history" ng-click="goHistory()">
+    <div class="image-container"><img src="images/historico.png" alt="historico"></div>
+    <div class="button-label">HISTÓRICO</div>
+  </div>
 </div>
 
 <!-- div id="homeRoot">
@@ -1807,13 +1825,13 @@ tc.put("packages/webclient/components/navigation/secondary_tab_bar_comp.html", n
     </div>
 </div>"""));
 tc.put("packages/webclient/components/navigation/tab_bar_comp.html", new HttpResponse(200, r"""<div class="tab-bar-wrapper" ng-if="isShown">
-
-  <div class="tab-bar-item" ng-click="leaderTab.goLocation()" ng-class="{'active': leaderTab.isActive}">
-    <img ng-src="{{leaderTab.iconImage}}">
-    <span class="tab-bar-item-name">{{leaderTab.name}}</span>
-    <span class="tab-bar-item-badge" ng-class="{'has-notifications': leaderTab.notificationsCount > 0}">{{leaderTab.notificationsCount}}</span>
-  </div>
   
+  <div class="tab-bar-item" ng-click="homeTab.goLocation()" ng-class="{'active': scoutingTab.isActive}">
+    <img ng-src="{{homeTab.iconImage}}">
+    <span class="tab-bar-item-name">{{homeTab.name}}</span>
+    <!--span class="tab-bar-item-badge" ng-class="{'has-notifications': scoutingTab.notificationsCount > 0}">{{scoutingTab.notificationsCount}}</span-->
+  </div>
+ 
   <div class="tab-bar-item" ng-click="myContest.goLocation()" ng-class="{'active': myContest.isActive}">
     <img ng-src="{{myContest.iconImage}}">
     <span class="tab-bar-item-name">{{myContest.name}}</span>
@@ -1831,11 +1849,11 @@ tc.put("packages/webclient/components/navigation/tab_bar_comp.html", new HttpRes
     <span class="tab-bar-item-name">{{liveContestTab.name}}</span>
     <span class="tab-bar-item-badge" ng-class="{'has-notifications': liveContestTab.notificationsCount > 0}">{{liveContestTab.notificationsCount}}</span>
   </div>
-  
-  <div class="tab-bar-item" ng-click="scoutingTab.goLocation()" ng-class="{'active': scoutingTab.isActive}">
-    <img ng-src="{{scoutingTab.iconImage}}">
-    <span class="tab-bar-item-name">{{scoutingTab.name}}</span>
-    <span class="tab-bar-item-badge" ng-class="{'has-notifications': scoutingTab.notificationsCount > 0}">{{scoutingTab.notificationsCount}}</span>
+ 
+  <div class="tab-bar-item" ng-click="leaderTab.goLocation()" ng-class="{'active': leaderTab.isActive}">
+    <img ng-src="{{leaderTab.iconImage}}">
+    <span class="tab-bar-item-name">{{leaderTab.name}}</span>
+    <span class="tab-bar-item-badge" ng-class="{'has-notifications': leaderTab.notificationsCount > 0}">{{leaderTab.notificationsCount}}</span>
   </div>
   
 </div>"""));

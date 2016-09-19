@@ -123,6 +123,7 @@ import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/policy_info_comp.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/utils/game_info.dart';
+import 'dart:js';
 
 //import 'package:webclient/components/account/add_funds_comp.dart';
 //import 'package:webclient/components/account/transaction_history_comp.dart';
@@ -715,24 +716,30 @@ class WebClientApp extends Module {
     _addBodyStyles(event.route.name);
 
     event.allowEnter(_waitingPageLoad(() {
+
+      Map ulData = LoadingService.getUniversalLinksData();
+      LoadingService.clearULData();
+      
       bool bEnter = true;
 
-      if ((visibility == _ONLY_WHEN_LOGGED_IN &&
-              !ProfileService.instance.isLoggedIn) ||
-          (visibility == _ONLY_WHEN_LOGGED_OUT &&
-              ProfileService.instance.isLoggedIn)) {
+      if ((visibility == _ONLY_WHEN_LOGGED_IN && !ProfileService.instance.isLoggedIn) ||
+          (visibility == _ONLY_WHEN_LOGGED_OUT && ProfileService.instance.isLoggedIn)) {
         bEnter = false;
       }
 
       // Si el tutorial está activo y la ruta no está permitida, nos salimos del tutorial...
       if (TutorialService.isActivated &&
-          !TutorialService.Instance.CurrentTutorial
-              .isTransitionAllowed(event.route.name)) {
+          !TutorialService.Instance.CurrentTutorial.isTransitionAllowed(event.route.name)) {
         Logger.root.info("Preenter --> Skiping Tutorial");
         TutorialService.Instance.skipTutorial();
       }
-
-      if (!bEnter) {
+      
+      
+      if (ulData != null) {
+        Logger.root.info("DeepLinking, redirection: [Section: ${ulData['path'].toString().substring(1)}, Params: ${ulData['params'].toString()}]");
+        router.go(ulData['path'].toString().substring(1), ulData['params'], replace: true);
+        bEnter = false;
+      } else if (!bEnter) {
         router.go("home", {}, replace: true);
       }
 

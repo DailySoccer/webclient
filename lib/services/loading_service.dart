@@ -4,6 +4,7 @@ import 'package:angular/angular.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'dart:async';
 import 'package:webclient/utils/host_server.dart';
+import 'dart:convert';
 
 @Injectable()
 class LoadingService {
@@ -20,6 +21,25 @@ class LoadingService {
     }
     else {
       print("TODO: Llega un disable demasiado pronto");
+    }
+  }
+
+  static Map _universalLinksData = null;
+  static Map getUniversalLinksData() {
+    if (_universalLinksData == null) {
+      JsUtils.runJavascript(null, 'getULData', [(ulData) {
+        LoadingService._universalLinksData = JSON.decode(ulData);
+      }], null);
+    }
+    if (_universalLinksData == null || _universalLinksData['isEmpty']) {
+      return null;
+    } else {
+      return _universalLinksData;
+    }
+  }
+  static void clearULData() {
+    if (_universalLinksData != null) {
+      _universalLinksData['isEmpty'] = true;
     }
   }
   

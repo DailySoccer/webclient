@@ -72,6 +72,14 @@ module.exports = [
         "clobbers": [
             "window.ComScorePlugin"
         ]
+    },
+    {
+        "file": "plugins/cordova-universal-links-plugin/www/universal_links.js",
+        "id": "cordova-universal-links-plugin.universalLinks",
+        "pluginId": "cordova-universal-links-plugin",
+        "clobbers": [
+            "universalLinks"
+        ]
     }
 ];
 module.exports.metadata = 

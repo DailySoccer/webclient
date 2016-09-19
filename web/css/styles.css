@@ -21114,9 +21114,14 @@ home .main-info-wrapper {
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
   flex: 1;
-  background-image: url("../images/main-info-wrapper-bg.jpg");
+  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
+  -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
+  z-index: 1;
+  background-image: url("../images/home/main-info-wrapper-bg.jpg");
   background-size: cover;
   background-position: bottom;
+  padding: 15px;
 }
 home .info-columns-wrapper {
   display: -webkit-box;
@@ -21128,7 +21133,7 @@ home .info-columns-wrapper {
   flex-flow: row nowrap;
   flex: 1;
   align-items: center;
-  padding: 15px;
+  padding-bottom: 15px;
 }
 home .info-column {
   display: -webkit-box;
@@ -21139,24 +21144,26 @@ home .info-column {
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
   flex: 1;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   border-width: 1px;
   border-color: #ffffff;
+  padding: 15px 0;
+  -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.3), 0 10px 10px rgba(0, 0, 0, 0.28);
+  -moz-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.3), 0 10px 10px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.3), 0 10px 10px rgba(0, 0, 0, 0.28);
 }
 home .info-column.gold {
   border-style: solid none solid solid;
   border-radius: 15px 0 0 15px;
-  padding: 15px 0;
 }
 home .info-column.level {
   border-style: solid solid solid solid;
   border-radius: 15px;
-  padding: 15px;
+  flex: 1.5;
 }
 home .info-column.achievements {
   border-style: solid solid solid none;
   border-radius: 0 15px 15px 0px;
-  padding: 15px 0;
 }
 home .label {
   flex: 1;
@@ -21191,12 +21198,8 @@ home .next-contest-wrapper {
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
   flex: 1;
-  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
-  -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
-  padding: 50px 20px;
   align-items: center;
-  z-index: 1;
+  justify-content: space-around;
 }
 home .next-contest-label {
   font-size: 14pt;
@@ -21206,10 +21209,10 @@ home .next-contest-label {
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   font-family: 'Fjalla One', sans-serif;
   font-weight: 700;
-  flex: 1;
+  flex: 0 0 auto;
 }
 home .goto-next-contest-button {
-  flex: 1;
+  flex: 0 0 auto;
   background-image: -webkit-linear-gradient(top, #0d75a6 0%, #0c4c6a 100%);
   background-image: linear-gradient(to bottom, #0d75a6 0%, #0c4c6a 100%);
   background-repeat: repeat-x;
@@ -21256,7 +21259,8 @@ home .action-buttons-wrapper {
   display: flex;
   -webkit-flex-flow: row nowrap;
   flex-flow: row nowrap;
-  flex: 1;
+  flex: 0 0 auto;
+  padding: 10px;
   background-color: #242529;
 }
 home .button-scout,

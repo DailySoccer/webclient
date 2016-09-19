@@ -5,16 +5,18 @@ home {
 	.main-info-wrapper {
 		.flex-container-col();
 		.flex-elem-fluid();
-		//.elevation(3);
-		background-image: url("@{images}/main-info-wrapper-bg.jpg");
+		.elevation(3);
+		z-index: 1;
+		background-image: url("@{images}/home/main-info-wrapper-bg.jpg");
 	    background-size: cover;
     	background-position: bottom;
+    	padding: 15px;
 	}
 	.info-columns-wrapper {
 		.flex-container-row();
 		.flex-elem-fluid();
 		align-items: center;
-		padding: 15px;
+		padding-bottom: 15px;
 	}
 	.info-column {
 		.flex-container-col();
@@ -22,20 +24,20 @@ home {
 		background-color: @black-translucid;
 		border-width: 1px;
 		border-color: @white;
+		padding: 15px 0;
+		.elevation(4);
 		&.gold {
 			border-style: solid none solid solid;
 			border-radius: 15px 0 0 15px;
-			padding: 15px 0;
 		}
 		&.level {
 			border-style: solid solid solid solid;
 			border-radius: 15px;
-			padding: 15px;
+  			.flex-elem-fluid(1.5);
 		}
 		&.achievements {
 			border-style: solid solid solid none;
 			border-radius: 0 15px 15px 0px;
-			padding: 15px 0;
 		}
 	}
 	.label {
@@ -53,18 +55,15 @@ home {
 	.next-contest-wrapper {
 		.flex-container-col();	
 		.flex-elem-fluid();
-		.elevation(3);
-		padding: 50px 20px;
 		align-items: center;
-		//background-color: @soft-black;
-		z-index: 1;
+		justify-content: space-around;
 	}
 	.next-contest-label {
 		.mainfont_bold(14pt, @white, center, uppercase);
-		.flex-elem-fluid();
+		.flex-elem-fixed(auto);
 	}
 	.goto-next-contest-button {
-		.flex-elem-fluid();
+		.flex-elem-fixed(auto);
 		.default-button();
 		margin-top: 25px;
 		padding: 15px;
@@ -74,7 +73,8 @@ home {
 	
 	.action-buttons-wrapper {
 		.flex-container-row();
-		.flex-elem-fluid();
+		.flex-elem-fixed(auto);
+		padding: 10px;
 		background-color: @grey-dark;
 	}
 	.button-scout, .button-history, .button-shop {

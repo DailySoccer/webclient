@@ -60,7 +60,8 @@ class HomeComp implements DetachAware {
   List<Map> pointsUserList;
   //Map playerPointsInfo = null ;//{'position':'_', 'id':'', 'name': '', 'points': ' '};
   
-  String  skillLevelName;
+  String skillLevelName;
+  String skillLevelImage;
 
   bool isThePlayer(id) => id == user.userId;
   
@@ -107,7 +108,9 @@ class HomeComp implements DetachAware {
   }
   
   void refreshRankingPosition() {
-    skillLevelName =  _leaderboardService.myTrueSkillName;    
+    _leaderboardService.calculateMyTrueSkillData();
+    skillLevelName =  _leaderboardService.myTrueSkillName;
+    skillLevelImage = _leaderboardService.myTrueSkillImage;
   }
   
   void countAchievementsEarned() {

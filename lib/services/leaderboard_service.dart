@@ -10,43 +10,53 @@ import 'package:webclient/services/profile_service.dart';
 
 @Injectable()
 class LeaderboardService {
-
-  static const String TRUESKILL_TOP_LEVEL = "LEYENDA";
-  static const List<Map> trueSkillNameList = const [
+    
+  static const List<Map> trueSkillDataList = const [
     const {
+      'id' : 1,
       'name': "NOVATO",
       'limiteInf' : null,
       'limiteSup' : 1500
     },
     const {
+      'id' : 2,
       'name': "AMATEUR",
       'limiteInf' : 1501,
       'limiteSup' : 3000
     },
     const {
+      'id' : 3,
       'name': "PROFESIONAL",
       'limiteInf' : 3001,
       'limiteSup' : 4000
     },
     const {
+      'id' : 4,
       'name': "CRACK",
       'limiteInf' : 4001,
       'limiteSup' : 5000
     },
     const {
+      'id' : 5,
       'name': "ESTRELLA",
       'limiteInf' : 5001,
       'limiteSup' : null
     }
   ];
   
+  static const Map topTrueSkillData = const {
+      'id' : 6,
+      'name': "LEYENDA"
+  };
+  
   List<User> users;
   int myPosition;
+  Map currentTrueSkillData;
 
-  String get myTrueSkillName {
+  void calculateMyTrueSkillData() {
     getUsers();
     
-    String name = trueSkillNameList.firstWhere((lvl) {
+    currentTrueSkillData = trueSkillDataList.firstWhere((lvl) {
       if (lvl['limiteInf'] == null) {
         return  _profileService.user.trueSkill <= lvl['limiteSup'];
       }
@@ -58,15 +68,21 @@ class LeaderboardService {
         return true;
       else
         return false;
-    }, orElse: () => trueSkillNameList[0])['name'];
+    }, orElse: () => trueSkillDataList[0]);
     
     if (users != null) {
-      if (name == trueSkillNameList.last['name'] && myPosition <= 10) {
-        name = TRUESKILL_TOP_LEVEL;
+      if (currentTrueSkillData['id'] == trueSkillDataList.last['id'] && myPosition <= 10) {
+        currentTrueSkillData = topTrueSkillData;
       }
     }
-    
-    return name;
+  }
+  
+  String get myTrueSkillName {
+    return currentTrueSkillData['name'];
+  }
+  
+  String get myTrueSkillImage {
+    return 'nivel' + currentTrueSkillData['id'].toString() + '.png';
   }
   
   

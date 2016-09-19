@@ -19,6 +19,7 @@ class RefreshTimersService {
     ,'SECONDS_TO_UPDATE_PROMOS'               : 600
     ,'SECONDS_TO_REFRESH_PROMOS'              : 30
     ,'SECONDS_TO_REFRESH_TOPBAR'              : 5
+    ,'SECONDS_TO_REFRESH_RANKING_POSITION'    : 10
   };
 
   static const String SECONDS_TO_REFRESH_CONTEST_LIST         = "SECONDS_TO_REFRESH_CONTEST_LIST";
@@ -29,6 +30,7 @@ class RefreshTimersService {
   static const String SECONDS_TO_UPDATE_PROMOS                = "SECONDS_TO_UPDATE_PROMOS";
   static const String SECONDS_TO_REFRESH_PROMOS               = "SECONDS_TO_REFRESH_PROMOS";
   static const String SECONDS_TO_REFRESH_TOPBAR               = "SECONDS_TO_REFRESH_TOPBAR";
+  static const String SECONDS_TO_REFRESH_RANKING_POSITION      = "SECONDS_TO_REFRESH_RANKING_POSITION";
   
   static const int SECONDS_TO_CHECK_FOCUS = 1;
 

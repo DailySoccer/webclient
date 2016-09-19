@@ -17308,7 +17308,7 @@ leaderboard .leaderboard-table-data {
   -webkit-flex-flow: row nowrap;
   flex-flow: row nowrap;
   flex: 0 0 auto;
-  font-size: 14pt;
+  font-size: 12pt;
   color: #757993;
   text-transform: uppercase;
   text-align: center;
@@ -17410,7 +17410,7 @@ ranking .user-money-data {
 }
 ranking .ranking-title {
   flex: 1;
-  font-size: 14pt;
+  font-size: 16pt;
   color: #59add5;
   text-transform: uppercase;
   text-align: left;
@@ -17421,7 +17421,7 @@ ranking .ranking-title {
 }
 ranking .ranking-points-title {
   flex: 1;
-  font-size: 14pt;
+  font-size: 16pt;
   color: #59add5;
   text-transform: uppercase;
   text-align: left;
@@ -17435,7 +17435,7 @@ ranking .ranking-points-title {
 }
 ranking .ranking-money-title {
   flex: 1;
-  font-size: 14pt;
+  font-size: 16pt;
   color: #59add5;
   text-transform: uppercase;
   text-align: left;
@@ -21111,14 +21111,22 @@ home .main-info-wrapper {
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  -webkit-flex-flow: row nowrap;
-  flex-flow: row nowrap;
-  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
-  -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  flex: 1;
   background-image: url("../images/main-info-wrapper-bg.jpg");
   background-size: cover;
   background-position: bottom;
+}
+home .info-columns-wrapper {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  flex: 1;
   align-items: center;
   padding: 15px;
 }
@@ -21131,10 +21139,28 @@ home .info-column {
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
   flex: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-width: 1px;
+  border-color: #ffffff;
+}
+home .info-column.gold {
+  border-style: solid none solid solid;
+  border-radius: 15px 0 0 15px;
+  padding: 15px 0;
+}
+home .info-column.level {
+  border-style: solid solid solid solid;
+  border-radius: 15px;
+  padding: 15px;
+}
+home .info-column.achievements {
+  border-style: solid solid solid none;
+  border-radius: 0 15px 15px 0px;
+  padding: 15px 0;
 }
 home .label {
   flex: 1;
-  font-size: 12pt;
+  font-size: 14pt;
   color: #fa9c19;
   text-transform: uppercase;
   text-align: center;
@@ -21149,10 +21175,10 @@ home .icon {
 home .amount {
   flex: 1;
   font-size: 14pt;
-  color: #757993;
+  color: #ffffff;
   text-transform: uppercase;
   text-align: center;
-  text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   font-family: 'Fjalla One', sans-serif;
   font-weight: 700;
 }
@@ -21164,21 +21190,20 @@ home .next-contest-wrapper {
   display: flex;
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
-  flex: 0 0 auto;
+  flex: 1;
   -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
   -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
   padding: 50px 20px;
   align-items: center;
-  background-color: #181818;
   z-index: 1;
 }
 home .next-contest-label {
-  font-size: 10pt;
-  color: rgba(210, 210, 210, 0.3);
+  font-size: 14pt;
+  color: #ffffff;
   text-transform: uppercase;
   text-align: center;
-  text-shadow: 1px 1px 1px rgba(210, 210, 210, 0.004);
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   font-family: 'Fjalla One', sans-serif;
   font-weight: 700;
   flex: 1;
@@ -21235,19 +21260,7 @@ home .action-buttons-wrapper {
   background-color: #242529;
 }
 home .button-scout,
-home .button-history {
-  flex: 1;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-flow: column nowrap;
-  flex-flow: column nowrap;
-  text-align: center;
-  justify-content: center;
-  cursor: pointer;
-}
+home .button-history,
 home .button-shop {
   flex: 1;
   display: -webkit-box;
@@ -21260,9 +21273,6 @@ home .button-shop {
   text-align: center;
   justify-content: center;
   cursor: pointer;
-  border-right: 1px solid #ffffff;
-  border-left: 1px solid #ffffff;
-  cursor: pinter;
 }
 home .image-container {
   flex: 0 0 auto;

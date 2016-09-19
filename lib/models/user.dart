@@ -21,7 +21,7 @@ class User {
   ];
 
   static num get MAX_MANAGER_LEVEL => MANAGER_POINTS.length - 1;
-
+    
   String userId;
   
   String firstName;
@@ -61,6 +61,26 @@ class User {
   // Numero de veces que el usuario ha ganado un contest
   int wins;
   int trueSkill;
+  /*
+  String get trueSkillName {
+    String name = trueSkillNameList.firstWhere((lvl) {
+      if (lvl['limiteInf'] == null) {
+        return  trueSkill <= lvl['limiteSup'];
+      }
+      if (lvl['limiteSup'] == null) {
+        return  lvl['limiteInf'] <= trueSkill;
+      }
+      
+      if (lvl['limiteInf'] <= trueSkill  && trueSkill <= lvl['limiteSup'])
+        return true;
+      else
+        return false;
+    }, orElse: () => trueSkillNameList[0])['name'];
+    
+    return name;
+  }*/
+  
+  
   Money earnedMoney;
 
   Set<String> achievements = new Set<String>();
@@ -154,6 +174,17 @@ class User {
                   : "<userId: null>");
 
     User user = references.getUserById(userId);
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     return user._initFromJsonObject(jsonMap, references);
   }
 

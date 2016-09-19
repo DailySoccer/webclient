@@ -3,21 +3,44 @@ home {
 	.flex-elem-fluid();
 	
 	.main-info-wrapper {
-		.flex-container-row();
-		.elevation(3);
+		.flex-container-col();
+		.flex-elem-fluid();
+		//.elevation(3);
 		background-image: url("@{images}/main-info-wrapper-bg.jpg");
 	    background-size: cover;
     	background-position: bottom;
+	}
+	.info-columns-wrapper {
+		.flex-container-row();
+		.flex-elem-fluid();
 		align-items: center;
 		padding: 15px;
 	}
 	.info-column {
 		.flex-container-col();
 		.flex-elem-fluid();
+		background-color: @black-translucid;
+		border-width: 1px;
+		border-color: @white;
+		&.gold {
+			border-style: solid none solid solid;
+			border-radius: 15px 0 0 15px;
+			padding: 15px 0;
+		}
+		&.level {
+			border-style: solid solid solid solid;
+			border-radius: 15px;
+			padding: 15px;
+		}
+		&.achievements {
+			border-style: solid solid solid none;
+			border-radius: 0 15px 15px 0px;
+			padding: 15px 0;
+		}
 	}
 	.label {
 		.flex-elem-fluid();
-		.mainfont_bold(12pt, @orange, center, uppercase);
+		.mainfont_bold(14pt, @orange, center, uppercase);
 	}
 	.icon {
 		.flex-elem-fluid();
@@ -25,20 +48,19 @@ home {
 	}
 	.amount {
 		.flex-elem-fluid();
-		.mainfont_bold(14pt, @grey-bluish, center, uppercase);
+		.mainfont_bold(14pt, @white, center, uppercase);
 	}
-
 	.next-contest-wrapper {
 		.flex-container-col();	
-		.flex-elem-fixed(auto);
+		.flex-elem-fluid();
 		.elevation(3);
 		padding: 50px 20px;
 		align-items: center;
-		background-color: @soft-black;
+		//background-color: @soft-black;
 		z-index: 1;
 	}
 	.next-contest-label {
-		.mainfont_bold(10pt, @grey-translucid, center, uppercase);
+		.mainfont_bold(14pt, @white, center, uppercase);
 		.flex-elem-fluid();
 	}
 	.goto-next-contest-button {
@@ -55,18 +77,12 @@ home {
 		.flex-elem-fluid();
 		background-color: @grey-dark;
 	}
-	.button-scout, .button-history {
+	.button-scout, .button-history, .button-shop {
 		.flex-elem-fluid();
 		.flex-container-col();
 		text-align: center;
 		justify-content: center;
 		cursor: pointer;
-	}
-	.button-shop {
-		.button-scout();
-		border-right: 1px solid @white;
-		border-left: 1px solid @white;
-		cursor: pinter;
 	}
 	.image-container {
 		.flex-elem-fixed(auto);

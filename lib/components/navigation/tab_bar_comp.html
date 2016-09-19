@@ -1,11 +1,11 @@
 <div class="tab-bar-wrapper" ng-if="isShown">
-
-  <div class="tab-bar-item" ng-click="leaderTab.goLocation()" ng-class="{'active': leaderTab.isActive}">
-    <img ng-src="{{leaderTab.iconImage}}">
-    <span class="tab-bar-item-name">{{leaderTab.name}}</span>
-    <span class="tab-bar-item-badge" ng-class="{'has-notifications': leaderTab.notificationsCount > 0}">{{leaderTab.notificationsCount}}</span>
-  </div>
   
+  <div class="tab-bar-item" ng-click="homeTab.goLocation()" ng-class="{'active': scoutingTab.isActive}">
+    <img ng-src="{{homeTab.iconImage}}">
+    <span class="tab-bar-item-name">{{homeTab.name}}</span>
+    <!--span class="tab-bar-item-badge" ng-class="{'has-notifications': scoutingTab.notificationsCount > 0}">{{scoutingTab.notificationsCount}}</span-->
+  </div>
+ 
   <div class="tab-bar-item" ng-click="myContest.goLocation()" ng-class="{'active': myContest.isActive}">
     <img ng-src="{{myContest.iconImage}}">
     <span class="tab-bar-item-name">{{myContest.name}}</span>
@@ -23,11 +23,11 @@
     <span class="tab-bar-item-name">{{liveContestTab.name}}</span>
     <span class="tab-bar-item-badge" ng-class="{'has-notifications': liveContestTab.notificationsCount > 0}">{{liveContestTab.notificationsCount}}</span>
   </div>
-  
-  <div class="tab-bar-item" ng-click="homeTab.goLocation()" ng-class="{'active': scoutingTab.isActive}">
-    <img ng-src="{{homeTab.iconImage}}">
-    <span class="tab-bar-item-name">{{homeTab.name}}</span>
-    <!--span class="tab-bar-item-badge" ng-class="{'has-notifications': scoutingTab.notificationsCount > 0}">{{scoutingTab.notificationsCount}}</span-->
+ 
+  <div class="tab-bar-item" ng-click="leaderTab.goLocation()" ng-class="{'active': leaderTab.isActive}">
+    <img ng-src="{{leaderTab.iconImage}}">
+    <span class="tab-bar-item-name">{{leaderTab.name}}</span>
+    <span class="tab-bar-item-badge" ng-class="{'has-notifications': leaderTab.notificationsCount > 0}">{{leaderTab.notificationsCount}}</span>
   </div>
   
 </div>

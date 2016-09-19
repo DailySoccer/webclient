@@ -21,6 +21,7 @@ import 'package:webclient/models/achievement.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/datetime_service.dart';
+import 'package:webclient/services/leaderboard_service.dart';
 
 @Component(
   selector: 'home',
@@ -56,6 +57,13 @@ class HomeComp implements DetachAware {
 
   User get user => _profileService.user;
   
+  List<Map> pointsUserList;
+  //Map playerPointsInfo = null ;//{'position':'_', 'id':'', 'name': '', 'points': ' '};
+  
+  String  skillLevelName;
+
+  bool isThePlayer(id) => id == user.userId;
+  
   String get CreateContestTileText => !userIsLogged? getLocalizedText('create_contest_text_nolog') :
                                             !tutorialIsDone? getLocalizedText('create_contest_text_notut') :
                                                              getLocalizedText('create_contest_text_logNtut');
@@ -76,15 +84,18 @@ class HomeComp implements DetachAware {
   
   HomeComp(this._router, this._profileService, this._appStateService, this.contestsService, this._flashMessage,
             this.loadingService, this._refreshTimersService, this._promosService,
-            TutorialService tutorialService) {
+            TutorialService tutorialService, this._leaderboardService) {
     loadingService.isLoading = true;
     
     refreshTopBar();
+    refreshRankingPosition();
+    
     _appStateService.appSecondaryTabBarState.tabList = [];
     _appStateService.appTabBarState.show = true;
 
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR, refreshTopBar);
+    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_RANKING_POSITION, refreshRankingPosition);
 
     countAchievementsEarned(); 
     
@@ -93,6 +104,10 @@ class HomeComp implements DetachAware {
     _nextTournamentInfoTimer = new Timer.periodic(new Duration(seconds: 1), (Timer t) => _calculateInfoBarText());
     
     GameMetrics.logEvent(GameMetrics.HOME, {"logged": _profileService.isLoggedIn});
+  }
+  
+  void refreshRankingPosition() {
+    skillLevelName =  _leaderboardService.myTrueSkillName;    
   }
   
   void countAchievementsEarned() {
@@ -111,6 +126,7 @@ class HomeComp implements DetachAware {
   static String getStaticLocalizedText(key) {
     return StringUtils.translate(key, "home");
   }
+  
   String getLocalizedText(key) {
     return getStaticLocalizedText(key);
   }
@@ -263,6 +279,7 @@ class HomeComp implements DetachAware {
   void detach() {
     _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS);
     _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR);
+    _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_RANKING_POSITION);
     _nextTournamentInfoTimer.cancel();
   }
 
@@ -273,5 +290,5 @@ class HomeComp implements DetachAware {
   PromosService _promosService;
   AppStateService _appStateService;
   Timer _nextTournamentInfoTimer;
-
+  LeaderboardService _leaderboardService;
 }

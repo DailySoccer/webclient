@@ -11,8 +11,65 @@ import 'package:webclient/services/profile_service.dart';
 @Injectable()
 class LeaderboardService {
 
+  static const String TRUESKILL_TOP_LEVEL = "LEYENDA";
+  static const List<Map> trueSkillNameList = const [
+    const {
+      'name': "NOVATO",
+      'limiteInf' : null,
+      'limiteSup' : 1500
+    },
+    const {
+      'name': "AMATEUR",
+      'limiteInf' : 1501,
+      'limiteSup' : 3000
+    },
+    const {
+      'name': "PROFESIONAL",
+      'limiteInf' : 3001,
+      'limiteSup' : 4000
+    },
+    const {
+      'name': "CRACK",
+      'limiteInf' : 4001,
+      'limiteSup' : 5000
+    },
+    const {
+      'name': "ESTRELLA",
+      'limiteInf' : 5001,
+      'limiteSup' : null
+    }
+  ];
+  
   List<User> users;
+  int myPosition;
 
+  String get myTrueSkillName {
+    getUsers();
+    
+    String name = trueSkillNameList.firstWhere((lvl) {
+      if (lvl['limiteInf'] == null) {
+        return  _profileService.user.trueSkill <= lvl['limiteSup'];
+      }
+      if (lvl['limiteSup'] == null) {
+        return  lvl['limiteInf'] <= _profileService.user.trueSkill;
+      }
+      
+      if (lvl['limiteInf'] <= _profileService.user.trueSkill  && _profileService.user.trueSkill <= lvl['limiteSup'])
+        return true;
+      else
+        return false;
+    }, orElse: () => trueSkillNameList[0])['name'];
+    
+    if (users != null) {
+      if (name == trueSkillNameList.last['name'] && myPosition <= 10) {
+        name = TRUESKILL_TOP_LEVEL;
+      }
+    }
+    
+    return name;
+  }
+  
+  
   LeaderboardService(this._server, this._profileService);
 
   Future<List<User>> getUsers() {
@@ -38,6 +95,10 @@ class LeaderboardService {
       _server.getLeaderboard()
         .then((jsonMapRoot) {
             users = jsonMapRoot.containsKey("users") ? jsonMapRoot["users"].map((jsonObject) => new User.fromJsonObject(jsonObject)).toList() : [];
+            for (int i = 0; i<users.length; i++) {
+              if (users[i].userId == _profileService.user.userId)
+                myPosition = i + 1;
+            }            
             completer.complete(users);
           });
     }

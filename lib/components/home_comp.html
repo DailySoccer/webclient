@@ -1,24 +1,25 @@
 <div class="main-info-wrapper">
-  <div class="info-column">
-    <div class="label">ORO</div>
-    <div  class="icon"><img src="images/ORO.png"></div>
-    <div class=amount>{{user.goldBalance}}</div>
+  <div class="info-columns-wrapper">
+    <div class="info-column gold">
+      <div class="label">ORO</div>
+      <div  class="icon"><img src="images/ORO.png"></div>
+      <div class=amount>{{user.goldBalance}}</div>
+    </div>
+    <div class="info-column level">
+      <div class="label">NIVEL</div>
+      <div  class="icon"><img src="images/nivel6.png"></div>
+      <div class=amount>{{skillLevelName}}</div>
+    </div>
+    <div class="info-column achievements">
+      <div class="label">LOGROS</div>
+      <div  class="icon"><img src="images/logros.png"></div>
+      <div class=amount>{{achievementsEarned}} / {{achievementList.length.toString()}}</div>
+    </div>
   </div>
-  <div class="info-column">
-    <div class="label">NIVEL</div>
-    <div  class="icon"><img src="images/nivel6.png"></div>
-    <div class=amount>ROOKIE</div>
+  <div class="next-contest-wrapper">
+    <div class="next-contest-label">{{infoBarText}}</div>
+    <button class="goto-next-contest-button" ng-click="goNextContest()">JUGAR</button>
   </div>
-  <div class="info-column">
-    <div class="label">LOGROS</div>
-    <div  class="icon"><img src="images/logros.png"></div>
-    <div class=amount>{{achievementsEarned}} / {{achievementList.length.toString()}}</div>
-  </div>
-</div>
-
-<div class="next-contest-wrapper">
-  <div class="next-contest-label">{{infoBarText}}</div>
-  <button class="goto-next-contest-button" ng-click="goNextContest()">JUGAR</button>
 </div>
 
 <div class="action-buttons-wrapper">

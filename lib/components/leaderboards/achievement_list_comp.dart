@@ -49,15 +49,15 @@ class AchievementListComp {
     
     _appStateService.appSecondaryTabBarState.tabList = [];
     _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Listado de Logros");
-    _appStateService.appTopBarState.activeState.onLeftColumn = GoBack;
+    _appStateService.appTopBarState.activeState.onLeftColumn = AppTopBarState.GOBACK;
     _appStateService.appTabBarState.show = false;
     
   }
-  
+  /*
   void GoBack() {
     _router.go("user_profile", {});
   }
-  
+  */
   void countAchievementsEarned() {
     int count = 0;
     achievementList.forEach((ach) {

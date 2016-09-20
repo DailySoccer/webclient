@@ -86,9 +86,13 @@ class CreateContestComp  {
 
   CreateContestComp(this._router, this._contestsService, this._appStateService, this._profileService, this._leaderboardService) {
     
-    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router, _leaderboardService);
+    /*_appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router, _leaderboardService);
     _appStateService.appSecondaryTabBarState.tabList = [];
-    _appStateService.appTabBarState.show = true;
+    _appStateService.appTabBarState.show = true;*/
+    _appStateService.appSecondaryTabBarState.tabList = [];
+    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Crea un torneo para ti y tus amigos");
+    _appStateService.appTopBarState.activeState.onLeftColumn = AppTopBarState.GOBACK;
+    _appStateService.appTabBarState.show = false;
     
     contestType = TYPE_OFICIAL;
     contestStyle = STYLE_HEAD_TO_HEAD;

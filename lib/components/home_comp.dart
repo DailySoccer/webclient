@@ -281,6 +281,10 @@ class HomeComp implements DetachAware {
     _router.go('my_contests', {"section": "history"});
   }
   
+  void goRanking() {
+    _router.go('leaderboard', {'userId': 'me'});
+  }
+  
   void goAchievements() {
     _router.go('achievements', {});
   }

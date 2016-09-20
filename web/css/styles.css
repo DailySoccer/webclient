@@ -21248,6 +21248,7 @@ home .info-column {
   border-width: 2px;
   border-color: #ffffff;
   padding: 15px 0;
+  cursor: pointer;
   -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.3), 0 10px 10px rgba(0, 0, 0, 0.28);
   -moz-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.3), 0 10px 10px rgba(0, 0, 0, 0.28);
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.3), 0 10px 10px rgba(0, 0, 0, 0.28);
@@ -21264,7 +21265,6 @@ home .info-column.level {
 home .info-column.achievements {
   border-style: solid solid solid none;
   border-radius: 0 15px 15px 0px;
-  cursor: pointer;
 }
 home .label {
   flex: 1;

@@ -6,7 +6,7 @@ shop-comp {
 		align-items: center;
 		background-color: @grey-dark;
 		margin-bottom: 10px;
-		padding: 0 15px;
+		padding-right: 15px;
 	}
 	.gold-item-popular {
 	    position: absolute;
@@ -22,31 +22,29 @@ shop-comp {
 		.flex-elem-fluid();
 		align-items: center;
 		.name {
-			.mainfont_bold(12pt, @white, center,uppercase);
+			.mainfont_bold(10pt, @white, center,uppercase);
 			padding-top: 5px;
 		}
 		.coins-count {
-			.mainfont_light(42pt, @orange, center,uppercase);
+			.mainfont_light(35pt, @orange, center,uppercase);
 		}
 	}
 	.price {
 		.flex-container-col();
-		.flex-elem-fixed(100px);
+		.flex-elem-fixed(80px);
 		align-items: center;
 		.free-increment {
+			.flex-elem-fixed(auto);
 			.mainfont_bold(12pt, @white, center,uppercase);
 			height: 35px;
 			padding-top: 2px;
 		}
 		.buy-button {
+			.flex-elem-fixed(auto);
 			.default-button();
+			.green-gradient();
 			.bodyfont_bold(12pt, @white, center,uppercase);
-			background: #a1c931;
-			background: -moz-linear-gradient(top,  #a1c931 0%, #749516 100%);
-			background: -webkit-linear-gradient(top,  #a1c931 0%,#749516 100%);
-			background: linear-gradient(to bottom,  #a1c931 0%,#749516 100%);
-			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1c931', endColorstr='#749516',GradientType=0 );
-			padding: 15px;
+			width: 80px;
     		margin-bottom: 15px;
 		}
 	}

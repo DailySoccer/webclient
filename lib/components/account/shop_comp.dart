@@ -17,10 +17,11 @@ import 'package:webclient/models/user.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/utils/game_info.dart';
-import 'package:webclient/utils/js_utils.dart';
+//import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/services/payment_service.dart';
 import 'package:webclient/services/app_state_service.dart';
-import 'package:logging/logging.dart';
+import 'package:webclient/utils/host_server.dart';
+//import 'package:logging/logging.dart';
 
 @Component(
     selector: 'shop-comp',
@@ -68,13 +69,14 @@ class ShopComp implements DetachAware{
       clearCookies();
     }
 
+    if (!HostServer.isDev) {
     _catalogService.getCatalog()
       .then((catalog) {
         for (Product info in catalog.where((e) => e.gained.isEnergy)) {
           Map eProduct = {};
           eProduct["info"]         = info;
           eProduct["id"]           = info.id;
-          eProduct["description"]  = info.description;
+          eProduct["description"]  = info.description.toLowerCase().replaceAll('(futbol cuatro)', '');
           eProduct["captionImage"] = info.imageUrl;
           eProduct["price"]        = info.price.toString();
           eProduct["quantity"]     = info.gained.amount.toInt().toString();
@@ -90,7 +92,7 @@ class ShopComp implements DetachAware{
           Map gProduct = {};
           gProduct["id"]             = info.id;
           gProduct["storeId"]        = info.storeId;
-          gProduct["description"]    = info.description;
+          gProduct["description"]    = info.description.toLowerCase().replaceAll('(futbol cuatro)', '');
           gProduct["captionImage"]   = info.imageUrl;
           gProduct["price"]          = info.storePrice; // info.price.toStringWithCurrency();
           gProduct["quantity"]       = info.gained.amount.toInt().toString();
@@ -101,7 +103,26 @@ class ShopComp implements DetachAware{
         }
         _loadingService.isLoading = false;
       });
-    
+    }
+    else {
+      _catalogService.getCatalog()
+        .then((catalog) {
+          for (Product info in _catalogService.products.where((g) => g.gained.isGold)) {
+            Map gProduct = {};
+            gProduct["id"]             = info.id;
+            gProduct["storeId"]        = info.storeId;
+            gProduct["description"]    = info.description.toLowerCase().replaceAll('(futbol cuatro)', '');
+            gProduct["captionImage"]   = info.imageUrl;
+            gProduct["price"]          = info.storePrice; // info.price.toStringWithCurrency();
+            gProduct["quantity"]       = info.gained.amount.toInt().toString();
+            gProduct["freeIncrement"]  = info.free.amount.toInt();
+            gProduct["isMostPopular"]  = info.mostPopular;
+            gProduct["purchasable"]    = true;
+            goldProducts.add(gProduct);
+          }
+        _loadingService.isLoading = false;
+        });
+      }
     GameMetrics.logEvent(GameMetrics.SHOP_ENTERED);
     _tutorialService.triggerEnter("shop", component: this, activateIfNeeded: false);
   }

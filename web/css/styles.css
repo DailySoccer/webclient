@@ -6010,6 +6010,13 @@ OLD FONTS
   background: linear-gradient(to bottom, #0d0d0f 0%, #242529 15%, #242529 90%, #1c1d20 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0d0d0f', endColorstr='#1c1d20', GradientType=0);
 }
+.green-gradient {
+  background: #a1c931;
+  background: -moz-linear-gradient(top, #a1c931 0%, #749516 100%);
+  background: -webkit-linear-gradient(top, #a1c931 0%, #749516 100%);
+  background: linear-gradient(to bottom, #a1c931 0%, #749516 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a1c931', endColorstr='#749516', GradientType=0);
+}
 .default-button {
   background-image: -webkit-linear-gradient(top, #0d75a6 0%, #0c4c6a 100%);
   background-image: linear-gradient(to bottom, #0d75a6 0%, #0c4c6a 100%);
@@ -9060,7 +9067,7 @@ shop-comp .money-slot {
   align-items: center;
   background-color: #242529;
   margin-bottom: 10px;
-  padding: 0 15px;
+  padding-right: 15px;
 }
 shop-comp .gold-item-popular {
   position: absolute;
@@ -9082,7 +9089,7 @@ shop-comp .description {
   align-items: center;
 }
 shop-comp .description .name {
-  font-size: 12pt;
+  font-size: 10pt;
   color: #ffffff;
   text-transform: uppercase;
   text-align: center;
@@ -9092,7 +9099,7 @@ shop-comp .description .name {
   padding-top: 5px;
 }
 shop-comp .description .coins-count {
-  font-size: 42pt;
+  font-size: 35pt;
   color: #fa9c19;
   text-transform: uppercase;
   text-align: center;
@@ -9108,10 +9115,11 @@ shop-comp .price {
   display: flex;
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
-  flex: 0 0 100px;
+  flex: 0 0 80px;
   align-items: center;
 }
 shop-comp .price .free-increment {
+  flex: 0 0 auto;
   font-size: 12pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -9123,6 +9131,7 @@ shop-comp .price .free-increment {
   padding-top: 2px;
 }
 shop-comp .price .buy-button {
+  flex: 0 0 auto;
   background-image: -webkit-linear-gradient(top, #0d75a6 0%, #0c4c6a 100%);
   background-image: linear-gradient(to bottom, #0d75a6 0%, #0c4c6a 100%);
   background-repeat: repeat-x;
@@ -9140,6 +9149,11 @@ shop-comp .price .buy-button {
   border: 0;
   outline-offset: 0px;
   outline: none;
+  background: #a1c931;
+  background: -moz-linear-gradient(top, #a1c931 0%, #749516 100%);
+  background: -webkit-linear-gradient(top, #a1c931 0%, #749516 100%);
+  background: linear-gradient(to bottom, #a1c931 0%, #749516 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a1c931', endColorstr='#749516', GradientType=0);
   font-size: 12pt;
   color: #ffffff;
   text-transform: uppercase;
@@ -9147,12 +9161,7 @@ shop-comp .price .buy-button {
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  background: #a1c931;
-  background: -moz-linear-gradient(top, #a1c931 0%, #749516 100%);
-  background: -webkit-linear-gradient(top, #a1c931 0%, #749516 100%);
-  background: linear-gradient(to bottom, #a1c931 0%, #749516 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a1c931', endColorstr='#749516', GradientType=0);
-  padding: 15px;
+  width: 80px;
   margin-bottom: 15px;
 }
 shop-comp .price .buy-button:hover,

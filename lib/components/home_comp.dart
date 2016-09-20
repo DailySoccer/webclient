@@ -13,7 +13,7 @@ import 'package:webclient/services/promos_service.dart';
 import 'dart:html';
 import 'package:webclient/tutorial/tutorial_iniciacion.dart';
 import 'package:webclient/utils/string_utils.dart';
-import 'package:webclient/components/account/notifications_comp.dart';
+//import 'package:webclient/components/account/notifications_comp.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/template_service.dart';
 import 'package:webclient/services/app_state_service.dart';
@@ -74,9 +74,12 @@ class HomeComp implements DetachAware {
   Map currentPromo = null;
 
   String infoBarText = "";
+  
+  Contest get nextContest => contestsService.getAvailableNextContest();
+  
   void _calculateInfoBarText() {
-    Contest nextContest = contestsService.getAvailableNextContest();
-    infoBarText = nextContest == null? "" : "SIGUIENTE TORNEO: ${nextContest.name.toUpperCase()} - ${_calculateTimeToNextTournament()}";
+    //Contest nextContest = contestsService.getAvailableNextContest();
+    infoBarText = nextContest == null? "" : "ENTRA EN EL PRóXIMO TORNEO: ${nextContest.name.toUpperCase()} - ${_calculateTimeToNextTournament()}";
   }
 
   String _calculateTimeToNextTournament() {
@@ -262,10 +265,9 @@ class HomeComp implements DetachAware {
   }
 
   void goNextContest() {
-    Contest nextContest = contestsService.getAvailableNextContest();
-    if (nextContest != null)
+    /*if (nextContest != null)
       _router.go('enter_contest', { "contestId": nextContest.contestId, "parent": "lobby", "contestEntryId": "none" });
-    else
+    else*/
       _router.go('lobby', {});
   } 
   

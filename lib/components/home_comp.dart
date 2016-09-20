@@ -79,7 +79,7 @@ class HomeComp implements DetachAware {
   
   void _calculateInfoBarText() {
     //Contest nextContest = contestsService.getAvailableNextContest();
-    infoBarText = nextContest == null? "" : "ENTRA EN EL PRóXIMO TORNEO: ${nextContest.name.toUpperCase()} - ${_calculateTimeToNextTournament()}";
+    infoBarText = nextContest == null? '' : 'PRóXIMO TORNEO: ${nextContest.name.toUpperCase()} \n ${_calculateTimeToNextTournament()}';
   }
 
   String _calculateTimeToNextTournament() {
@@ -279,6 +279,10 @@ class HomeComp implements DetachAware {
   }
   void goHistory() {
     _router.go('my_contests', {"section": "history"});
+  }
+  
+  void goAchievements() {
+    _router.go('achievements', {});
   }
 
   void detach() {

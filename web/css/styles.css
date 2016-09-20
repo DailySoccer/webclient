@@ -21236,7 +21236,7 @@ home .info-column {
   flex-flow: column nowrap;
   flex: 1;
   background-color: rgba(0, 0, 0, 0.7);
-  border-width: 1px;
+  border-width: 2px;
   border-color: #ffffff;
   padding: 15px 0;
   -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.3), 0 10px 10px rgba(0, 0, 0, 0.28);
@@ -21255,6 +21255,7 @@ home .info-column.level {
 home .info-column.achievements {
   border-style: solid solid solid none;
   border-radius: 0 15px 15px 0px;
+  cursor: pointer;
 }
 home .label {
   flex: 1;

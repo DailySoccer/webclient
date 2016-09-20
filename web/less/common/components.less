@@ -9,6 +9,7 @@
   border: 0;
   outline-offset: 0px;
   outline: none;
+  line-height: 16pt;
   
   &:hover, &:active, &:focus {
     border: 0;
@@ -106,6 +107,10 @@
   &.nickname {
     color: @blueLight;
     cursor: default;
+    .inner-nickname {
+      white-space: nowrap;
+      overflow: hidden;
+    }
   }
 }
 .lobby-topbar-right {

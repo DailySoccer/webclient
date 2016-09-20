@@ -250,7 +250,8 @@ class EditPersonalDataComp implements ShadowRootAware{
     if(event != null) {
       event.preventDefault();
     }
-    _router.go('user_profile', {});
+    AppTopBarState.GOBACK();
+    //_router.go('user_profile', {});
   }
 
   @override void onShadowRoot(emulatedRoot) {

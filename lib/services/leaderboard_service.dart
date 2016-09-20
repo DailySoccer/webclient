@@ -118,8 +118,9 @@ class LeaderboardService {
         .then((jsonMapRoot) {
             users = jsonMapRoot.containsKey("users") ? jsonMapRoot["users"].map((jsonObject) => new User.fromJsonObject(jsonObject)).toList() : [];
             for (int i = 0; i<users.length; i++) {
-              if (users[i].userId == _profileService.user.userId)
+              if (users[i].userId == _profileService.user.userId) {
                 myPosition = i + 1;
+              }
             }            
             completer.complete(users);
           });

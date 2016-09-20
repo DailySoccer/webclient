@@ -74,7 +74,13 @@ class ScoutingComp implements DetachAware {
   bool get isSoccerPlayerListActive => sectionActive == SOCCER_PLAYERS_LIST;
   bool get isSoccerPlayerStatsActive => sectionActive == SOCCER_PLAYER_STATS;
   
-  String get selectedPlayerId => selectedInstanceSoccerPlayer != null ? selectedInstanceSoccerPlayer.id : ""; 
+  
+  String _selectedPlayerId = "";
+  String get selectedPlayerId => _selectedPlayerId;
+  
+  void set selectedPlayerId(String value) {
+    _selectedPlayerId = value == null || value == "" ? "" : value;
+  }
 
   ScoutingComp(this._router, this.loadingService, this._profileService, this._soccerPlayerService, this._appStateService, this._refreshTimersService, this._leaderBoardService) {
     if (_profileService.isLoggedIn) {
@@ -104,6 +110,8 @@ class ScoutingComp implements DetachAware {
   }
   
   void goBack() {
+    selectedPlayerId = "";
+    selectedInstanceSoccerPlayer = null;
     sectionActive = SOCCER_PLAYERS_LIST;
   }
   
@@ -183,6 +191,7 @@ class ScoutingComp implements DetachAware {
 
   void onSoccerPlayerInfo(SoccerPlayerListItem soccerPlayer) {
     selectedInstanceSoccerPlayer = soccerPlayer;
+    selectedPlayerId = selectedInstanceSoccerPlayer.id;
     sectionActive  = SOCCER_PLAYER_STATS;
   }
   

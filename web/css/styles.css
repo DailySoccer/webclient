@@ -6039,6 +6039,7 @@ OLD FONTS
   border: 0;
   outline-offset: 0px;
   outline: none;
+  line-height: 16pt;
 }
 .default-button:hover,
 .default-button:active,
@@ -6160,6 +6161,10 @@ OLD FONTS
 .lobby-topbar-center.nickname {
   color: #59add5;
   cursor: default;
+}
+.lobby-topbar-center.nickname .inner-nickname {
+  white-space: nowrap;
+  overflow: hidden;
 }
 .lobby-topbar-right {
   font-size: 12pt;
@@ -6752,6 +6757,7 @@ contest-header .prize-managerpoints::after {
   border: 0;
   outline-offset: 0px;
   outline: none;
+  line-height: 16pt;
   -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
   -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
@@ -8100,6 +8106,7 @@ scoring-rules #scoringForForwards .rules-content {
   border: 0;
   outline-offset: 0px;
   outline: none;
+  line-height: 16pt;
 }
 .action-button-save:hover,
 .action-button-save:active,
@@ -9149,6 +9156,7 @@ shop-comp .price .buy-button {
   border: 0;
   outline-offset: 0px;
   outline: none;
+  line-height: 16pt;
   background: #a1c931;
   background: -moz-linear-gradient(top, #a1c931 0%, #749516 100%);
   background: -webkit-linear-gradient(top, #a1c931 0%, #749516 100%);
@@ -11321,6 +11329,7 @@ view-contest {
   border: 0;
   outline-offset: 0px;
   outline: none;
+  line-height: 16pt;
   flex: 0 0 40px;
 }
 .soccer-player-list-section .make-change-btn:hover,
@@ -11850,6 +11859,7 @@ lobby .create-custom-contest-button {
   border: 0;
   outline-offset: 0px;
   outline: none;
+  line-height: 16pt;
   flex: 0 0 60px;
   font-size: 16pt;
 }
@@ -13584,6 +13594,7 @@ my-contests {
   border: 0;
   outline-offset: 0px;
   outline: none;
+  line-height: 16pt;
   font-size: 14pt;
   width: 250px;
 }
@@ -14120,6 +14131,7 @@ soccer-player-stats {
   border: 0;
   outline-offset: 0px;
   outline: none;
+  line-height: 16pt;
 }
 .soccer-player-stats-header-description .soccer-player-stats-header-button-add:hover,
 .soccer-player-stats-header-description .soccer-player-stats-header-button-add:active,
@@ -14734,6 +14746,7 @@ enter-contest {
   border: 0;
   outline-offset: 0px;
   outline: none;
+  line-height: 16pt;
   flex: 0 0 40px;
 }
 .lineup-selector-section .confirm-btn:hover,
@@ -14852,6 +14865,7 @@ enter-contest {
   border: 0;
   outline-offset: 0px;
   outline: none;
+  line-height: 16pt;
   height: 38px;
 }
 .lineup-actions-wrapper div button:hover,
@@ -17394,6 +17408,8 @@ leaderboard .leaderboard-column-position {
 }
 leaderboard .leaderboard-column-name {
   flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
   text-align: left;
 }
 leaderboard .leaderboard-column-score {
@@ -17587,6 +17603,7 @@ ranking .ranking-button {
   border: 0;
   outline-offset: 0px;
   outline: none;
+  line-height: 16pt;
 }
 ranking .ranking-button:hover,
 ranking .ranking-button:active,
@@ -19846,6 +19863,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   border: 0;
   outline-offset: 0px;
   outline: none;
+  line-height: 16pt;
   width: 200px;
 }
 .action-button:hover,
@@ -20327,6 +20345,7 @@ view-contest-entry .confirm-btn {
   border: 0;
   outline-offset: 0px;
   outline: none;
+  line-height: 16pt;
   flex: 0 0 40px;
 }
 view-contest-entry .confirm-btn:hover,
@@ -21335,6 +21354,7 @@ home .goto-next-contest-button {
   border: 0;
   outline-offset: 0px;
   outline: none;
+  line-height: 16pt;
   margin-top: 25px;
   padding: 15px;
   font-size: 16pt;
@@ -21808,6 +21828,7 @@ create-contest .btn-confirm-contest {
   border: 0;
   outline-offset: 0px;
   outline: none;
+  line-height: 16pt;
   flex: 0 0 60px;
   align-self: center;
   font-size: 16pt;

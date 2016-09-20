@@ -155,7 +155,7 @@ class AppTopBarStateConfig {
     } else {
       centerColumn = '''
         <div class="lobby-topbar-center nickname">
-          <span>''' + (profileService.isLoggedIn ? profileService.user.nickName : " ") + '''</span>
+          <div class="inner-nickname">''' + (profileService.isLoggedIn ? profileService.user.nickName : " ") + '''</div>
         </div>''';
     }
     rightColumn = '''

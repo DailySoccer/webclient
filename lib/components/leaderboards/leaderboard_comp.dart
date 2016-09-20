@@ -97,6 +97,7 @@ class LeaderboardComp implements ShadowRootAware, DetachAware{
         _appStateService.appTabBarState.show = false;
       break;
     }
+    refreshList();
     _appStateService.appSecondaryTabBarState.tabList = tabList;
   }
   
@@ -124,36 +125,7 @@ class LeaderboardComp implements ShadowRootAware, DetachAware{
       userId = _profileService.user.userId;
     }
 
-    _leaderboardService.getUsers()
-      .then((List<User> users) {
-        List<User> pointsUserListTmp = new List<User>.from(users);
-        List<User> moneyUserListTmp = new List<User>.from(users);
-
-        pointsUserListTmp.sort( (User u1, User u2) => u2.trueSkill.compareTo(u1.trueSkill) );
-        moneyUserListTmp.sort( (User u1, User u2) => u2.earnedMoney.compareTo(u1.earnedMoney) );
-
-        int i = 1;
-        pointsUserList = pointsUserListTmp.map((User u) => {
-              'position': i++,
-              'id': u.userId,
-              'name': u.nickName,
-              'points': StringUtils.parseTrueSkill(u.trueSkill)
-              }).toList();
-
-        i = 1;
-        moneyUserList = moneyUserListTmp.map((User u) => {
-            'position': i++,
-            'id': u.userId,
-            'name': u.nickName,
-            'points': u.earnedMoney
-          }).toList();
-
-        playerPointsInfo = pointsUserList.firstWhere( (u) => isThePlayer(u['id']), orElse: () => pointsUserList.first);
-        playerMoneyInfo = moneyUserList.firstWhere( (u) => isThePlayer(u['id']), orElse: () => moneyUserList.first);
-        userShown = isLoggedPlayer? _profileService.user : users.firstWhere( (u) => isThePlayer(u.userId), orElse: () => users.first);
-
-        loadingService.isLoading = false;
-      });
+    refreshList();
       
       //refreshTopBar();
       //_appStateService.appSecondaryTabBarState.tabList = tabList;
@@ -169,6 +141,40 @@ class LeaderboardComp implements ShadowRootAware, DetachAware{
     e.classes.add("active");
   }
   */
+  
+  void refreshList() {
+    _leaderboardService.getUsers()
+          .then((List<User> users) {
+            List<User> pointsUserListTmp = new List<User>.from(users);
+            List<User> moneyUserListTmp = new List<User>.from(users);
+
+            pointsUserListTmp.sort( (User u1, User u2) => u2.trueSkill.compareTo(u1.trueSkill) );
+            moneyUserListTmp.sort( (User u1, User u2) => u2.earnedMoney.compareTo(u1.earnedMoney) );
+
+            int i = 1;
+            pointsUserList = pointsUserListTmp.map((User u) => {
+                  'position': i++,
+                  'id': u.userId,
+                  'name': u.nickName,
+                  'points': StringUtils.parseTrueSkill(u.trueSkill)
+                  }).toList();
+
+            i = 1;
+            moneyUserList = moneyUserListTmp.map((User u) => {
+                'position': i++,
+                'id': u.userId,
+                'name': u.nickName,
+                'points': u.earnedMoney
+              }).toList();
+
+            playerPointsInfo = pointsUserList.firstWhere( (u) => isThePlayer(u['id']), orElse: () => pointsUserList.first);
+            playerMoneyInfo = moneyUserList.firstWhere( (u) => isThePlayer(u['id']), orElse: () => moneyUserList.first);
+            userShown = isLoggedPlayer? _profileService.user : users.firstWhere( (u) => isThePlayer(u.userId), orElse: () => users.first);
+
+            loadingService.isLoading = false;
+          });
+  }
+  
   
   void detach() {
       _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR);

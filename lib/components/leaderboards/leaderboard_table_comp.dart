@@ -32,7 +32,7 @@ class LeaderboardTableComp {
   
   String playerHint = 'Eres un crack!!';
   
-  bool isThePlayer(id) => id == _profileService.user.userId;//highlightedElement['id'];
+  bool isThePlayer(id) => id == profileService.user.userId;//highlightedElement['id'];
   //String get playerName => getLocalizedText("the-player");
   
   int rows = 0;
@@ -44,7 +44,7 @@ class LeaderboardTableComp {
     return StringUtils.translate(key, group);
   }
   
-  LeaderboardTableComp (this._profileService) {
+  LeaderboardTableComp (this.profileService) {
     //_streamListener = _scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
   }
   /*
@@ -119,6 +119,6 @@ class LeaderboardTableComp {
     calculateShownElements();
   }
   
-  ProfileService _profileService;
+  ProfileService profileService;
   
 }

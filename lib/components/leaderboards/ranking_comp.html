@@ -1,41 +1,28 @@
 <div class="ranking-wrapper">
-  <div class="ranking-points-title">RANKING DE HABILIDAD</div>
-  <div class="user-points-data">
-    <div class="first-column">
-      <div class="ranking-label">Nivel: {{profileService.user.managerLevel.floor()}}</div>
-      <div class="user-name">{{profileService.user.nickName}}</div> 
-    </div>
-    <div class="second-column">
-      <div class="ranking-label">CLAS.</div>
-      <div class="user-position">{{myPointsData['position']}}</div> 
-    </div>
-    <div class="third-column">
-      <div class="ranking-label">PUNTOS</div>
-      <div class="user-points">{{myPointsData['points']}}</div> 
-    </div>
+  <div class="ranking-title ranking-points-title">
+    <img class="ranking-logo" src="images/ranking/rankingPointsLogo.png" alt="logo ranking jugones">
+    <span>RANKING<br>DE HABILIDAD</span>
   </div>
-  <img class="ranking-points-logo" src="images/ranking/rankingPointsLogo.png" alt="logo ranking jugones">
+  <div class="user-data user-points-data">
+    <div class="user-position">{{myPointsData['position']}}º</div>
+    <div class="user-name">{{profileService.user.nickName}}</div>
+    <div class="user-points">{{myPointsData['points']}}</div>
+  </div>
   <leaderboard-table minimized show-header="false" table-elements="pointsUserList" rows="3"></leaderboard-table>
   <button class="ranking-button" ng-click="showFullPointsRanking()"> VER COMPLETO</button>
 </div>
 
 <div class="ranking-wrapper">
-  <div class="ranking-money-title">RANKING DE GANANCIAS</div>
-  <div class="user-money-data">
-    <div class="first-column">
-      <div class="user-level"></div>
-      <div class="user-name">{{profileService.user.nickName}}</div> 
-    </div>
-    <div class="second-column">
-      <div class="ranking-label">CLAS.</div>
-      <div class="user-pos-value">{{myMoneyData['position']}}</div> 
-    </div>
-    <div class="third-column">
-      <div class="ranking-label">MONEDAS</div> 
-      <div class="user-points">{{myMoneyData['points']}}</div> 
-    </div>
+  <div class="ranking-title ranking-money-title">
+    <img class="ranking-logo" src="images/ranking/rankingMoneyLogo.png" alt="logo ranking forrados">
+    <span>RANKING<br>DE GANANCIAS</span>
   </div>
-  <img class="ranking-money-logo" src="images/ranking/rankingMoneyLogo.png" alt="logo ranking forrados">
+  <div class="user-data user-money-data">
+    <div class="user-position">{{myMoneyData['position']}}º</div>
+    <div class="user-name">{{profileService.user.nickName}}</div>
+    <div class="user-points">{{myMoneyData['points']}}</div>
+  </div>
   <leaderboard-table minimized show-header="false" table-elements="moneyUserList" rows="3"></leaderboard-table>
   <button class="ranking-button" ng-click="showFullMoneyRanking()"> VER COMPLETO</button>
 </div>
+

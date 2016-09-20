@@ -17404,7 +17404,9 @@ leaderboard .leaderboard-table-data.player-position {
   color: #59add5;
 }
 leaderboard .leaderboard-column-position {
-  flex: 0 0 100px;
+  flex: 0 0 80px;
+  text-align: right;
+  padding-right: 15px;
 }
 leaderboard .leaderboard-column-name {
   flex: 1;
@@ -17413,7 +17415,9 @@ leaderboard .leaderboard-column-name {
   text-align: left;
 }
 leaderboard .leaderboard-column-score {
-  flex: 0 0 100px;
+  flex: 0 0 75px;
+  text-align: left;
+  padding-left: 10px;
 }
 leaderboard leaderboard-table[minimized] .leaderboard-data-wrapper {
   overflow-y: auto;
@@ -17442,144 +17446,96 @@ ranking {
   justify-content: space-between;
 }
 ranking .ranking-wrapper {
-  position: relative;
-}
-ranking .user-points-data {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  -webkit-flex-flow: row nowrap;
-  flex-flow: row nowrap;
-  background: #0d0d0f;
-  background: -moz-linear-gradient(top, #0d0d0f 0%, #242529 15%, #242529 90%, #1c1d20 100%);
-  background: -webkit-linear-gradient(top, #0d0d0f 0%, #242529 15%, #242529 90%, #1c1d20 100%);
-  background: linear-gradient(to bottom, #0d0d0f 0%, #242529 15%, #242529 90%, #1c1d20 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0d0d0f', endColorstr='#1c1d20', GradientType=0);
-  font-size: 12pt;
-  color: #59add5;
-  text-transform: uppercase;
-  text-align: left;
-  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
-  justify-content: flex-end;
-  border-bottom: 1px solid #757993;
-  padding: 15px 15px 5px 135px;
-}
-ranking .user-money-data {
-  font-size: 12pt;
-  color: #fa9c19;
-  text-transform: uppercase;
-  text-align: left;
-  text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
-  background: #0d0d0f;
-  background: -moz-linear-gradient(top, #0d0d0f 0%, #242529 15%, #242529 90%, #1c1d20 100%);
-  background: -webkit-linear-gradient(top, #0d0d0f 0%, #242529 15%, #242529 90%, #1c1d20 100%);
-  background: linear-gradient(to bottom, #0d0d0f 0%, #242529 15%, #242529 90%, #1c1d20 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0d0d0f', endColorstr='#1c1d20', GradientType=0);
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-flow: row nowrap;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  border-bottom: 1px solid #757993;
-  padding: 15px 135px 5px 15px;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  flex: 0 0 auto;
+  background-color: #242529;
 }
 ranking .ranking-title {
-  flex: 1;
-  font-size: 20pt;
-  color: #59add5;
-  text-transform: uppercase;
-  text-align: left;
-  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
-  padding-top: 20px;
-}
-ranking .ranking-points-title {
-  flex: 1;
-  font-size: 20pt;
-  color: #59add5;
-  text-transform: uppercase;
-  text-align: left;
-  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
-  padding-top: 20px;
-  text-align: right;
-  border-bottom: 1px solid #757993;
-  padding: 40px 25px 5px 0;
-}
-ranking .ranking-money-title {
-  flex: 1;
-  font-size: 20pt;
-  color: #59add5;
-  text-transform: uppercase;
-  text-align: left;
-  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
-  padding-top: 20px;
-  color: #fa9c19;
-  border-bottom: 1px solid #757993;
-  padding: 40px 0 5px 25px;
-}
-ranking .first-column {
+  flex: 0 0 90px;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  -webkit-flex-flow: column nowrap;
-  flex-flow: column nowrap;
-  flex: 1;
-  align-self: flex-end;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  font-size: 20pt;
+  color: #59add5;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  background-color: #181818;
+  border-bottom: 1px solid #757993;
+  justify-content: flex-start;
   overflow: hidden;
-  white-space: nowrap;
+  padding: 0px 8px 5px 8px;
+  text-align: left;
 }
-ranking .second-column {
+ranking .ranking-title span {
+  flex: 1;
+  line-height: 1;
+  padding: 25px 5px 5px 5px;
+}
+ranking .ranking-title .ranking-logo {
+  flex: 0 0 135px;
+  height: 135px;
+}
+ranking .ranking-title.ranking-money-title {
+  color: #fa9c19;
+}
+ranking .ranking-money-title span {
+  order: 0;
+  text-align: right;
+}
+ranking .ranking-money-title .ranking-logo {
+  order: 1;
+}
+ranking .user-data {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  -webkit-flex-flow: column nowrap;
-  flex-flow: column nowrap;
-  flex: 0 0 65px;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  flex: 0 0 32px;
+  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
+  -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
+  font-size: 12pt;
+  color: #59add5;
+  text-transform: uppercase;
+  text-align: left;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  border-bottom: 1px solid #757993;
+  padding: 5px 0;
 }
-ranking .third-column {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-flow: column nowrap;
-  flex-flow: column nowrap;
-  flex: 0 0 65px;
+ranking .user-name {
+  flex: 1;
+  text-align: left;
+  overflow: hidden;
 }
-ranking .ranking-label {
-  font-size: 10pt;
-  color: #757993;
+ranking .user-position {
+  flex: 0 0 80px;
+  text-align: right;
+  padding-right: 15px;
 }
-ranking .ranking-points-logo {
-  position: absolute;
-  top: 0px;
-  left: 0px;
+ranking .user-points {
+  flex: 0 0 75px;
+  text-align: left;
+  padding-left: 10px;
 }
-ranking .ranking-money-logo {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-}
-ranking leaderboard-table {
-  background-color: #242529;
+ranking .user-money-data {
+  color: #fa9c19;
 }
 ranking .ranking-button {
   background-image: -webkit-linear-gradient(top, #0d75a6 0%, #0c4c6a 100%);

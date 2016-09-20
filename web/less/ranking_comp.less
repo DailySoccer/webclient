@@ -6,75 +6,77 @@ ranking {
 	justify-content: space-between;
   
   
-	.ranking-wrapper { position: relative;}
-	.user-points-data {
-		.flex-container-row();
-		.dark-limits-grey-inside();
-		.mainfont_light(12pt, @blueLight, left, uppercase);
-		justify-content: flex-end;
-		border-bottom: 1px solid @grey-bluish;
-		padding: 15px 15px 5px 135px;
-	}
-	.user-money-data {
-		.mainfont_light(12pt, @orange, left, uppercase);
-		.dark-limits-grey-inside();
-		.flex-container-row();
-		justify-content: flex-start;
-		border-bottom: 1px solid @grey-bluish;
-		padding: 15px 135px 5px 15px;
-	}
+  .ranking-wrapper {
+    .flex-container-col();
+    .flex-elem-fixed(auto);
+    background-color: #242529;
+  }
+  
+  
 	.ranking-title {
-		.flex-elem-fluid();
+		.flex-elem-fixed(90px);
+    .flex-container-row();
 		.mainfont_light(20pt, @blueLight, left, uppercase);
-		padding-top: 20px;
+		padding: 0px 8px 5px 8px;
+    background-color: #181818;
+    border-bottom: 1px solid #757993;
+    justify-content: flex-start;
+    overflow: hidden;
+    padding: 0px 8px 5px 8px;
+    text-align: left;
+    
+    span {
+	    .flex-elem-fluid();
+      line-height: 1;
+      padding: 25px 5px 5px 5px;
+    }
+    .ranking-logo {
+      .flex-elem-fixed(135px);
+      height: 135px;
+    }
+    &.ranking-money-title {
+      color: @orange;
+    }
 	}
-	.ranking-points-title{
-		.ranking-title();
-		text-align: right;
-		border-bottom: 1px solid @grey-bluish;
-    	padding: 40px 25px 5px 0;
+  .ranking-money-title {
+    span {
+      order: 0;
+      text-align: right;
+    }
+    .ranking-logo {
+      order: 1;
+    }
+  }
+  
+  .user-data {
+    .flex-container-row();
+		.flex-elem-fixed(32px);
+    .elevation(3);
+		.mainfont_light(12pt, @blueLight, left, uppercase);
+    
+    border-bottom: 1px solid #757993;
+    padding: 5px 0;
+  }
+	.user-name {
+    .flex-elem-fluid();
+    text-align: left;
+    overflow: hidden;
+  }
+	.user-position {
+		.flex-elem-fixed(80px);
+    text-align: right;
+    padding-right: 15px;
+  }
+	.user-points {
+		.flex-elem-fixed(75px);
+    text-align: left;
+    padding-left: 10px;
+  }
+  
+	.user-money-data {
+    color: @orange;
 	}
-	.ranking-money-title {
-		.ranking-title();
-		color: @orange;
-		border-bottom: 1px solid @grey-bluish;
-    	padding: 40px 0 5px 25px;
-	}
-	.first-column {
-		.flex-container-col();
-		.flex-elem-fluid();
-		align-self: flex-end;
-		overflow: hidden;
-    	white-space: nowrap;
-	}
-	.second-column {
-		.flex-container-col();
-		.flex-elem-fixed(65px);
-	}
-	.third-column {
-		.flex-container-col();
-		.flex-elem-fixed(65px);
-	}
-	.ranking-label {
-		font-size: 10pt;
-		color: @grey-bluish;
-	}
-	.user-name {}
-	.user-position {}
-	.user-points {}
-	.ranking-points-logo {
-		position: absolute;
-		top: 0px;
-		left: 0px;
-	}
-	.ranking-money-logo {
-		position: absolute;
-		top: 0px;
-		right: 0px;
-	}
-	leaderboard-table {
-		background-color: @grey-dark;
-	}
+  
 	.ranking-button {
 		.default-button();
 	}

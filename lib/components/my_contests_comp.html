@@ -6,14 +6,13 @@
     <div class="information-no-contest">{{liveContestsMessage}}</div>
   </div>
 
-  <div ng-unless="loadingService.isLoading" ng-switch="hasLiveContests" class="no-contest-sup-wrapper">
+  <div ng-switch="hasLiveContests" class="contest-list-wrapper">
     <!-- lista vacía -->
     <div class="no-contests-wrapper" ng-switch-when="false">
-      <div class="no-contests-content">
-        <div ng-bind-html="getLocalizedText('nolives')"></div>
-        <div class="no-contests-text">{{getLocalizedText("nolivestip1")}} <strong data-toggle="tab" ng-click="gotoSection('upcoming')">{{getLocalizedText("nolivestip2")}}</strong> {{getLocalizedText("nolivestip3")}}</div>
-      </div>
-      <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
+        <img class="no-contests-icon" src="images/icon-torneo-vivo-vacio.png">
+        <div class="no-contests-title">No estás jugando ningún torneo en este momento</div>
+        <div class="no-contests-subtitle">Échale un vistazo a los próximos torneos para ver cuando empiezan</div>
+        <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
     </div>
     <!-- lista de concursos -->
     <div class="list-container" ng-switch-when="true">
@@ -29,15 +28,14 @@
   <div class="resume-bar">
     <div class="information-no-contest">{{waitingContestsMessage}}</div>
   </div>
-
-  <div ng-unless="loadingService.isLoading" ng-switch="hasWaitingContests" class="no-contest-sup-wrapper">
+ 
+  <div ng-switch="hasWaitingContests" class="contest-list-wrapper">
     <!-- lista vacía -->
     <div class="no-contests-wrapper" ng-switch-when="false">
-      <div class="no-contests-content">
-        <div ng-bind-html="getLocalizedText('noupcomings')"></div>
-        <div class="no-contests-text">{{getLocalizedText("noupcomingstip1")}}</div>
-      </div>
-      <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
+        <img class="no-contests-icon" src="images/icon-torneo-proximo-vacio.png">
+        <div class="no-contests-title">NO ESTAS PARTICIPANDO EN NINGÚN TORNEO</div>
+        <div class="no-contests-subtitle">Ve a lista de torneos, elije uno y empieza a jugar</div>
+        <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
     </div>
     <!-- lista de concursos -->
     <div class="list-container" ng-switch-when="true">
@@ -54,14 +52,13 @@
     <div class="information-no-contest">{{historyContestsMessage}}</div>
   </div>
 
-  <div ng-unless="loadingService.isLoading" ng-switch="hasHistoryContests" class="no-contest-sup-wrapper">
+  <div ng-switch="hasHistoryContests" class="contest-list-wrapper">
     <!-- lista vacía -->
     <div class="no-contests-wrapper" ng-switch-when="false">
-      <div class="no-contests-content">
-        <div ng-bind-html="getLocalizedText('nohistorys')"></div>
-        <div class="no-contests-text">{{getLocalizedText("nohistoryestip")}}</div>
-      </div>
-      <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
+        <img class="no-contests-icon" src="images/icon-torneo-historico-vacio.png">
+        <div class="no-contests-title">aún no has jugado niún torneo<br>¿A qué esperas para empezar a ganar?</div>
+        <div class="no-contests-subtitle">Ve a lista de torneos, elije uno y empieza a jugar</div>
+        <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
     </div>
     <!-- lista de concursos -->
     <div class="list-container" ng-switch-when="true">

@@ -20,7 +20,7 @@ my-contests {
 		text-align: center;
   	}
 }
-.no-contest-sup-wrapper {
+.contest-list-wrapper {
   .flex-elem-fluid();
   .flex-container-col();
 }
@@ -31,6 +31,28 @@ my-contests {
   	align-items: center;
   	justify-content: center;
 }
+.no-contests-icon {
+	.flex-elem-fixed(auto);
+	margin-bottom: 30px;
+}
+.no-contests-title {
+	.flex-elem-fixed(auto);
+	.mainfont_light(14pt, @grey-bluish, center, uppercase);
+	margin-bottom: 15px;
+}
+.no-contests-subtitle {
+	.flex-elem-fixed(auto);
+	.bodyfont_light(11pt, @white, center);
+	margin-bottom: 100px;
+	padding: 0px 40px;
+}
+.btn-go-to-contest {
+	.flex-elem-fixed(auto);
+	.default-button();
+	font-size: 14pt;
+	width: 250px;
+}
+/*
 .no-contests-content {
 	.flex-elem-fluid();
   	.flex-elem-fixed();
@@ -40,12 +62,8 @@ my-contests {
 .no-contests-text strong {
 	color: @blueLight;
 }
+*/
 
-.btn-go-to-contest {
-	.default-button();
-	width: 50%;
-	margin-top: 15px;
-}
 
 /*
 .contest-count{

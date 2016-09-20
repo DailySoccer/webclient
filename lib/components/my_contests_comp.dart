@@ -12,7 +12,7 @@ import 'package:webclient/services/server_error.dart';
 import 'dart:async';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/tutorial_service.dart';
-import 'package:webclient/utils/game_metrics.dart';
+//import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/app_state_service.dart';
 import 'package:webclient/services/leaderboard_service.dart';
 

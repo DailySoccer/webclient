@@ -61,7 +61,7 @@ class ViewContestEntryComp {
   bool get showInviteButton => (contest != null) ?  contest.maxEntries != contest.contestEntries.length : false;
 
   // A esta pantalla entramos de varias maneras:
-  bool get isModeViewing => _viewContestEntryMode == "viewing"; // Clickamos "my_contests->proximos->ver".
+  bool get isModeViewing => _viewContestEntryMode == "viewing"; // Clickamos "my_contests->próximos->ver".
   bool get isModeCreated => _viewContestEntryMode == "created"; // Acabamos de crearla a traves de enter_contest
   bool get isModeEdited  => _viewContestEntryMode == "edited";  // Venimos de editarla a traves de enter_contest.
   bool get isModeSwapped => _viewContestEntryMode == "swapped"; // Acabamos de crearla pero el servidor nos cambio a otro concurso pq el nuestro estaba lleno.

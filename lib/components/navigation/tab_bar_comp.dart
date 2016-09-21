@@ -64,7 +64,7 @@ class TabBarComp {
                                                 iconImage: "images/tabBar/Button_Home.png",
                                                 destination: "home"),
             MY_CONTESTS  : new TabBarItemComp( _router, 
-                                                name: "Proximos",
+                                                name: "Próximos",
                                                 iconImage: "images/tabBar/Button_Nexts.png", 
                                                 destination: "my_contests",
                                                 parameters: {"section": "upcoming"}),

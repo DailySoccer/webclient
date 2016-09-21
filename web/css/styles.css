@@ -13505,10 +13505,10 @@ my-contests {
 }
 .resume-bar {
   font-size: 9pt;
-  color: #757993;
+  color: #cacdcf;
   text-transform: inherit;
   text-align: inherit;
-  text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  text-shadow: 1px 1px 1px rgba(202, 205, 207, 0.004);
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   display: -webkit-box;
@@ -13519,7 +13519,7 @@ my-contests {
   -webkit-flex-flow: row nowrap;
   flex-flow: row nowrap;
   flex: 0 0 26px;
-  border-bottom: 1px solid #cacdcf;
+  border-bottom: 1px solid rgba(210, 210, 210, 0.3);
   align-items: center;
 }
 .resume-bar .information-no-contest {

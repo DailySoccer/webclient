@@ -9,35 +9,23 @@
                 "parents": {
                     "/*": [
                         {
+                            "xml": "<feature name=\"InAppPurchase\"><param name=\"ios-package\" value=\"InAppPurchase\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"ComScorePlugin\"><param name=\"ios-package\" value=\"ComScorePlugin\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"AppVersion\"><param name=\"ios-package\" value=\"AppVersion\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"Console\"><param name=\"ios-package\" value=\"CDVLogger\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"FacebookConnectPlugin\"><param name=\"ios-package\" value=\"FacebookConnectPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<plugin name=\"FacebookConnectPlugin\" value=\"FacebookConnectPlugin\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<access origin=\"https://m.facebook.com\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<access origin=\"https://graph.facebook.com\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<access origin=\"https://api.facebook.com\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<access origin=\"https://*.fbcdn.net\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<access origin=\"https://*.akamaihd.net\" />",
+                            "xml": "<feature name=\"Device\"><param name=\"ios-package\" value=\"CDVDevice\" /></feature>",
                             "count": 1
                         },
                         {
@@ -61,61 +49,11 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"AppVersion\"><param name=\"ios-package\" value=\"AppVersion\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"Device\"><param name=\"ios-package\" value=\"CDVDevice\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"InAppPurchase\"><param name=\"ios-package\" value=\"InAppPurchase\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"ComScorePlugin\"><param name=\"ios-package\" value=\"ComScorePlugin\" /></feature>",
+                            "xml": "<feature name=\"SocialSharing\"><param name=\"ios-package\" value=\"SocialSharing\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         },
                         {
                             "xml": "<feature name=\"UniversalLinks\"><param name=\"ios-package\" value=\"CULPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"SocialSharing\"><param name=\"ios-package\" value=\"SocialSharing\" /><param name=\"onload\" value=\"true\" /></feature>",
-                            "count": 1
-                        }
-                    ]
-                }
-            },
-            "*-Info.plist": {
-                "parents": {
-                    "FacebookAppID": [
-                        {
-                            "xml": "<string>1684730951797091</string>",
-                            "count": 1
-                        }
-                    ],
-                    "FacebookDisplayName": [
-                        {
-                            "xml": "<string>Fútbol Cuatro</string>",
-                            "count": 1
-                        }
-                    ],
-                    "CFBundleURLTypes": [
-                        {
-                            "xml": "<array><dict><key>CFBundleURLSchemes</key><array><string>fb1684730951797091</string></array></dict></array>",
-                            "count": 1
-                        }
-                    ],
-                    "NSAppTransportSecurity": [
-                        {
-                            "xml": "<dict><key>NSExceptionDomains</key><dict><key>facebook.com</key><dict><key>NSIncludesSubdomains</key><true /><key>NSThirdPartyExceptionRequiresForwardSecrecy</key><false /></dict><key>fbcdn.net</key><dict><key>NSIncludesSubdomains</key><true /><key>NSThirdPartyExceptionRequiresForwardSecrecy</key><false /></dict><key>akamaihd.net</key><dict><key>NSIncludesSubdomains</key><true /><key>NSThirdPartyExceptionRequiresForwardSecrecy</key><false /></dict></dict></dict>",
-                            "count": 1
-                        }
-                    ],
-                    "LSApplicationQueriesSchemes": [
-                        {
-                            "xml": "<array><string>fbapi</string><string>fb-messenger-api</string><string>fbauth2</string><string>fbshareextension</string></array>",
                             "count": 1
                         }
                     ]
@@ -124,7 +62,19 @@
         }
     },
     "installed_plugins": {
+        "cc.fovea.cordova.purchase": {
+            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
+        },
+        "com.comscoreplugin": {
+            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
+        },
+        "cordova-plugin-app-version": {
+            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
+        },
         "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
+        },
+        "cordova-plugin-device": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         },
         "cordova-plugin-inappbrowser": {
@@ -139,27 +89,39 @@
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         },
-        "cordova-plugin-app-version": {
-            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
-        },
-        "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
-        },
-        "cc.fovea.cordova.purchase": {
-            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
-        },
-        "com.comscoreplugin": {
+        "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         },
         "cordova-universal-links-plugin": {
-            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
-        },
-        "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         }
     },
     "dependent_plugins": {},
     "modules": [
+        {
+            "file": "plugins/cc.fovea.cordova.purchase/www/store-ios.js",
+            "id": "cc.fovea.cordova.purchase.InAppPurchase",
+            "pluginId": "cc.fovea.cordova.purchase",
+            "clobbers": [
+                "store"
+            ]
+        },
+        {
+            "file": "plugins/com.comscoreplugin/www/ComScorePlugin.js",
+            "id": "com.comscoreplugin.ComScorePlugin",
+            "pluginId": "com.comscoreplugin",
+            "clobbers": [
+                "window.ComScorePlugin"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-app-version/www/AppVersionPlugin.js",
+            "id": "cordova-plugin-app-version.AppVersionPlugin",
+            "pluginId": "cordova-plugin-app-version",
+            "clobbers": [
+                "cordova.getAppVersion"
+            ]
+        },
         {
             "file": "plugins/cordova-plugin-console/www/console-via-logger.js",
             "id": "cordova-plugin-console.console",
@@ -174,6 +136,14 @@
             "pluginId": "cordova-plugin-console",
             "clobbers": [
                 "cordova.logger"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-device/www/device.js",
+            "id": "cordova-plugin-device.device",
+            "pluginId": "cordova-plugin-device",
+            "clobbers": [
+                "device"
             ]
         },
         {
@@ -202,35 +172,11 @@
             ]
         },
         {
-            "file": "plugins/cordova-plugin-app-version/www/AppVersionPlugin.js",
-            "id": "cordova-plugin-app-version.AppVersionPlugin",
-            "pluginId": "cordova-plugin-app-version",
+            "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
+            "id": "cordova-plugin-x-socialsharing.SocialSharing",
+            "pluginId": "cordova-plugin-x-socialsharing",
             "clobbers": [
-                "cordova.getAppVersion"
-            ]
-        },
-        {
-            "file": "plugins/cordova-plugin-device/www/device.js",
-            "id": "cordova-plugin-device.device",
-            "pluginId": "cordova-plugin-device",
-            "clobbers": [
-                "device"
-            ]
-        },
-        {
-            "file": "plugins/cc.fovea.cordova.purchase/www/store-ios.js",
-            "id": "cc.fovea.cordova.purchase.InAppPurchase",
-            "pluginId": "cc.fovea.cordova.purchase",
-            "clobbers": [
-                "store"
-            ]
-        },
-        {
-            "file": "plugins/com.comscoreplugin/www/ComScorePlugin.js",
-            "id": "com.comscoreplugin.ComScorePlugin",
-            "pluginId": "com.comscoreplugin",
-            "clobbers": [
-                "window.ComScorePlugin"
+                "window.plugins.socialsharing"
             ]
         },
         {
@@ -239,14 +185,6 @@
             "pluginId": "cordova-universal-links-plugin",
             "clobbers": [
                 "universalLinks"
-            ]
-        },
-        {
-            "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
-            "id": "cordova-plugin-x-socialsharing.SocialSharing",
-            "pluginId": "cordova-plugin-x-socialsharing",
-            "clobbers": [
-                "window.plugins.socialsharing"
             ]
         }
     ]

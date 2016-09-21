@@ -13,7 +13,6 @@
                             "count": 1
                         }
                     ],
-                    "application": [],
                     "/*": [
                         {
                             "xml": "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />",
@@ -46,6 +45,10 @@
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"ComScorePlugin\"><param name=\"android-package\" value=\"com.comscoreplugin.ComScorePlugin\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"AppVersion\"><param name=\"android-package\" value=\"uk.co.whiteoctober.cordova.AppVersion\" /></feature>",
                             "count": 1
                         },
@@ -70,15 +73,11 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"ComScorePlugin\"><param name=\"android-package\" value=\"com.comscoreplugin.ComScorePlugin\" /></feature>",
+                            "xml": "<feature name=\"SocialSharing\"><param name=\"android-package\" value=\"nl.xservices.plugins.SocialSharing\" /></feature>",
                             "count": 1
                         },
                         {
                             "xml": "<feature name=\"UniversalLinks\"><param name=\"android-package\" value=\"com.nordnetab.cordova.ul.UniversalLinksPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"SocialSharing\"><param name=\"android-package\" value=\"nl.xservices.plugins.SocialSharing\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -93,17 +92,15 @@
                         }
                     ]
                 }
-            },
-            "res/values/facebookconnect.xml": {
-                "parents": {
-                    "/*": []
-                }
             }
         }
     },
     "installed_plugins": {
         "cc.fovea.cordova.purchase": {
             "BILLING_KEY": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmGVdxhnxvtimkirR63ht+DsU/6N31fkEAxQk3s+v5R2HtuxUeX6YjJ8TGoXqCSPzYUh9WlTNWbxir7XBx+p7VNKjsGU5nz4kbImyy8XiS5CtISljSH/csV+l/8xmiIFjkFZ540N/pAXffoP6HlGe+HBVE/UsApxegVIt2Eq952vXorNdGyZa3CzmnVG3nWBQhsNIjNWWvcbirZ5PPHqfJB+ylnxxdFZeZw6Eff1ndX9I1lMqtBU/vOdmu9TinecJcEywOpYeZ5WBxI6APeq7uwOZRUX8v321ZLN/I+/sKUEuJzRwHUqThAQeaQMwrQbDnsoPdxrK2Ngd/v2sBUksfwIDAQAB",
+            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
+        },
+        "com.comscoreplugin": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         },
         "cordova-plugin-app-version": {
@@ -127,13 +124,10 @@
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         },
-        "com.comscoreplugin": {
+        "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         },
         "cordova-universal-links-plugin": {
-            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
-        },
-        "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         }
     },
@@ -145,6 +139,14 @@
             "pluginId": "cc.fovea.cordova.purchase",
             "clobbers": [
                 "store"
+            ]
+        },
+        {
+            "file": "plugins/com.comscoreplugin/www/ComScorePlugin.js",
+            "id": "com.comscoreplugin.ComScorePlugin",
+            "pluginId": "com.comscoreplugin",
+            "clobbers": [
+                "window.ComScorePlugin"
             ]
         },
         {
@@ -195,11 +197,11 @@
             "runs": true
         },
         {
-            "file": "plugins/com.comscoreplugin/www/ComScorePlugin.js",
-            "id": "com.comscoreplugin.ComScorePlugin",
-            "pluginId": "com.comscoreplugin",
+            "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
+            "id": "cordova-plugin-x-socialsharing.SocialSharing",
+            "pluginId": "cordova-plugin-x-socialsharing",
             "clobbers": [
-                "window.ComScorePlugin"
+                "window.plugins.socialsharing"
             ]
         },
         {
@@ -208,14 +210,6 @@
             "pluginId": "cordova-universal-links-plugin",
             "clobbers": [
                 "universalLinks"
-            ]
-        },
-        {
-            "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
-            "id": "cordova-plugin-x-socialsharing.SocialSharing",
-            "pluginId": "cordova-plugin-x-socialsharing",
-            "clobbers": [
-                "window.plugins.socialsharing"
             ]
         }
     ]

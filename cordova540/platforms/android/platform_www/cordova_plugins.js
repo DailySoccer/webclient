@@ -9,6 +9,14 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/com.comscoreplugin/www/ComScorePlugin.js",
+        "id": "com.comscoreplugin.ComScorePlugin",
+        "pluginId": "com.comscoreplugin",
+        "clobbers": [
+            "window.ComScorePlugin"
+        ]
+    },
+    {
         "file": "plugins/cordova-plugin-app-version/www/AppVersionPlugin.js",
         "id": "cordova-plugin-app-version.AppVersionPlugin",
         "pluginId": "cordova-plugin-app-version",
@@ -56,11 +64,11 @@ module.exports = [
         "runs": true
     },
     {
-        "file": "plugins/com.comscoreplugin/www/ComScorePlugin.js",
-        "id": "com.comscoreplugin.ComScorePlugin",
-        "pluginId": "com.comscoreplugin",
+        "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
+        "id": "cordova-plugin-x-socialsharing.SocialSharing",
+        "pluginId": "cordova-plugin-x-socialsharing",
         "clobbers": [
-            "window.ComScorePlugin"
+            "window.plugins.socialsharing"
         ]
     },
     {
@@ -69,14 +77,6 @@ module.exports = [
         "pluginId": "cordova-universal-links-plugin",
         "clobbers": [
             "universalLinks"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
-        "id": "cordova-plugin-x-socialsharing.SocialSharing",
-        "pluginId": "cordova-plugin-x-socialsharing",
-        "clobbers": [
-            "window.plugins.socialsharing"
         ]
     }
 ];

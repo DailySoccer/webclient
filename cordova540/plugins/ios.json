@@ -7,7 +7,19 @@
         "files": {}
     },
     "installed_plugins": {
+        "cc.fovea.cordova.purchase": {
+            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
+        },
+        "com.comscoreplugin": {
+            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
+        },
+        "cordova-plugin-app-version": {
+            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
+        },
         "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
+        },
+        "cordova-plugin-device": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         },
         "cordova-plugin-inappbrowser": {
@@ -22,22 +34,10 @@
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         },
-        "cordova-plugin-app-version": {
-            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
-        },
-        "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
-        },
-        "cc.fovea.cordova.purchase": {
-            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
-        },
-        "com.comscoreplugin": {
+        "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         },
         "cordova-universal-links-plugin": {
-            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
-        },
-        "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         }
     },

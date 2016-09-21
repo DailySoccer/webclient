@@ -439,88 +439,80 @@ tc.put("packages/webclient/components/account/shop_comp.html", new HttpResponse(
     <div class="coins-count">{{item.quantity}}</div>
   </div>
   <div class="price">
-    <div class="free-increment" ng-if="item.freeIncrement > 0">
+    <!--div class="free-increment" ng-if="item.freeIncrement > 0">
       <span class="free-increment-count">{{item.freeIncrement}}</span>
       <span class="free-increment-desc">{{getLocalizedText('free')}}</span>
-    </div>
+    </div-->
     <div class="buy-button" ng-click="buyGold(item.id)">{{item.price}}</div>
   </div>
 </div>
 
 <ng-view></ng-view>"""));
-tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpResponse(200, r"""<div class="profile-content">
-  <!-- INFORMACION PERSONAL -->
-  <div class="personal-data profile-section">
-    <div class="data-content">
-      <div class="data-row">
-        <span class="data-key">{{getLocalizedText("fullname")}}: </span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span>
-      </div>
-      <div class="data-row">
-        <span class="data-key">{{getLocalizedText("nick")}}: </span><span class="data-value">{{userData.nickName}}</span>
-      </div>
-      <div class="data-row" ng-if="userData.canChangeEmail">
-        <span class="data-key">{{getLocalizedText("email")}}: </span><span class="data-value">{{userData.email}}</span>
-      </div>
-      <div class="data-row" ng-if="userData.canChangePassword">
-        <span class="data-key">{{getLocalizedText("pass")}}: </span><span class="data-value">********</span>
-      </div>
+tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpResponse(200, r"""
+<!-- INFORMACION PERSONAL -->
+<div class="personal-data profile-section">
+  <div class="profile-data-content">
+    <!--div class="profile-data-row">
+      <span class="profile-data-key">{{getLocalizedText("fullname")}}: </span><span class="profile-data-value">{{userData.firstName + ' ' + userData.lastName}}</span>
+    </div-->
+    <div class="profile-data-row">
+      <span class="profile-data-key">{{getLocalizedText("nick")}}: </span>
+      <span class="profile-data-value">{{userData.nickName}}</span>
     </div>
-    <div class="data-action">
-      <button class="action-button" ng-click="editPersonalData()">EDITAR</button>
-   </div>
-  </div>  
-  <!-- ORO -->
-  <div class="pocket-data profile-section">
-    <div class="data-header">
-        <span class="data-header-title">ORO</span>
-    </div>
-    <div class="data-content">
-      <div class="data-row">
-        <div class="wrapper-box">
-          <span class="data-value-big">{{userData.balance}} <img class="coin-icon" src="images/icon-coin-lg.png"></span>
-        </div>
-      </div>
-    </div>
-    <div class="data-action">
-      <button class="action-button" ng-click="goBuyGold()">COMPRAR</button>
+    <!--div class="profile-data-row" ng-if="userData.canChangeEmail">
+      <span class="profile-data-key">{{getLocalizedText("email")}}: </span><span class="profile-data-value">{{userData.email}}</span>
+    </div-->
+    <!--div class="profile-data-row" ng-if="userData.canChangePassword">
+      <span class="profile-data-key">{{getLocalizedText("pass")}}: </span><span class="profile-data-value">********</span>
+    </div-->
+  </div>
+  <div class="profile-data-action">
+    <button class="action-button" ng-click="editPersonalData()">Editar</button>
+  </div>
+</div>
+
+<!-- ORO -->
+<div class="pocket-data profile-section">
+  <div class="profile-data-content">
+    <div class="profile-data-row">
+      <span class="profile-data-key">Oro:</span>
+      <span class="profile-data-value">{{userData.balance}}<img class="coin-icon" src="images/topBar/icon_coin_big.png"></span> 
     </div>
   </div>
-    <!-- ACHIEVEMENTS -->
-  <div class="pocket-data profile-section">
-    <div class="data-header">
-        <span class="data-header-title">LOGROS</span>
+  <div class="profile-data-action">
+    <button class="action-button" ng-click="goBuyGold()">Comprar</button>
+  </div>
+</div>
+
+<!-- CLASIFICACIONES -->
+<div class="ranking-data profile-section">
+  <div class="profile-data-content">
+    <div class="profile-data-row single-ranking-info">
+      <span class="profile-data-key">Ranking<br>de habilidad</span>
+      <span class="profile-data-value profile-data-ranking-position" ng-show="!loadingService.isLoading">{{rankingPointsPosition}}º</span>
+      <span class="profile-data-value profile-data-ranking-points" ng-show="!loadingService.isLoading">{{rankingPoints}} Ptos.</span>
     </div>
-    <div class="data-content">
-      <div class="data-row">
-        <div class="wrapper-box">
-          <span class="data-value-big">{{achievementsEarned}} de {{achievementList.length.toString()}} LOGROS CONSEGUIDOS</span>
-        </div>
-      </div>
+    <div class="profile-data-row single-ranking-info">
+      <span class="profile-data-key">Ranking<br>de ganancias</span>
+      <span class="profile-data-value profile-data-ranking-position" ng-show="!loadingService.isLoading">{{rankingMoneyPosition}}º</span>
+      <span class="profile-data-value profile-data-ranking-points" ng-show="!loadingService.isLoading">{{rankingMoney}} Mon.</span>
     </div>
-    <div class="data-action">
-      <button class="action-button" ng-click="goAchievements()">VER LOGROS</button>
+  </div>
+  <div class="profile-data-action">
+    <button class="action-button" ng-click="goLeaderboard()">Ver rankings</button>
+  </div>
+</div>
+
+<!-- ACHIEVEMENTS -->
+<div class="achievements-data profile-section">
+  <div class="profile-data-content">
+    <div class="profile-data-row">
+      <span class="profile-data-key">Logros</span>
+      <div class="profile-data-value"><span class="profile-data-earned-achivements">{{achievementsEarned}}</span><span class="profile-data-total-achivements">de {{achievementList.length.toString()}}</span></div>
     </div>
-  </div>  
-  <!-- CLASIFICACIONES -->
-  <div class="ranking-data profile-section">
-    <div class="data-header">
-      <span class="data-header-title">CLASIFICACIÓN</span>
-    </div>
-    <div class="data-content">
-      <div class="single-ranking-info wrapper-box">
-        <div class="ranking-position" ng-show="!loadingService.isLoading">Por puntuación </div>
-        <div class="data-value-big" ng-show="!loadingService.isLoading">{{rankingPointsPosition}}º</div>
-        <div class="data-value" ng-show="!loadingService.isLoading">({{rankingPoints}})</div>
-      </div>
-      <div class="single-ranking-info wrapper-box">
-        <div class="ranking-position" ng-show="!loadingService.isLoading">Por ganancias </div>
-        <div class="data-value-big" ng-show="!loadingService.isLoading">{{rankingMoneyPosition}}º</div>
-        <div class="data-value" ng-show="!loadingService.isLoading">({{rankingMoney}})</div>
-      </div>
-    </div>
-    <div class="data-action">
-      <button class="action-button" ng-click="goLeaderboard()">VER RANKINGS</button>
-    </div>
+  </div>
+  <div class="profile-data-action">
+    <button class="action-button" ng-click="goAchievements()">Ver logros</button>
   </div>
 </div>
 
@@ -651,7 +643,7 @@ tc.put("packages/webclient/components/create_contest_comp.html", new HttpRespons
   <!-- RIVALES -->
   <div class="create-contest-title-wrapper">
     <div class="title-num">2</div>
-    <div class="title-name">SELECCIONA EL NUMERO DE RIVALES</div>
+    <div class="title-name">SELECCIONA EL NÚMERO DE RIVALES</div>
   </div>
   <div class="create-contest-section">
     <div class="title">{{getLocalizedText("rivals")}}</div>
@@ -851,7 +843,11 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
 
 <!-- SOCCER PLAYER STATS -->
 <section class="soccer-player-list-section" ng-show="isSoccerPlayerStatsActive">
-  <soccer-player-stats contest-id="contest.contestId" instance-soccer-player-id="instanceSoccerPlayerDisplayInfo" selectable-player="false"></soccer-player-stats>
+  <soccer-player-stats instance-soccer-player-id="instanceSoccerPlayerDisplayInfo"
+                       contest-id="contest.contestId"
+                       selectable-player="isCurrentSelectedAdded"
+                       on-action-click="onSoccerPlayerActionButtonFromStats(playerId)">
+  </soccer-player-stats>
 </section>
 
 <!-- CONTEST INFO -->
@@ -977,7 +973,10 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_stats_comp.htm
         <div class="soccer-player-name">{{currentInfoData['name']}}</div>
       </div>
       <div class="soccer-player-stats-header-button-add-wrapper">
-        <button class="soccer-player-stats-header-button-add" ng-click="onAddClicked()" ng-disabled="!selectablePlayer">{{getLocalizedText("buttonadd")}}</button>
+        <button class="soccer-player-stats-header-button-add" ng-click="onAddClick()" ng-if="isSelectionMode">{{selectablePlayer ? "AÑADIR" : "QUITAR"}}</button>
+        <i class="material-icons" ng-click="onAddFavClick()" ng-class="[selectablePlayer ? 'addFav' : 'removeFav']" ng-if="isFavoriteMode" alt="Favorito">
+          {{!selectablePlayer ? '&#xE83A;' : '&#xE838;'}}
+        </i>
       </div>
     </div>
     <div class="soccer-player-stats-info">
@@ -1144,15 +1143,15 @@ tc.put("packages/webclient/components/home_comp.html", new HttpResponse(200, r""
 
 <div class="action-buttons-wrapper">
   <div class="button-scout" ng-click="goScouting()">
-    <div class="image-container"><img src="images/home/ojeador.png" alt="ojeador"></div>
+    <i class="material-icons">&#xE8A3;</i>
     <div class="button-label">OJEADOR</div>
   </div>
   <div class="button-shop" ng-click="goShop()">
-    <div class="image-container"><img src="images/home/tienda.png" alt="tienda"></div>
+    <i class="material-icons">&#xE54C;</i>
     <div class="button-label">TIENDA</div>
   </div>
   <div class="button-history" ng-click="goHistory()">
-    <div class="image-container"><img src="images/home/historico.png" alt="historico"></div>
+    <i class="material-icons">&#xE889;</i>
     <div class="button-label">HISTÓRICO</div>
   </div>
 </div>
@@ -1290,7 +1289,7 @@ tc.put("packages/webclient/components/leaderboards/leaderboard_table_comp.html",
   <div class="leaderboard-table-data" ng-class="{'player-position':isThePlayer(element['id'])}" ng-repeat="element in shownElements">
       <div class="leaderboard-column-position">{{element['position']}}º</div>    
       <div class="leaderboard-column-name">
-        {{element['id'] == profileService.user.userId ? 'TU' : element['name']}}
+        {{element['id'] == profileService.user.userId ? 'TÚ' : element['name']}}
         <!--social-share parameters-by-map="sharingInfo" show-like="false" inline ng-if="isThePlayer(element['id']) && sharingInfo != null"></social-share-->
       </div>
       <div class="leaderboard-column-score">{{element['points']}}</div>
@@ -1773,8 +1772,8 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
     <!-- lista vacía -->
     <div class="no-contests-wrapper" ng-switch-when="false">
         <img class="no-contests-icon" src="images/icon-torneo-proximo-vacio.png">
-        <div class="no-contests-title">NO ESTAS PARTICIPANDO EN NINGÚN TORNEO</div>
-        <div class="no-contests-subtitle">Ve a lista de torneos, elije uno y empieza a jugar</div>
+        <div class="no-contests-title">NO ESTÁS PARTICIPANDO EN NINGÚN TORNEO</div>
+        <div class="no-contests-subtitle">Ve a la lista de torneos, elije uno y empieza a jugar</div>
         <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
     </div>
     <!-- lista de concursos -->
@@ -1954,7 +1953,7 @@ tc.put("packages/webclient/components/scouting/scouting_comp.html", new HttpResp
 
 <!-- SOCCER PLAYER STATS -->
 <section class="soccer-player-list-section" ng-if="isSoccerPlayerStatsActive">
-  <soccer-player-stats instance-soccer-player-id="selectedPlayerId" selectable-player="false"></soccer-player-stats>
+  <soccer-player-stats action-mode="statsMode" instance-soccer-player-id="selectedPlayerId" selectable-player="isCurrentSelectedFavorite" on-action-click="addToFavorites(playerId)"></soccer-player-stats>
 </section>"""));
 tc.put("packages/webclient/components/scouting/scouting_league_comp.html", new HttpResponse(200, r""" <soccer-players-scalinglist  soccer-players="allSoccerPlayers"
                               lineup-filter="favoritesPlayers"

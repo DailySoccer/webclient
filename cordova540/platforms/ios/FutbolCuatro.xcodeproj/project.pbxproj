@@ -54,7 +54,6 @@
 		C4B23D30AF9A4AE6A6B887C8 /* CDVInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABA67184D774A7F8447F97B /* CDVInAppBrowser.m */; };
 		4C4D18ED894A45F490EC74D4 /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E3A094433F74099B064F80E /* CDVSplashScreen.m */; };
 		634A17E16CC4499ABEFACBB6 /* CDVViewController+SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = B42C744392F245369BB4AA4A /* CDVViewController+SplashScreen.m */; };
-		AF7CAE6785E24FA8B44CA0AF /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B5425B72BFFE425F819C213A /* CDVStatusBar.m */; };
 		BBD8BC63249E435EB0BC7A3A /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D235B1FAB7043ECABEA40C9 /* NSString+URLEncoding.m */; };
 		39329826491B423BB4087496 /* SocialSharing.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE5F284C38C4F559910C73F /* SocialSharing.m */; };
 		1106CD8477B640A9887388B7 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EE6311423704105A6AEF2FC /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -73,6 +72,7 @@
 		F58DDEAFC69F4C2BBDA5D8C7 /* CULConfigXmlParser.h in Resources */ = {isa = PBXBuildFile; fileRef = 976498311F4749FEA98DDA1A /* CULConfigXmlParser.h */; };
 		C1A2E634961E43DF80A25BC1 /* NSBundle+CULPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 139EFA8334FB49928EADB630 /* NSBundle+CULPlugin.m */; };
 		62095FAFD98249C5856E2D4F /* NSBundle+CULPlugin.h in Resources */ = {isa = PBXBuildFile; fileRef = EBBB73809F674E11B7BD6A6D /* NSBundle+CULPlugin.h */; };
+		9E18DE5BE9F14234B9D19E86 /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E20ECA8EB94DCE899B9686 /* CDVStatusBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,8 +177,6 @@
 		B42C744392F245369BB4AA4A /* CDVViewController+SplashScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVViewController+SplashScreen.m"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		3D956246C971493FBF187F7A /* CDVSplashScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVSplashScreen.h"; path = "cordova-plugin-splashscreen/CDVSplashScreen.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		4F2DB3E7F371443A89902BF9 /* CDVViewController+SplashScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVViewController+SplashScreen.h"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.h"; sourceTree = "<group>"; fileEncoding = 4; };
-		B5425B72BFFE425F819C213A /* CDVStatusBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVStatusBar.m"; path = "cordova-plugin-statusbar/CDVStatusBar.m"; sourceTree = "<group>"; fileEncoding = 4; };
-		80320F33FCBD42FA80727FC0 /* CDVStatusBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVStatusBar.h"; path = "cordova-plugin-statusbar/CDVStatusBar.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		9D235B1FAB7043ECABEA40C9 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSString+URLEncoding.m"; path = "cordova-plugin-x-socialsharing/NSString+URLEncoding.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		7DE5F284C38C4F559910C73F /* SocialSharing.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "SocialSharing.m"; path = "cordova-plugin-x-socialsharing/SocialSharing.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		12BAF6DEBED54FB387222C17 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSString+URLEncoding.h"; path = "cordova-plugin-x-socialsharing/NSString+URLEncoding.h"; sourceTree = "<group>"; fileEncoding = 4; };
@@ -203,6 +201,8 @@
 		1A21AAAEF0674A6EA6BE7773 /* AppDelegate+CULPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "AppDelegate+CULPlugin.h"; path = "cordova-universal-links-plugin/AppDelegate+CULPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		788E46E0EA664B9884D0691A /* CDVPluginResult+CULPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVPluginResult+CULPlugin.h"; path = "cordova-universal-links-plugin/JS/CDVPluginResult+CULPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		046CC6DB301042DEB2E544F9 /* CDVInvokedUrlCommand+CULPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVInvokedUrlCommand+CULPlugin.h"; path = "cordova-universal-links-plugin/JS/CDVInvokedUrlCommand+CULPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		48E20ECA8EB94DCE899B9686 /* CDVStatusBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVStatusBar.m"; path = "cordova-plugin-statusbar/CDVStatusBar.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		89A195E759AB453DA04B5FA9 /* CDVStatusBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVStatusBar.h"; path = "cordova-plugin-statusbar/CDVStatusBar.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,8 +348,6 @@
 				B42C744392F245369BB4AA4A /* CDVViewController+SplashScreen.m */,
 				3D956246C971493FBF187F7A /* CDVSplashScreen.h */,
 				4F2DB3E7F371443A89902BF9 /* CDVViewController+SplashScreen.h */,
-				B5425B72BFFE425F819C213A /* CDVStatusBar.m */,
-				80320F33FCBD42FA80727FC0 /* CDVStatusBar.h */,
 				9D235B1FAB7043ECABEA40C9 /* NSString+URLEncoding.m */,
 				7DE5F284C38C4F559910C73F /* SocialSharing.m */,
 				12BAF6DEBED54FB387222C17 /* NSString+URLEncoding.h */,
@@ -372,6 +370,8 @@
 				1A21AAAEF0674A6EA6BE7773 /* AppDelegate+CULPlugin.h */,
 				788E46E0EA664B9884D0691A /* CDVPluginResult+CULPlugin.h */,
 				046CC6DB301042DEB2E544F9 /* CDVInvokedUrlCommand+CULPlugin.h */,
+				48E20ECA8EB94DCE899B9686 /* CDVStatusBar.m */,
+				89A195E759AB453DA04B5FA9 /* CDVStatusBar.h */,
 			);
 			name = Plugins;
 			path = "FutbolCuatro/Plugins";
@@ -567,7 +567,6 @@
 				C4B23D30AF9A4AE6A6B887C8 /* CDVInAppBrowser.m in Sources */,
 				4C4D18ED894A45F490EC74D4 /* CDVSplashScreen.m in Sources */,
 				634A17E16CC4499ABEFACBB6 /* CDVViewController+SplashScreen.m in Sources */,
-				AF7CAE6785E24FA8B44CA0AF /* CDVStatusBar.m in Sources */,
 				BBD8BC63249E435EB0BC7A3A /* NSString+URLEncoding.m in Sources */,
 				39329826491B423BB4087496 /* SocialSharing.m in Sources */,
 				D011B47AE49A4D0487A32D9E /* CULPlugin.m in Sources */,
@@ -584,6 +583,7 @@
 				F58DDEAFC69F4C2BBDA5D8C7 /* CULConfigXmlParser.h in Resources */,
 				C1A2E634961E43DF80A25BC1 /* NSBundle+CULPlugin.m in Sources */,
 				62095FAFD98249C5856E2D4F /* NSBundle+CULPlugin.h in Resources */,
+				9E18DE5BE9F14234B9D19E86 /* CDVStatusBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

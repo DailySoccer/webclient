@@ -13518,8 +13518,8 @@ my-contests {
   display: flex;
   -webkit-flex-flow: row nowrap;
   flex-flow: row nowrap;
-  flex: 0 0 40px;
-  border-bottom: 1px solid rgba(210, 210, 210, 0.3);
+  flex: 0 0 26px;
+  border-bottom: 1px solid #cacdcf;
   align-items: center;
 }
 .resume-bar .information-no-contest {

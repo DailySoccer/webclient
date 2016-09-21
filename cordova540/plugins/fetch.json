@@ -31,14 +31,6 @@
         "is_top_level": true,
         "variables": {}
     },
-    "cordova-plugin-statusbar": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-statusbar@2.1.1"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "cordova-plugin-app-version": {
         "source": {
             "type": "registry",
@@ -87,6 +79,14 @@
         "source": {
             "type": "registry",
             "id": "cordova-plugin-x-socialsharing"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-statusbar": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-statusbar"
         },
         "is_top_level": true,
         "variables": {}

@@ -9,6 +9,7 @@ window.onApplicationPause = function() {
 };
 window.onApplicationResume = function() {
   ComScorePlugin.onEnterForeground();
+  StatusBar.hide();
 
   if (typeof dartOnApplicationResume !== 'undefined') {
     console.log("Calling dart callback on app RESUME");
@@ -107,6 +108,8 @@ document.addEventListener('deviceready', function () {
   ComScorePlugin.autoUpdateForeground(1);
   ComScorePlugin.autoUpdateBackground(1);
   ComScorePlugin.start();
+  
+  StatusBar.hide();
   
   console.log(" # DEVICE READY EVENT - FB");
   fbIsInit = true;

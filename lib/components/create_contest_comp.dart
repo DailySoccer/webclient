@@ -90,7 +90,7 @@ class CreateContestComp  {
     _appStateService.appSecondaryTabBarState.tabList = [];
     _appStateService.appTabBarState.show = true;*/
     _appStateService.appSecondaryTabBarState.tabList = [];
-    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Crea un torneo para ti y tus amigos");
+    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Crear torneo");
     _appStateService.appTopBarState.activeState.onLeftColumn = AppTopBarState.GOBACK;
     _appStateService.appTabBarState.show = false;
     

@@ -6,7 +6,7 @@
 
 <div class="leaderboard-data-wrapper">
   <div class="leaderboard-table-data" ng-class="{'player-position':isThePlayer(element['id'])}" ng-repeat="element in shownElements">
-      <div class="leaderboard-column-position">{{element['position']}} </div>    
+      <div class="leaderboard-column-position">{{element['position']}}º</div>    
       <div class="leaderboard-column-name">
         {{element['name'] == profileService.user.nickName ? 'TU' : element['name']}}
         <!--social-share parameters-by-map="sharingInfo" show-like="false" inline ng-if="isThePlayer(element['id']) && sharingInfo != null"></social-share-->

@@ -504,7 +504,7 @@ tc.put("packages/webclient/components/account/user_profile_comp.html", new HttpR
   <!-- CLASIFICACIONES -->
   <div class="ranking-data profile-section">
     <div class="data-header">
-      <span class="data-header-title">CLASEFICACIÓN</span>
+      <span class="data-header-title">CLASIFICACIÓN</span>
     </div>
     <div class="data-content">
       <div class="single-ranking-info wrapper-box">
@@ -1120,23 +1120,23 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_scalinglist_c
 </div>"""));
 tc.put("packages/webclient/components/home_comp.html", new HttpResponse(200, r"""<div class="main-info-wrapper">
   <div class="info-columns-wrapper">
-    <div class="info-column gold">
+    <div class="info-column gold" ng-click="goShop()">
       <div class="label">ORO</div>
       <div  class="icon"><img src="images/home/oro.png"></div>
       <div class=amount>{{user.goldBalance}}</div>
     </div>
-    <div class="info-column level">
+    <div class="info-column level" ng-click="goRanking()">
       <div class="label">NIVEL</div>
       <div  class="icon"><img src="images/home/{{skillLevelImage}}"></div>
       <div class=amount>{{skillLevelName}}</div>
     </div>
-    <div class="info-column achievements">
+    <div class="info-column achievements" ng-click="goAchievements()">
       <div class="label">LOGROS</div>
       <div  class="icon"><img src="images/home/logros.png"></div>
       <div class=amount>{{achievementsEarned}} / {{achievementList.length.toString()}}</div>
     </div>
   </div>
-  <div class="next-contest-wrapper" ng-if="infoBarText != ''">
+  <div class="next-contest-wrapper">
     <div class="next-contest-label">{{infoBarText}}</div>
     <button class="goto-next-contest-button" ng-click="goNextContest()">JUGAR</button>
   </div>
@@ -1290,53 +1290,41 @@ tc.put("packages/webclient/components/leaderboards/leaderboard_table_comp.html",
   <div class="leaderboard-table-data" ng-class="{'player-position':isThePlayer(element['id'])}" ng-repeat="element in shownElements">
       <div class="leaderboard-column-position">{{element['position']}} </div>    
       <div class="leaderboard-column-name">
-        {{element['name']}}
+        {{element['name'] == profileService.user.nickName ? 'TU' : element['name']}}
         <!--social-share parameters-by-map="sharingInfo" show-like="false" inline ng-if="isThePlayer(element['id']) && sharingInfo != null"></social-share-->
       </div>
       <div class="leaderboard-column-score">{{element['points']}}</div>
   </div>
 </div>"""));
 tc.put("packages/webclient/components/leaderboards/ranking_comp.html", new HttpResponse(200, r"""<div class="ranking-wrapper">
-  <div class="ranking-points-title">RANKING DE HABILIDAD</div>
-  <div class="user-points-data">
-    <div class="first-column">
-      <div class="ranking-label">Nivel: {{profileService.user.managerLevel.floor()}}</div>
-      <div class="user-name">{{profileService.user.nickName}}</div> 
-    </div>
-    <div class="second-column">
-      <div class="ranking-label">CLAS.</div>
-      <div class="user-position">{{myPointsData['position']}}</div> 
-    </div>
-    <div class="third-column">
-      <div class="ranking-label">PUNTOS</div>
-      <div class="user-points">{{myPointsData['points']}}</div> 
-    </div>
+  <div class="ranking-title ranking-points-title">
+    <img class="ranking-logo" src="images/ranking/rankingPointsLogo.png" alt="logo ranking jugones">
+    <span>RANKING<br>DE HABILIDAD</span>
   </div>
-  <img class="ranking-points-logo" src="images/ranking/rankingPointsLogo.png" alt="logo ranking jugones">
+  <div class="user-data user-points-data">
+    <div class="user-position">{{myPointsData['position']}}º</div>
+    <div class="user-name">{{profileService.user.nickName}}</div>
+    <div class="user-points">{{myPointsData['points']}}</div>
+  </div>
   <leaderboard-table minimized show-header="false" table-elements="pointsUserList" rows="3"></leaderboard-table>
   <button class="ranking-button" ng-click="showFullPointsRanking()"> VER COMPLETO</button>
 </div>
 
 <div class="ranking-wrapper">
-  <div class="ranking-money-title">RANKING DE GANANCIAS</div>
-  <div class="user-money-data">
-    <div class="first-column">
-      <div class="user-level"></div>
-      <div class="user-name">{{profileService.user.nickName}}</div> 
-    </div>
-    <div class="second-column">
-      <div class="ranking-label">CLAS.</div>
-      <div class="user-pos-value">{{myMoneyData['position']}}</div> 
-    </div>
-    <div class="third-column">
-      <div class="ranking-label">MONEDAS</div> 
-      <div class="user-points">{{myMoneyData['points']}}</div> 
-    </div>
+  <div class="ranking-title ranking-money-title">
+    <img class="ranking-logo" src="images/ranking/rankingMoneyLogo.png" alt="logo ranking forrados">
+    <span>RANKING<br>DE GANANCIAS</span>
   </div>
-  <img class="ranking-money-logo" src="images/ranking/rankingMoneyLogo.png" alt="logo ranking forrados">
+  <div class="user-data user-money-data">
+    <div class="user-position">{{myMoneyData['position']}}º</div>
+    <div class="user-name">{{profileService.user.nickName}}</div>
+    <div class="user-points">{{myMoneyData['points']}}</div>
+  </div>
   <leaderboard-table minimized show-header="false" table-elements="moneyUserList" rows="3"></leaderboard-table>
   <button class="ranking-button" ng-click="showFullMoneyRanking()"> VER COMPLETO</button>
-</div>"""));
+</div>
+
+"""));
 tc.put("packages/webclient/components/legalese_and_help/help_info_comp.html", new HttpResponse(200, r"""<div id="helpInfo">
 
   <!-- header title -->
@@ -1737,7 +1725,7 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
 
 
 <!-- Descomentar cuando hablitemos la funcionalidad de crear torneos -->
-<button class="create-custom-contest-button" ng-click="inviteFriends()">{{getStaticLocalizedText("challengeyourfriendsbutton")}}</button>
+<button class="create-custom-contest-button" ng-click="onCreateContestClick()">{{getStaticLocalizedText("challengeyourfriendsbutton")}}</button>
 
 <!-- Punto de insercion de nuestra ruta hija contest-info (modal)
 <ng-view  ng-show="!loadingService.isLoading"></ng-view> -->
@@ -1758,14 +1746,13 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
     <div class="information-no-contest">{{liveContestsMessage}}</div>
   </div>
 
-  <div ng-unless="loadingService.isLoading" ng-switch="hasLiveContests" class="no-contest-sup-wrapper">
+  <div ng-switch="hasLiveContests" class="contest-list-wrapper">
     <!-- lista vacía -->
     <div class="no-contests-wrapper" ng-switch-when="false">
-      <div class="no-contests-content">
-        <div ng-bind-html="getLocalizedText('nolives')"></div>
-        <div class="no-contests-text">{{getLocalizedText("nolivestip1")}} <strong data-toggle="tab" ng-click="gotoSection('upcoming')">{{getLocalizedText("nolivestip2")}}</strong> {{getLocalizedText("nolivestip3")}}</div>
-      </div>
-      <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
+        <img class="no-contests-icon" src="images/icon-torneo-vivo-vacio.png">
+        <div class="no-contests-title">No estás jugando ningún torneo en este momento</div>
+        <div class="no-contests-subtitle">Échale un vistazo a los próximos torneos para ver cuando empiezan</div>
+        <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
     </div>
     <!-- lista de concursos -->
     <div class="list-container" ng-switch-when="true">
@@ -1781,15 +1768,14 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
   <div class="resume-bar">
     <div class="information-no-contest">{{waitingContestsMessage}}</div>
   </div>
-
-  <div ng-unless="loadingService.isLoading" ng-switch="hasWaitingContests" class="no-contest-sup-wrapper">
+ 
+  <div ng-switch="hasWaitingContests" class="contest-list-wrapper">
     <!-- lista vacía -->
     <div class="no-contests-wrapper" ng-switch-when="false">
-      <div class="no-contests-content">
-        <div ng-bind-html="getLocalizedText('noupcomings')"></div>
-        <div class="no-contests-text">{{getLocalizedText("noupcomingstip1")}}</div>
-      </div>
-      <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
+        <img class="no-contests-icon" src="images/icon-torneo-proximo-vacio.png">
+        <div class="no-contests-title">NO ESTAS PARTICIPANDO EN NINGÚN TORNEO</div>
+        <div class="no-contests-subtitle">Ve a lista de torneos, elije uno y empieza a jugar</div>
+        <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
     </div>
     <!-- lista de concursos -->
     <div class="list-container" ng-switch-when="true">
@@ -1806,14 +1792,13 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
     <div class="information-no-contest">{{historyContestsMessage}}</div>
   </div>
 
-  <div ng-unless="loadingService.isLoading" ng-switch="hasHistoryContests" class="no-contest-sup-wrapper">
+  <div ng-switch="hasHistoryContests" class="contest-list-wrapper">
     <!-- lista vacía -->
     <div class="no-contests-wrapper" ng-switch-when="false">
-      <div class="no-contests-content">
-        <div ng-bind-html="getLocalizedText('nohistorys')"></div>
-        <div class="no-contests-text">{{getLocalizedText("nohistoryestip")}}</div>
-      </div>
-      <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
+        <img class="no-contests-icon" src="images/icon-torneo-historico-vacio.png">
+        <div class="no-contests-title">aún no has jugado niún torneo<br>¿A qué esperas para empezar a ganar?</div>
+        <div class="no-contests-subtitle">Ve a lista de torneos, elije uno y empieza a jugar</div>
+        <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
     </div>
     <!-- lista de concursos -->
     <div class="list-container" ng-switch-when="true">
@@ -1968,7 +1953,7 @@ tc.put("packages/webclient/components/scouting/scouting_comp.html", new HttpResp
 </section>
 
 <!-- SOCCER PLAYER STATS -->
-<section class="soccer-player-list-section" ng-show="isSoccerPlayerStatsActive">
+<section class="soccer-player-list-section" ng-if="isSoccerPlayerStatsActive">
   <soccer-player-stats instance-soccer-player-id="selectedPlayerId" selectable-player="false"></soccer-player-stats>
 </section>"""));
 tc.put("packages/webclient/components/scouting/scouting_league_comp.html", new HttpResponse(200, r""" <soccer-players-scalinglist  soccer-players="allSoccerPlayers"

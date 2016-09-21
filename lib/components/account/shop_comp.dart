@@ -95,8 +95,9 @@ class ShopComp implements DetachAware{
           gProduct["description"]    = info.description.toLowerCase().replaceAll('(futbol cuatro)', '');
           gProduct["captionImage"]   = info.imageUrl;
           gProduct["price"]          = info.storePrice; // info.price.toStringWithCurrency();
-          gProduct["quantity"]       = info.gained.amount.toInt().toString();
-          gProduct["freeIncrement"]  = info.free.amount.toInt();
+          // Sumamos la cantidad + el incremento gratuito
+          gProduct["quantity"]       = (info.gained.amount.toInt() + info.free.amount.toInt()).toString();
+          gProduct["freeIncrement"]  = 0;//info.free.amount.toInt();
           gProduct["isMostPopular"]  = info.mostPopular;
           gProduct["purchasable"]    = true;
           goldProducts.add(gProduct);
@@ -114,8 +115,9 @@ class ShopComp implements DetachAware{
             gProduct["description"]    = info.description.toLowerCase().replaceAll('(futbol cuatro)', '');
             gProduct["captionImage"]   = info.imageUrl;
             gProduct["price"]          = info.storePrice; // info.price.toStringWithCurrency();
-            gProduct["quantity"]       = info.gained.amount.toInt().toString();
-            gProduct["freeIncrement"]  = info.free.amount.toInt();
+            // Sumamos la cantidad + el incremento gratuito
+            gProduct["quantity"]       = (info.gained.amount.toInt() + info.free.amount.toInt()).toString();
+            gProduct["freeIncrement"]  = 0;//info.free.amount.toInt();
             gProduct["isMostPopular"]  = info.mostPopular;
             gProduct["purchasable"]    = true;
             goldProducts.add(gProduct);

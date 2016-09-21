@@ -6,10 +6,10 @@
     <div class="coins-count">{{item.quantity}}</div>
   </div>
   <div class="price">
-    <div class="free-increment" ng-if="item.freeIncrement > 0">
+    <!--div class="free-increment" ng-if="item.freeIncrement > 0">
       <span class="free-increment-count">{{item.freeIncrement}}</span>
       <span class="free-increment-desc">{{getLocalizedText('free')}}</span>
-    </div>
+    </div-->
     <div class="buy-button" ng-click="buyGold(item.id)">{{item.price}}</div>
   </div>
 </div>

@@ -19775,10 +19775,10 @@ user-profile {
 }
 .profile-data-key {
   font-size: 11pt;
-  color: #757993;
+  color: #fa9c19;
   text-transform: uppercase;
   text-align: left;
-  text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   line-height: 1;

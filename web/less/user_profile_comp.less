@@ -1,46 +1,70 @@
-.profile-content {
+user-profile {
 	.flex-container-col();
 	background-color: @grey-dark;
 }
+
 .profile-section {
+	.flex-elem-fixed(auto);
+	.flex-container-row();
+  border-bottom: 1px solid @grey-translucid;
+  padding: 16px;
+}
+
+.profile-data-content {
+	.flex-elem-fluid();
+	.flex-container-row();
+}
+.profile-data-row {
 	.flex-elem-fluid();
 	.flex-container-col();
 }
-.wrapper-box {
-	.flex-elem-fluid();
+
+.profile-data-key {
+	.mainfont_light(11pt, @grey-bluish, left, uppercase);
+  line-height: 1;
+}
+.profile-data-value {
+	.mainfont_light(22pt, @blueLight, left, uppercase);
+  line-height: 1;
+  margin-top: 6px;
+  overflow: hidden;
+  white-space: nowrap;
+  
+  .coin-icon {
+    vertical-align: bottom;
+    margin-left: 15px;
+  }
+}
+.personal-data .profile-data-value {
+  margin-right: 15px;
+}
+.pocket-data .profile-data-value {
+  margin-top: 0;
+}
+.profile-data-action {
 	.flex-container-col();
-	align-items: center;
+	.flex-elem-fixed(120px);
+  justify-content: flex-end;
+  
+  .action-button {
+    .default-button();
+    .mainfont_light(12pt, @white, center, uppercase);
+    width: 120px;
+  }
 }
-.data-content {
-	.mainfont_light(10pt, @grey-bluish, left, uppercase);
-	padding: 15px 15px 0px 15px;
+.profile-data-ranking-position {
+	.mainfont_light(20pt, @blueLight, left, uppercase);
 }
-.data-header {
-	.mainfont_light(14pt, @orange, center, uppercase);
-	.elevation(3);
-	padding: 10px 0;
-    background-color: @soft-black;
-    border-bottom: 1px solid @grey-translucid;
+.profile-data-ranking-points {
+	.mainfont_light(11pt, @blueLight, left, uppercase);
+  margin: 0;
 }
-.data-row {
-    margin-bottom: 14px;
+.profile-data-total-achivements {
+	.mainfont_light(11pt, @grey-bluish, left, uppercase);
+  line-height: 1;
+  margin-left: 10px;
 }
-.data-value {
-	font-weight: 500;
-}
-.data-action {
-	.flex-elem-fluid();
-	.flex-container-col();
-	padding: 15px;
-    align-items: center;
-}
-.action-button {
-	.default-button();
-	width: 200px;
-}
-.data-value-big {
-	.mainfont_light(20pt, @grey-bluish, center, uppercase);
-}
+/*
 .ranking-data .data-content {
 	.flex-elem-fluid();
 	.flex-container-row();
@@ -56,7 +80,7 @@
 .single-ranking-info .data-value-big {
 	padding: 10px;
 }
-
+*/
 
 /*
 .global-user-profile #mainWrapper.wrapper-content-container {

@@ -19731,7 +19731,7 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
     padding-right: 15px;
   }
 }
-.profile-content {
+user-profile {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -19742,6 +19742,28 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   background-color: #242529;
 }
 .profile-section {
+  flex: 0 0 auto;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  border-bottom: 1px solid rgba(210, 210, 210, 0.3);
+  padding: 16px;
+}
+.profile-data-content {
+  flex: 1;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+}
+.profile-data-row {
   flex: 1;
   display: -webkit-box;
   display: -moz-box;
@@ -19751,50 +19773,40 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
 }
-.wrapper-box {
-  flex: 1;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-flow: column nowrap;
-  flex-flow: column nowrap;
-  align-items: center;
-}
-.data-content {
-  font-size: 10pt;
+.profile-data-key {
+  font-size: 11pt;
   color: #757993;
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
-  padding: 15px 15px 0px 15px;
+  line-height: 1;
 }
-.data-header {
-  font-size: 14pt;
-  color: #fa9c19;
+.profile-data-value {
+  font-size: 22pt;
+  color: #59add5;
   text-transform: uppercase;
-  text-align: center;
-  text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
+  text-align: left;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
-  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
-  -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
-  padding: 10px 0;
-  background-color: #181818;
-  border-bottom: 1px solid rgba(210, 210, 210, 0.3);
+  line-height: 1;
+  margin-top: 6px;
+  overflow: hidden;
+  white-space: nowrap;
 }
-.data-row {
-  margin-bottom: 14px;
+.profile-data-value .coin-icon {
+  vertical-align: bottom;
+  margin-left: 15px;
 }
-.data-value {
-  font-weight: 500;
+.personal-data .profile-data-value {
+  margin-right: 15px;
 }
-.data-action {
-  flex: 1;
+.pocket-data .profile-data-value {
+  margin-top: 0;
+}
+.profile-data-action {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -19802,21 +19814,15 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   display: flex;
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
-  padding: 15px;
-  align-items: center;
+  flex: 0 0 120px;
+  justify-content: flex-end;
 }
-.action-button {
+.profile-data-action .action-button {
   background-image: -webkit-linear-gradient(top, #0d75a6 0%, #0c4c6a 100%);
   background-image: linear-gradient(to bottom, #0d75a6 0%, #0c4c6a 100%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0d75a6', endColorstr='#ff0c4c6a', GradientType=0);
   font-size: 10pt;
-  color: #ffffff;
-  text-transform: uppercase;
-  text-align: center;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
   -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
@@ -19828,50 +19834,74 @@ fieldset[disabled] .autocentered-buttons-wrapper .cancel-button {
   outline-offset: 0px;
   outline: none;
   line-height: 16pt;
-  width: 200px;
+  font-size: 12pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  width: 120px;
 }
-.action-button:hover,
-.action-button:active,
-.action-button:focus {
+.profile-data-action .action-button:hover,
+.profile-data-action .action-button:active,
+.profile-data-action .action-button:focus {
   border: 0;
   outline-offset: 0px;
   outline: none;
 }
-.action-button:disabled {
+.profile-data-action .action-button:disabled {
   color: #757993;
   opacity: 0.5;
   cursor: not-allowed;
 }
-.data-value-big {
+.profile-data-ranking-position {
   font-size: 20pt;
-  color: #757993;
+  color: #59add5;
   text-transform: uppercase;
-  text-align: center;
-  text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  text-align: left;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
+.profile-data-ranking-points {
+  font-size: 11pt;
+  color: #59add5;
+  text-transform: uppercase;
+  text-align: left;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  margin: 0;
+}
+.profile-data-total-achivements {
+  font-size: 11pt;
+  color: #757993;
+  text-transform: uppercase;
+  text-align: left;
+  text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  line-height: 1;
+  margin-left: 10px;
+}
+/*
 .ranking-data .data-content {
-  flex: 1;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-flow: row nowrap;
-  flex-flow: row nowrap;
-  align-items: center;
+	.flex-elem-fluid();
+	.flex-container-row();
+	align-items: center;
 }
 .single-ranking-info {
-  flex: 1;
-  padding: 15px;
+	.flex-elem-fluid();
+	padding: 15px;
 }
 .ranking-position {
-  color: #59add5;
+	color: @blueLight;
 }
 .single-ranking-info .data-value-big {
-  padding: 10px;
+	padding: 10px;
 }
+*/
 /*
 .global-user-profile #mainWrapper.wrapper-content-container {
 	background-color: @white;
@@ -22956,7 +22986,7 @@ achievement-list {
   display: flex;
   -webkit-flex-flow: row nowrap;
   flex-flow: row nowrap;
-  padding: 15px;
+  padding: 15px 0;
   background-color: #181818;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -22973,7 +23003,7 @@ achievement-list .achievement-count {
 }
 achievement-list achievement {
   flex: 0 0 auto;
-  width: 180px;
+  width: 155px;
 }
 .achievement {
   text-align: center;

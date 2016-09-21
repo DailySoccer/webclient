@@ -1,76 +1,68 @@
-<div class="profile-content">
-  <!-- INFORMACION PERSONAL -->
-  <div class="personal-data profile-section">
-    <div class="data-content">
-      <div class="data-row">
-        <span class="data-key">{{getLocalizedText("fullname")}}: </span><span class="data-value">{{userData.firstName + ' ' + userData.lastName}}</span>
-      </div>
-      <div class="data-row">
-        <span class="data-key">{{getLocalizedText("nick")}}: </span><span class="data-value">{{userData.nickName}}</span>
-      </div>
-      <div class="data-row" ng-if="userData.canChangeEmail">
-        <span class="data-key">{{getLocalizedText("email")}}: </span><span class="data-value">{{userData.email}}</span>
-      </div>
-      <div class="data-row" ng-if="userData.canChangePassword">
-        <span class="data-key">{{getLocalizedText("pass")}}: </span><span class="data-value">********</span>
-      </div>
+
+<!-- INFORMACION PERSONAL -->
+<div class="personal-data profile-section">
+  <div class="profile-data-content">
+    <!--div class="profile-data-row">
+      <span class="profile-data-key">{{getLocalizedText("fullname")}}: </span><span class="profile-data-value">{{userData.firstName + ' ' + userData.lastName}}</span>
+    </div-->
+    <div class="profile-data-row">
+      <span class="profile-data-key">{{getLocalizedText("nick")}}: </span>
+      <span class="profile-data-value">{{userData.nickName}}asdasdasd asdasd asd</span>
     </div>
-    <div class="data-action">
-      <button class="action-button" ng-click="editPersonalData()">EDITAR</button>
-   </div>
-  </div>  
-  <!-- ORO -->
-  <div class="pocket-data profile-section">
-    <div class="data-header">
-        <span class="data-header-title">ORO</span>
-    </div>
-    <div class="data-content">
-      <div class="data-row">
-        <div class="wrapper-box">
-          <span class="data-value-big">{{userData.balance}} <img class="coin-icon" src="images/icon-coin-lg.png"></span>
-        </div>
-      </div>
-    </div>
-    <div class="data-action">
-      <button class="action-button" ng-click="goBuyGold()">COMPRAR</button>
+    <!--div class="profile-data-row" ng-if="userData.canChangeEmail">
+      <span class="profile-data-key">{{getLocalizedText("email")}}: </span><span class="profile-data-value">{{userData.email}}</span>
+    </div-->
+    <!--div class="profile-data-row" ng-if="userData.canChangePassword">
+      <span class="profile-data-key">{{getLocalizedText("pass")}}: </span><span class="profile-data-value">********</span>
+    </div-->
+  </div>
+  <div class="profile-data-action">
+    <button class="action-button" ng-click="editPersonalData()">Editar</button>
+  </div>
+</div>
+
+<!-- ORO -->
+<div class="pocket-data profile-section">
+  <div class="profile-data-content">
+    <div class="profile-data-row">
+      <span class="profile-data-key">Oro:</span>
+      <span class="profile-data-value">{{userData.balance}}<img class="coin-icon" src="images/topBar/icon_coin_big.png"></span> 
     </div>
   </div>
-    <!-- ACHIEVEMENTS -->
-  <div class="pocket-data profile-section">
-    <div class="data-header">
-        <span class="data-header-title">LOGROS</span>
+  <div class="profile-data-action">
+    <button class="action-button" ng-click="goBuyGold()">Comprar</button>
+  </div>
+</div>
+
+<!-- CLASIFICACIONES -->
+<div class="ranking-data profile-section">
+  <div class="profile-data-content">
+    <div class="profile-data-row single-ranking-info">
+      <span class="profile-data-key">Ranking<br>de habilidad</span>
+      <span class="profile-data-value profile-data-ranking-position" ng-show="!loadingService.isLoading">{{rankingPointsPosition}}º</span>
+      <span class="profile-data-value profile-data-ranking-points" ng-show="!loadingService.isLoading">320{{rankingPoints}} Ptos.</span>
     </div>
-    <div class="data-content">
-      <div class="data-row">
-        <div class="wrapper-box">
-          <span class="data-value-big">{{achievementsEarned}} de {{achievementList.length.toString()}} LOGROS CONSEGUIDOS</span>
-        </div>
-      </div>
+    <div class="profile-data-row single-ranking-info">
+      <span class="profile-data-key">Ranking<br>de ganancias</span>
+      <span class="profile-data-value profile-data-ranking-position" ng-show="!loadingService.isLoading">{{rankingMoneyPosition}}º</span>
+      <span class="profile-data-value profile-data-ranking-points" ng-show="!loadingService.isLoading">320{{rankingMoney}} Mon.</span>
     </div>
-    <div class="data-action">
-      <button class="action-button" ng-click="goAchievements()">VER LOGROS</button>
+  </div>
+  <div class="profile-data-action">
+    <button class="action-button" ng-click="goLeaderboard()">Ver rankings</button>
+  </div>
+</div>
+
+<!-- ACHIEVEMENTS -->
+<div class="achievements-data profile-section">
+  <div class="profile-data-content">
+    <div class="profile-data-row">
+      <span class="profile-data-key">Logros</span>
+      <div class="profile-data-value"><span class="profile-data-earned-achivements">{{achievementsEarned}}</span><span class="profile-data-total-achivements">de {{achievementList.length.toString()}}</span></div>
     </div>
-  </div>  
-  <!-- CLASIFICACIONES -->
-  <div class="ranking-data profile-section">
-    <div class="data-header">
-      <span class="data-header-title">CLASIFICACIÓN</span>
-    </div>
-    <div class="data-content">
-      <div class="single-ranking-info wrapper-box">
-        <div class="ranking-position" ng-show="!loadingService.isLoading">Por puntuación </div>
-        <div class="data-value-big" ng-show="!loadingService.isLoading">{{rankingPointsPosition}}º</div>
-        <div class="data-value" ng-show="!loadingService.isLoading">({{rankingPoints}})</div>
-      </div>
-      <div class="single-ranking-info wrapper-box">
-        <div class="ranking-position" ng-show="!loadingService.isLoading">Por ganancias </div>
-        <div class="data-value-big" ng-show="!loadingService.isLoading">{{rankingMoneyPosition}}º</div>
-        <div class="data-value" ng-show="!loadingService.isLoading">({{rankingMoney}})</div>
-      </div>
-    </div>
-    <div class="data-action">
-      <button class="action-button" ng-click="goLeaderboard()">VER RANKINGS</button>
-    </div>
+  </div>
+  <div class="profile-data-action">
+    <button class="action-button" ng-click="goAchievements()">Ver logros</button>
   </div>
 </div>
 

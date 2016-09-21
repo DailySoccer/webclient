@@ -1,20 +1,18 @@
 
 window.onApplicationPause = function() {
+  ComScorePlugin.onExitForeground();
+
   if (typeof dartOnApplicationPause !== 'undefined') {
     console.log("Calling dart callback on app PAUSE");
     dartOnApplicationPause();
   }
-  if (typeof ComScorePlugin !== 'undefined') {
-    ComScorePlugin.onExitForeground();
-  }
 };
 window.onApplicationResume = function() {
+  ComScorePlugin.onEnterForeground();
+
   if (typeof dartOnApplicationResume !== 'undefined') {
     console.log("Calling dart callback on app RESUME");
     dartOnApplicationResume();
-  }
-  if (typeof ComScorePlugin !== 'undefined') {
-    ComScorePlugin.onEnterForeground();
   }
 };
 
@@ -106,7 +104,8 @@ document.addEventListener('deviceready', function () {
   ComScorePlugin.setAppContext();
   ComScorePlugin.setAppName("futbolcuatro");
   ComScorePlugin.setCustomerData("13184057", "15f020eaf9d74aaec3b72f6be73feff4");
-  ComScorePlugin.autoUpdateBackground(60);
+  ComScorePlugin.autoUpdateForeground(1);
+  ComScorePlugin.autoUpdateBackground(1);
   ComScorePlugin.start();
   
   console.log(" # DEVICE READY EVENT - FB");

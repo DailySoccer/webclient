@@ -35,14 +35,13 @@ class AchievementListComp {
   
     // TEST: Dar premios al usuario
     if (profileService.isLoggedIn) {
-      profileService.user.achievements.add(Achievement.PLAYED_VIRTUAL_CONTESTS_LEVEL_1);
+      /*profileService.user.achievements.add(Achievement.PLAYED_VIRTUAL_CONTESTS_LEVEL_1);
       profileService.user.achievements.add(Achievement.WON_VIRTUAL_CONTESTS_LEVEL_1);
       profileService.user.achievements.add(Achievement.WON_OFFICIAL_CONTESTS_LEVEL_1);
       profileService.user.achievements.add(Achievement.DIFF_FP_OFFICIAL_CONTEST_LEVEL_1);
       profileService.user.achievements.add(Achievement.GOALKEEPER_SAVES_SHOTS_LEVEL_1);
       profileService.user.achievements.add(Achievement.GOALKEEPER_RED_CARD);
-      profileService.user.achievements.add(Achievement.GOALKEEPER_SAVES_SHOTS_LEVEL_1);
-      /*profileService.user.achievements.add(Achievement.MANAGER_LEVEL_5);*/
+      profileService.user.achievements.add(Achievement.MANAGER_LEVEL_5);*/
     }
   
     countAchievementsEarned();

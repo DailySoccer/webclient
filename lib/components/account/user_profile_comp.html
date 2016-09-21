@@ -7,7 +7,7 @@
     </div-->
     <div class="profile-data-row">
       <span class="profile-data-key">{{getLocalizedText("nick")}}: </span>
-      <span class="profile-data-value">{{userData.nickName}}asdasdasd asdasd asd</span>
+      <span class="profile-data-value">{{userData.nickName}}</span>
     </div>
     <!--div class="profile-data-row" ng-if="userData.canChangeEmail">
       <span class="profile-data-key">{{getLocalizedText("email")}}: </span><span class="profile-data-value">{{userData.email}}</span>
@@ -40,12 +40,12 @@
     <div class="profile-data-row single-ranking-info">
       <span class="profile-data-key">Ranking<br>de habilidad</span>
       <span class="profile-data-value profile-data-ranking-position" ng-show="!loadingService.isLoading">{{rankingPointsPosition}}º</span>
-      <span class="profile-data-value profile-data-ranking-points" ng-show="!loadingService.isLoading">320{{rankingPoints}} Ptos.</span>
+      <span class="profile-data-value profile-data-ranking-points" ng-show="!loadingService.isLoading">{{rankingPoints}} Ptos.</span>
     </div>
     <div class="profile-data-row single-ranking-info">
       <span class="profile-data-key">Ranking<br>de ganancias</span>
       <span class="profile-data-value profile-data-ranking-position" ng-show="!loadingService.isLoading">{{rankingMoneyPosition}}º</span>
-      <span class="profile-data-value profile-data-ranking-points" ng-show="!loadingService.isLoading">320{{rankingMoney}} Mon.</span>
+      <span class="profile-data-value profile-data-ranking-points" ng-show="!loadingService.isLoading">{{rankingMoney}} Mon.</span>
     </div>
   </div>
   <div class="profile-data-action">

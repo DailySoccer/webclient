@@ -20,5 +20,5 @@
 
 <!-- SOCCER PLAYER STATS -->
 <section class="soccer-player-list-section" ng-if="isSoccerPlayerStatsActive">
-  <soccer-player-stats instance-soccer-player-id="selectedPlayerId" selectable-player="false"></soccer-player-stats>
+  <soccer-player-stats action-mode="statsMode" instance-soccer-player-id="selectedPlayerId" selectable-player="isCurrentSelectedFavorite" on-action-click="addToFavorites(playerId)"></soccer-player-stats>
 </section>

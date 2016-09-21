@@ -20,6 +20,7 @@ import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/components/leaderboards/leaderboard_comp.dart';
 import 'package:webclient/services/leaderboard_service.dart';
+import 'package:webclient/components/enter_contest/soccer_player_stats_comp.dart';
 
 @Component(
     selector: 'scouting',
@@ -31,7 +32,9 @@ class ScoutingComp implements DetachAware {
   static bool favoritesIsSaving = false;
   static const String SOCCER_PLAYER_STATS = "SOCCER_PLAYER_STATS";
   static const String SOCCER_PLAYERS_LIST = "SOCCER_PLAYERS_LIST";
-    
+  
+  String statsMode = SoccerPlayerStatsComp.FAVORITE_MODE;
+  
   LoadingService loadingService;
 
   List<SoccerPlayerListItem> favoritesPlayers = [];
@@ -74,6 +77,7 @@ class ScoutingComp implements DetachAware {
   bool get isSoccerPlayerListActive => sectionActive == SOCCER_PLAYERS_LIST;
   bool get isSoccerPlayerStatsActive => sectionActive == SOCCER_PLAYER_STATS;
   
+  bool get isCurrentSelectedFavorite => favoritesPlayers.contains(selectedInstanceSoccerPlayer);
   
   String _selectedPlayerId = "";
   String get selectedPlayerId => _selectedPlayerId;
@@ -229,6 +233,11 @@ class ScoutingComp implements DetachAware {
         }
       );
     }
+  }
+  
+  void addToFavorites(String playerId) {
+    SoccerPlayerListItem scli = allSoccerPlayersES.firstWhere( (player) => player.id == playerId);
+    onFavoritesChange(scli);
   }
 
   List<AppSecondaryTabBarTab> _tabList = [];

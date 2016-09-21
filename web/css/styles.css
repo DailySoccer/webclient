@@ -14150,6 +14150,16 @@ soccer-player-stats {
   opacity: 0.5;
   cursor: not-allowed;
 }
+.soccer-player-stats-header-description .addFav {
+  color: #59add5;
+  cursor: pointer;
+  font-size: 36pt;
+}
+.soccer-player-stats-header-description .removeFav {
+  color: rgba(210, 210, 210, 0.3);
+  cursor: pointer;
+  font-size: 36pt;
+}
 .soccer-player-stats-info {
   flex: 0 0 40px;
   display: -webkit-box;

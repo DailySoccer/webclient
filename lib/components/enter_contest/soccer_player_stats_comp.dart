@@ -4,8 +4,7 @@ import 'dart:html';
 
 import 'package:angular/angular.dart';
 import 'package:intl/intl.dart';
-
-import 'package:webclient/components/modal_comp.dart';
+//import 'package:webclient/components/modal_comp.dart';
 import 'package:webclient/models/soccer_player.dart';
 import 'package:webclient/models/match_event.dart';
 import 'package:webclient/services/soccer_player_service.dart';
@@ -26,6 +25,12 @@ import 'package:logging/logging.dart';
 )
 class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
 
+  static const String SELECTION_MODE = "SELECTION_MODE";
+  static const String FAVORITE_MODE = "FAVORITE_MODE";
+  
+  bool get isSelectionMode => statsMode == SELECTION_MODE;
+  bool get isFavoriteMode => statsMode == FAVORITE_MODE;
+  
   ScreenDetectorService scrDet;
 
   List<Map> seasonResumeStats = [];
@@ -58,6 +63,12 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
   void set contestId(String id) { _contestId = id; }
   String get contestId => _contestId;
 
+  @NgOneWay('action-mode')
+  String statsMode = SELECTION_MODE;  
+  
+  @NgCallback('on-action-click') 
+  Function OnActionClick;
+  
   bool isGoalkeeper() => currentInfoData['fieldPos'] == StringUtils.translate("gk", "soccerplayerpositions");
 
   String get printableSalary => currentInfoData != null? StringUtils.parseSalary(currentInfoData['salary']) : "0";
@@ -400,8 +411,13 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
     }
   }
 
-  void onAddClicked() {
-    //ModalComp.close(currentInfoData['id']);
+  void onAddClick() {
+    OnActionClick({'playerId' : instanceSoccerPlayerId});
+    //ModalComp.close(currentInfoData['id']); 
+  }
+  
+  void onAddFavClick() {
+    onAddClick();
   }
 
   SoccerPlayerService _soccerPlayerService;

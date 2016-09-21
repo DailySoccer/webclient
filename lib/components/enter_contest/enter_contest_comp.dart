@@ -125,6 +125,8 @@ class EnterContestComp implements DetachAware {
   bool isLineupFinished = false;
   
   InstanceSoccerPlayer selectedInstanceSoccerPlayer;
+  
+  bool get isCurrentSelectedAdded => lineupSlots.contains(selectedInstanceSoccerPlayer);
 
   int availableSalary = 0;
   Money _coinsNeeded = new Money.from(Money.CURRENCY_GOLD, 0);
@@ -623,7 +625,14 @@ class EnterContestComp implements DetachAware {
 
   }
 
-  void onSoccerPlayerActionButton(var soccerPlayer) {
+  void onSoccerPlayerActionButtonFromStats(String playerId) {
+    
+    SoccerPlayerListItem sc = allSoccerPlayers.firstWhere( (player) => player.id == playerId);
+    
+    onSoccerPlayerActionButton(sc);
+  }
+  
+  void onSoccerPlayerActionButton(SoccerPlayerListItem soccerPlayer) {
 
     int indexOfPlayer = lineupSlots.indexOf(soccerPlayer);
     if (indexOfPlayer != -1) {

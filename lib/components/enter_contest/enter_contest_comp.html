@@ -39,7 +39,11 @@
 
 <!-- SOCCER PLAYER STATS -->
 <section class="soccer-player-list-section" ng-show="isSoccerPlayerStatsActive">
-  <soccer-player-stats contest-id="contest.contestId" instance-soccer-player-id="instanceSoccerPlayerDisplayInfo" selectable-player="false"></soccer-player-stats>
+  <soccer-player-stats instance-soccer-player-id="instanceSoccerPlayerDisplayInfo"
+                       contest-id="contest.contestId"
+                       selectable-player="isCurrentSelectedAdded"
+                       on-action-click="onSoccerPlayerActionButtonFromStats(playerId)">
+  </soccer-player-stats>
 </section>
 
 <!-- CONTEST INFO -->

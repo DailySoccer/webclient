@@ -8,7 +8,7 @@
         <div class="soccer-player-name">{{currentInfoData['name']}}</div>
       </div>
       <div class="soccer-player-stats-header-button-add-wrapper">
-        <button class="soccer-player-stats-header-button-add" ng-click="onAddClick()" ng-if="isSelectionMode">{{!selectablePlayer ? "AÑADIR" : "QUITAR"}}</button>
+        <button class="soccer-player-stats-header-button-add" ng-click="onAddClick()" ng-if="isSelectionMode">{{selectablePlayer ? "AÑADIR" : "QUITAR"}}</button>
         <i class="material-icons" ng-click="onAddFavClick()" ng-class="[selectablePlayer ? 'addFav' : 'removeFav']" ng-if="isFavoriteMode" alt="Favorito">
           {{!selectablePlayer ? '&#xE83A;' : '&#xE838;'}}
         </i>

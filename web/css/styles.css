@@ -17375,6 +17375,9 @@ leaderboard .leaderboard-table-header {
   border-top: 1px solid rgba(210, 210, 210, 0.3);
   border-bottom: 2px solid rgba(210, 210, 210, 0.3);
 }
+leaderboard .leaderboard-table-header .leaderboard-column-score {
+  flex: 0 0 100px;
+}
 leaderboard .leaderboard-data-wrapper {
   overflow-y: scroll;
   flex: 1;

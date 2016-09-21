@@ -1290,7 +1290,7 @@ tc.put("packages/webclient/components/leaderboards/leaderboard_table_comp.html",
   <div class="leaderboard-table-data" ng-class="{'player-position':isThePlayer(element['id'])}" ng-repeat="element in shownElements">
       <div class="leaderboard-column-position">{{element['position']}}º</div>    
       <div class="leaderboard-column-name">
-        {{element['name'] == profileService.user.nickName ? 'TU' : element['name']}}
+        {{element['id'] == profileService.user.userId ? 'TU' : element['name']}}
         <!--social-share parameters-by-map="sharingInfo" show-like="false" inline ng-if="isThePlayer(element['id']) && sharingInfo != null"></social-share-->
       </div>
       <div class="leaderboard-column-score">{{element['points']}}</div>
@@ -1796,7 +1796,7 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
     <!-- lista vacía -->
     <div class="no-contests-wrapper" ng-switch-when="false">
         <img class="no-contests-icon" src="images/icon-torneo-historico-vacio.png">
-        <div class="no-contests-title">aún no has jugado niún torneo<br>¿A qué esperas para empezar a ganar?</div>
+        <div class="no-contests-title">aún no has jugado ningún torneo<br>¿A qué esperas para empezar a ganar?</div>
         <div class="no-contests-subtitle">Ve a lista de torneos, elije uno y empieza a jugar</div>
         <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
     </div>

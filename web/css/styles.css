@@ -5966,6 +5966,11 @@ scoring-rules:after,
 /* **************** *
  *    OLD COLORS    *
  * **************** */
+/*.mainfont_bold(@theFontSize, @theFontColor:inherit, @align:inherit, @transform: inherit) {
+	.setFontProperties(@theFontSize, @theFontColor, @align, @transform);
+	font-family: @mainFont;
+	font-weight: 700;	
+}*/
 /*
 OLD FONTS
 */
@@ -6222,7 +6227,7 @@ OLD FONTS
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
   font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
+  font-weight: 500;
 }
 .contest-topbar-info .contest-name-section {
   flex: 1;
@@ -6243,7 +6248,7 @@ OLD FONTS
   text-align: left;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   overflow: hidden;
   margin-right: 5px;
 }
@@ -6255,7 +6260,7 @@ OLD FONTS
   text-align: left;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
   font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   overflow: hidden;
   margin-right: 5px;
 }
@@ -14898,7 +14903,7 @@ enter-contest {
   text-align: center;
   text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
   font-family: 'Fjalla One', sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   flex: 1;
   margin-bottom: 15px;
 }

@@ -8,7 +8,7 @@
   <div class="leaderboard-table-data" ng-class="{'player-position':isThePlayer(element['id'])}" ng-repeat="element in shownElements">
       <div class="leaderboard-column-position">{{element['position']}}º</div>    
       <div class="leaderboard-column-name">
-        {{element['name'] == profileService.user.nickName ? 'TU' : element['name']}}
+        {{element['id'] == profileService.user.userId ? 'TU' : element['name']}}
         <!--social-share parameters-by-map="sharingInfo" show-like="false" inline ng-if="isThePlayer(element['id']) && sharingInfo != null"></social-share-->
       </div>
       <div class="leaderboard-column-score">{{element['points']}}</div>

@@ -21345,6 +21345,10 @@ home .action-buttons-wrapper {
   padding: 10px;
   background-color: #242529;
 }
+home .action-buttons-wrapper .material-icons {
+  font-size: 36pt;
+  color: rgba(210, 210, 210, 0.3);
+}
 home .button-scout,
 home .button-history,
 home .button-shop {

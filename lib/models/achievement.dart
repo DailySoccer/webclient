@@ -22,14 +22,14 @@ class Achievement {
 
   static const String DIFF_FP_OFFICIAL_CONTEST_LEVEL_1 = "DIFF_FP_200_OFFICIAL_CONTEST";
 
-  static const String MANAGER_LEVEL_3 = "MANAGER_LEVEL_3";
+  /*static const String MANAGER_LEVEL_3 = "MANAGER_LEVEL_3";
   static const String MANAGER_LEVEL_4 = "MANAGER_LEVEL_4";
   static const String MANAGER_LEVEL_5 = "MANAGER_LEVEL_5";
   static const String MANAGER_LEVEL_6 = "MANAGER_LEVEL_6";
   static const String MANAGER_LEVEL_7 = "MANAGER_LEVEL_7";
   static const String MANAGER_LEVEL_8 = "MANAGER_LEVEL_8";
   static const String MANAGER_LEVEL_9 = "MANAGER_LEVEL_9";
-  static const String MANAGER_LEVEL_10 = "MANAGER_LEVEL_10";
+  static const String MANAGER_LEVEL_10 = "MANAGER_LEVEL_10";*/
 
   static const String TRUE_SKILL_LEVEL_1 = "TRUE_SKILL_500";
   static const String TRUE_SKILL_LEVEL_2 = "TRUE_SKILL_1000";
@@ -288,7 +288,7 @@ class Achievement {
       "shareImage": 'AchievementSkill05.jpg',
       "style": 'SkillLevel',
       "level": 5
-    },
+    }/*,
     {
       "id": MANAGER_LEVEL_3,
       "name": translate("name_manager_level_3"), // "Nivel de Manager 3",
@@ -360,7 +360,7 @@ class Achievement {
       "shareImage": 'AchievementManager08.jpg',
       "style": 'ManagerLevel',
       "level": 10
-    }
+    }*/
   ];
 
 }

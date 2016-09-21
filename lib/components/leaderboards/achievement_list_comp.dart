@@ -42,7 +42,7 @@ class AchievementListComp {
       profileService.user.achievements.add(Achievement.GOALKEEPER_SAVES_SHOTS_LEVEL_1);
       profileService.user.achievements.add(Achievement.GOALKEEPER_RED_CARD);
       profileService.user.achievements.add(Achievement.GOALKEEPER_SAVES_SHOTS_LEVEL_1);
-      profileService.user.achievements.add(Achievement.MANAGER_LEVEL_5);
+      /*profileService.user.achievements.add(Achievement.MANAGER_LEVEL_5);*/
     }
   
     countAchievementsEarned();

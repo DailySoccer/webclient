@@ -1138,7 +1138,7 @@ tc.put("packages/webclient/components/home_comp.html", new HttpResponse(200, r""
     </div>
   </div>
   <div class="next-contest-wrapper">
-    <div class="next-contest-label">{{infoBarText}}</div>
+    <div class="next-contest-label"ng-bind-html-unsafe="infoBarText"></div>
     <button class="goto-next-contest-button" ng-click="goNextContest()">JUGAR</button>
   </div>
 </div>

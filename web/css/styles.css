@@ -21397,6 +21397,7 @@ home .action-buttons-wrapper {
 home .action-buttons-wrapper .material-icons {
   font-size: 36pt;
   color: #59add5;
+  text-shadow: 0px 0px 6px #000000;
 }
 home .button-scout,
 home .button-history,
@@ -21425,6 +21426,7 @@ home .button-label {
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   flex: 0 0 auto;
+  text-shadow: 0px 0px 6px #000000;
 }
 /*
 .global-home #mainWrapper {

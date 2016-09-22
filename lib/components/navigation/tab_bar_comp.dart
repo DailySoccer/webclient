@@ -10,6 +10,8 @@ import 'package:webclient/services/catalog_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/app_state_service.dart';
 import 'dart:html';
+import 'package:webclient/services/leaderboard_service.dart';
+import 'package:webclient/services/refresh_timers_service.dart';
 
 @Component(
     selector: 'tab-bar',
@@ -57,7 +59,7 @@ class TabBarComp {
 
   TabBarComp(this._router, this._loadingService, this._view, this._rootElement, 
                 this._dateTimeService, this._profileService, this._templateService, 
-                this._catalogService, this._appStateService) {
+                this._catalogService, this._appStateService, this._leaderboardService, this._refreshTimersService) {
     tabs = { 
             HOME     : new TabBarItemComp( _router, 
                                                 name: "Inicio",
@@ -87,6 +89,8 @@ class TabBarComp {
                                                 iconImage: "images/tabBar/Button_Scouting.png",
                                                 destination: "scouting")*/
     };
+    
+    this._refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_RANKING_POSITION, _leaderboardService.calculateMyTrueSkillData);
   }
 
   String getLocalizedText(key, [Map substitutions]) {
@@ -104,6 +108,8 @@ class TabBarComp {
   CatalogService _catalogService;
   ProfileService _profileService;
   AppStateService _appStateService;
+  LeaderboardService _leaderboardService;
+  RefreshTimersService _refreshTimersService;
 }
 
 class TabBarItemComp {

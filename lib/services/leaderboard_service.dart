@@ -56,7 +56,10 @@ class LeaderboardService {
   Map currentTrueSkillData;
 
   void calculateMyTrueSkillData() {
-    getUsers();
+    if (!_profileService.isLoggedIn) {
+      currentTrueSkillData = trueSkillDataList.first;
+      return;
+    }
     
     currentTrueSkillData = trueSkillDataList.firstWhere((lvl) {
       if (lvl['limiteInf'] == null) {
@@ -87,11 +90,12 @@ class LeaderboardService {
     return 'nivel' + currentTrueSkillData['id'].toString() + '.png';
   }
   
-  Timer uppdateMyLeaderBoradData;
+  //Timer uppdateMyLeaderBoradData;
   
   LeaderboardService(this._server, this._profileService){
-    calculateMyTrueSkillData();
-    uppdateMyLeaderBoradData = new Timer(new Duration(seconds: SECONDS_TO_REFRESH_RANKING_POSITION), calculateMyTrueSkillData);    
+    //calculateMyTrueSkillData();
+    
+    //uppdateMyLeaderBoradData = new Timer(new Duration(seconds: SECONDS_TO_REFRESH_RANKING_POSITION), calculateMyTrueSkillData);    
   }
 
   Future<List<User>> getUsers() {

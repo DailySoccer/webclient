@@ -422,7 +422,7 @@ class Contest {
   }
 
   bool canEnter(User user) {
-    return !isFull && hasLevel(user.managerLevel.toInt(), user.trueSkill);
+    return !isFull && user != null && hasLevel(user.managerLevel.toInt(), user.trueSkill);
   }
   
 

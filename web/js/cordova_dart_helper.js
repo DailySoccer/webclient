@@ -101,6 +101,7 @@ function socialShare(s, u) {
 }
 
 document.addEventListener('deviceready', function () {
+  showSpinner();
   console.log(" # DEVICE READY EVENT - Comscore");
   ComScorePlugin.setAppContext();
   ComScorePlugin.setAppName("futbolcuatro");

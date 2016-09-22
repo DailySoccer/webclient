@@ -5,12 +5,10 @@ import 'package:webclient/utils/string_utils.dart';
 class Achievement {
   static const String PLAYED_VIRTUAL_CONTESTS_LEVEL_1 = "PLAYED_10_VIRTUAL_CONTESTS";
 
-  static const String WON_VIRTUAL_CONTESTS_LEVEL_1 = "WON_1_VIRTUAL_CONTEST";
-  static const String WON_VIRTUAL_CONTESTS_LEVEL_2 = "WON_10_VIRTUAL_CONTESTS";
-
-  static const String FP_VIRTUAL_CONTEST_LEVEL_1 = "FP_1000_VIRTUAL_CONTEST";
-
-  static const String DIFF_FP_VIRTUAL_CONTEST_LEVEL_1 = "DIFF_FP_200_VIRTUAL_CONTEST";
+  //static const String WON_VIRTUAL_CONTESTS_LEVEL_1 = "WON_1_VIRTUAL_CONTEST";
+  //static const String WON_VIRTUAL_CONTESTS_LEVEL_2 = "WON_10_VIRTUAL_CONTESTS";
+  //static const String FP_VIRTUAL_CONTEST_LEVEL_1 = "FP_1000_VIRTUAL_CONTEST";
+  //static const String DIFF_FP_VIRTUAL_CONTEST_LEVEL_1 = "DIFF_FP_200_VIRTUAL_CONTEST";
 
 
   static const String PLAYED_OFFICIAL_CONTESTS_LEVEL_1 = "PLAYED_10_OFFICIAL_CONTESTS";
@@ -92,7 +90,7 @@ class Achievement {
   }
 
   static List<Map> AVAILABLES = [
-    {
+    /*{
       "id": WON_VIRTUAL_CONTESTS_LEVEL_1,
       "name": translate("name_won_virtual_contests_level_1"), // "El Principiante",
       "description": translate("desc_won_virtual_contests_level_1"), // "Ganar el primer torneo virtual",
@@ -131,7 +129,7 @@ class Achievement {
       "image": 'IconEntrenamiento5.png',
       "shareImage": 'AchievementVirtual05.jpg',
       "style": 'Training'
-    },
+    },*/
     {
       "id": WON_OFFICIAL_CONTESTS_LEVEL_1,
       "name": translate("name_won_official_contests_level_1"), // "El Debutante",

@@ -1086,8 +1086,8 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_scalinglist_c
 <div class="soccer-player-table-body">
   <div ng-id="'soccerPlayer' + soccerPlayer.id" ng-repeat="soccerPlayer in currentSoccerPlayerList.elements track by soccerPlayer.id" class="soccer-players-list-slot" ng-class="[POS_CLASS_NAMES[soccerPlayer.fieldPos.abrevName], !soccerPlayerIsAvailable(soccerPlayer) ? 'not-available': '']">
     <div class="column-data column-info" ng-click="onInfoClick({'soccerPlayerId': soccerPlayer.id})"><i class="material-icons">&#xE88F;</i></div>
-    <div class="column-data column-tshirt"><img ng-src="{{getImgPerSoccerTeam(soccerPlayer)}}" class="team-shirt-image"></div>
-    <div class="column-data column-primary-info">
+    <div class="column-data column-tshirt" ng-click="onInfoClick({'soccerPlayerId': soccerPlayer.id})"><img ng-src="{{getImgPerSoccerTeam(soccerPlayer)}}" class="team-shirt-image"></div>
+    <div class="column-data column-primary-info" ng-click="onInfoClick({'soccerPlayerId': soccerPlayer.id})">
       <span class="soccer-player-name">{{soccerPlayer.fullName}}</span>
       <span class="match-event-name" ng-bind-html-unsafe="soccerPlayer.matchEventNameHTML"></span>
     </div>

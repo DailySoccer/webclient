@@ -13437,6 +13437,10 @@ top-bar {
   text-align: right;
   padding: 0 4px 0 8px;
 }
+.three-columns .left-column .material-icons,
+.one-column .left-column .material-icons {
+  padding: 15px;
+}
 .three-columns .main-column,
 .one-column .main-column {
   flex: 1;

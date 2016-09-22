@@ -21391,7 +21391,7 @@ home .action-buttons-wrapper {
 }
 home .action-buttons-wrapper .material-icons {
   font-size: 36pt;
-  color: rgba(210, 210, 210, 0.3);
+  color: #59add5;
 }
 home .button-scout,
 home .button-history,
@@ -21413,10 +21413,10 @@ home .image-container {
 }
 home .button-label {
   font-size: 10pt;
-  color: rgba(210, 210, 210, 0.3);
+  color: #59add5;
   text-transform: uppercase;
   text-align: center;
-  text-shadow: 1px 1px 1px rgba(210, 210, 210, 0.004);
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   flex: 0 0 auto;

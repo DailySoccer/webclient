@@ -82,19 +82,7 @@ tc.put("packages/webclient/components/account/change_password_comp.html", new Ht
 </div>"""));
 tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new HttpResponse(200, r"""<form id="editPersonalDataForm" class="edit-form" ng-submit="saveChanges()" role="form" autocomplete="off" ng-show="!loadingService.isLoading">
   <div class="content">
-  
-    <!-- Nombre -->
-    <div class="content-field">
-      <span id="lblPassword" class="text-label">{{getLocalizedText("name")}}</span>
-      <input id="txtName" class="text-input" type="text" maxlength="{{MAX_NAME_LENGTH}}" ng-model="editedFirstName" placeholder="{{getLocalizedText('name')}}" class="form-control"  tabindex="1">
-    </div>
-    
-    <!-- Apellidos -->
-    <div class="content-field">      
-      <span id="lblPassword" class="text-label">{{getLocalizedText("lastname")}}</span>
-      <input id="txtLastName" class="text-input" type="text" maxlength="{{MAX_SURNAME_LENGTH}}"ng-model="editedLastName" placeholder="{{getLocalizedText('lastname')}}" class="form-control" tabindex="2">
-    </div>
-    
+
     <!-- Nickname -->
     <div class="content-field">
       <span id="lblPassword" class="text-label">{{getLocalizedText("username")}}</span>      
@@ -104,27 +92,41 @@ tc.put("packages/webclient/components/account/edit_personal_data_comp.html", new
         <div id="nickNameErrorLabel" class="err-text">{{nicknameErrorText}}</div>
       </div>
     </div>
+      
+    <!-- Nombre -- >
+    <div class="content-field">
+      <span id="lblPassword" class="text-label">{{getLocalizedText("name")}}</span>
+      <input id="txtName" class="text-input" type="text" maxlength="{{MAX_NAME_LENGTH}}" ng-model="editedFirstName" placeholder="{{getLocalizedText('name')}}" class="form-control"  tabindex="1">
+    </div>
+    
+    <! -- Apellidos -- >
+    <div class="content-field">      
+      <span id="lblPassword" class="text-label">{{getLocalizedText("lastname")}}</span>
+      <input id="txtLastName" class="text-input" type="text" maxlength="{{MAX_SURNAME_LENGTH}}"ng-model="editedLastName" placeholder="{{getLocalizedText('lastname')}}" class="form-control" tabindex="2">
+    </div>
+    
 
-    <!-- Correo Electrónico -->
+
+    <! -- Correo Electrónico -- >
     <div class="content-field" ng-if="userData.canChangeEmail">
       <span id="lblPassword" class="text-label">{{getLocalizedText("mail")}}</span>      
       <input id="txtEmail" class="text-input" type="email" ng-model="editedEmail" placeholder="{{getLocalizedText('mail')}}" class="form-control" tabindex="4" autocapitalize="off">
-      <!-- Error de mail -->
+      <! -- Error de mail -- >
       <div id="emailErrorContainer" class="content-field-block errorDetected" ng-if="emailErrorText != ''">
         <div id="emailErrorLabel" class="err-text">{{emailErrorText}}</div>
       </div>
     </div>
 
-    <!-- Label Contraseña -->
+    <! -- Label Contraseña -- >
     <div class="content-field" ng-if="userData.canChangePassword">
       <span id="lblPassword" class="text-label">{{getLocalizedText("passrequires")}}</span>
       <input id="txtPassword" class="text-input" type="password" ng-model="editedPassword" placeholder="{{getLocalizedText('pass')}}" class="form-control" tabindex="5" autocapitalize="off">
       <input id="txtRepeatPassword" class="text-input" type="password" ng-model="editedRepeatPassword" placeholder="{{getLocalizedText('repass')}}" class="form-control" tabindex="6" autocapitalize="off">
-      <!-- Error de contraseñas -->
+      <! -- Error de contraseñas -- >
       <div id="passwordErrorContainer" class="errorDetected" ng-if="passwordErrorText != ''">
         <div id="passwordErrorLabel" class="err-text">{{passwordErrorText}}</div>
       </div>
-    </div>
+    </div -->
     
   </div>
 
@@ -1126,7 +1128,7 @@ tc.put("packages/webclient/components/home_comp.html", new HttpResponse(200, r""
     </div>
     <div class="info-column level" ng-click="goRanking()">
       <div class="label">NIVEL</div>
-      <div  class="icon"><img src="images/home/{{skillLevelImage}}"></div>
+      <div  class="icon"><img ng-src="images/home/{{skillLevelImage}}"></div>
       <div class=amount>{{skillLevelName}}</div>
     </div>
     <div class="info-column achievements" ng-click="goAchievements()">

@@ -21335,6 +21335,7 @@ home .next-contest-label {
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   flex: 0 0 auto;
+  height: 55px;
 }
 home .goto-next-contest-button {
   flex: 0 0 auto;

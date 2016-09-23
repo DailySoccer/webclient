@@ -17,6 +17,7 @@ soccer-player-stats {
   .flex-elem-fluid();
   .flex-container-col();
   text-transform: uppercase;
+  overflow: hidden;
 }
 
 /********************************/
@@ -24,7 +25,7 @@ soccer-player-stats {
 /********************************/
 
 .soccer-player-stats-header {
-  .flex-elem-fixed(110px);
+  .flex-elem-fixed(130px);
   .flex-container-row();
   background-color: @soft-black;
 	.mainfont_light(12pt, @white);
@@ -82,7 +83,7 @@ soccer-player-stats {
   }
 }
 .soccer-player-stats-info {
-  .flex-elem-fixed(40px);
+  .flex-elem-fixed(auto);
   .flex-container-row();
 	padding: 10px 30px 5px 20px;
   
@@ -90,11 +91,28 @@ soccer-player-stats {
     .flex-elem-fluid();
     .mainfont_light(16pt, @grey-bluish);
   }
+  .soccer-player-fantasy-points-label {
+  	font-size: 10pt;
+  	color: @grey-translucid;
+    text-align: left;
+  }
   .soccer-player-fantasy-points {
+  	color: @blueLight;
+    text-align: left;
+  }
+  .soccer-player-matches-label {
+  	font-size: 10pt;
+  	color: @grey-translucid;
     text-align: left;
   }
   .soccer-player-matches {
-    text-align: center;
+    text-align: left;
+    color: @blueLight;
+  }
+  .soccer-player-salary-label {
+  	font-size: 10pt;
+    color: @grey-translucid;
+    text-align: right;
   }
   .soccer-player-salary {
     color: @orange;
@@ -109,6 +127,7 @@ soccer-player-stats {
 .soccer-player-stats-content {
   .flex-elem-fluid();
   .flex-container-col();
+  overflow-y: scroll;
   //background-color: @white;
 }
 
@@ -134,6 +153,7 @@ soccer-player-stats {
 }
 .soccer-player-stats-tab-pane {
   //background-color: @white;
+  .flex-container-row();
   .flex-elem-fluid();
 }
 
@@ -141,18 +161,24 @@ soccer-player-stats {
   display: none;
 }
 .soccer-player-stats-tab-pane.active {
-  display: block;
+  //display: block;
+   .flex-container-row();
+   .flex-elem-fluid();
 }
 .soccer-player-stats-tab-pane {
   .mainfont_light(8pt, @white);
   &#season-stats-tab-content {
-    margin: 20px auto;
+    //margin: 20px auto;
   }
   .season-stats {
+  	.flex-container-col();
+    .flex-container-content-centered();
+    .flex-elem-fluid();
   }
   .season-stats-row {
     .flex-container-row();
     .flex-container-content-centered();
+    .flex-elem-fluid();
   }
   .season-stats-header{
     .flex-elem-fixed(200px);

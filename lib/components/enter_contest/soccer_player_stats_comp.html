@@ -40,14 +40,14 @@
     <div class="season-header" ng-bind-html="getLocalizedText('seasonstats')"></div-->
     <!-- MEDIAS -->
     <div class="season-stats">
-        <div class="season-stats-row" ng-repeat="stat in seasonResumeStats"  data-toggle="tooltip" title="{{stat['helpInfo']}}">
+        <div class="season-stats-row" ng-repeat="stat in seasonResumeStats" title="{{stat['helpInfo']}}">
             <div class="season-stats-header">{{stat['nombre']}}</div>
             <div class="season-stats-value">{{stat['valor']}}</div>
         </div>
-        <div class="season-stats-row" ng-if="seasonResumeStats.length % 2 != 0"  data-toggle="" title="">
+        <!--div class="season-stats-row" ng-if="seasonResumeStats.length % 2 != 0" title="">
             <div class="season-stats-header"></div>
             <div class="season-stats-value"></div>
-        </div>
+        </div-->
     </div>
   </div>
   <!-- END BY-SEASON-STATS -->

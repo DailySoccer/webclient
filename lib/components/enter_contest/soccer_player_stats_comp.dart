@@ -23,7 +23,7 @@ import 'package:logging/logging.dart';
     templateUrl: 'packages/webclient/components/enter_contest/soccer_player_stats_comp.html',
     useShadowDom: false
 )
-class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
+class SoccerPlayerStatsComp implements DetachAware {
 
   static const String SELECTION_MODE = "SELECTION_MODE";
   static const String FAVORITE_MODE = "FAVORITE_MODE";
@@ -180,7 +180,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
   void detach() {
     //_streamListener.cancel();
   }
-
+/*
   void onShadowRoot(ShadowRoot shadowRoot) {
     new Timer(new Duration(seconds: 1), tooltipfy);
   }
@@ -190,7 +190,7 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
 
     JsUtils.runJavascript(".season-stats-row", 'tooltip', null);
   }
-
+*/
   void onScreenWidthChange(String msg) {
     //tabChange('season-stats-tab-content', 'seasonTab');
   }
@@ -368,13 +368,13 @@ class SoccerPlayerStatsComp implements DetachAware, ShadowRootAware {
 
   void calculateSeasonResumeStats() {
       // Añadimos las especificas del portero
-      seasonResumeStats.add({ 'nombre' : "MIN" , 
+      seasonResumeStats.add({ 'nombre' : "Minutos jugados (MIN)" , 
                               'valor':  calculateStatAverage("MIN"), 
                               'helpInfo': getLocalizedText("minutes-played")
                               });
 
       _totalSums.keys.forEach((key) {
-         seasonResumeStats.add({'nombre' : mappedFieldNames[key]["shortName"],
+         seasonResumeStats.add({'nombre' : mappedFieldNames[key]["description"] + " (" + mappedFieldNames[key]["shortName"] + ")",
                                 'valor' : calculateStatAverage(key),
                                 'helpInfo': mappedFieldNames[key]["description"]});
       });

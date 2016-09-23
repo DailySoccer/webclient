@@ -14272,7 +14272,7 @@ soccer-player-stats {
   justify-content: center;
 }
 .soccer-player-stats-tab-pane .season-stats-header {
-  flex: 0 0 75px;
+  flex: 0 0 200px;
   font-size: 10pt;
   color: #0d75a6;
   text-transform: inherit;

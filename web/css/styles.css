@@ -14037,13 +14037,12 @@ soccer-player-stats {
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
   text-transform: uppercase;
-  overflow: hidden;
 }
 /********************************/
 /*********** HEADER *************/
 /********************************/
 .soccer-player-stats-header {
-  flex: 0 0 130px;
+  flex: 0 0 110px;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -14167,7 +14166,7 @@ soccer-player-stats {
   font-size: 36pt;
 }
 .soccer-player-stats-info {
-  flex: 0 0 auto;
+  flex: 0 0 40px;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -14187,28 +14186,11 @@ soccer-player-stats {
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
-.soccer-player-stats-info .soccer-player-fantasy-points-label {
-  font-size: 10pt;
-  color: rgba(210, 210, 210, 0.3);
-  text-align: left;
-}
 .soccer-player-stats-info .soccer-player-fantasy-points {
-  color: #59add5;
-  text-align: left;
-}
-.soccer-player-stats-info .soccer-player-matches-label {
-  font-size: 10pt;
-  color: rgba(210, 210, 210, 0.3);
   text-align: left;
 }
 .soccer-player-stats-info .soccer-player-matches {
-  text-align: left;
-  color: #59add5;
-}
-.soccer-player-stats-info .soccer-player-salary-label {
-  font-size: 10pt;
-  color: rgba(210, 210, 210, 0.3);
-  text-align: right;
+  text-align: center;
 }
 .soccer-player-stats-info .soccer-player-salary {
   color: #fa9c19;
@@ -14226,7 +14208,6 @@ soccer-player-stats {
   display: flex;
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
-  overflow-y: scroll;
 }
 .soccer-player-stats-tabs {
   flex: 0 0 40px;
@@ -14260,27 +14241,13 @@ soccer-player-stats {
   border-bottom: 2px solid #ffffff;
 }
 .soccer-player-stats-tab-pane {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-flow: row nowrap;
-  flex-flow: row nowrap;
   flex: 1;
 }
 .soccer-player-stats-tab-pane {
   display: none;
 }
 .soccer-player-stats-tab-pane.active {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-flow: row nowrap;
-  flex-flow: row nowrap;
-  flex: 1;
+  display: block;
 }
 .soccer-player-stats-tab-pane {
   font-size: 8pt;
@@ -14291,16 +14258,8 @@ soccer-player-stats {
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
-.soccer-player-stats-tab-pane .season-stats {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-flow: column nowrap;
-  flex-flow: column nowrap;
-  justify-content: center;
-  flex: 1;
+.soccer-player-stats-tab-pane#season-stats-tab-content {
+  margin: 20px auto;
 }
 .soccer-player-stats-tab-pane .season-stats-row {
   display: -webkit-box;
@@ -14311,7 +14270,6 @@ soccer-player-stats {
   -webkit-flex-flow: row nowrap;
   flex-flow: row nowrap;
   justify-content: center;
-  flex: 1;
 }
 .soccer-player-stats-tab-pane .season-stats-header {
   flex: 0 0 200px;

@@ -982,13 +982,22 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_stats_comp.htm
       </div>
     </div>
     <div class="soccer-player-stats-info">
-      <div class="soccer-player-stat-resume-item soccer-player-fantasy-points">{{currentInfoData['fantasyPoints']}}</div>
-      <div class="soccer-player-stat-resume-item soccer-player-matches">{{currentInfoData['matchesCount']}}</div>
-      <div class="soccer-player-stat-resume-item soccer-player-salary">{{printableSalary}}</div>
+      <div class="soccer-player-stat-resume-item soccer-player-fantasy-points-wrapper">
+      <div class="soccer-player-stat-resume-item soccer-player-fantasy-points-label">PTOS. FANTASY</div>
+        <div class="soccer-player-stat-resume-item soccer-player-fantasy-points">{{currentInfoData['fantasyPoints']}}</div>
+      </div>
+      <div class="soccer-player-stat-resume-item soccer-player-matches-wrapper">
+        <div class="soccer-player-stat-resume-item soccer-player-matches-label">PARTIDOS</div>
+        <div class="soccer-player-stat-resume-item soccer-player-matches">{{currentInfoData['matchesCount']}}</div>
+        </div>
+      <div class="soccer-player-stat-resume-item soccer-player-salary-wrapper">
+        <div class="soccer-player-stat-resume-item soccer-player-salary-label">SALARIO</div>
+        <div class="soccer-player-stat-resume-item soccer-player-salary">{{printableSalary}}</div>
+      </div>
     </div>
   </div>
 </div>
-  
+
 <div class="soccer-player-stats-content">
   <!-- Nav tabs -->
   <div class="soccer-player-stats-tabs">
@@ -1007,14 +1016,14 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_stats_comp.htm
     <div class="season-header" ng-bind-html="getLocalizedText('seasonstats')"></div-->
     <!-- MEDIAS -->
     <div class="season-stats">
-        <div class="season-stats-row" ng-repeat="stat in seasonResumeStats"  data-toggle="tooltip" title="{{stat['helpInfo']}}">
+        <div class="season-stats-row" ng-repeat="stat in seasonResumeStats" title="{{stat['helpInfo']}}">
             <div class="season-stats-header">{{stat['nombre']}}</div>
             <div class="season-stats-value">{{stat['valor']}}</div>
         </div>
-        <div class="season-stats-row" ng-if="seasonResumeStats.length % 2 != 0"  data-toggle="" title="">
+        <!--div class="season-stats-row" ng-if="seasonResumeStats.length % 2 != 0" title="">
             <div class="season-stats-header"></div>
             <div class="season-stats-value"></div>
-        </div>
+        </div-->
     </div>
   </div>
   <!-- END BY-SEASON-STATS -->

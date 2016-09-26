@@ -14,7 +14,7 @@ home {
 	}
 	.info-columns-wrapper {
 		.flex-container-row();
-		.flex-elem-fluid();
+		.flex-elem-fixed(210px);
 		align-items: center;
 		padding-bottom: 15px;
 	}
@@ -27,6 +27,9 @@ home {
 		padding: 15px 0;
 		cursor: pointer;
 		.elevation(4);
+		& img {
+			width: 60%;
+		}
 		&.gold {
 			border-style: solid none solid solid;
 			border-radius: 15px 0 0 15px;

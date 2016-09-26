@@ -11865,8 +11865,8 @@ lobby .create-custom-contest-button {
   outline-offset: 0px;
   outline: none;
   line-height: 16pt;
-  flex: 0 0 60px;
-  font-size: 16pt;
+  margin-bottom: 2px;
+  z-index: 1;
 }
 lobby .create-custom-contest-button:hover,
 lobby .create-custom-contest-button:active,
@@ -14346,6 +14346,7 @@ soccer-player-stats {
   display: flex;
   -webkit-flex-flow: row nowrap;
   flex-flow: row nowrap;
+  overflow: hidden;
 }
 .match-stats-table-wrapper .start-year-column {
   border-left: 1px solid #cacdcf;
@@ -14371,7 +14372,7 @@ soccer-player-stats {
 .per-match-stats-table-wrapper {
   flex: 1;
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 .per-match-stats-table-years-row:nth-child(1) {
   font-size: 10pt;

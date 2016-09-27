@@ -31,22 +31,6 @@
         "is_top_level": true,
         "variables": {}
     },
-    "cordova-plugin-app-version": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-app-version@0.1.8"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
-    "cordova-plugin-device": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-device@1.1.1"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "cc.fovea.cordova.purchase": {
         "source": {
             "type": "git",
@@ -83,10 +67,26 @@
         "is_top_level": true,
         "variables": {}
     },
+    "cordova-plugin-app-version": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-app-version"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
     "cordova-plugin-statusbar": {
         "source": {
             "type": "registry",
             "id": "cordova-plugin-statusbar"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-device": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-device"
         },
         "is_top_level": true,
         "variables": {}

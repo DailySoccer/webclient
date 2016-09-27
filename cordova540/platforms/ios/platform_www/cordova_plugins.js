@@ -17,6 +17,14 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/cordova-plugin-app-version/www/AppVersionPlugin.js",
+        "id": "cordova-plugin-app-version.AppVersionPlugin",
+        "pluginId": "cordova-plugin-app-version",
+        "clobbers": [
+            "cordova.getAppVersion"
+        ]
+    },
+    {
         "file": "plugins/cordova-plugin-console/www/console-via-logger.js",
         "id": "cordova-plugin-console.console",
         "pluginId": "cordova-plugin-console",
@@ -30,6 +38,14 @@ module.exports = [
         "pluginId": "cordova-plugin-console",
         "clobbers": [
             "cordova.logger"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-device/www/device.js",
+        "id": "cordova-plugin-device.device",
+        "pluginId": "cordova-plugin-device",
+        "clobbers": [
+            "device"
         ]
     },
     {
@@ -50,6 +66,14 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+        "id": "cordova-plugin-statusbar.statusbar",
+        "pluginId": "cordova-plugin-statusbar",
+        "clobbers": [
+            "window.StatusBar"
+        ]
+    },
+    {
         "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
         "id": "cordova-plugin-x-socialsharing.SocialSharing",
         "pluginId": "cordova-plugin-x-socialsharing",
@@ -63,30 +87,6 @@ module.exports = [
         "pluginId": "cordova-universal-links-plugin",
         "clobbers": [
             "universalLinks"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-app-version/www/AppVersionPlugin.js",
-        "id": "cordova-plugin-app-version.AppVersionPlugin",
-        "pluginId": "cordova-plugin-app-version",
-        "clobbers": [
-            "cordova.getAppVersion"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
-        "id": "cordova-plugin-statusbar.statusbar",
-        "pluginId": "cordova-plugin-statusbar",
-        "clobbers": [
-            "window.StatusBar"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-device/www/device.js",
-        "id": "cordova-plugin-device.device",
-        "pluginId": "cordova-plugin-device",
-        "clobbers": [
-            "device"
         ]
     }
 ];

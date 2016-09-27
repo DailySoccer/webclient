@@ -65,6 +65,10 @@
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"StatusBar\"><param name=\"android-package\" value=\"org.apache.cordova.statusbar.StatusBar\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         },
@@ -74,10 +78,6 @@
                         },
                         {
                             "xml": "<feature name=\"UniversalLinks\"><param name=\"android-package\" value=\"com.nordnetab.cordova.ul.UniversalLinksPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"StatusBar\"><param name=\"android-package\" value=\"org.apache.cordova.statusbar.StatusBar\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -118,6 +118,9 @@
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
+        },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         },
@@ -125,9 +128,6 @@
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         },
         "cordova-universal-links-plugin": {
-            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
-        },
-        "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         }
     },
@@ -183,6 +183,14 @@
             ]
         },
         {
+            "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+            "id": "cordova-plugin-statusbar.statusbar",
+            "pluginId": "cordova-plugin-statusbar",
+            "clobbers": [
+                "window.StatusBar"
+            ]
+        },
+        {
             "file": "plugins/cordova-plugin-whitelist/whitelist.js",
             "id": "cordova-plugin-whitelist.whitelist",
             "pluginId": "cordova-plugin-whitelist",
@@ -202,14 +210,6 @@
             "pluginId": "cordova-universal-links-plugin",
             "clobbers": [
                 "universalLinks"
-            ]
-        },
-        {
-            "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
-            "id": "cordova-plugin-statusbar.statusbar",
-            "pluginId": "cordova-plugin-statusbar",
-            "clobbers": [
-                "window.StatusBar"
             ]
         }
     ]

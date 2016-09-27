@@ -28,6 +28,9 @@
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
+        },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         },
@@ -35,9 +38,6 @@
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         },
         "cordova-universal-links-plugin": {
-            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
-        },
-        "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         }
     },

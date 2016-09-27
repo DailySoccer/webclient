@@ -4,7 +4,7 @@ home {
 	
 	.main-info-wrapper {
 		.flex-container-col();
-		.flex-elem-fluid();
+		.flex-elem-grow-only();
 		.elevation(3);
 		z-index: 1;
 		background-image: url("@{images}/home/main-info-wrapper-bg.jpg");
@@ -14,9 +14,10 @@ home {
 	}
 	.info-columns-wrapper {
 		.flex-container-row();
-		.flex-elem-fixed(210px);
+		.flex-elem-grow-only(1, 210px);
 		align-items: center;
 		padding-bottom: 15px;
+		align-self: center;
 	}
 	.info-column {
 		.flex-container-col();

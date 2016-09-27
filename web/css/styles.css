@@ -21284,7 +21284,7 @@ home .main-info-wrapper {
   display: flex;
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
-  flex: 1;
+  flex: 1 0 auto;
   -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
   -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.29);
@@ -21302,9 +21302,10 @@ home .info-columns-wrapper {
   display: flex;
   -webkit-flex-flow: row nowrap;
   flex-flow: row nowrap;
-  flex: 0 0 210px;
+  flex: 1 0 210px;
   align-items: center;
   padding-bottom: 15px;
+  align-self: center;
 }
 home .info-column {
   display: -webkit-box;

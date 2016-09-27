@@ -26,6 +26,9 @@
 .flex-elem-fluid(@proportion: 1) {
   flex: @proportion;
 }
+.flex-elem-grow-only(@proportion: 1, @size: auto) {
+  flex: @proportion 0 @size;
+}
 
 // use with fixed content
 .flex-container-content-centered {

@@ -55,7 +55,7 @@ class ScalingList<T> {
     }
     
     for (int j = 0; j < count; j++) {
-      if (!_equalsComparer(_currentList[j], _fullList[j])) {
+      if (!_equalsComparer(_currentList[j], _fullList[j]) && _insertList.isNotEmpty) {
         _currentList.add(_insertList.removeFirst());
       }
     }

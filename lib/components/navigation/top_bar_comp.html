@@ -1,6 +1,9 @@
 <div class="columns-layout" ng-class="[layoutCssClass, specialLayoutClass]">
   <div class="left-column" ng-bind-html-unsafe="leftColumnHTML" ng-click="onLeftColumnClick()" ></div>
-  <div class="main-column" ng-bind-html-unsafe="centerColumnHTML" ng-click="onCenterColumnClick()"></div>
+  <div class="main-column" ng-if="!currentState.isSearching" ng-bind-html-unsafe="centerColumnHTML" ng-click="onCenterColumnClick()"></div>
+  <div class="main-column search-mode" ng-if="currentState.isSearching">
+    <input id="topBarSearchField" type="text" class="search-field" ng-model="searchValue" placeholder="Buscar" autofocus>
+  </div>
   <div class="right-column" ng-bind-html-unsafe="rightColumnHTML" ng-click="onRightColumnClick()"></div>
 </div>
 

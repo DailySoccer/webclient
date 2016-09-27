@@ -45,6 +45,28 @@
   }
 }
 
+.text-input-field() {
+  .mainfont_light(10pt, @white, left, uppercase);
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid @grey-translucid;
+  transition: border .3s ease;
+  outline-offset: 0px;
+  outline: none;
+  
+  &:hover, &:active, &:focus {
+    border: none;
+    outline-offset: 0px;
+    outline: none;
+    border-bottom: 2px solid @blueLight;
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
 .fit-icon-size {
   width: 17px;
   height: 17px;

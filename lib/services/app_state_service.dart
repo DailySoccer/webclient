@@ -56,6 +56,7 @@ class AppSecondaryTabBarTab {
 class AppTopBarState {
   // COMPONENTS
   static const String BACK_BUTTON = "__BACK_BUTTON__";
+  static const String SEARCH_BUTTON = "__SEARCH_BUTTON__";
   static const String EMPTY = "__EMPTY__";
   
   static void GOBACK() {
@@ -73,6 +74,13 @@ class AppTopBarStateConfig {
   Function onCenterColumn = (){};
   Function onRightColumn = (){};
   
+  /* SEARCH POURPOSES */
+  Function onLeftColumnSearchingBackUp = (){};
+  Function onSearch = ([_]){};
+  bool isSearching = false;
+  String searchValue = "";
+  /* END SEARCH POURPOSES */
+  
   String getLocalizedText(key, {substitutions: null}) {
      return StringUtils.translate(key, "topBar", substitutions);
    }
@@ -89,9 +97,31 @@ class AppTopBarStateConfig {
     this.centerColumn = AppTopBarState.EMPTY;
     this.rightColumn = AppTopBarState.EMPTY;
   }
-  
+
   AppTopBarStateConfig.subSection(this.centerColumn, {this.rightColumn: AppTopBarState.EMPTY}) {
     this.leftColumn = AppTopBarState.BACK_BUTTON;
+  }
+  AppTopBarStateConfig.subSectionWithSearch(this.centerColumn, Function onSearch) {
+    this.leftColumn = AppTopBarState.BACK_BUTTON;
+    this.rightColumn = AppTopBarState.SEARCH_BUTTON;
+    
+    this.onRightColumn = (){      
+      isSearching = !isSearching;
+      if (!isSearching) {
+        
+        searchValue = "";
+        onSearch(searchValue);
+        this.onLeftColumn = onLeftColumnSearchingBackUp;
+        
+      } else {
+        
+        this.leftColumn = AppTopBarState.BACK_BUTTON;
+        onLeftColumnSearchingBackUp = this.onLeftColumn;
+        this.onLeftColumn = this.onRightColumn;
+        
+      }
+    };
+    this.onSearch = onSearch;
   }
   
   AppTopBarStateConfig.contestSection(Contest contest, bool showInfoButton, Function backFunction, [Function infoFunction]) {

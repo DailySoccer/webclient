@@ -11,6 +11,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/app_state_service.dart';
 import 'dart:html';
 import 'package:webclient/services/screen_detector_service.dart';
+import 'dart:async';
 
 @Component(
     selector: 'top-bar',
@@ -39,9 +40,19 @@ class TopBarComp {
   String get rightColumnHTML  => _columnHTML(currentState.rightColumn);
 
   String get specialLayoutClass => currentState.layoutClass;
-      
+
+  String get searchValue {
+    return currentState.searchValue;
+  }
+  void set searchValue(String val) {
+    currentState.searchValue = val;
+    currentState.onSearch(val);
+  }
+  
   String _columnHTML(String s) => s == AppTopBarState.EMPTY ? '' : 
                                   s == AppTopBarState.BACK_BUTTON ? "<i class='material-icons'>&#xE5C4;</i>" :
+                                  s == AppTopBarState.SEARCH_BUTTON && !currentState.isSearching? "<i class='material-icons'>&#xE8B6;</i>" :
+                                  s == AppTopBarState.SEARCH_BUTTON && currentState.isSearching? "" :
                                   s;
   
   TopBarComp(this._router, this._loadingService, this._view, this._rootElement, 
@@ -61,8 +72,15 @@ class TopBarComp {
   void onRightColumnClick() {
     if (currentState.rightColumn != AppTopBarState.EMPTY) {
       _appStateService.appTopBarState.activeState.onRightColumn();
+      if (currentState.rightColumn == AppTopBarState.SEARCH_BUTTON) {
+        new Timer(new Duration(milliseconds: 100), ([_]) {
+          var elem = document.getElementById("topBarSearchField");
+          if (elem != null) elem.focus();
+        });
+      }
     }
   }
+
   
   // LAYOUT ELEMENTS
   /*

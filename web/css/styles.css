@@ -13460,6 +13460,49 @@ top-bar {
 .one-column .main-column .user-currencies .currency {
   flex: 1;
 }
+.three-columns .main-column.search-mode,
+.one-column .main-column.search-mode {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  flex: 1;
+}
+.three-columns .main-column .search-field,
+.one-column .main-column .search-field {
+  font-size: 10pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-align: left;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(210, 210, 210, 0.3);
+  transition: border .3s ease;
+  outline-offset: 0px;
+  outline: none;
+}
+.three-columns .main-column .search-field:hover,
+.one-column .main-column .search-field:hover,
+.three-columns .main-column .search-field:active,
+.one-column .main-column .search-field:active,
+.three-columns .main-column .search-field:focus,
+.one-column .main-column .search-field:focus {
+  border: none;
+  outline-offset: 0px;
+  outline: none;
+  border-bottom: 2px solid #59add5;
+}
+.three-columns .main-column .search-field:disabled,
+.one-column .main-column .search-field:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 .three-columns .right-column,
 .one-column .right-column {
   flex: 0 0 50px;

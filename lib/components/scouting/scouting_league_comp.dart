@@ -64,7 +64,8 @@ class ScoutingLeagueComp implements DetachAware {
 
   @NgOneWay('filter-pos')
   FieldPos fieldPosFilter;
-  
+
+  @NgOneWay('name-filter')
   String nameFilter;
   String teamFilter;
 /*

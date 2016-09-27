@@ -105,9 +105,9 @@ document.addEventListener('deviceready', function () {
   console.log(" # DEVICE READY EVENT - Comscore");
   ComScorePlugin.setAppContext();
   ComScorePlugin.setAppName("futbolcuatro");
-  ComScorePlugin.setCustomerData("13184057", "15f020eaf9d74aaec3b72f6be73feff4");
   ComScorePlugin.autoUpdateForeground(1);
   ComScorePlugin.autoUpdateBackground(1);
+  ComScorePlugin.setCustomerData("13184057", "15f020eaf9d74aaec3b72f6be73feff4");
   ComScorePlugin.start();
   
   StatusBar.hide();

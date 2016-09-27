@@ -52,6 +52,8 @@ class ScoutingComp implements DetachAware {
   bool onlyFavorites = false;
   bool thereIsNewFavorites;
   
+  String nameFilter = "";
+  
   SoccerPlayerListItem selectedInstanceSoccerPlayer;
   
   String _sectionActive = SOCCER_PLAYERS_LIST;
@@ -61,15 +63,16 @@ class ScoutingComp implements DetachAware {
     _sectionActive = section;
     switch(_sectionActive) {
       case SOCCER_PLAYERS_LIST:        
-        refreshTopBar();
+        //refreshTopBar();
+        nameFilter = "";
+        _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSectionWithSearch("Ojeador", (String val){ nameFilter = val.length > 1? val : ""; });
+        _appStateService.appTopBarState.activeState.onLeftColumn = AppTopBarState.GOBACK;
         _appStateService.appSecondaryTabBarState.tabList = _tabList;
       break;
       case SOCCER_PLAYER_STATS:
-        _appStateService.appSecondaryTabBarState.tabList = [];
         _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Estadísticas");
         _appStateService.appTopBarState.activeState.onLeftColumn = goBack;
-        _appStateService.appTabBarState.show = true; 
-        
+        _appStateService.appSecondaryTabBarState.tabList = [];
       break;
     }
   }
@@ -87,11 +90,12 @@ class ScoutingComp implements DetachAware {
   }
 
   ScoutingComp(this._router, this.loadingService, this._profileService, this._soccerPlayerService, this._appStateService, this._refreshTimersService, this._leaderBoardService) {
+    loadingService.isLoading = true;
     if (_profileService.isLoggedIn) {
       managerLevel = _profileService.user.managerLevel;
     }
-    refreshTopBar();
-    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR, refreshTopBar);
+    //refreshTopBar();
+    //_refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR, refreshTopBar);
      
     _tabList = [
       new AppSecondaryTabBarTab("POR",                                        () => setFilter(FieldPos.GOALKEEPER, false),() => FieldPos.GOALKEEPER == fieldPosFilter),
@@ -101,8 +105,8 @@ class ScoutingComp implements DetachAware {
       new AppSecondaryTabBarTab('''<i class="material-icons">&#xE838;</i>''', () => setFilter(null, true),                () => onlyFavorites)
     ];
 
-    _appStateService.appSecondaryTabBarState.tabList = _tabList;
-    _appStateService.appTabBarState.show = true;    
+    sectionActive = SOCCER_PLAYERS_LIST;
+    _appStateService.appTabBarState.show = false;  
     
     loadData();
     thereIsNewFavorites = false;
@@ -110,7 +114,7 @@ class ScoutingComp implements DetachAware {
   }
   
   void detach() {
-    _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR);
+    //_refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR);
   }
   
   void goBack() {
@@ -123,14 +127,14 @@ class ScoutingComp implements DetachAware {
     fieldPosFilter = fieldpos;
     onlyFavorites = onlyfavs;    
   }
-  
+  /*
   void refreshTopBar() {
     if (isSoccerPlayerStatsActive)
       return;
     
     _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router, _leaderBoardService);
   }
-
+  */
   void loadData() {
     loadingService.isLoading = true;
     leagueES_isLoading = true;
@@ -183,6 +187,7 @@ class ScoutingComp implements DetachAware {
           updateFavorites();
           
           leagueES_isLoading = false;
+          loadingService.isLoading = false;
           // Para evitar la carga simultanea y sobrecarga de peticiones, concatenamos la llamada a la liga UK trás la liga ES.
           //loadUKData();
         }
@@ -190,7 +195,6 @@ class ScoutingComp implements DetachAware {
     }
     
     loadESData();
-    loadingService.isLoading = false;
   }
 
   void onSoccerPlayerInfo(SoccerPlayerListItem soccerPlayer) {

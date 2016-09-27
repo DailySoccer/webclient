@@ -91,7 +91,9 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
   }
   
   void _refreshTopBar() {
-    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router, _leaderboardService);
+    if (_tabSelected != TAB_HISTORY) {
+      _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router, _leaderboardService);
+    }
   }
   
   void _refreshMyContests() {
@@ -172,12 +174,19 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
     _tabSelected = tab.contains(TAB_WAITING)    ? TAB_WAITING
                     : tab.contains(TAB_LIVE)    ? TAB_LIVE
                     : TAB_HISTORY;
-
+    
+    if (_tabSelected == TAB_HISTORY) {
+      _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Historico");
+      _appStateService.appTopBarState.activeState.onLeftColumn = AppTopBarState.GOBACK;
+      _appStateService.appTabBarState.show = false;
+    }
+    
     // Mostramos "cargando..." si no tenemos contests (no se ha entrado anteriormente o está vacío)
     loadingService.isLoading = true;
     /*loadingService.isLoading =  (_tabSelected == TAB_WAITING && !contestsService.hasWaitingContests) ||
                                 (_tabSelected == TAB_LIVE && !contestsService.hasLiveContests) ||
                                 (_tabSelected == TAB_HISTORY && !contestsService.hasHistoryContests);*/
+    _refreshTopBar();
     _refreshMyContests();
   }
 

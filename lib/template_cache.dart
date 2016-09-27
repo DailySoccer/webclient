@@ -1863,7 +1863,10 @@ tc.put("packages/webclient/components/navigation/tab_bar_comp.html", new HttpRes
 </div>"""));
 tc.put("packages/webclient/components/navigation/top_bar_comp.html", new HttpResponse(200, r"""<div class="columns-layout" ng-class="[layoutCssClass, specialLayoutClass]">
   <div class="left-column" ng-bind-html-unsafe="leftColumnHTML" ng-click="onLeftColumnClick()" ></div>
-  <div class="main-column" ng-bind-html-unsafe="centerColumnHTML" ng-click="onCenterColumnClick()"></div>
+  <div class="main-column" ng-if="!currentState.isSearching" ng-bind-html-unsafe="centerColumnHTML" ng-click="onCenterColumnClick()"></div>
+  <div class="main-column search-mode" ng-if="currentState.isSearching">
+    <input id="topBarSearchField" type="text" class="search-field" ng-model="searchValue" placeholder="Buscar" autofocus>
+  </div>
   <div class="right-column" ng-bind-html-unsafe="rightColumnHTML" ng-click="onRightColumnClick()"></div>
 </div>
 
@@ -1951,7 +1954,8 @@ tc.put("packages/webclient/components/scouting/scouting_comp.html", new HttpResp
                              id-sufix="'ES'"
                              favorites-player-list="favoritesPlayers"
                              filter-pos="fieldPosFilter"
-                             only-favorites="onlyFavorites"></scouting-league>
+                             only-favorites="onlyFavorites"
+                             name-filter="nameFilter"></scouting-league>
             <!--scouting-league team-list="teamListUK" 
                              soccer-player-list="allSoccerPlayersUK" 
                              on-action-button="onFavoritesChange(soccerPlayer)"

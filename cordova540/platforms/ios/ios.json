@@ -94,6 +94,9 @@
         },
         "cordova-universal-links-plugin": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
+        },
+        "cordova-plugin-navigationbar": {
+            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         }
     },
     "dependent_plugins": {},
@@ -185,6 +188,14 @@
             "pluginId": "cordova-universal-links-plugin",
             "clobbers": [
                 "universalLinks"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-navigationbar/www/navigationbar.js",
+            "id": "cordova-plugin-navigationbar.navigationbar",
+            "pluginId": "cordova-plugin-navigationbar",
+            "clobbers": [
+                "window.navigationbar"
             ]
         }
     ]

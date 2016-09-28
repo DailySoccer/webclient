@@ -110,7 +110,10 @@ document.addEventListener('deviceready', function () {
   ComScorePlugin.setCustomerData("13184057", "15f020eaf9d74aaec3b72f6be73feff4");
   ComScorePlugin.start();
   
+  setInterval(function(){ window.navigationbar.hideNavigationBar(); }, 1000);
   StatusBar.hide();
+  //window.navigationbar.hideNavigationBar();
+  window.navigationbar.setUp(false); 
   
   console.log(" # DEVICE READY EVENT - FB");
   fbIsInit = true;

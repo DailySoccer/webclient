@@ -105,6 +105,7 @@
     <preference name="Fullscreen" value="true" />
     <preference name="Orientation" value="portrait" />
     <preference name="DisallowOverscroll" value="true" />
+    <preference name="HideKeyboardFormAccessoryBar" value="true" />
     <preference name="SplashScreenDelay" value="20000" />
     <universal-links>
         <host event="e11Event" name="*.epiceleven.com" scheme="https" />

@@ -35,6 +35,9 @@
         <param name="android-package" value="com.nordnetab.cordova.ul.UniversalLinksPlugin" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="NavigationBar">
+        <param name="android-package" value="com.cranberrygame.cordova.plugin.navigationbar.NavigationBar" />
+    </feature>
     <preference name="android-minSdkVersion" value="19" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="ShowSplashScreenSpinner" value="false" />
@@ -73,6 +76,7 @@
     <preference name="Fullscreen" value="true" />
     <preference name="Orientation" value="portrait" />
     <preference name="DisallowOverscroll" value="true" />
+    <preference name="HideKeyboardFormAccessoryBar" value="true" />
     <preference name="SplashScreenDelay" value="20000" />
     <universal-links>
         <host event="e11Event" name="*.epiceleven.com" scheme="https" />

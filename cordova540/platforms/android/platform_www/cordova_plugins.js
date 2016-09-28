@@ -78,6 +78,14 @@ module.exports = [
         "clobbers": [
             "universalLinks"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-navigationbar/www/navigationbar.js",
+        "id": "cordova-plugin-navigationbar.navigationbar",
+        "pluginId": "cordova-plugin-navigationbar",
+        "clobbers": [
+            "window.navigationbar"
+        ]
     }
 ];
 module.exports.metadata = 

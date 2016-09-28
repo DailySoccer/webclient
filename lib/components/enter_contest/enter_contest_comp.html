@@ -35,6 +35,10 @@
                               field-pos-filter="fieldPosFilter" name-filter="nameFilter" match-filter="matchFilter"
                               on-info-click="onSoccerPlayerInfoClick(soccerPlayerId)"
                               on-action-click="onSoccerPlayerActionButton(soccerPlayer)"></soccer-players-scalinglist>
+  <div class="salary-info-wrapper">
+    <div class="current-salary"><span class="current-salary-label">Presupuesto </span><span class="current-salary-amount" ng-class="{'red-numbers': availableSalary < 0 }">{{formatCurrency(printableCurrentSalary)}}</span></div>
+    <div class="limit-salary"><span class="limit-salary-label">Límite </span><span class="limit-salary-amount">{{formatCurrency(printableSalaryCap)}}</span></div>
+  </div>
 </section>
 
 <!-- SOCCER PLAYER STATS -->

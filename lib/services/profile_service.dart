@@ -25,12 +25,15 @@ import 'package:webclient/services/deltaDNA_service.dart';
 @Injectable()
 class ProfileService {
 
+  static const String FIRST_RUN_CHANGE_NAME = "FIRST_RUN_CHANGE_NAME";
+  static const String FIRST_TIME_PURCHASE = "FIRST_RUN_CHANGE_NAME";
+  
   User user = null;
   bool get isLoggedIn => user != null;
 
   String get currentVersion => HostServer.CURRENT_VERSION;
   String get info => isLoggedIn ? "${user.mainMenuInfo}:$currentVersion" : "$currentVersion";
-
+  
   bool get isWelcoming => !_hasDoneLogin;
 
   static ProfileService get instance => _instance;  // Si te peta en esta linea te obliga a pensar, lo que es Una Buena Cosa™.
@@ -86,7 +89,10 @@ class ProfileService {
     
     return _server.deviceLogin(uuid)
         .then(_onLoginResponse)
-        .then((_) => Logger.root.info("deviceLogin success: $uuid"));
+        .then((_) {
+                Logger.root.info("deviceLogin success: $uuid");
+                _onLogin.add("");
+              });
   }
   
   Future<Map> _onLoginResponse(Map loginResponseJson) {
@@ -200,6 +206,7 @@ class ProfileService {
     Logger.root.info("ProfileService: Trying Profile Load");
     var storedSessionToken = GameInfo.get('sessionToken');
     var storedUser = GameInfo.get('user');
+    _loadStoredEventualActions();
 
     if (storedSessionToken != null && storedUser != null) {
       Logger.root.info("ProfileService: Trying Profile Load -> Stored Profile");
@@ -212,6 +219,7 @@ class ProfileService {
       _server.getUserProfile().then((jsonMap) {
         // Puede que recibamos la información del perfil, cuando el usuario esté "log out" o esté activo el tutorial
         if (user != null && !TutorialService.isActivated) {
+          _onLogin.add("");
           // Si nuestro usuario ya no es el mismo pero no ha dado un error, el sessionToken sigue siendo valido y lo
           // unico que tenemos que hacer es anotar el nuevo User
           if (jsonMap["_id"] != user.userId) {
@@ -247,10 +255,26 @@ class ProfileService {
     if (user != null && _sessionToken != null) {
       GameInfo.assign('sessionToken', _sessionToken);
       GameInfo.assign('user', JSON.encode(user));
+      _saveEventualActions();
     }
     else {
       GameInfo.remove('sessionToken');
       GameInfo.remove('user');
+      _removeEventualActions();
+    }
+  }
+
+  void _saveEventualActions() {
+    GameInfo.assign('eventualActions', JSON.encode(_eventualActions));
+  }
+  void _removeEventualActions() {
+    GameInfo.remove('eventualActions');
+  }
+  void _loadStoredEventualActions() {
+    if (GameInfo.contains('eventualActions')) {
+      _eventualActions = JSON.decode(GameInfo.get('eventualActions'));
+    } else {
+      _eventualActions = {};
     }
   }
 
@@ -502,7 +526,20 @@ class ProfileService {
     
     GameInfo.assign("showGuestNameModal", "true");
   }
+  
+  void triggerEventualAction(String name, Function callback) {
+    if(!_eventualActions.containsKey(name) || _eventualActions[name] != true) {
+      _eventualActions[name] = true;
+      _saveEventualActions();
+      callback();
+    }
+  }
+  void resetEventualAction(String name) {
+    _eventualActions[name] = false;
+    _saveEventualActions();
+  }
 
+  Map _eventualActions = {};
   List<User> _friendList = [];
   List<User> get friendList => user == null? [] : _friendList;
 
@@ -516,4 +553,10 @@ class ProfileService {
   DeltaDNAService _deltaDnaService;
   Router _router;
   String _sessionToken;
+  
+
+  Stream get onLogin => _onLogin.stream;
+  StreamController _onLogin = new StreamController.broadcast();
 }
+
+

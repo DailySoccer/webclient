@@ -62,3 +62,48 @@ top-bar {
 .columns-layout.hidden-bar {
 	display: none;
 }
+
+.first-nickname-change {
+  .modal-window-content {
+    .flex-container-col();
+    .mainfont_light(14pt, @grey-light, left, uppercase);
+    padding: 15px 20px;
+  }
+  .first-nickname-label {
+    .flex-elem-fixed();
+    margin-bottom: 20px;
+  }
+  .first-nickname-input {
+    .flex-elem-fixed();
+    .text-input-field();
+    .mainfont_light(11pt, @grey-light, left, uppercase);
+    margin-right: 10px;
+  }
+  .nickname-error-container {
+    .flex-elem-fixed(22px);
+  }
+  .nickname-error-text {
+    .mainfont_light(9pt, @red, left, uppercase);
+    margin-top: 5px;
+    margin-left: 5px;
+  }
+  .nickname-change-actions-wrapper {
+    .flex-elem-fixed();
+    .flex-container-row();
+    justify-content: flex-end;
+    margin-top: 15px;
+  }
+  .nickname-change-cancel {
+    .flex-elem-fixed();
+    .flat-button();
+    margin-right: 15px;
+  }
+  .nickname-change-confirm {
+    .flex-elem-fixed();
+    .flat-button();
+    
+  }
+}
+
+
+

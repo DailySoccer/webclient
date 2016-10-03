@@ -10,3 +10,16 @@
 <modal-window title="'Mensajes de futbolcuatro'" show-window="notificationsActive" ng-class="{'small' : !hasNotification}">
   <notifications></notifications>
 </modal-window>
+
+<modal-window show-header="false" show-window="changeNameWindowShow" class="small first-nickname-change">
+  <span class="first-nickname-label">Elige tu nombre</span>      
+  <input class="first-nickname-input" type="text" maxlength="{{MAX_NICKNAME_LENGTH}}" ng-model="editedNickName" 
+         placeholder="nombre de usuario" class="form-control" autocapitalize="off" autofocus>
+  <!-- Error de nickName -->
+  <div class="nickname-error-container">
+    <div class="nickname-error-text">{{nicknameErrorText}}</div>
+  </div>
+  <div class="nickname-change-actions-wrapper">
+    <button class="nickname-change-confirm" ng-click="saveChanges()" ng-disabled="editedNickName.length < MIN_NICKNAME_LENGTH">Confirm</button>
+  </div>
+</modal-window>

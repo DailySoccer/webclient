@@ -13530,6 +13530,140 @@ top-bar {
 .columns-layout.hidden-bar {
   display: none;
 }
+.first-nickname-change .modal-window-content {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  font-size: 14pt;
+  color: #cacdcf;
+  text-transform: uppercase;
+  text-align: left;
+  text-shadow: 1px 1px 1px rgba(202, 205, 207, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  padding: 15px 20px;
+}
+.first-nickname-change .first-nickname-label {
+  flex: 0 0 auto;
+  margin-bottom: 20px;
+}
+.first-nickname-change .first-nickname-input {
+  flex: 0 0 auto;
+  font-size: 10pt;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(210, 210, 210, 0.3);
+  transition: border .3s ease;
+  outline-offset: 0px;
+  outline: none;
+  font-size: 11pt;
+  color: #cacdcf;
+  text-transform: uppercase;
+  text-align: left;
+  text-shadow: 1px 1px 1px rgba(202, 205, 207, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  margin-right: 10px;
+}
+.first-nickname-change .first-nickname-input:hover,
+.first-nickname-change .first-nickname-input:active,
+.first-nickname-change .first-nickname-input:focus {
+  border: none;
+  outline-offset: 0px;
+  outline: none;
+  border-bottom: 2px solid #59add5;
+}
+.first-nickname-change .first-nickname-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.first-nickname-change .nickname-error-container {
+  flex: 0 0 22px;
+}
+.first-nickname-change .nickname-error-text {
+  font-size: 9pt;
+  color: #ff0000;
+  text-transform: uppercase;
+  text-align: left;
+  text-shadow: 1px 1px 1px rgba(255, 0, 0, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+.first-nickname-change .nickname-change-actions-wrapper {
+  flex: 0 0 auto;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+.first-nickname-change .nickname-change-cancel {
+  flex: 0 0 auto;
+  font-size: 11pt;
+  color: #0d75a6;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  border: 0;
+  outline-offset: 0px;
+  outline: none;
+  margin-right: 15px;
+}
+.first-nickname-change .nickname-change-cancel:hover,
+.first-nickname-change .nickname-change-cancel:active,
+.first-nickname-change .nickname-change-cancel:focus {
+  border: none;
+  outline-offset: 0px;
+  outline: none;
+}
+.first-nickname-change .nickname-change-cancel:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.first-nickname-change .nickname-change-confirm {
+  flex: 0 0 auto;
+  font-size: 11pt;
+  color: #0d75a6;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  border: 0;
+  outline-offset: 0px;
+  outline: none;
+}
+.first-nickname-change .nickname-change-confirm:hover,
+.first-nickname-change .nickname-change-confirm:active,
+.first-nickname-change .nickname-change-confirm:focus {
+  border: none;
+  outline-offset: 0px;
+  outline: none;
+}
+.first-nickname-change .nickname-change-confirm:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 my-contests {
   display: -webkit-box;
   display: -moz-box;

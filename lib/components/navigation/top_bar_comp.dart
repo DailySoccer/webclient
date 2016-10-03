@@ -35,6 +35,8 @@ class TopBarComp {
   bool get notificationsActive => _appStateService.notificacionsActive;
   bool get hasNotification => _profileService.isLoggedIn? _profileService.user.notifications.length > 0 : false;
   
+  bool changeNameWindowShow = false;
+  
   String get leftColumnHTML   => _columnHTML(currentState.leftColumn);
   String get centerColumnHTML => _columnHTML(currentState.centerColumn);
   String get rightColumnHTML  => _columnHTML(currentState.rightColumn);
@@ -57,7 +59,14 @@ class TopBarComp {
   
   TopBarComp(this._router, this._loadingService, this._view, this._rootElement, 
                 this._dateTimeService, this._profileService, this._templateService, 
-                this._catalogService, this._appStateService, this._scrDet) {}
+                this._catalogService, this._appStateService, this._scrDet) {
+    if (_profileService.isLoggedIn) {
+      onProfileLoad();
+    } else {
+      _profileService.onLogin.listen(([_]) => onProfileLoad());
+    }
+    //editedNickName = _profileService.user.nickName;
+  }
 
   void onLeftColumnClick() {
    // if (leftColumnIsBackButton) {
@@ -80,7 +89,52 @@ class TopBarComp {
       }
     }
   }
+  
+  void onProfileLoad() {
+    _profileService.triggerEventualAction(ProfileService.FIRST_RUN_CHANGE_NAME, () {
+      changeNameWindowShow = true;
+    });
+  }
 
+  String _editedNickName = "";
+  void set editedNickName(String s) {
+    _editedNickName = s;
+    validateNickname();
+  }
+  
+  
+  String get editedNickName => _editedNickName;
+  String nicknameErrorText = "";
+  int MIN_NICKNAME_LENGTH = 4;
+  int MAX_NICKNAME_LENGTH = 30;
+  
+  void validateNickname() {
+    bool valid = editedNickName != "" && editedNickName.length >= MIN_NICKNAME_LENGTH;
+    nicknameErrorText = "";
+    if (!valid) {
+      nicknameErrorText = "Tamaño mínimo $MIN_NICKNAME_LENGTH caracteres";
+    }
+  }
+  
+  void saveChanges() {
+      String nickName  = (_profileService.user.nickName   != editedNickName)  ? editedNickName   : "";
+
+      if (nickName  == "") {
+         changeNameWindowShow = false;
+      }
+      _profileService.user.nickName = editedNickName;
+
+      _profileService.changeUserProfile(_profileService.user.firstName, _profileService.user.lastName, 
+                                        _profileService.user.email, nickName, "")
+        .then( (_) {
+          changeNameWindowShow = false;
+        });
+  }
+  
+  void cancelNicknameChange() {
+    changeNameWindowShow = false;
+  }
+  
   
   // LAYOUT ELEMENTS
   /*

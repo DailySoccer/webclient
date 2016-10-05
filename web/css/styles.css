@@ -14927,6 +14927,9 @@ enter-contest {
   background-color: #000000;
   overflow: hidden;
 }
+.favorites-top-bar.favorites-on {
+  color: #59add5;
+}
 .lineup-selector-section,
 .soccer-player-list-section,
 .contest-info-section {
@@ -16158,6 +16161,20 @@ soccer-players-scalinglist .column-tshirt {
   flex: 0 0 30px;
   padding: 0 5px;
   overflow: hidden;
+  line-height: 0;
+}
+soccer-players-scalinglist .column-tshirt .material-icons {
+  font-size: 18px;
+  line-height: 18px;
+  height: 18px;
+  color: #59add5;
+  position: relative;
+  top: 30px;
+  left: -5px;
+  text-shadow: 0 0 3px #000000;
+}
+soccer-players-scalinglist .column-tshirt .material-icons + .team-shirt-image {
+  margin-top: -18px;
 }
 soccer-players-scalinglist .column-primary-info {
   flex: 1;
@@ -16248,7 +16265,8 @@ soccer-players-scalinglist .column-addbtn.removeFav {
   flex: 0 0 64px;
   padding: 7px 8px;
   align-items: center;
-  border-bottom: 2px solid #000000;
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
 }
 .soccer-player-table-body .soccer-players-list-slot.not-available {
   opacity: 0.3;
@@ -16257,6 +16275,11 @@ soccer-players-scalinglist .column-addbtn.removeFav {
 .soccer-player-table-body .soccer-players-list-slot.not-available .column-info,
 .soccer-player-table-body .soccer-players-list-slot.not-available .column-addbtn {
   opacity: 0;
+}
+.soccer-player-table-body .soccer-players-list-slot.soccer-player-remove {
+  padding: 7px 0px;
+  border-left: 8px solid #0d75a6;
+  border-right: 8px solid #0d75a6;
 }
 /*
 // Tabla de ordenacion en la cabecera del listado de jugadores

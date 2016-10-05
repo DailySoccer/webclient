@@ -20,6 +20,21 @@ soccer-players-scalinglist {
     .flex-elem-fixed(30px);
     padding: 0 5px;
     overflow: hidden;
+    line-height: 0;
+    .material-icons {
+      font-size: 18px;
+      line-height: 18px;
+      height: 18px;
+      color: @blueLight;    
+      position: relative;
+      top: 30px;
+      left: -5px;
+      text-shadow: 0 0 3px rgba(0, 0, 0, 1);
+    }
+    
+    .material-icons + .team-shirt-image {
+      margin-top: -18px;
+    }
   }
   .column-primary-info {
     .flex-elem-fluid();
@@ -85,7 +100,8 @@ soccer-players-scalinglist {
     .flex-elem-fixed(64px);
     padding: 7px 8px;
     align-items: center;
-    border-bottom: 2px solid @black;
+    border-top: 1px solid @black;
+    border-bottom: 1px solid @black;
     &.not-available {
 			opacity: 0.3;
       pointer-events: none;
@@ -94,6 +110,11 @@ soccer-players-scalinglist {
 		    opacity: 0;
       }
 		}
+    &.soccer-player-remove {
+      padding: 7px 0px;
+      border-left: 8px solid @blue;
+      border-right: 8px solid @blue;
+    }
   }
   
 }

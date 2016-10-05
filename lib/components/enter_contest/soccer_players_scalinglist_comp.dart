@@ -215,7 +215,6 @@ class SoccerPlayersScalingListComp {
     /*if (_scrDet.isXsScreen && key == FILTER_POSITION && valor == null) {
       return;
     }*/
-
     _filterList[key] = valor;
     _refreshFilters();
   }
@@ -225,6 +224,8 @@ class SoccerPlayersScalingListComp {
       currentSoccerPlayerList.elements = soccerPlayerList.where(_isVisibleWithFilters).toList();
     }
   }
+  
+  bool isFavorite(SoccerPlayerListItem slot) => favoritesList.contains(slot);
   
   bool _isVisibleWithFilters(SoccerPlayerListItem player) {
     return (filterPosVal == null || player.fieldPos.value == filterPosVal) &&

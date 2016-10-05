@@ -99,9 +99,13 @@ class EnterContestComp implements DetachAware {
                          new AppSecondaryTabBarTab("TODOS LOS JUGADORES",                        () => setFilter(false), () => !onlyFavorites),
                          new AppSecondaryTabBarTab('''<i class="material-icons">&#xE838;</i>''', () => setFilter(true),  () => onlyFavorites)
         ];
-        _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Elige un ${fieldPosFilter.fullName}");
+        _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Elige un ${fieldPosFilter.fullName}", rightColumn: '<i class="material-icons favorites-top-bar ${onlyFavorites? "favorites-on": "favorites-off"}">${onlyFavorites? "&#xE838;" : "&#xE83A;"}</i>');
         _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerSelection;
-        _appStateService.appSecondaryTabBarState.tabList = _tabList;
+        _appStateService.appTopBarState.activeState.onRightColumn = () {
+          setFilter(!onlyFavorites);
+          sectionActive = _sectionActive;
+        };
+        _appStateService.appSecondaryTabBarState.tabList = [];
       break;
       case SOCCER_PLAYER_STATS:
         _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Estadísticas");
@@ -637,13 +641,21 @@ class EnterContestComp implements DetachAware {
     int indexOfPlayer = lineupSlots.indexOf(soccerPlayer);
     if (indexOfPlayer != -1) {
       onLineupSlotSelected(indexOfPlayer);  // Esto se encarga de quitarlo del lineup
-    }
-    else {
+    } else {
       _tryToAddSoccerPlayerToLineup(soccerPlayer);
     }
     _verifyMaxPlayersInSameTeam();
   }
 
+  bool isFieldPositionFull(FieldPos pos) {
+    for (int c = 0; c < lineupSlots.length; ++c) {
+      if (lineupSlots[c] == null && lineupFormation[c] == pos.value) {
+        return false;
+      }
+    }
+    return true;
+  }
+  
   void _tryToAddSoccerPlayerToLineup(SoccerPlayerListItem soccerPlayer) {
     if (contest.entryFee.isGold && !_isRestoringTeam) {
       Money moneyToBuy = new Money.from(Money.CURRENCY_GOLD, soccerPlayer.moneyToBuy.amount);
@@ -669,10 +681,12 @@ class EnterContestComp implements DetachAware {
         // _catalogService.buySoccerPlayer(contest.contestId, soccerPlayer["id"]);
 
         lineupSlots[c] = soccerPlayer;
-        sectionActive = LINEUP_FIELD_SELECTOR;
         availableSalary -= soccerPlayer.salary;
         // Comprobamos si estamos en salario negativo
         isNegativeBalance = availableSalary < 0;
+        if (isFieldPositionFull(theFieldPos)) {
+          sectionActive = LINEUP_FIELD_SELECTOR;
+        }
 
         nameFilter = null;
         // Actualizamos el contestEntry, independientemente que estemos editando o creando

@@ -70,6 +70,7 @@ class HostServer {
   static bool get isEpicEleven => window.location.hostname.contains("epiceleven.com") && !window.location.hostname.contains("staging");
   static bool get isAndroidPlatform => platform == "android";
   static bool get isiOSPlatform => platform == "ios";
+  static bool get isDevice => isAndroidPlatform || isiOSPlatform;
   static bool get isTemplateCacheON => (isAndroidPlatform || isiOSPlatform || isProd);
 
   static String get platform {

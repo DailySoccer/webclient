@@ -17,11 +17,12 @@ class ModalWindow {
   @NgOneWay("title")
   String title;
   
-  @NgOneWay("show-window")
+  @NgTwoWay("show-window")
   void set show(bool b) {
     if (!b) this._rootElement.classes.add("hidden-window");
     else this._rootElement.classes.remove("hidden-window");
   }
+  bool get show => !this._rootElement.classes.contains("hidden-window");
   
   void close() {
     show = false;

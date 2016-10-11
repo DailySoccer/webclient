@@ -64,8 +64,8 @@ class SoccerPlayersScalingListComp {
   void     set onlyFavorites(bool only) => _setFilter(FILTER_FAVORITES, only);
 
   @NgOneWay("favorites-list")
-  List     get favoritesList => _favoritesList == null? [] : _favoritesList;
-  void     set favoritesList(List favs) { _favoritesList = favs; }
+  List<SoccerPlayerListItem>     get favoritesList => _favoritesList == null? [] : _favoritesList;
+  void     set favoritesList(List<SoccerPlayerListItem>  favs) { _favoritesList = favs; }
 
   @NgOneWay("name-filter")
   String get nameFilter => _filterList[FILTER_NAME];
@@ -225,13 +225,13 @@ class SoccerPlayersScalingListComp {
     }
   }
   
-  bool isFavorite(SoccerPlayerListItem slot) => favoritesList.contains(slot);
+  bool isFavorite(SoccerPlayerListItem slot) => favoritesList.where((s) => s.id == slot.id).isNotEmpty;
   
   bool _isVisibleWithFilters(SoccerPlayerListItem player) {
     return (filterPosVal == null || player.fieldPos.value == filterPosVal) &&
            (filterMatchIdVal == null || player.matchId == filterMatchIdVal) &&
            (filterNameVal == null || filterNameVal.isEmpty || player.fullNameNormalized.contains(filterNameVal)) &&
-           (!onlyFavorites || (onlyFavorites && favoritesList.contains(player)));
+           (!onlyFavorites || (onlyFavorites && favoritesList.where((s) => s.id == player.id).isNotEmpty));
   }
   
   List<Map> _sortList = [_SORT_FIELDS["Pos"], _SORT_FIELDS["Name"]];
@@ -248,7 +248,7 @@ class SoccerPlayersScalingListComp {
     StringUtils.translate("for", "soccerplayerpositions"): "posDEL"
   };
   
-  List<dynamic> _favoritesList = null;
+  List<SoccerPlayerListItem> _favoritesList = null;
   //List<dynamic> _sortedSoccerPlayers = null;
   Map<String, dynamic> _filterList = {};
   //Watch _lineupFilterWatch;

@@ -333,6 +333,14 @@ class ViewContestComp implements DetachAware {
       }
     }
   }
+
+  void onOpponentLineupSlotSelected(int slotIndex) {
+    SoccerPlayerListItem player = opponentLineupSlots[slotIndex];
+    if (player.isPlaying || player.hasPlayed) {
+      gameplaysPlayer = player;
+      isGameplaysModalOn = true;
+    }
+  }
   
   void onSoccerPlayerInfoClick(String soccerPlayerId) {
     //ModalComp.open(_router, "enter_contest.soccer_player_stats", { "instanceSoccerPlayerId":soccerPlayerId, "selectable":isSlotAvailableForSoccerPlayer(soccerPlayerId)}, addSoccerPlayerToLineup);

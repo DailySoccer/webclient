@@ -69,43 +69,42 @@ class ShopComp implements DetachAware{
       clearCookies();
     }
 
-    if (!HostServer.isDev) {
-    _catalogService.getCatalog()
-      .then((catalog) {
-        for (Product info in catalog.where((e) => e.gained.isEnergy)) {
-          Map eProduct = {};
-          eProduct["info"]         = info;
-          eProduct["id"]           = info.id;
-          eProduct["description"]  = info.description.toLowerCase().replaceAll('(futbol cuatro)', '');
-          eProduct["captionImage"] = info.imageUrl;
-          eProduct["price"]        = info.price.toString();
-          eProduct["quantity"]     = info.gained.amount.toInt().toString();
-          eProduct["purchasable"]  = true;
-          energyProducts.add(eProduct);
-        }
-        
-        // Esperar a que iTunes Connect actualice correctamente los productos de GOLD
-        return _paymentService.waitingForReady();
-      })
-      .then((_) {
-        for (Product info in _catalogService.products.where((g) => g.gained.isGold && g.isValid)) {
-          Map gProduct = {};
-          gProduct["id"]             = info.id;
-          gProduct["storeId"]        = info.storeId;
-          gProduct["description"]    = info.description.toLowerCase().replaceAll('(futbol cuatro)', '');
-          gProduct["captionImage"]   = info.imageUrl;
-          gProduct["price"]          = info.storePrice; // info.price.toStringWithCurrency();
-          // Sumamos la cantidad + el incremento gratuito
-          gProduct["quantity"]       = (info.gained.amount.toInt() + info.free.amount.toInt()).toString();
-          gProduct["freeIncrement"]  = 0;//info.free.amount.toInt();
-          gProduct["isMostPopular"]  = info.mostPopular;
-          gProduct["purchasable"]    = true;
-          goldProducts.add(gProduct);
-        }
-        _loadingService.isLoading = false;
-      });
-    }
-    else {
+    if (HostServer.isDevice) {
+      _catalogService.getCatalog()
+        .then((catalog) {
+          for (Product info in catalog.where((e) => e.gained.isEnergy)) {
+            Map eProduct = {};
+            eProduct["info"]         = info;
+            eProduct["id"]           = info.id;
+            eProduct["description"]  = info.description.toLowerCase().replaceAll('(futbol cuatro)', '');
+            eProduct["captionImage"] = info.imageUrl;
+            eProduct["price"]        = info.price.toString();
+            eProduct["quantity"]     = info.gained.amount.toInt().toString();
+            eProduct["purchasable"]  = true;
+            energyProducts.add(eProduct);
+          }
+          
+          // Esperar a que iTunes Connect actualice correctamente los productos de GOLD
+          return _paymentService.waitingForReady();
+        })
+        .then((_) {
+          for (Product info in _catalogService.products.where((g) => g.gained.isGold && g.isValid)) {
+            Map gProduct = {};
+            gProduct["id"]             = info.id;
+            gProduct["storeId"]        = info.storeId;
+            gProduct["description"]    = info.description.toLowerCase().replaceAll('(futbol cuatro)', '');
+            gProduct["captionImage"]   = info.imageUrl;
+            gProduct["price"]          = info.storePrice; // info.price.toStringWithCurrency();
+            // Sumamos la cantidad + el incremento gratuito
+            gProduct["quantity"]       = (info.gained.amount.toInt() + info.free.amount.toInt()).toString();
+            gProduct["freeIncrement"]  = 0;//info.free.amount.toInt();
+            gProduct["isMostPopular"]  = info.mostPopular;
+            gProduct["purchasable"]    = true;
+            goldProducts.add(gProduct);
+          }
+          _loadingService.isLoading = false;
+        });
+    } else {
       _catalogService.getCatalog()
         .then((catalog) {
           for (Product info in _catalogService.products.where((g) => g.gained.isGold)) {
@@ -124,7 +123,7 @@ class ShopComp implements DetachAware{
           }
         _loadingService.isLoading = false;
         });
-      }
+    }
     GameMetrics.logEvent(GameMetrics.SHOP_ENTERED);
     _tutorialService.triggerEnter("shop", component: this, activateIfNeeded: false);
   }

@@ -90,7 +90,7 @@ class CatalogService {
                 return gProduct;
               }).toList();
 
-              if (!HostServer.isDev)
+              if (HostServer.isDevice)
                 JsUtils.runJavascript(null, "registerConsumable", [productsGold], 'epicStore');
             }
             completer.complete(products);

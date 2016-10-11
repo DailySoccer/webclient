@@ -48,13 +48,17 @@ var epicStore = {
           alias: productList[i]['id'],
           type:  store.CONSUMABLE
       });
+      console.log("REGISTER");
+      console.log(productList[i]['storeId']);
+      console.log(productList[i]['id']);
+      console.log(store.CONSUMABLE);
       store.when(productList[i]['storeId']).loaded(function(p) {
-        /*
+        
         console.log("Loaded: " + p['id']);
         console.log("Product.alias: " + p['alias']);
         console.log("Product.title: " + p['title']);
         console.log("Product.price: " + p['price']);
-        */
+        
         updateProductInfo(p['alias'], p['title'], p['price']);
       });
       store.when(productList[i]['storeId']).initiated(function(p) {
@@ -69,8 +73,20 @@ var epicStore = {
       });
       store.when(productList[i]['storeId']).verified(function (order) {
       	console.log(" # DEVICE READY EVENT - SHOP -> store.verified");
-        paymentServiceCheckout(order, order['alias'], order['transaction']['type'], order['transaction']['purchaseToken']); // order['transaction']['id']
-      });    
+      	
+      	
+        getPlatform(function(s) {
+          var transactionId = "";
+          if (s === "Android") {
+            transactionId = order['transaction']['purchaseToken'];
+          } else {
+            transactionId = order['transaction']['id'];
+          }
+          paymentServiceCheckout(order, order['alias'], order['transaction']['type'], transactionId);
+        });
+      	
+        //paymentServiceCheckout(order, order['alias'], order['transaction']['type'], order['transaction']['purchaseToken']); // order['transaction']['id']
+      });
     }
     store.refresh();
   },

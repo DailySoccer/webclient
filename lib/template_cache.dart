@@ -841,6 +841,10 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
                               field-pos-filter="fieldPosFilter" name-filter="nameFilter" match-filter="matchFilter"
                               on-info-click="onSoccerPlayerInfoClick(soccerPlayerId)"
                               on-action-click="onSoccerPlayerActionButton(soccerPlayer)"></soccer-players-scalinglist>
+  <div class="salary-info-wrapper">
+    <div class="current-salary"><span class="current-salary-label">Presupuesto </span><span class="current-salary-amount" ng-class="{'red-numbers': availableSalary < 0 }">{{formatCurrency(printableCurrentSalary)}}</span></div>
+    <div class="limit-salary"><span class="limit-salary-label">Límite </span><span class="limit-salary-amount">{{formatCurrency(printableSalaryCap)}}</span></div>
+  </div>
 </section>
 
 <!-- SOCCER PLAYER STATS -->
@@ -1095,9 +1099,12 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_scalinglist_c
 </div>
 
 <div class="soccer-player-table-body">
-  <div ng-id="'soccerPlayer' + soccerPlayer.id" ng-repeat="soccerPlayer in currentSoccerPlayerList.elements track by soccerPlayer.id" class="soccer-players-list-slot" ng-class="[POS_CLASS_NAMES[soccerPlayer.fieldPos.abrevName], !soccerPlayerIsAvailable(soccerPlayer) ? 'not-available': '']">
+  <div ng-id="'soccerPlayer' + soccerPlayer.id" ng-repeat="soccerPlayer in currentSoccerPlayerList.elements track by soccerPlayer.id" class="soccer-players-list-slot" ng-class="[POS_CLASS_NAMES[soccerPlayer.fieldPos.abrevName], !soccerPlayerIsAvailable(soccerPlayer) ? 'not-available': '', isAddAction(soccerPlayer) ? 'soccer-player-add':'soccer-player-remove']">
     <div class="column-data column-info" ng-click="onInfoClick({'soccerPlayerId': soccerPlayer.id})"><i class="material-icons">&#xE88F;</i></div>
-    <div class="column-data column-tshirt" ng-click="onInfoClick({'soccerPlayerId': soccerPlayer.id})"><img ng-src="{{getImgPerSoccerTeam(soccerPlayer)}}" class="team-shirt-image"></div>
+    <div class="column-data column-tshirt" ng-click="onInfoClick({'soccerPlayerId': soccerPlayer.id})">
+      <i class="material-icons" ng-if="isFavorite(soccerPlayer)">&#xE838;</i>
+      <img ng-src="{{getImgPerSoccerTeam(soccerPlayer)}}" class="team-shirt-image">
+    </div>
     <div class="column-data column-primary-info" ng-click="onInfoClick({'soccerPlayerId': soccerPlayer.id})">
       <span class="soccer-player-name">{{soccerPlayer.fullName}}</span>
       <span class="match-event-name" ng-bind-html-unsafe="soccerPlayer.matchEventNameHTML"></span>
@@ -1108,24 +1115,14 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_scalinglist_c
     <!--div class="column-data column-manager-level"><span class="manager-level-needed">{{soccerPlayer.level}}</span></div-->
     
     <div class="column-data column-addbtn" ng-class="[isAddAction(soccerPlayer) ? 'add' : 'remove']" 
-          ng-id="'soccerPlayerAction' + soccerPlayer.id" 
-          ng-click="onActionClick({'soccerPlayer': soccerPlayer})"
-          ng-if="!isScoutingList">
-          <i class="material-icons">
-            {{isAddAction(soccerPlayer) ? '&#xE145;' : '&#xE15B;'}}
-          </i>
+         ng-id="'soccerPlayerAction' + soccerPlayer.id" ng-click="onActionClick({'soccerPlayer': soccerPlayer})" ng-if="!isScoutingList">
+      <i class="material-icons">{{isAddAction(soccerPlayer) ? '&#xE145;' : '&#xE15B;'}}</i>
     </div>
     
     <div class="column-data column-addbtn" ng-class="[isAddAction(soccerPlayer) ? 'addFav' : 'removeFav']" 
-      ng-id="'soccerPlayerAction' + soccerPlayer.id" 
-      ng-click="onActionClick({'soccerPlayer': soccerPlayer})"
-      ng-if="isScoutingList">
-      <i class="material-icons">
-        {{isAddAction(soccerPlayer) ? '&#xE83A;' : '&#xE838;'}}
-      </i>
+         ng-id="'soccerPlayerAction' + soccerPlayer.id" ng-click="onActionClick({'soccerPlayer': soccerPlayer})" ng-if="isScoutingList">
+      <i class="material-icons">{{isAddAction(soccerPlayer) ? '&#xE83A;' : '&#xE838;'}}</i>
     </div>
-    
-    
   </div>
 </div>"""));
 tc.put("packages/webclient/components/home_comp.html", new HttpResponse(200, r"""<div class="main-info-wrapper">
@@ -1872,6 +1869,19 @@ tc.put("packages/webclient/components/navigation/top_bar_comp.html", new HttpRes
 
 <modal-window title="'Mensajes de futbolcuatro'" show-window="notificationsActive" ng-class="{'small' : !hasNotification}">
   <notifications></notifications>
+</modal-window>
+
+<modal-window show-header="false" show-window="changeNameWindowShow" class="small first-nickname-change">
+  <span class="first-nickname-label">Elige tu nombre</span>      
+  <input class="first-nickname-input" type="text" maxlength="{{MAX_NICKNAME_LENGTH}}" ng-model="editedNickName" 
+         placeholder="nombre de usuario" class="form-control" autocapitalize="off" autofocus>
+  <!-- Error de nickName -->
+  <div class="nickname-error-container">
+    <div class="nickname-error-text">{{nicknameErrorText}}</div>
+  </div>
+  <div class="nickname-change-actions-wrapper">
+    <button class="nickname-change-confirm" ng-click="saveChanges()" ng-disabled="editedNickName.length < MIN_NICKNAME_LENGTH">Confirmar</button>
+  </div>
 </modal-window>"""));
 tc.put("packages/webclient/components/promos_comp.html", new HttpResponse(200, r"""<div id="promosRoot" ng-class="{'hide-promos': !hasPromos()}">
 <div ng-if="!scrDet.isXsScreen">

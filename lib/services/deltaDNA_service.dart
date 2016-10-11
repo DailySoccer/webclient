@@ -19,6 +19,10 @@ import 'package:webclient/utils/game_metrics.dart';
 
 @Injectable()
 class DeltaDNAService {
+
+  static const String DEV_KEY = "72891174095194552870731883714660";
+  static const String LIVE_KEY = "72891177097061902669292778914660";
+  
   /*
   // Setting the URL
   var envKey = '22079697190426055695055037414340'
@@ -191,7 +195,7 @@ class DeltaDNAService {
     return _defaultUserId;
   }
   
-  String _envKey = "72891174095194552870731883714660";
+  String get _envKey => DEV_KEY;
   String _collectSimpleURL = 'http://collect9102tstpp.deltadna.net/collect/api';
   String get _collectURL => "${_collectSimpleURL}/${_envKey}";
   String get _collectBulkURL => "${_collectURL}/bulk";

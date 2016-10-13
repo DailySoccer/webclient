@@ -9,10 +9,11 @@
                   ng-show="!isContestListEmpty">
     </contests-list>
     <div class="lobby-contest-list-no-contests-wrapper">
-      <span class="lobby-contest-list-no-contests" ng-show="isContestListEmpty">No hay torneos disponibles en este momento</span>
+      <span class="lobby-contest-list-no-contests" ng-show="isContestListEmpty">
+        Todos los torneos están llenos<br>Disculpa las molestias
+      </span>
     </div>
 </section>
-
 
 <!-- Descomentar cuando hablitemos la funcionalidad de crear torneos -->
 <button class="create-custom-contest-button" ng-click="onCreateContestClick()">{{getStaticLocalizedText("challengeyourfriendsbutton")}}</button>

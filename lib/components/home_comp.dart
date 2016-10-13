@@ -79,7 +79,7 @@ class HomeComp implements DetachAware {
   
   void _calculateInfoBarText() {
     //Contest nextContest = contestsService.getAvailableNextContest();
-    infoBarText = nextContest == null? 'En este momento no hay torneos disponibles' : 'PRóXIMO TORNEO: ${nextContest.name.toUpperCase()} <br> ${_calculateTimeToNextTournament()}';
+    infoBarText = nextContest == null? 'Todos los torneos están llenos<br>Disculpa las molestias' : 'PRóXIMO TORNEO: ${nextContest.name.toUpperCase()} <br> ${_calculateTimeToNextTournament()}';
   }
 
   String _calculateTimeToNextTournament() {

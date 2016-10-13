@@ -8,8 +8,8 @@ class HostServer {
 
   static String CURRENT_VERSION = "";
 
-  static String DOMAIN = "http://dailysoccer-staging.herokuapp.com";
-  //static String DOMAIN = "http://backend.epiceleven.com";
+  //static String DOMAIN = "http://dailysoccer-staging.herokuapp.com";
+  static String DOMAIN = "http://backend.epiceleven.com";
   //static String DOMAIN = "http://52ae5bf3.ngrok.io";
    
   // Global que apunta al servidor Host. Obligatorio usarla cuando vas a hacer una llamada al servidor

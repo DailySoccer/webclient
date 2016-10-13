@@ -24,6 +24,9 @@ import 'package:webclient/services/leaderboard_service.dart';
 class LobbyComp implements DetachAware {
   LoadingService loadingService;
   DateTime selectedDate = null;
+  
+  bool showNoContestModal = true;
+  
 
   String get today => DateTimeService.today;
 

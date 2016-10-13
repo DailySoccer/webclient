@@ -26,7 +26,7 @@ import 'package:webclient/services/deltaDNA_service.dart';
 class ProfileService {
 
   static const String FIRST_RUN_CHANGE_NAME = "FIRST_RUN_CHANGE_NAME";
-  static const String FIRST_TIME_PURCHASE = "FIRST_RUN_CHANGE_NAME";
+  static const String FIRST_TIME_PURCHASE = "FIRST_TIME_PURCHASE";
   
   User user = null;
   bool get isLoggedIn => user != null;

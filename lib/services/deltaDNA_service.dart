@@ -71,6 +71,14 @@ class DeltaDNAService {
         Logger.root.warning("Error sending event");
       });
   }
+
+  void screenEvent(String eventName, [Map params = null]) {
+    if(params == null) params = {};
+    params['from'] = _lastVisitedScreen;
+    _lastVisitedScreen = eventName;
+    
+    sendEvent(eventName, params);
+  }
   
   void sendMoneyTransactionEvent() {
     /*
@@ -126,8 +134,9 @@ class DeltaDNAService {
   
   Map _constructEvent(String eventName, [Map params = null]) {
     Map extendedParams = {};
-        
+    
     if (params != null) extendedParams.addAll(params);
+    extendedParams.addAll(_userData());
     extendedParams["platform"] = HostServer.platform.toUpperCase();
     
     List<String> splitedEventName = eventName.split(' ');
@@ -142,6 +151,21 @@ class DeltaDNAService {
       "eventTimestamp": GameMetrics.eventsDateString(),
       "eventParams": extendedParams
     };
+  }
+  
+  Map _userData() {
+    Map params = {};
+    if (ProfileService.instance == null || !ProfileService.instance.isLoggedIn) {
+      params['userGold'] = -1;
+      params['userXP'] = -1;
+      params['userScore'] = -1;
+    } else {
+      ProfileService p = ProfileService.instance;
+      params['userGold'] = p.user.balance;
+      params['userXP'] = p.user.ManagerPoints;
+      params['userScore'] = p.user.trueSkill;
+    }
+    return params;
   }
   
   String get _sessionId {
@@ -199,6 +223,9 @@ class DeltaDNAService {
   String _collectSimpleURL = 'http://collect9102tstpp.deltadna.net/collect/api';
   String get _collectURL => "${_collectSimpleURL}/${_envKey}";
   String get _collectBulkURL => "${_collectURL}/bulk";
+  
+  void setupFromDeepLinking() { _lastVisitedScreen = "DeepLinking"; }
+  String _lastVisitedScreen = "";
   
   Http _http;
   ProfileService get _profileService => ProfileService.instance;

@@ -240,7 +240,7 @@ class SoccerPlayersScalingListComp {
                                                  "DFP":    { 'getField': (SoccerPlayerListItem p) => p.fantasyPoints, 'order': -1 },
                                                  "Played": { 'getField': (SoccerPlayerListItem p) => p.playedMatches, 'order': -1 },
                                                  "Salary": { 'getField': (SoccerPlayerListItem p) => p.salary, 'order': -1 }};
-
+  
   Map<String, String> POS_CLASS_NAMES = {
     StringUtils.translate("gk", "soccerplayerpositions") : "posPOR",
     StringUtils.translate("def", "soccerplayerpositions"): "posDEF",

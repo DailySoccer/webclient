@@ -317,9 +317,9 @@ class EnterContestComp implements DetachAware {
     
     loadingService.isLoading = false;
 
-    GameMetrics.logEvent(editingContestEntry? GameMetrics.ENTER_CONTEST_EDITING : GameMetrics.ENTER_CONTEST, 
-                                                    {"type": contest.isSimulation? 'virtual' : 'oficial',
-                                                     "created": contest.isAuthor(_profileService.user),
+    GameMetrics.screenVisitEvent(editingContestEntry? GameMetrics.SCREEN_LINEUP_EDIT : GameMetrics.SCREEN_LINEUP, 
+                                                    {"tournamentName": contest.name,
+                                                     "createdByUser": contest.isCustomContest(),
                                                      "contest id": contest.contestId,
                                                      "is editing": editingContestEntry});
     

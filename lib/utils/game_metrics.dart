@@ -6,9 +6,35 @@ import 'package:webclient/services/tutorial_service.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/services/deltaDNA_service.dart';
 import 'package:webclient/services/datetime_service.dart';
+import 'package:webclient/models/contest.dart';
 
 class GameMetrics {
   
+  static const String SCREEN_LINEUP = "screen_alineacion";
+  static const String SCREEN_LINEUP_EDIT = "screen_editar_alineacion";
+  static const String SCREEN_CONTEST_INFO = "screen_info_torneo";
+  static const String SCREEN_LIVE_CONTEST = "screen_en_vivo";
+  static const String SCREEN_RIVAL_LIST = "screen_lista_rivales";
+  static const String SCREEN_RIVAL_LINEUP = "screen_alineación_rival";
+  static const String SCREEN_SOCCER_PLAYER_CONTEST_SCORE = "screen_football_player_puntuacion_torneo";
+  static const String SCREEN_HISTORY = "screen_historico";
+  static const String SCREEN_START = "screen_inicio";
+  static const String SCREEN_ACHIEVEMENTS = "screen_logros";
+  static const String SCREEN_NOTIFICATIONS = "screen_notificaciones";
+  static const String SCREEN_SCOUTING = "screen_ojeador";
+  static const String SCREEN_SOCCER_PLAYER_GLOBAL_STATISTICS = "screen_football_player_estadisticas_globales";
+  static const String SCREEN_PROFILE = "screen_perfil";
+  static const String SCREEN_PROFILE_EDIT = "screen_editar_perfil";
+  static const String SCREEN_UPCOMING_CONTESTS = "screen_proximos_torneos";
+  static const String SCREEN_UPCOMING_CONTEST_CHECK_LINEUP = "screen_alineacion_consultar";
+  static const String SCREEN_RANKING = "screen_ranking";
+  static const String SCREEN_RANKING_COMPLETE = "screen_ranking_completo";
+  static const String SCREEN_SHOP = "screen_tienda";
+  static const String SCREEN_CONTEST_LIST = "screen_torneos";
+  
+  
+  
+  /*
   // Load Page Time
   static String ENTER_FROM_FUTBOL_CUATRO = "Traffic Source FutbolCuatro";
   static String COMING_FROM_SOCIAL_UTM = "Traffic Source UTM";
@@ -79,7 +105,9 @@ class GameMetrics {
   static String TUTORIAL_STEP_LOBBY_TRAINING = "Step Lobby Training Contest";
   static String TUTORIAL_COMPLETED = "Step Completed";
   static String TUTORIAL_CANCELED = "Step Canceled";
+  */
   
+  /*
   static void aliasMixpanel(String email) {
     if (TutorialService.isActivated) return;
     
@@ -110,6 +138,35 @@ class GameMetrics {
     
     */
   }
+  */
+
+  static void screenVisitEvent(String eventName, [Map params]) {
+    if (TutorialService.isActivated) {
+      eventName = "Tutorial $eventName";
+    }
+    
+    DeltaDNAService.instance.screenEvent(eventName, params);
+  }
+  
+  static void contestScreenVisitEvent(String eventName, Contest contest, bool isAuthor, [Map params = null]) {
+    if (TutorialService.isActivated) {
+      eventName = "Tutorial $eventName";
+    }
+    params = params == null? {} : params;
+    
+    params.addAll({
+      "tournamentName": contest.name,
+      "tournamentId": contest.contestId,
+      "tournamentPrize": contest.prizePool.amount,
+      "tournamentCost": contest.entryFee.amount,
+      "tournamentCapacity": contest.maxEntries,
+      "tournamentStart": contest.startDate.millisecondsSinceEpoch,
+      "createdByUser": contest.isCustomContest(),
+      "isAuthor": isAuthor
+    });
+    
+    DeltaDNAService.instance.screenEvent(eventName, params);
+  }
 
   static void logEvent(String eventName, [Map params]) {
     if (TutorialService.isActivated) {
@@ -117,22 +174,9 @@ class GameMetrics {
     }
     
     DeltaDNAService.instance.sendEvent(eventName, params);
-    /*
-    if (JsUtils.existsContext(["mixpanel", "track"])) {
-      if (params != null && !params.isEmpty) {
-        JsUtils.runJavascript(null, "track", [eventName, params], "mixpanel");
-      }
-      else {
-        JsUtils.runJavascript(null, "track", eventName, "mixpanel");
-      }
-    }
-    else {
-      Logger.root.info("mixPanel: logEvent not found");
-    }
-    
-    */
   }
 
+  /*
   static void peopleSet(Map params) {
     if (TutorialService.isActivated)
       return;
@@ -162,8 +206,9 @@ class GameMetrics {
     }
      
     */
- }
-
+  }
+  */
+  
   // Google Track, NOT Mixpanel.
   static void trackConversion(bool remarketing_only) {
     /*

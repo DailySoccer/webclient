@@ -12,8 +12,9 @@ class GameMetrics {
   
   static const String SCREEN_LINEUP = "screen_alineacion";
   static const String SCREEN_LINEUP_EDIT = "screen_editar_alineacion";
-  static const String SCREEN_CONTEST_INFO = "screen_info_torneo";
-  static const String SCREEN_LIVE_CONTEST = "screen_en_vivo";
+  static const String SCREEN_CONTEST_INFO = "screen_torneo_info";
+  static const String SCREEN_LIVE_CONTEST_LIST = "screen_en_vivo_lista";
+  static const String SCREEN_LIVE_CONTEST = "screen_en_vivo_torneo";
   static const String SCREEN_RIVAL_LIST = "screen_lista_rivales";
   static const String SCREEN_RIVAL_LINEUP = "screen_alineación_rival";
   static const String SCREEN_SOCCER_PLAYER_CONTEST_SCORE = "screen_football_player_puntuacion_torneo";
@@ -31,7 +32,30 @@ class GameMetrics {
   static const String SCREEN_RANKING_COMPLETE = "screen_ranking_completo";
   static const String SCREEN_SHOP = "screen_tienda";
   static const String SCREEN_CONTEST_LIST = "screen_torneos";
+  static const String SCREEN_CREATE_CONTEST = "screen_crear_torneo";
   
+
+  static const String ACTION_PROFILE_SAVE = "action_guardar_edicion_perfil";
+  
+  static const String ACTION_LINEUP_AUTOGENERATE = "action_alineacion_automatica";
+  static const String ACTION_LINEUP_CLEAR = "action_alineacion_limpiar";
+  static const String ACTION_LINEUP_CHANGE_FORMATION = "action_alineacion_seleccion_formacion";
+  static const String ACTION_LINEUP_FAVORITES_FILTER = "action_alineacion_filtro_favoritos";
+  static const String ACTION_LINEUP_SOCCERPLAYER_SELECTED = "action_seleccion_football_player";
+  static const String ACTION_LINEUP_SOCCERPLAYER_DELETED = "action_eliminar_football_player";
+  static const String ACTION_LINEUP_CONFIRM = "action_confirmar_alineacion_torneo";
+  static const String ACTION_LINEUP_CONFIRM_ERROR = "action_confirmar_alineacion_torneo_error";
+  static const String ACTION_BACK_CONTEST_LIST = "action_volver_a_torneos";
+  static const String ACTION_INVITE_FRIENDS = "action_invitar_amigos";
+  static const String ACTION_CHECK_LINEUP = "action_ver_alineacion";
+  
+  static const String ACTION_LINEUP_MODIFY_INIT = "action_modificar_alineacion_inicio";
+  static const String ACTION_LINEUP_MODIFY_COMPLETE = "action_modificar_alineacion_completado";
+  static const String ACTION_LIVE_SUBSTITUTION_INIT = "action_iniciar_cambio";
+  static const String ACTION_LIVE_SUBSTITUTION_CANCEL = "action_cancelar_cambio";
+  static const String ACTION_LIVE_SUBSTITUTION_COMPLETE = "action_completar_cambio";
+  
+  static const String ACTION_FAVORITE_SOCCER_PLAYER_CHANGE = "action_football_player_favorito";
   
   
   /*
@@ -147,25 +171,29 @@ class GameMetrics {
     
     DeltaDNAService.instance.screenEvent(eventName, params);
   }
-  
-  static void contestScreenVisitEvent(String eventName, Contest contest, bool isAuthor, [Map params = null]) {
+
+  static void contestScreenVisitEvent(String eventName, Contest contest, [Map params = null]) {
     if (TutorialService.isActivated) {
       eventName = "Tutorial $eventName";
     }
-    params = params == null? {} : params;
     
-    params.addAll({
-      "tournamentName": contest.name,
-      "tournamentId": contest.contestId,
-      "tournamentPrize": contest.prizePool.amount,
-      "tournamentCost": contest.entryFee.amount,
-      "tournamentCapacity": contest.maxEntries,
-      "tournamentStart": contest.startDate.millisecondsSinceEpoch,
-      "createdByUser": contest.isCustomContest(),
-      "isAuthor": isAuthor
-    });
+    DeltaDNAService.instance.contestScreenEvent(eventName, contest, params);
+  }
+
+  static void actionEvent(String eventName, String screen, [Map params = null]) {
+    if (TutorialService.isActivated) {
+      eventName = "Tutorial $eventName";
+    }
     
-    DeltaDNAService.instance.screenEvent(eventName, params);
+    DeltaDNAService.instance.actionEvent(eventName, screen, params);
+  }
+
+  static void contestActionEvent(String eventName, String screen, Contest contest, [Map params = null]) {
+    if (TutorialService.isActivated) {
+      eventName = "Tutorial $eventName";
+    }
+    
+    DeltaDNAService.instance.contestActionEvent(eventName, screen, contest, params);
   }
 
   static void logEvent(String eventName, [Map params]) {

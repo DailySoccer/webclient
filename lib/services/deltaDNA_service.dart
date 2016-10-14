@@ -80,6 +80,31 @@ class DeltaDNAService {
     sendEvent(eventName, params);
   }
   
+  void contestScreenEvent(String eventName, Contest contest, [Map params = null]) {
+    if(params == null) params = {};
+    
+    params.addAll(_contestData(contest));
+    
+    screenEvent(eventName, params);
+  }
+
+  void actionEvent(String eventName, String screen, [Map params = null]) {
+    if(params == null) params = {};
+    
+    params['screen'] = screen;
+     
+    sendEvent(eventName, params);
+  }
+
+
+  void contestActionEvent(String eventName, String screen, Contest contest, [Map params = null]) {
+    if(params == null) params = {};
+
+    params.addAll(_contestData(contest));
+     
+    actionEvent(eventName, screen, params);
+  }
+  
   void sendMoneyTransactionEvent() {
     /*
     Map exampleEvent = {
@@ -152,7 +177,7 @@ class DeltaDNAService {
       "eventParams": extendedParams
     };
   }
-  
+
   Map _userData() {
     Map params = {};
     if (ProfileService.instance == null || !ProfileService.instance.isLoggedIn) {
@@ -166,6 +191,18 @@ class DeltaDNAService {
       params['userScore'] = p.user.trueSkill;
     }
     return params;
+  }
+  Map _contestData(Contest contest) {
+    return {
+      "tournamentName": contest.name,
+      "tournamentId": contest.contestId,
+      "tournamentPrize": contest.prizePool.amount,
+      "tournamentCost": contest.entryFee.amount,
+      "tournamentCapacity": contest.maxEntries,
+      "tournamentStart": contest.startDate.millisecondsSinceEpoch,
+      "createdByUser": contest.isCustomContest(),
+      "isAuthor": _profileService.isLoggedIn && contest.isAuthor(_profileService.user)
+    };
   }
   
   String get _sessionId {

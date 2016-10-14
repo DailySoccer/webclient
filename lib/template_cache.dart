@@ -1144,7 +1144,7 @@ tc.put("packages/webclient/components/home_comp.html", new HttpResponse(200, r""
     </div>
   </div>
   <div class="next-contest-wrapper">
-    <div class="next-contest-label"ng-bind-html-unsafe="infoBarText"></div>
+    <div class="next-contest-label" ng-bind-html-unsafe="infoBarText"></div>
     <button class="goto-next-contest-button" ng-click="goNextContest()">JUGAR</button>
   </div>
 </div>
@@ -1726,10 +1726,11 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
                   ng-show="!isContestListEmpty">
     </contests-list>
     <div class="lobby-contest-list-no-contests-wrapper">
-      <span class="lobby-contest-list-no-contests" ng-show="isContestListEmpty">No hay torneos disponibles en este momento</span>
+      <span class="lobby-contest-list-no-contests" ng-show="isContestListEmpty">
+        Todos los torneos están llenos<br>Disculpa las molestias
+      </span>
     </div>
 </section>
-
 
 <!-- Descomentar cuando hablitemos la funcionalidad de crear torneos -->
 <button class="create-custom-contest-button" ng-click="onCreateContestClick()">{{getStaticLocalizedText("challengeyourfriendsbutton")}}</button>
@@ -2249,7 +2250,7 @@ tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new 
   <user-shortinfo-bar user="selectedOpponent"></user-shortinfo-bar>
   
   <lineup-field-selector lineup-slots="opponentLineupSlots"
-                         on-lineup-slot-selected="nothing()"
+                         on-lineup-slot-selected="onOpponentLineupSlotSelected(slotIndex)"
                          formation-id="opponentFormationId"
                          lineup-formation="opponentLineupFormation"
                          formation-is-modifiable="false"

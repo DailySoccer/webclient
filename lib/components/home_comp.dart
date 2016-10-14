@@ -107,7 +107,7 @@ class HomeComp implements DetachAware {
     
     _nextTournamentInfoTimer = new Timer.periodic(new Duration(seconds: 1), (Timer t) => _calculateInfoBarText());
     
-    GameMetrics.logEvent(GameMetrics.HOME, {"logged": _profileService.isLoggedIn});
+    GameMetrics.screenVisitEvent(GameMetrics.SCREEN_START);
   }
   
   void refreshRankingPosition() {
@@ -253,7 +253,7 @@ class HomeComp implements DetachAware {
 
   void onBlogClick() {
     if (!isBlogTileEnabled) return;
-    GameMetrics.logEvent(GameMetrics.ENTERED_FORUMS);
+    // GameMetrics.logEvent(GameMetrics.ENTERED_FORUMS);
     // window.open("http://halftime.epiceleven.com", "HalfTime");
     window.open("http://www.futbolcuatro.com/foros/", "_system");
   }

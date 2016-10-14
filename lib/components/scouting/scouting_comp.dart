@@ -64,6 +64,7 @@ class ScoutingComp implements DetachAware {
     switch(_sectionActive) {
       case SOCCER_PLAYERS_LIST:        
         //refreshTopBar();
+        GameMetrics.screenVisitEvent(GameMetrics.SCREEN_SCOUTING);
         nameFilter = "";
         _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSectionWithSearch("Ojeador", (String val){ nameFilter = val.length > 1? val : ""; });
         _appStateService.appTopBarState.activeState.onLeftColumn = AppTopBarState.GOBACK;
@@ -110,7 +111,6 @@ class ScoutingComp implements DetachAware {
     
     loadData();
     thereIsNewFavorites = false;
-    GameMetrics.logEvent(GameMetrics.SCOUTING);
   }
   
   void detach() {
@@ -212,7 +212,7 @@ class ScoutingComp implements DetachAware {
       ).where( (d) => d != null));
   }
   
-  void onFavoritesChange(var soccerPlayer) {
+  void onFavoritesChange(SoccerPlayerListItem soccerPlayer) {
     if (!(leagueES_isLoading /*|| leagueUK_isLoading*/)) {
       thereIsNewFavorites = favoritesIsSaving;
       int indexOfPlayer = favoritesPlayers.indexOf(soccerPlayer);
@@ -222,6 +222,8 @@ class ScoutingComp implements DetachAware {
         // TODO: control max
         favoritesPlayers.add(soccerPlayer);
       }
+      GameMetrics.actionEvent(GameMetrics.ACTION_FAVORITE_SOCCER_PLAYER_CHANGE, GameMetrics.SCREEN_SCOUTING, {"isFavourite": indexOfPlayer == -1, "footballPlayer": soccerPlayer.name});
+          
       saveFavorites();
     }
   }

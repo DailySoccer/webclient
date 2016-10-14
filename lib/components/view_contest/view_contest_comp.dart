@@ -65,6 +65,7 @@ class ViewContestComp implements DetachAware {
         _appStateService.appTopBarState.activeState.onLeftColumn = _cancelPlayerDetails;
       break;
       case CONTEST_INFO:
+        GameMetrics.contestScreenVisitEvent(GameMetrics.SCREEN_CONTEST_INFO, contest);
         _setupContestInfoTopBar(false, _cancelContestDetails);
         _appStateService.appSecondaryTabBarState.tabList = [];
       break;
@@ -74,6 +75,7 @@ class ViewContestComp implements DetachAware {
       break;
       case COMPARATIVE:
       case RIVALS_LIST:
+        GameMetrics.contestScreenVisitEvent(section == RIVALS_LIST? GameMetrics.SCREEN_RIVAL_LIST : GameMetrics.SCREEN_RIVAL_LINEUP, contest, {"availableChanges": numAvailableChanges});
         _setupContestInfoTopBar(true, () => _router.go('lobby', {}), _onContestInfoClick);
         _appStateService.appSecondaryTabBarState.tabList = tabList;
       break;
@@ -83,6 +85,7 @@ class ViewContestComp implements DetachAware {
   
   bool displayChangeablePlayers = false;
   bool isGameplaysModalOn = false;
+  
   bool isConfirmModalOn = false;
   
   bool get isLineupFieldContestEntryActive => sectionActive == LINEUP_FIELD_CONTEST_ENTRY;
@@ -319,6 +322,11 @@ class ViewContestComp implements DetachAware {
       displayChangeablePlayers = false;
     } else {
       displayChangeablePlayers = !displayChangeablePlayers;
+      if (displayChangeablePlayers) {
+        GameMetrics.contestScreenVisitEvent(GameMetrics.ACTION_LIVE_SUBSTITUTION_INIT, contest, {'availableChanges' : numAvailableChanges});
+      } else {
+        GameMetrics.contestScreenVisitEvent(GameMetrics.ACTION_LIVE_SUBSTITUTION_CANCEL, contest, {'availableChanges' : numAvailableChanges});
+      }
     }
   }
   
@@ -330,6 +338,7 @@ class ViewContestComp implements DetachAware {
       if (player.isPlaying || player.hasPlayed) {
         gameplaysPlayer = player;
         isGameplaysModalOn = true;
+        GameMetrics.contestScreenVisitEvent(GameMetrics.SCREEN_SOCCER_PLAYER_CONTEST_SCORE, contest, {'footballPlayer' : player.name, "isRival": false});
       }
     }
   }
@@ -339,6 +348,7 @@ class ViewContestComp implements DetachAware {
     if (player.isPlaying || player.hasPlayed) {
       gameplaysPlayer = player;
       isGameplaysModalOn = true;
+      GameMetrics.contestScreenVisitEvent(GameMetrics.SCREEN_SOCCER_PLAYER_CONTEST_SCORE, contest, {'footballPlayer' : player.name, "isRival": true});
     }
   }
   
@@ -354,6 +364,7 @@ class ViewContestComp implements DetachAware {
   
   void hideConfirmModal() {
     isConfirmModalOn = false;
+    GameMetrics.contestScreenVisitEvent(GameMetrics.ACTION_LIVE_SUBSTITUTION_CANCEL, contest, {'availableChanges' : numAvailableChanges});
   }
 
   /*
@@ -381,6 +392,12 @@ class ViewContestComp implements DetachAware {
                   changingPlayer.soccerPlayer.templateSoccerPlayerId, 
                   newSoccerPlayer.soccerPlayer.templateSoccerPlayerId)
             .then((_) {
+              GameMetrics.contestScreenVisitEvent(GameMetrics.ACTION_LIVE_SUBSTITUTION_COMPLETE, contest, {'availableChanges' : numAvailableChanges,
+                                                                                                           'footballPlayerOut': changingPlayer.soccerPlayer.name,
+                                                                                                           'footballPlayerIn': newSoccerPlayer.soccerPlayer.name,
+                                                                                                           'salaryCap': maxSalary,
+                                                                                                           'salaryNotUsed': availableSalary,
+                                                                                                           'salaryUsed': lineupCost});
               _retrieveLiveData();
               /*_turnZone.run(() {
                 //_profileService.user.goldBalance.amount -= newSoccerPlayer.moneyToBuy(contest, _profileService.user.managerLevel).amount;
@@ -484,9 +501,9 @@ class ViewContestComp implements DetachAware {
     if (_contestsService.lastContest.isLive) {
       _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE, _retrieveLiveData);
       //_refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE_CONTEST_ENTRIES, _retrieveLiveContestEntriesData);
-      GameMetrics.logEvent(GameMetrics.LIVE_CONTEST_VISITED);
+      GameMetrics.contestScreenVisitEvent(GameMetrics.SCREEN_LIVE_CONTEST, contest, {'availableChanges' : numAvailableChanges});
     } else if (_contestsService.lastContest.isHistory) {
-      GameMetrics.logEvent(GameMetrics.VIEW_HISTORY);
+      GameMetrics.contestScreenVisitEvent(GameMetrics.SCREEN_HISTORY, contest);
     }
   }
   
@@ -653,6 +670,7 @@ class ViewContestComp implements DetachAware {
     isConfirmModalOn = false;
     displayChangeablePlayers = false;
     _cancelSoccerPlayerSelection();
+    GameMetrics.contestScreenVisitEvent(GameMetrics.ACTION_LIVE_SUBSTITUTION_CANCEL, contest, {'availableChanges' : numAvailableChanges});
   }
   
   /*

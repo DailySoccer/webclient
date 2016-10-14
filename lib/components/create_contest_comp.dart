@@ -109,7 +109,7 @@ class CreateContestComp  {
         updateTemplatesPerType();
 
       });
-    GameMetrics.logEvent(GameMetrics.CREATE_CONTEST);
+    GameMetrics.screenVisitEvent(GameMetrics.SCREEN_CREATE_CONTEST);
   }
 
   num get prizeMultiplier => _selectedTemplate.prizeMultiplier;
@@ -155,7 +155,6 @@ class CreateContestComp  {
       List<String> soccerPlayers = [];
       _contestsService.createContest(contest, soccerPlayers)
         .then((Contest contestCreated) {
-          GameMetrics.logEvent(GameMetrics.CREATE_CONTEST_CREATED);
           _router.go('enter_contest', { "contestId": contestCreated.contestId, "parent": "create_contest", "contestEntryId": "none" });
         });
     }

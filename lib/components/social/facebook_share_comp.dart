@@ -43,7 +43,7 @@ class FacebookShareComp {
   
   void shareOnFB() {
     FBLogin.share(_info);
-    GameMetrics.logEvent(GameMetrics.SHARE_REQUEST_FB);
+    //GameMetrics.logEvent(GameMetrics.SHARE_REQUEST_FB);
   }
   
   Map _info = {};

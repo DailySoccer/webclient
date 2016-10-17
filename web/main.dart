@@ -34,13 +34,13 @@ void clearQueryStrings() {
     
     List<String> utmKeys = uri.queryParameters.keys.where((k) => k.startsWith("utm"));
     Map<String, String> utmParams = new Map.fromIterable(utmKeys, key: (k) => k, value: (k) => uri.queryParameters[k]);
-    GameMetrics.logEvent(GameMetrics.COMING_FROM_SOCIAL_UTM, utmParams);
+    //GameMetrics.logEvent(GameMetrics.COMING_FROM_SOCIAL_UTM, utmParams);
 
     UriUtils.removeQueryParameters(uri, ["utm"]);
   }
   if (uri.hasQuery && uri.queryParameters.keys.any((param) => param.startsWith("mixp_landing"))) {
 
-    GameMetrics.logEvent(GameMetrics.ENTER_FROM_FUTBOL_CUATRO, {"button_id": uri.queryParameters['mixp_landing']});
+    //GameMetrics.logEvent(GameMetrics.ENTER_FROM_FUTBOL_CUATRO, {"button_id": uri.queryParameters['mixp_landing']});
 
     UriUtils.removeQueryParameters(uri, ["mixp_landing"]);
   }

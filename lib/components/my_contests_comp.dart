@@ -15,6 +15,7 @@ import 'package:webclient/services/tutorial_service.dart';
 //import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/app_state_service.dart';
 import 'package:webclient/services/leaderboard_service.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
   selector: 'my-contests',
@@ -196,12 +197,15 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
     switch(section) {
       case "live":
         tabChange('live-contest-content');
+        GameMetrics.screenVisitEvent(GameMetrics.SCREEN_LIVE_CONTEST_LIST);
       break;
       case "upcoming":
         tabChange('waiting-contest-content');
+        GameMetrics.screenVisitEvent(GameMetrics.SCREEN_UPCOMING_CONTEST_LIST);
       break;
       case "history":
         tabChange('history-contest-content');
+        GameMetrics.screenVisitEvent(GameMetrics.SCREEN_HISTORY);
       break;
     }
   }

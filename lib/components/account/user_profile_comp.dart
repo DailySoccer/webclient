@@ -105,7 +105,7 @@ class UserProfileComp {
     countAchievementsEarned();    
     
     loadingService.isLoading = false;
-    GameMetrics.logEvent(GameMetrics.USER_PROFILE);    
+    GameMetrics.screenVisitEvent(GameMetrics.SCREEN_PROFILE);    
   }
   
   void countAchievementsEarned() {
@@ -166,11 +166,11 @@ class UserProfileComp {
             ModalComp.deleteCallback();
             ModalComp.close();
             loadingService.isLoading = false; 
-            GameMetrics.logEvent(GameMetrics.BINDING_WITH_APP, {"action via": "facebook",
+            /*GameMetrics.logEvent(GameMetrics.BINDING_WITH_APP, {"action via": "facebook",
                                                                 "platform": HostServer.isAndroidPlatform? 'android' : 
                                                                             HostServer.isiOSPlatform? 'ios' : 
                                                                                                       'unknown'
-                                                                });
+                                                                });*/
           })
           .catchError((ServerError error) {
             loadingService.isLoading = false;
@@ -217,12 +217,12 @@ class UserProfileComp {
                 ModalComp.deleteCallback();
                 ModalComp.close();
                 loadingService.isLoading = false;
-
+                /*
                 GameMetrics.logEvent(GameMetrics.BINDING_WITH_APP, {"action via": "email",
                                                                     "platform": HostServer.isAndroidPlatform? 'android' : 
                                                                                 HostServer.isiOSPlatform? 'ios' : 
                                                                                                           'unknown'
-                                                                    });
+                                                                    });*/
               })
               .catchError((ServerError error) {
                 loadingService.isLoading = false;
@@ -382,11 +382,11 @@ class UserProfileComp {
              : _profileService.bindToAccount(account["email"], account["password"]))
               .then((_) {
                 Logger.root.info("bindToAccount OK: ${account["email"]}");
-                GameMetrics.logEvent(GameMetrics.BINDING_EXISTS, {"action via": "email",
+                /*GameMetrics.logEvent(GameMetrics.BINDING_EXISTS, {"action via": "email",
                                                                   "platform": HostServer.isAndroidPlatform? 'android' : 
                                                                               HostServer.isiOSPlatform? 'ios' : 
                                                                                                         'unknown'
-                                                                  });
+                                                                  });*/
               });
           }
           if (account.containsKey("accessToken")) {
@@ -401,11 +401,11 @@ class UserProfileComp {
                 else {
                   Logger.root.info("$bindName OK: ${account["facebookId"]}");
                 }
-                GameMetrics.logEvent(GameMetrics.BINDING_EXISTS, {"action via": "facebook",
+                /*GameMetrics.logEvent(GameMetrics.BINDING_EXISTS, {"action via": "facebook",
                                                                   "platform": HostServer.isAndroidPlatform? 'android' : 
                                                                               HostServer.isiOSPlatform? 'ios' : 
                                                                                                         'unknown'
-                                                                  });
+                                                                  });*/
               });
           }
           break;

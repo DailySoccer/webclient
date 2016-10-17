@@ -124,7 +124,7 @@ class ShopComp implements DetachAware{
         _loadingService.isLoading = false;
         });
     }
-    GameMetrics.logEvent(GameMetrics.SHOP_ENTERED);
+    GameMetrics.screenVisitEvent(GameMetrics.SCREEN_SHOP);
     _tutorialService.triggerEnter("shop", component: this, activateIfNeeded: false);
   }
   
@@ -134,11 +134,12 @@ class ShopComp implements DetachAware{
 
   void buyGold(String id) {
     Map product = goldProducts.firstWhere((product) => product["id"] == id, orElse: () => {});
+    /*
     GameMetrics.logEvent(GameMetrics.REQUEST_BUY_GOLD, {'id': product["id"],
                                                         'price': product["price"],
                                                         'quantity': product["quantity"], 
                                                         'date' : DateTimeService.formatDateTimeLong(DateTimeService.now)});
-
+*/
     _catalogService.buyProduct(id)
       .then( (_) {
         if (GameInfo.contains("add_gold_success")) {
@@ -169,7 +170,9 @@ class ShopComp implements DetachAware{
               ModalComp.close();
               window.location.assign(GameInfo.get("add_energy_success"));
             }
-            GameMetrics.logEvent(GameMetrics.ENERGY_BOUGHT, {'quantity':(product["id"] == "ENERGY_ALL")? 10 : 1});
+            
+            //GameMetrics.logEvent(GameMetrics.ENERGY_BOUGHT, {'quantity':(product["id"] == "ENERGY_ALL")? 10 : 1});
+            
           })
           .catchError((ServerError error) {
               String keyError = errorMap.keys.firstWhere( (key) => error.responseError.contains(key), orElse: () => "_ERROR_DEFAULT_" );

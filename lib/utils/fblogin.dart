@@ -27,7 +27,7 @@ class FBLogin {
   }
 
   void loginFB() {
-    GameMetrics.logEvent(GameMetrics.LOGIN_ATTEMPTED, {"action via": "facebook"});
+    //GameMetrics.logEvent(GameMetrics.LOGIN_ATTEMPTED, {"action via": "facebook"});
     
     jsApiCall("loginStatus", [onGetLoginStatus]);
   }
@@ -98,7 +98,7 @@ class FBLogin {
       } else {
         // ERROR
         print(" - FB REQUEST => Permissions Check ERROR");
-        GameMetrics.logEvent(GameMetrics.LOGIN_FB_PERMISSIONS_DENIED, permissions);
+        //GameMetrics.logEvent(GameMetrics.LOGIN_FB_PERMISSIONS_DENIED, permissions);
         Logger.root.severe (ProfileService.decorateLog("WTF - 8695 - Facebook Permissions Insuficent: $permissions"));
         rerequestLoginModal();
       }
@@ -180,14 +180,14 @@ class FBLogin {
               , onCancel: StringUtils.translate('facebookReRequestCancel', 'login')
               , aditionalClass: "facebook-rerequest-modal"
             ).then((_) {
-              GameMetrics.logEvent(GameMetrics.LOGIN_FB_REREQUEST_ACCEPTED);
+              //GameMetrics.logEvent(GameMetrics.LOGIN_FB_REREQUEST_ACCEPTED);
               jsApiCall("loginReRequest", [(js.JsObject loginResponse) {
                 if (loginResponse["status"] == "connected") {
                   loginCallback(loginResponse);
                 }
               }]);
             }).catchError((_) {
-              GameMetrics.logEvent(GameMetrics.LOGIN_FB_REREQUEST_REJECTED);
+              //GameMetrics.logEvent(GameMetrics.LOGIN_FB_REREQUEST_REJECTED);
               Logger.root.info(ProfileService.decorateLog("WTF - 8694 - Rejected Facebook Permissions ReRequest"));
             });
   }

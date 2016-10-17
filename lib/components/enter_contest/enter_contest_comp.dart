@@ -61,6 +61,8 @@ class EnterContestComp implements DetachAware {
   static const String SOCCER_PLAYER_STATS = "SOCCER_PLAYER_STATS";
   static const String CONTEST_INFO = "CONTEST_INFO";
 
+  String get metricsScreenName => editingContestEntry? GameMetrics.SCREEN_LINEUP_EDIT : GameMetrics.SCREEN_LINEUP;
+  
   //ScreenDetectorService scrDet;
   LoadingService loadingService;
 
@@ -78,7 +80,12 @@ class EnterContestComp implements DetachAware {
   List<SoccerPlayerListItem> lineupSlots;
   List<String> get lineupFormation => FieldPos.FORMATIONS[formationId];
   List<SoccerPlayerListItem> favoritesPlayers = [];
-  bool onlyFavorites = false;
+  bool _onlyFavorites = false;
+  bool get onlyFavorites => _onlyFavorites;
+  void set onlyFavorites(bool f) {
+    _onlyFavorites = f;
+    GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_FAVORITES_FILTER, metricsScreenName, contest, {"formation": formationId, "isFavouritesFilterOn": _onlyFavorites});
+  }
 
   FieldPos fieldPosFilter;
   String nameFilter;
@@ -92,6 +99,7 @@ class EnterContestComp implements DetachAware {
     _appStateService.appSecondaryTabBarState.tabList = [];
     switch(_sectionActive) {
       case LINEUP_FIELD_SELECTOR:
+        GameMetrics.contestScreenVisitEvent(metricsScreenName, contest);
         setupContestInfoTopBar(true, cancelCreateLineup, onContestInfoClick);
       break;
       case SELECTING_SOCCER_PLAYER:
@@ -112,6 +120,7 @@ class EnterContestComp implements DetachAware {
         _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerDetails;
       break;
       case CONTEST_INFO:
+        GameMetrics.contestScreenVisitEvent(GameMetrics.SCREEN_CONTEST_INFO, contest);
         setupContestInfoTopBar(false, cancelContestDetails);
       break;
     }
@@ -316,12 +325,6 @@ class EnterContestComp implements DetachAware {
   void refreshInfoFromContest() {
     
     loadingService.isLoading = false;
-
-    GameMetrics.logEvent(editingContestEntry? GameMetrics.ENTER_CONTEST_EDITING : GameMetrics.ENTER_CONTEST, 
-                                                    {"type": contest.isSimulation? 'virtual' : 'oficial',
-                                                     "created": contest.isAuthor(_profileService.user),
-                                                     "contest id": contest.contestId,
-                                                     "is editing": editingContestEntry});
     
     setupContestInfoTopBar(true, cancelCreateLineup);
     
@@ -470,6 +473,7 @@ class EnterContestComp implements DetachAware {
 
   void resetLineup() {
     lineupSlots = new List.filled(lineupFormation.length, null);
+    GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_CLEAR, metricsScreenName, contest, {"formation": formationId});
   }
 
   void detach() {
@@ -498,6 +502,8 @@ class EnterContestComp implements DetachAware {
     }
 
     if (lineupSlots[slotIndex] != null) {
+      GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_SOCCERPLAYER_DELETED, metricsScreenName, contest, {"footballPlayer": lineupSlots[slotIndex].name, "formation": formationId});
+      
       // Al borrar el jugador seleccionado en el lineup, sumamos su salario al total
       availableSalary += lineupSlots[slotIndex].salary;
 
@@ -538,6 +544,7 @@ class EnterContestComp implements DetachAware {
               addSoccerPlayerToLineup(instance.id);
             }
           });
+          GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_AUTOGENERATE, metricsScreenName, contest, {"formation": formationId});
         });
     }
   }
@@ -590,6 +597,7 @@ class EnterContestComp implements DetachAware {
     }
 
     _tutorialService.triggerEnter("formation-" + _formationId.toString(), activateIfNeeded: false);
+    GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_CHANGE_FORMATION, metricsScreenName, contest, {"formation": formationId});
     
     // EJEMPLO DE USO del Generate Lineup
     /*
@@ -708,6 +716,8 @@ class EnterContestComp implements DetachAware {
       int playerInLineup = lineupSlots.where((player) => player != null).length;
       _tutorialService.triggerEnter("lineup-" + playerInLineup.toString(), activateIfNeeded: false);
     }
+
+    GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_SOCCERPLAYER_SELECTED, metricsScreenName, contest, {"footballPlayer": soccerPlayer.name, "formation": formationId});
   }
 
   bool isSlotAvailableForSoccerPlayer(String soccerPlayerId) {
@@ -752,8 +762,10 @@ class EnterContestComp implements DetachAware {
 
   
   void createFantasyTeam() {
-    if (isNegativeBalance)
+    if (isNegativeBalance) {
+      GameMetrics.actionEvent(GameMetrics.ACTION_LINEUP_CONFIRM_ERROR, metricsScreenName, {"errorDescription": "Balance negativo", "errorDebug": "NOT_HANDLED"});
       return;
+    }
 
     // No permitimos la reentrada de la solicitud (hasta que termine el timer de espera para volver a reintentarlo)
     if (_retryOpTimer != null && _retryOpTimer.isActive) {
@@ -767,11 +779,13 @@ class EnterContestComp implements DetachAware {
     //print ("FantasyTeam: " + GameInfo.get(_getKeyForCurrentUserContest));
 
     if (!_profileService.isLoggedIn) {
-      _router.go("enter_contest.join", {});
+      GameMetrics.actionEvent(GameMetrics.ACTION_LINEUP_CONFIRM_ERROR, metricsScreenName, {"errorDescription": "User is not logged", "errorDebug": "NOT_HANDLED"});
+      //_router.go("enter_contest.join", {});
       return;
     }
 
     if (!enoughResourcesForEntryFee) {
+      GameMetrics.actionEvent(GameMetrics.ACTION_LINEUP_CONFIRM_ERROR, metricsScreenName, {"errorDescription": "Not enought resources for entry fee", "errorDebug": "HANDLED"});
       alertNotEnoughResources();
       return;
 
@@ -787,22 +801,8 @@ class EnterContestComp implements DetachAware {
         .then((_) {
           //num managerLevel = playerManagerLevel;
           Iterable boughtPlayers = lineupSlots.where((c) => c.moneyToBuy.amount > 0);
-                   
-          GameMetrics.logEvent(GameMetrics.TEAM_MODIFIED, {"type": contest.isSimulation? 'virtual' : 'oficial',
-                                                          "is created by user": contest.isAuthor(_profileService.user),
-                                                          "is custom contest": contest.isCustomContest() || contest.isAuthor(_profileService.user),
-                                                          "team created date": DateTimeService.formatDateShort(DateTimeService.now),
-                                                          "team created time": DateTimeService.formatDateTimeShort(DateTimeService.now),
-                                                          "contest start date": DateTimeService.formatDateShort(contest.startDate),
-                                                          "contest start time": DateTimeService.formatDateTimeShort(contest.startDate),
-                                                          "num jugadores": contest.contestEntries.length,
-                                                          "fee count": contest.entryFee.amount,
-                                                          "fee currency": contest.entryFee.currencySymbol,
-                                                          "prize count": contest.prize.prizePool.amount,
-                                                          "prize currency": contest.prize.prizePool.currencySymbol,
-                                                          "prize type": contest.prize.prizeType,
-                                                          "players bought": boughtPlayers.length,
-                                                          "contest id": contest.contestId });
+          
+          GameMetrics.actionEvent(GameMetrics.ACTION_LINEUP_MODIFY_COMPLETE, metricsScreenName);
           _teamConfirmed = true;
           isLineupFinished = true;
           /*_router.go('view_contest_entry', { "contestId": contest.contestId,
@@ -820,48 +820,11 @@ class EnterContestComp implements DetachAware {
             Iterable boughtPlayers = lineupSlots.where((c) => c.moneyToBuy.amount > 0);
             boughtPlayers.forEach( (c) {
               num cost = c.instanceSoccerPlayer.moneyToBuy(contest, managerLevel).amount;
-              GameMetrics.logEvent(GameMetrics.PLAYER_BOUGHT, {"value": cost, "name": c.instanceSoccerPlayer.soccerPlayer.name});
             });
 
-            GameMetrics.identify(_profileService.user.email);
-            GameMetrics.logEvent(GameMetrics.TEAM_CREATED, {"type": contest.isSimulation? 'virtual' : 'oficial',
-                                                            "is created by user": contest.isAuthor(_profileService.user),
-                                                            "is custom contest": contest.isCustomContest() || contest.isAuthor(_profileService.user),
-                                                            "team created date": DateTimeService.formatDateShort(DateTimeService.now),
-                                                            "team created time": DateTimeService.formatDateTimeShort(DateTimeService.now),
-                                                            "contest start date": DateTimeService.formatDateShort(contest.startDate),
-                                                            "contest start time": DateTimeService.formatDateTimeShort(contest.startDate),
-                                                            "num jugadores": contest.contestEntries.length,
-                                                            "fee count": contest.entryFee.amount,
-                                                            "fee currency": contest.entryFee.currencySymbol,
-                                                            "prize count": contest.prize.prizePool.amount,
-                                                            "prize currency": contest.prize.prizePool.currencySymbol,
-                                                            "prize type": contest.prize.prizeType,
-                                                            "players bought": boughtPlayers.length,
-                                                            "contest id": contest.contestId });
-            GameMetrics.peopleSet({"Last Team Created": DateTimeService.formatDateTimeLong(new DateTime.now())});
-            GameMetrics.peopleSet({"Last Team Created (${contest.competitionType})": DateTimeService.formatDateTimeLong(new DateTime.now())});
-            GameMetrics.logEvent(GameMetrics.ENTRY_FEE, { "type": contest.isSimulation? 'virtual' : 'oficial',
-                                                          "value": contest.entryFee.toStringWithCurrency()});
+            GameMetrics.actionEvent(GameMetrics.ACTION_LINEUP_CONFIRM, metricsScreenName);
 
             _teamConfirmed = true;
-            /*
-            if (isCreatingContest) {
-              _router.go( 'view_contest_entry', {
-                            "contestId": contestId,
-                            "parent": "my_contests",
-                            "section": "upcoming",
-                            "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"
-                });
-            }
-            else {
-              _router.go( 'view_contest_entry', {
-                            "contestId": contestId,
-                            "parent": _routeProvider.parameters["parent"],
-                            "viewContestEntryMode": contestId == contest.contestId? "created" : "swapped"
-                });
-            }*/
-
             isLineupFinished = true;
           })
           .catchError((ServerError error) => _errorCreating(error));
@@ -873,6 +836,7 @@ class EnterContestComp implements DetachAware {
       _retryOpTimer = new Timer(const Duration(seconds:3), () => createFantasyTeam());
     }
     else if (error.responseError.contains(ERROR_USER_ALREADY_INCLUDED)) {
+      GameMetrics.actionEvent(GameMetrics.ACTION_LINEUP_CONFIRM_ERROR, metricsScreenName, {"errorDescription": "User already Included", "errorDebug": "HANDLED"});
       _router.go('view_contest_entry', { "contestId": contestId,
                                          "parent": _routeProvider.parameters["parent"],
                                          "viewContestEntryMode": "created" });
@@ -911,6 +875,8 @@ class EnterContestComp implements DetachAware {
   }
   
   void cancelCreateLineup() {
+    GameMetrics.actionEvent(GameMetrics.ACTION_BACK_CONTEST_LIST, metricsScreenName);
+    
     if (editingContestEntry) {
       _router.go('my_contests', {'section': 'upcoming'});
     } else {
@@ -919,6 +885,7 @@ class EnterContestComp implements DetachAware {
   }
   
   void goUpcomingContest() {
+    GameMetrics.actionEvent(GameMetrics.ACTION_CHECK_LINEUP, metricsScreenName);
     _router.go('view_contest_entry', {"contestId": contest.contestId, 
                                       "parent": "my_contests", 
                                       "viewContestEntryMode": "viewing"});
@@ -945,6 +912,8 @@ class EnterContestComp implements DetachAware {
 
   void _showMsgError(ServerError error) {
     String keyError = errorMap.keys.firstWhere( (key) => error.responseError.contains(key), orElse: () => "_ERROR_DEFAULT_" );
+
+    GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_CONFIRM_ERROR, metricsScreenName, contest, {"errorDescription": keyError, "errorDebug": "HANDLED"});
     
     if (keyError == ERROR_USER_BALANCE_NEGATIVE) {
       alertNotEnoughResources();
@@ -1114,6 +1083,7 @@ class EnterContestComp implements DetachAware {
   }
   
   void inviteFriends() {
+    GameMetrics.actionEvent(GameMetrics.ACTION_INVITE_FRIENDS, metricsScreenName);
     JsUtils.runJavascript(null, "socialShare", ["Apuntate al torneo","${HostServer.domain}/sec?contestId=${contest.contestId}"]);
   }
 

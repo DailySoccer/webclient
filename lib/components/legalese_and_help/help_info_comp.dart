@@ -15,7 +15,7 @@ class HelpInfoComp {
   ScreenDetectorService scrDet;
 
   HelpInfoComp(this.scrDet, this._router) {
-    GameMetrics.logEvent(GameMetrics.HELP);
+    //GameMetrics.logEvent(GameMetrics.HELP);
   }
 
   void tabChange(String tab) {

@@ -6,6 +6,7 @@ import 'package:webclient/models/achievement.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/services/app_state_service.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 
 @Component(
@@ -50,7 +51,8 @@ class AchievementListComp {
     _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Listado de Logros");
     _appStateService.appTopBarState.activeState.onLeftColumn = AppTopBarState.GOBACK;
     _appStateService.appTabBarState.show = false;
-    
+
+    GameMetrics.screenVisitEvent(GameMetrics.SCREEN_ACHIEVEMENTS);    
   }
   /*
   void GoBack() {

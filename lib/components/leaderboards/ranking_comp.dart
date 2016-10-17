@@ -8,6 +8,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/leaderboard_service.dart';
 import 'package:webclient/models/user.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
     selector: 'ranking',
@@ -54,6 +55,7 @@ class RankingComp {
     if (myPointsData != null)
       myPointsData = pointsUserList.where((user) => user['id'] == profileService.user.userId).first;
     
+    GameMetrics.screenVisitEvent(GameMetrics.SCREEN_RANKING);
      // myMoneyData = moneyUserList.where((user) => user['id'] == profileService.user.userId).first;
   }
   

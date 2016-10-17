@@ -23,8 +23,8 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
 
   LandingPageComp(this._router, this._profileService, this.scrDet, this._loadingService) {
     _streamListener = scrDet.mediaScreenWidth.listen(onScreenWidthChange);
-    GameMetrics.logEvent(GameMetrics.LANDING_PAGE);
-    GameMetrics.trackConversion(true);
+    //GameMetrics.logEvent(GameMetrics.LANDING_PAGE);
+    //GameMetrics.trackConversion(true);
   }
 
   void smoothScrollTo(String selector) {

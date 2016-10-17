@@ -6,9 +6,66 @@ import 'package:webclient/services/tutorial_service.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/services/deltaDNA_service.dart';
 import 'package:webclient/services/datetime_service.dart';
+import 'package:webclient/models/contest.dart';
 
 class GameMetrics {
+
+  static const String SCREEN_DEPRECATED_VERSION = "screen_version_obsoleta";
+  static const String ACTION_DEEPLINKING = "action_deeplinking";
   
+  
+  static const String SCREEN_LINEUP = "screen_alineacion";
+  static const String SCREEN_LINEUP_EDIT = "screen_editar_alineacion";
+  static const String SCREEN_CONTEST_INFO = "screen_torneo_info";
+  static const String SCREEN_LIVE_CONTEST_LIST = "screen_en_vivo_lista";
+  static const String SCREEN_LIVE_CONTEST = "screen_en_vivo_torneo";
+  static const String SCREEN_RIVAL_LIST = "screen_lista_rivales";
+  static const String SCREEN_RIVAL_LINEUP = "screen_alineación_rival";
+  static const String SCREEN_SOCCER_PLAYER_CONTEST_SCORE = "screen_football_player_puntuacion_torneo";
+  static const String SCREEN_HISTORY = "screen_historico";
+  static const String SCREEN_START = "screen_inicio";
+  static const String SCREEN_ACHIEVEMENTS = "screen_logros";
+  static const String SCREEN_NOTIFICATIONS = "screen_notificaciones";
+  static const String SCREEN_SCOUTING = "screen_ojeador";
+  static const String SCREEN_SOCCER_PLAYER_GLOBAL_STATISTICS = "screen_football_player_estadisticas_globales";
+  static const String SCREEN_PROFILE = "screen_perfil";
+  static const String SCREEN_PROFILE_EDIT = "screen_editar_perfil";
+  static const String SCREEN_UPCOMING_CONTEST_LIST = "screen_proximos_torneos_list";
+  static const String SCREEN_UPCOMING_CONTEST = "screen_proximos_torneos_list";
+  //static const String SCREEN_UPCOMING_CONTEST_CHECK_LINEUP = "screen_alineacion_consultar";
+  static const String SCREEN_RANKING = "screen_ranking";
+  static const String SCREEN_RANKING_COMPLETE = "screen_ranking_completo";
+  static const String SCREEN_SHOP = "screen_tienda";
+  static const String SCREEN_CONTEST_LIST = "screen_torneos";
+  static const String SCREEN_CREATE_CONTEST = "screen_crear_torneo";
+  
+
+  static const String ACTION_DEPRECATED_VERSION_GO_SHOP = "action_version_obsoleta_ir_tienda";
+  
+  static const String ACTION_PROFILE_SAVE = "action_guardar_edicion_perfil";
+  
+  static const String ACTION_LINEUP_AUTOGENERATE = "action_alineacion_automatica";
+  static const String ACTION_LINEUP_CLEAR = "action_alineacion_limpiar";
+  static const String ACTION_LINEUP_CHANGE_FORMATION = "action_alineacion_seleccion_formacion";
+  static const String ACTION_LINEUP_FAVORITES_FILTER = "action_alineacion_filtro_favoritos";
+  static const String ACTION_LINEUP_SOCCERPLAYER_SELECTED = "action_seleccion_football_player";
+  static const String ACTION_LINEUP_SOCCERPLAYER_DELETED = "action_eliminar_football_player";
+  static const String ACTION_LINEUP_CONFIRM = "action_confirmar_alineacion_torneo";
+  static const String ACTION_LINEUP_CONFIRM_ERROR = "action_confirmar_alineacion_torneo_error";
+  static const String ACTION_BACK_CONTEST_LIST = "action_volver_a_torneos";
+  static const String ACTION_INVITE_FRIENDS = "action_invitar_amigos";
+  static const String ACTION_CHECK_LINEUP = "action_ver_alineacion";
+  
+  static const String ACTION_LINEUP_MODIFY_INIT = "action_modificar_alineacion_inicio";
+  static const String ACTION_LINEUP_MODIFY_COMPLETE = "action_modificar_alineacion_completado";
+  static const String ACTION_LIVE_SUBSTITUTION_INIT = "action_iniciar_cambio";
+  static const String ACTION_LIVE_SUBSTITUTION_CANCEL = "action_cancelar_cambio";
+  static const String ACTION_LIVE_SUBSTITUTION_COMPLETE = "action_completar_cambio";
+  
+  static const String ACTION_FAVORITE_SOCCER_PLAYER_CHANGE = "action_football_player_favorito";
+  
+  
+  /*
   // Load Page Time
   static String ENTER_FROM_FUTBOL_CUATRO = "Traffic Source FutbolCuatro";
   static String COMING_FROM_SOCIAL_UTM = "Traffic Source UTM";
@@ -79,7 +136,9 @@ class GameMetrics {
   static String TUTORIAL_STEP_LOBBY_TRAINING = "Step Lobby Training Contest";
   static String TUTORIAL_COMPLETED = "Step Completed";
   static String TUTORIAL_CANCELED = "Step Canceled";
+  */
   
+  /*
   static void aliasMixpanel(String email) {
     if (TutorialService.isActivated) return;
     
@@ -110,6 +169,44 @@ class GameMetrics {
     
     */
   }
+  */
+  
+  static void setupFromDeepLinking() {
+    DeltaDNAService.instance.actionEvent(ACTION_DEEPLINKING, "");
+    DeltaDNAService.instance.setupFromDeepLinking();
+  }
+
+  static void screenVisitEvent(String eventName, [Map params]) {
+    if (TutorialService.isActivated) {
+      eventName = "Tutorial $eventName";
+    }
+    
+    DeltaDNAService.instance.screenEvent(eventName, params);
+  }
+
+  static void contestScreenVisitEvent(String eventName, Contest contest, [Map params = null]) {
+    if (TutorialService.isActivated) {
+      eventName = "Tutorial $eventName";
+    }
+    
+    DeltaDNAService.instance.contestScreenEvent(eventName, contest, params);
+  }
+
+  static void actionEvent(String eventName, String screen, [Map params = null]) {
+    if (TutorialService.isActivated) {
+      eventName = "Tutorial $eventName";
+    }
+    
+    DeltaDNAService.instance.actionEvent(eventName, screen, params);
+  }
+
+  static void contestActionEvent(String eventName, String screen, Contest contest, [Map params = null]) {
+    if (TutorialService.isActivated) {
+      eventName = "Tutorial $eventName";
+    }
+    
+    DeltaDNAService.instance.contestActionEvent(eventName, screen, contest, params);
+  }
 
   static void logEvent(String eventName, [Map params]) {
     if (TutorialService.isActivated) {
@@ -117,22 +214,9 @@ class GameMetrics {
     }
     
     DeltaDNAService.instance.sendEvent(eventName, params);
-    /*
-    if (JsUtils.existsContext(["mixpanel", "track"])) {
-      if (params != null && !params.isEmpty) {
-        JsUtils.runJavascript(null, "track", [eventName, params], "mixpanel");
-      }
-      else {
-        JsUtils.runJavascript(null, "track", eventName, "mixpanel");
-      }
-    }
-    else {
-      Logger.root.info("mixPanel: logEvent not found");
-    }
-    
-    */
   }
 
+  /*
   static void peopleSet(Map params) {
     if (TutorialService.isActivated)
       return;
@@ -162,8 +246,9 @@ class GameMetrics {
     }
      
     */
- }
-
+  }
+  */
+  
   // Google Track, NOT Mixpanel.
   static void trackConversion(bool remarketing_only) {
     /*

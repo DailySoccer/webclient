@@ -117,7 +117,7 @@ class TutorialService {
 
   void skipTutorial({String routePathLogged: 'home', String routePathNotLogged: 'join'}) {
     if (!CurrentTutorial.isCompleted) {
-      GameMetrics.logEvent(GameMetrics.TUTORIAL_CANCELED);
+      //GameMetrics.logEvent(GameMetrics.TUTORIAL_CANCELED);
     }
     
     _activated = false;

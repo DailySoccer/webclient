@@ -42,7 +42,6 @@ class LobbyComp implements DetachAware {
   
   String get skillPoints => _profileService.user!= null ? _profileService.user.trueSkill.toString() : "";
   
-  
   LobbyComp(RouteProvider routeProvider, this._router, this._appStateService, this._refreshTimersService, this._contestsService, 
             GuildService guildService, this.loadingService, this._profileService, TutorialService tutorialService, this._leaderboardService) {
     refreshTopBar();
@@ -51,7 +50,7 @@ class LobbyComp implements DetachAware {
     _appStateService.appSecondaryTabBarState.tabList = [];
     _appStateService.appTabBarState.show = true;   
 
-    GameMetrics.logEvent(GameMetrics.LOBBY);
+    GameMetrics.screenVisitEvent(GameMetrics.SCREEN_CONTEST_LIST);
 
     if (_contestsService.activeContests.isEmpty) {
       loadingService.isLoading = true;

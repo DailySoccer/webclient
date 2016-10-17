@@ -17,6 +17,7 @@ import 'package:webclient/utils/js_utils.dart';
 import 'dart:async';
 import 'package:webclient/services/server_error.dart';
 import 'package:logging/logging.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
     selector: 'soccer-player-stats',
@@ -150,6 +151,8 @@ class SoccerPlayerStatsComp implements DetachAware {
       
       // Optimizacion: Tenemos un instance con la información necesaria?
       InstanceSoccerPlayer instance = _soccerPlayerService.getInstanceSoccerPlayer(contestId, instanceSoccerPlayerId);
+
+      GameMetrics.screenVisitEvent(GameMetrics.SCREEN_SOCCER_PLAYER_GLOBAL_STATISTICS, {"footballPlayer" : instance.soccerPlayer.name});
       // El instance puede ser null (p.ej. cuando el usuario ha realizado un refresh del browser teniendo abiertas las estadísticas del futbolista)
       if (instance != null) {
         if (instance.hasFullInformation) {
@@ -318,7 +321,6 @@ class SoccerPlayerStatsComp implements DetachAware {
       calculateSeasonStats();
       calculateSeasonResumeStats();
       buildPerStatTypeTable();
-      
   }
 
   void calculateSeasonStats() {

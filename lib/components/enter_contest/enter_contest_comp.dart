@@ -718,7 +718,11 @@ class EnterContestComp implements DetachAware {
 
       int playerInLineup = lineupSlots.where((player) => player != null).length;
       _tutorialService.triggerEnter("lineup-" + playerInLineup.toString(), activateIfNeeded: false);
-      GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_SOCCERPLAYER_SELECTED, metricsScreenName, contest, {"footballPlayer": soccerPlayer.name, "formation": formationId});
+      GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_SOCCERPLAYER_SELECTED, metricsScreenName, contest, {
+        "footballPlayer": soccerPlayer.name, 
+        "formation": formationId, 
+        'isFavouritesFilterOn' : onlyFavorites, 
+        'isFavourite' : favoritesPlayers.where((s) => s.id == soccerPlayer.id).isNotEmpty});
     }
 
   }

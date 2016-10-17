@@ -95,6 +95,10 @@ class DateTimeService {
     return "${new DateFormat(StringUtils.getDatePattern("datetimedayhour"), StringUtils.getLocale()).format(date)}h";
   }
 
+  static String formatTimestamp(DateTime date) {
+    return "${new DateFormat(StringUtils.getDatePattern("timestamp"), StringUtils.getLocale()).format(date)}";
+  }
+
   static String formatTimeLeft(Duration timeLeft) {
     NumberFormat nfDay = new NumberFormat("0");
     NumberFormat nfTime = new NumberFormat("00");

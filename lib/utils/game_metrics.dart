@@ -31,7 +31,7 @@ class GameMetrics {
   static const String SCREEN_PROFILE = "screen_perfil";
   static const String SCREEN_PROFILE_EDIT = "screen_editar_perfil";
   static const String SCREEN_UPCOMING_CONTEST_LIST = "screen_proximos_torneos_list";
-  static const String SCREEN_UPCOMING_CONTEST = "screen_proximos_torneos_list";
+  static const String SCREEN_UPCOMING_CONTEST = "screen_proximos_torneos_torneo";
   //static const String SCREEN_UPCOMING_CONTEST_CHECK_LINEUP = "screen_alineacion_consultar";
   static const String SCREEN_RANKING = "screen_ranking";
   static const String SCREEN_RANKING_COMPLETE = "screen_ranking_completo";

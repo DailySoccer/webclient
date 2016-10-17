@@ -17,6 +17,7 @@ import 'package:webclient/services/datetime_service.dart';
 import 'dart:math';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/utils/game_info.dart';
+import 'package:webclient/utils/string_utils.dart';
 
 @Injectable()
 class DeltaDNAService {
@@ -200,7 +201,7 @@ class DeltaDNAService {
       "tournamentPrize": contest.prizePool.amount,
       "tournamentCost": contest.entryFee.amount,
       "tournamentCapacity": contest.maxEntries,
-      "tournamentStart": contest.startDate.millisecondsSinceEpoch,
+      "tournamentStart": DateTimeService.formatTimestamp(contest.startDate),
       "createdByUser": contest.isCustomContest(),
       "isAuthor": _profileService.isLoggedIn && contest.isAuthor(_profileService.user)
     };
@@ -263,7 +264,7 @@ class DeltaDNAService {
   String get _collectBulkURL => "${_collectURL}/bulk";
   
   void setupFromDeepLinking() { _lastVisitedScreen = "DeepLinking"; }
-  String _lastVisitedScreen = "";
+  String _lastVisitedScreen = "-";
   
   Http _http;
   ProfileService get _profileService => ProfileService.instance;

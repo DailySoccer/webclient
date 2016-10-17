@@ -268,7 +268,8 @@ class HomeComp implements DetachAware {
     /*if (nextContest != null)
       _router.go('enter_contest', { "contestId": nextContest.contestId, "parent": "lobby", "contestEntryId": "none" });
     else*/
-      _router.go('lobby', {});
+    GameMetrics.actionEvent(GameMetrics.ACTION_START_PLAY_BUTTON, GameMetrics.SCREEN_START);
+    _router.go('lobby', {});
   } 
   
   void goScouting(){

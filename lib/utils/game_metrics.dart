@@ -44,6 +44,8 @@ class GameMetrics {
   
   static const String ACTION_PROFILE_SAVE = "action_guardar_edicion_perfil";
   
+  static const String ACTION_START_PLAY_BUTTON = "action_inicio_boton_jugar";
+  
   static const String ACTION_LINEUP_AUTOGENERATE = "action_alineacion_automatica";
   static const String ACTION_LINEUP_CLEAR = "action_alineacion_limpiar";
   static const String ACTION_LINEUP_CHANGE_FORMATION = "action_alineacion_seleccion_formacion";

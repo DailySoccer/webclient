@@ -8,7 +8,7 @@
 </div>
 
 <modal-window title="'Mensajes de futbolcuatro'" show-window="notificationsActive" ng-class="{'small' : !hasNotification}">
-  <notifications></notifications>
+  <notifications ng-if="notificationsActive"></notifications>
 </modal-window>
 
 <modal-window show-header="false" show-window="changeNameWindowShow" class="small first-nickname-change">

@@ -99,7 +99,7 @@ class EnterContestComp implements DetachAware {
     _appStateService.appSecondaryTabBarState.tabList = [];
     switch(_sectionActive) {
       case LINEUP_FIELD_SELECTOR:
-        GameMetrics.contestScreenVisitEvent(metricsScreenName, contest);
+        if (contest != null && !_isRestoringTeam) GameMetrics.contestScreenVisitEvent(metricsScreenName, contest);
         setupContestInfoTopBar(true, cancelCreateLineup, onContestInfoClick);
       break;
       case SELECTING_SOCCER_PLAYER:
@@ -287,6 +287,7 @@ class EnterContestComp implements DetachAware {
     refreshContest
       .then((_) {
         contest = _contestsService.lastContest;
+        sectionActive = LINEUP_FIELD_SELECTOR;
 
         // FIX: Si no estoy editando, pero sí que estoy inscrito en el torneo hay que actualizar el contestEntryId (para indicar que realmente es una edición)
         // Esta situación se puede producir cuando alguien comparte un link con un usuario, en un torneo en el que está inscrito
@@ -349,9 +350,11 @@ class EnterContestComp implements DetachAware {
       if (contestEntry != null) {
         formationId = contestEntry.formation;
         // Insertamos en el lineup el jugador
+        _isRestoringTeam = true;
         contestEntry.instanceSoccerPlayers.forEach((instanceSoccerPlayer) {
           addSoccerPlayerToLineup(instanceSoccerPlayer.id);
         });
+        _isRestoringTeam = false;
       }
     }
     else {
@@ -473,7 +476,7 @@ class EnterContestComp implements DetachAware {
 
   void resetLineup() {
     lineupSlots = new List.filled(lineupFormation.length, null);
-    GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_CLEAR, metricsScreenName, contest, {"formation": formationId});
+    if (contest != null) GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_CLEAR, metricsScreenName, contest, {"formation": formationId});
   }
 
   void detach() {
@@ -597,7 +600,7 @@ class EnterContestComp implements DetachAware {
     }
 
     _tutorialService.triggerEnter("formation-" + _formationId.toString(), activateIfNeeded: false);
-    GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_CHANGE_FORMATION, metricsScreenName, contest, {"formation": formationId});
+    if (contest != null && !_isRestoringTeam) GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_CHANGE_FORMATION, metricsScreenName, contest, {"formation": formationId});
     
     // EJEMPLO DE USO del Generate Lineup
     /*
@@ -715,9 +718,9 @@ class EnterContestComp implements DetachAware {
 
       int playerInLineup = lineupSlots.where((player) => player != null).length;
       _tutorialService.triggerEnter("lineup-" + playerInLineup.toString(), activateIfNeeded: false);
+      GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_SOCCERPLAYER_SELECTED, metricsScreenName, contest, {"footballPlayer": soccerPlayer.name, "formation": formationId});
     }
 
-    GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_SOCCERPLAYER_SELECTED, metricsScreenName, contest, {"footballPlayer": soccerPlayer.name, "formation": formationId});
   }
 
   bool isSlotAvailableForSoccerPlayer(String soccerPlayerId) {

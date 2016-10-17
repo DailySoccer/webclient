@@ -187,7 +187,7 @@ class DeltaDNAService {
       params['userScore'] = -1;
     } else {
       ProfileService p = ProfileService.instance;
-      params['userGold'] = p.user.balance;
+      params['userGold'] = p.user.balance.amount;
       params['userXP'] = p.user.ManagerPoints;
       params['userScore'] = p.user.trueSkill;
     }

@@ -26,7 +26,6 @@ class ModalWindow {
   
   void close() {
     show = false;
-    AppStateService.Instance.notificacionsActive = false;
   }
   
   ModalWindow(this._rootElement);

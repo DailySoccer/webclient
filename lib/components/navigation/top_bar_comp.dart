@@ -32,7 +32,8 @@ class TopBarComp {
                                currentState.centerColumn != AppTopBarState.EMPTY ? "one-column" : "hidden-bar";
   
   bool get leftColumnIsBackButton => currentState.leftColumn == AppTopBarState.BACK_BUTTON;
-  bool get notificationsActive => _appStateService.notificacionsActive;
+  bool get notificationsActive => _appStateService.notificationsActive;
+  void set notificationsActive(bool b) { _appStateService.notificationsActive = b; }
   bool get hasNotification => _profileService.isLoggedIn? _profileService.user.notifications.length > 0 : false;
   
   bool changeNameWindowShow = false;

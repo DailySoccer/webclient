@@ -57,14 +57,14 @@ class LoginComp implements ShadowRootAware {
 
   void login() {
     loadingService.isLoading = true;
-    GameMetrics.logEvent(GameMetrics.LOGIN_ATTEMPTED, {"action via": "email"});
+    //GameMetrics.logEvent(GameMetrics.LOGIN_ATTEMPTED, {"action via": "email"});
 
     _loginErrorSection.style.display = "none";
     _enabledSubmit = false;
 
     _profileService.login(emailOrUsername, password)
         .then((_) {
-          GameMetrics.logEvent(GameMetrics.LOGIN_SUCCESSFUL, {"action via": "email"});
+          //GameMetrics.logEvent(GameMetrics.LOGIN_SUCCESSFUL, {"action via": "email"});
           // _profileService.finishTutorial();
 
           loadingService.isLoading = false;

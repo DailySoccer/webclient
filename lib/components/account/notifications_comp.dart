@@ -38,7 +38,7 @@ class NotificationsComp {
       ].map((jsonMap) => new UserNotification.fromJsonObject(jsonMap) ).toList();
     }
     */
-    GameMetrics.logEvent(GameMetrics.NOTIFICATIONS);
+    GameMetrics.screenVisitEvent(GameMetrics.SCREEN_NOTIFICATIONS);    
 
     ProfileService.instance.refreshUserProfile().then( (_) => refreshNotifications() );
   }

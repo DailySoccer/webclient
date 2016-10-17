@@ -27,7 +27,7 @@ class PaymentResponseComp implements ShadowRootAware {
     descriptionText = result == 'success'
         ? getLocalizedText("resultokdesc")
         : getLocalizedText("resultnookdesc");
-    if (result == 'success') GameMetrics.logEvent(GameMetrics.GOLD_BOUGHT);
+    //if (result == 'success') GameMetrics.logEvent(GameMetrics.GOLD_BOUGHT);
   }
 
   @override void onShadowRoot(emulatedRoot) {

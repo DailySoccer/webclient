@@ -19,7 +19,7 @@ class TutorialsComp {
   }
   
   void goTutorial(String tutorial) {
-    GameMetrics.logEvent(GameMetrics.TUTORIAL_FROM_HELP, {'value': tutorial});
+    //GameMetrics.logEvent(GameMetrics.TUTORIAL_FROM_HELP, {'value': tutorial});
     _tutorialService.restart(tutorial);
   }
   

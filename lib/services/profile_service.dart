@@ -56,8 +56,8 @@ class ProfileService {
     if (isLoggedIn)
       throw new Exception("WTF 4234 - We shouldn't be logged in when signing up");
 
-    GameMetrics.aliasMixpanel(email);
-    GameMetrics.peopleSet({"email": email, "created":  GameMetrics.eventsDateString()});
+    //GameMetrics.aliasMixpanel(email);
+    //GameMetrics.peopleSet({"email": email, "created":  GameMetrics.eventsDateString()});
 
     return _server.signup(firstName, lastName, email, nickName, password);
    }
@@ -67,15 +67,15 @@ class ProfileService {
   }
 
   Future<Map> facebookLogin(String accessToken, String id, String name, String email) {
-    GameMetrics.aliasMixpanel(email);
-    GameMetrics.peopleSet({"email": email, "created": GameMetrics.eventsDateString()});
+    //GameMetrics.aliasMixpanel(email);
+    //GameMetrics.peopleSet({"email": email, "created": GameMetrics.eventsDateString()});
     
     return _server.facebookLogin(accessToken, id, name, email).then((Map loginResponseJson) {
       if (loginResponseJson.containsKey("action") && loginResponseJson["action"] == "signup") {
-        GameMetrics.logEvent(GameMetrics.SIGNUP_SUCCESSFUL, {"action via": "facebook"});
+        //GameMetrics.logEvent(GameMetrics.SIGNUP_SUCCESSFUL, {"action via": "facebook"});
       }
-      GameMetrics.logEvent(GameMetrics.LOGIN_SUCCESSFUL, {"action via": "facebook"});
-      GameMetrics.trackConversion(false);
+      //GameMetrics.logEvent(GameMetrics.LOGIN_SUCCESSFUL, {"action via": "facebook"});
+      //GameMetrics.trackConversion(false);
       
       return _onLoginResponse(loginResponseJson);
     }).catchError((err) => Logger.root.severe(err));
@@ -185,8 +185,8 @@ class ProfileService {
         refreshFriendList();
       }
       
-      GameMetrics.identify(user.email);
-      GameMetrics.peopleSet({"email": user.email, "last_login": GameMetrics.eventsDateString()});
+      //GameMetrics.identify(user.email);
+      //GameMetrics.peopleSet({"email": user.email, "last_login": GameMetrics.eventsDateString()});
     }
     else {
       user = null;
@@ -516,12 +516,12 @@ class ProfileService {
           .catchError((_) => _router.go('home', {}));
       
       
-      
+      /*
       GameMetrics.logEvent(GameMetrics.SIGNUP_SUCCESSFUL, {"action via": "uuid",
                                                            "platform": HostServer.isAndroidPlatform? 'android' : 
                                                                        HostServer.isiOSPlatform? 'ios' : 
                                                                                                  'unknown' });
-      GameMetrics.trackConversion(false);
+      GameMetrics.trackConversion(false);*/
     }
     
     GameInfo.assign("showGuestNameModal", "true");

@@ -16,6 +16,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'dart:math';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/utils/game_info.dart';
 
 @Injectable()
 class DeltaDNAService {
@@ -206,12 +207,12 @@ class DeltaDNAService {
   }
   
   String get _sessionId {
-    if (!window.sessionStorage.containsKey('sessionID')) {
-      window.sessionStorage['sessionID'] = _generateUUID();
-      sendEvent('gameStarted',{ 'clientVersion': 'v0.1'});
-      sendEvent('clientDevice',{ 'operatingSystemVersion': HostServer.platform});
+    if (!GameInfo.contains('sessionToken')) {
+      GameInfo.assign('sessionToken', _generateUUID());
+      sendEvent('gameStarted', { 'clientVersion': 'v0.1' });
+      sendEvent('clientDevice', { 'operatingSystemVersion': HostServer.platform });
     }
-    return window.sessionStorage['sessionID'];
+    return GameInfo.get('sessionToken');
     /*
     if (sessionID == null) {
       //if the sessionID was equal to null we need to create a new session

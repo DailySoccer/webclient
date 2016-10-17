@@ -114,7 +114,7 @@ class TutorialIniciacion extends Tutorial {
                   try {
                     transitionEvaluate = (transition) => Tutorial.ALLOWED_FALSE;
     
-                    GameMetrics.logEvent(GameMetrics.TUTORIAL_STARTED);
+                    //GameMetrics.logEvent(GameMetrics.TUTORIAL_STARTED);
     
                     // Bienvenido a Epic Eleven
                     await openModal( text: () => getLocalizedText("msg-01") );
@@ -145,7 +145,7 @@ class TutorialIniciacion extends Tutorial {
                 try {
                   transitionEvaluate = (transition) => Tutorial.ALLOWED_FALSE;
   
-                  GameMetrics.logEvent(GameMetrics.TUTORIAL_STEP_TEAM_SELECTION);
+                  //GameMetrics.logEvent(GameMetrics.TUTORIAL_STEP_TEAM_SELECTION);
   
                   EnterContestComp enterContest = context;
                   enterContest.fieldPosFilter = FieldPos.FORWARD;
@@ -265,7 +265,7 @@ class TutorialIniciacion extends Tutorial {
                 try {
                   transitionEvaluate = (transition) => Tutorial.ALLOWED_FALSE;
   
-                  GameMetrics.logEvent(GameMetrics.TUTORIAL_STEP_LOBBY_TRAINING);
+                  //GameMetrics.logEvent(GameMetrics.TUTORIAL_STEP_LOBBY_TRAINING);
   
                   // Puedes participar en torneos de entrenamiento
                   await openModal( text: () => getLocalizedText("msg-04") );
@@ -421,7 +421,7 @@ class TutorialIniciacion extends Tutorial {
                   clearTooltips();
   
                   ViewContestComp liveContest = context;
-                  liveContest.updateLive();
+                  //liveContest.updateLive();
   
                   // Enhorabuena, has ganado tu primer torneo!
                   await openModal( text: () => getLocalizedText("msg-16"), onOk: StringUtils.translate("end", "tutorial") );
@@ -432,7 +432,7 @@ class TutorialIniciacion extends Tutorial {
                   if (!isCompleted) {
                     CurrentStepId = Tutorial.STEP_END;
   
-                    GameMetrics.logEvent(GameMetrics.TUTORIAL_COMPLETED);
+                    //GameMetrics.logEvent(GameMetrics.TUTORIAL_COMPLETED);
   
                     TutorialService.Instance.skipTutorial();
                   }

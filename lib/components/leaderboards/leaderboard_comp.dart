@@ -218,11 +218,11 @@ class LeaderboardComp implements ShadowRootAware, DetachAware{
 
     switch(section) {
       case "points":
-        GameMetrics.logEvent(GameMetrics.LEADERBOARD, {'value': 'trueskill'});
+        GameMetrics.screenVisitEvent(GameMetrics.SCREEN_RANKING_COMPLETE, {'rankType' : 'Habilidad'});
         tabChange('points-content');
       break;
       case "money":
-        GameMetrics.logEvent(GameMetrics.LEADERBOARD, {'value': 'money'});
+        GameMetrics.screenVisitEvent(GameMetrics.SCREEN_RANKING_COMPLETE, {'rankType' : 'Ganancias'});
         tabChange('money-content');
       break;
     }

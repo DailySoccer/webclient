@@ -24,7 +24,7 @@ class DeprecatedVersionScreenComp {
   }
   
   void goShop() {
-    GameMetrics.logEvent(GameMetrics.REQUEST_VERSION_UPDATE, {"store": HostServer.isAndroidPlatform ? "Android" : "iOS"});
+    GameMetrics.actionEvent(GameMetrics.ACTION_DEPRECATED_VERSION_GO_SHOP, GameMetrics.SCREEN_DEPRECATED_VERSION);
     
     String linkToStore = HostServer.isAndroidPlatform ? "market://details?id=$marketAppId" : "itms-apps://itunes.apple.com/app/$marketAppId";
     window.open(linkToStore, "_system");
@@ -37,7 +37,7 @@ class DeprecatedVersionScreenComp {
       _show = aValue;
       
       if (_show) {
-        GameMetrics.logEvent(GameMetrics.DEPRECATED_VERSION, {"store": HostServer.isAndroidPlatform ? "Android" : "iOS"});
+        GameMetrics.screenVisitEvent(GameMetrics.SCREEN_DEPRECATED_VERSION);
       }
     }
   }

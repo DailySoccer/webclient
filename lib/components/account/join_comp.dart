@@ -166,7 +166,7 @@ class JoinComp implements ShadowRootAware {
   }
 
   void submitSignup() {
-    GameMetrics.logEvent(GameMetrics.SIGNUP_ATTEMPTED, {"action via": "email"});
+    //GameMetrics.logEvent(GameMetrics.SIGNUP_ATTEMPTED, {"action via": "email"});
 
     bool errorDetected = false;
 
@@ -210,8 +210,8 @@ class JoinComp implements ShadowRootAware {
       _profileService.signup(firstName, lastName, email, nickName, password)
           .then((_) =>  _profileService.login(email, password))
             .then((_) {
-              GameMetrics.logEvent(GameMetrics.SIGNUP_SUCCESSFUL, {"action via": "email"});
-              GameMetrics.trackConversion(false);
+              //GameMetrics.logEvent(GameMetrics.SIGNUP_SUCCESSFUL, {"action via": "email"});
+              //GameMetrics.trackConversion(false);
   
               loadingService.isLoading = false;
               if(_routeProvider.route.parent.name == null) {

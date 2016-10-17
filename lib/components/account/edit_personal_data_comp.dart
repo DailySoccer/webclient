@@ -8,6 +8,7 @@ import 'package:webclient/services/server_error.dart';
 import 'dart:html';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/app_state_service.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
     selector: 'edit-personal-data',
@@ -99,6 +100,8 @@ class EditPersonalDataComp implements ShadowRootAware{
     _appStateService.appTopBarState.activeState.onLeftColumn = AppTopBarState.GOBACK;
     _appStateService.appTabBarState.show = false;
     _appStateService.appSecondaryTabBarState.tabList = [];
+
+    GameMetrics.screenVisitEvent(GameMetrics.SCREEN_PROFILE_EDIT);
   }
   
   void GoBack() {
@@ -232,6 +235,9 @@ class EditPersonalDataComp implements ShadowRootAware{
           editedLastName   = lastName  == "" ? editedLastName   : lastName;
           editedNickName   = nickName  == "" ? editedNickName   : nickName;
           loadingService.isLoading = false;
+          
+          GameMetrics.actionEvent(GameMetrics.ACTION_PROFILE_SAVE, GameMetrics.SCREEN_PROFILE_EDIT);
+          
           exit(null);
         })
         .catchError((ServerError error) {

@@ -143,7 +143,7 @@ class ViewContestEntryComp {
         
         updatedDate = DateTimeService.now;
         if(!_contestsService.lastContest.isHistory && !_contestsService.lastContest.isLive) {
-          GameMetrics.logEvent(GameMetrics.UPCOMING_CONTEST);
+          GameMetrics.contestScreenVisitEvent(GameMetrics.SCREEN_UPCOMING_CONTEST, contest);
         }
       })
       .catchError((ServerError error) {
@@ -233,7 +233,7 @@ class ViewContestEntryComp {
   }
   
   void onChallenge(user) {
-    GameMetrics.logEvent(GameMetrics.FRIEND_BAR_CHALLENGE);
+    GameMetrics.actionEvent(GameMetrics.ACTION_INVITE_FRIENDS, GameMetrics.SCREEN_UPCOMING_CONTEST);
     onInviteFriends();
   }
 

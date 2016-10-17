@@ -9,6 +9,10 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/models/contest.dart';
 
 class GameMetrics {
+
+  static const String SCREEN_DEPRECATED_VERSION = "screen_version_obsoleta";
+  static const String ACTION_DEEPLINKING = "action_deeplinking";
+  
   
   static const String SCREEN_LINEUP = "screen_alineacion";
   static const String SCREEN_LINEUP_EDIT = "screen_editar_alineacion";
@@ -26,8 +30,9 @@ class GameMetrics {
   static const String SCREEN_SOCCER_PLAYER_GLOBAL_STATISTICS = "screen_football_player_estadisticas_globales";
   static const String SCREEN_PROFILE = "screen_perfil";
   static const String SCREEN_PROFILE_EDIT = "screen_editar_perfil";
-  static const String SCREEN_UPCOMING_CONTESTS = "screen_proximos_torneos";
-  static const String SCREEN_UPCOMING_CONTEST_CHECK_LINEUP = "screen_alineacion_consultar";
+  static const String SCREEN_UPCOMING_CONTEST_LIST = "screen_proximos_torneos_list";
+  static const String SCREEN_UPCOMING_CONTEST = "screen_proximos_torneos_list";
+  //static const String SCREEN_UPCOMING_CONTEST_CHECK_LINEUP = "screen_alineacion_consultar";
   static const String SCREEN_RANKING = "screen_ranking";
   static const String SCREEN_RANKING_COMPLETE = "screen_ranking_completo";
   static const String SCREEN_SHOP = "screen_tienda";
@@ -35,6 +40,8 @@ class GameMetrics {
   static const String SCREEN_CREATE_CONTEST = "screen_crear_torneo";
   
 
+  static const String ACTION_DEPRECATED_VERSION_GO_SHOP = "action_version_obsoleta_ir_tienda";
+  
   static const String ACTION_PROFILE_SAVE = "action_guardar_edicion_perfil";
   
   static const String ACTION_LINEUP_AUTOGENERATE = "action_alineacion_automatica";
@@ -163,6 +170,11 @@ class GameMetrics {
     */
   }
   */
+  
+  static void setupFromDeepLinking() {
+    DeltaDNAService.instance.actionEvent(ACTION_DEEPLINKING, "");
+    DeltaDNAService.instance.setupFromDeepLinking();
+  }
 
   static void screenVisitEvent(String eventName, [Map params]) {
     if (TutorialService.isActivated) {

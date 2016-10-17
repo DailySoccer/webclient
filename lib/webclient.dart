@@ -604,7 +604,7 @@ class WebClientApp extends Module {
     } else {
       JsUtils.runJavascript(null, "onjQueryReady", [
         () {
-          GameMetrics.logEvent(GameMetrics.PAGE_READY);
+          //GameMetrics.logEvent(GameMetrics.PAGE_READY);
           _jQueryReady = true;
           completer.complete();
         }
@@ -737,6 +737,7 @@ class WebClientApp extends Module {
       
       if (ulData != null) {
         Logger.root.info("DeepLinking, redirection: [Section: ${ulData['path'].toString().substring(1)}, Params: ${ulData['params'].toString()}]");
+        GameMetrics.setupFromDeepLinking();
         router.go(ulData['path'].toString().substring(1), ulData['params'], replace: true);
         bEnter = false;
       } else if (!bEnter) {

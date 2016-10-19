@@ -92,6 +92,33 @@ enter-contest {
   }
 }
 
+.error-joining-modal {
+  .modal-window-content {
+    .flex-container-col();
+    .flex-elem-fixed(auto);
+    padding: 25px 15px 10px 15px;
+  }
+}
+.error-joining-title {
+  .mainfont_light(14pt, @orange, center, uppercase);
+  .flex-elem-fluid(1);
+  margin-bottom: 15px;
+}
+.error-joining-text {
+  .bodyfont_light(10pt, @white, center);
+  .flex-elem-fluid(1);
+  padding: 0px 20px;
+  margin-bottom: 40px;
+}
+.error-joining-actions-wrapper {
+  .flex-elem-fixed(30px);
+  .flex-container-row();
+  justify-content: space-between;
+  button {
+    .flat-button();
+  }
+}
+
 .lineup-finished-modal {
   .modal-window-content {
     .flex-container-col();

@@ -62,6 +62,7 @@ class EnterContestComp implements DetachAware {
   static const String CONTEST_INFO = "CONTEST_INFO";
 
   String get metricsScreenName => editingContestEntry? GameMetrics.SCREEN_LINEUP_EDIT : GameMetrics.SCREEN_LINEUP;
+  String joiningErrorText = "";
   
   //ScreenDetectorService scrDet;
   LoadingService loadingService;
@@ -145,11 +146,12 @@ class EnterContestComp implements DetachAware {
   Money _coinsNeeded = new Money.from(Money.CURRENCY_GOLD, 0);
   Money get coinsNeeded {
     _coinsNeeded.amount = 0;
-    num managerLevel = playerManagerLevel;
+
+    /*
     lineupSlots
       .where((c) => c != null)
       .forEach( (c) => _coinsNeeded.amount += c.moneyToBuy.amount);
-
+    */
     if (contest != null && contest.entryFee != null && contest.entryFee.isGold && !editingContestEntry) {
       _coinsNeeded.amount += contest.entryFee.amount;
     }
@@ -185,7 +187,9 @@ class EnterContestComp implements DetachAware {
     if (contest != null) {
       result = (contest.simulation) ? User.MAX_MANAGER_LEVEL : min(result, contest.maxManagerLevel);
     }
-    return result;
+    //return result;
+    // HACK:
+    return User.MAX_MANAGER_LEVEL;
   }
 
   int get playerGold => _profileService.isLoggedIn ? _profileService.user.Gold: 0;
@@ -362,24 +366,6 @@ class EnterContestComp implements DetachAware {
       restoreContestEntry();
     }
   }
-
-  void messageContestFull() {
-    String title = getLocalizedText("cannot-enter-full-title");
-    String description = getLocalizedText("cannot-enter-full-desc");
-    modalShow(
-          "",
-          '''
-            <div class="content-wrapper">
-              <h1 class="alert-content-title">$title</h1>
-              <h2 class="alert-content-subtitle">$description</h2>
-            </div>
-          '''
-          , onBackdropClick: true
-          , aditionalClass: "cannotEnter"
-        )
-        .then((_) => cancelCreateLineup())
-        .catchError((_) => cancelCreateLineup());
-  }
   
   void cannotEnterMessageRedirect() {
     String title = "";
@@ -423,7 +409,8 @@ class EnterContestComp implements DetachAware {
                                             });
       }
     }
-    modalShow(
+    joiningErrorText = description;
+    /*modalShow(
           "",
           '''
             <div class="content-wrapper">
@@ -435,7 +422,7 @@ class EnterContestComp implements DetachAware {
           , aditionalClass: "cannotEnter"
         )
         .then((_) => cancelCreateLineup())
-        .catchError((_) => cancelCreateLineup());
+        .catchError((_) => cancelCreateLineup());*/
   }
 
   void updateFavorites() {
@@ -770,7 +757,7 @@ class EnterContestComp implements DetachAware {
   
   void createFantasyTeam() {
     if (isNegativeBalance) {
-      GameMetrics.actionEvent(GameMetrics.ACTION_LINEUP_CONFIRM_ERROR, metricsScreenName, {"errorDescription": "Balance negativo", "errorDebug": "NOT_HANDLED"});
+      GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_CONFIRM_ERROR, metricsScreenName, contest, {"errorDescription": "Balance negativo", "errorDebug": "NOT_HANDLED"});
       return;
     }
 
@@ -786,13 +773,13 @@ class EnterContestComp implements DetachAware {
     //print ("FantasyTeam: " + GameInfo.get(_getKeyForCurrentUserContest));
 
     if (!_profileService.isLoggedIn) {
-      GameMetrics.actionEvent(GameMetrics.ACTION_LINEUP_CONFIRM_ERROR, metricsScreenName, {"errorDescription": "User is not logged", "errorDebug": "NOT_HANDLED"});
+      GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_CONFIRM_ERROR, metricsScreenName, contest, {"errorDescription": "User is not logged", "errorDebug": "NOT_HANDLED"});
       //_router.go("enter_contest.join", {});
       return;
     }
 
     if (!enoughResourcesForEntryFee) {
-      GameMetrics.actionEvent(GameMetrics.ACTION_LINEUP_CONFIRM_ERROR, metricsScreenName, {"errorDescription": "Not enought resources for entry fee", "errorDebug": "HANDLED"});
+      GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_CONFIRM_ERROR, metricsScreenName, contest, {"errorDescription": "Not enought resources for entry fee", "errorDebug": "HANDLED"});
       alertNotEnoughResources();
       return;
 
@@ -806,30 +793,32 @@ class EnterContestComp implements DetachAware {
     if (editingContestEntry) {
       _contestsService.editContestEntry(contestEntryId, formationId, lineupSlots.map((player) => player.id).toList())
         .then((_) {
-          //num managerLevel = playerManagerLevel;
-          Iterable boughtPlayers = lineupSlots.where((c) => c.moneyToBuy.amount > 0);
+          // num managerLevel = playerManagerLevel;
+          // Iterable boughtPlayers = lineupSlots.where((c) => c.moneyToBuy.amount > 0);
           
           GameMetrics.actionEvent(GameMetrics.ACTION_LINEUP_MODIFY_COMPLETE, metricsScreenName);
           _teamConfirmed = true;
           isLineupFinished = true;
-          /*_router.go('view_contest_entry', { "contestId": contest.contestId,
+          /*
+          _router.go('view_contest_entry', { "contestId": contest.contestId,
                                              "parent": _routeProvider.parameters["parent"],
-                                             "viewContestEntryMode": "edited"});*/
-          
+                                             "viewContestEntryMode": "edited"});
+          */
         })
         .catchError((ServerError error) => _errorCreating(error));
     }
     else {
         _contestsService.addContestEntry(contest.contestId, formationId, lineupSlots.map((SoccerPlayerListItem player) => player.id).toList())
           .then((contestId) {
-
+            /*
             num managerLevel = playerManagerLevel;
             Iterable boughtPlayers = lineupSlots.where((c) => c.moneyToBuy.amount > 0);
             boughtPlayers.forEach( (c) {
               num cost = c.instanceSoccerPlayer.moneyToBuy(contest, managerLevel).amount;
             });
+            */
 
-            GameMetrics.actionEvent(GameMetrics.ACTION_LINEUP_CONFIRM, metricsScreenName);
+            GameMetrics.actionEvent(GameMetrics.ACTION_LINEUP_CONFIRM, metricsScreenName, {'formation' : formationId});
 
             _teamConfirmed = true;
             isLineupFinished = true;
@@ -841,9 +830,8 @@ class EnterContestComp implements DetachAware {
   void _errorCreating(ServerError error) {
     if (error.isRetryOpError) {
       _retryOpTimer = new Timer(const Duration(seconds:3), () => createFantasyTeam());
-    }
-    else if (error.responseError.contains(ERROR_USER_ALREADY_INCLUDED)) {
-      GameMetrics.actionEvent(GameMetrics.ACTION_LINEUP_CONFIRM_ERROR, metricsScreenName, {"errorDescription": "User already Included", "errorDebug": "HANDLED"});
+    } else if (error.responseError.contains(ERROR_USER_ALREADY_INCLUDED)) {
+      GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_CONFIRM_ERROR, metricsScreenName, contest, {"errorDescription": "User already Included", "errorDebug": "HANDLED"});
       _router.go('view_contest_entry', { "contestId": contestId,
                                          "parent": _routeProvider.parameters["parent"],
                                          "viewContestEntryMode": "created" });
@@ -892,7 +880,7 @@ class EnterContestComp implements DetachAware {
   }
   
   void goUpcomingContest() {
-    GameMetrics.actionEvent(GameMetrics.ACTION_CHECK_LINEUP, metricsScreenName);
+    GameMetrics.actionEvent(GameMetrics.ACTION_CHECK_LINEUP, metricsScreenName, {"createdByUser": contest.isCustomContest()});
     _router.go('view_contest_entry', {"contestId": contest.contestId, 
                                       "parent": "my_contests", 
                                       "viewContestEntryMode": "viewing"});
@@ -926,9 +914,11 @@ class EnterContestComp implements DetachAware {
       alertNotEnoughResources();
     } 
     else if (keyError == ERROR_CONTEST_FULL) {
-      messageContestFull();
+      joiningErrorText = "El torneo está lleno";
     }
     else {
+      joiningErrorText = errorMap[keyError]["title"];
+      /*
       modalShow(
         errorMap[keyError]["title"],
         (editingContestEntry && errorMap[keyError].containsKey("editing")) ? errorMap[keyError]["editing"] : errorMap[keyError]["generic"]
@@ -937,6 +927,8 @@ class EnterContestComp implements DetachAware {
           _router.go(_routeProvider.parameters["parent"], {});
         }
       });
+      * 
+       */
     }
   }
 
@@ -1020,19 +1012,22 @@ class EnterContestComp implements DetachAware {
       onBackdropClick: true,
       closeButton:true
     )*/
-    (contest.entryFee.isEnergy ? alertNotEnoughEnergyContent() : alertNotEnoughGoldContent())
+    if (contest.entryFee.isEnergy) alertNotEnoughEnergyContent(); else alertNotEnoughGoldContent();
+    
+    /*(contest.entryFee.isEnergy ? alertNotEnoughEnergyContent() : alertNotEnoughGoldContent())
     .then((_) {
       // Registramos dónde tendría que navegar al tener éxito en "add_funds"
       GameInfo.assign(contest.entryFee.isEnergy ? "add_energy_success" : "add_gold_success", window.location.href);
 
       _router.go('shop.buy', {});
-    });
+    });*/
 
     _tutorialService.triggerEnter("alert-not-enough-resources");
   }
 
-  Future alertNotEnoughGoldContent() {
-    return modalShow(
+  void alertNotEnoughGoldContent() {
+    joiningErrorText = getLocalizedText("alert-no-gold-message");
+    /*return modalShow(
           ""
           , '''
           <div class="content-wrapper">
@@ -1049,10 +1044,12 @@ class EnterContestComp implements DetachAware {
           , closeButton: true
           , aditionalClass: "noGold"
         );
+    */
   }
 
-  Future alertNotEnoughEnergyContent() {
-    return modalShow(
+  void alertNotEnoughEnergyContent() {
+    joiningErrorText = getLocalizedText("alert-no-energy-message_1");
+    /*return modalShow(
           ""
           , '''
           <div class="content-wrapper">
@@ -1068,7 +1065,7 @@ class EnterContestComp implements DetachAware {
           , onBackdropClick: TutorialService.isActivated
           , closeButton: true
           , aditionalClass: "noGold"
-        );
+        );*/
     /*return '''
     <div class="content-wrapper">
       <img class="main-image" src="images/iconNoEnergy.png">

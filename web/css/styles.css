@@ -15123,6 +15123,77 @@ enter-contest {
   opacity: 0.5;
   cursor: not-allowed;
 }
+.error-joining-modal .modal-window-content {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  flex: 0 0 auto;
+  padding: 25px 15px 10px 15px;
+}
+.error-joining-title {
+  font-size: 14pt;
+  color: #fa9c19;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  flex: 1;
+  margin-bottom: 15px;
+}
+.error-joining-text {
+  font-size: 10pt;
+  color: #ffffff;
+  text-transform: inherit;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 500;
+  flex: 1;
+  padding: 0px 20px;
+  margin-bottom: 40px;
+}
+.error-joining-actions-wrapper {
+  flex: 0 0 30px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+.error-joining-actions-wrapper button {
+  font-size: 11pt;
+  color: #0d75a6;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  border: 0;
+  outline-offset: 0px;
+  outline: none;
+}
+.error-joining-actions-wrapper button:hover,
+.error-joining-actions-wrapper button:active,
+.error-joining-actions-wrapper button:focus {
+  border: none;
+  outline-offset: 0px;
+  outline: none;
+}
+.error-joining-actions-wrapper button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 .lineup-finished-modal .modal-window-content {
   display: -webkit-box;
   display: -moz-box;

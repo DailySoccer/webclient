@@ -15,12 +15,12 @@ class GameMetrics {
   
   
   static const String SCREEN_LINEUP = "screen_alineacion";
-  static const String SCREEN_LINEUP_EDIT = "screen_editar_alineacion";
+  static const String SCREEN_LINEUP_EDIT = "screen_alineacion_editar";
   static const String SCREEN_CONTEST_INFO = "screen_torneo_info";
   static const String SCREEN_LIVE_CONTEST_LIST = "screen_en_vivo_lista";
   static const String SCREEN_LIVE_CONTEST = "screen_en_vivo_torneo";
   static const String SCREEN_RIVAL_LIST = "screen_lista_rivales";
-  static const String SCREEN_RIVAL_LINEUP = "screen_alineación_rival";
+  static const String SCREEN_RIVAL_LINEUP = "screen_alineacion_rival";
   static const String SCREEN_SOCCER_PLAYER_CONTEST_SCORE = "screen_football_player_puntuacion_torneo";
   static const String SCREEN_HISTORY = "screen_historico";
   static const String SCREEN_START = "screen_inicio";
@@ -60,9 +60,9 @@ class GameMetrics {
   
   static const String ACTION_LINEUP_MODIFY_INIT = "action_modificar_alineacion_inicio";
   static const String ACTION_LINEUP_MODIFY_COMPLETE = "action_modificar_alineacion_completado";
-  static const String ACTION_LIVE_SUBSTITUTION_INIT = "action_iniciar_cambio";
-  static const String ACTION_LIVE_SUBSTITUTION_CANCEL = "action_cancelar_cambio";
-  static const String ACTION_LIVE_SUBSTITUTION_COMPLETE = "action_completar_cambio";
+  static const String ACTION_LIVE_SUBSTITUTION_INIT = "action_sustitucion_iniciar";
+  static const String ACTION_LIVE_SUBSTITUTION_CANCEL = "action_sustitucion_cancelar";
+  static const String ACTION_LIVE_SUBSTITUTION_COMPLETE = "action_sustitucion_completar";
   
   static const String ACTION_FAVORITE_SOCCER_PLAYER_CHANGE = "action_football_player_favorito";
   

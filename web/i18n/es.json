@@ -499,13 +499,13 @@
       "position"                        : "Puesto:",
       "today"                           : "Hoy",
       "tomorrow"                        : "Mañana",
-      "soonHint"                        : "Faltan<br>@TIME min",
-      "verySoonHint"                    : "Faltan<br>@TIME"
+      "soonHint"                        : "En @TIME min",
+      "verySoonHint"                    : "En @TIME"
     }
     ,"contest"                          :
     {
-      "soonHint"                        : "Faltan<br>@TIME min",
-      "verySoonHint"                    : "Faltan<br>@TIME"
+      "soonHint"                        : "@TIME min",
+      "verySoonHint"                    : "@TIME"
     }
     ,"contestfilters"                   :
     {

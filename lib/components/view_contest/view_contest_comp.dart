@@ -47,6 +47,8 @@ class ViewContestComp implements DetachAware {
   static const String SOCCER_PLAYER_LIST = "SOCCER_PLAYER_LIST";
   static const String SOCCER_PLAYER_STATS = "SOCCER_PLAYER_STATS";
   
+  String get metricsScreenName => _contestsService.lastContest.isLive? GameMetrics.SCREEN_LIVE_CONTEST : GameMetrics.SCREEN_HISTORY;
+  
   String _sectionActive = LINEUP_FIELD_CONTEST_ENTRY;
   String _lastSectionActive = LINEUP_FIELD_CONTEST_ENTRY;
   void set sectionActive(String section) { 
@@ -323,9 +325,9 @@ class ViewContestComp implements DetachAware {
     } else {
       displayChangeablePlayers = !displayChangeablePlayers;
       if (displayChangeablePlayers) {
-        GameMetrics.contestScreenVisitEvent(GameMetrics.ACTION_LIVE_SUBSTITUTION_INIT, contest, {'availableChanges' : numAvailableChanges});
+        GameMetrics.contestActionEvent(GameMetrics.ACTION_LIVE_SUBSTITUTION_INIT, metricsScreenName, contest, {'availableChanges' : numAvailableChanges});
       } else {
-        GameMetrics.contestScreenVisitEvent(GameMetrics.ACTION_LIVE_SUBSTITUTION_CANCEL, contest, {'availableChanges' : numAvailableChanges});
+        GameMetrics.contestActionEvent(GameMetrics.ACTION_LIVE_SUBSTITUTION_CANCEL, metricsScreenName, contest, {'availableChanges' : numAvailableChanges});
       }
     }
   }
@@ -338,7 +340,7 @@ class ViewContestComp implements DetachAware {
       if (player.isPlaying || player.hasPlayed) {
         gameplaysPlayer = player;
         isGameplaysModalOn = true;
-        GameMetrics.contestScreenVisitEvent(GameMetrics.SCREEN_SOCCER_PLAYER_CONTEST_SCORE, contest, {'footballPlayer' : player.name, "isRival": false});
+        GameMetrics.contestScreenVisitEvent(GameMetrics.SCREEN_SOCCER_PLAYER_CONTEST_SCORE, contest, {'footballPlayer' : player.name, "isRival": false, 'availableChanges' : numAvailableChanges});
       }
     }
   }
@@ -348,7 +350,7 @@ class ViewContestComp implements DetachAware {
     if (player.isPlaying || player.hasPlayed) {
       gameplaysPlayer = player;
       isGameplaysModalOn = true;
-      GameMetrics.contestScreenVisitEvent(GameMetrics.SCREEN_SOCCER_PLAYER_CONTEST_SCORE, contest, {'footballPlayer' : player.name, "isRival": true});
+      GameMetrics.contestScreenVisitEvent(GameMetrics.SCREEN_SOCCER_PLAYER_CONTEST_SCORE, contest, {'footballPlayer' : player.name, "isRival": true, 'availableChanges' : numAvailableChanges});
     }
   }
   
@@ -364,7 +366,7 @@ class ViewContestComp implements DetachAware {
   
   void hideConfirmModal() {
     isConfirmModalOn = false;
-    GameMetrics.contestScreenVisitEvent(GameMetrics.ACTION_LIVE_SUBSTITUTION_CANCEL, contest, {'availableChanges' : numAvailableChanges});
+    GameMetrics.contestActionEvent(GameMetrics.ACTION_LIVE_SUBSTITUTION_CANCEL, metricsScreenName, contest, {'availableChanges' : numAvailableChanges});
   }
 
   /*
@@ -392,7 +394,7 @@ class ViewContestComp implements DetachAware {
                   changingPlayer.soccerPlayer.templateSoccerPlayerId, 
                   newSoccerPlayer.soccerPlayer.templateSoccerPlayerId)
             .then((_) {
-              GameMetrics.contestScreenVisitEvent(GameMetrics.ACTION_LIVE_SUBSTITUTION_COMPLETE, contest, {'availableChanges' : numAvailableChanges,
+              GameMetrics.contestActionEvent(GameMetrics.ACTION_LIVE_SUBSTITUTION_COMPLETE, metricsScreenName, contest, {'availableChanges' : numAvailableChanges,
                                                                                                            'footballPlayerOut': changingPlayer.soccerPlayer.name,
                                                                                                            'footballPlayerIn': newSoccerPlayer.soccerPlayer.name,
                                                                                                            'salaryCap': maxSalary,
@@ -574,7 +576,8 @@ class ViewContestComp implements DetachAware {
     if (instanceSoccerPlayer.playState == InstanceSoccerPlayer.STATE_NOT_PLAYED && availableSalaryChangingPlayer >= instanceSoccerPlayer.salary) {
       String newSoccerTeamId = instanceSoccerPlayer.soccerPlayer.soccerTeam.templateSoccerTeamId;
       int sameTeamCount = mainPlayer.instanceSoccerPlayers.where((i) => i.soccerTeam.templateSoccerTeamId == newSoccerTeamId && i.id != changingPlayer.id).length;
-      return sameTeamCount < 4;
+      bool isInLineup = lineupSlots.where((soccerPlayer) => soccerPlayer.id == instanceSoccerPlayer.id).length != 0;
+      return sameTeamCount < 4 && !isInLineup;
     }
     return false;
   }
@@ -670,7 +673,7 @@ class ViewContestComp implements DetachAware {
     isConfirmModalOn = false;
     displayChangeablePlayers = false;
     _cancelSoccerPlayerSelection();
-    GameMetrics.contestScreenVisitEvent(GameMetrics.ACTION_LIVE_SUBSTITUTION_CANCEL, contest, {'availableChanges' : numAvailableChanges});
+    GameMetrics.contestActionEvent(GameMetrics.ACTION_LIVE_SUBSTITUTION_CANCEL, metricsScreenName, contest, {'availableChanges' : numAvailableChanges});
   }
   
   /*

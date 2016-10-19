@@ -871,6 +871,15 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
     <button class="lineup-finished-view-lineup" ng-click="goUpcomingContest()">Ver alineación</button>
   </div>
 </modal-window>
+
+<!-- LINEUP FINISHED -->
+<modal-window class="error-joining-modal small" show-header="false" show-window="joiningErrorText != ''">
+  <div class="error-joining-title">Lo sentimos...</div>
+  <div class="error-joining-text">Ha ocurrido un error: <br>{{joiningErrorText}}</div>
+  <div class="error-joining-actions-wrapper">
+    <button class="error-joining-back-lobby" ng-click="cancelCreateLineup()">Volver a torneos</button>
+  </div>
+</modal-window>
 """));
 tc.put("packages/webclient/components/enter_contest/lineup_field_selector_comp.html", new HttpResponse(200, r"""<div class="lineup-field-selector" ng-class="getLineupClassname()">
   <div class="lineup-formation-selector-wrapper" ng-if="formationIsModifiable">
@@ -1869,7 +1878,7 @@ tc.put("packages/webclient/components/navigation/top_bar_comp.html", new HttpRes
 </div>
 
 <modal-window title="'Mensajes de futbolcuatro'" show-window="notificationsActive" ng-class="{'small' : !hasNotification}">
-  <notifications></notifications>
+  <notifications ng-if="notificationsActive"></notifications>
 </modal-window>
 
 <modal-window show-header="false" show-window="changeNameWindowShow" class="small first-nickname-change">

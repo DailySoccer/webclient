@@ -872,7 +872,7 @@ tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", ne
   </div>
 </modal-window>
 
-<!-- LINEUP FINISHED -->
+<!-- ERROR JOINING -->
 <modal-window class="error-joining-modal small" show-header="false" show-window="joiningErrorText != ''">
   <div class="error-joining-title">Lo sentimos...</div>
   <div class="error-joining-text">Ha ocurrido un error: <br>{{joiningErrorText}}</div>
@@ -2000,8 +2000,7 @@ tc.put("packages/webclient/components/scouting/scouting_league_comp.html", new H
                               match-filter="teamFilter"
                               on-info-click="onRowClick(soccerPlayerId)"
                               on-action-click="onSoccerPlayerActionButton(soccerPlayer)"
-                              is-scouting-list="true">
-                            </soccer-players-scalinglist>"""));
+                              is-scouting-list="true"></soccer-players-scalinglist>"""));
 tc.put("packages/webclient/components/scouting/teams_filter_comp.html", new HttpResponse(200, r"""<div class="teams-toggler-wrapper">
   <div id="teamsToggler" type="button" class="teams-toggler"  ng-click="toggleTeamsPanel()" 
        ng-class="{'toggleOff': !isTeamsPanelOpen, 'toggleOn': isTeamsPanelOpen }"  data-toggle="collapse" 

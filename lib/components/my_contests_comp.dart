@@ -205,7 +205,7 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
       break;
       case "history":
         tabChange('history-contest-content');
-        GameMetrics.screenVisitEvent(GameMetrics.SCREEN_HISTORY);
+        GameMetrics.screenVisitEvent(GameMetrics.SCREEN_HISTORY_LIST);
       break;
     }
   }

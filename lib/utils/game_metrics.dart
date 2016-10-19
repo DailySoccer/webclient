@@ -22,7 +22,8 @@ class GameMetrics {
   static const String SCREEN_RIVAL_LIST = "screen_lista_rivales";
   static const String SCREEN_RIVAL_LINEUP = "screen_alineacion_rival";
   static const String SCREEN_SOCCER_PLAYER_CONTEST_SCORE = "screen_football_player_puntuacion_torneo";
-  static const String SCREEN_HISTORY = "screen_historico";
+  static const String SCREEN_HISTORY_LIST = "screen_historico_list";
+  static const String SCREEN_HISTORY_CONTEST = "screen_historico_torneo";
   static const String SCREEN_START = "screen_inicio";
   static const String SCREEN_ACHIEVEMENTS = "screen_logros";
   static const String SCREEN_NOTIFICATIONS = "screen_notificaciones";

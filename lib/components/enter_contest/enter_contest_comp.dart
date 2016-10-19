@@ -818,7 +818,7 @@ class EnterContestComp implements DetachAware {
             });
             */
 
-            GameMetrics.actionEvent(GameMetrics.ACTION_LINEUP_CONFIRM, metricsScreenName, {'formation' : formationId});
+            GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_CONFIRM, metricsScreenName, contest, {'formation' : formationId});
 
             _teamConfirmed = true;
             isLineupFinished = true;
@@ -880,7 +880,7 @@ class EnterContestComp implements DetachAware {
   }
   
   void goUpcomingContest() {
-    GameMetrics.actionEvent(GameMetrics.ACTION_CHECK_LINEUP, metricsScreenName, {"createdByUser": contest.isCustomContest()});
+    GameMetrics.contestActionEvent(GameMetrics.ACTION_CHECK_LINEUP, metricsScreenName, contest);
     _router.go('view_contest_entry', {"contestId": contest.contestId, 
                                       "parent": "my_contests", 
                                       "viewContestEntryMode": "viewing"});

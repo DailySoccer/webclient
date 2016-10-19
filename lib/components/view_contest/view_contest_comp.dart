@@ -47,7 +47,7 @@ class ViewContestComp implements DetachAware {
   static const String SOCCER_PLAYER_LIST = "SOCCER_PLAYER_LIST";
   static const String SOCCER_PLAYER_STATS = "SOCCER_PLAYER_STATS";
   
-  String get metricsScreenName => _contestsService.lastContest.isLive? GameMetrics.SCREEN_LIVE_CONTEST : GameMetrics.SCREEN_HISTORY;
+  String get metricsScreenName => _contestsService.lastContest.isLive? GameMetrics.SCREEN_LIVE_CONTEST : GameMetrics.SCREEN_HISTORY_CONTEST;
   
   String _sectionActive = LINEUP_FIELD_CONTEST_ENTRY;
   String _lastSectionActive = LINEUP_FIELD_CONTEST_ENTRY;
@@ -505,7 +505,7 @@ class ViewContestComp implements DetachAware {
       //_refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE_CONTEST_ENTRIES, _retrieveLiveContestEntriesData);
       GameMetrics.contestScreenVisitEvent(GameMetrics.SCREEN_LIVE_CONTEST, contest, {'availableChanges' : numAvailableChanges});
     } else if (_contestsService.lastContest.isHistory) {
-      GameMetrics.contestScreenVisitEvent(GameMetrics.SCREEN_HISTORY, contest);
+      GameMetrics.contestScreenVisitEvent(GameMetrics.SCREEN_HISTORY_CONTEST, contest);
     }
   }
   

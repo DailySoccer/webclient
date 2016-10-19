@@ -24120,6 +24120,11 @@ fieldset[disabled] .favorites-wrapper .soccer-players-list .soccer-players-list-
   color: #ffffff;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
 }
+.favorites-wrapper scouting-league .soccer-player-table-body .soccer-players-list-slot.soccer-player-remove {
+  padding: 7px 8px;
+  border-left: none;
+  border-right: none;
+}
 @media (min-width: 992px) {
   teams-filter {
     display: block;

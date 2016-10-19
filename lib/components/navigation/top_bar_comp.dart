@@ -126,10 +126,11 @@ class TopBarComp {
       _profileService.user.nickName = editedNickName;
 
       _profileService.changeUserProfile(_profileService.user.firstName, _profileService.user.lastName, 
-                                        _profileService.user.email, nickName, "")
-        .then( (_) {
-          changeNameWindowShow = false;
-        });
+                                        _profileService.user.email, nickName, "").then( (_) {
+            changeNameWindowShow = false;
+          }).catchError((error) {
+            nicknameErrorText = "Error Desconocido";
+          });
   }
   
   void cancelNicknameChange() {

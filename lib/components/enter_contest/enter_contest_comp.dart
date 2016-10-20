@@ -463,6 +463,8 @@ class EnterContestComp implements DetachAware {
 
   void resetLineup() {
     lineupSlots = new List.filled(lineupFormation.length, null);
+    availableSalary = contest.salaryCap;
+    isNegativeBalance = availableSalary < 0;
     if (contest != null) GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_CLEAR, metricsScreenName, contest, {"formation": formationId});
   }
 
@@ -840,7 +842,7 @@ class EnterContestComp implements DetachAware {
       _showMsgError(error);
     }
   }
-
+  
   void removeAllFilters() {
     fieldPosFilter = null;
     nameFilter = null;

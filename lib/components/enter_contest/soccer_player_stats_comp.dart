@@ -18,6 +18,7 @@ import 'dart:async';
 import 'package:webclient/services/server_error.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/services/loading_service.dart';
 
 @Component(
     selector: 'soccer-player-stats',
@@ -33,6 +34,7 @@ class SoccerPlayerStatsComp implements DetachAware {
   bool get isFavoriteMode => statsMode == FAVORITE_MODE;
   
   ScreenDetectorService scrDet;
+  LoadingService loadingService;
 
   List<Map> seasonResumeStats = [];
   List seasonTableHeaders = [];
@@ -131,7 +133,7 @@ class SoccerPlayerStatsComp implements DetachAware {
   }
   String get imgSoccerTeam => currentInfoData != null ? "images/team-shirts/${currentInfoData['shortTeam']}_XL.png" : "";
 
-  SoccerPlayerStatsComp(this._flashMessage, this.scrDet, this._soccerPlayerService, RouteProvider routeProvider, Router router, this._rootElement) {
+  SoccerPlayerStatsComp(this._flashMessage, this.scrDet, this._soccerPlayerService, RouteProvider routeProvider, Router router, this._rootElement, this.loadingService) {
     contestId = routeProvider.route.parent.parameters.containsKey("contestId") ? routeProvider.route.parent.parameters["contestId"] : null;
     instanceSoccerPlayerId = routeProvider.route.parent.parameters.containsKey("soccerPlayerId") ? routeProvider.route.parameters["soccerPlayerId"] : null;
     
@@ -139,7 +141,7 @@ class SoccerPlayerStatsComp implements DetachAware {
   }
   
   void refreshSoccerPlayerData() {
-
+    loadingService.isLoading = true;
     Future refreshInstancePlayerInfo;
     if (instanceSoccerPlayerId == null) return;
 
@@ -171,6 +173,7 @@ class SoccerPlayerStatsComp implements DetachAware {
     refreshInstancePlayerInfo
       .then((_) {
         updateSoccerPlayerInfoFromService();
+        loadingService.isLoading = false;
       })
       .catchError((ServerError error) {
         _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);

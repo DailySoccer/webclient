@@ -12,6 +12,8 @@ import 'package:webclient/services/app_state_service.dart';
 import 'dart:html';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'dart:async';
+import 'package:logging/logging.dart';
+import 'package:webclient/services/server_error.dart';
 
 @Component(
     selector: 'top-bar',
@@ -93,7 +95,9 @@ class TopBarComp {
   
   void onProfileLoad() {
     _profileService.triggerEventualAction(ProfileService.FIRST_RUN_CHANGE_NAME, () {
-      changeNameWindowShow = true;
+      if (_profileService.user.nickName.toLowerCase().startsWith("guest")) {
+        changeNameWindowShow = true;
+      }
     });
   }
 
@@ -123,14 +127,25 @@ class TopBarComp {
       if (nickName  == "") {
          changeNameWindowShow = false;
       }
-      _profileService.user.nickName = editedNickName;
 
       _profileService.changeUserProfile(_profileService.user.firstName, _profileService.user.lastName, 
                                         _profileService.user.email, nickName, "").then( (_) {
+            _profileService.user.nickName = editedNickName;
             changeNameWindowShow = false;
-          }).catchError((error) {
-            nicknameErrorText = "Error Desconocido";
-          });
+          }).catchError((ServerError error) {
+            error.toJson().forEach( (key, value) {
+              switch (key)  {
+                case "nickName":
+                  if(value[0] == "ERROR_NICKNAME_TAKEN") {
+                    nicknameErrorText = "El nombre ya está seleccionado"; 
+                  } else {
+                    nicknameErrorText = "Error de nombre desconocido";
+                  }
+                break;
+                default: nicknameErrorText = "Error Desconocido";
+              }
+            });
+          }, test: (error) => error is ServerError);
   }
   
   void cancelNicknameChange() {

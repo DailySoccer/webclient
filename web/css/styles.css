@@ -7217,6 +7217,9 @@ contests-list {
   flex-flow: column nowrap;
   background-color: #181818;
 }
+contests-list .contest-list-item-wrapper {
+  flex: 0 0 auto;
+}
 contests-list .contestDateSeparator {
   font-size: 13pt;
   color: #fa9c19;
@@ -7459,7 +7462,7 @@ modal-window.hidden-window {
   display: none;
 }
 modal-window.small .modal-window-frame {
-  max-width: 280px;
+  max-width: 300px;
   margin-left: auto;
   margin-right: auto;
   height: auto;
@@ -15215,6 +15218,7 @@ enter-contest {
   font-weight: 500;
   flex: 1;
   margin-bottom: 15px;
+  padding: 0 15px;
 }
 .lineup-finished-text {
   font-size: 10pt;
@@ -15253,6 +15257,7 @@ enter-contest {
   border: 0;
   outline-offset: 0px;
   outline: none;
+  padding: 0 7px;
 }
 .lineup-finished-actions-wrapper button:hover,
 .lineup-finished-actions-wrapper button:active,

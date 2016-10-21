@@ -798,7 +798,10 @@ class EnterContestComp implements DetachAware {
           // num managerLevel = playerManagerLevel;
           // Iterable boughtPlayers = lineupSlots.where((c) => c.moneyToBuy.amount > 0);
           
-          GameMetrics.actionEvent(GameMetrics.ACTION_LINEUP_MODIFY_COMPLETE, metricsScreenName);
+          GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_MODIFY_COMPLETE, metricsScreenName, contest, { 'formation' : formationId,
+                                                                                                                  'salaryCap': contest.salaryCap, 
+                                                                                                                  'salaryNotUsed': availableSalary, 
+                                                                                                                  'salaryUsed': contest.salaryCap - availableSalary});
           _teamConfirmed = true;
           isLineupFinished = true;
           /*
@@ -820,7 +823,10 @@ class EnterContestComp implements DetachAware {
             });
             */
 
-            GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_CONFIRM, metricsScreenName, contest, {'formation' : formationId});
+            GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_CONFIRM, metricsScreenName, contest, { 'formation' : formationId,
+                                                                                                            'salaryCap': contest.salaryCap, 
+                                                                                                            'salaryNotUsed': availableSalary, 
+                                                                                                            'salaryUsed': contest.salaryCap - availableSalary});
 
             _teamConfirmed = true;
             isLineupFinished = true;

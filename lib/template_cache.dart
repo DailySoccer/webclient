@@ -582,7 +582,7 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
 </div>
 
 """));
-tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse(200, r"""<div ng-repeat="contest in currentContestList.elements track by contest.contesId">
+tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse(200, r"""<div class="contest-list-item-wrapper" ng-repeat="contest in currentContestList.elements track by contest.contesId">
     <!-- Separador de fecha -->
     <div class="contestDateSeparator" ng-if="idDifferentDate($index) && showDate">
       <span>{{dateSeparatorText(contest.startDate)}}</span>
@@ -602,14 +602,14 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
         <div class="contest-name">{{contest.name}}</div>
         <div class="contest-description">{{contest.description}}</div>
       </div>
-      <!-- precio -->
+      <!-- premio -->
       <div class="prize-section">
         <div class="prize-count" ng-class="{'prize-coin':getContestCoinIcon(getPrizeToShow(contest)) == 'gold', 'prize-managerpoints':getContestCoinIcon(getPrizeToShow(contest)) == 'manager'}">{{getPrizeToShow(contest)}}</div>
         <div class="prize-description">{{getLocalizedText("prize")}}</div>
       </div>
-      <!-- premio -->
+      <!-- precio -->
       <div class="price-section" ng-if="!(contest.isLive || contest.isHistory)">
-        <div class="price-count" ng-class="{'entry-fee-coin': getContestCoinIcon(contest.entryFee) == 'gold', 'entry-fee-energy':getContestCoinIcon(contest.entryFee) == 'energy'}">{{contest.entryFee}}</div>
+        <div class="price-count" ng-class="{'entry-fee-coin': (getContestCoinIcon(contest.entryFee) == 'gold' && contest.entryFee.amount != 0), 'entry-fee-energy': (getContestCoinIcon(contest.entryFee) == 'energy' && contest.entryFee.amount != 0)}">{{contest.entryFee.amount == 0? "Gratis" : contest.entryFee}}</div>
         <div class="price-description">{{getLocalizedText("entryfee")}}</div>
       </div>
       <!-- Flechita call to action --->

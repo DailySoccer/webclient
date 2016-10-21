@@ -208,12 +208,12 @@ class DeltaDNAService {
   }
   
   String get _sessionId {
-    if (!GameInfo.contains('sessionToken')) {
-      GameInfo.assign('sessionToken', _generateUUID());
+    if (!GameInfo.contains('sessionId')) {
+      GameInfo.assign('sessionId', _generateUUID());
       sendEvent('gameStarted', { 'clientVersion': 'v0.1' });
       sendEvent('clientDevice', { 'operatingSystemVersion': HostServer.platform });
     }
-    return GameInfo.get('sessionToken');
+    return GameInfo.get('sessionId');
     /*
     if (sessionID == null) {
       //if the sessionID was equal to null we need to create a new session

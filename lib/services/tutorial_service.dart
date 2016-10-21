@@ -35,7 +35,7 @@ class TutorialService {
     _instance = this;
 
     _availables = [
-      new TutorialIniciacion(this._router, _profileService, _scrDet),
+     // new TutorialIniciacion(this._router, _profileService, _scrDet),
     ];
 
     // Incluir los tutoriales que no se hayan terminado

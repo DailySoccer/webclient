@@ -463,7 +463,7 @@ class EnterContestComp implements DetachAware {
 
   void resetLineup() {
     lineupSlots = new List.filled(lineupFormation.length, null);
-    availableSalary = contest.salaryCap;
+    availableSalary = contest != null ? contest.salaryCap : 0;
     isNegativeBalance = availableSalary < 0;
     if (contest != null) GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_CLEAR, metricsScreenName, contest, {"formation": formationId});
   }

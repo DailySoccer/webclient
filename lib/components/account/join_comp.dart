@@ -209,7 +209,7 @@ class JoinComp implements ShadowRootAware {
     } else {
       _profileService.signup(firstName, lastName, email, nickName, password)
           .then((_) =>  _profileService.login(email, password))
-            .then((_) {
+          .then((_) {
               //GameMetrics.logEvent(GameMetrics.SIGNUP_SUCCESSFUL, {"action via": "email"});
               //GameMetrics.trackConversion(false);
   

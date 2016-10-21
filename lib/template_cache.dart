@@ -1826,11 +1826,13 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
   </div>
 </section>
 """));
-tc.put("packages/webclient/components/navigation/deprecated_version_screen_comp.html", new HttpResponse(200, r"""<div class="deprecated-version-screen" ng-if="show">
-  <img src="images/logoE11.png"></img>
-  <h1>{{getLocalizedText("title")}}</h1>
-  <p>{{getLocalizedText("body")}}</p>
-  <button ng-click="goShop()">{{getLocalizedText("button")}}</button>
+tc.put("packages/webclient/components/navigation/deprecated_version_screen_comp.html", new HttpResponse(200, r"""<div class="deprecated-version-screen-wrapper" ng-if="show">
+  <div class="deprecated-version-screen">
+    <img src="images/logoE11.png"></img>
+    <h1>{{getLocalizedText("title")}}</h1>
+    <!--p>{{getLocalizedText("body")}}</p-->
+    <button ng-click="goShop()">{{getLocalizedText("button")}}</button>
+  </div>
 </div>"""));
 tc.put("packages/webclient/components/navigation/secondary_tab_bar_comp.html", new HttpResponse(200, r"""<div class="secondary-tab-bar-wrapper" ng-if="tabs != null && tabs.length > 0">
     <div ng-repeat="tab in tabs" class="secondary-tabbar-tab" ng-class="[nTabsClass, (tab.isActive() ? 'active' : '')]" ng-click="tab.action()" ng-bind-html-unsafe="tab.text"> 

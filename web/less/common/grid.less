@@ -29,6 +29,9 @@
 .flex-elem-grow-only(@proportion: 1, @size: auto) {
   flex: @proportion 0 @size;
 }
+.flex-elem-shrink-only(@proportion: 1, @size: auto) {
+  flex: 0 @proportion @size;
+}
 
 // use with fixed content
 .flex-container-content-centered {

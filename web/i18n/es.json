@@ -1294,9 +1294,9 @@
     }
     ,"deprecatedVersion"                :
     {
-      "title"                           : "La versión de la aplicacion está obsoleta.",
-      "body"                            : "Actualizala gratuitamente en la tienda de aplicaciones.",
-      "button"                          : "Ir a la tienda"
+      "title"                           : "Es necesario actualizar para acceder a todas las mejoras",
+      "body"                            : "",
+      "button"                          : "Actualizar"
     }
     ,"serverError"                      :
     {

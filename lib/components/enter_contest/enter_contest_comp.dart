@@ -634,6 +634,8 @@ class EnterContestComp implements DetachAware {
     SoccerPlayerListItem sc = allSoccerPlayers.firstWhere( (player) => player.id == playerId);
     
     onSoccerPlayerActionButton(sc);
+    
+    sectionActive = LINEUP_FIELD_SELECTOR;    
   }
   
   void onSoccerPlayerActionButton(SoccerPlayerListItem soccerPlayer) {
@@ -643,8 +645,9 @@ class EnterContestComp implements DetachAware {
       onLineupSlotSelected(indexOfPlayer);  // Esto se encarga de quitarlo del lineup
     } else {
       _tryToAddSoccerPlayerToLineup(soccerPlayer);
+
     }
-    _verifyMaxPlayersInSameTeam();
+    _verifyMaxPlayersInSameTeam();    
   }
 
   bool isFieldPositionFull(FieldPos pos) {

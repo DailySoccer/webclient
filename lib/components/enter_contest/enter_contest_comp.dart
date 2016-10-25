@@ -1098,7 +1098,7 @@ class EnterContestComp implements DetachAware {
   }
   
   void inviteFriends() {
-    GameMetrics.actionEvent(GameMetrics.ACTION_INVITE_FRIENDS, metricsScreenName);
+    GameMetrics.contestActionEvent(GameMetrics.ACTION_INVITE_FRIENDS, metricsScreenName, contest);
     JsUtils.runJavascript(null, "socialShare", ["Apuntate al torneo","${HostServer.domain}/sec?contestId=${contest.contestId}"]);
   }
 

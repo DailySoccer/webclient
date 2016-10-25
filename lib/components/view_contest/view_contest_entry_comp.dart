@@ -212,7 +212,7 @@ class ViewContestEntryComp {
   }
   */
   String get inviteUrl => "${HostServer.domain}/#/sec/${contest.contestId}";
-  
+  /*
   void onInviteFriends() {
     if (_shareContent == null) {
       _shareContent = querySelector("#shareMethodsContent");
@@ -231,18 +231,20 @@ class ViewContestEntryComp {
     
     querySelector(".share-url").focus();
   }
-  
+  */
+  /*
   void onChallenge(user) {
     GameMetrics.actionEvent(GameMetrics.ACTION_INVITE_FRIENDS, GameMetrics.SCREEN_UPCOMING_CONTEST);
     onInviteFriends();
   }
-
+*/
   void onShareTextareaFocus(Event e) {
     InputElement inputText = e.currentTarget;
     inputText.setSelectionRange(0, inviteUrl.length);
   }
 
   void inviteFriends() {
+    GameMetrics.contestActionEvent(GameMetrics.ACTION_INVITE_FRIENDS, GameMetrics.SCREEN_UPCOMING_CONTEST, contest);
     JsUtils.runJavascript(null, "socialShare", ["Apuntate al torneo","${HostServer.domain}/sec?contestId=${contest.contestId}"]);
   }
 

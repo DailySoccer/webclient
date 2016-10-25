@@ -1,3 +1,5 @@
+
+
 <div class="contest-list-item-wrapper" ng-repeat="contest in currentContestList.elements track by contest.contesId">
     <!-- Separador de fecha -->
     <div class="contestDateSeparator" ng-if="idDifferentDate($index) && showDate">
@@ -6,34 +8,37 @@
     <!-- Slot de Concurso -->
     <div class="contestSlot" ng-class="{'special': getContestMorfology(contest) == 'special', 'real': getContestTypeIcon(contest) == 'real', 'virtual': getContestTypeIcon(contest) != 'real'}" ng-click="onRow(contest)"
     ng-style="{'background-image':'url({{getContestImage(contest)}})'}">
-      <!-- bandera y Hora -->
-      <div class="time-section">
-        <div class="contest-flag" ng-class="getSourceFlag(contest)"></div>
-        <div class="column-start-time">
-          <div class="column-start-hour" ng-class="{'start-soon' : isSoon(contest.startDate)}" ng-bind-html="timeInfo(contest.startDate, !contest.isHistory)"></div>
+      <div class="contest-content">
+        <!-- nombre y descripción -->
+        <div class="name-section">{{contest.name}}</div>
+        <div class="contest-data-section">
+          <!-- bandera y Hora -->
+          <div class="contest-data-item time-section">
+            <!--div class="contest-flag" ng-class="getSourceFlag(contest)"></div-->
+            <div class="contest-data-item-value column-start-hour" ng-class="{'start-soon' : isSoon(contest.startDate)}" ng-bind-html="timeInfo(contest.startDate, !contest.isHistory)"></div>
+            <div class="contest-data-item-key">Inicio</div>
+          </div>
+          <div class="contest-data-item entries-section">
+            <div class="contest-data-item-value">{{entriesColumn(contest)}}<i class="material-icons">&#xE7FB;</i></div>
+            <div class="contest-data-item-key">Jugadores</div>
+          </div>
+          <!-- premio -->
+          <div class="contest-data-item prize-section">
+            <div class="contest-data-item-value prize-count">{{getPrizeToShow(contest)}}<i class="material-icons">&#xE3FA;</i></div>
+            <div class="contest-data-item-key prize-description">Bote</div>
+          </div>
+          <!-- precio -->
+          <div class="contest-data-item price-section" ng-if="!(contest.isLive || contest.isHistory)">
+            <div class="contest-data-item-value price-count">{{contest.entryFee.amount == 0? "Gratis" : contest.entryFee}}<i class="material-icons" ng-if="contest.entryFee.amount != 0">&#xE3FA;</i></div>
+            <div class="contest-data-item-key price-description">Entrada</div>
+          </div>
         </div>
       </div>
-      <!-- nombre y descripción -->
-      <div class="name-section">
-        <div class="contest-name">{{contest.name}}</div>
-        <div class="contest-description">{{contest.description}}</div>
-      </div>
-      <!-- premio -->
-      <div class="prize-section">
-        <div class="prize-count" ng-class="{'prize-coin':getContestCoinIcon(getPrizeToShow(contest)) == 'gold', 'prize-managerpoints':getContestCoinIcon(getPrizeToShow(contest)) == 'manager'}">{{getPrizeToShow(contest)}}</div>
-        <div class="prize-description">{{getLocalizedText("prize")}}</div>
-      </div>
-      <!-- precio -->
-      <div class="price-section" ng-if="!(contest.isLive || contest.isHistory)">
-        <div class="price-count" ng-class="{'entry-fee-coin': (getContestCoinIcon(contest.entryFee) == 'gold' && contest.entryFee.amount != 0), 'entry-fee-energy': (getContestCoinIcon(contest.entryFee) == 'energy' && contest.entryFee.amount != 0)}">{{contest.entryFee.amount == 0? "Gratis" : contest.entryFee}}</div>
-        <div class="price-description">{{getLocalizedText("entryfee")}}</div>
-      </div>
       <!-- Flechita call to action --->
-      <div class="action-section" ng-click="onAction(contest, $event)">
+      <div class="contest-action" ng-click="onAction(contest, $event)">
         <i class="material-icons">&#xE5CC;</i>
       </div>
     </div> 
-       
 </div>
 
 <div class="loading-row" ng-if="!currentContestList.isFullList">

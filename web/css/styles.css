@@ -6276,6 +6276,9 @@ body {
 body {
   background-color: #181818;
 }
+* {
+  -webkit-overflow-scrolling: touch;
+}
 /*
 div#mainApp
   top-bar#mainToapBar
@@ -7216,6 +7219,39 @@ contests-list {
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
   background-color: #181818;
+  /*
+  .time-section {
+    .flex-elem-fluid();
+    .mainfont_light(10pt, @grey-bluish, center);
+    .column-start-hour {
+      padding-bottom: 3px;
+    }
+  }
+  .entries-section {
+    .flex-elem-fluid();
+    .mainfont_light(10pt, @grey-bluish, center);
+  }
+  .prize-section {
+    .flex-elem-fluid();
+    .flex-container-col();
+    .prize-count {
+      .mainfont_light(13pt, @white, none, uppercase);
+    }
+    .prize-description{
+      .mainfont_light(10pt, @grey-bluish);
+    }
+  }
+  .price-section {
+    .flex-elem-fluid();
+    .flex-container-col();
+    .price-count {
+      .mainfont_light(13pt, @white, none, uppercase);
+    }
+    .price-description{
+      .mainfont_light(10pt, @grey-bluish);
+    }
+  }
+*/
 }
 contests-list .contest-list-item-wrapper {
   flex: 0 0 auto;
@@ -7232,7 +7268,7 @@ contests-list .contestDateSeparator {
   padding: 10px;
 }
 contests-list .contestSlot {
-  flex: 1;
+  flex: 0 0 auto;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -7242,125 +7278,101 @@ contests-list .contestSlot {
   flex-flow: row nowrap;
   background-color: #242529;
   border-bottom: 2px solid #000000;
-  margin-bottom: 10px;
-  padding: 10px 0;
+  margin-bottom: 5px;
+  padding: 10px 5px 10px 15px;
 }
-contests-list .time-section {
-  flex: 0 0 66px;
+contests-list .contest-action {
+  flex: 0 0 30px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  justify-content: center;
+  color: #ffffff;
+  border-left: 1px solid rgba(210, 210, 210, 0.3);
 }
-contests-list .time-section .contest-flag {
-  width: 31px;
-  height: 22px;
-  margin: 3px auto 5px auto;
+contests-list .contest-action .material-icon {
+  font-size: 32px;
 }
-contests-list .time-section .column-start-time {
-  font-size: 10pt;
-  color: #757993;
-  text-transform: uppercase;
-  text-align: center;
-  text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
-  padding-bottom: 3px;
+contests-list .contest-content {
+  flex: 1;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
 }
 contests-list .name-section {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-flow: column nowrap;
-  flex-flow: column nowrap;
-  flex: 1;
-  justify-content: center;
-}
-contests-list .name-section .contest-name {
-  font-size: 13pt;
-  color: #ffffff;
-  text-transform: uppercase;
-  text-align: none;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
-}
-contests-list .name-section .contest-description {
-  font-size: 10pt;
-  color: #757993;
-  text-transform: inherit;
-  text-align: inherit;
-  text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
-}
-contests-list .prize-section {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-flow: column nowrap;
-  flex-flow: column nowrap;
-  flex: 0 0 80px;
-  justify-content: center;
-}
-contests-list .prize-section .prize-count {
-  font-size: 13pt;
-  color: #ffffff;
-  text-transform: uppercase;
-  text-align: none;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
-}
-contests-list .prize-section .prize-description {
-  font-size: 10pt;
-  color: #757993;
-  text-transform: inherit;
-  text-align: inherit;
-  text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
-}
-contests-list .price-section {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-flow: column nowrap;
-  flex-flow: column nowrap;
-  flex: 0 0 60px;
-  justify-content: center;
-}
-contests-list .price-section .price-count {
-  font-size: 13pt;
-  color: #ffffff;
-  text-transform: uppercase;
-  text-align: none;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
-}
-contests-list .price-section .price-description {
-  font-size: 10pt;
-  color: #757993;
-  text-transform: inherit;
-  text-align: inherit;
-  text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
-}
-contests-list .action-section {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-flow: column nowrap;
-  flex-flow: column nowrap;
   flex: 0 0 30px;
-  justify-content: center;
+  font-size: 13pt;
   color: #ffffff;
+  text-transform: uppercase;
+  text-align: none;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  padding-bottom: 5px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+contests-list .contest-data-section {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  flex: 0 0 38px;
+}
+contests-list .contest-data-item {
+  flex: 1;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
+}
+contests-list .contest-data-item-value {
+  flex: 0 0 auto;
+  font-size: 10pt;
+  color: #ffffff;
+  text-transform: inherit;
+  text-align: left;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+}
+contests-list .contest-data-item-key {
+  flex: 0 0 18px;
+  font-size: 8pt;
+  color: #757993;
+  text-transform: inherit;
+  text-align: left;
+  text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+}
+contests-list .entries-section .contest-data-item-value .material-icons {
+  font-size: 20px;
+  color: #757993;
+  vertical-align: bottom;
+  padding-left: 5px;
+}
+contests-list .prize-count .material-icons,
+contests-list .price-count .material-icons {
+  color: #f8c132;
+  vertical-align: text-bottom;
+  font-size: 18px;
+  padding-left: 5px;
 }
 contests-list .contestSlot.special {
   position: relative;
@@ -11868,6 +11880,7 @@ lobby .create-custom-contest-button {
   outline-offset: 0px;
   outline: none;
   line-height: 16pt;
+  flex: 0 0 auto;
   margin-bottom: 2px;
   z-index: 1;
 }

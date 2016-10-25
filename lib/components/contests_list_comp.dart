@@ -277,6 +277,9 @@ class ContestsListComp {
     }
   }
 
+  String entriesColumn(Contest contest) {
+    return (contest.maxEntries <= 0) ? "${contest.numEntries}" : "${contest.numEntries}/${contest.maxEntries}";
+  }
   
   String dateSeparatorText(DateTime date) {
     // Avisamos cuando sea "Hoy"
@@ -289,6 +292,7 @@ class ContestsListComp {
     }
     return DateTimeService.formatDateWithDayOfTheMonth(date);
   }
+  
   bool idDifferentDate(int index) {
     bool isDifferent = true;
     if (index != 0){

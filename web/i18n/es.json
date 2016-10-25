@@ -964,7 +964,7 @@
       "NEW_OFFER_ACTIVE_BTN"            : "Mas información",
 
       "CONTEST_FINISHED"                : "TORNEO TERMINADO",
-      "CONTEST_FINISHED_DESCRIPTION"    : "Torneo '@NAME' terminado, consulta tus resultados.",
+      "CONTEST_FINISHED_DESCRIPTION"    : "<div>Has terminado en <span class='enlighted'>@POSITIONª Posición</span></div><div>Premio <span class='enlighted'>@PRIZE monedas</span></div>",
       "CONTEST_FINISHED_BTN"            : "Ver resultado",
 
       "DUEL_FINISHED"                   : "DUELO TERMINADO",

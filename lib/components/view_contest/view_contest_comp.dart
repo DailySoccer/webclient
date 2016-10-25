@@ -72,13 +72,13 @@ class ViewContestComp implements DetachAware {
         _appStateService.appSecondaryTabBarState.tabList = [];
       break;
       case LINEUP_FIELD_CONTEST_ENTRY:
-        _setupContestInfoTopBar(true, () => _router.go('lobby', {}), _onContestInfoClick);
+        _setupContestInfoTopBar(true, /*() => _router.go('lobby', {})*/AppTopBarState.GOBACK, _onContestInfoClick);
         _appStateService.appSecondaryTabBarState.tabList = tabList;
       break;
       case COMPARATIVE:
       case RIVALS_LIST:
         GameMetrics.contestScreenVisitEvent(section == RIVALS_LIST? GameMetrics.SCREEN_RIVAL_LIST : GameMetrics.SCREEN_RIVAL_LINEUP, contest, {"availableChanges": numAvailableChanges});
-        _setupContestInfoTopBar(true, () => _router.go('lobby', {}), _onContestInfoClick);
+        _setupContestInfoTopBar(true, /* () => _router.go('lobby', {})*/AppTopBarState.GOBACK, _onContestInfoClick);
         _appStateService.appSecondaryTabBarState.tabList = tabList;
       break;
     }
@@ -446,7 +446,7 @@ class ViewContestComp implements DetachAware {
               }
             }
            
-            _setupContestInfoTopBar(true, () => _router.go('my_contests', {"section": "live"}), _onContestInfoClick);
+            _setupContestInfoTopBar(true, /*() => _router.go('my_contests', {"section": "live"})*/ AppTopBarState.GOBACK, _onContestInfoClick);
             _setupLiveTimers();
             
             _loadingService.isLoading = false;

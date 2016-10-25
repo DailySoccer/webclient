@@ -15,17 +15,24 @@ notifications {
 		}
 		.notification-info-wrapper {
 			.flex-elem-fluid();
-			padding: 15px 0 15px 15px;
+			padding: 8px 0;
 		}
 		.notification-title {
 			.flex-elem-fluid();
 			.mainfont_light(14pt, @grey-bluish, left, uppercase);
 		}
+		.notification-description {
+			.flex-elem-fluid();
+			.mainfont_light(10pt, @grey-light, left, uppercase);
+		}
+		.enlighted {
+			color: @orange;
+		}
 		.notification-actions-wrapper {
 			.flex-container-row();
 			justify-content: flex-end;
 			align-items: center;
-			padding-top: 5px;
+			//padding-top: 5px;
 		}
 		.notification-main-action {
 			.flex-elem-fluid();

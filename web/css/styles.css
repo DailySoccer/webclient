@@ -23534,7 +23534,7 @@ notifications .notification-slot .notification-icon-wrapper {
 }
 notifications .notification-slot .notification-info-wrapper {
   flex: 1;
-  padding: 15px 0 15px 15px;
+  padding: 8px 0;
 }
 notifications .notification-slot .notification-title {
   flex: 1;
@@ -23546,6 +23546,19 @@ notifications .notification-slot .notification-title {
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
+notifications .notification-slot .notification-description {
+  flex: 1;
+  font-size: 10pt;
+  color: #cacdcf;
+  text-transform: uppercase;
+  text-align: left;
+  text-shadow: 1px 1px 1px rgba(202, 205, 207, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+}
+notifications .notification-slot .enlighted {
+  color: #fa9c19;
+}
 notifications .notification-slot .notification-actions-wrapper {
   display: -webkit-box;
   display: -moz-box;
@@ -23556,7 +23569,6 @@ notifications .notification-slot .notification-actions-wrapper {
   flex-flow: row nowrap;
   justify-content: flex-end;
   align-items: center;
-  padding-top: 5px;
 }
 notifications .notification-slot .notification-main-action {
   flex: 1;

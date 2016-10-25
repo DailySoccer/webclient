@@ -7,6 +7,7 @@
     </div>  
     <div class="notification-info-wrapper" ng-click="onAction(notification.id)">
       <div class="notification-title">{{notification.name}}</div>
+      <div class="notification-description" ng-bind-html-unsafe="notification.description"></div>
       <div class="notification-actions-wrapper">
         <div class="notification-main-action" ng-if="notification.link.name != ''" ng-click="goToLink(notification.link.url)">{{notification.link.name}}</div>
         <div class="notification-dismiss-action" ng-click="closeNotification(notification.id)"><i class="material-icons">&#xE872;</i></div>

@@ -33,6 +33,7 @@ class UserNotification {
     return StringUtils.translate(key, "notifications", substitutions);
   }
 
+  
   UserNotification.fromJsonObject(Map jsonMap) {
     id = jsonMap["_id"];
     topic = jsonMap["topic"];
@@ -81,6 +82,7 @@ class UserNotification {
       case DUEL_FINISHED:
         if (info.containsKey("contestName"))
           name = info["contestName"].trim();
+        
         break;
     }
 
@@ -108,4 +110,5 @@ class UserNotification {
   String _generateLinkName(String topic) {
     return getLocalizedText(topic + "_BTN");
   }
+  
 }

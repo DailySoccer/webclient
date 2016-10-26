@@ -69,7 +69,7 @@ class NotificationsComp {
     
     
     
-    /************* TEST ****************/
+    /* ************ TEST ***************
     
     List<UserNotification> notificationsTest = [
       new UserNotification.fromJsonObject({ 
@@ -169,7 +169,7 @@ class NotificationsComp {
       return notificationItem;
   }).toList();
   
-  /**************** TEST ***************/
+  *************** TEST ***************/
   }
   
   void retrieveDescription(UserNotification notification, Map item) {

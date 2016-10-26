@@ -196,6 +196,7 @@ class ViewContestComp implements DetachAware {
   List<ContestEntry> get rivalList => _rivalList;
 
   bool get isLive => _routeProvider.route.name.contains("live_contest");
+  bool get isHistory => _routeProvider.route.name.contains("history_contest");
   
   String get printableSalaryCap => contest != null ? contest.printableSalaryCap : '-';
   int get maxSalary => contest != null ? contest.salaryCap : 0;

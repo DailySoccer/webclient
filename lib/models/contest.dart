@@ -195,6 +195,14 @@ class Contest {
     return contestEntries.firstWhere( (entry) => entry.user.userId == userId, orElse: () => null );
   }
 
+  ContestEntry getPrizeForUser(String userId) {
+
+    ContestEntry entry = getContestEntryWithUser(userId);
+    getPrize(getUserPosition(entry));
+    
+    return contestEntries.firstWhere( (entry) => entry.user.userId == userId, orElse: () => null );
+  }
+
   int getUserPosition(ContestEntry contestEntry) {
     List<ContestEntry> contestsEntries = contestEntriesOrderByPoints;
     for (int i=0; i<contestsEntries.length; i++) {

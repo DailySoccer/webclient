@@ -329,6 +329,7 @@ tc.put("packages/webclient/components/account/notifications_comp.html", new Http
     </div>  
     <div class="notification-info-wrapper" ng-click="onAction(notification.id)">
       <div class="notification-title">{{notification.name}}</div>
+      <div class="notification-description" ng-bind-html-unsafe="notification.description"></div>
       <div class="notification-actions-wrapper">
         <div class="notification-main-action" ng-if="notification.link.name != ''" ng-click="goToLink(notification.link.url)">{{notification.link.name}}</div>
         <div class="notification-dismiss-action" ng-click="closeNotification(notification.id)"><i class="material-icons">&#xE872;</i></div>
@@ -594,17 +595,23 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
     ng-style="{'background-image':'url({{getContestImage(contest)}})'}">
       <div class="contest-content">
         <!-- nombre y descripción -->
-        <div class="name-section">{{contest.name}}</div>
+        <div class="name-section">
+          <div class="contest-data-item-value column-start-hour" ng-class="{'start-soon' : isSoon(contest.startDate)}" ng-bind-html="timeInfo(contest.startDate, !contest.isHistory)"></div>
+          {{contest.name}}
+        </div>
         <div class="contest-data-section">
-          <!-- bandera y Hora -->
-          <div class="contest-data-item time-section">
-            <!--div class="contest-flag" ng-class="getSourceFlag(contest)"></div-->
-            <div class="contest-data-item-value column-start-hour" ng-class="{'start-soon' : isSoon(contest.startDate)}" ng-bind-html="timeInfo(contest.startDate, !contest.isHistory)"></div>
-            <div class="contest-data-item-key">Inicio</div>
-          </div>
           <div class="contest-data-item entries-section">
             <div class="contest-data-item-value">{{entriesColumn(contest)}}<i class="material-icons">&#xE7FB;</i></div>
             <div class="contest-data-item-key">Jugadores</div>
+          </div>
+          <!--div class="contest-data-item position-section">
+            <div class="contest-data-item-value position-value">{{positionColumn(contest)}}<span> / {{contest.numEntries}}</span></div>
+            <div class="contest-data-item-key">Posición</div>
+          </div-->
+          <!-- bandera y Hora -->
+          <div class="contest-data-item prize-distribution-section">
+            <div class="contest-data-item-value">{{prizeDistribution(contest)}}</div>
+            <div class="contest-data-item-key">Premiados</div>
           </div>
           <!-- premio -->
           <div class="contest-data-item prize-section">

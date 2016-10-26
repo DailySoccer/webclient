@@ -11,6 +11,7 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/money.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/utils/scaling_list.dart';
+import 'package:webclient/models/prize.dart';
 
 @Component(
     selector: 'contests-list',
@@ -47,6 +48,13 @@ class ContestsListComp {
   @NgOneWay("action-button-title")
   String actionButtonTitle = "VER";
 
+  // upcoming, live, history
+  static const String UPCOMING_STATE = "upcoming";
+  static const String LIVE_STATE = "live";
+  static const String HISTORY_STATE = "history";
+  @NgOneWay("display-state")
+  String state = UPCOMING_STATE;
+  
   @NgOneWay("show-date")
   bool showDate = false;
   
@@ -77,6 +85,20 @@ class ContestsListComp {
 
   ContestsListComp(this.scrDet, this._profileService);
 
+  /**
+   * 
+   */
+  bool hourIsShow(Contest contest) => false;
+  bool substitutionsIsShow(Contest contest) => false;
+  bool entriesIsShow(Contest contest) => false;
+  bool positionIsShow(Contest contest) => false;
+
+  bool prizeDistributionIsShow(Contest contest) => false;
+  bool prizeSectionIsShow(Contest contest) => false;
+  
+  bool priceSectionIsShow(Contest contest) => !(contest.isLive || contest.isHistory);
+  
+  
   /********* METHODS */
   String getSourceFlag(Contest contest) {
     String ret = "flag  flag-icon-background ";
@@ -133,7 +155,24 @@ class ContestsListComp {
   bool userIsRegistered(Contest contest) {
     return _profileService.isLoggedIn && contest.containsContestEntryWithUser(_profileService.user.userId);
   }
-   
+  
+  String prizeDistribution(Contest contest) {
+    switch(contest.prizeType) {
+      case Prize.FREE: return "??";
+      case Prize.WINNER: return "El Mejor";
+      case Prize.TOP_3: return "3 primeros";
+      case Prize.TOP_THIRD: return "33%";
+      case Prize.FIFTY_FIFTY: return "50%";
+    }
+    return "";
+  }
+
+  String substitutionCount(Contest contest) {
+    ContestEntry entry = contest.getContestEntryWithUser(_profileService.user.userId);
+    return "${entry.numAvailableChanges}";
+  }
+  
+  
   String timeInfo(DateTime date, [bool shortIfPossible = true]) {
     // Avisamos 2 horas antes...
     int secondsLeft = timeLeft(date);
@@ -279,6 +318,10 @@ class ContestsListComp {
 
   String entriesColumn(Contest contest) {
     return (contest.maxEntries <= 0) ? "${contest.numEntries}" : "${contest.numEntries}/${contest.maxEntries}";
+  }
+  String positionColumn(Contest contest) {
+    ContestEntry entry = contest.getContestEntryWithUser(_profileService.user.userId);
+    return "${contest.getUserPosition(entry)}º";
   }
   
   String dateSeparatorText(DateTime date) {

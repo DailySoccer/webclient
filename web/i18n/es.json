@@ -499,8 +499,8 @@
       "position"                        : "Puesto:",
       "today"                           : "Hoy",
       "tomorrow"                        : "Mañana",
-      "soonHint"                        : "En @TIME min",
-      "verySoonHint"                    : "En @TIME"
+      "soonHint"                        : "@TIME min",
+      "verySoonHint"                    : "@TIME"
     }
     ,"contest"                          :
     {

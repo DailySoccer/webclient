@@ -6,9 +6,9 @@ contests-list {
     .flex-elem-fixed();
   }
   .contestDateSeparator {
-    .mainfont_light(13pt, @orange, center, uppercase);
+    .mainfont_light(12pt, @orange, center, uppercase);
     border-bottom: 3px solid @orange;
-    padding: 10px;
+    padding: 8px;
   }
   
   .contestSlot {
@@ -20,12 +20,12 @@ contests-list {
     padding: 10px 5px 10px 15px;
   }
   .contest-action {
-    .flex-elem-fixed(30px);
+    .flex-elem-fixed(28px);
     .flex-container-col();
     .flex-container-content-centered();
     color: @white;
     border-left: 1px solid @grey-translucid;
-    .material-icon {
+    .material-icons {
       font-size: 32px;
     }
   }
@@ -41,6 +41,10 @@ contests-list {
     padding-bottom: 5px;
     overflow: hidden;
     white-space: nowrap;
+    .column-start-hour {
+      display: inline-block;
+      .mainfont_light(10pt, @orange, left);
+    }
   }
   .contest-data-section {
     .flex-container-row();
@@ -63,14 +67,24 @@ contests-list {
     font-size: 20px;
     color: @grey-bluish;
     vertical-align: bottom;
-    padding-left: 5px;
+    padding-left: 2px;
   }
-  .prize-count, .price-count {
+  .contest-data-item.prize-section, .contest-data-item.price-section {
     .material-icons {
       color: @coin-color;
       vertical-align: text-bottom;
       font-size: 18px;
-      padding-left: 5px;
+      padding-left: 2px;
+    }
+  }
+  .contest-data-item.price-section {
+    .flex-elem-fluid(0.8);
+  }
+  .position-value {
+    font-size: 12pt;
+    span {
+      font-size: 10pt;
+      color: @grey-bluish;
     }
   }
 /*

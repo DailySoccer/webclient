@@ -42,7 +42,6 @@ class ContestsListComp {
       return;
     }
     contestsListOriginal = value;
-    contestsListOriginal.forEach((c) => c.specialImage = "PromoF2PSample.jpg" );
     refreshListOrder();
   }
 

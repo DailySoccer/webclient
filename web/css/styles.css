@@ -8052,8 +8052,12 @@ user-shortinfo-bar {
   color: #0d75a6;
   margin-top: 5px;
 }
+.contest-info-section {
+  overflow: hidden;
+}
 contest-info {
   background-color: #181818;
+  overflow-y: scroll;
 }
 contest-info .header-section {
   display: -webkit-box;

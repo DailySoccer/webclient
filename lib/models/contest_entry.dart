@@ -71,7 +71,7 @@ class ContestEntry {
   bool isPurchased(InstanceSoccerPlayer instanceSoccerPlayer) => soccerPlayersPurchased != null 
       && soccerPlayersPurchased.any((instancePurchased) => instancePurchased.soccerPlayer.templateSoccerPlayerId == instanceSoccerPlayer.soccerPlayer.templateSoccerPlayerId);
 
-  ContestEntry(this.contestEntryId, this.user, this.instanceSoccerPlayers);
+  //ContestEntry(this.contestEntryId, this.user, this.instanceSoccerPlayers);
 
   ContestEntry.initFromJsonObject(Map jsonMap, ContestReferences references, Contest theContest) {
     contestEntryId = jsonMap["_id"];

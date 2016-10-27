@@ -336,7 +336,9 @@ class ViewContestComp implements DetachAware {
   void onLineupSlotSelected(int slotIndex) {
     SoccerPlayerListItem player = lineupSlots[slotIndex];
     if (displayChangeablePlayers) {
-      _showSoccerPlayerChangeList(player.instanceSoccerPlayer);
+      if ( !(player.isPlaying || player.hasPlayed) ) {
+        _showSoccerPlayerChangeList(player.instanceSoccerPlayer);
+      }
     } else {
       if (player.isPlaying || player.hasPlayed) {
         gameplaysPlayer = player;

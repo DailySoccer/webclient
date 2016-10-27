@@ -195,12 +195,9 @@ class Contest {
     return contestEntries.firstWhere( (entry) => entry.user.userId == userId, orElse: () => null );
   }
 
-  ContestEntry getPrizeForUser(String userId) {
-
+  Money getPrizeForUser(String userId) {
     ContestEntry entry = getContestEntryWithUser(userId);
-    getPrize(getUserPosition(entry));
-    
-    return contestEntries.firstWhere( (entry) => entry.user.userId == userId, orElse: () => null );
+    return prize.getValue(getUserPosition(entry));
   }
 
   int getUserPosition(ContestEntry contestEntry) {

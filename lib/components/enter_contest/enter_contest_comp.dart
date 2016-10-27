@@ -754,7 +754,9 @@ class EnterContestComp implements DetachAware {
       if (_profileService.isLoggedIn) {
         managerLevel = _profileService.user.managerLevel;
       }
-      allSoccerPlayers.add(new SoccerPlayerListItem(instanceSoccerPlayer, managerLevel, contest));
+      if (instanceSoccerPlayer.salary > 0) {
+        allSoccerPlayers.add(new SoccerPlayerListItem(instanceSoccerPlayer, managerLevel, contest));
+      }
     });
     updateFavorites();
   }

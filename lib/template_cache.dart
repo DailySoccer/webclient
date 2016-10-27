@@ -596,30 +596,41 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
       <div class="contest-content">
         <!-- nombre y descripción -->
         <div class="name-section">
-          <div class="contest-data-item-value column-start-hour" ng-class="{'start-soon' : isSoon(contest.startDate)}" ng-bind-html="timeInfo(contest.startDate, !contest.isHistory)"></div>
-          {{contest.name}}
+          <div class="contest-data-item-value column-start-hour" ng-if="hourIsShow(contest)" ng-bind-html="timeInfo(contest.startDate, !contest.isHistory)"></div>
+          <div class="contest-data-item-value column-substitutions" ng-if="substitutionsIsShow(contest)">{{substitutionCount(contest)}}<i class="material-icons">&#xE8D5;</i></div>
+          <div class="contest-data-item-value column-name">{{contest.name}}</div>
         </div>
         <div class="contest-data-section">
-          <div class="contest-data-item entries-section">
+          <div class="contest-data-item entries-section" ng-if="entriesIsShow(contest)">
             <div class="contest-data-item-value">{{entriesColumn(contest)}}<i class="material-icons">&#xE7FB;</i></div>
             <div class="contest-data-item-key">Jugadores</div>
           </div>
-          <!--div class="contest-data-item position-section">
-            <div class="contest-data-item-value position-value">{{positionColumn(contest)}}<span> / {{contest.numEntries}}</span></div>
+          <div class="contest-data-item position-section" ng-if="positionIsShow(contest)">
+            <div class="contest-data-item-value position-value">{{printableMyPosition(contest)}}º<span> / {{contest.numEntries}}</span></div>
             <div class="contest-data-item-key">Posición</div>
-          </div-->
+          </div>
           <!-- bandera y Hora -->
-          <div class="contest-data-item prize-distribution-section">
+          <div class="contest-data-item prize-distribution-section" ng-if="prizeDistributionIsShow(contest)">
             <div class="contest-data-item-value">{{prizeDistribution(contest)}}</div>
             <div class="contest-data-item-key">Premiados</div>
           </div>
-          <!-- premio -->
-          <div class="contest-data-item prize-section">
-            <div class="contest-data-item-value prize-count">{{getPrizeToShow(contest)}}<i class="material-icons">&#xE3FA;</i></div>
+          <!-- puntos -->
+          <div class="contest-data-item points-section" ng-if="pointsSectionIsShow(contest)">
+            <div class="contest-data-item-value price-count">{{pointsOfUser(contest)}}</div>
+            <div class="contest-data-item-key price-description">Points</div>
+          </div>
+          <!-- bote -->
+          <div class="contest-data-item prize-pool-section" ng-if="prizePoolSectionIsShow(contest)">
+            <div class="contest-data-item-value prize-count">{{getPrizePool(contest)}}<i class="material-icons">&#xE3FA;</i></div>
             <div class="contest-data-item-key prize-description">Bote</div>
           </div>
+          <!-- premio -->
+          <div class="contest-data-item user-prize-section" ng-if="userPrizeSectionIsShow(contest)">
+            <div class="contest-data-item-value prize-count">{{getPrizeToShow(contest)}}<i class="material-icons">&#xE3FA;</i></div>
+            <div class="contest-data-item-key prize-description">Premio</div>
+          </div>
           <!-- precio -->
-          <div class="contest-data-item price-section" ng-if="!(contest.isLive || contest.isHistory)">
+          <div class="contest-data-item price-section" ng-if="priceSectionIsShow(contest)">
             <div class="contest-data-item-value price-count">{{contest.entryFee.amount == 0? "Gratis" : contest.entryFee}}<i class="material-icons" ng-if="contest.entryFee.amount != 0">&#xE3FA;</i></div>
             <div class="contest-data-item-key price-description">Entrada</div>
           </div>
@@ -2237,7 +2248,7 @@ tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new 
                          is-live="true"
                          highlight-changeables="displayChangeablePlayers"></lineup-field-selector>
                          
-  <button class="make-change-btn" ng-click="switchDisplayChangeablePlayers()">{{changesButtonText()}} <i class="material-icons">&#xE8D5;</i></button>
+  <button ng-if="isLive" ng-disabled="numAvailableChanges <= 0" class="make-change-btn" ng-click="switchDisplayChangeablePlayers()">{{changesButtonText()}} <i class="material-icons">&#xE8D5;</i></button>
   <div class="salary-info-wrapper">
     <div class="current-salary"><span class="current-salary-label">Presupuesto </span><span class="current-salary-amount" ng-class="{'red-numbers': availableSalary < 0 }">{{formatCurrency(printableCurrentSalary)}}</span></div>
     <div class="limit-salary"><span class="limit-salary-label">Límite </span><span class="limit-salary-amount">{{formatCurrency(printableSalaryCap)}}</span></div>

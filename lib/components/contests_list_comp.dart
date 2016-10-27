@@ -42,6 +42,7 @@ class ContestsListComp {
       return;
     }
     contestsListOriginal = value;
+    contestsListOriginal.forEach((c) => c.specialImage = "PromoF2PSample.jpg" );
     refreshListOrder();
   }
 
@@ -88,15 +89,18 @@ class ContestsListComp {
   /**
    * 
    */
-  bool hourIsShow(Contest contest) => false;
-  bool substitutionsIsShow(Contest contest) => false;
-  bool entriesIsShow(Contest contest) => false;
-  bool positionIsShow(Contest contest) => false;
-
-  bool prizeDistributionIsShow(Contest contest) => false;
-  bool prizeSectionIsShow(Contest contest) => false;
+  bool hourIsShow(Contest contest) => !contest.isLive;
+  bool substitutionsIsShow(Contest contest) => contest.isLive;
   
+  bool entriesIsShow(Contest contest) => !(contest.isLive || contest.isHistory);
+  bool positionIsShow(Contest contest) => contest.isLive || contest.isHistory;
+
+  bool prizeDistributionIsShow(Contest contest) => true;
+  bool prizePoolSectionIsShow(Contest contest) => !contest.isHistory;
+  bool userPrizeSectionIsShow(Contest contest) => contest.isLive || contest.isHistory;
+
   bool priceSectionIsShow(Contest contest) => !(contest.isLive || contest.isHistory);
+  bool pointsSectionIsShow(Contest contest) => contest.isHistory;
   
   
   /********* METHODS */
@@ -170,6 +174,10 @@ class ContestsListComp {
   String substitutionCount(Contest contest) {
     ContestEntry entry = contest.getContestEntryWithUser(_profileService.user.userId);
     return "${entry.numAvailableChanges}";
+  }
+  String pointsOfUser(Contest contest) {
+    ContestEntry entry = contest.getContestEntryWithUser(_profileService.user.userId);
+    return "${entry.currentLivePoints}";
   }
   
   
@@ -250,13 +258,13 @@ class ContestsListComp {
     return "${contest.getUserPosition(mainContestEntry)}";
   }
 
-  Money getPrizeToShow(Contest contest) {
-    // En los contest Históricos tendremos la posición registrada en el propio ContestEntry
-    if (contest.isHistory || contest.isLive) {
-      return getMyPrize(contest);
-    }
+  String getPrizeToShow(Contest contest) {
+    ContestEntry mainContestEntry = contest.getContestEntryWithUser(_profileService.user.userId);
+    return mainContestEntry.prize.amount.toString();
+  }
 
-    return contest.prizePool;
+  String getPrizePool(Contest contest) {
+    return contest.prizePool.amount.toString();
   }
   
   String getPointsToShow(Contest contest) {
@@ -318,10 +326,6 @@ class ContestsListComp {
 
   String entriesColumn(Contest contest) {
     return (contest.maxEntries <= 0) ? "${contest.numEntries}" : "${contest.numEntries}/${contest.maxEntries}";
-  }
-  String positionColumn(Contest contest) {
-    ContestEntry entry = contest.getContestEntryWithUser(_profileService.user.userId);
-    return "${contest.getUserPosition(entry)}º";
   }
   
   String dateSeparatorText(DateTime date) {

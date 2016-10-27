@@ -4,6 +4,7 @@ contests-list {
   
   .contest-list-item-wrapper {
     .flex-elem-fixed();
+	  .flex-container-col();
   }
   .contestDateSeparator {
     .mainfont_light(12pt, @orange, center, uppercase);
@@ -37,13 +38,23 @@ contests-list {
 
   .name-section {
     .flex-elem-fixed(30px);
-    .mainfont_light(13pt, @white, none, uppercase);
     padding-bottom: 5px;
     overflow: hidden;
     white-space: nowrap;
-    .column-start-hour {
+    
+    .column-name {
+      .mainfont_light(13pt, @white, left, uppercase);
       display: inline-block;
-      .mainfont_light(10pt, @orange, left);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 0 5px;
+      vertical-align: middle;
+    }
+    .column-start-hour, .column-substitutions {
+      .mainfont_light(10pt, @orange, left, uppercase);
+      display: inline-block;
+      vertical-align: middle;
+      .material-icons { vertical-align: middle; }
     }
   }
   .contest-data-section {
@@ -69,7 +80,9 @@ contests-list {
     vertical-align: bottom;
     padding-left: 2px;
   }
-  .contest-data-item.prize-section, .contest-data-item.price-section {
+  .contest-data-item.prize-pool-section, 
+  .contest-data-item.user-prize-section, 
+  .contest-data-item.price-section {
     .material-icons {
       color: @coin-color;
       vertical-align: text-bottom;
@@ -121,27 +134,117 @@ contests-list {
   }
 */
   .contestSlot.special {
+    .flex-elem-fixed(135px);
     position: relative;
-    height: 135px;
-      background-size: cover;
-      background-position: center;
-    .time-section {
-      .flex-elem-fixed(150px);
-      position: absolute;
-      display: block;
-      top: 10px;
-      left: 10px;
-      .contest-flag, .column-start-time{
-        display: inline-block;
-        color: @white;
+    background-size: cover;
+    background-position: center;
+    
+    .name-section {
+      .column-name {
+        display: none;
       }
-      .column-start-time {
-        bottom: 10px;
-        left: 10px;
-          position: relative;
+      .column-start-hour { 
+        position: absolute;
+        color: white;
+        top: 15px;
+        left: 15px;
+      }
+      .column-substitutions {
+        position: absolute;
+        top: 15px;
+        left: 15px;
       }
     }
-
+    
+    .contest-data-section {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 8px 15px;
+      background-color: @black-translucid-40;
+    }
+    .contest-action {
+      display: none;
+    }
+    .contest-data-item-value {
+    }
+    .contest-data-item-key {
+    }
+    
+    .entries-section {
+      order: 5;
+      text-align: right;
+      .contest-data-item-key,
+      .contest-data-item-value {
+        text-align: right;
+      }
+    }
+    .position-section {
+      order: 6;
+      text-align: right;
+      .contest-data-item-key,
+      .contest-data-item-value {
+        text-align: right;
+      }
+    }
+    .prize-distribution-section {
+      order: 0;
+    }
+    .points-section {
+      order: 1;
+    }
+    .prize-pool-section {
+      order: 2;
+    }
+    .user-prize-section {
+      order: 3;
+    }
+    .price-section {
+      order: 4;
+    }
+    .points-section,
+    .prize-pool-section,
+    .user-prize-section,
+    .price-section {
+      .contest-data-item-key {
+        .mainfont_light(10pt, @white, center);
+      }
+      .contest-data-item-value {
+        .mainfont_light(12pt, @white, center);
+      }
+    }
+    /*
+    .bottom-data() {
+      position: absolute;
+      bottom: 5px;
+      width: 100px;
+      left: 50%;
+      background-image: url('../images/special_contest_inner_box.png');
+    }
+    
+    .prize-pool-section {
+      .bottom-data();
+      margin-left: -108px;
+    }
+    .user-prize-section {
+      .bottom-data();
+      margin-left: 8px;
+    }
+    .price-section {
+      .bottom-data();
+      margin-left: 8px;
+    }
+    .points-section {
+      .bottom-data();
+      margin-left: -108px;
+    }
+    .contest-action {
+      display: none;
+    }
+    */
+    
+    /*
     .action-section,
     .name-section .contest-name {
       display: none !important;
@@ -184,6 +287,7 @@ contests-list {
     .price-section {
       margin-left: 14px;
     }
+    */
   }
   
 }

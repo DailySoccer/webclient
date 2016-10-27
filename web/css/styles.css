@@ -7255,6 +7255,13 @@ contests-list {
 }
 contests-list .contest-list-item-wrapper {
   flex: 0 0 auto;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
 }
 contests-list .contestDateSeparator {
   font-size: 12pt;
@@ -7309,26 +7316,39 @@ contests-list .contest-content {
 }
 contests-list .name-section {
   flex: 0 0 30px;
-  font-size: 13pt;
-  color: #ffffff;
-  text-transform: uppercase;
-  text-align: none;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
-  font-family: 'Fjalla One', sans-serif;
-  font-weight: 500;
   padding-bottom: 5px;
   overflow: hidden;
   white-space: nowrap;
 }
-contests-list .name-section .column-start-hour {
+contests-list .name-section .column-name {
+  font-size: 13pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-align: left;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
   display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0 5px;
+  vertical-align: middle;
+}
+contests-list .name-section .column-start-hour,
+contests-list .name-section .column-substitutions {
   font-size: 10pt;
   color: #fa9c19;
-  text-transform: inherit;
+  text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
+  display: inline-block;
+  vertical-align: middle;
+}
+contests-list .name-section .column-start-hour .material-icons,
+contests-list .name-section .column-substitutions .material-icons {
+  vertical-align: middle;
 }
 contests-list .contest-data-section {
   display: -webkit-box;
@@ -7377,7 +7397,8 @@ contests-list .entries-section .contest-data-item-value .material-icons {
   vertical-align: bottom;
   padding-left: 2px;
 }
-contests-list .contest-data-item.prize-section .material-icons,
+contests-list .contest-data-item.prize-pool-section .material-icons,
+contests-list .contest-data-item.user-prize-section .material-icons,
 contests-list .contest-data-item.price-section .material-icons {
   color: #f8c132;
   vertical-align: text-bottom;
@@ -7395,81 +7416,163 @@ contests-list .position-value span {
   color: #757993;
 }
 contests-list .contestSlot.special {
+  flex: 0 0 135px;
   position: relative;
-  height: 135px;
   background-size: cover;
   background-position: center;
+  /*
+    .bottom-data() {
+      position: absolute;
+      bottom: 5px;
+      width: 100px;
+      left: 50%;
+      background-image: url('../images/special_contest_inner_box.png');
+    }
+    
+    .prize-pool-section {
+      .bottom-data();
+      margin-left: -108px;
+    }
+    .user-prize-section {
+      .bottom-data();
+      margin-left: 8px;
+    }
+    .price-section {
+      .bottom-data();
+      margin-left: 8px;
+    }
+    .points-section {
+      .bottom-data();
+      margin-left: -108px;
+    }
+    .contest-action {
+      display: none;
+    }
+    */
+  /*
+    .action-section,
+    .name-section .contest-name {
+      display: none !important;
+    }
+    .name-section {
+      text-align: right;
+      position: absolute;
+      right: 15px;
+      top: 24px;
+      color: @white;
+      .contest-description {
+        color: @white;
+      }
+    }
+    .prize-section, .price-section {
+      .flex-container-row();
+      position: absolute;
+      left: 50%;
+      top: 90px;
+      background-image: url('../images/special_contest_inner_box.png');
+      width: 120px;
+      text-align: center;
+
+      .prize-count, .price-count {
+        order: 2;
+        color: @orange;
+        padding: 5px 10px;
+      }
+      .prize-description, .price-description {
+        order: 1;
+        color: @white;
+        top: 3px;
+          position: relative;
+          padding: 5px 10px;
+      }
+    }
+    .prize-section {
+      margin-left: -120px;
+    }
+    .price-section {
+      margin-left: 14px;
+    }
+    */
 }
-contests-list .contestSlot.special .time-section {
-  flex: 0 0 150px;
+contests-list .contestSlot.special .name-section .column-name {
+  display: none;
+}
+contests-list .contestSlot.special .name-section .column-start-hour {
   position: absolute;
-  display: block;
-  top: 10px;
-  left: 10px;
+  color: white;
+  top: 15px;
+  left: 15px;
 }
-contests-list .contestSlot.special .time-section .contest-flag,
-contests-list .contestSlot.special .time-section .column-start-time {
-  display: inline-block;
-  color: #ffffff;
+contests-list .contestSlot.special .name-section .column-substitutions {
+  position: absolute;
+  top: 15px;
+  left: 15px;
 }
-contests-list .contestSlot.special .time-section .column-start-time {
-  bottom: 10px;
-  left: 10px;
-  position: relative;
+contests-list .contestSlot.special .contest-data-section {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 8px 15px;
+  background-color: rgba(0, 0, 0, 0.4);
 }
-contests-list .contestSlot.special .action-section,
-contests-list .contestSlot.special .name-section .contest-name {
-  display: none !important;
+contests-list .contestSlot.special .contest-action {
+  display: none;
 }
-contests-list .contestSlot.special .name-section {
+contests-list .contestSlot.special .entries-section {
+  order: 5;
   text-align: right;
-  position: absolute;
-  right: 15px;
-  top: 24px;
-  color: #ffffff;
 }
-contests-list .contestSlot.special .name-section .contest-description {
-  color: #ffffff;
+contests-list .contestSlot.special .entries-section .contest-data-item-key,
+contests-list .contestSlot.special .entries-section .contest-data-item-value {
+  text-align: right;
 }
-contests-list .contestSlot.special .prize-section,
-contests-list .contestSlot.special .price-section {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-flow: row nowrap;
-  flex-flow: row nowrap;
-  position: absolute;
-  left: 50%;
-  top: 90px;
-  background-image: url('../images/special_contest_inner_box.png');
-  width: 120px;
-  text-align: center;
+contests-list .contestSlot.special .position-section {
+  order: 6;
+  text-align: right;
 }
-contests-list .contestSlot.special .prize-section .prize-count,
-contests-list .contestSlot.special .price-section .prize-count,
-contests-list .contestSlot.special .prize-section .price-count,
-contests-list .contestSlot.special .price-section .price-count {
-  order: 2;
-  color: #fa9c19;
-  padding: 5px 10px;
+contests-list .contestSlot.special .position-section .contest-data-item-key,
+contests-list .contestSlot.special .position-section .contest-data-item-value {
+  text-align: right;
 }
-contests-list .contestSlot.special .prize-section .prize-description,
-contests-list .contestSlot.special .price-section .prize-description,
-contests-list .contestSlot.special .prize-section .price-description,
-contests-list .contestSlot.special .price-section .price-description {
+contests-list .contestSlot.special .prize-distribution-section {
+  order: 0;
+}
+contests-list .contestSlot.special .points-section {
   order: 1;
-  color: #ffffff;
-  top: 3px;
-  position: relative;
-  padding: 5px 10px;
 }
-contests-list .contestSlot.special .prize-section {
-  margin-left: -120px;
+contests-list .contestSlot.special .prize-pool-section {
+  order: 2;
+}
+contests-list .contestSlot.special .user-prize-section {
+  order: 3;
 }
 contests-list .contestSlot.special .price-section {
-  margin-left: 14px;
+  order: 4;
+}
+contests-list .contestSlot.special .points-section .contest-data-item-key,
+contests-list .contestSlot.special .prize-pool-section .contest-data-item-key,
+contests-list .contestSlot.special .user-prize-section .contest-data-item-key,
+contests-list .contestSlot.special .price-section .contest-data-item-key {
+  font-size: 10pt;
+  color: #ffffff;
+  text-transform: inherit;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+}
+contests-list .contestSlot.special .points-section .contest-data-item-value,
+contests-list .contestSlot.special .prize-pool-section .contest-data-item-value,
+contests-list .contestSlot.special .user-prize-section .contest-data-item-value,
+contests-list .contestSlot.special .price-section .contest-data-item-value {
+  font-size: 12pt;
+  color: #ffffff;
+  text-transform: inherit;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
 }
 modal-window {
   display: -webkit-box;

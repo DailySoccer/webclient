@@ -65,7 +65,7 @@ class ContestInfoComp implements DetachAware {
 
     /*************************/
     //TODO: Borrar lo siguiente si hay que refrescar el concurso
-    loadingService.isLoading = true;
+    //loadingService.isLoading = true;
 //    updateContestInfo();
     /*************************/
 
@@ -88,7 +88,7 @@ class ContestInfoComp implements DetachAware {
   void updateContestInfo() {
     Logger.root.info("ContestInfoComp --> updateContestInfo");
 
-    loadingService.isLoading = false;
+    //loadingService.isLoading = false;
 
     //contest = _contestsService.lastContest;
     List contestants = [];

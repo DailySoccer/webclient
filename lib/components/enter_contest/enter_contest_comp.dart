@@ -330,14 +330,14 @@ class EnterContestComp implements DetachAware {
   }
   
   void setupContestInfoTopBar(bool showInfoButton, Function backFunction, [Function infoFunction]) {
-    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.contestSection(contest, showInfoButton, backFunction, infoFunction);
+    _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.contestSection(contest, showInfoButton && infoFunction != null, backFunction, infoFunction);
   }
   
   void refreshInfoFromContest() {
     
     loadingService.isLoading = false;
     
-    setupContestInfoTopBar(true, cancelCreateLineup);
+    setupContestInfoTopBar(true, cancelCreateLineup, onContestInfoClick);
     
     if (_profileService.isLoggedIn && !contest.canEnter(_profileService.user) && !editingContestEntry) {
       cannotEnterMessageRedirect();

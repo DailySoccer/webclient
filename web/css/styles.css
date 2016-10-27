@@ -8118,7 +8118,7 @@ contest-info .info-header .price-section {
 }
 contest-info .info-header .prize-description,
 contest-info .info-header .price-description {
-  margin-left: 10px;
+  margin-right: auto;
 }
 contest-info .info-header .prize-count,
 contest-info .info-header .price-count {
@@ -8133,6 +8133,7 @@ contest-info .info-header .price-count {
   user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
+  margin-left: auto;
 }
 contest-info .matches-involved {
   background-color: #242529;

@@ -28,6 +28,10 @@ class ContestInfoComp implements DetachAware {
   void set setContest(Contest value) {
     if (value != null) {
       contest = value;
+      /*************************/
+      //TODO: Borrar lo siguiente si hay que refrescar el concurso
+      updateContestInfo();
+      /*************************/
     }
   }
   bool isModal = false;
@@ -59,6 +63,14 @@ class ContestInfoComp implements DetachAware {
 
     contestId = routeProvider.route.parameters['contestId'];
 
+    /*************************/
+    //TODO: Borrar lo siguiente si hay que refrescar el concurso
+    loadingService.isLoading = true;
+//    updateContestInfo();
+    /*************************/
+
+    //TODO: Repasar esto. A lo mejor hay que forzar el refresco de las contest entries de este concurso. cuando se refresque el concurso.
+/*
     loadingService.isLoading = true;
 
     _contestsService.refreshContestInfo(contestId)
@@ -68,6 +80,7 @@ class ContestInfoComp implements DetachAware {
       .catchError((ServerError error) {
         _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
       }, test: (error) => error is ServerError);
+*/
   }
 
   void detach() {}
@@ -77,7 +90,7 @@ class ContestInfoComp implements DetachAware {
 
     loadingService.isLoading = false;
 
-    contest = _contestsService.lastContest;
+    //contest = _contestsService.lastContest;
     List contestants = [];
 
     for (ContestEntry contestEntry in contest.contestEntries) {

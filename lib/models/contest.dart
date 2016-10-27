@@ -190,7 +190,7 @@ class Contest {
   ContestEntry getContestEntry(String contestEntryId) {
     return contestEntries.firstWhere( (entry) => entry.contestEntryId == contestEntryId, orElse: () => null );
   }
-
+ 
   ContestEntry getContestEntryWithUser(String userId) {
     return contestEntries.firstWhere( (entry) => entry.user.userId == userId, orElse: () => null );
   }

@@ -502,11 +502,6 @@
       "soonHint"                        : "@TIME min",
       "verySoonHint"                    : "@TIME"
     }
-    ,"contest"                          :
-    {
-      "soonHint"                        : "@TIME min",
-      "verySoonHint"                    : "@TIME"
-    }
     ,"contestfilters"                   :
     {
       "filters"                         : "FILTROS",
@@ -636,7 +631,9 @@
       "salarycap"                       : "Cuota",
       "contenders"                      : "participantes",
       "of"                              : "de",
-      "minimum-contenders"              : "Mín. @NUMERO"
+      "minimum-contenders"              : "Mín. @NUMERO",
+      "soonHint"                        : "@TIME min",
+      "verySoonHint"                    : "@TIME"
     }
     ,"contestinfo"                      :
     {

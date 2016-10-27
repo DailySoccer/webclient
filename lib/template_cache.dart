@@ -560,7 +560,8 @@ tc.put("packages/webclient/components/contest_info_comp.html", new HttpResponse(
   <div class="matches-involved">
       <div class="match" ng-repeat="match in currentInfoData['matchesInvolved']">
           <div class="team">{{match.soccerTeamA.name}}</div>
-          <div class="date">{{formatMatchDate(match.startDate)}}</div>
+          <div class="date" ng-if="match.isStarted">{{(match.soccerTeamA.score < 0) ? 0 : match.soccerTeamA.score}} - {{(match.soccerTeamB.score < 0) ? 0 : match.soccerTeamB.score}}</div>
+          <div class="date" ng-if="!match.isStarted">{{formatMatchDate(match.startDate)}}</div>
           <div class="team">{{match.soccerTeamB.name}}</div>
       </div>
   </div>

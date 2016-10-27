@@ -649,6 +649,7 @@ class DailySoccerServer implements ServerService {
   void _checkServerVersion(var httpResponse) {
     
     String serverVersion = HostServer.isAndroidPlatform ? httpResponse.headers("release-version-android") : httpResponse.headers("release-version-ios");
+    
     if (serverVersion != null && (serverVersion!="devel")) {
       if (_currentVersion == null || _currentVersion.isEmpty) {
         Logger.root.info("ServerService: CurrentVersion updated");
@@ -660,7 +661,7 @@ class DailySoccerServer implements ServerService {
         
         String marketAppId = HostServer.isAndroidPlatform ? httpResponse.headers("market-app-id-android") : httpResponse.headers("market-app-id-ios");
         if (marketAppId != null && marketAppId.isNotEmpty) {
-          Logger.root.info("RELOAD LOCATION ==> VERSIONES ::::::  CURRENT: $_currentVersion |||| SERVER: $serverVersion");
+          Logger.root.info("DEPRECATED VERSION ==> VERSIONES ::::::  CURRENT: $_currentVersion |||| SERVER: $serverVersion");
           DeprecatedVersionScreenComp.Instance.show = true;
           DeprecatedVersionScreenComp.Instance.marketAppId = marketAppId;
         }
@@ -672,10 +673,22 @@ class DailySoccerServer implements ServerService {
 
   bool changedVersion(String oriVersion, String dstVersion) {
     if (oriVersion == dstVersion) return false;
-    
+    return versionToInt(oriVersion) < versionToInt(dstVersion);
+    /*
     List ori = oriVersion.split(".");
     List dst = dstVersion.split(".");
+    
     return !( (ori.length >= 2) && (dst.length >= 2) && (ori[0] == dst[0]) && (ori[1] == dst[1]) );
+    */
+  }
+  
+  int versionToInt(String version) {
+    List<int> versionNumbers = version.split(".").map((s) => int.parse(s)).toList();
+    int versionInt = 0;
+    versionInt += versionNumbers.length >= 1? versionNumbers[0] * 1000 * 1000 : 0;
+    versionInt += versionNumbers.length >= 2? versionNumbers[1] * 1000 : 0;
+    versionInt += versionNumbers.length >= 3? versionNumbers[2] : 0;
+    return versionInt;
   }
   
   // Por si queremos volver al sistema de mandar todos nuestros posts en form-urlencoded

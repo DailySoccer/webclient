@@ -617,7 +617,7 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
           <!-- puntos -->
           <div class="contest-data-item points-section" ng-if="pointsSectionIsShow(contest)">
             <div class="contest-data-item-value price-count">{{pointsOfUser(contest)}}</div>
-            <div class="contest-data-item-key price-description">Points</div>
+            <div class="contest-data-item-key price-description">Puntos</div>
           </div>
           <!-- bote -->
           <div class="contest-data-item prize-pool-section" ng-if="prizePoolSectionIsShow(contest)">

@@ -35,7 +35,7 @@ class SoccerPlayerListItem {
   int get level => instanceSoccerPlayer.level;
   Money get moneyToBuy => _contest == null ? new Money.zero() : instanceSoccerPlayer.moneyToBuy(_contest, _playerManagerLevel);
 
-  SoccerPlayerListItem(this._instanceSoccerPlayer, this._playerManagerLevel, this._contest) {
+  SoccerPlayerListItem(this._instanceSoccerPlayer, this._playerManagerLevel, this._contest, [String optaCompetitionId = null]) {
     
     _matchEvent = _instanceSoccerPlayer.soccerTeam.matchEvent;    
   // En la lista del ojeador, no necesitamos estos datos.
@@ -52,6 +52,11 @@ class SoccerPlayerListItem {
     }
     else {
       _matchEventNameHTML = _instanceSoccerPlayer.soccerTeam.name;
+      if (optaCompetitionId != null) {
+        _optaCompetitionId = optaCompetitionId;
+        _fantasyPoints = instanceSoccerPlayer.soccerPlayer.getFantasyPointsForCompetition(_optaCompetitionId);
+        _playedMatches = instanceSoccerPlayer.soccerPlayer.getPlayedMatchesForCompetition(_optaCompetitionId);
+      }
     }
     _fullNameNormalized = StringUtils.normalize(instanceSoccerPlayer.soccerPlayer.name).toUpperCase();
     

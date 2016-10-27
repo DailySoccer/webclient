@@ -151,7 +151,7 @@ class ScoutingComp implements DetachAware {
           
           instanceSoccerPlayers.forEach( (InstanceSoccerPlayer instance) {
             if (instance.soccerPlayer.name != TemplateSoccerPlayer.UNKNOWN) {
-              allSoccerPlayersUK.add( new SoccerPlayerListItem(instance, managerLevel, null));
+              allSoccerPlayersUK.add( new SoccerPlayerListItem(instance, managerLevel, null, Competition.LEAGUE_UK_ID));
             } else {
               // Con la caché de TemplateSoccerPlayers es posible que recibamos futbolistas "desconocidos"
               Logger.root.severe("WTF 1013: Bad SoccerPlayer: ${instance.soccerPlayer.templateSoccerPlayerId}");
@@ -175,7 +175,7 @@ class ScoutingComp implements DetachAware {
           
           instanceSoccerPlayers.forEach((InstanceSoccerPlayer instance) {
             if (instance.soccerPlayer.name != TemplateSoccerPlayer.UNKNOWN) {
-              allSoccerPlayersES.add( new SoccerPlayerListItem(instance, managerLevel, null));
+              allSoccerPlayersES.add( new SoccerPlayerListItem(instance, managerLevel, null, Competition.LEAGUE_ES_ID));
             } else {
               // Con la caché de TemplateSoccerPlayers es posible que recibamos futbolistas "desconocidos"
               Logger.root.severe("WTF 1013: Bad SoccerPlayer: ${instance.soccerPlayer.templateSoccerPlayerId}");

@@ -104,6 +104,12 @@ class EnterContestComp implements DetachAware {
         setupContestInfoTopBar(true, cancelCreateLineup, onContestInfoClick);
       break;
       case SELECTING_SOCCER_PLAYER:
+        nameFilter = "";
+        _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSectionWithSearch("Elige un ${fieldPosFilter.fullName}", (String val){ nameFilter = val.length > 1? val : ""; });
+        _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerSelection;
+        _appStateService.appSecondaryTabBarState.tabList = [];
+      break;
+      /*case SELECTING_SOCCER_PLAYER:
         _tabList = [
                          new AppSecondaryTabBarTab("TODOS LOS JUGADORES",                        () => setFilter(false), () => !onlyFavorites),
                          new AppSecondaryTabBarTab('''<i class="material-icons">&#xE838;</i>''', () => setFilter(true),  () => onlyFavorites)
@@ -115,7 +121,7 @@ class EnterContestComp implements DetachAware {
           sectionActive = _sectionActive;
         };
         _appStateService.appSecondaryTabBarState.tabList = [];
-      break;
+      break;*/
       case SOCCER_PLAYER_STATS:
         _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Estadísticas");
         _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerDetails;

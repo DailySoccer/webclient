@@ -6032,6 +6032,10 @@ OLD FONTS
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
@@ -6147,6 +6151,10 @@ OLD FONTS
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   border-right: 1px solid rgba(210, 210, 210, 0.3);
@@ -6159,6 +6167,10 @@ OLD FONTS
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   cursor: pointer;
@@ -6177,6 +6189,10 @@ OLD FONTS
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   border-left: 1px solid rgba(210, 210, 210, 0.3);
@@ -6226,6 +6242,10 @@ OLD FONTS
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -6247,6 +6267,10 @@ OLD FONTS
   text-transform: inherit;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   overflow: hidden;
@@ -6259,6 +6283,10 @@ OLD FONTS
   text-transform: none;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   overflow: hidden;
@@ -6354,6 +6382,10 @@ div#mainApp
   text-transform: inherit;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -6589,6 +6621,10 @@ contest-header .name-section .contest-name {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   text-transform: uppercase;
@@ -6600,6 +6636,10 @@ contest-header .name-section .contest-description {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   flex: 1;
@@ -6613,6 +6653,10 @@ contest-header .more-info {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   cursor: pointer;
@@ -6639,6 +6683,10 @@ contest-header .prize-section .prize-count {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -6648,6 +6696,10 @@ contest-header .prize-section .prize-description {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -6670,6 +6722,10 @@ contest-header .price-section .price-count {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -6679,6 +6735,10 @@ contest-header .price-section .price-description {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -6753,6 +6813,10 @@ contest-header .prize-managerpoints::after {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
@@ -6799,6 +6863,10 @@ contest-header .prize-managerpoints::after {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   position: relative;
@@ -6821,6 +6889,10 @@ contest-header .prize-managerpoints::after {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16), 0 1px 2px rgba(0, 0, 0, 0.3);
@@ -7126,6 +7198,10 @@ lineup-field-selector {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   text-transform: uppercase;
@@ -7140,6 +7216,10 @@ lineup-field-selector {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   background-color: #ffffff;
@@ -7167,6 +7247,10 @@ lineup-field-selector {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   background-color: #ffffff;
@@ -7269,6 +7353,10 @@ contests-list .contestDateSeparator {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   border-bottom: 3px solid #fa9c19;
@@ -7326,6 +7414,10 @@ contests-list .name-section .column-name {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   display: inline-block;
@@ -7341,6 +7433,10 @@ contests-list .name-section .column-substitutions {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   display: inline-block;
@@ -7378,6 +7474,10 @@ contests-list .contest-data-item-value {
   text-transform: inherit;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -7388,6 +7488,10 @@ contests-list .contest-data-item-key {
   text-transform: inherit;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -7559,6 +7663,10 @@ contests-list .contestSlot.special .price-section .contest-data-item-key {
   text-transform: inherit;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -7571,6 +7679,10 @@ contests-list .contestSlot.special .price-section .contest-data-item-value {
   text-transform: inherit;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -7617,6 +7729,10 @@ modal-window.small .modal-window-frame {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   align-self: center;
@@ -7656,6 +7772,10 @@ modal-window.small .modal-window-frame {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   text-transform: uppercase;
@@ -7700,6 +7820,10 @@ user-shortinfo-bar {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(210, 210, 210, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   white-space: nowrap;
@@ -7710,6 +7834,10 @@ user-shortinfo-bar {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   white-space: nowrap;
@@ -7941,6 +8069,10 @@ contest-info .header-section {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   height: 60px;
@@ -7960,6 +8092,10 @@ contest-info .info-header {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   height: 60px;
@@ -7991,6 +8127,10 @@ contest-info .info-header .price-count {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -8017,6 +8157,10 @@ contest-info .matches-involved .team {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(210, 210, 210, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   margin: 0 15px;
@@ -8028,6 +8172,10 @@ contest-info .matches-involved .date {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -8044,6 +8192,10 @@ contest-info .contestant-list .contestant-element {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   border-bottom: solid 1px #757993;
@@ -8208,6 +8360,10 @@ scoring-rules #scoringForForwards .rules-content {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   padding: 0 15px 20px 15px;
@@ -8237,6 +8393,10 @@ scoring-rules #scoringForForwards .rules-content {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
@@ -8269,6 +8429,10 @@ scoring-rules #scoringForForwards .rules-content {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(255, 0, 0, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -9244,6 +9408,10 @@ shop-comp .description .name {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   padding-top: 5px;
@@ -9254,6 +9422,10 @@ shop-comp .description .coins-count {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -9275,6 +9447,10 @@ shop-comp .price .free-increment {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   height: 35px;
@@ -9310,6 +9486,10 @@ shop-comp .price .buy-button {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   width: 80px;
@@ -11460,6 +11640,10 @@ view-contest {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
@@ -11519,6 +11703,10 @@ view-contest {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   display: -webkit-box;
@@ -11578,6 +11766,10 @@ view-contest {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   margin: 8px;
@@ -11675,6 +11867,10 @@ view-contest {
   text-transform: inherit;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(202, 205, 207, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   padding: 5px 0 10px 0;
@@ -11712,6 +11908,10 @@ view-contest {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   text-align: right;
@@ -11732,6 +11932,10 @@ view-contest {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(210, 210, 210, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -11741,6 +11945,10 @@ view-contest {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -11761,6 +11969,10 @@ view-contest {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   background-color: transparent;
@@ -11802,6 +12014,10 @@ view-contest {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   border-bottom: 1px solid #cacdcf;
@@ -11824,6 +12040,10 @@ view-contest {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(202, 205, 207, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   border-bottom: 1px solid rgba(210, 210, 210, 0.3);
@@ -11990,6 +12210,10 @@ lobby .create-custom-contest-button {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
@@ -12044,6 +12268,10 @@ lobby .create-custom-contest-button:disabled {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   justify-content: center;
@@ -13478,6 +13706,10 @@ tab-bar {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   display: block;
@@ -13523,6 +13755,10 @@ tab-bar {
   color: rgba(210, 210, 210, 0.3);
   text-transform: uppercase;
   text-shadow: 1px 1px 1px rgba(210, 210, 210, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   flex: 1;
@@ -13617,6 +13853,10 @@ top-bar {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   background-color: transparent;
@@ -13661,6 +13901,10 @@ top-bar {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   text-transform: uppercase;
@@ -13682,6 +13926,10 @@ top-bar {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(202, 205, 207, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   padding: 15px 20px;
@@ -13706,6 +13954,10 @@ top-bar {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(202, 205, 207, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   margin-right: 10px;
@@ -13731,6 +13983,10 @@ top-bar {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(255, 0, 0, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   margin-top: 5px;
@@ -13755,6 +14011,10 @@ top-bar {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   background-color: transparent;
@@ -13783,6 +14043,10 @@ top-bar {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   background-color: transparent;
@@ -13829,6 +14093,10 @@ my-contests {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(202, 205, 207, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   display: -webkit-box;
@@ -13881,6 +14149,10 @@ my-contests {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   margin-bottom: 15px;
@@ -13892,6 +14164,10 @@ my-contests {
   text-transform: inherit;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Open Sans', sans-serif;
   font-weight: 500;
   margin-bottom: 100px;
@@ -13908,6 +14184,10 @@ my-contests {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
@@ -14373,6 +14653,10 @@ soccer-player-stats {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   border-bottom: 2px solid rgba(210, 210, 210, 0.3);
@@ -14420,6 +14704,10 @@ soccer-player-stats {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -14429,6 +14717,10 @@ soccer-player-stats {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   white-space: nowrap;
@@ -14446,6 +14738,10 @@ soccer-player-stats {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
@@ -14500,6 +14796,10 @@ soccer-player-stats {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -14565,6 +14865,10 @@ soccer-player-stats {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   padding: 15px 10px 7px 10px;
@@ -14604,6 +14908,10 @@ soccer-player-stats {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -14636,6 +14944,10 @@ soccer-player-stats {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   border: 1px solid #242529;
@@ -14648,6 +14960,10 @@ soccer-player-stats {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   border: 1px solid #242529;
@@ -14696,6 +15012,10 @@ soccer-player-stats {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(202, 205, 207, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -14705,6 +15025,10 @@ soccer-player-stats {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(202, 205, 207, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   border-top: 1px solid #cacdcf;
@@ -14715,6 +15039,10 @@ soccer-player-stats {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -14724,6 +15052,10 @@ soccer-player-stats {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   padding: 50px;
@@ -15096,6 +15428,10 @@ enter-contest {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   background-color: transparent;
@@ -15116,6 +15452,10 @@ enter-contest {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
@@ -15150,6 +15490,10 @@ enter-contest {
   text-transform: inherit;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Open Sans', sans-serif;
   font-weight: 500;
   background-color: #8d0000;
@@ -15162,6 +15506,10 @@ enter-contest {
   text-transform: inherit;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   display: block;
@@ -15183,6 +15531,10 @@ enter-contest {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   display: -webkit-box;
@@ -15235,6 +15587,10 @@ enter-contest {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
@@ -15279,6 +15635,10 @@ enter-contest {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   flex: 1;
@@ -15290,6 +15650,10 @@ enter-contest {
   text-transform: inherit;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Open Sans', sans-serif;
   font-weight: 500;
   flex: 1;
@@ -15313,6 +15677,10 @@ enter-contest {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   background-color: transparent;
@@ -15350,6 +15718,10 @@ enter-contest {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   flex: 1;
@@ -15362,6 +15734,10 @@ enter-contest {
   text-transform: inherit;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Open Sans', sans-serif;
   font-weight: 500;
   flex: 1;
@@ -15385,6 +15761,10 @@ enter-contest {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   background-color: transparent;
@@ -15413,6 +15793,10 @@ enter-contest {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   background-color: transparent;
@@ -16352,6 +16736,10 @@ soccer-players-scalinglist {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   text-transform: uppercase;
@@ -17838,6 +18226,10 @@ leaderboard .leaderboard-table-header {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   background-color: #242529;
@@ -17873,6 +18265,10 @@ leaderboard .leaderboard-table-data {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   padding: 15px 0;
@@ -17911,6 +18307,10 @@ ranking {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   display: -webkit-box;
@@ -17947,6 +18347,10 @@ ranking .ranking-title {
   color: #59add5;
   text-transform: uppercase;
   text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   background-color: #181818;
@@ -17992,6 +18396,10 @@ ranking .user-data {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   border-bottom: 1px solid #757993;
@@ -18025,6 +18433,10 @@ ranking .ranking-button {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
@@ -20249,6 +20661,10 @@ user-profile {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   line-height: 1;
@@ -20259,6 +20675,10 @@ user-profile {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   line-height: 1;
@@ -20309,6 +20729,10 @@ user-profile {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   width: 120px;
@@ -20331,6 +20755,10 @@ user-profile {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -20340,6 +20768,10 @@ user-profile {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   margin: 0;
@@ -20350,6 +20782,10 @@ user-profile {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   line-height: 1;
@@ -20797,6 +21233,10 @@ view-contest-entry .confirm-btn {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
@@ -20841,6 +21281,10 @@ view-contest-entry .salary-info-wrapper {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   display: -webkit-box;
@@ -20874,6 +21318,10 @@ view-contest-entry .edit-contest-entry-tip {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   flex: 0 0 auto;
@@ -20887,6 +21335,10 @@ view-contest-entry .view-contest-entry-invite-friends {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   background-color: transparent;
@@ -21760,6 +22212,10 @@ home .label {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -21774,6 +22230,10 @@ home .amount {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -21795,6 +22255,10 @@ home .next-contest-label {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   flex: 0 0 auto;
@@ -21811,6 +22275,10 @@ home .goto-next-contest-button {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
@@ -21882,6 +22350,10 @@ home .button-label {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   flex: 0 0 auto;
@@ -22182,6 +22654,10 @@ create-contest .create-contest-title {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   padding: 20px;
@@ -22210,6 +22686,10 @@ create-contest .create-contest-section {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   padding: 15px;
@@ -22236,6 +22716,10 @@ create-contest .title-num {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(24, 24, 24, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   background-color: #59add5;
@@ -22252,6 +22736,10 @@ create-contest .title-name {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -22277,6 +22765,10 @@ create-contest .title {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   margin-bottom: 10px;
@@ -22291,6 +22783,10 @@ create-contest .btn-confirm-contest {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
@@ -22340,6 +22836,10 @@ create-contest .data-element input[type="radio"] + label {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(210, 210, 210, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   border: 1px solid transparent;
@@ -23475,6 +23975,10 @@ achievement-list .achievement-count {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -23505,6 +24009,10 @@ achievement-list achievement {
   text-transform: inherit;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Open Sans', sans-serif;
   font-weight: 500;
   position: absolute;
@@ -23532,6 +24040,10 @@ achievement-list achievement {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(67, 67, 67, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -23560,6 +24072,10 @@ achievement-list achievement {
   color: #fa9c19;
   text-transform: inherit;
   text-align: inherit;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -23579,6 +24095,10 @@ achievement-list achievement {
   color: #fa9c19;
   text-transform: inherit;
   text-align: inherit;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -23598,6 +24118,10 @@ achievement-list achievement {
   color: #fa9c19;
   text-transform: inherit;
   text-align: inherit;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -23617,6 +24141,10 @@ achievement-list achievement {
   color: #fa9c19;
   text-transform: inherit;
   text-align: inherit;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -23636,6 +24164,10 @@ achievement-list achievement {
   color: #fa9c19;
   text-transform: inherit;
   text-align: inherit;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -23679,6 +24211,10 @@ notifications .notification-slot .notification-title {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -23689,6 +24225,10 @@ notifications .notification-slot .notification-description {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(202, 205, 207, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
 }
@@ -23713,6 +24253,10 @@ notifications .notification-slot .notification-main-action {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   cursor: pointer;
@@ -23724,6 +24268,10 @@ notifications .notification-slot .notification-dismiss-action {
   text-transform: uppercase;
   text-align: right;
   text-shadow: 1px 1px 1px rgba(13, 117, 166, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   cursor: pointer;
@@ -23756,6 +24304,10 @@ notifications .notification-list-empty {
   text-transform: uppercase;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   padding-bottom: 15px;
@@ -24802,6 +25354,10 @@ fieldset[disabled] .friend-element-wrapper .challenge-friend {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   flex: 0 0 auto;
@@ -24814,6 +25370,10 @@ fieldset[disabled] .friend-element-wrapper .challenge-friend {
   text-transform: inherit;
   text-align: inherit;
   text-shadow: 1px 1px 1px rgba(202, 205, 207, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Open Sans', sans-serif;
   font-weight: 500;
 }
@@ -24828,6 +25388,10 @@ fieldset[disabled] .friend-element-wrapper .challenge-friend {
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);

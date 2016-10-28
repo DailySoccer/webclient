@@ -31,5 +31,4 @@ class ModalWindow {
   ModalWindow(this._rootElement);
   
   Element _rootElement;
-  
 }

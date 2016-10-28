@@ -48,8 +48,7 @@ class HostServer {
         _domain = REMOTE_SERVER;
       }
       else if (_isLocalHost) {
-        _domain = (window.location.href.contains("https=true"))? "https://futbolcuatro.epiceleven.localhost:9000" :
-                                                                "http://localhost:9000";
+        _domain = (window.location.href.contains("https=true"))? "https://futbolcuatro.epiceleven.localhost:9000" : "http://localhost:9000";
       }
       else {
         _domain = window.location.origin;

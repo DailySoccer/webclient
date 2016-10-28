@@ -431,7 +431,7 @@ class WebClientApp extends Module {
           path: '/achievements/',
           preEnter: (RoutePreEnterEvent e) =>
               _preEnterMycontest(e, router, visibility: _ONLY_WHEN_LOGGED_IN),
-          viewHtml: '<achievement-list></achievement-list')
+          viewHtml: '<achievement-list user="null"></achievement-list')
       ,'home': ngRoute(
           defaultRoute: true,
           path: '/home',

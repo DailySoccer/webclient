@@ -31,7 +31,6 @@ class NotificationsComp {
   }
 
   NotificationsComp(this._profileService, this._contestsService, this._appStateService) {
-
     /* TEST: Incluir notificaciones al usuario
     if (_profileService.isLoggedIn) {
       _profileService.user.notifications = [
@@ -43,7 +42,6 @@ class NotificationsComp {
       ].map((jsonMap) => new UserNotification.fromJsonObject(jsonMap) ).toList();
     }
     */
-
     GameMetrics.screenVisitEvent(GameMetrics.SCREEN_NOTIFICATIONS);
     ProfileService.instance.refreshUserProfile().then( (_) => refreshNotifications() );
   }

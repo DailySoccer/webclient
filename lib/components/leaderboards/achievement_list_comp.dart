@@ -29,8 +29,17 @@ class AchievementListComp {
       _userShown = profileService.user;
   }
 
-  String earneds;
-  bool achievementEarned(achievementKey) => _userShown != null? _userShown.hasAchievement(achievementKey) : false;
+  String get earneds => countAchievementsEarned();
+  bool achievementEarned(achievementKey) {
+    bool ret;
+    if (_userShown != null){
+        ret = _userShown.achievements.contains(achievementKey);
+    }
+    else { 
+      ret = false;
+    }
+    return ret;
+  }
 
   AchievementListComp ( this.profileService, this._appStateService, this._router /*, this.loadingService*/) {
   
@@ -45,7 +54,7 @@ class AchievementListComp {
       profileService.user.achievements.add(Achievement.MANAGER_LEVEL_5);*/
     }
   
-    countAchievementsEarned();
+    //countAchievementsEarned();
     
     _appStateService.appSecondaryTabBarState.tabList = [];
     _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Listado de Logros");
@@ -59,16 +68,18 @@ class AchievementListComp {
     _router.go("user_profile", {});
   }
   */
-  void countAchievementsEarned() {
+  String countAchievementsEarned() {
     int count = 0;
     achievementList.forEach((ach) {
         if (achievementEarned(ach.id))
           count++;
     });
-    earneds = count.toString();
+    return count.toString();
   }
   
-  List<Achievement> achievementList = Achievement.AVAILABLES.map( (achievementMap) => new Achievement.fromJsonObject(achievementMap)).toList();
+  List<Achievement> achievementList = Achievement.AVAILABLES.map( (achievementMap) {
+    return new Achievement.fromJsonObject(achievementMap);
+  }).toList();
   
   User _userShown = null;
   AppStateService _appStateService;

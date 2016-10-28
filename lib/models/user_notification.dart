@@ -50,7 +50,7 @@ class UserNotification {
     link = {
       "url": _generateLinkUrl(),
       "name" : _generateLinkName(topic)
-    };
+    };    
   }
 
   String _generateName() {

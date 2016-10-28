@@ -225,10 +225,7 @@ class LobbyComp implements DetachAware {
     return DateTimeService.formatDateWithDayOfTheMonth(date);
   }
   
-  bool get showCreateContest => _profileService.isLoggedIn && TutorialService.Instance.isCompleted(TutorialIniciacion.NAME);
-  
   void onCreateContestClick() {
-    if (!showCreateContest) return;
     _router.go('create_contest', {});
   }
 

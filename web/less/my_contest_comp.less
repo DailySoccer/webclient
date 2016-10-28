@@ -11,10 +11,10 @@ my-contests {
 .resume-bar {
 	.mainfont_light(9pt, @grey-light);
 	.flex-container-row	();
-	.flex-elem-fixed(auto);
-  padding: 3px 15px;
-  border-bottom: 1px solid @grey-translucid;
-  align-items: center;
+	.flex-elem-fixed();
+	padding: 3px 15px;
+	border-bottom: 1px solid @grey-translucid;
+	align-items: center;
   
 	.information-no-contest {
 		.flex-elem-fluid();
@@ -43,7 +43,7 @@ my-contests {
 }
 .no-contests-subtitle {
 	.flex-elem-fixed(auto);
-	.bodyfont_light(11pt, @white, center);
+	.mainfont_light(11pt, @white, center);
 	margin-bottom: 100px;
 	padding: 0px 40px;
 }

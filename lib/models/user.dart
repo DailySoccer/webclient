@@ -89,7 +89,7 @@ class User {
   // Información que se muestra en el mainMenu (se utilizará para detectar cambios en la información del perfil)
   String get mainMenuInfo => "$userId;$facebookID;$profileImage;${energyBalance.toInt()};${managerBalance.toInt()};${goldBalance.toInt()};$trueSkill;${notifications.length};${achievements.length}";
 
-  bool hasAchievement(String achievement) => achievements.contains(achievement);
+  //bool hasAchievement(String achievement) => achievements.contains(achievement);
   bool get isLoggedByUUID => (deviceUUID != null) && deviceUUID.isNotEmpty && (email.contains(deviceUUID) || email.contains(UUID_EMAIL));
   bool get isLoggedByFacebook => (facebookID != null) && facebookID.isNotEmpty;
 
@@ -173,17 +173,6 @@ class User {
                   : "<userId: null>");
 
     User user = references.getUserById(userId);
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     return user._initFromJsonObject(jsonMap, references);
   }
 
@@ -231,7 +220,7 @@ class User {
       List<String> achievementList = jsonMap["achievements"];
       achievementList.forEach( (achievementId) => achievements.add(achievementId) );
     }
-     
+    
     //TO TEST Notifications: Incluir notificaciones al usuario    
    /* jsonMap["notifications"] = [
         { "_id": '0', "topic": UserNotification.ACHIEVEMENT_EARNED, "info" : { "achievement": Achievement.WON_OFFICIAL_CONTESTS_LEVEL_1 } },
@@ -241,7 +230,15 @@ class User {
         { "_id": '4', "topic": UserNotification.MANAGER_LEVEL_DOWN, "info" : { "level": 1 } }
     ];*/
     if (jsonMap.containsKey("notifications")) {
-      notifications = jsonMap["notifications"].map((jsonMap) => new UserNotification.fromJsonObject(jsonMap) ).toList();
+      notifications = jsonMap["notifications"].map((jsonMap) {
+        if (jsonMap["topic"] != "ACHIEVEMENT_EARNED" || ( jsonMap["topic"] == "ACHIEVEMENT_EARNED" && !jsonMap["info"]["achievement"].contains("MANAGER") ) ) {
+          //print("[+]:" + jsonMap["topic"]);
+          return new UserNotification.fromJsonObject(jsonMap);
+        }
+        else {
+          //print ("[-]:" + jsonMap["topic"] + ":" + jsonMap["info"]["achievement"]);
+        }
+      }).where((n) => n != null).toList();
 
       // Ordenarlos en orden decreciente (reciente -> antiguo)
       notifications.sort((el1, el2) => el2.createdAt.compareTo(el1.createdAt));

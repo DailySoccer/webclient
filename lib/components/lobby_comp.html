@@ -8,10 +8,10 @@
                   show-date="true"
                   ng-show="!isContestListEmpty">
     </contests-list>
-    <div class="lobby-contest-list-no-contests-wrapper">
-      <span class="lobby-contest-list-no-contests" ng-show="isContestListEmpty">
-        Todos los torneos están llenos<br>Disculpa las molestias
-      </span>
+    <div class="no-contests-wrapper" ng-show="isContestListEmpty">
+      <img class="no-contests-icon" src="images/icon-lobby-vacio.png">
+      <div class="no-contests-title">Todos los torneos están llenos<br>Disculpa las molestias</div>
+      <div class="no-contests-subtitle">Puedes crear tu propio torneo retando a tus amigos</div>
     </div>
 </section>
 

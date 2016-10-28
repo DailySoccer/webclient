@@ -52,8 +52,18 @@ class HomeComp implements DetachAware {
   bool get isHowItWorksEnabled => true;
   
   List<Achievement> achievementList = Achievement.AVAILABLES.map( (achievementMap) => new Achievement.fromJsonObject(achievementMap)).toList();
-  String achievementsEarned;
-  bool achievementEarned(achievementKey) => user != null? user.hasAchievement(achievementKey) : false;
+  String get achievementsEarned => countAchievementsEarned().toString();
+
+  bool achievementEarned(achievementKey) {
+     bool ret;
+     if (_profileService.user != null){
+         ret = _profileService.user.achievements.contains(achievementKey);
+     }
+     else { 
+       ret = false;
+     }
+     return ret;
+   }
 
   User get user => _profileService.user;
   
@@ -101,7 +111,7 @@ class HomeComp implements DetachAware {
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR, refreshTopBar);
     //_refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_RANKING_POSITION, refreshRankingPosition);
 
-    countAchievementsEarned(); 
+    //countAchievementsEarned(); 
     
     contestsService.refreshActiveContests();
     
@@ -116,13 +126,13 @@ class HomeComp implements DetachAware {
     skillLevelImage = _leaderboardService.myTrueSkillImage;
   }
   
-  void countAchievementsEarned() {
+  int countAchievementsEarned() {
      int count = 0;
      achievementList.forEach((ach) {
          if (achievementEarned(ach.id))
            count++;
      });
-     achievementsEarned = count.toString();
+     return count;
    }
   
   void refreshTopBar() {

@@ -22269,7 +22269,7 @@ home .next-contest-wrapper {
   justify-content: space-around;
 }
 home .next-contest-label {
-  font-size: 14pt;
+  font-size: 12pt;
   color: #ffffff;
   text-transform: uppercase;
   text-align: center;
@@ -22281,7 +22281,12 @@ home .next-contest-label {
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   flex: 0 0 auto;
-  height: 55px;
+  height: auto;
+}
+home .home-next-contest-hour {
+  display: inline-block;
+  width: 120px;
+  color: #fa9c19;
 }
 home .goto-next-contest-button {
   flex: 0 0 auto;

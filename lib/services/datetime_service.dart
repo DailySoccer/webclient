@@ -108,7 +108,7 @@ class DateTimeService {
     var minutes = nfTime.format(timeLeft.inMinutes % 60);
     var seconds = nfTime.format(timeLeft.inSeconds % 60);
 
-    return (days > 0)? nfDay.format(days) + (days > 1 ? StringUtils.translate("days", "common") : StringUtils.translate("day", "common") ) + hours + ":" + minutes + ":" + seconds
+    return (days > 0)? nfDay.format(days) + (days > 1 ? StringUtils.translate("days", "common") : StringUtils.translate("day", "common") ) + hours + "h " + minutes + "m" /*+ ":" + seconds*/
                      : hours + ":" + minutes + ":" + seconds;
   }
 

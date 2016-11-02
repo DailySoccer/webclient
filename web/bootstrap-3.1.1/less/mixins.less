@@ -254,6 +254,14 @@
       -ms-user-select: @select; // IE10+
           user-select: @select;
 }
+// User select
+// For selecting text on the page
+.user-select-important(@select) {
+  -webkit-user-select: @select !important;
+     -moz-user-select: @select !important;
+      -ms-user-select: @select !important; // IE10+
+          user-select: @select !important;
+}
 
 // Resize anything
 .resizable(@direction) {

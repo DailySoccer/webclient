@@ -38,15 +38,26 @@ class UserProfileComp {
   bool get isLoggedByUUID => true;
   */
 
-  dynamic get userData => _profileService.user;
+  User get userData => _profileService.user;
 
   Map playerSkillInfo = {'position':'_', 'id':'', 'name': '', 'points': ' '};
   Map playerMoneyInfo = {'position':'_', 'id':'', 'name': '', 'points': '\$ '};
 
   List<Achievement> achievementList = Achievement.AVAILABLES.map( (achievementMap) => new Achievement.fromJsonObject(achievementMap)).toList();
-  String achievementsEarned;
-  bool achievementEarned(achievementKey) => userData != null? userData.hasAchievement(achievementKey) : false;
   
+  String get achievementsEarned => countAchievementsEarned().toString();
+  
+  bool achievementEarned(achievementKey) {
+    bool ret;
+    if (_profileService.user != null){
+      ret = _profileService.user.achievements.contains(achievementKey);
+    }
+    else { 
+      ret = false;
+    }
+    return ret;
+  }
+
   String getLocalizedText(key, [group = "userprofile"]) {
     return StringUtils.translate(key, group);
   }
@@ -108,14 +119,14 @@ class UserProfileComp {
     GameMetrics.screenVisitEvent(GameMetrics.SCREEN_PROFILE);    
   }
   
-  void countAchievementsEarned() {
-    int count = 0;
-    achievementList.forEach((ach) {
-        if (achievementEarned(ach.id))
-          count++;
-    });
-    achievementsEarned = count.toString();
-  }
+  int countAchievementsEarned() {
+     int count = 0;
+     achievementList.forEach((ach) {
+         if (achievementEarned(ach.id))
+           count++;
+     });
+     return count;
+   }
   
   /*void GoBack() {
     _router.go("lobby", {});

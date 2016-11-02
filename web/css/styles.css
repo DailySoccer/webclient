@@ -24270,7 +24270,7 @@ notifications .notification-slot .notification-actions-wrapper {
   -webkit-flex-flow: row nowrap;
   flex-flow: row nowrap;
   justify-content: flex-end;
-  align-items: center;
+  align-items: flex-end;
 }
 notifications .notification-slot .notification-main-action {
   flex: 1;
@@ -24288,7 +24288,7 @@ notifications .notification-slot .notification-main-action {
   cursor: pointer;
 }
 notifications .notification-slot .notification-dismiss-action {
-  flex: 0 0 24px;
+  flex: 0 0 32px;
   font-size: 10pt;
   color: #0d75a6;
   text-transform: uppercase;
@@ -24302,6 +24302,9 @@ notifications .notification-slot .notification-dismiss-action {
   font-weight: 500;
   cursor: pointer;
 }
+notifications .notification-slot .notification-dismiss-action i {
+  font-size: 32px;
+}
 notifications .notification-clear-section {
   display: -webkit-box;
   display: -moz-box;
@@ -24312,9 +24315,14 @@ notifications .notification-clear-section {
   flex-flow: row nowrap;
   justify-content: flex-end;
   padding: 15px 15px;
+  align-items: center;
+}
+notifications .notification-clear-section span {
+  cursor: pointer;
 }
 notifications .notification-clear-section i {
   cursor: pointer;
+  margin-left: 8px;
 }
 notifications .notification-list-empty {
   flex: 1;

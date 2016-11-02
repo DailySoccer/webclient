@@ -216,12 +216,14 @@ class NotificationsComp {
     return _contest.getPrize(_userPositionInContest).toString();
   }
   */
-  void closeNotification(String notificationId) {
-    // print("Cerrando notificacion: $notificationId}");
+  void closeNotification(Event e, String notificationId) {
+    if (e != null)
+      e.stopPropagation();
+
     _profileService.removeNotification(notificationId).then((_) {
-      notificationList.removeWhere((notification) => notification['id'] == notificationId);
-      // refreshNotifications();
-    });
+    notificationList.removeWhere((notification) => notification['id'] == notificationId);
+    refreshNotifications();
+    }); 
   }
 
   void goToLink(String link) {
@@ -292,7 +294,9 @@ class NotificationsComp {
   
   void cleanNiotifications () {
     print ("Borrando todas las notificaciones");    
-    notificationList.forEach((notif)  => closeNotification(notif['d']));
+    notificationList.forEach((notif)  => closeNotification(null, notif['id']));
+    refreshNotifications();
+    AppStateService.Instance.notificationsActive = false;
   }
 
   Map emptyShareInfo = {};

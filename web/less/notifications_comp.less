@@ -31,7 +31,7 @@ notifications {
 		.notification-actions-wrapper {
 			.flex-container-row();
 			justify-content: flex-end;
-			align-items: center;
+			align-items: flex-end;
 			//padding-top: 5px;
 		}
 		.notification-main-action {
@@ -40,17 +40,25 @@ notifications {
 			cursor: pointer;
 		}
 		.notification-dismiss-action {
-			.flex-elem-fixed(24px);
+			.flex-elem-fixed(32px);
 			.mainfont_light(10pt, @blue, right, uppercase);
 			cursor: pointer;
+			i {
+				font-size: 32px;
+			}
 		}
 	}
 	.notification-clear-section {
 		.flex-container-row();
 		justify-content: flex-end;
 		padding: 15px 15px;
+		align-items: center;
+		span {
+			cursor: pointer; 
+		}
 		i {
 			cursor: pointer;
+			margin-left: 8px;
 		}
 	}
 	.notification-list-empty {

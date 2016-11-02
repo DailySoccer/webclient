@@ -930,7 +930,7 @@ tc.put("packages/webclient/components/enter_contest/lineup_field_selector_comp.h
           <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
         </div-->
         
-        <div class="column-salary" ng-show="showSalary && slot.hasNotPlayed"><div>{{getPrintableSalary(slot.salary)}}</div></div>
+        <div class="column-salary" ng-show="showSalary && (slot.hasNotPlayed || slot.isPlaying)"><div>{{getPrintableSalary(slot.salary)}}</div></div>
         
         <div class="column-dfp" ng-if="!isLive"><div>{{slot.fantasyPoints}}</div></div>
         <div class="column-dfp" ng-if="showLivePoints(slot)"><div>{{slot.livePoints}}</div></div>
@@ -1908,7 +1908,7 @@ tc.put("packages/webclient/components/navigation/top_bar_comp.html", new HttpRes
 </modal-window>
 
 <modal-window show-header="false" show-window="changeNameWindowShow" class="small first-nickname-change">
-  <span class="first-nickname-label">Elige tu nombre</span>      
+  <span class="first-nickname-label">Elige tu nombre</span>
   <input class="first-nickname-input" type="text" maxlength="{{MAX_NICKNAME_LENGTH}}" ng-model="editedNickName" 
          placeholder="nombre de usuario" class="form-control" autocapitalize="off" autofocus>
   <!-- Error de nickName -->
@@ -2249,7 +2249,7 @@ tc.put("packages/webclient/components/view_contest/view_contest_comp.html", new 
                          is-live="true"
                          highlight-changeables="displayChangeablePlayers"></lineup-field-selector>
                          
-  <button ng-if="isLive" ng-disabled="numAvailableChanges <= 0" class="make-change-btn" ng-click="switchDisplayChangeablePlayers()">{{changesButtonText()}} <i class="material-icons">&#xE8D5;</i></button>
+  <button ng-if="isLive" ng-disabled="numAvailableChanges <= 0 || substituiblePlayersInLineup() == 0" class="make-change-btn" ng-click="switchDisplayChangeablePlayers()">{{changesButtonText()}} <i class="material-icons">&#xE8D5;</i></button>
   <div class="salary-info-wrapper">
     <div class="current-salary"><span class="current-salary-label">Presupuesto </span><span class="current-salary-amount" ng-class="{'red-numbers': availableSalary < 0 }">{{formatCurrency(printableCurrentSalary)}}</span></div>
     <div class="limit-salary"><span class="limit-salary-label">Límite </span><span class="limit-salary-amount">{{formatCurrency(printableSalaryCap)}}</span></div>

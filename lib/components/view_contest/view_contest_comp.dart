@@ -385,9 +385,15 @@ class ViewContestComp implements DetachAware {
       return "Cancelar Cambio";
     } else if (numAvailableChanges == 0){
       return "No hay cambios disponibles";
+    } else if (substituiblePlayersInLineup() == 0) {
+      return "Todos tus jugadores ya han jugado";
     } else {
       return "$numAvailableChanges Cambios disponibles";
     }
+  }
+  
+  int substituiblePlayersInLineup() {
+    return lineupSlots.where((s) => s.isPlaying || s.hasNotPlayed).length;
   }
   
   void makeSoccerPlayerSubstitution() {

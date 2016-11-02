@@ -12,7 +12,7 @@
                          is-live="true"
                          highlight-changeables="displayChangeablePlayers"></lineup-field-selector>
                          
-  <button ng-if="isLive" ng-disabled="numAvailableChanges <= 0" class="make-change-btn" ng-click="switchDisplayChangeablePlayers()">{{changesButtonText()}} <i class="material-icons">&#xE8D5;</i></button>
+  <button ng-if="isLive" ng-disabled="numAvailableChanges <= 0 || substituiblePlayersInLineup() == 0" class="make-change-btn" ng-click="switchDisplayChangeablePlayers()">{{changesButtonText()}} <i class="material-icons">&#xE8D5;</i></button>
   <div class="salary-info-wrapper">
     <div class="current-salary"><span class="current-salary-label">Presupuesto </span><span class="current-salary-amount" ng-class="{'red-numbers': availableSalary < 0 }">{{formatCurrency(printableCurrentSalary)}}</span></div>
     <div class="limit-salary"><span class="limit-salary-label">Límite </span><span class="limit-salary-amount">{{formatCurrency(printableSalaryCap)}}</span></div>

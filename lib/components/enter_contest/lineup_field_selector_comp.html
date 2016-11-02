@@ -23,7 +23,7 @@
           <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
         </div-->
         
-        <div class="column-salary" ng-show="showSalary && slot.hasNotPlayed"><div>{{getPrintableSalary(slot.salary)}}</div></div>
+        <div class="column-salary" ng-show="showSalary && (slot.hasNotPlayed || slot.isPlaying)"><div>{{getPrintableSalary(slot.salary)}}</div></div>
         
         <div class="column-dfp" ng-if="!isLive"><div>{{slot.fantasyPoints}}</div></div>
         <div class="column-dfp" ng-if="showLivePoints(slot)"><div>{{slot.livePoints}}</div></div>

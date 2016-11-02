@@ -67,10 +67,6 @@ class LineupFieldSelectorComp {
     return (item.isPlaying || item.hasPlayed) && isLive;
   }
   
-  bool canBeChanged() {
-    
-  }
-  
   String get MAX_PLAYERS_SAME_TEAM => Contest.MAX_PLAYERS_SAME_TEAM.toString();
 
   String getLocalizedText(key, [Map substitutions]) {

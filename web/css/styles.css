@@ -7191,11 +7191,13 @@ lineup-field-selector {
 .lineup-selector-wrapper.changing-mode .lineup-selector-slot-info {
   opacity: 0.3;
 }
-.lineup-selector-wrapper.changing-mode .lineup-selector-slot-info.not-played {
+.lineup-selector-wrapper.changing-mode .lineup-selector-slot-info.not-played,
+.lineup-selector-wrapper.changing-mode .lineup-selector-slot-info.playing {
   opacity: 1;
   box-shadow: 0 0 10px -5px #ffffff;
 }
-.lineup-selector-wrapper.changing-mode .lineup-selector-slot-info.not-played .team-shirt-glow {
+.lineup-selector-wrapper.changing-mode .lineup-selector-slot-info.not-played .team-shirt-glow,
+.lineup-selector-wrapper.changing-mode .lineup-selector-slot-info.playing .team-shirt-glow {
   display: block;
 }
 .lineup-formation-selector-wrapper {

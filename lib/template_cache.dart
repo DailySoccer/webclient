@@ -1758,10 +1758,10 @@ tc.put("packages/webclient/components/lobby_comp.html", new HttpResponse(200, r"
                   show-date="true"
                   ng-show="!isContestListEmpty">
     </contests-list>
-    <div class="lobby-contest-list-no-contests-wrapper">
-      <span class="lobby-contest-list-no-contests" ng-show="isContestListEmpty">
-        Todos los torneos están llenos<br>Disculpa las molestias
-      </span>
+    <div class="no-contests-wrapper" ng-show="isContestListEmpty">
+      <img class="no-contests-icon" src="images/icon-lobby-vacio.png">
+      <div class="no-contests-title">Todos los torneos están llenos<br>Disculpa las molestias</div>
+      <div class="no-contests-subtitle">Puedes crear tu propio torneo retando a tus amigos</div>
     </div>
 </section>
 
@@ -1792,7 +1792,7 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
     <div class="no-contests-wrapper" ng-switch-when="false">
         <img class="no-contests-icon" src="images/icon-torneo-vivo-vacio.png">
         <div class="no-contests-title">No estás jugando ningún torneo en este momento</div>
-        <div class="no-contests-subtitle">Échale un vistazo a los próximos torneos para ver cuando empiezan</div>
+        <div class="no-contests-subtitle">Échale un vistazo a los próximos torneos<br>para ver cuando empiezan</div>
         <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
     </div>
     <!-- lista de concursos -->

@@ -336,7 +336,7 @@ class ViewContestComp implements DetachAware {
   void onLineupSlotSelected(int slotIndex) {
     SoccerPlayerListItem player = lineupSlots[slotIndex];
     if (displayChangeablePlayers) {
-      if ( !(player.isPlaying || player.hasPlayed) ) {
+      if ( !player.hasPlayed ) {
         _showSoccerPlayerChangeList(player.instanceSoccerPlayer);
       }
     } else {
@@ -576,7 +576,7 @@ class ViewContestComp implements DetachAware {
   }
 
   bool _isSoccerPlayerVisibleForChange(InstanceSoccerPlayer instanceSoccerPlayer) {
-    if (instanceSoccerPlayer.playState == InstanceSoccerPlayer.STATE_NOT_PLAYED && availableSalaryChangingPlayer >= instanceSoccerPlayer.salary) {
+    if (instanceSoccerPlayer.playState != InstanceSoccerPlayer.STATE_PLAYED && availableSalaryChangingPlayer >= instanceSoccerPlayer.salary) {
       String newSoccerTeamId = instanceSoccerPlayer.soccerPlayer.soccerTeam.templateSoccerTeamId;
       int sameTeamCount = mainPlayer.instanceSoccerPlayers.where((i) => i.soccerTeam.templateSoccerTeamId == newSoccerTeamId && i.id != changingPlayer.id).length;
       bool isInLineup = lineupSlots.where((soccerPlayer) => soccerPlayer.id == instanceSoccerPlayer.id).length != 0;

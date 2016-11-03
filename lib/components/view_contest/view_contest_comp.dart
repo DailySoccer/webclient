@@ -465,11 +465,10 @@ class ViewContestComp implements DetachAware {
 
   void _retrieveLiveData() {
     // Actualizamos únicamente la lista de live MatchEvents
-    /*(_contestsService.lastContest.simulation
+    (_contestsService.lastContest.simulation
       ? _contestsService.refreshLiveMatchEvents(contestId: _contestsService.lastContest.contestId)
-      : _contestsService.refreshLiveMatchEvents(templateContestId: _contestsService.lastContest.templateContestId))*/
-
-    (isLive ? _contestsService.refreshMyLiveContest(contestId) : _contestsService.refreshMyHistoryContest(contestId))
+      : _contestsService.refreshLiveMatchEvents(templateContestId: _contestsService.lastContest.templateContestId))
+    //(isLive ? _contestsService.refreshMyLiveContest(contestId) : _contestsService.refreshMyHistoryContest(contestId))
         .then((_) {
           _updateRetrievedData();
         })
@@ -488,7 +487,6 @@ class ViewContestComp implements DetachAware {
             //selectedOpponent = contestEntries.firstWhere((contestEntry) => contestEntry.contestEntryId == selectedOpponent.contestEntryId, orElse: () => null);
             selectedOpponent = contest.getContestEntryWithUser(selectedOpponent.user.userId);
           }
-
         })
         .catchError((ServerError error) {
           _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
@@ -511,7 +509,7 @@ class ViewContestComp implements DetachAware {
     // Únicamente actualizamos los contests que estén en "live"
     if (_contestsService.lastContest.isLive) {
       _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE, _retrieveLiveData);
-      //_refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE_CONTEST_ENTRIES, _retrieveLiveContestEntriesData);
+      _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE_CONTEST_ENTRIES, _retrieveLiveContestEntriesData);
       GameMetrics.contestScreenVisitEvent(GameMetrics.SCREEN_LIVE_CONTEST, contest, {'availableChanges' : numAvailableChanges});
     } else if (_contestsService.lastContest.isHistory) {
       GameMetrics.contestScreenVisitEvent(GameMetrics.SCREEN_HISTORY_CONTEST, contest);
@@ -520,7 +518,7 @@ class ViewContestComp implements DetachAware {
   
   void _finishLiveTimers() {
     _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE);
-    //_refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE_CONTEST_ENTRIES);
+    _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE_CONTEST_ENTRIES);
   }
 
   void _showSoccerPlayerChangeList(InstanceSoccerPlayer requestedSoccerPlayer) {
@@ -536,10 +534,12 @@ class ViewContestComp implements DetachAware {
             _allInstanceSoccerPlayers = instanceSoccerPlayers;
             
             _refreshAllSoccerPlayerList();
+            _updateLineupSlots();
             _updateFavorites();
       });
     } else {
       _refreshAllSoccerPlayerList();
+      _updateLineupSlots();
       _updateFavorites();
     }
   }
@@ -729,10 +729,11 @@ class ViewContestComp implements DetachAware {
   //int get userManagerLevel => _profileService.isLoggedIn? _profileService.user.managerLevel.toInt() : 0;
   
 
-/*
-  void updateLineupSlots() {
+
+  void _updateLineupSlots() {
     if (!isLineupFieldContestEntryActive) { return; }
-    lineupSlots = [];
+    lineupSlots.clear();
+    
     mainPlayer.instanceSoccerPlayers.forEach( (i) {
       
       InstanceSoccerPlayer instanceSoccerPlayer = _allInstanceSoccerPlayers != null? _allInstanceSoccerPlayers.firstWhere( (soccerPlayer) => soccerPlayer.id == i.id, orElse: () => i) : i;
@@ -744,7 +745,7 @@ class ViewContestComp implements DetachAware {
       }
     });
   }
-  */
+  
   
   
   

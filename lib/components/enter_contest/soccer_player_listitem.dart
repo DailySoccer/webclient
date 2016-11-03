@@ -30,6 +30,7 @@ class SoccerPlayerListItem {
 
   //String get remainingMatchTime => "";
   int get fantasyPoints => _fantasyPoints;
+  String get printableFantasyPoints => StringUtils.parseFantasyPoints(_fantasyPoints);
   int get playedMatches => _playedMatches;
   int get salary => instanceSoccerPlayer.salary;
   int get level => instanceSoccerPlayer.level;

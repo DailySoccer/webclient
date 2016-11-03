@@ -18,7 +18,7 @@
       <span class="soccer-player-name">{{soccerPlayer.fullName}}</span>
       <span class="match-event-name" ng-bind-html-unsafe="soccerPlayer.matchEventNameHTML"></span>
     </div>
-    <div class="column-data column-dfp">{{parseFantasyPoints(soccerPlayer)}}</div>
+    <div class="column-data column-dfp">{{soccerPlayer.printableFantasyPoints}}</div>
     <!--div class="column-data column-played">{{soccerPlayer.playedMatches}}</div-->
     <div class="column-data column-salary">{{parseSalary(soccerPlayer)}}</div>
     <!--div class="column-data column-manager-level"><span class="manager-level-needed">{{soccerPlayer.level}}</span></div-->

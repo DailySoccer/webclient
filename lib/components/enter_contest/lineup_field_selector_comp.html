@@ -25,7 +25,7 @@
         
         <div class="column-salary" ng-show="showSalary && (slot.hasNotPlayed || slot.isPlaying)"><div>{{getPrintableSalary(slot.salary)}}</div></div>
         
-        <div class="column-dfp" ng-if="!isLive"><div>{{slot.fantasyPoints}}</div></div>
+        <div class="column-dfp" ng-if="!isLive"><div>{{slot.printableFantasyPoints}}</div></div>
         <div class="column-dfp" ng-if="showLivePoints(slot)"><div>{{slot.livePoints}}</div></div>
         
         <!--div class="column-gold-cost" ng-bind-html="getPrintableGoldCost(slot)"></div-->

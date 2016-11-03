@@ -182,9 +182,6 @@ class SoccerPlayersScalingListComp {
     return '<button type="button" class="action-button ${addButton? 'add' : 'remove'} ${isFree? 'free-purchase' : 'coin-purchase'}">$buttonText</button>';
   }
   
-  String parseFantasyPoints(SoccerPlayerListItem player) {
-    return StringUtils.parseFantasyPoints(player.fantasyPoints);
-  }
   String parseSalary(SoccerPlayerListItem player) {
     return StringUtils.parseSalary(player.salary);
   }

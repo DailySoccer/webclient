@@ -91,6 +91,11 @@ class ScalingList<T> {
       _scaleList();
     }
   }
+  void redraw() {
+    if (_currentList != null) {
+      _currentList.sort(sortComparer);
+    }
+  }
   
   List<T> _fullList;
   Queue<T> _insertList;

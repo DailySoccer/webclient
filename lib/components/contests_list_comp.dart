@@ -12,13 +12,14 @@ import 'package:webclient/models/money.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/utils/scaling_list.dart';
 import 'package:webclient/models/prize.dart';
+import 'dart:async';
 
 @Component(
     selector: 'contests-list',
     templateUrl: 'packages/webclient/components/contests_list_comp.html',
     useShadowDom: false
 )
-class ContestsListComp {
+class ContestsListComp implements DetachAware {
 
   static const num SOON_SECONDS = 2 * 60 * 60;
   static const num VERY_SOON_SECONDS = 30 * 60;
@@ -83,7 +84,10 @@ class ContestsListComp {
     return StringUtils.translate(key, "contestlist", substitutions);
   }
 
-  ContestsListComp(this.scrDet, this._profileService);
+  ContestsListComp(this.scrDet, this._profileService) {
+    //TODO: Necesitamos que el tiempo de inicio de los torneos se actualice segundo a segundo (Dart no parece refrescarlo correctamente)
+    _contestsTimer = new Timer.periodic(new Duration(seconds: 1), (Timer t) => currentContestList.redraw());
+  }
 
   /**
    * 
@@ -354,9 +358,14 @@ class ContestsListComp {
   }
   //Contest _lastContest = null; //while printing, the last contest si saved
   
+  void detach() {
+    _contestsTimer.cancel();
+  }
+
   DateTime _dateFilter = null;
   Map _sortOrder = {'fieldName':'contest-start-time', 'order': 1};
   Map _friendsCountCache = {};
   ProfileService _profileService;
+  Timer _contestsTimer;
   ScreenDetectorService scrDet;
 }

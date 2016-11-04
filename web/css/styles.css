@@ -16812,7 +16812,7 @@ soccer-players-scalinglist .column-primary-info {
   display: flex;
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
-  padding: 0 5px;
+  padding: 0 8px;
   text-align: left;
   white-space: nowrap;
   overflow: hidden;

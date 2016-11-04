@@ -46,7 +46,7 @@ class ScalingList<T> {
 
     window.animationFrame.then(_startScalingList);
     // Logger.root.info("_processList: ${_fullList.length} - ${new DateTime.now()}");
-}
+  }
   
   void _setInitialAmount([_]) {
     int count = min(initialAmount, _insertList.length);

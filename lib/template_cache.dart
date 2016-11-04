@@ -332,7 +332,7 @@ tc.put("packages/webclient/components/account/notifications_comp.html", new Http
       <div class="notification-description" ng-bind-html-unsafe="notification.description"></div>
       <div class="notification-actions-wrapper">
         <div class="notification-main-action" ng-if="notification.link.name != ''" ng-click="goToLink(notification.link.url)">{{notification.link.name}}</div>
-        <div class="notification-dismiss-action" ng-click="closeNotification(notification.id)"><i class="material-icons">&#xE872;</i></div>
+        <div class="notification-dismiss-action" ng-click="closeNotification($event, notification.id)"><i class="material-icons">&#xE872;</i></div>
       </div>
     </div>
   </div>
@@ -343,7 +343,7 @@ tc.put("packages/webclient/components/account/notifications_comp.html", new Http
   
 </div>
 
-<div class="notification-clear-section" ng-if="notificationList.length > 0"><i class="material-icons" ng-click="cleanNiotifications()">&#xE0B8;</i></div>"""));
+<div class="notification-clear-section" ng-if="notificationList.length > 0" ng-click="cleanNiotifications()"><span>BORRAR TODAS</span><i class="material-icons">&#xE0B8;</i></div>"""));
 tc.put("packages/webclient/components/account/payment_response_comp.html", new HttpResponse(200, r"""<modal window-size="'md'">
   <div id="paymentResponse" class="main-box air">
     <div class="panel">
@@ -592,12 +592,11 @@ tc.put("packages/webclient/components/contests_list_comp.html", new HttpResponse
       <span>{{dateSeparatorText(contest.startDate)}}</span>
     </div>
     <!-- Slot de Concurso -->
-    <div class="contestSlot" ng-class="{'special': getContestMorfology(contest) == 'special', 'real': getContestTypeIcon(contest) == 'real', 'virtual': getContestTypeIcon(contest) != 'real'}" ng-click="onRow(contest)"
-    ng-style="{'background-image':'url({{getContestImage(contest)}})'}">
+    <div class="contestSlot" ng-class="{'special': getContestMorfology(contest) == 'special', 'real': getContestTypeIcon(contest) == 'real', 'virtual': getContestTypeIcon(contest) != 'real'}" ng-click="onRow(contest)" ng-style="{'background-image':'url({{getContestImage(contest)}})'}">
       <div class="contest-content">
         <!-- nombre y descripción -->
         <div class="name-section">
-          <div class="contest-data-item-value column-start-hour" ng-if="hourIsShow(contest)" ng-bind-html="timeInfo(contest.startDate, !contest.isHistory)"></div>
+          <div class="contest-data-item-value column-start-hour" ng-if="hourIsShow(contest)">{{timeInfo(contest.startDate, !contest.isHistory)}}</div>
           <div class="contest-data-item-value column-substitutions" ng-if="substitutionsIsShow(contest)">{{substitutionCount(contest)}}<i class="material-icons">&#xE8D5;</i></div>
           <div class="contest-data-item-value column-name">{{contest.name}}</div>
         </div>
@@ -932,7 +931,7 @@ tc.put("packages/webclient/components/enter_contest/lineup_field_selector_comp.h
         
         <div class="column-salary" ng-show="showSalary && (slot.hasNotPlayed || slot.isPlaying)"><div>{{getPrintableSalary(slot.salary)}}</div></div>
         
-        <div class="column-dfp" ng-if="!isLive"><div>{{slot.fantasyPoints}}</div></div>
+        <div class="column-dfp" ng-if="!isLive"><div>{{slot.printableFantasyPoints}}</div></div>
         <div class="column-dfp" ng-if="showLivePoints(slot)"><div>{{slot.livePoints}}</div></div>
         
         <!--div class="column-gold-cost" ng-bind-html="getPrintableGoldCost(slot)"></div-->
@@ -1142,7 +1141,7 @@ tc.put("packages/webclient/components/enter_contest/soccer_players_scalinglist_c
       <span class="soccer-player-name">{{soccerPlayer.fullName}}</span>
       <span class="match-event-name" ng-bind-html-unsafe="soccerPlayer.matchEventNameHTML"></span>
     </div>
-    <div class="column-data column-dfp">{{parseFantasyPoints(soccerPlayer)}}</div>
+    <div class="column-data column-dfp">{{soccerPlayer.printableFantasyPoints}}</div>
     <!--div class="column-data column-played">{{soccerPlayer.playedMatches}}</div-->
     <div class="column-data column-salary">{{parseSalary(soccerPlayer)}}</div>
     <!--div class="column-data column-manager-level"><span class="manager-level-needed">{{soccerPlayer.level}}</span></div-->
@@ -1908,7 +1907,7 @@ tc.put("packages/webclient/components/navigation/top_bar_comp.html", new HttpRes
 </modal-window>
 
 <modal-window show-header="false" show-window="changeNameWindowShow" class="small first-nickname-change">
-  <span class="first-nickname-label">Elige tu nombre</span>
+  <span class="first-nickname-label">Elige tu nombre</span>      
   <input class="first-nickname-input" type="text" maxlength="{{MAX_NICKNAME_LENGTH}}" ng-model="editedNickName" 
          placeholder="nombre de usuario" class="form-control" autocapitalize="off" autofocus>
   <!-- Error de nickName -->

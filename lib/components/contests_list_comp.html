@@ -6,12 +6,11 @@
       <span>{{dateSeparatorText(contest.startDate)}}</span>
     </div>
     <!-- Slot de Concurso -->
-    <div class="contestSlot" ng-class="{'special': getContestMorfology(contest) == 'special', 'real': getContestTypeIcon(contest) == 'real', 'virtual': getContestTypeIcon(contest) != 'real'}" ng-click="onRow(contest)"
-    ng-style="{'background-image':'url({{getContestImage(contest)}})'}">
+    <div class="contestSlot" ng-class="{'special': getContestMorfology(contest) == 'special', 'real': getContestTypeIcon(contest) == 'real', 'virtual': getContestTypeIcon(contest) != 'real'}" ng-click="onRow(contest)" ng-style="{'background-image':'url({{getContestImage(contest)}})'}">
       <div class="contest-content">
         <!-- nombre y descripción -->
         <div class="name-section">
-          <div class="contest-data-item-value column-start-hour" ng-if="hourIsShow(contest)" ng-bind-html="timeInfo(contest.startDate, !contest.isHistory)"></div>
+          <div class="contest-data-item-value column-start-hour" ng-if="hourIsShow(contest)">{{timeInfo(contest.startDate, !contest.isHistory)}}</div>
           <div class="contest-data-item-value column-substitutions" ng-if="substitutionsIsShow(contest)">{{substitutionCount(contest)}}<i class="material-icons">&#xE8D5;</i></div>
           <div class="contest-data-item-value column-name">{{contest.name}}</div>
         </div>

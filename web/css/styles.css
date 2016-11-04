@@ -15005,7 +15005,8 @@ soccer-player-stats {
   display: flex;
   -webkit-flex-flow: row nowrap;
   flex-flow: row nowrap;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .match-stats-table-wrapper .start-year-column {
   border-left: 1px solid #cacdcf;
@@ -15022,6 +15023,7 @@ soccer-player-stats {
 }
 .per-match-stats-headers-table-wrapper {
   flex: 0 0 32px;
+  height: 525px;
   padding-bottom: 6px;
 }
 .per-match-stats-headers-table-wrapper .per-match-stats-row-header {
@@ -15031,7 +15033,7 @@ soccer-player-stats {
 .per-match-stats-table-wrapper {
   flex: 1;
   overflow-x: auto;
-  overflow-y: auto;
+  height: 525px;
 }
 .per-match-stats-table-years-row:nth-child(1) {
   font-size: 10pt;

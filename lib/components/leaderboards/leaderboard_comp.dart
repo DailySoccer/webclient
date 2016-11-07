@@ -97,7 +97,8 @@ class LeaderboardComp implements ShadowRootAware, DetachAware{
         _appStateService.appTabBarState.show = false;
       break;
     }
-    refreshList();
+    // TODO: No tiene sentido obligar a regenerar las listas que ya tenemos construidas
+    // refreshList();
     _appStateService.appSecondaryTabBarState.tabList = tabList;
   }
   
@@ -127,11 +128,11 @@ class LeaderboardComp implements ShadowRootAware, DetachAware{
 
     refreshList();
       
-      //refreshTopBar();
-      //_appStateService.appSecondaryTabBarState.tabList = tabList;
-      sectionActive = MAIN_RANKING;
+    //refreshTopBar();
+    //_appStateService.appSecondaryTabBarState.tabList = tabList;
+    sectionActive = MAIN_RANKING;
       
-      _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR, refreshTopBar);
+    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR, refreshTopBar);
   }
 
   /*

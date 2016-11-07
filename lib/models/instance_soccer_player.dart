@@ -20,11 +20,11 @@ class InstanceSoccerPlayer {
     ];
 
   static List<num> LEVEL_BASE = [
-    0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.7, 0.8, 0.9, 1.0
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
     ];
   
   static List<num> LEVEL_MULTIPLIER = [
-    0, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
     ];
 
   SoccerPlayer soccerPlayer;

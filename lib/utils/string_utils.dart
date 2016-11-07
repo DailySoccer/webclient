@@ -35,7 +35,7 @@ class StringUtils {
     return regExp.hasMatch(email);
   }
 
-  static String parseFantasyPoints(int fantasyPoints) => "$fantasyPoints";
+  static String parseFantasyPoints(int fantasyPoints) => thousandsFormat.format(fantasyPoints);
 
   static String parseSalary(int salaryCap) => thousandsFormat.format(salaryCap);
 

@@ -180,7 +180,7 @@ class ContestsListComp implements DetachAware {
   }
   String pointsOfUser(Contest contest) {
     ContestEntry entry = contest.getContestEntryWithUser(_profileService.user.userId);
-    return contest.isHistory ? "${entry.fantasyPoints}" : "${entry.currentLivePoints}";
+    return StringUtils.parseFantasyPoints(contest.isHistory ? entry.fantasyPoints : entry.currentLivePoints);
   }
   
   

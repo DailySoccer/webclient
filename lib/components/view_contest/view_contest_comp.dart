@@ -614,14 +614,16 @@ class ViewContestComp implements DetachAware {
     bool isSalaryOk = salary >= 0;
     
     //Check gold
+    /*
     Money goldNeeded = newSoccerPlayer.moneyToBuy(contest, _profileService.user.managerLevel);
     goldNeeded = goldNeeded.plus(mainPlayer.changePrice());
     bool isGoldOk = _profileService.user.goldBalance.amount >= goldNeeded.amount;
+     */
     
     //Check num changes availables
     bool areAvailableChanges = numAvailableChanges > 0;
     
-    if (isSameTeamOk && isSalaryOk && areAvailableChanges && isGoldOk) {
+    if (isSameTeamOk && isSalaryOk && areAvailableChanges /* && isGoldOk */) {
       isConfirmModalOn = true;
     } else {
       /*if (!isSameTeamOk){

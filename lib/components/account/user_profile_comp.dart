@@ -196,7 +196,6 @@ class UserProfileComp {
   }
   void bindWithFacebook() {
     //FBLogin.onLogin = fbLoginCallback;
-    //showGuestNameModal();
     FBLogin.onFacebookConnection = fbLoginCallback;
     //modalFacebookBindConfirm();
     _fbLogin.loginFB();

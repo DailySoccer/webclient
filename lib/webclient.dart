@@ -121,6 +121,7 @@ import 'package:webclient/components/legalese_and_help/rules_comp.dart';
 import 'package:webclient/components/legalese_and_help/terminus_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/legal_info_comp.dart';
 import 'package:webclient/components/legalese_and_help/policy_info_comp.dart';
+import 'package:webclient/tutorial/pages_tutorial_initial.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/utils/game_info.dart';
 import 'dart:js';
@@ -267,6 +268,7 @@ class WebClientApp extends Module {
     bind(TeamsFilterComp);
     bind(ScoutingComp);
     bind(ScoutingLeagueComp);
+    bind(PagesTutorialInitial);
 
     JsUtils.setJavascriptFunction('serverLoggerInfoCB',    (String text) => Logger.root.info   (ProfileService.decorateLog(text)) );
     JsUtils.setJavascriptFunction('serverLoggerWarningCB', (String text) => Logger.root.warning(ProfileService.decorateLog(text)) );

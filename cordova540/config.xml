@@ -91,6 +91,7 @@
     <universal-links>
         <host event="e11Event" name="*.epiceleven.com" scheme="https" />
         <host event="e11Event" name="*.epiceleven.com" scheme="http" />
+        <host event="e11Event" name="*.epiceleven.com" scheme="futbolcuatro" />
         <host event="e11Event" name="dailysoccer-staging.herokuapp.com" scheme="https" />
         <host event="e11Event" name="dailysoccer-staging.herokuapp.com" scheme="http" />
     </universal-links>

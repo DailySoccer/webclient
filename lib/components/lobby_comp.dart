@@ -61,6 +61,10 @@ class LobbyComp implements DetachAware {
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST, refreshActiveContest);
     
     if (_profileService.isLoggedIn) {
+      // EJEMPLOS DE USO de los flags
+      // _profileService.addFlag("TEST_DE_FLAG");
+      // _profileService.removeFlag("TEST_DE_FLAG");
+      
       // EJEMPLOS DE USO del GuildService
       
       // 1. Creación del Guild

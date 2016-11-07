@@ -85,6 +85,7 @@ class User {
   Set<String> achievements = new Set<String>();
   List<UserNotification> notifications = new List<UserNotification>();
   List<String> favorites = [];
+  Set<String> flags = new Set<String>();
 
   // Información que se muestra en el mainMenu (se utilizará para detectar cambios en la información del perfil)
   String get mainMenuInfo => "$userId;$facebookID;$profileImage;${energyBalance.toInt()};${managerBalance.toInt()};${goldBalance.toInt()};$trueSkill;${notifications.length};${achievements.length}";
@@ -92,6 +93,7 @@ class User {
   //bool hasAchievement(String achievement) => achievements.contains(achievement);
   bool get isLoggedByUUID => (deviceUUID != null) && deviceUUID.isNotEmpty && (email.contains(deviceUUID) || email.contains(UUID_EMAIL));
   bool get isLoggedByFacebook => (facebookID != null) && facebookID.isNotEmpty;
+  bool hasFlag(String flag) => flags.contains(flag);
 
   bool get canChangeEmail => !isLoggedByUUID && !isLoggedByFacebook;
   bool get canChangePassword => !isLoggedByUUID && !isLoggedByFacebook;
@@ -246,6 +248,13 @@ class User {
     
     if (jsonMap.containsKey("favorites")) {
       favorites = jsonMap["favorites"];
+    }
+
+    if (jsonMap.containsKey("flags")) {
+      flags = new Set<String>();
+
+      List<String> flagList = jsonMap["flags"];
+      flagList.forEach( (flag) => flags.add(flag) );
     }
 
     return this;

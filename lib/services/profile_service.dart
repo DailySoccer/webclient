@@ -168,6 +168,18 @@ class ProfileService {
     return _server.removeNotification(notificationId);
   }
 
+  Future<Map> addFlag(String flag) {
+    return _server.addFlag(flag).then((jsonMap) => user.flags.add(flag));
+  }
+
+  Future<Map> removeFlag(String flag) {
+    return _server.removeFlag(flag).then((jsonMap) => user.flags.remove(flag));
+  }
+
+  Future<bool> hasFlag(String flag) {
+    return new Future.value(isLoggedIn ? user.hasFlag(flag) : false);
+  }
+
   void updateProfileFromJson(Map jsonMap) {
     var storedSessionToken = GameInfo.get('sessionToken');
     if (storedSessionToken != null) {

@@ -262,8 +262,7 @@ class ContestsListComp implements DetachAware {
   }
 
   String getPrizeToShow(Contest contest) {
-    ContestEntry mainContestEntry = contest.getContestEntryWithUser(_profileService.user.userId);
-    return mainContestEntry.prize.amount.toString();
+    return "${contest.getPrizeForUser(_profileService.user.userId).amount.toString()}";
   }
 
   String getPrizePool(Contest contest) {

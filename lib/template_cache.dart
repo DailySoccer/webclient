@@ -1019,7 +1019,7 @@ tc.put("packages/webclient/components/enter_contest/soccer_player_stats_comp.htm
     </div>
     <div class="soccer-player-stats-info">
       <div class="soccer-player-stat-resume-item soccer-player-fantasy-points-wrapper">
-      <div class="soccer-player-stat-resume-item soccer-player-fantasy-points-label">PTOS. FANTASY</div>
+      <div class="soccer-player-stat-resume-item soccer-player-fantasy-points-label">PUNTOS</div>
         <div class="soccer-player-stat-resume-item soccer-player-fantasy-points">{{currentInfoData['fantasyPoints']}}</div>
       </div>
       <div class="soccer-player-stat-resume-item soccer-player-matches-wrapper">
@@ -1917,7 +1917,9 @@ tc.put("packages/webclient/components/navigation/top_bar_comp.html", new HttpRes
   <div class="nickname-change-actions-wrapper">
     <button class="nickname-change-confirm" ng-click="saveChanges()" ng-disabled="editedNickName.length < MIN_NICKNAME_LENGTH">Confirmar</button>
   </div>
-</modal-window>"""));
+</modal-window>
+
+<pages-tutorial-initial></pages-tutorial-initial>"""));
 tc.put("packages/webclient/components/promos_comp.html", new HttpResponse(200, r"""<div id="promosRoot" ng-class="{'hide-promos': !hasPromos()}">
 <div ng-if="!scrDet.isXsScreen">
   <a class="banner2"  ng-click="gotoPromo(0)">
@@ -2522,8 +2524,57 @@ tc.put("packages/webclient/components/week_calendar_comp.html", new HttpResponse
     </li>
   </ul>
 </div>"""));
-tc.put("packages/webclient/utils/modal_window.html", new HttpResponse(200, r"""
-<div class="modal-window-frame">
+tc.put("packages/webclient/tutorial/pages_tutorial_initial.html", new HttpResponse(200, r"""<modal-window show-header="false" show-window="showTutorial" class="fullscreen pages-tutorial-initial-modal">
+  <div class="tutorial-initial-slides-title"><span>Jugar es muy sencillo</span><i class="material-icons" ng-click="close()">&#xE14C;</i></div>
+  <div class="tutorial-initial-slide tutorial-initial-slide-1" ng-show="currentSlide == 'tutorialInitialSlide_1'">
+    <div class="tutorial-initial-slide-upper-text">
+      <div class="tutorial-initial-slide-ordinal">1</div>
+      <div class="tutorial-initial-slide-short-hint">Elige un torneo</div>
+    </div>
+    <div class="tutorial-initial-slide-image"><img src="images/tutorial/Help01.gif"></div>
+    <div class="tutorial-initial-slide-long-hint"></div>
+  </div>
+  <div class="tutorial-initial-slide tutorial-initial-slide-2" ng-show="currentSlide == 'tutorialInitialSlide_2'">
+    <div class="tutorial-initial-slide-upper-text">
+      <div class="tutorial-initial-slide-ordinal">2</div>
+      <div class="tutorial-initial-slide-short-hint">Haz tu alineación</div>
+    </div>
+    <div class="tutorial-initial-slide-image"><img src="images/tutorial/Help02.gif"></div>
+    <div class="tutorial-initial-slide-long-hint">No puedes superar el presupuesto ni alinear mas de 4 futbolistas de un mismo equipo</div>
+  </div>
+  <div class="tutorial-initial-slide tutorial-initial-slide-3" ng-show="currentSlide == 'tutorialInitialSlide_3'">
+    <div class="tutorial-initial-slide-upper-text">
+      <div class="tutorial-initial-slide-ordinal">3</div>
+      <div class="tutorial-initial-slide-short-hint">Puntúa y gana</div>
+    </div>
+    <div class="tutorial-initial-slide-image">
+      <div class="tutorial-initial-slide-3-live">
+        <img src="images/tabBar/Button_Lives.png">
+        <span>Sigue los partidos<br>en tiempo real.</span>
+      </div>
+      <div class="tutorial-initial-slide-3-history">
+        <i class="material-icons">&#xE889;</i>
+        <span>Consulta los resultados definitivos en el historico.</span>
+      </div>
+    </div>
+    <div class="tutorial-initial-slide-long-hint"></div>
+  </div>
+  <div class="tutorial-initial-nav">
+    <i class="tutorial-initial-nav-arrow material-icons" ng-click="previousSlide()">{{currentSlide != 'tutorialInitialSlide_1'? "&#xE5C4;" : ""}}</i>
+    <div class="tutorial-initial-nav-options-wrapper">
+      <input class="tutorial-initial-nav-option" id="tutorialInitialNavSlide1" type="radio" name="tutorialInitialNavSlide1" value="tutorialInitialSlide_1" ng-model="currentSlide">
+      <label for="tutorialInitialNavSlide1"><span></span></label>
+      
+      <input class="tutorial-initial-nav-option" id="tutorialInitialNavSlide2" type="radio" name="tutorialInitialNavSlide2" value="tutorialInitialSlide_2" ng-model="currentSlide">
+      <label for="tutorialInitialNavSlide2"><span></span></label>
+      
+      <input class="tutorial-initial-nav-option" id="tutorialInitialNavSlide3" type="radio" name="tutorialInitialNavSlide3" value="tutorialInitialSlide_3" ng-model="currentSlide">
+      <label for="tutorialInitialNavSlide3"><span></span></label>
+    </div>
+    <i class="tutorial-initial-nav-arrow material-icons" ng-click="nextSlide()">{{(currentSlide != 'tutorialInitialSlide_3'?  '&#xE5C8;' : '&#xE5CA;')}}</i>
+  </div>
+</modal-window>"""));
+tc.put("packages/webclient/utils/modal_window.html", new HttpResponse(200, r"""<div class="modal-window-frame">
   <div class="modal-window-header" ng-if="showHeader">
     <div class="modal-window-title">{{title}}</div>
     <div class="modal-window-close-btt" ng-click="close()"><i class="material-icons">&#xE14C;</i></div>

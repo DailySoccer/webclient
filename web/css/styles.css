@@ -7744,9 +7744,8 @@ modal-window.fullscreen .modal-window-frame {
   right: 0;
   bottom: 0;
   height: 100vh;
-  width: 100vw;
   margin: 0;
-  background-color: transparent;
+  background-color: #242529;
 }
 .modal-window-frame {
   display: -webkit-box;
@@ -7875,6 +7874,213 @@ user-shortinfo-bar {
   font-weight: 500;
   white-space: nowrap;
   overflow: hidden;
+}
+.pages-tutorial-initial-modal .modal-window-content {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  flex: 1;
+}
+.tutorial-initial-slides-title {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  flex: 0 0 auto;
+  padding: 24px 24px 0 24px;
+}
+.tutorial-initial-slides-title span {
+  flex: 1;
+  font-size: 12pt;
+  color: #fa9c19;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(250, 156, 25, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+}
+.tutorial-initial-slides-title .material-icons {
+  flex: 0 0 24px;
+  text-align: center;
+  margin-left: -24px;
+}
+.tutorial-initial-nav {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  flex: 0 0 45px;
+  justify-content: space-between;
+}
+.tutorial-initial-nav-options-wrapper {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+}
+.tutorial-initial-nav-arrow {
+  flex: 0 0 70px;
+  text-align: center;
+}
+.tutorial-initial-nav-option {
+  display: none;
+}
+.tutorial-initial-nav-option + label span {
+  display: block;
+  width: 6px;
+  height: 6px;
+  margin: 6px;
+  border-radius: 100%;
+  background-color: #757993;
+}
+.tutorial-initial-nav-option:checked + label span {
+  background-color: #ffffff;
+}
+.tutorial-initial-slide {
+  flex: 1;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  justify-content: center;
+  text-align: center;
+}
+.tutorial-initial-slide-ordinal {
+  width: 50px;
+  height: 50px;
+  padding: 4px 0;
+  font-size: 20pt;
+  color: #59add5;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  border: 3px solid #59add5;
+  border-radius: 100%;
+  margin: 0px auto 5px auto;
+}
+.tutorial-initial-slide-short-hint {
+  font-size: 18pt;
+  color: #59add5;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+}
+.tutorial-initial-slide-image {
+  flex: 0 0 176px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
+  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
+  justify-content: space-around;
+  width: 254px;
+  height: 176px;
+  border: 2px solid rgba(210, 210, 210, 0.3);
+  border-radius: 5px;
+  margin: 0 auto;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.tutorial-initial-slide-image img {
+  width: 250px;
+  height: 172px;
+}
+.tutorial-initial-slide-long-hint {
+  flex: 0 0 36px;
+  font-size: 10pt;
+  color: #59add5;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  width: 270px;
+  margin: 0px auto;
+}
+.tutorial-initial-slide-upper-text {
+  flex: 0 0 90px;
+  margin-bottom: 10px;
+}
+.tutorial-initial-slide-3-live,
+.tutorial-initial-slide-3-history {
+  flex: 0 0 64px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+.tutorial-initial-slide-3-live img,
+.tutorial-initial-slide-3-history img {
+  flex: 0 0 69px;
+  width: 64px;
+  height: 64px;
+  padding-left: 5px;
+}
+.tutorial-initial-slide-3-live i,
+.tutorial-initial-slide-3-history i {
+  flex: 0 0 69px;
+  font-size: 52px;
+  padding-left: 5px;
+}
+.tutorial-initial-slide-3-live span,
+.tutorial-initial-slide-3-history span {
+  flex: 1;
+  font-size: 9pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
 }
 #teamsPanelComp {
   margin-right: auto;

@@ -13,7 +13,53 @@ import 'package:webclient/utils/string_utils.dart';
   useShadowDom: false
 )
 class PagesTutorialInitial {
+
+  String currentSlide = "tutorialInitialSlide_1";
+  bool showTutorial = false;
   
-  PagesTutorialInitial();
+  PagesTutorialInitial(this._profileService) {
+    _profileService.onLogin.listen((_) {
+      if (_profileService.user.nickName.toLowerCase().startsWith("guest")) {
+        _profileService.triggerEventualAction(ProfileService.PAGES_TUTORIAL_INITIAL, show);
+      }
+    });
+  }
+
+  void nextSlide() {
+    switch(currentSlide) {
+      case "tutorialInitialSlide_1":
+        currentSlide = "tutorialInitialSlide_2";
+      break;
+      case "tutorialInitialSlide_2":
+        currentSlide = "tutorialInitialSlide_3";
+      break;
+      case "tutorialInitialSlide_3":
+        close();
+      break;
+    }
+  }
   
+  void previousSlide() {
+    switch(currentSlide) {
+      case "tutorialInitialSlide_1":
+
+      break;
+      case "tutorialInitialSlide_2":
+        currentSlide = "tutorialInitialSlide_1";
+      break;
+      case "tutorialInitialSlide_3":
+        currentSlide = "tutorialInitialSlide_2";
+      break;
+    }
+  }
+
+  void close() {
+    showTutorial = false;
+    _profileService.eventualActionCompleted(ProfileService.PAGES_TUTORIAL_INITIAL);
+  }
+  void show() {
+    showTutorial = true;
+  }
+  
+  ProfileService _profileService;
 }

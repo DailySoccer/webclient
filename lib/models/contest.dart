@@ -197,7 +197,7 @@ class Contest {
 
   Money getPrizeForUser(String userId) {
     ContestEntry entry = getContestEntryWithUser(userId);
-    return prize.getValue(getUserPosition(entry));
+    return prize.getValue(getUserPosition(entry) - 1);
   }
 
   int getUserPosition(ContestEntry contestEntry) {

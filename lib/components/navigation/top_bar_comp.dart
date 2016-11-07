@@ -132,6 +132,7 @@ class TopBarComp {
                                         _profileService.user.email, nickName, "").then( (_) {
             _profileService.user.nickName = editedNickName;
             changeNameWindowShow = false;
+            _profileService.eventualActionCompleted(ProfileService.FIRST_RUN_CHANGE_NAME);
           }).catchError((ServerError error) {
             error.toJson().forEach( (key, value) {
               switch (key)  {

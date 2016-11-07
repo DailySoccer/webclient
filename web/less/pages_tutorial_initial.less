@@ -1,0 +1,116 @@
+.pages-tutorial-initial-modal .modal-window-content {
+  .flex-container-col();
+  .flex-elem-fluid();
+}
+
+.tutorial-initial-slides-title {
+  .flex-container-row();
+  .flex-elem-fixed(auto);
+  padding: 24px 24px 0 24px;
+  span {
+    .flex-elem-fluid();
+	  .mainfont_light(12pt, @orange, center, uppercase);
+  }
+  .material-icons {
+    .flex-elem-fixed(24px);
+    text-align: center;
+    margin-left: -24px;
+  }
+}
+.tutorial-initial-nav {
+  .flex-container-row();
+  .flex-elem-fixed(45px);
+  justify-content: space-between;
+}
+
+.tutorial-initial-nav-options-wrapper {
+  .flex-container-row();
+}
+.tutorial-initial-nav-arrow {
+  .flex-elem-fixed(70px);
+  text-align: center;
+}
+
+.tutorial-initial-nav-option {
+  display: none;
+}
+
+.tutorial-initial-nav-option + label span {
+  display: block;
+  width: 6px;
+  height: 6px;
+  margin: 6px;
+  border-radius: 100%;
+  background-color: @grey-bluish;
+}
+
+.tutorial-initial-nav-option:checked + label span {
+  background-color: @white;
+}
+
+.tutorial-initial-slide {
+  .flex-elem-fluid();
+  .flex-container-col();
+  justify-content: center;
+  text-align: center;
+}
+
+.tutorial-initial-slide-ordinal {
+  width: 50px;
+  height: 50px;
+  padding: 4px 0;
+  .mainfont_light(20pt, @blueLight, center, uppercase);
+  border: 3px solid @blueLight;
+  border-radius: 100%;
+  margin: 0px auto 5px auto;
+}
+.tutorial-initial-slide-short-hint {
+  .mainfont_light(18pt, @blueLight, center, uppercase);
+}
+.tutorial-initial-slide-image {
+  .flex-elem-fixed(176px);
+  .flex-container-col();
+  .elevation(2);
+  justify-content: space-around;
+  width: 254px;
+  height: 176px;
+  border: 2px solid @grey-translucid;
+  border-radius: 5px;
+  margin: 0 auto;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.tutorial-initial-slide-image img {
+  width: 250px;
+  height: 172px;
+}
+.tutorial-initial-slide-long-hint {
+  .flex-elem-fixed(36px);
+  .mainfont_light(10pt, @blueLight, center, uppercase);
+  width: 270px;
+  margin: 0px auto;
+}
+.tutorial-initial-slide-upper-text {
+  .flex-elem-fixed(90px);
+  margin-bottom: 10px;
+}
+.tutorial-initial-slide-3-live, .tutorial-initial-slide-3-history {
+  .flex-elem-fixed(64px);
+  .flex-container-row();
+  align-items: center;
+  img {
+    .flex-elem-fixed(69px);
+    width: 64px;
+    height: 64px;
+    padding-left: 5px;
+  }
+  i {
+    .flex-elem-fixed(69px);
+    font-size: 52px;
+    padding-left: 5px;
+  }
+  span {
+    .flex-elem-fluid();
+    .mainfont_light(9pt, @white, center, uppercase);
+  }
+}

@@ -26,7 +26,7 @@ import 'package:webclient/services/deltaDNA_service.dart';
 class ProfileService {
 
   static const String FIRST_RUN_CHANGE_NAME = "FIRST_RUN_CHANGE_NAME";
-  static const String FIRST_TIME_PURCHASE = "FIRST_TIME_PURCHASE";
+  static const String PAGES_TUTORIAL_INITIAL = "PAGES_TUTORIAL_INITIAL";
   
   User user = null;
   bool get isLoggedIn => user != null;
@@ -498,41 +498,14 @@ class ProfileService {
     return "$text [WebClient]";
   }
   
-  // Esta modal es para colocarla en el estado de bienvenida.
-  void showGuestNameModal() {
-    if (isLoggedIn && user.isLoggedByUUID && !GameInfo.contains("showGuestNameModal")) {
-      modalShow(
-            "",
-            '''
-              <div class="content-wrapper">
-                <h1 class="alert-content-title">Bienvenido a Fútbol Cuatro</h1>
-                <h2 class="alert-content-subtitle">Tu nombre en los torneos será <b>${user.nickName}</b> <br>Si quieres puedes cambiar de nombre en tu perfil.</h2>
-              </div>
-            '''
-            , onBackdropClick: true
-            , aditionalClass: "guest-name-modal"
-          )
-          .then((_) => _router.go('home', {}))
-          .catchError((_) => _router.go('home', {}));
-      
-      
-      /*
-      GameMetrics.logEvent(GameMetrics.SIGNUP_SUCCESSFUL, {"action via": "uuid",
-                                                           "platform": HostServer.isAndroidPlatform? 'android' : 
-                                                                       HostServer.isiOSPlatform? 'ios' : 
-                                                                                                 'unknown' });
-      GameMetrics.trackConversion(false);*/
-    }
-    
-    GameInfo.assign("showGuestNameModal", "true");
-  }
-  
   void triggerEventualAction(String name, Function callback) {
     if(!_eventualActions.containsKey(name) || _eventualActions[name] != true) {
-      _eventualActions[name] = true;
-      _saveEventualActions();
       callback();
     }
+  }
+  void eventualActionCompleted(String name) {
+    _eventualActions[name] = true;
+    _saveEventualActions();
   }
   void resetEventualAction(String name) {
     _eventualActions[name] = false;
@@ -553,7 +526,6 @@ class ProfileService {
   DeltaDNAService _deltaDnaService;
   Router _router;
   String _sessionToken;
-  
 
   Stream get onLogin => _onLogin.stream;
   StreamController _onLogin = new StreamController.broadcast();

@@ -177,7 +177,7 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
                     : TAB_HISTORY;
     
     if (_tabSelected == TAB_HISTORY) {
-      _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Historico");
+      _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Histórico");
       _appStateService.appTopBarState.activeState.onLeftColumn = AppTopBarState.GOBACK;
       _appStateService.appTabBarState.show = false;
     }

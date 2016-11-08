@@ -192,6 +192,9 @@ class ProfileService {
     if (theSessionToken != null && jsonMap != null) {
       String oldFacebookId = user != null ? user.facebookID : null; 
       user = new User.fromJsonObject(jsonMap);
+      if (!user.hasFlag(FIRST_RUN_CHANGE_NAME) && user.nickName.toLowerCase().startsWith("guest")) {
+        addFlag(FIRST_RUN_CHANGE_NAME);
+      }
       
       if (user.facebookID != oldFacebookId) {
         refreshFriendList();

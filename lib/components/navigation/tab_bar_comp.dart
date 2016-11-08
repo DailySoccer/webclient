@@ -12,6 +12,10 @@ import 'package:webclient/services/app_state_service.dart';
 import 'dart:html';
 import 'package:webclient/services/leaderboard_service.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
+import 'dart:async';
+import 'package:webclient/services/contests_service.dart';
+import 'package:webclient/services/server_error.dart';
+import 'package:logging/logging.dart';
 
 @Component(
     selector: 'tab-bar',
@@ -26,6 +30,11 @@ class TabBarComp {
   static const String LIVE_CONESTS = "LIVE_CONTESTS";
   //static const String SCOUTING = "SCOUTING";
   static const String HOME = "HOME";
+  
+  int numLiveContests = 0;
+  int numVirtualHistoryContests = 0;
+  int numRealHistoryContests = 0;
+  int numUpcomingContests = 0;
   
   Map<String, TabBarItemComp> tabs = {};
 
@@ -58,7 +67,7 @@ class TabBarComp {
   bool get isShown => _appStateService.appTabBarState.show;
 
   TabBarComp(this._router, this._loadingService, this._view, this._rootElement, 
-                this._dateTimeService, this._profileService, this._templateService, 
+                this._dateTimeService, this._profileService, this._templateService, this._contestsService, 
                 this._catalogService, this._appStateService, this._leaderboardService, this._refreshTimersService) {
     tabs = { 
             HOME     : new TabBarItemComp( _router, 
@@ -90,9 +99,29 @@ class TabBarComp {
                                                 destination: "scouting")*/
     };
     
+
+    this._refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
     this._refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_RANKING_POSITION, _leaderboardService.calculateMyTrueSkillData);
   }
-
+  
+  void _refreshMyContests() {
+    // Parallel processing using the Future API
+    Future.wait([ TemplateService.Instance.refreshTemplateSoccerPlayers(), 
+                  _contestsService.countMyContests()])
+      .then((List jsonMaps) {
+        Map jsonData = jsonMaps[1];
+        numVirtualHistoryContests = jsonData.containsKey("numVirtualHistory") ? jsonData["numVirtualHistory"] : 0;
+        numRealHistoryContests    = jsonData.containsKey("numRealHistory") ? jsonData["numRealHistory"] : 0;
+        numLiveContests           = jsonData.containsKey("numLive") ? jsonData["numLive"] : 0;
+        numUpcomingContests       = jsonData.containsKey("numWaiting") ? jsonData["numWaiting"] : 0;
+        
+        _appStateService.appTabBarState.liveContestsNotifications = numLiveContests;
+      })
+      .catchError((ServerError error) {
+        Logger.root.severe("Error refreshing My Contests");
+      }, test: (error) => error is ServerError);
+  }
+  
   String getLocalizedText(key, [Map substitutions]) {
     return StringUtils.translate(key, "TabBar", substitutions);
   }
@@ -110,6 +139,7 @@ class TabBarComp {
   AppStateService _appStateService;
   LeaderboardService _leaderboardService;
   RefreshTimersService _refreshTimersService;
+  ContestsService _contestsService;
 }
 
 class TabBarItemComp {

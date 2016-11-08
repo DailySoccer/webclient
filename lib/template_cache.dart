@@ -1837,7 +1837,7 @@ tc.put("packages/webclient/components/my_contests_comp.html", new HttpResponse(2
     <div class="no-contests-wrapper" ng-switch-when="false">
         <img class="no-contests-icon" src="images/icon-torneo-historico-vacio.png">
         <div class="no-contests-title">aún no has jugado ningún torneo<br>¿A qué esperas para empezar a ganar?</div>
-        <div class="no-contests-subtitle">Ve a lista de torneos, elije uno y empieza a jugar</div>
+        <div class="no-contests-subtitle">Ve a la lista de torneos, elije uno y empieza a jugar</div>
         <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
     </div>
     <!-- lista de concursos -->
@@ -2554,7 +2554,7 @@ tc.put("packages/webclient/tutorial/pages_tutorial_initial.html", new HttpRespon
       </div>
       <div class="tutorial-initial-slide-3-history">
         <i class="material-icons">&#xE889;</i>
-        <span>Consulta los resultados definitivos en el historico.</span>
+        <span>Consulta los resultados<br>definitivos en el historico.</span>
       </div>
     </div>
     <div class="tutorial-initial-slide-long-hint"></div>

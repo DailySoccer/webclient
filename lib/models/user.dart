@@ -100,7 +100,7 @@ class User {
   
   //String get fullName => "$firstName $lastName";
   String toString() => "$userId - $email - $nickName";
-  Map toJson() => {"_id": userId, "firstName": firstName, "lastName": lastName, "email": email, "nickName": nickName};
+  Map toJson() => {"_id": userId, "firstName": firstName, "lastName": lastName, "email": email, "nickName": nickName, "flags": flags.toList()};
 
   User.referenceInit(this.userId);
 

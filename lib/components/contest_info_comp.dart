@@ -86,7 +86,7 @@ class ContestInfoComp implements DetachAware {
   void detach() {}
 
   void updateContestInfo() {
-    Logger.root.info("ContestInfoComp --> updateContestInfo");
+    // Logger.root.info("ContestInfoComp --> updateContestInfo");
 
     //loadingService.isLoading = false;
 
@@ -100,7 +100,7 @@ class ContestInfoComp implements DetachAware {
       });
     }
 
-    Logger.root.info("ContestInfoComp --> updateContestInfo 1");
+    // Logger.root.info("ContestInfoComp --> updateContestInfo 1");
     
     currentInfoData["name"]           = contest.name;
     currentInfoData["description"]    = contest.description;

@@ -94,7 +94,7 @@ class UserNotification {
 
     switch(topic) {
       case ACHIEVEMENT_EARNED:
-        result = "#/leaderboard/achievements/me";
+        result = "#/achievements/";
         break;
       case CONTEST_FINISHED:
       case DUEL_FINISHED:

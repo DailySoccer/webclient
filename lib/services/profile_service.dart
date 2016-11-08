@@ -218,7 +218,7 @@ class ProfileService {
     Logger.root.info("ProfileService: Trying Profile Load");
     var storedSessionToken = GameInfo.get('sessionToken');
     var storedUser = GameInfo.get('user');
-    _loadStoredEventualActions();
+    //_loadStoredEventualActions();
 
     if (storedSessionToken != null && storedUser != null) {
       Logger.root.info("ProfileService: Trying Profile Load -> Stored Profile");
@@ -267,15 +267,15 @@ class ProfileService {
     if (user != null && _sessionToken != null) {
       GameInfo.assign('sessionToken', _sessionToken);
       GameInfo.assign('user', JSON.encode(user));
-      _saveEventualActions();
+      //_saveEventualActions();
     }
     else {
       GameInfo.remove('sessionToken');
       GameInfo.remove('user');
-      _removeEventualActions();
+      //_removeEventualActions();
     }
   }
-
+/*
   void _saveEventualActions() {
     GameInfo.assign('eventualActions', JSON.encode(_eventualActions));
   }
@@ -289,7 +289,7 @@ class ProfileService {
       _eventualActions = {};
     }
   }
-
+*/
   void triggerNotificationsPopUp(Router router) {
     if (_wasLoggedInForTriggerPopUp != ProfileService.instance.isLoggedIn) {
       ProfileService.instance.refreshUserProfile().then( (_) {
@@ -511,20 +511,41 @@ class ProfileService {
   }
   
   void triggerEventualAction(String name, Function callback) {
-    if(!_eventualActions.containsKey(name) || _eventualActions[name] != true) {
-      callback();
+    void check([_]) {
+      if (!user.hasFlag(name)) {
+        callback();
+      }
     }
+    
+    if (isLoggedIn) {
+      check();
+    } else {
+      onLogin.listen(check);
+    }
+    
+    /*hasFlag(name).then((bool isSet) {
+      if (!isSet) callback();
+    });*/
+    /*if(!_eventualActions.containsKey(name) || _eventualActions[name] != true) {
+      callback();
+    }*/
   }
   void eventualActionCompleted(String name) {
+    addFlag(name);
+    /*
     _eventualActions[name] = true;
     _saveEventualActions();
+    */
   }
   void resetEventualAction(String name) {
+    removeFlag(name);
+    /*
     _eventualActions[name] = false;
     _saveEventualActions();
+    */
   }
 
-  Map _eventualActions = {};
+  //Map _eventualActions = {};
   List<User> _friendList = [];
   List<User> get friendList => user == null? [] : _friendList;
 

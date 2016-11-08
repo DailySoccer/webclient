@@ -19,9 +19,7 @@ class PagesTutorialInitial {
   
   PagesTutorialInitial(this._profileService) {
     _profileService.onLogin.listen((_) {
-      if (_profileService.user.nickName.toLowerCase().startsWith("guest")) {
-        _profileService.triggerEventualAction(ProfileService.PAGES_TUTORIAL_INITIAL, show);
-      }
+      _profileService.triggerEventualAction(ProfileService.PAGES_TUTORIAL_INITIAL, show);
     });
   }
 

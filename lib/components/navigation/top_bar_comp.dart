@@ -95,9 +95,7 @@ class TopBarComp {
   
   void onProfileLoad() {
     _profileService.triggerEventualAction(ProfileService.FIRST_RUN_CHANGE_NAME, () {
-      if (_profileService.user.nickName.toLowerCase().startsWith("guest")) {
-        changeNameWindowShow = true;
-      }
+      changeNameWindowShow = true;
     });
   }
 

@@ -154,6 +154,26 @@ class HomeComp implements DetachAware {
     _router.go('lobby', {});
   } 
   
+  void goScouting(){
+    _router.go('scouting', {});
+  } 
+  
+  void goShop() {
+    _router.go('shop', {});
+  }
+  
+  void goHistory() {
+    _router.go('my_contests', {"section": "history"});
+  }
+    
+  void goRanking() {
+    _router.go('leaderboard', {'userId': 'me'});
+  }
+    
+  void goAchievements() {
+    _router.go('achievements', {});
+  }
+    
   void detach() {
     _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR);
     //_refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_RANKING_POSITION);

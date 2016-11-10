@@ -20,8 +20,10 @@ import 'package:webclient/services/app_state_service.dart';
 import 'package:webclient/models/achievement.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/models/contest.dart';
+import 'package:webclient/models/reward.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/leaderboard_service.dart';
+import 'package:logging/logging.dart';
 
 @Component(
   selector: 'home',
@@ -135,6 +137,19 @@ class HomeComp implements DetachAware {
   }
   
   void refreshTopBar() {
+    /*
+     * EJEMPLO DE CHECK DE DAILYREWARDS
+     */
+    /*
+    // Check DailyRewards
+    if (this._profileService.isLoggedIn && this._profileService.user.dailyRewards.isNotEmpty) {
+      Logger.root.info("dailyRewards: ${this._profileService.user.dailyRewards.length}");
+      
+      // Cuando el usuario pulse "Aceptar" en el mensaje de información del popup del DailyReward, se solicitará al servidor que nos dé la recompensa
+      _profileService.claimReward(this._profileService.user.dailyRewards.first.rewardId);
+    }
+     */
+    
     _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router, _leaderboardService, true);
   }
 

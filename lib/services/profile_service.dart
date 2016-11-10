@@ -179,6 +179,15 @@ class ProfileService {
   Future<bool> hasFlag(String flag) {
     return new Future.value(isLoggedIn ? user.hasFlag(flag) : false);
   }
+  
+  Future<Map> claimReward(String rewardId) {
+    return _server.claimReward(rewardId)
+        .then((jsonMap) {
+          if (jsonMap.containsKey("profile")) {
+            updateProfileFromJson(jsonMap["profile"]);
+          }
+        });
+  }
 
   void updateProfileFromJson(Map jsonMap) {
     var storedSessionToken = GameInfo.get('sessionToken');

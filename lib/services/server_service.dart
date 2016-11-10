@@ -40,6 +40,7 @@ abstract class ServerService {
   Future<Map> favorites(List<String> soccerPlayers);
   Future<Map> addFlag(String flag);
   Future<Map> removeFlag(String flag);
+  Future<Map> claimReward(String rewardId);
 
   // Conseguir la lista de Contests Active/Live/History en los que esté inscrito el User
   Future<Map> getMyContests();
@@ -259,6 +260,10 @@ class DailySoccerServer implements ServerService {
     return _innerServerCall("${HostServer.url}/remove_flag/$flag");
   }
 
+  Future<Map> claimReward(String rewardId) {
+    return _innerServerCall("${HostServer.url}/claim_reward/$rewardId");
+  }
+  
   Future<Map> getMyContests() {
     return _innerServerCall("${HostServer.url}/get_my_contests");
   }

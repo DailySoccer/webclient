@@ -86,6 +86,7 @@ class User {
   List<UserNotification> notifications = new List<UserNotification>();
   List<String> favorites = [];
   Set<String> flags = new Set<String>();
+  List<Map> dailyRewards = [];
 
   // Información que se muestra en el mainMenu (se utilizará para detectar cambios en la información del perfil)
   String get mainMenuInfo => "$userId;$facebookID;$profileImage;${energyBalance.toInt()};${managerBalance.toInt()};${goldBalance.toInt()};$trueSkill;${notifications.length};${achievements.length}";
@@ -255,6 +256,13 @@ class User {
 
       List<String> flagList = jsonMap["flags"];
       flagList.forEach( (flag) => flags.add(flag) );
+    }
+    
+    if (jsonMap.containsKey("dailyRewards") && jsonMap["dailyRewards"].containsKey("rewards")) {
+      List<Map> rewards = jsonMap["dailyRewards"]["rewards"];
+      rewards.forEach( (reward) => dailyRewards.add(reward) );
+
+      // Logger.root.info("dailyRewards: ${jsonMap['dailyRewards']}");
     }
 
     return this;

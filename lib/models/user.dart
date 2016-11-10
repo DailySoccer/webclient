@@ -7,6 +7,7 @@ import 'package:webclient/services/datetime_service.dart';
 import 'package:intl/intl.dart';
 import 'package:webclient/models/user_notification.dart';
 import 'package:webclient/utils/fblogin.dart';
+import 'package:webclient/models/reward.dart';
 
 // TODO:  eliminar este import
 import 'package:webclient/models/achievement.dart';
@@ -86,7 +87,7 @@ class User {
   List<UserNotification> notifications = new List<UserNotification>();
   List<String> favorites = [];
   Set<String> flags = new Set<String>();
-  List<Map> dailyRewards = [];
+  List<Reward> dailyRewards = [];
 
   // Información que se muestra en el mainMenu (se utilizará para detectar cambios en la información del perfil)
   String get mainMenuInfo => "$userId;$facebookID;$profileImage;${energyBalance.toInt()};${managerBalance.toInt()};${goldBalance.toInt()};$trueSkill;${notifications.length};${achievements.length}";
@@ -259,10 +260,13 @@ class User {
     }
     
     if (jsonMap.containsKey("dailyRewards") && jsonMap["dailyRewards"].containsKey("rewards")) {
-      List<Map> rewards = jsonMap["dailyRewards"]["rewards"];
-      rewards.forEach( (reward) => dailyRewards.add(reward) );
+      dailyRewards = jsonMap["dailyRewards"]["rewards"].map((jsonMap) {
+        return new Reward.fromJsonObject(jsonMap);
+      }).toList();
 
-      // Logger.root.info("dailyRewards: ${jsonMap['dailyRewards']}");
+      if (dailyRewards.isNotEmpty) {
+        Logger.root.info("dailyRewards: ${jsonMap['dailyRewards']}");
+      }
     }
 
     return this;

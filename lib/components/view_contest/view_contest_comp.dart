@@ -105,7 +105,6 @@ class ViewContestComp implements DetachAware {
   /*
    * PLAYER THINGS
    */
-
   num lineupCost = 0;
   num get availableSalary => contest != null? contest.salaryCap - lineupCost : 0;
   num playerManagerLevel = 10;
@@ -138,7 +137,6 @@ class ViewContestComp implements DetachAware {
   }
 
   String get printableCurrentSalary => StringUtils.parseSalary(availableSalary);
-  
   /*
    * END PLAYER THINGS
    */
@@ -148,7 +146,6 @@ class ViewContestComp implements DetachAware {
   /*
    * OPPONENT THINGS
    */
-  
   ContestEntry _selectedOpponent;
   void set selectedOpponent(ContestEntry player) {
     _selectedOpponent = player;
@@ -160,7 +157,6 @@ class ViewContestComp implements DetachAware {
     } else {
       tabList[2].text = _selectedOpponent.user.nickName;
     }
-    
   
     _updateSoccerPlayerStates(_selectedOpponent);
     opponentLineupSlots = [];
@@ -178,7 +174,6 @@ class ViewContestComp implements DetachAware {
   List<String> get opponentLineupFormation => FieldPos.FORMATIONS[opponentFormationId];
   num availableOpponentSalary = 0;
   String get printableOpponentSalary => contest != null? StringUtils.parseSalary(contest.salaryCap - availableOpponentSalary) : "-";
-
   /*
    * END OPPONENT THINGS
    */
@@ -582,7 +577,7 @@ class ViewContestComp implements DetachAware {
   }
 
   bool _isSoccerPlayerVisibleForChange(InstanceSoccerPlayer instanceSoccerPlayer) {
-    if (instanceSoccerPlayer.playState != InstanceSoccerPlayer.STATE_PLAYED && availableSalaryChangingPlayer >= instanceSoccerPlayer.salary) {
+    if (instanceSoccerPlayer.playState == InstanceSoccerPlayer.STATE_NOT_PLAYED && availableSalaryChangingPlayer >= instanceSoccerPlayer.salary) {
       String newSoccerTeamId = instanceSoccerPlayer.soccerPlayer.soccerTeam.templateSoccerTeamId;
       int sameTeamCount = mainPlayer.instanceSoccerPlayers.where((i) => i.soccerTeam.templateSoccerTeamId == newSoccerTeamId && i.id != changingPlayer.id).length;
       bool isInLineup = lineupSlots.where((soccerPlayer) => soccerPlayer.id == instanceSoccerPlayer.id).length != 0;

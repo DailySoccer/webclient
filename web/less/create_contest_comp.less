@@ -1,6 +1,5 @@
 create-contest {
 	.flex-container-col();
-	justify-content: space-around;
 	background-color: @soft-black;
 	
 	.create-contest-title {
@@ -28,13 +27,13 @@ create-contest {
 		align-items: center;
 	}
 	.title-num {
-		.flex-elem-fluid();
+		.flex-elem-fixed(60px);
 		.mainfont_light(25pt, @soft-black, center, uppercase);
 		background-color: @blueLight;
 		border-radius: 100%;
-	    padding-top: 7px;
-	    width: 60px;
-	    height: 60px;
+    padding-top: 7px;
+    width: 60px;
+    height: 60px;
 		margin-bottom: 5px;
 	}
 	.title-name {
@@ -61,7 +60,8 @@ create-contest {
 		.flex-elem-fixed(60px);
 		align-self: center;
 		font-size: 16pt;
-	    width: 250px;
+    width: 250px;
+    margin-bottom: 10px;
 	}
 	.data-element {
 		.flex-container-row();

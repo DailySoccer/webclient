@@ -22895,7 +22895,6 @@ create-contest {
   display: flex;
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
-  justify-content: space-around;
   background-color: #181818;
 }
 create-contest .create-contest-title {
@@ -22961,7 +22960,7 @@ create-contest .create-contest-title-wrapper {
   align-items: center;
 }
 create-contest .title-num {
-  flex: 1;
+  flex: 0 0 60px;
   font-size: 25pt;
   color: #181818;
   text-transform: uppercase;
@@ -23055,6 +23054,7 @@ create-contest .btn-confirm-contest {
   align-self: center;
   font-size: 16pt;
   width: 250px;
+  margin-bottom: 10px;
 }
 create-contest .btn-confirm-contest:hover,
 create-contest .btn-confirm-contest:active,

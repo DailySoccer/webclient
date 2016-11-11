@@ -40,6 +40,12 @@ class ScalingList<T> {
     } else {
       // Si _currentList no está vacía eliminamos todos los que no esten en full list.
       _currentList.removeWhere((t1) => !_fullList.any((t2) => _equalsComparer(t1, t2)));
+      // Actualizar las referencias (dado que la información de los mismos puede haber cambiado)
+      // _currentList = _currentList.map( (t1) => _fullList.firstWhere((t2) => _equalsComparer(t1, t2), orElse: () => t1) ).toList();
+      for (int i=0; i<_currentList.length; i++) {
+        var el = _currentList[i];
+        _currentList[i] = _fullList.firstWhere((el2) => _equalsComparer(el, el2), orElse: () => el);
+      }
       // y añadimos a la insert list los elementos que no están y la posicion en la que hay que insertarlos.
       _insertList.addAll(_fullList.where((t1) => !_currentList.any((t2) => _equalsComparer(t1, t2))));
     }

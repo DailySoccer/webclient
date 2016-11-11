@@ -10,15 +10,17 @@ class Reward {
   String type;
   
   Money money = new Money.zero();
-  int day = 1;
+  bool pickedUp = false;
+  
+  String toString() => "$type($rewardId) ${money.toStringWithCurrency()} - pickedUp: $pickedUp";
   
   Reward.fromJsonObject(Map jsonMap) {
     rewardId = jsonMap["_id"];
     type = jsonMap["type"];
+    pickedUp = jsonMap["pickedUp"];
    
     if (type == TYPE_GOLD) {
       money = new Money.fromJsonObject(jsonMap["value"]);
-      day = jsonMap["day"];
     }
   }
 }

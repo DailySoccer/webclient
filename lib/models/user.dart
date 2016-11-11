@@ -87,6 +87,8 @@ class User {
   List<UserNotification> notifications = new List<UserNotification>();
   List<String> favorites = [];
   Set<String> flags = new Set<String>();
+  
+  int consecutiveDays = 1;
   List<Reward> dailyRewards = [];
 
   // Información que se muestra en el mainMenu (se utilizará para detectar cambios en la información del perfil)
@@ -99,6 +101,8 @@ class User {
 
   bool get canChangeEmail => !isLoggedByUUID && !isLoggedByFacebook;
   bool get canChangePassword => !isLoggedByUUID && !isLoggedByFacebook;
+  
+  bool get canClaimReward => (consecutiveDays <= dailyRewards.length) && !dailyRewards[consecutiveDays-1].pickedUp;
   
   //String get fullName => "$firstName $lastName";
   String toString() => "$userId - $email - $nickName";
@@ -259,13 +263,19 @@ class User {
       flagList.forEach( (flag) => flags.add(flag) );
     }
     
-    if (jsonMap.containsKey("dailyRewards") && jsonMap["dailyRewards"].containsKey("rewards")) {
-      dailyRewards = jsonMap["dailyRewards"]["rewards"].map((jsonMap) {
-        return new Reward.fromJsonObject(jsonMap);
-      }).toList();
-
-      if (dailyRewards.isNotEmpty) {
-        Logger.root.info("dailyRewards: ${jsonMap['dailyRewards']}");
+    if (jsonMap.containsKey("dailyRewards")) {
+      Map jsonDailyRewards = jsonMap["dailyRewards"];
+      
+      consecutiveDays = jsonDailyRewards.containsKey("consecutiveDays") ? jsonDailyRewards["consecutiveDays"] : 1;
+      
+      dailyRewards = jsonDailyRewards.containsKey("rewards") 
+          ? jsonDailyRewards["rewards"].map((jsonMap) {
+              return new Reward.fromJsonObject(jsonMap);
+            }).toList()
+          : [];
+      
+      if (canClaimReward) {
+        Logger.root.info("dailyRewards: $jsonDailyRewards");
       }
     }
 

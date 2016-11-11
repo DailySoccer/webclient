@@ -180,8 +180,8 @@ class ProfileService {
     return new Future.value(isLoggedIn ? user.hasFlag(flag) : false);
   }
   
-  Future<Map> claimReward(String rewardId) {
-    return _server.claimReward(rewardId)
+  Future<Map> claimReward() {
+    return _server.claimReward()
         .then((jsonMap) {
           if (jsonMap.containsKey("profile")) {
             updateProfileFromJson(jsonMap["profile"]);

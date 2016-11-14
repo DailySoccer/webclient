@@ -98,5 +98,25 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "io.branch.sdk": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/BranchMetrics/Cordova-Ionic-PhoneGap-Deferred-Deep-Linking-SDK.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {
+            "BRANCH_KEY": "key_live_ehqnB1VXWVlhkAEct1bn9ebnzFmjc7ZC",
+            "URI_SCHEME": "futbolcuatro"
+        }
+    },
+    "es6-promise-plugin": {
+        "source": {
+            "type": "registry",
+            "id": "es6-promise-plugin"
+        },
+        "is_top_level": false,
+        "variables": {}
     }
 }

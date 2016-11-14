@@ -5,13 +5,13 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		02F406D92C994857A945B3DB /* CULHost.h in Sources */ = {isa = PBXBuildFile; fileRef = 13A2155D3AAA425AB666041D /* CULHost.h */; };
 		09BD8E2A838F4869A3A4625F /* CULPath.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A39E22AEFA4A4AB6662823 /* CULPath.m */; };
 		1106CD8477B640A9887388B7 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EE6311423704105A6AEF2FC /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		224EDFBA19384630BB81BCE1 /* AppDelegate+BranchSdk.m in Sources */ = {isa = PBXBuildFile; fileRef = 9069A90060734EB1A32F178D /* AppDelegate+BranchSdk.m */; };
 		2746B1BD121D42B896ED3449 /* CULXmlTags.h in Sources */ = {isa = PBXBuildFile; fileRef = C87061A12DC44A818334D023 /* CULXmlTags.h */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		2A35CA69432C4C46ADE8E783 /* AppDelegate+CULPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 784B06A442DE45F784D00603 /* AppDelegate+CULPlugin.m */; };
@@ -43,6 +43,7 @@
 		62095FAFD98249C5856E2D4F /* NSBundle+CULPlugin.h in Sources */ = {isa = PBXBuildFile; fileRef = EBBB73809F674E11B7BD6A6D /* NSBundle+CULPlugin.h */; };
 		634A17E16CC4499ABEFACBB6 /* CDVViewController+SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = B42C744392F245369BB4AA4A /* CDVViewController+SplashScreen.m */; };
 		7C453E092C304D01B3AEF45C /* FutbolCuatro.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = BFF1133FCA75463D95E576D6 /* FutbolCuatro.entitlements */; };
+		7DF9489D1EEF43C68D8D90C0 /* BranchSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 20156A17F2B844339224C7C3 /* BranchSDK.m */; };
 		7E7966DE1810823500FA85AD /* icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D41810823500FA85AD /* icon-40.png */; };
 		7E7966DF1810823500FA85AD /* icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D51810823500FA85AD /* icon-40@2x.png */; };
 		7E7966E01810823500FA85AD /* icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D61810823500FA85AD /* icon-50.png */; };
@@ -59,6 +60,7 @@
 		9E18DE5BE9F14234B9D19E86 /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E20ECA8EB94DCE899B9686 /* CDVStatusBar.m */; };
 		A0390B715B29412A8E506993 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10A65E0BEFC542E8AAC6BAB7 /* StoreKit.framework */; };
 		A6BE96DD07F64583A2BA2A98 /* FileUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F420AFC7844F0282A8CA94 /* FileUtility.m */; };
+		AAC23D261E064EE793073E4D /* Branch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3628D5965FEE4D42A06792B4 /* Branch.framework */; };
 		AD6F79FA5D9F4AD69EC3D1A5 /* CULXmlTags.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4819A107AD41309340F434 /* CULXmlTags.m */; };
 		BBD8BC63249E435EB0BC7A3A /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D235B1FAB7043ECABEA40C9 /* NSString+URLEncoding.m */; };
 		C1A2E634961E43DF80A25BC1 /* NSBundle+CULPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 139EFA8334FB49928EADB630 /* NSBundle+CULPlugin.m */; };
@@ -108,6 +110,7 @@
 		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* FutbolCuatro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FutbolCuatro.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		20156A17F2B844339224C7C3 /* BranchSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BranchSDK.m; path = io.branch.sdk/BranchSDK.m; sourceTree = "<group>"; };
 		24F420AFC7844F0282A8CA94 /* FileUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileUtility.m; path = cc.fovea.cordova.purchase/FileUtility.m; sourceTree = "<group>"; };
 		26485D4905FE49DDA1A40DE2 /* CDVInAppBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVInAppBrowser.h; path = "cordova-plugin-inappbrowser/CDVInAppBrowser.h"; sourceTree = "<group>"; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -134,6 +137,7 @@
 		30C1856519D5FC0A00212699 /* icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-60@3x.png"; sourceTree = "<group>"; };
 		30FC414816E50CA1004E6F35 /* icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72@2x.png"; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* FutbolCuatro-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FutbolCuatro-Prefix.pch"; sourceTree = "<group>"; };
+		3628D5965FEE4D42A06792B4 /* Branch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Branch.framework; path = FutbolCuatro/Plugins/io.branch.sdk/Branch.framework; sourceTree = "<group>"; };
 		3D956246C971493FBF187F7A /* CDVSplashScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVSplashScreen.h; path = "cordova-plugin-splashscreen/CDVSplashScreen.h"; sourceTree = "<group>"; };
 		3EC08FCB1E0E4C6D871DADD5 /* AppVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppVersion.m; path = "cordova-plugin-app-version/AppVersion.m"; sourceTree = "<group>"; };
 		40621B2CE3354D1E98C3BDAA /* SystemConfiguration.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -165,7 +169,9 @@
 		8591254698624A79910D71F0 /* CDVDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVDevice.h; path = "cordova-plugin-device/CDVDevice.h"; sourceTree = "<group>"; };
 		89A195E759AB453DA04B5FA9 /* CDVStatusBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVStatusBar.h; path = "cordova-plugin-statusbar/CDVStatusBar.h"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* FutbolCuatro-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "FutbolCuatro-Info.plist"; path = "../FutbolCuatro-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		8D2992BBF13146629AC7A791 /* BranchSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BranchSDK.h; path = io.branch.sdk/BranchSDK.h; sourceTree = "<group>"; };
 		8D453E0DAB004E5D8C7E62D3 /* FileUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileUtility.h; path = cc.fovea.cordova.purchase/FileUtility.h; sourceTree = "<group>"; };
+		9069A90060734EB1A32F178D /* AppDelegate+BranchSdk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AppDelegate+BranchSdk.m"; path = "io.branch.sdk/AppDelegate+BranchSdk.m"; sourceTree = "<group>"; };
 		976498311F4749FEA98DDA1A /* CULConfigXmlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CULConfigXmlParser.h; path = "cordova-universal-links-plugin/Parser/CULConfigXmlParser.h"; sourceTree = "<group>"; };
 		97B265DF9E3846E6B978C73D /* CULHost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CULHost.m; path = "cordova-universal-links-plugin/Model/CULHost.m"; sourceTree = "<group>"; };
 		9D235B1FAB7043ECABEA40C9 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+URLEncoding.m"; path = "cordova-plugin-x-socialsharing/NSString+URLEncoding.m"; sourceTree = "<group>"; };
@@ -193,6 +199,7 @@
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
 		EBBB73809F674E11B7BD6A6D /* NSBundle+CULPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSBundle+CULPlugin.h"; path = "cordova-universal-links-plugin/Utils/NSBundle+CULPlugin.h"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = FutbolCuatro/config.xml; sourceTree = "<group>"; };
+		FFF2B051A75F40DBAD88BC46 /* BranchNPM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BranchNPM.h; path = io.branch.sdk/BranchNPM.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +219,7 @@
 				F317D8D615CA452DB4C8768C /* Security.framework in Frameworks */,
 				1106CD8477B640A9887388B7 /* Social.framework in Frameworks */,
 				37B79990F89B41C28071C14B /* MessageUI.framework in Frameworks */,
+				AAC23D261E064EE793073E4D /* Branch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +302,7 @@
 				B1C59ED300E5420EA7B6B3CC /* Security.framework */,
 				5EE6311423704105A6AEF2FC /* Social.framework */,
 				6BC0393EDFF84190909CE245 /* MessageUI.framework */,
+				3628D5965FEE4D42A06792B4 /* Branch.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -353,6 +362,10 @@
 				046CC6DB301042DEB2E544F9 /* CDVInvokedUrlCommand+CULPlugin.h */,
 				48E20ECA8EB94DCE899B9686 /* CDVStatusBar.m */,
 				89A195E759AB453DA04B5FA9 /* CDVStatusBar.h */,
+				20156A17F2B844339224C7C3 /* BranchSDK.m */,
+				9069A90060734EB1A32F178D /* AppDelegate+BranchSdk.m */,
+				FFF2B051A75F40DBAD88BC46 /* BranchNPM.h */,
+				8D2992BBF13146629AC7A791 /* BranchSDK.h */,
 			);
 			name = Plugins;
 			path = FutbolCuatro/Plugins;
@@ -438,6 +451,11 @@
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = 4KECKSMGX8;
+						SystemCapabilities = {
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -570,6 +588,8 @@
 				C1A2E634961E43DF80A25BC1 /* NSBundle+CULPlugin.m in Sources */,
 				62095FAFD98249C5856E2D4F /* NSBundle+CULPlugin.h in Sources */,
 				9E18DE5BE9F14234B9D19E86 /* CDVStatusBar.m in Sources */,
+				7DF9489D1EEF43C68D8D90C0 /* BranchSDK.m in Sources */,
+				224EDFBA19384630BB81BCE1 /* AppDelegate+BranchSdk.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,12 +609,12 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = FutbolCuatro/Resources/FutbolCuatro.entitlements;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 4KECKSMGX8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"\"FutbolCuatro/Plugins/io.branch.sdk\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -623,6 +643,7 @@
 				);
 				PRODUCT_NAME = FutbolCuatro;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				CODE_SIGN_ENTITLEMENTS = "FutbolCuatro/Resources/FutbolCuatro.entitlements";
 			};
 			name = Debug;
 		};
@@ -631,12 +652,12 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = FutbolCuatro/Resources/FutbolCuatro.entitlements;
 				COPY_PHASE_STRIP = YES;
 				DEVELOPMENT_TEAM = 4KECKSMGX8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"\"FutbolCuatro/Plugins/io.branch.sdk\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FutbolCuatro/FutbolCuatro-Prefix.pch";
@@ -663,6 +684,7 @@
 				);
 				PRODUCT_NAME = FutbolCuatro;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				CODE_SIGN_ENTITLEMENTS = "FutbolCuatro/Resources/FutbolCuatro.entitlements";
 			};
 			name = Release;
 		};
@@ -676,7 +698,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = FutbolCuatro/Resources/FutbolCuatro.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "FutbolCuatro/Resources/FutbolCuatro.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_THUMB_SUPPORT = NO;
@@ -721,7 +743,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = FutbolCuatro/Resources/FutbolCuatro.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "FutbolCuatro/Resources/FutbolCuatro.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_THUMB_SUPPORT = NO;

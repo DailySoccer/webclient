@@ -180,7 +180,7 @@ class ScoutingComp implements DetachAware {
               // Con la caché de TemplateSoccerPlayers es posible que recibamos futbolistas "desconocidos"
               Logger.root.severe("WTF 1013: Bad SoccerPlayer: ${instance.soccerPlayer.templateSoccerPlayerId}");
             }
-          });        
+          });
           soccerTeams.forEach((team) {
             teamListES.add({"id": team.templateSoccerTeamId, "name": team.name, "shortName": team.shortName});
           });

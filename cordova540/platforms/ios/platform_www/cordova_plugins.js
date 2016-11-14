@@ -96,6 +96,20 @@ module.exports = [
         "clobbers": [
             "window.navigationbar"
         ]
+    },
+    {
+        "file": "plugins/es6-promise-plugin/www/promise.js",
+        "id": "es6-promise-plugin.Promise",
+        "pluginId": "es6-promise-plugin",
+        "runs": true
+    },
+    {
+        "file": "plugins/io.branch.sdk/www/branch.js",
+        "id": "io.branch.sdk.Branch",
+        "pluginId": "io.branch.sdk",
+        "clobbers": [
+            "Branch"
+        ]
     }
 ];
 module.exports.metadata = 

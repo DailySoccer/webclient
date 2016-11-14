@@ -23,6 +23,7 @@ import 'package:webclient/components/enter_contest/soccer_player_listitem.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/services/app_state_service.dart';
 import 'package:webclient/utils/js_utils.dart';
+import 'package:logging/logging.dart';
 
 @Component(
    selector: 'view-contest-entry',
@@ -124,6 +125,8 @@ class ViewContestEntryComp {
       .then((_) {
         loadingService.isLoading = false;
         contest = _contestsService.lastContest;
+        JsUtils.runJavascript(null, "createBranchUniversalObject_contest", [_profileService.user.userId, _profileService.user.nickName, contestId, contest.name]);
+
         setupContestInfoTopBar(true, () => _router.go('my_contests', {"section": "upcoming"}), onContestInfoClick);
         _appStateService.appSecondaryTabBarState.tabList = [];
         _appStateService.appTabBarState.show = false;
@@ -245,7 +248,11 @@ class ViewContestEntryComp {
 
   void inviteFriends() {
     GameMetrics.contestActionEvent(GameMetrics.ACTION_INVITE_FRIENDS, GameMetrics.SCREEN_UPCOMING_CONTEST, contest);
-    JsUtils.runJavascript(null, "socialShare", ["Apuntate al torneo","${HostServer.domain}/sec?contestId=${contest.contestId}"]);
+    JsUtils.runJavascript(null, "generateURL", [contestId, (url) { 
+      JsUtils.runJavascript(null, "socialShare", ["Apuntate al torneo", "$url"]);
+    }]);
+    //JsUtils.runJavascript(null, "showShareSheetBranchUniversal", [contestId]);
+    //JsUtils.runJavascript(null, "socialShare", ["Apuntate al torneo","${HostServer.domain}/sec?contestId=${contest.contestId}"]);
   }
 
   Map _sharingInfo = {};

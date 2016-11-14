@@ -100,8 +100,12 @@ class EnterContestComp implements DetachAware {
     _appStateService.appSecondaryTabBarState.tabList = [];
     switch(_sectionActive) {
       case LINEUP_FIELD_SELECTOR:
-        if (contest != null && !_isRestoringTeam) GameMetrics.contestScreenVisitEvent(metricsScreenName, contest);
-        setupContestInfoTopBar(true, cancelCreateLineup, onContestInfoClick);
+        if (contest != null && !_isRestoringTeam) {
+          GameMetrics.contestScreenVisitEvent(metricsScreenName, contest);
+          setupContestInfoTopBar(true, cancelCreateLineup, onContestInfoClick);
+        } else {
+          setupContestInfoTopBar(false, cancelCreateLineup);
+        }
       break;
       case SELECTING_SOCCER_PLAYER:
         nameFilter = "";
@@ -298,6 +302,7 @@ class EnterContestComp implements DetachAware {
       .then((_) {
         contest = _contestsService.lastContest;
         sectionActive = LINEUP_FIELD_SELECTOR;
+        JsUtils.runJavascript(null, "createBranchUniversalObject_contest", [_profileService.user.userId, _profileService.user.nickName, contestId, contest.name]);
 
         // FIX: Si no estoy editando, pero sí que estoy inscrito en el torneo hay que actualizar el contestEntryId (para indicar que realmente es una edición)
         // Esta situación se puede producir cuando alguien comparte un link con un usuario, en un torneo en el que está inscrito
@@ -1107,7 +1112,9 @@ class EnterContestComp implements DetachAware {
   
   void inviteFriends() {
     GameMetrics.contestActionEvent(GameMetrics.ACTION_INVITE_FRIENDS, metricsScreenName, contest);
-    JsUtils.runJavascript(null, "socialShare", ["Apuntate al torneo","${HostServer.domain}/sec?contestId=${contest.contestId}"]);
+    JsUtils.runJavascript(null, "generateURL", [contestId, (url) { 
+      JsUtils.runJavascript(null, "socialShare", ["Apuntate al torneo", "$url"]);
+    }]);
   }
 
   String get _getKeyForCurrentUserContest => (_profileService.isLoggedIn ? _profileService.user.userId : 'guest') + '#' + contest.optaCompetitionId;

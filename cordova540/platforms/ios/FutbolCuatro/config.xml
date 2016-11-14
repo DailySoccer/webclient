@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="100106" id="com.epiceleven.futbolcuatro" version="1.0.16" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="101000" id="com.epiceleven.futbolcuatro" version="1.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="AllowInlineMediaPlayback" value="false" />
     <preference name="BackupWebStorage" value="cloud" />
     <preference name="DisallowOverscroll" value="false" />
@@ -49,6 +49,9 @@
     <feature name="UniversalLinks">
         <param name="ios-package" value="CULPlugin" />
         <param name="onload" value="true" />
+    </feature>
+    <feature name="BranchSDK">
+        <param name="ios-package" value="BranchSDK" />
     </feature>
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
@@ -106,11 +109,18 @@
     <preference name="Orientation" value="portrait" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="HideKeyboardFormAccessoryBar" value="true" />
-    <preference name="SplashScreenDelay" value="20000" />
     <universal-links>
+        <host event="e11Event" name="futbolcuatro.app.*" scheme="https" />
+        <host event="e11Event" name="futbolcuatro.app.*" scheme="http" />
         <host event="e11Event" name="*.epiceleven.com" scheme="https" />
         <host event="e11Event" name="*.epiceleven.com" scheme="http" />
         <host event="e11Event" name="dailysoccer-staging.herokuapp.com" scheme="https" />
         <host event="e11Event" name="dailysoccer-staging.herokuapp.com" scheme="http" />
     </universal-links>
+    <branch-config>
+        <ios-team-id value="4KECKSMGX8" />
+        <host name="futbolcuatro.app.*" scheme="https" />
+        <host name="futbolcuatro.app.*" scheme="http" />
+    </branch-config>
+    <preference name="SplashScreenDelay" value="20000" />
 </widget>

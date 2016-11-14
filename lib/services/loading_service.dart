@@ -5,6 +5,8 @@ import 'package:webclient/utils/js_utils.dart';
 import 'dart:async';
 import 'package:webclient/utils/host_server.dart';
 import 'dart:convert';
+import 'package:logging/logging.dart';
+import 'package:webclient/utils/game_metrics.dart';
 
 @Injectable()
 class LoadingService {
@@ -25,18 +27,28 @@ class LoadingService {
   }
 
   static Map _universalLinksData = null;
-  static Map getUniversalLinksData() {
+  static bool checkUniversalLinksData() {
     if (_universalLinksData == null) {
       JsUtils.runJavascript(null, 'getULData', [(ulData) {
-        LoadingService._universalLinksData = JSON.decode(ulData);
+        _universalLinksData = JSON.decode(ulData);
       }], null);
     }
     if (_universalLinksData == null || _universalLinksData['isEmpty']) {
-      return null;
+      return false;
     } else {
-      return _universalLinksData;
+      return true;
     }
   }
+  static void processULData(Router router) {
+    JsUtils.runJavascript(null, 'getULData', [(ulData) {
+      _universalLinksData = JSON.decode(ulData);
+      Logger.root.info("DeepLinking, redirection: [Section: ${_universalLinksData['path'].toString()}, Params: ${_universalLinksData['params'].toString()}]");
+      GameMetrics.setupFromDeepLinking();
+      clearULData();
+      router.go(_universalLinksData['path'].toString(), JSON.decode(_universalLinksData['params']), replace: true);
+    }], null);
+  }
+  
   static void clearULData() {
     if (_universalLinksData != null) {
       _universalLinksData['isEmpty'] = true;

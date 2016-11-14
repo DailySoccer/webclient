@@ -2540,7 +2540,7 @@ tc.put("packages/webclient/tutorial/pages_tutorial_initial.html", new HttpRespon
       <div class="tutorial-initial-slide-short-hint">Haz tu alineación</div>
     </div>
     <div class="tutorial-initial-slide-image"><img src="images/tutorial/Help02.gif"></div>
-    <div class="tutorial-initial-slide-long-hint">No puedes superar el presupuesto ni alinear mas de 4 futbolistas de un mismo equipo</div>
+    <div class="tutorial-initial-slide-long-hint">No puedes superar el presupuesto ni alinear más de 4 futbolistas de un mismo equipo</div>
   </div>
   <div class="tutorial-initial-slide tutorial-initial-slide-3" ng-show="currentSlide == 'tutorialInitialSlide_3'">
     <div class="tutorial-initial-slide-upper-text">
@@ -2554,7 +2554,7 @@ tc.put("packages/webclient/tutorial/pages_tutorial_initial.html", new HttpRespon
       </div>
       <div class="tutorial-initial-slide-3-history">
         <i class="material-icons">&#xE889;</i>
-        <span>Consulta los resultados<br>definitivos en el historico.</span>
+        <span>Consulta los resultados<br>definitivos en el histórico.</span>
       </div>
     </div>
     <div class="tutorial-initial-slide-long-hint"></div>

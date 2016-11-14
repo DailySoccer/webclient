@@ -42,7 +42,16 @@
         },
         "cordova-plugin-navigationbar": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
+        },
+        "io.branch.sdk": {
+            "BRANCH_KEY": "key_live_ehqnB1VXWVlhkAEct1bn9ebnzFmjc7ZC",
+            "URI_SCHEME": "futbolcuatro",
+            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "es6-promise-plugin": {
+            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
+        }
+    }
 }

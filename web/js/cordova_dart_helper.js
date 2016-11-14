@@ -15,6 +15,7 @@ window.onApplicationResume = function() {
     console.log("Calling dart callback on app RESUME");
     dartOnApplicationResume();
   }
+  Branch.initSession();
 };
 
 window.onApplicationPause = typeof onApplicationPause !== 'undefined' ? onApplicationPause : function() {};
@@ -70,11 +71,69 @@ document.onreadystatechange = function () {
       });
   }
 }
-
 var universalLinksData = { "isEmpty": true };
+var reevaluateDeepLinking = function() {}; 
 function getULData(callback) {
   callback(JSON.stringify(universalLinksData));
 }
+function DeepLinkHandler(data) {
+  console.log(" --> DeepLinking - " + data + " -- content:");
+  console.log(data);
+  data['params'] = data['params'].replace(/\\"/g, '"'); 
+  universalLinksData = data || {};
+  universalLinksData.isEmpty = data === undefined;
+  if (!universalLinksData.isEmpty) {
+    reevaluateDeepLinking();
+  }
+}
+
+var branchUniversalObjList = {};
+
+function createBranchUniversalObject_contest(userId, userName, contestId, contestName) {
+  if (branchUniversalObjList[contestId] == undefined) {
+    Branch.createBranchUniversalObject({
+      canonicalIdentifier: userId + 'contest/' + contestId,
+      title: 'Apuntate al torneo',
+      contentDescription: userName + ' te ha invitado a participar en ' + contestName,
+      contentImageUrl: 'http://lh3.googleusercontent.com/8Dt_0-TX32S9u3tIzLKvDLWuAjsdpOZ-kTZYlCLdaT69zYpqUx0v-fOdv7mQeEREPQ=w300-rw',
+      contentMetadata: {
+        'userId': userId,
+        'userName': userName,
+        'contestId': contestId,
+        'contestName': contestName,
+        'path': 'sec',
+        'params': {
+          'contestId': contestId
+        }
+      }
+    }).then(function (newBranchUniversalObj) {
+      branchUniversalObjList[contestId] = newBranchUniversalObj;
+    });
+  }
+}
+function generateURL(contestId, callback) {
+  if (branchUniversalObjList[contestId] != undefined) {
+    branchUniversalObjList[contestId].generateShortUrl({
+      // put your link properties here
+      "feature" : "sharing"
+    }, {}).then(function (res) {
+      // Success Callback
+      callback(res.url);
+    });
+  } else {
+    callback(null);
+  }
+}
+function showShareSheetBranchUniversal(contestId) {
+  if (branchUniversalObjList[contestId] != undefined) {
+    branchUniversalObjList[contestId].showShareSheet({
+      // put your link properties here
+      "feature" : "sharing"
+    }, {});
+  }
+}
+
+
 
 function socialShare(s, u) {
 
@@ -130,9 +189,19 @@ document.addEventListener('deviceready', function () {
 
   console.log(" # DEVICE READY EVENT - UniversalLinks");
   universalLinks.subscribe('e11Event', function(ev) {
+    alert("E11Event");
     universalLinksData = ev;
     universalLinksData.isEmpty = false;
   });
+  universalLinks.subscribe('f4Event', function(ev) {
+    alert("F4Event");
+    universalLinksData = ev;
+    universalLinksData.isEmpty = false;
+  });
+  
+  
+  console.log(" # DEVICE READY EVENT - Branch DeepLinking");
+  Branch.initSession();
 
   /* use when configure CSS
   var platform = device.platform.toLowerCase();

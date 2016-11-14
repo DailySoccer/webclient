@@ -16,6 +16,7 @@ import 'dart:async';
 import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/server_error.dart';
 import 'package:logging/logging.dart';
+import 'package:webclient/utils/js_utils.dart';
 
 @Component(
     selector: 'tab-bar',
@@ -98,6 +99,10 @@ class TabBarComp {
                                                 iconImage: "images/tabBar/Button_Scouting.png",
                                                 destination: "scouting")*/
     };
+    
+    JsUtils.setJavascriptFunction('reevaluateDeepLinking', ([_]) {
+      LoadingService.processULData(_router);
+    });
     
 
     this._refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);

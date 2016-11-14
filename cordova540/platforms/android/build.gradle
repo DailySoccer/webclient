@@ -96,6 +96,7 @@ ext {
 }
 
 // PLUGIN GRADLE EXTENSIONS START
+apply from: "io.branch.sdk/futbolcuatro-build-branch-extras.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras = file('build-extras.gradle').exists()

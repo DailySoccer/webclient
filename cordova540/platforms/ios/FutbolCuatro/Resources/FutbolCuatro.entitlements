@@ -4,10 +4,8 @@
   <dict>
     <key>com.apple.developer.associated-domains</key>
     <array>
-      <string>applinks:*.epiceleven.com</string>
-      <string>applinks:*.epiceleven.com</string>
-      <string>applinks:dailysoccer-staging.herokuapp.com</string>
-      <string>applinks:dailysoccer-staging.herokuapp.com</string>
+      <string>applinks:futbolcuatro.app.*</string>
+      <string>applinks:futbolcuatro.app.*</string>
     </array>
   </dict>
 </plist>

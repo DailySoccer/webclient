@@ -125,6 +125,7 @@ import 'package:webclient/tutorial/pages_tutorial_initial.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/utils/game_info.dart';
 import 'dart:js';
+import 'dart:convert';
 
 //import 'package:webclient/components/account/add_funds_comp.dart';
 //import 'package:webclient/components/account/transaction_history_comp.dart';
@@ -719,8 +720,7 @@ class WebClientApp extends Module {
 
     event.allowEnter(_waitingPageLoad(() {
 
-      Map ulData = LoadingService.getUniversalLinksData();
-      LoadingService.clearULData();
+      bool ulDataExists = LoadingService.checkUniversalLinksData();
       
       bool bEnter = true;
 
@@ -736,11 +736,8 @@ class WebClientApp extends Module {
         TutorialService.Instance.skipTutorial();
       }
       
-      
-      if (ulData != null) {
-        Logger.root.info("DeepLinking, redirection: [Section: ${ulData['path'].toString().substring(1)}, Params: ${ulData['params'].toString()}]");
-        GameMetrics.setupFromDeepLinking();
-        router.go(ulData['path'].toString().substring(1), ulData['params'], replace: true);
+      if (ulDataExists) {
+        LoadingService.processULData(router);
         bEnter = false;
       } else if (!bEnter) {
         router.go("home", {}, replace: true);

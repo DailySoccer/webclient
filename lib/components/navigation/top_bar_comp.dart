@@ -14,6 +14,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'dart:async';
 import 'package:logging/logging.dart';
 import 'package:webclient/services/server_error.dart';
+import 'package:webclient/utils/js_utils.dart';
 
 @Component(
     selector: 'top-bar',

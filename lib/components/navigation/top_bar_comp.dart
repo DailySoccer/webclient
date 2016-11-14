@@ -14,6 +14,7 @@ import 'package:webclient/services/screen_detector_service.dart';
 import 'dart:async';
 import 'package:logging/logging.dart';
 import 'package:webclient/services/server_error.dart';
+import 'package:webclient/models/user.dart';
 
 @Component(
     selector: 'top-bar',
@@ -37,7 +38,7 @@ class TopBarComp {
   bool get notificationsActive => _appStateService.notificationsActive;
   void set notificationsActive(bool b) { _appStateService.notificationsActive = b; }
   bool get hasNotification => _profileService.isLoggedIn? _profileService.user.notifications.length > 0 : false;
-  
+
   bool changeNameWindowShow = false;
   
   String get leftColumnHTML   => _columnHTML(currentState.leftColumn);
@@ -92,13 +93,13 @@ class TopBarComp {
       }
     }
   }
-  
+
   void onProfileLoad() {
     _profileService.triggerEventualAction(ProfileService.FIRST_RUN_CHANGE_NAME, () {
       changeNameWindowShow = true;
     });
   }
-
+  
   String _editedNickName = "";
   void set editedNickName(String s) {
     _editedNickName = s;
@@ -125,7 +126,7 @@ class TopBarComp {
       if (nickName  == "") {
          changeNameWindowShow = false;
       }
-
+      
       _profileService.changeUserProfile(_profileService.user.firstName, _profileService.user.lastName, 
                                         _profileService.user.email, nickName, "").then( (_) {
             _profileService.user.nickName = editedNickName;

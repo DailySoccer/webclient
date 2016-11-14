@@ -208,7 +208,6 @@ class ProfileService {
       if (user.facebookID != oldFacebookId) {
         refreshFriendList();
       }
-      
       //GameMetrics.identify(user.email);
       //GameMetrics.peopleSet({"email": user.email, "last_login": GameMetrics.eventsDateString()});
     }
@@ -221,6 +220,7 @@ class ProfileService {
 
     if (bSave) {
       _saveProfile();
+      _onRefreshProfile.add(user);
     }
 
     return jsonMap;
@@ -574,6 +574,8 @@ class ProfileService {
 
   Stream get onLogin => _onLogin.stream;
   StreamController _onLogin = new StreamController.broadcast();
+  Stream<User> get onRefreshProfile => _onRefreshProfile.stream;
+  StreamController<User> _onRefreshProfile = new StreamController<User>.broadcast();
 }
 
 

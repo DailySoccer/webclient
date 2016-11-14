@@ -137,19 +137,6 @@ class HomeComp implements DetachAware {
   }
   
   void refreshTopBar() {
-    /*
-     * EJEMPLO DE CHECK DE DAILYREWARDS
-     */
-    /*
-    // Check DailyRewards
-    if (_profileService.isLoggedIn && _profileService.user.canClaimReward) {
-      Logger.root.info("dailyRewards: claimReward: ${_profileService.user.dailyRewards[_profileService.user.consecutiveDays-1].toString()}");
-      
-      // Cuando el usuario pulse "Aceptar" en el mensaje de información del popup del DailyReward, se solicitará al servidor que nos dé la recompensa
-      _profileService.claimReward();
-    }
-     */
-    
     _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.userBar(_profileService, _router, _leaderboardService, true);
   }
 

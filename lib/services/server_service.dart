@@ -296,7 +296,7 @@ class DailySoccerServer implements ServerService {
   }
   
   Future<Map> countMyContests() {
-    return _innerServerCall("${HostServer.url}/count_my_contests");
+    return _innerServerCall("${HostServer.url}/count_my_contests", cancelIfChangeContext: false);
   }
 
   Future<Map> getActiveTemplateContests() {

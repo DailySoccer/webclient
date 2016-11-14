@@ -149,7 +149,8 @@
       "passwordnotmatch"                : "Las contraseñas no coinciden.",
       "passwordshort"                   : "La contraseña debe tener al menos @MIN_PASSWORD_LENGTH caracteres.",
       "emailnotvalid"                   : "El correo electrónico no es válido.",
-      "nicknameerrortext"               : "El nombre de usuario debe tener al menos @MIN_NICKNAME_LENGTH caracteres."
+      "nicknameerrortext"               : "El nombre de usuario debe tener al menos @MIN_NICKNAME_LENGTH caracteres.",
+      "nicknamenotavailabletext"        : "Nombre de usuario no disponible."
     }
     ,"paymentresponse"                  :
     {

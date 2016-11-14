@@ -243,7 +243,7 @@ class EditPersonalDataComp implements ShadowRootAware{
         .catchError((ServerError error) {
           error.toJson().forEach( (key, value) {
             switch (key)  {
-              case "nickName": nicknameErrorText = value[0]; break;
+              case "nickName": nicknameErrorText = getLocalizedText('nicknamenotavailabletext'); break;
               case "email":    emailErrorText = value[0];    break;
               case "password": passwordErrorText = value[0]; break;
             }

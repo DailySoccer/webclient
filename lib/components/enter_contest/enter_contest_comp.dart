@@ -302,7 +302,10 @@ class EnterContestComp implements DetachAware {
       .then((_) {
         contest = _contestsService.lastContest;
         sectionActive = LINEUP_FIELD_SELECTOR;
-        JsUtils.runJavascript(null, "createBranchUniversalObject_contest", [_profileService.user.userId, _profileService.user.nickName, contestId, contest.name]);
+        
+        if (HostServer.isDevice) {
+          JsUtils.runJavascript(null, "createBranchUniversalObject_contest", [_profileService.user.userId, _profileService.user.nickName, contestId, contest.name]);
+        }
 
         // FIX: Si no estoy editando, pero sí que estoy inscrito en el torneo hay que actualizar el contestEntryId (para indicar que realmente es una edición)
         // Esta situación se puede producir cuando alguien comparte un link con un usuario, en un torneo en el que está inscrito

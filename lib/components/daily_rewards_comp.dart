@@ -18,9 +18,11 @@ import 'package:webclient/models/reward.dart';
 )
 class DailyRewardsComp {
 
+  static const List<Reward> EMPTY = const [];
+  
   bool dailyRewardShow = false;
-  List<Reward> get dailyRewards => _profileService.user.dailyRewards;
-  int get todayReward => _profileService.user.consecutiveDays - 1;
+  List<Reward> get dailyRewards => _profileService.isLoggedIn? _profileService.user.dailyRewards : EMPTY;
+  int get todayReward => _profileService.isLoggedIn? _profileService.user.consecutiveDays - 1 : 0;
   
   DailyRewardsComp(this._profileService) {
     _profileService.onRefreshProfile.listen(onProfileRefresh); 

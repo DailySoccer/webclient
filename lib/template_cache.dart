@@ -827,6 +827,22 @@ tc.put("packages/webclient/components/create_contest_comp.html", new HttpRespons
 
 
 """));
+tc.put("packages/webclient/components/daily_rewards_comp.html", new HttpResponse(200, r"""<modal-window show-header="false" show-window="dailyRewardShow" class="fullscreen daily-rewards-modal">
+  <div class="daily-rewards-title"><span>Recompensa diaria</span><i class="material-icons" ng-click="claimReward()">&#xE14C;</i></div>
+  <div class="daily-rewards-illustration">
+    <img src="images/ranking/rankingMoneyLogo.png">
+  </div>
+  <div class="daily-rewards-sheet">
+    <div class="daily-rewards-sheet-item" ng-repeat="reward in dailyRewards" ng-class="{'today-reward': $index == todayReward, 'acquired-reward': $index <= todayReward}">
+      <div class="daily-rewards-sheet-item-day">Día {{$index + 1}}</div>
+      <div class="daily-rewards-sheet-item-count" ng-bind-html-unsafe="rewardData(reward)"></div>
+      <div class="daily-rewards-sheet-item-state"><i class="material-icons">&#xE876;</i></div>
+    </div>
+  </div>
+  <div class="daily-rewards-accept-button">
+    <button ng-click="claimReward()">Aceptar</button>
+  </div>
+</modal-window>"""));
 tc.put("packages/webclient/components/enter_contest/enter_contest_comp.html", new HttpResponse(200, r"""
 <!-- LINEUP FIELD -->
 <section class="lineup-selector-section" ng-show="isLineupFieldSelectorActive" >
@@ -1919,7 +1935,8 @@ tc.put("packages/webclient/components/navigation/top_bar_comp.html", new HttpRes
   </div>
 </modal-window>
 
-<pages-tutorial-initial></pages-tutorial-initial>"""));
+<pages-tutorial-initial></pages-tutorial-initial>
+<daily-rewards></daily-rewards>"""));
 tc.put("packages/webclient/components/promos_comp.html", new HttpResponse(200, r"""<div id="promosRoot" ng-class="{'hide-promos': !hasPromos()}">
 <div ng-if="!scrDet.isXsScreen">
   <a class="banner2"  ng-click="gotoPromo(0)">

@@ -649,7 +649,7 @@ class ViewContestComp implements DetachAware {
       new AppSecondaryTabBarTab("Alineación",                                        
                                 () { sectionActive = LINEUP_FIELD_CONTEST_ENTRY; },
                                 () => sectionActive == LINEUP_FIELD_CONTEST_ENTRY),
-      new AppSecondaryTabBarTab("Rivales",                                        
+      new AppSecondaryTabBarTab("Clasificación",                                        
                                 () { sectionActive = RIVALS_LIST; },
                                 () => sectionActive == RIVALS_LIST),
     ];

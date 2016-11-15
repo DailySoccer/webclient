@@ -20,8 +20,10 @@ import 'package:webclient/services/app_state_service.dart';
 import 'package:webclient/models/achievement.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/models/contest.dart';
+import 'package:webclient/models/reward.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/leaderboard_service.dart';
+import 'package:logging/logging.dart';
 
 @Component(
   selector: 'home',

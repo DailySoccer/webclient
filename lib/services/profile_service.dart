@@ -179,6 +179,15 @@ class ProfileService {
   Future<bool> hasFlag(String flag) {
     return new Future.value(isLoggedIn ? user.hasFlag(flag) : false);
   }
+  
+  Future<Map> claimReward() {
+    return _server.claimReward()
+        .then((jsonMap) {
+          if (jsonMap.containsKey("profile")) {
+            updateProfileFromJson(jsonMap["profile"]);
+          }
+        });
+  }
 
   void updateProfileFromJson(Map jsonMap) {
     var storedSessionToken = GameInfo.get('sessionToken');
@@ -199,7 +208,6 @@ class ProfileService {
       if (user.facebookID != oldFacebookId) {
         refreshFriendList();
       }
-      
       //GameMetrics.identify(user.email);
       //GameMetrics.peopleSet({"email": user.email, "last_login": GameMetrics.eventsDateString()});
     }
@@ -212,6 +220,7 @@ class ProfileService {
 
     if (bSave) {
       _saveProfile();
+      _onRefreshProfile.add(user);
     }
 
     return jsonMap;
@@ -565,6 +574,8 @@ class ProfileService {
 
   Stream get onLogin => _onLogin.stream;
   StreamController _onLogin = new StreamController.broadcast();
+  Stream<User> get onRefreshProfile => _onRefreshProfile.stream;
+  StreamController<User> _onRefreshProfile = new StreamController<User>.broadcast();
 }
 
 

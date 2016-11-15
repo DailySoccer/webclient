@@ -1,0 +1,99 @@
+.daily-rewards-modal .modal-window-content {
+  .flex-container-col();
+  .flex-elem-fluid();
+  align-items: center;
+  justify-content: space-around;
+}
+.daily-rewards-title {
+  .flex-container-row();
+  .flex-elem-fixed(auto);
+  align-self: stretch;
+  padding: 24px 24px 0 24px;
+  span {
+    .flex-elem-fluid();
+	  .mainfont_light(12pt, @orange, center, uppercase);
+  }
+  .material-icons {
+    .flex-elem-fixed(24px);
+    text-align: center;
+    margin-left: -24px;
+  }
+}
+
+.daily-rewards-illustration {
+  .flex-container-row();
+  .flex-elem-fixed(150px);
+  align-items: center;
+  img {
+    width: 135px;
+    height: 135px;
+  }
+}
+
+.daily-rewards-sheet {
+  .flex-elem-fluid();
+  .flex-container-col();
+  .elevation(2);
+  justify-content: space-around;
+  border: 2px solid @grey-translucid;
+  border-radius: 5px;
+  overflow: hidden;    
+  width: 90%;
+  max-width: 400px;
+}
+
+.daily-rewards-sheet-item {
+  .flex-container-row();
+  .flex-elem-fluid();
+  align-items: center;
+  justify-content: center;
+  border: 1px solid @black;
+  
+  .daily-rewards-sheet-item-day {
+    .flex-elem-fixed(70px);
+	  .mainfont_light(12pt, @blueLight, center, uppercase);
+  }
+  .daily-rewards-sheet-item-count {
+    .flex-elem-fluid();
+	  .mainfont_light(12pt, @white, center, uppercase);
+    img {
+      margin-left: 5px;
+      width: 24px;
+      height: 24px;
+    }
+  }
+  .daily-rewards-sheet-item-state {
+    .flex-elem-fixed(60px);
+	  color: @black;
+    font-size: 18pt;
+  }
+  
+  &.acquired-reward {
+    .material-icons {
+      color: @blueLight;
+    }
+  }
+  &.today-reward {
+    background-color: @black-translucid-40;
+    .daily-rewards-sheet-item-day,
+    .daily-rewards-sheet-item-count,
+    .material-icons {
+      font-size: 18pt;
+    }
+    .material-icons {
+      color: @orange;
+      font-size: 25pt;
+    }
+  }
+}
+
+.daily-rewards-accept-button {
+  .flex-elem-fixed(auto);
+  button {
+    .default-button();
+    width: 250px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+

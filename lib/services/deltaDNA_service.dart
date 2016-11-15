@@ -22,7 +22,7 @@ import 'package:webclient/utils/string_utils.dart';
 @Injectable()
 class DeltaDNAService {
 
-  static const String DEV_KEY = "72891174095194552870731883714660";
+  static const String DEV_KEY  = "72891174095194552870731883714660";
   static const String LIVE_KEY = "72891177097061902669292778914660";
   
   /*

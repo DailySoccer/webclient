@@ -11,6 +11,8 @@
   <notifications ng-if="notificationsActive"></notifications>
 </modal-window>
 
+<daily-rewards></daily-rewards>
+
 <modal-window show-header="false" show-window="changeNameWindowShow" class="small first-nickname-change">
   <span class="first-nickname-label">Elige tu nombre</span>      
   <input class="first-nickname-input" type="text" maxlength="{{MAX_NICKNAME_LENGTH}}" ng-model="editedNickName" 
@@ -25,4 +27,3 @@
 </modal-window>
 
 <pages-tutorial-initial></pages-tutorial-initial>
-<daily-rewards></daily-rewards>

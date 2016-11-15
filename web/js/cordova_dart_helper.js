@@ -188,7 +188,7 @@ document.addEventListener('deviceready', function () {
   epicStore.ready();
 
   console.log(" # DEVICE READY EVENT - UniversalLinks");
-  universalLinks.subscribe('e11Event', function(ev) {
+  /*universalLinks.subscribe('e11Event', function(ev) {
     alert("E11Event");
     universalLinksData = ev;
     universalLinksData.isEmpty = false;
@@ -198,7 +198,7 @@ document.addEventListener('deviceready', function () {
     universalLinksData = ev;
     universalLinksData.isEmpty = false;
   });
-  
+  */
   
   console.log(" # DEVICE READY EVENT - Branch DeepLinking");
   Branch.initSession();

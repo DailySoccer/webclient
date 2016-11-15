@@ -1922,6 +1922,8 @@ tc.put("packages/webclient/components/navigation/top_bar_comp.html", new HttpRes
   <notifications ng-if="notificationsActive"></notifications>
 </modal-window>
 
+<daily-rewards></daily-rewards>
+
 <modal-window show-header="false" show-window="changeNameWindowShow" class="small first-nickname-change">
   <span class="first-nickname-label">Elige tu nombre</span>      
   <input class="first-nickname-input" type="text" maxlength="{{MAX_NICKNAME_LENGTH}}" ng-model="editedNickName" 
@@ -1935,8 +1937,7 @@ tc.put("packages/webclient/components/navigation/top_bar_comp.html", new HttpRes
   </div>
 </modal-window>
 
-<pages-tutorial-initial></pages-tutorial-initial>
-<daily-rewards></daily-rewards>"""));
+<pages-tutorial-initial></pages-tutorial-initial>"""));
 tc.put("packages/webclient/components/promos_comp.html", new HttpResponse(200, r"""<div id="promosRoot" ng-class="{'hide-promos': !hasPromos()}">
 <div ng-if="!scrDet.isXsScreen">
   <a class="banner2"  ng-click="gotoPromo(0)">

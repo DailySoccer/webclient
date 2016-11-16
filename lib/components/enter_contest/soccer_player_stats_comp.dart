@@ -141,10 +141,11 @@ class SoccerPlayerStatsComp implements DetachAware {
   }
   
   void refreshSoccerPlayerData() {
-    loadingService.isLoading = true;
     Future refreshInstancePlayerInfo;
     if (instanceSoccerPlayerId == null) return;
 
+    loadingService.isLoading = true;
+    
     // 2 Opciones:
     // a) parent.contestId + instanceSoccerPlayerId + selectable
     // b) soccerPlayerId + selectable

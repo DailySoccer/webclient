@@ -53,10 +53,6 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"UniversalLinks\"><param name=\"ios-package\" value=\"CULPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"BranchSDK\"><param name=\"ios-package\" value=\"BranchSDK\" /></feature>",
                             "count": 1
                         }
@@ -110,9 +106,6 @@
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         },
         "cordova-plugin-x-socialsharing": {
-            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
-        },
-        "cordova-universal-links-plugin": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         },
         "cordova-plugin-navigationbar": {
@@ -208,14 +201,6 @@
             "pluginId": "cordova-plugin-x-socialsharing",
             "clobbers": [
                 "window.plugins.socialsharing"
-            ]
-        },
-        {
-            "file": "plugins/cordova-universal-links-plugin/www/universal_links.js",
-            "id": "cordova-universal-links-plugin.universalLinks",
-            "pluginId": "cordova-universal-links-plugin",
-            "clobbers": [
-                "universalLinks"
             ]
         },
         {

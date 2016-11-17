@@ -79,11 +79,15 @@ function getULData(callback) {
 function DeepLinkHandler(data) {
   console.log(" --> DeepLinking - " + data + " -- content:");
   console.log(data);
-  data['params'] = data['params'].replace(/\\"/g, '"'); 
-  universalLinksData = data || {};
-  universalLinksData.isEmpty = data === undefined;
-  if (!universalLinksData.isEmpty) {
-    reevaluateDeepLinking();
+  try {
+    data['params'] = data['params'].replace(/\\"/g, '"'); 
+    universalLinksData = data || {};
+    universalLinksData.isEmpty = data === undefined;
+    if (!universalLinksData.isEmpty) {
+      reevaluateDeepLinking();
+    }
+  } catch (e) {
+    console.log(e);
   }
 }
 

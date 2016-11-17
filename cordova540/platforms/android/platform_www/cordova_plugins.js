@@ -72,14 +72,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/cordova-universal-links-plugin/www/universal_links.js",
-        "id": "cordova-universal-links-plugin.universalLinks",
-        "pluginId": "cordova-universal-links-plugin",
-        "clobbers": [
-            "universalLinks"
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-navigationbar/www/navigationbar.js",
         "id": "cordova-plugin-navigationbar.navigationbar",
         "pluginId": "cordova-plugin-navigationbar",

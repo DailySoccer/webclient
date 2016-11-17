@@ -38,9 +38,6 @@
         "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         },
-        "cordova-universal-links-plugin": {
-            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
-        },
         "cordova-plugin-navigationbar": {
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         },

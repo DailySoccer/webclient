@@ -10,13 +10,13 @@
     </contests-list>
     <div class="no-contests-wrapper" ng-show="isContestListEmpty">
       <img class="no-contests-icon" src="images/icon-lobby-vacio.png">
-      <div class="no-contests-title">Todos los torneos están llenos<br>Disculpa las molestias</div>
-      <div class="no-contests-subtitle">Puedes crear tu propio torneo retando a tus amigos</div>
+      <div class="no-contests-title">Te has apuntado a todos los torneos disponibles.<br>Pronto habrá nuevos torneos disponibles.</div>
+      <!--div class="no-contests-subtitle">Puedes crear tu propio torneo retando a tus amigos</div-->
     </div>
 </section>
 
 <!-- Descomentar cuando hablitemos la funcionalidad de crear torneos -->
-<button class="create-custom-contest-button" ng-click="onCreateContestClick()">{{getStaticLocalizedText("challengeyourfriendsbutton")}}</button>
+<!--button class="create-custom-contest-button" ng-click="onCreateContestClick()">{{getStaticLocalizedText("challengeyourfriendsbutton")}}</button-->
 
 <!-- Punto de insercion de nuestra ruta hija contest-info (modal)
 <ng-view  ng-show="!loadingService.isLoading"></ng-view> -->

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="101000" id="com.epiceleven.futbolcuatro" version="1.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="101003" id="com.epiceleven.futbolcuatro" version="1.1.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="loglevel" value="DEBUG" />
     <feature name="InAppBillingPlugin">
         <param name="android-package" value="com.smartmobilesoftware.inappbilling.InAppBillingPlugin" />
@@ -30,10 +30,6 @@
     </feature>
     <feature name="SocialSharing">
         <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
-    </feature>
-    <feature name="UniversalLinks">
-        <param name="android-package" value="com.nordnetab.cordova.ul.UniversalLinksPlugin" />
-        <param name="onload" value="true" />
     </feature>
     <feature name="NavigationBar">
         <param name="android-package" value="com.cranberrygame.cordova.plugin.navigationbar.NavigationBar" />
@@ -81,18 +77,19 @@
     <preference name="Orientation" value="portrait" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="HideKeyboardFormAccessoryBar" value="true" />
-    <universal-links>
-        <host event="e11Event" name="futbolcuatro.app.*" scheme="https" />
-        <host event="e11Event" name="futbolcuatro.app.*" scheme="http" />
-        <host event="e11Event" name="*.epiceleven.com" scheme="https" />
-        <host event="e11Event" name="*.epiceleven.com" scheme="http" />
-        <host event="e11Event" name="dailysoccer-staging.herokuapp.com" scheme="https" />
-        <host event="e11Event" name="dailysoccer-staging.herokuapp.com" scheme="http" />
-    </universal-links>
+    <preference name="AndroidLaunchMode" value="singleInstance" />
     <branch-config>
         <ios-team-id value="4KECKSMGX8" />
-        <host name="futbolcuatro.app.*" scheme="https" />
-        <host name="futbolcuatro.app.*" scheme="http" />
+        <host name="futbolcuatro.app.link" scheme="https">
+            <path url="NOT /e/*" />
+            <path url="*" />
+            <path url="/" />
+        </host>
+        <host name="futbolcuatro.app.link" scheme="http">
+            <path url="NOT /e/*" />
+            <path url="*" />
+            <path url="/" />
+        </host>
     </branch-config>
     <preference name="SplashScreenDelay" value="20000" />
 </widget>

@@ -4,8 +4,8 @@
   <dict>
     <key>com.apple.developer.associated-domains</key>
     <array>
-      <string>applinks:futbolcuatro.app.*</string>
-      <string>applinks:futbolcuatro.app.*</string>
+      <string>applinks:futbolcuatro.app.link</string>
+      <string>applinks:futbolcuatro.app.link</string>
     </array>
   </dict>
 </plist>

@@ -100,8 +100,10 @@ class EnterContestComp implements DetachAware {
     _appStateService.appSecondaryTabBarState.tabList = [];
     switch(_sectionActive) {
       case LINEUP_FIELD_SELECTOR:
-        if (contest != null && !_isRestoringTeam) {
-          GameMetrics.contestScreenVisitEvent(metricsScreenName, contest);
+        if (contest != null) {
+          if (!_isRestoringTeam) {
+            GameMetrics.contestScreenVisitEvent(metricsScreenName, contest);
+          }
           setupContestInfoTopBar(true, cancelCreateLineup, onContestInfoClick);
         } else {
           setupContestInfoTopBar(false, cancelCreateLineup);

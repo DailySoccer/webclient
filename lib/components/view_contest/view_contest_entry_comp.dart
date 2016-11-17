@@ -125,7 +125,10 @@ class ViewContestEntryComp {
       .then((_) {
         loadingService.isLoading = false;
         contest = _contestsService.lastContest;
-        JsUtils.runJavascript(null, "createBranchUniversalObject_contest", [_profileService.user.userId, _profileService.user.nickName, contestId, contest.name]);
+        
+        if (HostServer.isDevice) {
+          JsUtils.runJavascript(null, "createBranchUniversalObject_contest", [_profileService.user.userId, _profileService.user.nickName, contestId, contest.name]);
+        }
 
         setupContestInfoTopBar(true, () => _router.go('my_contests', {"section": "upcoming"}), onContestInfoClick);
         _appStateService.appSecondaryTabBarState.tabList = [];

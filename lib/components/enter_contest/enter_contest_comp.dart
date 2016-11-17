@@ -148,6 +148,9 @@ class EnterContestComp implements DetachAware {
   bool get isContestInfoActive => sectionActive == CONTEST_INFO;
   bool isLineupFinished = false;
   
+  // Torneo en el que el usuario realmente ha sido inscrito (puede ser igual o diferente al contestId)
+  String signedUpContestId;
+  
   InstanceSoccerPlayer selectedInstanceSoccerPlayer;
   
   bool get isCurrentSelectedAdded => lineupSlots.contains(selectedInstanceSoccerPlayer);
@@ -821,6 +824,9 @@ class EnterContestComp implements DetachAware {
                                                                                                                   'salaryCap': contest.salaryCap, 
                                                                                                                   'salaryNotUsed': availableSalary, 
                                                                                                                   'salaryUsed': contest.salaryCap - availableSalary});
+          // Al editar un contest, NUNCA se producirá un cambio de contestId
+          signedUpContestId = contest.contestId;
+          
           _teamConfirmed = true;
           isLineupFinished = true;
           /*
@@ -832,6 +838,7 @@ class EnterContestComp implements DetachAware {
         .catchError((ServerError error) => _errorCreating(error));
     }
     else {
+      
         _contestsService.addContestEntry(contest.contestId, formationId, lineupSlots.map((SoccerPlayerListItem player) => player.id).toList())
           .then((contestId) {
             /*
@@ -847,6 +854,9 @@ class EnterContestComp implements DetachAware {
                                                                                                             'salaryNotUsed': availableSalary, 
                                                                                                             'salaryUsed': contest.salaryCap - availableSalary});
 
+            // Al inscribirnos en un torneo, puede que nos asignen otro diferente (si estuviera lleno el anterior)
+            signedUpContestId = contestId;
+            
             _teamConfirmed = true;
             isLineupFinished = true;
           })
@@ -908,7 +918,9 @@ class EnterContestComp implements DetachAware {
   
   void goUpcomingContest() {
     GameMetrics.contestActionEvent(GameMetrics.ACTION_CHECK_LINEUP, metricsScreenName, contest);
-    _router.go('view_contest_entry', {"contestId": contest.contestId, 
+    
+    // Abrimos el contestEntry del Torneo al que se ha inscrito el usuario
+    _router.go('view_contest_entry', {"contestId": signedUpContestId, 
                                       "parent": "my_contests", 
                                       "viewContestEntryMode": "viewing"});
   }

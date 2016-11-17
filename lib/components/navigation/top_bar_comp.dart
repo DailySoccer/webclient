@@ -65,11 +65,8 @@ class TopBarComp {
   TopBarComp(this._router, this._loadingService, this._view, this._rootElement, 
                 this._dateTimeService, this._profileService, this._templateService, 
                 this._catalogService, this._appStateService, this._scrDet) {
-    if (_profileService.isLoggedIn) {
-      onProfileLoad();
-    } else {
-      _profileService.onLogin.listen(([_]) => onProfileLoad());
-    }
+    
+    _profileService.onRefreshProfile.listen(onProfileRefresh); 
     //editedNickName = _profileService.user.nickName;
   }
 
@@ -95,7 +92,7 @@ class TopBarComp {
     }
   }
 
-  void onProfileLoad() {
+  void onProfileRefresh(User user) {
     _profileService.triggerEventualAction(ProfileService.FIRST_RUN_CHANGE_NAME, () {
       changeNameWindowShow = true;
     });

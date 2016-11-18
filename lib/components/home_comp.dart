@@ -101,6 +101,7 @@ class HomeComp implements DetachAware {
       loadingService.isLoading = true;
       this._profileService.onLogin.listen((_) { loadingService.isLoading = false; });
     }
+    _refreshProfileStream = _profileService.onRefreshProfile.listen(onProfileRefresh);
     
     refreshTopBar();
     refreshRankingPosition();
@@ -118,6 +119,10 @@ class HomeComp implements DetachAware {
     _nextTournamentInfoTimer = new Timer.periodic(new Duration(seconds: 1), (Timer t) => _calculateInfoBarText());
     
     GameMetrics.screenVisitEvent(GameMetrics.SCREEN_START);
+  }
+  
+  void onProfileRefresh(User user) {
+    refreshRankingPosition();
   }
   
   void refreshRankingPosition() {
@@ -177,11 +182,13 @@ class HomeComp implements DetachAware {
   }
     
   void detach() {
+    _refreshProfileStream.cancel();
     _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR);
     //_refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_RANKING_POSITION);
     _nextTournamentInfoTimer.cancel();
   }
 
+  StreamSubscription<User> _refreshProfileStream;
   ProfileService _profileService;
   Router _router;
   FlashMessagesService _flashMessage;

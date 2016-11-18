@@ -33,6 +33,7 @@ class Money {
   String toStringWithCurrency() => "${StringUtils.parsePrize(amount)}${currentSymbolMap[currencyUnit]}";
   String get currencySymbol => currentSymbolMap[currencyUnit];
   // String toString() => "${currentSymbolMap[currencyUnit]}${StringUtils.parsePrize(amount)}";
+  String get toJson => "$currencyUnit $amount";
 
   int toInt() => amount.toInt();
 

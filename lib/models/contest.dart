@@ -197,6 +197,11 @@ class Contest {
 
   Money getPrizeForUser(String userId) {
     ContestEntry entry = getContestEntryWithUser(userId);
+    // En el Histórico, el premio lo cogemos de la propia ContestEntry
+    if (isHistory) {
+      return entry.prize;
+    }
+    // En Live, el premio lo calculamos de la table de premios
     return prize.getValue(getUserPosition(entry) - 1);
   }
 

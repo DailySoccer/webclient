@@ -1,62 +1,62 @@
 
 
-<div class="contest-list-item-wrapper" ng-repeat="contest in currentContestList.elements track by contest.contesId">
+<div class="contest-list-item-wrapper" *ngFor="contest in currentContestList.elements track by contest.contesId">
     <!-- Separador de fecha -->
-    <div class="contestDateSeparator" ng-if="idDifferentDate($index) && showDate">
+    <div class="contestDateSeparator" *ngIf="idDifferentDate($index) && showDate">
       <span>{{dateSeparatorText(contest.startDate)}}</span>
     </div>
     <!-- Slot de Concurso -->
-    <div class="contestSlot" ng-class="{'special': getContestMorfology(contest) == 'special', 'real': getContestTypeIcon(contest) == 'real', 'virtual': getContestTypeIcon(contest) != 'real'}" ng-click="onRow(contest)" ng-style="{'background-image':'url({{getContestImage(contest)}})'}">
+    <div class="contestSlot" [ngClass]="{'special': getContestMorfology(contest) == 'special', 'real': getContestTypeIcon(contest) == 'real', 'virtual': getContestTypeIcon(contest) != 'real'}" ng-click="onRow(contest)" ng-style="{'background-image':'url({{getContestImage(contest)}})'}">
       <div class="contest-content">
         <!-- nombre y descripción -->
         <div class="name-section">
-          <div class="contest-data-item-value column-start-hour" ng-if="hourIsShow(contest)">{{timeInfo(contest.startDate, !contest.isHistory)}}</div>
-          <div class="contest-data-item-value column-substitutions" ng-if="substitutionsIsShow(contest)">{{substitutionCount(contest)}}<i class="material-icons">&#xE8D5;</i></div>
+          <div class="contest-data-item-value column-start-hour" *ngIf="hourIsShow(contest)">{{timeInfo(contest.startDate, !contest.isHistory)}}</div>
+          <div class="contest-data-item-value column-substitutions" *ngIf="substitutionsIsShow(contest)">{{substitutionCount(contest)}}<i class="material-icons">&#xE8D5;</i></div>
           <div class="contest-data-item-value column-name">{{contest.name}}</div>
         </div>
         <div class="contest-data-section">
-          <div class="contest-data-item entries-section" ng-if="entriesIsShow(contest)">
+          <div class="contest-data-item entries-section" *ngIf="entriesIsShow(contest)">
             <div class="contest-data-item-value">{{entriesColumn(contest)}}<i class="material-icons">&#xE7FB;</i></div>
             <div class="contest-data-item-key">Jugadores</div>
           </div>
-          <div class="contest-data-item position-section" ng-if="positionIsShow(contest)">
+          <div class="contest-data-item position-section" *ngIf="positionIsShow(contest)">
             <div class="contest-data-item-value position-value">{{printableMyPosition(contest)}}º<span> / {{contest.numEntries}}</span></div>
             <div class="contest-data-item-key">Posición</div>
           </div>
           <!-- bandera y Hora -->
-          <div class="contest-data-item prize-distribution-section" ng-if="prizeDistributionIsShow(contest)">
+          <div class="contest-data-item prize-distribution-section" *ngIf="prizeDistributionIsShow(contest)">
             <div class="contest-data-item-value">{{prizeDistribution(contest)}}</div>
             <div class="contest-data-item-key">Premiados</div>
           </div>
           <!-- puntos -->
-          <div class="contest-data-item points-section" ng-if="pointsSectionIsShow(contest)">
+          <div class="contest-data-item points-section" *ngIf="pointsSectionIsShow(contest)">
             <div class="contest-data-item-value price-count">{{pointsOfUser(contest)}}</div>
             <div class="contest-data-item-key price-description">Puntos</div>
           </div>
           <!-- bote -->
-          <div class="contest-data-item prize-pool-section" ng-if="prizePoolSectionIsShow(contest)">
+          <div class="contest-data-item prize-pool-section" *ngIf="prizePoolSectionIsShow(contest)">
             <div class="contest-data-item-value prize-count">{{getPrizePool(contest)}}<i class="material-icons">&#xE3FA;</i></div>
             <div class="contest-data-item-key prize-description">Bote</div>
           </div>
           <!-- premio -->
-          <div class="contest-data-item user-prize-section" ng-if="userPrizeSectionIsShow(contest)">
+          <div class="contest-data-item user-prize-section" *ngIf="userPrizeSectionIsShow(contest)">
             <div class="contest-data-item-value prize-count">{{getPrizeToShow(contest)}}<i class="material-icons">&#xE3FA;</i></div>
             <div class="contest-data-item-key prize-description">Premio</div>
           </div>
           <!-- precio -->
-          <div class="contest-data-item price-section" ng-if="priceSectionIsShow(contest)">
-            <div class="contest-data-item-value price-count">{{contest.entryFee.amount == 0? "Gratis" : contest.entryFee}}<i class="material-icons" ng-if="contest.entryFee.amount != 0">&#xE3FA;</i></div>
+          <div class="contest-data-item price-section" *ngIf="priceSectionIsShow(contest)">
+            <div class="contest-data-item-value price-count">{{contest.entryFee.amount == 0? "Gratis" : contest.entryFee}}<i class="material-icons" *ngIf="contest.entryFee.amount != 0">&#xE3FA;</i></div>
             <div class="contest-data-item-key price-description">Entrada</div>
           </div>
         </div>
       </div>
       <!-- Flechita call to action --->
-      <div class="contest-action" ng-click="onAction(contest, $event)">
+      <div class="contest-action" (click)="onAction(contest, $event)">
         <i class="material-icons">&#xE5CC;</i>
       </div>
     </div> 
 </div>
 
-<div class="loading-row" ng-if="!currentContestList.isFullList">
+<div class="loading-row" *ngIf="!currentContestList.isFullList">
   <div id="loadingRowSpinner"><div class="spinner" role="progressbar"><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-0-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(0deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-1-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(27deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-2-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(55deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-3-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(83deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-4-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(110deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-5-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(138deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-6-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(166deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-7-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(193deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-8-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(221deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-9-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(249deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-10-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(276deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-11-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(304deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div><div style="position: absolute; top: -1px; opacity: 0.25; animation: opacity-60-25-12-13 1s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: left 50% 0px; transform: rotate(332deg) translate(7px, 0px); border-radius: 1px; background: rgb(0, 0, 0);"></div></div></div></div>
 </div>

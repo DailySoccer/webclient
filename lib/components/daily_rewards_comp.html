@@ -1,16 +1,16 @@
 <modal-window show-header="false" show-window="dailyRewardShow" class="fullscreen daily-rewards-modal">
-  <div class="daily-rewards-title"><span>Recompensa diaria</span><i class="material-icons" ng-click="claimReward()">&#xE14C;</i></div>
+  <div class="daily-rewards-title"><span>Recompensa diaria</span><i class="material-icons" (click)="claimReward()">&#xE14C;</i></div>
   <div class="daily-rewards-illustration">
     <img src="images/ranking/rankingMoneyLogo.png">
   </div>
   <div class="daily-rewards-sheet">
-    <div class="daily-rewards-sheet-item" ng-repeat="reward in dailyRewards" ng-class="{'today-reward': $index == todayReward, 'acquired-reward': $index <= todayReward}">
+    <div class="daily-rewards-sheet-item" *ngFor="let reward of dailyRewards" [ngClass]="{'today-reward': $index == todayReward, 'acquired-reward': $index <= todayReward}">
       <div class="daily-rewards-sheet-item-day">Día {{$index + 1}}</div>
-      <div class="daily-rewards-sheet-item-count" ng-bind-html-unsafe="rewardData(reward)"></div>
+      <div class="daily-rewards-sheet-item-count" [innerHTML]="rewardData(reward)"></div>
       <div class="daily-rewards-sheet-item-state"><i class="material-icons">&#xE876;</i></div>
     </div>
   </div>
   <div class="daily-rewards-accept-button">
-    <button ng-click="claimReward()">Aceptar</button>
+    <button (click)="claimReward()">Aceptar</button>
   </div>
 </modal-window>

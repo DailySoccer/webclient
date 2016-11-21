@@ -9,8 +9,8 @@
   <div class="create-contest-section">
     <div class="title">{{getLocalizedText("name")}}</div>
     <div class="data-input-wrapper contest-name">
-      <input id="contestNameInput" type="text" ng-model="contestName" tabindex="1"
-             placeholder="{{placeholderName}}" maxlength="{{MAX_LENGTH_CONTEST_NAME}}"
+      <input id="contestNameInput" type="text" [(ngModel)]="contestName" tabindex="1"
+             placeholder="{{placeholderName}}" attr.maxlength="{{MAX_LENGTH_CONTEST_NAME}}"
              class="form-control ng-binding ng-pristine ng-touched">
       <span class="contest-name-length">{{MAX_LENGTH_CONTEST_NAME - contestName.length}}</span>
     </div>
@@ -26,21 +26,21 @@
     <div class="data-input-wrapper contest-style">
       <span class="data-element">
         <input id="contestHeadToHead" type="radio" value="headToHead" name="contestStyle"
-               ng-value="STYLE_HEAD_TO_HEAD" ng-model="contestStyle"
-               ng-class="{'disabled-radio': templatesPerStyle[STYLE_HEAD_TO_HEAD].isEmpty }"
-               ng-disabled="templatesPerStyle[STYLE_HEAD_TO_HEAD].isEmpty">
+               value="STYLE_HEAD_TO_HEAD" [(ngModel)]="contestStyle"
+               [ngClass]="{'disabled-radio': templatesPerStyle[STYLE_HEAD_TO_HEAD].isEmpty }"
+               [disabled]="templatesPerStyle[STYLE_HEAD_TO_HEAD].isEmpty">
         <label for="contestHeadToHead"><span class="icon"></span>{{getLocalizedText("head_to_head")}}</label>
       </span>
       <span class="data-element">
         <input id="contestOpen" type="radio" value="league" name="contestStyle"
-               ng-value="STYLE_LEAGUE" ng-model="contestStyle"
-               ng-class="{'disabled-radio': templatesPerStyle[STYLE_LEAGUE].isEmpty }"
-               ng-disabled="templatesPerStyle[STYLE_LEAGUE].isEmpty">
+               value="STYLE_LEAGUE" [(ngModel)]="contestStyle"
+               [ngClass]="{'disabled-radio': templatesPerStyle[STYLE_LEAGUE].isEmpty }"
+               [disabled]="templatesPerStyle[STYLE_LEAGUE].isEmpty">
         <label for="contestOpen">
           <span class="icon"></span>
           <span class="label">{{getLocalizedText("league")}}</span>
-          <select name="contestLeagueCountSelector" id="contestLeagueCountSelector" class="form-control contest-league-count-selector dropdown-toggle" ng-model="selectedLeaguePlayerCount">
-            <option ng-repeat="count in leaguePlayerCountList" id="option-contest-count-{{count}}" value="{{$index + 1}}" ng-value="count">{{count == -1? getLocalizedText("no_limit") : count}}</option>
+          <select name="contestLeagueCountSelector" id="contestLeagueCountSelector" class="form-control contest-league-count-selector dropdown-toggle" [(ngModel)]="selectedLeaguePlayerCount">
+            <option *ngFor="let count of leaguePlayerCountList" id="option-contest-count-{{count}}" value="{{$index + 1}}" [ngValue]="count">{{count == -1? getLocalizedText("no_limit") : count}}</option>
           </select>
         </label>
       </span>

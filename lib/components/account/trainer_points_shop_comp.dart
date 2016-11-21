@@ -1,13 +1,12 @@
 library trainer_points_shop_comp;
 
-import 'dart:html';
-import 'package:angular/angular.dart';
-import 'package:webclient/utils/html_utils.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 
 @Component(
     selector: 'trainer-points-shop-comp',
-    templateUrl: 'packages/webclient/components/account/trainer_points_shop_comp.html',
-    useShadowDom: false
+    templateUrl: 'trainer_points_shop_comp.html'
 )
 class TrainerPointsShopComp {
 

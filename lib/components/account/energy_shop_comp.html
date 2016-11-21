@@ -1,8 +1,8 @@
 <div id="energyshopComp">
   <div class="content">
     <div class="products-wrapper">
-      <div ng-repeat="item in products"  ng-click="buyEnergy(item.id)">
-        <div ng-class="{'no-purchasable': !item.purchasable}" class="product" ng-if="item.price != null || timeLeft != ''">
+      <div *ngFor="let item of products"  (click)="buyEnergy(item.id)">
+        <div [ngClass]="{'no-purchasable': !item.purchasable}" class="product" *ngIf="item.price != null || timeLeft != ''">
           <div class="slot-base">
             <div class="shop-item-left"></div>
             <div class="shop-item-middle"></div>
@@ -11,13 +11,13 @@
           <div class="shop-item-pattern"></div>
           <div class="slot-content">
             <div class="image-column">
-              <img class="item-icon" ng-src="{{item.captionImage}}">
+              <img class="item-icon" src="{{item.captionImage}}">
             </div>
             <div class="quantity-column">
               <span class="product-description">{{item.description}}</span>
-              <div ng-switch="item.purchasable">
-                <span ng-switch-when="true"  class="product-count">{{item.price}}</span>
-                <span ng-switch-when="false" class="product-time-left">{{timeLeft}}</span>
+              <div [ngSwitch]="item.purchasable">
+                <span [ngSwitchWhen]="true"  class="product-count">{{item.price}}</span>
+                <span [ngSwitchWhen]="false" class="product-time-left">{{timeLeft}}</span>
               </div>
             </div>
        	  </div>

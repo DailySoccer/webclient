@@ -1,7 +1,9 @@
 library my_contests_comp;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
-import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
@@ -19,10 +21,9 @@ import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
   selector: 'my-contests',
-  templateUrl: 'packages/webclient/components/my_contests_comp.html',
-  useShadowDom: false
+  templateUrl: 'my_contests_comp.html'
 )
-class MyContestsComp implements DetachAware, ShadowRootAware {
+class MyContestsComp implements OnDestroy, OnInit {
   static const String TAB_WAITING = "waiting";
   static const String TAB_LIVE    = "live";
   static const String TAB_HISTORY = "history";
@@ -73,8 +74,8 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
     return StringUtils.translate(key, "mycontest");
   }
 
-  MyContestsComp(this.loadingService, this._profileService, this._appStateService, this._refreshTimersService, this.contestsService, this._router, this._routeProvider,
-                     this._flashMessage, this._rootElement, TutorialService tutorialService, this._leaderboardService) {
+  MyContestsComp(this.loadingService, this._profileService, this._appStateService, this._refreshTimersService, this.contestsService, this._router, this._routeParams,
+                     this._flashMessage, TutorialService tutorialService, this._leaderboardService) {
 
     loadingService.isLoading = true;
 
@@ -120,22 +121,22 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
   }
 
   void onWaitingActionClick(Contest contest) {
-    _router.go('view_contest_entry', {"contestId": contest.contestId, "parent": "my_contests", "viewContestEntryMode": "viewing"});
+    _router.navigate(['view_contest_entry', {"contestId": contest.contestId, "parent": "my_contests", "viewContestEntryMode": "viewing"}]);
   }
 
   void onLiveActionClick(Contest contest) {
-    _router.go('live_contest', {"contestId": contest.contestId, "parent": "my_contests"});
+    _router.navigate(['live_contest', {"contestId": contest.contestId, "parent": "my_contests"}]);
   }
 
   void onHistoryActionClick(Contest contest) {
-    _router.go('history_contest', {"contestId": contest.contestId, "parent": "my_contests"});
+    _router.navigate(['history_contest', {"contestId": contest.contestId, "parent": "my_contests"}]);
   }
 
   void gotoLobby() {
-    _router.go("lobby", {});
+    _router.navigate(["lobby", {}]);
   }
 
-  void detach() {
+  @override void ngOnDestroy() {
     _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS);
     _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR);
   }
@@ -152,7 +153,7 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
         GameMetrics.logEvent(GameMetrics.MY_CONTEST_HISTORY);
       break;
     }*/
-    _router.go('my_contests', {'section':section});
+    _router.navigate(['my_contests', {'section':section}]);
   }
 
   void tabChange(String tab) {
@@ -191,9 +192,8 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
     _refreshMyContests();
   }
 
-  @override
-  void onShadowRoot(ShadowRoot shadowRoot) {
-    var section = _routeProvider.parameters["section"];
+  @override void ngOnInit() {
+    var section = _routeParams.get("section");
     switch(section) {
       case "live":
         tabChange('live-contest-content');
@@ -210,11 +210,10 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
     }
   }
 
-  Element _rootElement;
   num _numLiveContests = 0;
 
   Router _router;
-  RouteProvider _routeProvider;
+  RouteParams _routeParams;
 
   FlashMessagesService _flashMessage;
   ProfileService _profileService;

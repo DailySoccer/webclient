@@ -1,17 +1,18 @@
 library element_autofocus_decorator;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
 import 'dart:async';
 
-@Decorator(selector: '[auto-focus]')
-class AutoFocusDecorator implements AttachAware{
+@Directive(selector: '[auto-focus]')
+class AutoFocusDecorator implements OnInit {
   InputElement inputElement;
 
   AutoFocusDecorator(Element this.inputElement);
 
-  @override
-  void attach() {
+  @override void ngOnInit() {
     new Timer(new Duration(seconds: 1), inputElement.focus);
   }
 }

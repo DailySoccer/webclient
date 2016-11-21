@@ -1,6 +1,8 @@
 library scoring_rules_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/services/scoring_rules_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/models/soccer_player.dart';
@@ -9,8 +11,7 @@ import 'package:webclient/services/server_error.dart';
 
 @Component(
   selector:     'scoring-rules',
-  templateUrl:  'packages/webclient/components/scoring_rules_comp.html',
-  useShadowDom: false
+  templateUrl:  'scoring_rules_comp.html'
 )
 class ScoringRulesComp {
 

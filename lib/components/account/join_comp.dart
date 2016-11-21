@@ -1,6 +1,9 @@
 library join_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/platform/browser.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
 import 'package:logging/logging.dart';
 import 'package:webclient/services/profile_service.dart';
@@ -14,10 +17,9 @@ import 'package:webclient/components/modal_comp.dart';
 
 @Component(
     selector: 'join',
-    templateUrl: 'packages/webclient/components/account/join_comp.html',
-    useShadowDom: false
+    templateUrl: 'join_comp.html'
 )
-class JoinComp implements ShadowRootAware {
+class JoinComp implements OnInit {
   static const String PATH_IF_SUCCESS = "home";
   static const String PATH_IF_FAIL = "home";
   
@@ -47,7 +49,7 @@ class JoinComp implements ShadowRootAware {
   static final String ERROR_CHECK_EMAIL_SPELLING = "ERROR_CHECK_EMAIL_SPELLING";
   static final String ERROR_PASSWORD_TOO_SHORT = "ERROR_PASSWORD_TOO_SHORT";
 
-  @NgOneWay("is-modal")
+  @Input("is-modal")
   bool isModal = false;
 
   String get theNickName => nickName;
@@ -85,27 +87,27 @@ class JoinComp implements ShadowRootAware {
   }
 
 
-  JoinComp(this._router, this._routeProvider, this._profileService, this.loadingService, this._rootElement, this._scrDet) {
-    _fbLogin = new FBLogin(_router, _profileService, () => isModal ? ModalComp.close() : _router.go(PATH_IF_SUCCESS, {}));
+  JoinComp(this._router, this._routeParams, this._profileService, this.loadingService, this._rootElement, this._scrDet) {
+    _fbLogin = new FBLogin(_router, _profileService, () => isModal ? ModalComp.close() : _router.navigate([PATH_IF_SUCCESS, {}]));
     FBLogin.parseXFBML(".fb-login-button");
   }
 
-  void onShadowRoot(emulatedRoot) {
-    nickNameElement   = _rootElement.querySelector("#nickNameInputGroup");
-    emailElement      = _rootElement.querySelector("#emailInputGroup");
-    passwordElement   = _rootElement.querySelector("#passwordInputGroup");
-    rePasswordElement = _rootElement.querySelector("#rePasswordInputGroup");
+  @override void ngOnInit() {
+    nickNameElement   = _rootElement.nativeElement.querySelector("#nickNameInputGroup");
+    emailElement      = _rootElement.nativeElement.querySelector("#emailInputGroup");
+    passwordElement   = _rootElement.nativeElement.querySelector("#passwordInputGroup");
+    rePasswordElement = _rootElement.nativeElement.querySelector("#rePasswordInputGroup");
 
-    nicknameError = _rootElement.querySelector("#nickNameError")
+    nicknameError = _rootElement.nativeElement.querySelector("#nickNameError")
         ..parent.style.display = 'none';
 
-    emailError = _rootElement.querySelector("#emailError")
+    emailError = _rootElement.nativeElement.querySelector("#emailError")
         ..parent.style.display = 'none';
 
-    passwordError = _rootElement.querySelector("#passwordError")
+    passwordError = _rootElement.nativeElement.querySelector("#passwordError")
         ..parent.style.display = 'none';
     _fbLogin.refreshConnectedState();
-    _rootElement.querySelectorAll("[externaldest]").onClick.listen(_onMouseClickExternal);
+    _rootElement.nativeElement.querySelectorAll("[externaldest]").onClick.listen(_onMouseClickExternal);
     //_scrDet.scrollTo('.panel-heading', offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
   }
 
@@ -214,10 +216,11 @@ class JoinComp implements ShadowRootAware {
               //GameMetrics.trackConversion(false);
   
               loadingService.isLoading = false;
-              if(_routeProvider.route.parent.name == null) {
-                if (_routeProvider.route.name == 'join') {
-                  _router.go(PATH_IF_SUCCESS, {});
-                }
+              if(_routeParams.get('parent') == null) {
+                // TODO Angular 2
+                //if (_routeParams.route.name == 'join') {
+                  _router.navigate([PATH_IF_SUCCESS, {}]);
+                //}
               } else {
                 ModalComp.close();
               }
@@ -275,10 +278,12 @@ class JoinComp implements ShadowRootAware {
           submitSignup();
       break;
       case "CANCEL":
-        isModal ? ModalComp.close() : _router.go(PATH_IF_FAIL, {});
+        isModal ? ModalComp.close() : _router.navigate([PATH_IF_FAIL, {}]);
       break;
       case "LOGIN":
-        isModal ? _router.go("${_router.activePath.first.name}.login", {}) : _router.go('login', {});
+        // TODO Angular 2
+        //isModal ? _router.navigate(["${_router.activePath.first.name}.login", {}]) : _router.navigate(['login', {}]);
+        _router.navigate(['login', {}]);
       break;
       default:
         Logger.root.severe("join_comp: onAction: $action");
@@ -324,13 +329,13 @@ class JoinComp implements ShadowRootAware {
 
   FBLogin _fbLogin;
 
-  Router _router;
-  RouteProvider _routeProvider;
-  ProfileService _profileService;
-  Element _rootElement;
+  final Router _router;
+  final RouteParams _routeParams;
+  final ProfileService _profileService;
+  final ElementRef _rootElement;
 
   ScreenDetectorService _scrDet;
   bool _enabledSubmit = true;
 
-  LoadingService loadingService;
+  final LoadingService loadingService;
 }

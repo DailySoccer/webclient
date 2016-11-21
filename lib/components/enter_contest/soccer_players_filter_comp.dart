@@ -1,52 +1,57 @@
 library soccer_players_filter_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 
 @Component(
     selector: 'soccer-players-filter',
-    templateUrl: 'packages/webclient/components/enter_contest/soccer_players_filter_comp.html',
-    useShadowDom: false
+    templateUrl: 'soccer_players_filter_comp.html'
 )
-class SoccerPlayersFilterComp implements AttachAware {
+class SoccerPlayersFilterComp implements OnInit {
 
   ScreenDetectorService scrDet;
 
   List<FieldPos> posFilterList;
 
-  @NgTwoWay("name-filter")
+  @Input("name-filter")
   String nameFilter;
 
-  @NgTwoWay('field-pos-filter')
+  @Input('field-pos-filter')
   FieldPos get fieldPosFilter => _fieldPosFilter;
+
+  @Output('field-pos-filter')
   void     set fieldPosFilter(FieldPos value) {
     _fieldPosFilter = value;
   }
   
-  @NgTwoWay('only-favorites')
+  @Input('only-favorites')
   bool get onlyFavorites => _onlyFavorites;
+
+  @Output('only-favorites')
   void set onlyFavorites(bool value) {
     _onlyFavorites = value;
   }
 
-  @NgOneWay('show-on-xs')
+  @Input('show-on-xs')
   void set showOnXs(bool value) {
     _showOnXs = value;
   }
   bool get showFilterByPosition => _showOnXs || scrDet.isNotXsScreen;
 
   bool showFavorites = true;
-  @NgOneWay('show-favorites-button')
+  @Input('show-favorites-button')
   void set showFavoritesButton(bool fav) {
     showFavorites = fav;
   }
   
-  @NgOneWay('show-title')
+  @Input('show-title')
   bool showTitle = true;
 
-  @NgOneWay('position-filters-enabled')
+  @Input('position-filters-enabled')
   bool positionFiltersEnabled = true;
   
   String getLocalizedText(key, {group: "soccerplayerpositions"}) {
@@ -56,7 +61,7 @@ class SoccerPlayersFilterComp implements AttachAware {
   SoccerPlayersFilterComp(this.scrDet);
 
 
-  @override void attach() {
+  @override void ngOnInit() {
     posFilterList = [
         null,
         new FieldPos(getLocalizedText("goalkeeper")),

@@ -1,7 +1,9 @@
 library notifications_comp;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
 import 'dart:html';
-import 'package:angular/angular.dart';
+
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/achievement.dart';
 import 'package:webclient/models/user_notification.dart';
@@ -19,8 +21,7 @@ import 'package:webclient/services/app_state_service.dart';
 
 @Component(
     selector: 'notifications',
-    templateUrl: 'packages/webclient/components/account/notifications_comp.html',
-    useShadowDom: false
+    templateUrl: 'notifications_comp.html'
 )
 
 class NotificationsComp {

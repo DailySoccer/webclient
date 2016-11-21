@@ -1,7 +1,9 @@
 library leaderboard_comp;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
-import 'package:angular/angular.dart';
 import 'package:webclient/services/leaderboard_service.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/profile_service.dart';
@@ -15,11 +17,10 @@ import 'package:webclient/services/refresh_timers_service.dart';
 
 @Component(
     selector: 'leaderboard',
-    templateUrl: 'packages/webclient/components/leaderboards/leaderboard_comp.html',
-    useShadowDom: false
+    templateUrl: 'leaderboard_comp.html'
 )
 
-class LeaderboardComp implements ShadowRootAware, DetachAware{
+class LeaderboardComp implements OnInit, OnDestroy {
   static const String MAIN_RANKING          = "MAIN_RANKING";
   static const String RANKING_BEST_PLAYERS  = "RANKING_BEST_PLAYERS";
   static const String RANKING_MOST_RICH     = "RANKING_MOST_RICH";
@@ -112,13 +113,13 @@ class LeaderboardComp implements ShadowRootAware, DetachAware{
   
   LeaderboardComp ( this._leaderboardService, this.loadingService, 
                     this._profileService, this._appStateService, this._refreshTimersService, 
-                    this._router, this._routeProvider, this._rootElement) {
+                    this._router, this._routeParams, this._rootElement) {
     
     loadingService.isLoading = true;
     userId = 'null';
-    if (_routeProvider.parameters.containsKey("userId")) {
-      if (_routeProvider.parameters['userId'] != 'me') {
-        userId = _routeProvider.parameters['userId'];
+    if (_routeParams.get("userId") != null) {
+      if (_routeParams.get('userId') != 'me') {
+        userId = _routeParams.get('userId');
       } else if (_profileService.isLoggedIn) {
         userId = _profileService.user.userId;
       }
@@ -177,18 +178,18 @@ class LeaderboardComp implements ShadowRootAware, DetachAware{
   }
   
   
-  void detach() {
+  @override void ngOnDestroy() {
       _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR);
   }
   void gotoSection(String section) {
-    _router.go('leaderboard', {'section':section, 'userId': userId});
+    _router.navigate(['leaderboard', {'section':section, 'userId': userId}]);
   }
 
   void tabChange(String tab) {
 
     //Cambiamos el activo del tab
-    _rootElement.querySelectorAll("li").classes.remove('active');
-    _rootElement.querySelector("#" + tab.replaceAll("content", "tab")).classes.add("active");
+    _rootElement.nativeElement.querySelectorAll("li").classes.remove('active');
+    _rootElement.nativeElement.querySelector("#" + tab.replaceAll("content", "tab")).classes.add("active");
 
     //Cambiamos el active del tab-pane
     querySelectorAll(".tab-pane").classes.remove("active");
@@ -213,9 +214,8 @@ class LeaderboardComp implements ShadowRootAware, DetachAware{
     sectionActive = MAIN_RANKING;
   }
   
-  @override
-  void onShadowRoot(ShadowRoot shadowRoot) {
-    var section = _routeProvider.parameters["section"];
+  @override void ngOnInit() {
+    var section = _routeParams.get("section");
 
     switch(section) {
       case "points":
@@ -238,10 +238,10 @@ class LeaderboardComp implements ShadowRootAware, DetachAware{
   }
 
   Router _router;
-  RouteProvider _routeProvider;
+  RouteParams _routeParams;
   ProfileService _profileService;
   AppStateService _appStateService;
   RefreshTimersService _refreshTimersService;
   LeaderboardService _leaderboardService;
-  Element _rootElement;
+  ElementRef _rootElement;
 }

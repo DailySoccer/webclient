@@ -1,12 +1,14 @@
 library server_service;
 
+import 'package:angular2/core.dart';
+import 'package:http/browser_client.dart';
+import 'package:http/http.dart' as Http;
 import 'dart:async';
 import 'dart:convert' show JSON;
-import 'package:angular/angular.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/services/server_error.dart';
 import 'package:webclient/utils/host_server.dart';
-import 'dart:html';
+import 'dart:html' as Html;
 import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/competition.dart';
@@ -497,7 +499,7 @@ class DailySoccerServer implements ServerService {
   
   void cancelAllAndReload() {
     _allFuturesCancelled = true;
-    window.location.reload();
+    Html.window.location.reload();
   }
 
   void subscribe(dynamic id, {Function onSuccess, Function onError}) {
@@ -558,6 +560,9 @@ class DailySoccerServer implements ServerService {
   }
 
   void _callLoop(int callContext, String url, Map queryString, Map postData, var headers, Completer completer, int retryTimes, bool cancelIfChangeContext) {
+    // TODO Angular 2
+    return;
+
     // Evitamos las reentradas "antiguas" (de otros contextos)
     if (callContext != _context) {
       Logger.root.info("Ignorando callLoop($url): context($callContext) != context($_context)");
@@ -568,8 +573,8 @@ class DailySoccerServer implements ServerService {
       queryString = _randomizeQueryString(queryString);
     }
 
-    ((postData != null) ? _http.post(url, postData, headers: headers, params: queryString) :
-                          _http.get(url, headers: headers, params: queryString))
+    ((postData != null) ? _http.post(new Uri.http("", url, queryString), headers: headers, body: postData) :
+                          _http.get(new Uri.http("", url, queryString), headers: headers))
         .then((httpResponse) {
 
           if (!_allFuturesCancelled && (callContext == _context || !cancelIfChangeContext)) {
@@ -601,7 +606,7 @@ class DailySoccerServer implements ServerService {
           }
           else if (serverError.isServerExceptionError) {
                         // Si se ha producido una excepcion en el servidor, navegaremos a la landing/lobby para forzar "limpieza" en el cliente
-            window.location.assign(Uri.parse(window.location.toString()).path);
+            Html.window.location.assign(Uri.parse(Html.window.location.toString()).path);
           }
           else {
             _processError(serverError, url, completer);
@@ -619,7 +624,7 @@ class DailySoccerServer implements ServerService {
     return queryString;
   }
 
-  void _processSuccess(String url, HttpResponse httpResponse, Completer completer) {
+  void _processSuccess(String url, Http.Response httpResponse, Completer completer) {
     if (completer.isCompleted) {
       throw new Exception("WTF 1020 El checkeo del completer se deberia hacer antes");
     }
@@ -628,11 +633,11 @@ class DailySoccerServer implements ServerService {
 
     // The response can be either a Map or a List. We should avoid this step by rewriting the HttpInterceptor and creating the
     // JsonObject directly from the JsonString.
-    if (httpResponse.data is List) {
-      completer.complete(new Map<String, List>()..putIfAbsent("content", () => httpResponse.data));
+    if (httpResponse.body is List) {
+      completer.complete(httpResponse.body /*new Map<String, List>()..putIfAbsent("content", () => httpResponse.body)*/);
     }
     else {
-      completer.complete(httpResponse.data);
+      completer.complete(httpResponse.body);
     }
   }
 
@@ -720,7 +725,7 @@ class DailySoccerServer implements ServerService {
   }
 
 
-  Http _http;
+  final BrowserClient _http;
   String _sessionToken;
   String _currentVersion;
   bool _allFuturesCancelled = false;

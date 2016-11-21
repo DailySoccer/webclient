@@ -2,11 +2,11 @@ library deldaDNA_service;
 
 import 'dart:async';
 import 'dart:convert' show JSON;
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:http/http.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/services/server_error.dart';
 import 'package:webclient/utils/host_server.dart';
-import 'dart:html';
 import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/competition.dart';
@@ -65,8 +65,8 @@ class DeltaDNAService {
     
     _http.post(
         _collectURL, 
-        JSON.encode(completeEvent), 
-        headers: headers
+        headers: headers,
+        body: JSON.encode(completeEvent)
       ).then((httpResponse) {
         
       }).catchError((error) {
@@ -265,8 +265,8 @@ class DeltaDNAService {
   
   void setupFromDeepLinking() { _lastVisitedScreen = "DeepLinking"; }
   String _lastVisitedScreen = "-";
-  
-  Http _http;
+
+  final Client _http;
   ProfileService get _profileService => ProfileService.instance;
   DateTimeService _dateTimeService;
 }

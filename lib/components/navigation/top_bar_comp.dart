@@ -1,6 +1,8 @@
 library top_bar_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/services/datetime_service.dart';
@@ -19,8 +21,7 @@ import 'package:webclient/models/user.dart';
 
 @Component(
     selector: 'top-bar',
-    templateUrl: 'packages/webclient/components/navigation/top_bar_comp.html',
-    useShadowDom: false
+    templateUrl: 'top_bar_comp.html'
 )
 class TopBarComp {
 
@@ -62,9 +63,9 @@ class TopBarComp {
                                   s == AppTopBarState.SEARCH_BUTTON && currentState.isSearching? "" :
                                   s;
   
-  TopBarComp(this._router, this._loadingService, this._view, this._rootElement, 
+  TopBarComp(this._router, this._loadingService, this._rootElement,
                 this._dateTimeService, this._profileService, this._templateService, 
-                this._catalogService, this._appStateService, this._scrDet) {
+                this._catalogService, this._appStateService) {
     
     _profileService.onRefreshProfile.listen(onProfileRefresh); 
     //editedNickName = _profileService.user.nickName;
@@ -243,11 +244,9 @@ class TopBarComp {
   }
   */
   
-  Element _rootElement;
-  View _view;
+  ElementRef _rootElement;
   Router _router;
-  ScreenDetectorService _scrDet;
-  
+
   DateTimeService _dateTimeService;
   LoadingService _loadingService;
 

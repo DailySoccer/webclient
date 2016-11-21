@@ -1,6 +1,6 @@
 library deprecated_version_screen_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'dart:html';
 import 'package:webclient/utils/game_metrics.dart';
@@ -8,8 +8,7 @@ import 'package:webclient/utils/host_server.dart';
 
 @Component(
     selector: 'deprecated-version-screen',
-    templateUrl: 'packages/webclient/components/navigation/deprecated_version_screen_comp.html',
-    useShadowDom: false
+    templateUrl: 'deprecated_version_screen_comp.html'
 )
 class DeprecatedVersionScreenComp {
 

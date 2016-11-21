@@ -1,11 +1,13 @@
 library simple_promo_f2p_comp;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
-import 'package:angular/angular.dart';
 
 @Component(
    selector: 'simple-promo-f2p',
-   useShadowDom: false
+   template: ""
 )
 class SimplePromoF2PComp {
 
@@ -16,15 +18,15 @@ class SimplePromoF2PComp {
   void createHTML() {
     var theHTML = '''
       <div id="simplePromoF2PRoot">
-        <img class="banner" src="images/promos/PromoF2PSample.jpg"></img>
+        <img class="banner" src="images/promos/PromoF2PSample.jpg" />
       </div>
     ''';
-    _rootElement.nodes.clear();
-    _rootElement.appendHtml(theHTML);
+    _rootElement.nativeElement.nodes.clear();
+    _rootElement.nativeElement.appendHtml(theHTML);
   }
 
   void onButtonClick(event) {
-    _router.go(promo["promoEnterUrl"],{});
+    _router.navigate([promo["promoEnterUrl"],{}]);
   }
 
   void onScreenWidthChange(String screenSize){
@@ -32,6 +34,6 @@ class SimplePromoF2PComp {
   }
 
   Map promo = {};
-  Element _rootElement;
+  ElementRef _rootElement;
   Router _router;
 }

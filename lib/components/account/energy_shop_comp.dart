@@ -1,6 +1,8 @@
 library energy_shop_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/components/modal_comp.dart';
 import 'package:webclient/services/profile_service.dart';
@@ -16,8 +18,7 @@ import 'package:webclient/utils/game_info.dart';
 
 @Component(
     selector: 'energy-shop-comp',
-    templateUrl: 'packages/webclient/components/account/energy_shop_comp.html',
-    useShadowDom: false
+    templateUrl: 'energy_shop_comp.html'
 )
 class EnergyShopComp {
 
@@ -103,7 +104,7 @@ class EnergyShopComp {
       closeButton:true
     )
     .then((_) {
-      _router.go('shop.gold', {});
+      _router.navigate(['shop.gold', {}]);
     });
   }
 

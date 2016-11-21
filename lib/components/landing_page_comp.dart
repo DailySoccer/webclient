@@ -1,7 +1,9 @@
 library landing_page_comp;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
-import 'package:angular/angular.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/loading_service.dart';
@@ -10,10 +12,9 @@ import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
    selector: 'landing-page',
-   templateUrl: 'packages/webclient/components/landing_page_comp.html',
-   useShadowDom: false
+   templateUrl: 'landing_page_comp.html'
 )
-class LandingPageComp implements ShadowRootAware, DetachAware {
+class LandingPageComp implements OnInit, OnDestroy {
 
   String content;
   ScreenDetectorService scrDet;
@@ -31,7 +32,7 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
     scrDet.scrollTo(selector, offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
   }
 
-  void onShadowRoot(emulatedRoot) {
+  @override void ngOnInit() {
 
     // Nos deberia venir con el loading activo, ahora lo quitamos
     _loadingService.isLoading = false;
@@ -54,7 +55,7 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
     }
   }
 
-  void detach() {
+  @override void ngOnDestroy() {
     _streamListener.cancel();
 
     if (_bodyObj != null) {
@@ -85,7 +86,7 @@ class LandingPageComp implements ShadowRootAware, DetachAware {
   }
 
   void buttonPressed(String route) {
-    _router.go(route, {});
+    _router.navigate([route, {}]);
     scrDet.scrollTo('#mainWrapper', offset: 0, duration:  0, smooth: false, ignoreInDesktop: false);
   }
 

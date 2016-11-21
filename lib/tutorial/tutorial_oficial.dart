@@ -1,9 +1,10 @@
 library tutorial_oficial;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/tutorial/tutorial.dart';
 import 'package:webclient/services/profile_service.dart';
-import 'package:angular/angular.dart';
 
 class TutorialOficial extends Tutorial {
   String get PATH => "tutorial/oficial/";

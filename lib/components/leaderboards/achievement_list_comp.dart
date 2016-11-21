@@ -1,7 +1,9 @@
 library achievement_list_comp;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
-import 'package:angular/angular.dart';
 import 'package:webclient/models/achievement.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/models/user.dart';
@@ -11,8 +13,7 @@ import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
     selector: 'achievement-list',
-    templateUrl: 'packages/webclient/components/leaderboards/achievement_list_comp.html',
-    useShadowDom: false
+    templateUrl: 'achievement_list_comp.html'
 )
 
 class AchievementListComp {
@@ -21,7 +22,7 @@ class AchievementListComp {
 /*
   LoadingService loadingService;
 */
-  @NgOneWay("user")
+  @Input("user")
   void set user(User userShown) {
     if (userShown != null)
       _userShown = userShown;

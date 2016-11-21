@@ -1,13 +1,13 @@
 library tutorial_list_comp;
 
-import 'dart:async';
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/services/tutorial_service.dart';
 
 @Component(
   selector: 'tutorial-list',
-  templateUrl: 'packages/webclient/components/tutorial_list_comp.html',
-  useShadowDom: false
+  templateUrl: 'tutorial_list_comp.html'
 )
 class TutorialListComp  {
 

@@ -1,14 +1,13 @@
 library screen_detector_service;
 
 import 'dart:html';
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
 import 'dart:async';
 import 'package:logging/logging.dart';
 import 'package:scroll/scroll.dart';
 
 @Injectable()
 class ScreenDetectorService {
-
   bool isXsScreen = false;
   bool isSmScreen = false;
   bool isDesktop  = false;
@@ -17,15 +16,17 @@ class ScreenDetectorService {
 
   Stream get mediaScreenWidth => mediaScreenWidthChangeController.stream;
 
+  /*
   ScreenDetectorService(this._turnZone) {
     // Necesitamos que corra fuera de la zona para que no provoque automaticamente un digest
     _turnZone.runOutsideAngular(() => _detectNow(0));
   }
+  */
 
   // La otra aproximacion, usando dart:js para capturar el evento, falló (ver historico en git si es necesario).
   // Tambien estuvo como un timer, pero queda mas bonito detectarlo cada frame
   void _detectNow(num theTime) {
-
+    /*
     String message = '';
     if (window.matchMedia("(min-width: 992px)").matches) {
       message = 'desktop';
@@ -67,9 +68,11 @@ class ScreenDetectorService {
 
     // Seguimos detectando sin auto-digest
     window.animationFrame.then(_detectNow);
+    */
   }
 
   void scrollTo(String selector, {fps: 60, int offset: 0, int duration: 500, bool smooth : false, bool ignoreInDesktop: false}) {
+    /*
     Function easingFunction;
     Easing easing;
 
@@ -126,9 +129,11 @@ class ScreenDetectorService {
       // Llamamos a la función anidada de animación por primera vez.
       _turnZone.runOutsideAngular(() => animation(0));
     }
+    */
   }
-
+  /*
   VmTurnZone _turnZone;
+  */
   StreamController mediaScreenWidthChangeController = new StreamController.broadcast();
   String _lastMessage;
 }

@@ -117,7 +117,7 @@
     <script type="text/javascript" src="js/cordova_dart_helper.js"></script>
     <script type="text/javascript" src="js/twitter_js_wrapper.js"></script>
 
-    <script type="text/javascript" src="cordova.js"></script>
+    <!--script type="text/javascript" src="cordova.js"></script-->
     <script src="js/jquery.min.js"></script>
 
     <!-- El resto de js -->
@@ -125,14 +125,13 @@
     <!--script src="nouislider/jquery.nouislider.min.js"></script-->
     <script src="bootstrap-switch/js/bootstrap-switch.min.js"></script>
 
-    <div id="mainApp" ng-app>
-      <!--xs-not-available-screen></xs-not-available-screen-->
+    <my-app>Loading...</my-app>
+
+    <!--div id="mainApp" ng-app>
       <deprecated-version-screen></deprecated-version-screen>
-      <!--main-menu-f2p id="mainAppMenu"></main-menu-f2p-->
       <top-bar id="mainTopBar"></top-bar>
       <secondary-tab-bar></secondary-tab-bar>
       
-      <!--div id="mainWrapper" class="wrapper-content-container"-->
       <ng-view id="mainWrapper" class="wrapper-content-container"></ng-view>
       <div id="spinnerIcon" class="loading-service-is-loading">
         <div class="loading-spinner-cuatro">
@@ -143,18 +142,15 @@
         </div>
         <div class="loading-text">Cargando datos...</div>
       </div>
-      <!--/div-->
       <tab-bar id="mainBottomTabBar"></tab-bar>
-      <!--footer></footer-->
-    </div>
-    
-    <!-- Script principal. Sera substituido por main.dart.js en el transformer -->
+    </div-->
+
     <script src="main.dart" id="mainDart" type="application/dart"></script>
-        
-    
-<!-- SiteCatalyst code version: H.25.4.
-    Copyright 1996-2013 Adobe, Inc. All Rights Reserved
-    More info available at http://www.omniture.com -->
+    <script src="packages/browser/dart.js"></script>
+
+    <!-- SiteCatalyst code version: H.25.4.
+        Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+        More info available at http://www.omniture.com -->
     <script language="JavaScript" type="text/javascript" src="http://mediciones.mediaset.es/ext/js/s_code.js"></script>
     <script language="JavaScript" type="text/javascript"><!--
       /* You may give each page an identifying name, server, and channel on

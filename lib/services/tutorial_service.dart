@@ -1,5 +1,6 @@
 library tutorial_service;
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/services/datetime_service.dart';
@@ -7,7 +8,6 @@ import 'dart:collection';
 import 'dart:async';
 import 'dart:convert' show JSON;
 import 'dart:html';
-import 'package:angular/angular.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/tutorial/tutorial.dart';
 import 'package:webclient/tutorial/tutorial_oficial.dart';
@@ -56,7 +56,7 @@ class TutorialService {
       disableElementEvents('main-menu-f2p');
       disableElementEvents('footer');
 
-      _router.go('lobby', {});
+      _router.navigate(['lobby', {}]);
     }
   }
 
@@ -149,7 +149,7 @@ class TutorialService {
     BackdropComp.instance.hide(forceUpdate: true);
     querySelector('body').classes.remove('tutorial');
 
-    _router.go(_profileService.isLoggedIn? routePathLogged: routePathNotLogged, {});
+    _router.navigate([_profileService.isLoggedIn? routePathLogged: routePathNotLogged, {}]);
   }
 
   void registerContentUpdater(String name, Function contentUpdater) {

@@ -1,4 +1,4 @@
-<div class="secondary-tab-bar-wrapper" ng-if="tabs != null && tabs.length > 0">
-    <div ng-repeat="tab in tabs" class="secondary-tabbar-tab" ng-class="[nTabsClass, (tab.isActive() ? 'active' : '')]" ng-click="tab.action()" ng-bind-html-unsafe="tab.text"> 
+<div class="secondary-tab-bar-wrapper" *ngIf="tabs != null && tabs.length > 0">
+    <div *ngFor="let tab of tabs" class="secondary-tabbar-tab" [ngClass]="[nTabsClass, (tab.isActive() ? 'active' : '')]" (click)="tab.action()" [innerHTML]="tab.text">
     </div>
 </div>

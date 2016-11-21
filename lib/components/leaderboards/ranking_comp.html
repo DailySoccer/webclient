@@ -9,7 +9,7 @@
     <div class="user-points">{{myPointsData['points']}}</div>
   </div>
   <leaderboard-table minimized show-header="false" table-elements="pointsUserList" rows="3"></leaderboard-table>
-  <button class="ranking-button" ng-click="showFullPointsRanking()"> VER COMPLETO</button>
+  <button class="ranking-button" (click)="showFullPointsRanking()"> VER COMPLETO</button>
 </div>
 
 <div class="ranking-wrapper">
@@ -23,6 +23,6 @@
     <div class="user-points">{{myMoneyData['points']}}</div>
   </div>
   <leaderboard-table minimized show-header="false" table-elements="moneyUserList" rows="3"></leaderboard-table>
-  <button class="ranking-button" ng-click="showFullMoneyRanking()"> VER COMPLETO</button>
+  <button class="ranking-button" (click)="showFullMoneyRanking()"> VER COMPLETO</button>
 </div>
 

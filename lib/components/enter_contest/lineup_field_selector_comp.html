@@ -1,32 +1,32 @@
-<div class="lineup-field-selector" ng-class="getLineupClassname()">
-  <div class="lineup-formation-selector-wrapper" ng-if="formationIsModifiable">
+<div class="lineup-field-selector" [ngClass]="getLineupClassname()">
+  <div class="lineup-formation-selector-wrapper" *ngIf="formationIsModifiable">
     <span class="lineup-formation-label">{{getLocalizedText('formation')}}</span>
-    <select name="lineup-formation-dropdown" id="lineup-formation-dropdown" ng-model="formationId" class="lineup-formation-dropdown">
-      <option ng-repeat="key in formationList" ng-value="key" >{{formationToString(key)}}</option>
+    <select name="lineup-formation-dropdown" id="lineup-formation-dropdown" [(ngModel)]="formationId" class="lineup-formation-dropdown">
+      <option *ngFor="let key of formationList" [ngValue]="key" >{{formationToString(key)}}</option>
     </select>
     <label for="lineup-formation-dropdown" class="lineup-formation-dropdown-caret"><i class="material-icons">&#xE5C5;</i></label>
   </div>
   
-  <div class="lineup-selector-wrapper" ng-class="{'changing-mode': highlightChangeables}">
-    <div class="lineup-selector-slot" ng-repeat="slot in lineupSlots" ng-click="onLineupSlotSelected({'slotIndex': $index})" ng-class="getSlotClassColor($index)">
-      <div ng-if="slot == null">
-        <img ng-src="{{getImgPerSlotPosition($index)}}" class="team-shirt-image">
+  <div class="lineup-selector-wrapper" [ngClass]="{'changing-mode': highlightChangeables}">
+    <div class="lineup-selector-slot" *ngFor="let slot of lineupSlots" (click)="onLineupSlotSelected({'slotIndex': $index})" [ngClass]="getSlotClassColor($index)">
+      <div *ngIf="slot == null">
+        <img src="{{getImgPerSlotPosition($index)}}" class="team-shirt-image">
         <action class="iconButtonSelect"><i class="material-icons">&#xE145;</i></action>
       </div>
 
-      <div ng-if="slot != null" class="lineup-selector-slot-info" ng-class="{'playing': slot.isPlaying, 'not-played': slot.hasNotPlayed}">
+      <div *ngIf="slot != null" class="lineup-selector-slot-info" [ngClass]="{'playing': slot.isPlaying, 'not-played': slot.hasNotPlayed}">
         <!--div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div-->
         <img src="images/team-shirts/_glow.png" class="team-shirt-glow">
-        <img ng-src="{{getImgPerSoccerTeam(slot)}}" class="team-shirt-image">
+        <img src="{{getImgPerSoccerTeam(slot)}}" class="team-shirt-image">
         <span class="soccer-player-name">{{slot.fullName}}</span>
         <!--div class="column-primary-info">
           <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
         </div-->
         
-        <div class="column-salary" ng-show="showSalary && (slot.hasNotPlayed || slot.isPlaying)"><div>{{getPrintableSalary(slot.salary)}}</div></div>
+        <div class="column-salary" [hidden]="!showSalary && (slot.hasNotPlayed || slot.isPlaying)"><div>{{getPrintableSalary(slot.salary)}}</div></div>
         
-        <div class="column-dfp" ng-if="!isLive"><div>{{slot.printableFantasyPoints}}</div></div>
-        <div class="column-dfp" ng-if="showLivePoints(slot)"><div>{{slot.livePoints}}</div></div>
+        <div class="column-dfp" *ngIf="!isLive"><div>{{slot.printableFantasyPoints}}</div></div>
+        <div class="column-dfp" *ngIf="showLivePoints(slot)"><div>{{slot.livePoints}}</div></div>
         
         <!--div class="column-gold-cost" ng-bind-html="getPrintableGoldCost(slot)"></div-->
         <!--action class="iconButtonRemove"><i class="material-icons">&#xE15B;</i></action-->

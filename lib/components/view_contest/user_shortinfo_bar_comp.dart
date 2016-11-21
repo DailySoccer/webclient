@@ -1,6 +1,8 @@
 library user_shortinfo_bar_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/profile_service.dart';
@@ -8,13 +10,12 @@ import 'package:webclient/utils/string_utils.dart';
 
 @Component(
    selector: 'user-shortinfo-bar',
-   templateUrl: 'packages/webclient/components/view_contest/user_shortinfo_bar_comp.html',
-   useShadowDom: false
+   templateUrl: 'user_shortinfo_bar_comp.html'
 )
 class UserShortinfoBarComp {
   
 
-  @NgOneWay("user")
+  @Input("user")
   ContestEntry player;
   
   String getLocalizedText(key) {
@@ -26,10 +27,5 @@ class UserShortinfoBarComp {
   String get points =>     (player != null) ? StringUtils.parseFantasyPoints(player.currentLivePoints) : "0";
   String get percentLeft => (player != null) ? "${player.percentLeft}%" : "-";
 
-  UserShortinfoBarComp(this._routeProvider, this._profileService);
-
-  Contest _contest;
-  List<ContestEntry> _contestEntries;
-  RouteProvider _routeProvider;
-  ProfileService _profileService;
+  UserShortinfoBarComp();
 }

@@ -1,14 +1,15 @@
 library transaction_history_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/models/transaction_info.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 
 @Component(
     selector: 'transaction-history',
-    templateUrl: 'packages/webclient/components/account/transaction_history_comp.html',
-    useShadowDom: false
+    templateUrl: 'transaction_history_comp.html'
 )
 class TransactionHistoryComp {
 

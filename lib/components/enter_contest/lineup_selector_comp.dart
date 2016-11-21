@@ -1,6 +1,8 @@
 library lineup_selector_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/utils/string_utils.dart';
@@ -12,44 +14,46 @@ import 'package:webclient/components/enter_contest/soccer_player_listitem.dart';
 
 @Component(
     selector: 'lineup-selector',
-    templateUrl: 'packages/webclient/components/enter_contest/lineup_selector_comp.html',
-    useShadowDom: false
+    templateUrl: 'lineup_selector_comp.html'
 )
 class LineupSelectorComp {
 
-  @NgOneWay("not-enough-resources")
+  @Input("not-enough-resources")
   bool alertNotEnoughResources;
 
-  @NgOneWay("resource")
+  @Input("resource")
   String resource;
 
-  @NgOneWay("has-negative-balance")
+  @Input("has-negative-balance")
   bool alertNegativeBalance;
 
-  @NgOneWay("has-max-players-same-team")
+  @Input("has-max-players-same-team")
   bool alertMaxPlayersSameTeamExceed;
 
-  @NgOneWay("manager-level")
+  @Input("manager-level")
   num managerLevel = 0;
 
-  @NgOneWay("contest")
+  @Input("contest")
   Contest contest;
 
   List<SoccerPlayerListItem> _lineupSlots = [];
-  @NgOneWay("lineup-slots")
+
+  @Input("lineup-slots")
   void set lineupSlots(List<SoccerPlayerListItem> slots) {
     _lineupSlots = slots;
   }
   List<SoccerPlayerListItem> get lineupSlots => _lineupSlots;
 
-  @NgOneWay("lineup-formation")
+  @Input("lineup-formation")
   List<String> lineupFormation = FieldPos.FORMATIONS[ContestEntry.FORMATION_442];
 
-  @NgCallback("on-lineup-slot-selected")
+  @Input("on-lineup-slot-selected")
   Function onLineupSlotSelected;
 
-  @NgTwoWay("formation-id")
+  @Input("formation-id")
   String get formationId => _formationId;
+
+  @Output("formation-id")
   void set formationId(String value) {
     _formationId = value;
   }

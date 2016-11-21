@@ -1,9 +1,8 @@
 library scouting_comp;
 
-//import 'dart:html';
-//import 'dart:async';
-//import 'dart:convert';
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/services/loading_service.dart';
 import "package:webclient/models/soccer_team.dart";
 import "package:webclient/models/instance_soccer_player.dart";
@@ -24,10 +23,9 @@ import 'package:webclient/components/enter_contest/soccer_player_stats_comp.dart
 
 @Component(
     selector: 'scouting',
-    templateUrl: 'packages/webclient/components/scouting/scouting_comp.html',
-    useShadowDom: false
+    templateUrl: 'scouting_comp.html'
 )
-class ScoutingComp implements DetachAware {
+class ScoutingComp implements OnDestroy {
 
   static bool favoritesIsSaving = false;
   static const String SOCCER_PLAYER_STATS = "SOCCER_PLAYER_STATS";
@@ -113,7 +111,7 @@ class ScoutingComp implements DetachAware {
     thereIsNewFavorites = false;
   }
   
-  void detach() {
+  @override void ngOnDestroy() {
     //_refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR);
   }
   

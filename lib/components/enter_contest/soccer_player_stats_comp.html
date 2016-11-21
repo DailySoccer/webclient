@@ -1,6 +1,6 @@
 <!-- Extra info en la cabecera -->
 <div class="soccer-player-stats-header">
-  <div class="soccer-player-stats-header-tshirt"><img ng-src="{{imgSoccerTeam}}"></div>
+  <div class="soccer-player-stats-header-tshirt"><img src="{{imgSoccerTeam}}"></div>
   <div class="soccer-player-stats-header-data">
     <div class="soccer-player-stats-header-description">
       <div class="soccer-player-name-team">
@@ -8,8 +8,8 @@
         <div class="soccer-player-name">{{currentInfoData['name']}}</div>
       </div>
       <div class="soccer-player-stats-header-button-add-wrapper">
-        <button class="soccer-player-stats-header-button-add" ng-click="onAddClick()" ng-if="isSelectionMode">{{selectablePlayer ? "AÑADIR" : "QUITAR"}}</button>
-        <i class="material-icons" ng-click="onAddFavClick()" ng-class="[selectablePlayer ? 'addFav' : 'removeFav']" ng-if="isFavoriteMode" alt="Favorito">
+        <button class="soccer-player-stats-header-button-add" (click)="onAddClick()" *ngIf="isSelectionMode">{{selectablePlayer ? "AÑADIR" : "QUITAR"}}</button>
+        <i class="material-icons" (click)="onAddFavClick()" [ngClass]="[selectablePlayer ? 'addFav' : 'removeFav']" *ngIf="isFavoriteMode" alt="Favorito">
           {{!selectablePlayer ? '&#xE83A;' : '&#xE838;'}}
         </i>
       </div>
@@ -34,22 +34,22 @@
 <div class="soccer-player-stats-content">
   <!-- Nav tabs -->
   <div class="soccer-player-stats-tabs">
-    <input id="soccerPlayerStatsTabSeason" type="radio" name="soccerPlayerStatsTabs" value="season-stats-tab-content" ng-model="currentTab" checked>
+    <input id="soccerPlayerStatsTabSeason" type="radio" name="soccerPlayerStatsTabs" value="season-stats-tab-content" [(ngModel)]="currentTab" checked>
     <label for="soccerPlayerStatsTabSeason">{{getLocalizedText("seasondata")}}</label>
     
-    <input id="soccerPlayerStatsTabPerMatch" type="radio" name="soccerPlayerStatsTabs" value="match-by-match-stats-tab-content" ng-model="currentTab">
+    <input id="soccerPlayerStatsTabPerMatch" type="radio" name="soccerPlayerStatsTabs" value="match-by-match-stats-tab-content" [(ngModel)]="currentTab">
     <label for="soccerPlayerStatsTabPerMatch">{{getLocalizedText("matchbymatch")}}</label>
     
     <!--tab ng-click="tabChange('season-stats-tab-content')">{{getLocalizedText("seasondata")}}</tab>
     <tab ng-click="tabChange('match-by-match-stats-tab-content')">{{getLocalizedText("matchbymatch")}}</tab-->
   </div>
   <!-- START BY-SEASON-STATS -->
-  <div class="soccer-player-stats-tab-pane" id="season-stats-tab-content" ng-class="{'active': currentTab =='season-stats-tab-content'}">
+  <div class="soccer-player-stats-tab-pane" id="season-stats-tab-content" [ngClass]="{'active': currentTab =='season-stats-tab-content'}">
     <!--div class="next-match" ng-bind-html="currentInfoData['nextMatchEvent']"></div>
     <div class="season-header" ng-bind-html="getLocalizedText('seasonstats')"></div-->
     <!-- MEDIAS -->
     <div class="season-stats">
-        <div class="season-stats-row" ng-repeat="stat in seasonResumeStats" title="{{stat['helpInfo']}}">
+        <div class="season-stats-row" *ngFor="let stat of seasonResumeStats" title="{{stat['helpInfo']}}">
             <div class="season-stats-header">{{stat['nombre']}}</div>
             <div class="season-stats-value">{{stat['valor']}}</div>
         </div>
@@ -62,19 +62,19 @@
   <!-- END BY-SEASON-STATS -->
   
   <!-- START BY-MATCH-STATS-->
-  <div class="soccer-player-stats-tab-pane" id="match-by-match-stats-tab-content" ng-class="{'active': currentTab =='match-by-match-stats-tab-content'}">
-    <div class="noMatchesPlayed" ng-if="!hasPlayedMatches">
+  <div class="soccer-player-stats-tab-pane" id="match-by-match-stats-tab-content" [ngClass]="{'active': currentTab =='match-by-match-stats-tab-content'}">
+    <div class="noMatchesPlayed" *ngIf="!hasPlayedMatches">
         <span>{{getLocalizedText("noseasonstats")}}</span>
     </div>
     
-    <div class="match-stats-table-wrapper" ng-if="hasPlayedMatches">
+    <div class="match-stats-table-wrapper" *ngIf="hasPlayedMatches">
       
       <div class="per-match-stats-headers-table-wrapper">
         <table class="table table-striped per-match-stats-headers-table">
             <tr class="per-match-stats-table-years-row">
               <th class="per-match-stats-row-header">&nbsp;</th>
             </tr>
-            <tr ng-repeat="item in seasonTableHeaders" class="per-match-stats-table-data-row">
+            <tr *ngFor="let item of seasonTableHeaders" class="per-match-stats-table-data-row">
               <th class="per-match-stats-row-header">{{item.substring(0,3)}}</th>
             </tr>
         </table>
@@ -83,11 +83,11 @@
         <table class="table table-striped per-match-stats-table">
             <tr class="per-match-stats-table-years-row">
               <!--th class="per-match-stats-row-header"></th-->
-              <td ng-repeat="season in seasonsList" colspan="{{season['stats'].length}}" class="start-year-column">{{season['year']}}</td>
+              <td *ngFor="let season of seasonsList" attr.colspan="{{season['stats'].length}}" class="start-year-column">{{season['year']}}</td>
             </tr>
-            <tr ng-repeat="item in seasonTableHeaders" class="per-match-stats-table-data-row">
+            <tr *ngFor="let item of seasonTableHeaders" class="per-match-stats-table-data-row">
               <!--th class="per-match-stats-row-header">{{item.substring(0,3)}}</th-->
-              <td ng-repeat="cell in perStatTypeData[$index]" class="per-match-stats-row-cell" ng-class="{'start-year-column': cell['isNewYear']}">
+              <td *ngFor="let cell of perStatTypeData[$index]" class="per-match-stats-row-cell" [ngClass]="{'start-year-column': cell['isNewYear']}">
                 {{cell['data']}}
               </td>
             </tr>

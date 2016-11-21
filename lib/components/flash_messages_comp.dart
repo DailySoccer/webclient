@@ -1,7 +1,9 @@
 library flash_message_comp;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
-import 'package:angular/angular.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:webclient/utils/html_utils.dart';
@@ -9,11 +11,11 @@ import 'dart:async';
 import 'package:webclient/utils/string_utils.dart';
 
 
-@Component(selector: 'flash-messages',
-           useShadowDom: false,
-           exportExpressions: const ["flashMessageService.flashMessages", "flashMessageService.globalMessages"]
+@Component(
+    selector: 'flash-messages',
+    template: ""
 )
-class FlashMessageComp implements ShadowRootAware, ScopeAware {
+class FlashMessageComp implements OnInit {
 
   FlashMessagesService flashMessageService;
 
@@ -22,13 +24,18 @@ class FlashMessageComp implements ShadowRootAware, ScopeAware {
     serverService.subscribe("GlobalConnection", onSuccess: onServerSuccess, onError: onServerError);
   }
 
+  /*
   @override void set scope(Scope theScope) {
     _scope = theScope;
   }
+  */
 
-  @override void onShadowRoot(emulatedRoot) {
+  @override void ngOnInit() {
+    // TODO Angular 2
+    /*
     _scope.watch("flashMessageService.flashMessages", _onFlashMessagesChange, canChangeModel: false, collection: true);
     _scope.watch("flashMessageService.globalMessages", _onGlobalMessagesChange, canChangeModel: false, collection: true);
+    */
   }
 
     void _onFlashMessagesChange(blah, blahblah) {
@@ -62,7 +69,7 @@ class FlashMessageComp implements ShadowRootAware, ScopeAware {
 
     _flashMsgs = new DivElement();
     _flashMsgs.setInnerHtml(html, treeSanitizer: NULL_TREE_SANITIZER);
-    _rootElement.append(_flashMsgs);
+    _rootElement.nativeElement.append(_flashMsgs);
   }
 
   void _onGlobalMessagesChange(blah, blahblah) {
@@ -98,7 +105,7 @@ class FlashMessageComp implements ShadowRootAware, ScopeAware {
 
     _globalMsgElement = new DivElement();
     _globalMsgElement.setInnerHtml(html, treeSanitizer: NULL_TREE_SANITIZER);
-    _rootElement.append(_globalMsgElement);
+    _rootElement.nativeElement.append(_globalMsgElement);
     return _globalMsgElement;
   }
 
@@ -120,8 +127,8 @@ class FlashMessageComp implements ShadowRootAware, ScopeAware {
     _serverGlobalMsgElement = _createGlobalMessageHtml(StringUtils.translate('connection-error', 'serverError'), isErrorMsg: true);
   }
 
-  Scope _scope;
-  Element _rootElement;
+  //Scope _scope;
+  ElementRef _rootElement;
   Element _globalMsgElement;
   Element _serverGlobalMsgElement;
   Element _flashMsgs;

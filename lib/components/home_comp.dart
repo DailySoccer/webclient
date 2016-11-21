@@ -1,7 +1,9 @@
 library home_comp;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:async';
-import 'package:angular/angular.dart';
 import 'package:webclient/services/tutorial_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/contests_service.dart';
@@ -27,10 +29,9 @@ import 'package:logging/logging.dart';
 
 @Component(
   selector: 'home',
-  templateUrl: 'packages/webclient/components/home_comp.html',
-  useShadowDom: false
+  templateUrl: 'home_comp.html'
 )
-class HomeComp implements DetachAware {
+class HomeComp implements OnDestroy {
 
   ContestsService contestsService;
   LoadingService loadingService;
@@ -158,30 +159,30 @@ class HomeComp implements DetachAware {
       _router.go('enter_contest', { "contestId": nextContest.contestId, "parent": "lobby", "contestEntryId": "none" });
     else*/
     GameMetrics.actionEvent(GameMetrics.ACTION_START_PLAY_BUTTON, GameMetrics.SCREEN_START);
-    _router.go('lobby', {});
+    _router.navigate(['lobby', {}]);
   } 
   
   void goScouting(){
-    _router.go('scouting', {});
+    _router.navigate(['scouting', {}]);
   } 
   
   void goShop() {
-    _router.go('shop', {});
+    _router.navigate(['shop', {}]);
   }
   
   void goHistory() {
-    _router.go('my_contests', {"section": "history"});
+    _router.navigate(['my_contests', {"section": "history"}]);
   }
     
   void goRanking() {
-    _router.go('leaderboard', {'userId': 'me'});
+    _router.navigate(['leaderboard', {'userId': 'me'}]);
   }
     
   void goAchievements() {
-    _router.go('achievements', {});
+    _router.navigate(['achievements', {}]);
   }
     
-  void detach() {
+  @override void ngOnDestroy() {
     _refreshProfileStream.cancel();
     _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR);
     //_refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_RANKING_POSITION);

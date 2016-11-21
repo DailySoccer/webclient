@@ -3,7 +3,8 @@ import 'dart:html';
 import 'dart:async';
 import 'dart:math';
 import 'dart:collection';
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
 
 import "package:webclient/services/server_service.dart";
 import 'package:webclient/models/product.dart';
@@ -195,11 +196,12 @@ class AppTopBarStateConfig {
       </div>
     ''';
     onLeftColumn = (){
-      router.go("user_profile", {});
+      router.navigate(['user_profile', {}]);
     };
     onCenterColumn = (){
-      if (!isHomeBar)
-        router.go("shop", {});
+      if (!isHomeBar) {
+        router.navigate(['shop', {}]);
+      }
     };
     onRightColumn = (){
       //router.go("notifications", {});

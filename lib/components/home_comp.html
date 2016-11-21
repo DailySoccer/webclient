@@ -1,37 +1,37 @@
 <div class="main-info-wrapper">
   <div class="info-columns-wrapper">
-    <div class="info-column gold" ng-click="goShop()">
+    <div class="info-column gold" Cclick)="goShop()">
       <div class="label">ORO</div>
       <div  class="icon"><img src="images/home/oro.png"></div>
       <div class=amount>{{user.goldBalance}}</div>
     </div>
-    <div class="info-column level" ng-click="goRanking()">
+    <div class="info-column level" Cclick)="goRanking()">
       <div class="label">NIVEL</div>
-      <div  class="icon"><img ng-src="images/home/{{skillLevelImage}}"></div>
+      <div  class="icon"><img src="images/home/{{skillLevelImage}}"></div>
       <div class=amount>{{skillLevelName}}</div>
     </div>
-    <div class="info-column achievements" ng-click="goAchievements()">
+    <div class="info-column achievements" Cclick)="goAchievements()">
       <div class="label">LOGROS</div>
       <div  class="icon"><img src="images/home/logros.png"></div>
       <div class=amount>{{achievementsEarned}} / {{achievementList.length.toString()}}</div>
     </div>
   </div>
   <div class="next-contest-wrapper">
-    <div class="next-contest-label" ng-bind-html-unsafe="infoBarText"></div>
-    <button class="goto-next-contest-button" ng-click="goNextContest()">JUGAR</button>
+    <div class="next-contest-label" [innerHTML]="infoBarText"></div>
+    <button class="goto-next-contest-button" Cclick)="goNextContest()">JUGAR</button>
   </div>
 </div>
 
 <div class="action-buttons-wrapper">
-  <div class="button-scout" ng-click="goScouting()">
+  <div class="button-scout" Cclick)="goScouting()">
     <i class="material-icons">&#xE8A3;</i>
     <div class="button-label">OJEADOR</div>
   </div>
-  <div class="button-shop" ng-click="goShop()">
+  <div class="button-shop" Cclick)="goShop()">
     <i class="material-icons">&#xE54C;</i>
     <div class="button-label">TIENDA</div>
   </div>
-  <div class="button-history" ng-click="goHistory()">
+  <div class="button-history" Cclick)="goHistory()">
     <i class="material-icons">&#xE889;</i>
     <div class="button-label">HISTÓRICO</div>
   </div>

@@ -1,6 +1,7 @@
 library change_password_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
 import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
@@ -11,10 +12,9 @@ import 'package:webclient/utils/string_utils.dart';
 
 @Component(
     selector: 'change-password',
-    templateUrl: 'packages/webclient/components/account/change_password_comp.html',
-    useShadowDom: false
+    templateUrl: 'change_password_comp.html'
 )
-class ChangePasswordComp implements ShadowRootAware {
+class ChangePasswordComp implements OnInit {
   static const String STATE_ENTERING        = 'STATE_ENTERING';
   static const String STATE_INVALID_URL     = 'STATE_INVALID_URL';
   static const String STATE_INVALID_TOKEN   = 'STATE_INVALID_TOKEN';
@@ -49,13 +49,13 @@ class ChangePasswordComp implements ShadowRootAware {
   bool errorDetected = false;
   String errorMessage = "";
 
-  ChangePasswordComp(this._router, this._routeProvider, this._profileManager, this._rootElement, this._loadingService) {
+  ChangePasswordComp(this._router, this._profileManager, this._rootElement, this._loadingService) {
     _loadingService.isLoading = true;
     //GameMetrics.logEvent(GameMetrics.CHANGE_PASSWORD_ATTEMPTED);
     //_stormPathTokenId = _routeProvider.route.parameters['tokenId'];
   }
 
-  @override void onShadowRoot(emulatedRoot) {
+  @override void ngOnInit() {
     //Cogemos los parametros de la querystring esperando encontrar el parametro del token de stormPath
     Uri uri = Uri.parse(window.location.toString());
     if (uri.queryParameters.containsKey("sptoken")) {
@@ -81,10 +81,10 @@ class ChangePasswordComp implements ShadowRootAware {
 
   void hideErrors() {
     if(_errContainer == null) {
-      _errContainer = _rootElement.querySelector("#errorContainer");
+      _errContainer = _rootElement.nativeElement.querySelector("#errorContainer");
     }
     if ( _errLabel== null ) {
-      _errLabel = _rootElement.querySelector('#errorLabel');
+      _errLabel = _rootElement.nativeElement.querySelector('#errorLabel');
       _errLabel.classes.remove('errorDetected');
     }
   }
@@ -95,7 +95,7 @@ class ChangePasswordComp implements ShadowRootAware {
     _enabledSubmit = false;
 
     _profileManager.resetPassword(password, _stormPathTokenId)
-      .then((_) => _router.go('lobby', {}))
+      .then((_) => _router.navigate(['lobby', {}]))
       .catchError((ServerError error) {
         _enabledSubmit = true;
         errorDetected = true;
@@ -108,12 +108,12 @@ class ChangePasswordComp implements ShadowRootAware {
     if (event.target.id != "btnSubmit") {
       event.preventDefault();
     }
-    _router.go(routePath, parameters);
+    _router.navigate([routePath, parameters]);
   }
 
   void validatePassword() {
     if(passwordElement == null) {
-      passwordElement = _rootElement.querySelector('#passwordInputGroup');
+      passwordElement = _rootElement.nativeElement.querySelector('#passwordInputGroup');
     }
     passwordElement.classes.removeAll(['valid', 'not-valid']);
     // Validación del password
@@ -127,7 +127,7 @@ class ChangePasswordComp implements ShadowRootAware {
 
   void validateRePassword() {
     if(rePasswordElement == null) {
-      rePasswordElement = _rootElement.querySelector('#rePasswordInputGroup');
+      rePasswordElement = _rootElement.nativeElement.querySelector('#rePasswordInputGroup');
     }
     rePasswordElement.classes.removeAll(['valid', 'not-valid']);
     //Validación de la confirmación del password
@@ -139,12 +139,11 @@ class ChangePasswordComp implements ShadowRootAware {
     }
   }
 
-  Router _router;
-  RouteProvider _routeProvider;
-  ProfileService _profileManager;
-  LoadingService _loadingService;
+  final Router _router;
+  final ProfileService _profileManager;
+  final LoadingService _loadingService;
 
-  Element _rootElement;
+  ElementRef _rootElement;
   Element _errContainer;
   Element _errLabel;
 

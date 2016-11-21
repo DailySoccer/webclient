@@ -1,6 +1,8 @@
 library contest_filters_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
 import 'dart:math';
 import 'package:webclient/models/contest.dart';
@@ -11,10 +13,9 @@ import 'package:webclient/utils/string_utils.dart';
 
 @Component(
     selector: 'contest-filters-comp',
-    templateUrl: 'packages/webclient/components/contest_filters_comp.html',
-    useShadowDom: false
+    templateUrl: 'contest_filters_comp.html'
 )
-class ContestFiltersComp implements ShadowRootAware {
+class ContestFiltersComp implements OnInit {
 
   /********* CONSTANTS */
   static const String FILTER_COMPETITION  = "FILTER_COMPETITION";
@@ -69,12 +70,12 @@ class ContestFiltersComp implements ShadowRootAware {
 
 
   /********* BINDINGS */
-  @NgOneWay("contest-count")
+  @Input("contest-count")
   void set contestsCount(int value) {
     _contestCount = value;
   }
 
-  @NgOneWay("contests-list")
+  @Input("contests-list")
    void set contestsList(List<Contest> value) {
     if (value == null) {
       return;
@@ -89,10 +90,10 @@ class ContestFiltersComp implements ShadowRootAware {
     }
   }
 
-  @NgCallback("on-sort-order-change")
+  @Input("on-sort-order-change")
   Function onSortOrderChange;
 
-  @NgCallback('on-filter-change')
+  @Input('on-filter-change')
   Function onFilterChange;
 
 
@@ -323,7 +324,7 @@ class ContestFiltersComp implements ShadowRootAware {
   }
 
   /********* IMPLEMENTATIONS */
-  void onShadowRoot(emulatedRoot) {
+  @override void ngOnInit() {
 
     // Capturamos los botones que abren/cierran el panel de filtros
     _filtersPanelButtons = querySelectorAll('.filters-button');

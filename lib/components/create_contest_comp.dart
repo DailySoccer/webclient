@@ -1,8 +1,8 @@
 library create_contest_comp;
 
-import 'dart:async';
-import 'package:angular/angular.dart';
-import 'package:webclient/services/tutorial_service.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/models/template_contest.dart';
@@ -20,8 +20,7 @@ import 'package:webclient/services/leaderboard_service.dart';
 
 @Component(
   selector: 'create-contest',
-  templateUrl: 'packages/webclient/components/create_contest_comp.html',
-  useShadowDom: false
+  templateUrl: 'create_contest_comp.html'
 )
 class CreateContestComp  {
 
@@ -155,7 +154,7 @@ class CreateContestComp  {
       List<String> soccerPlayers = [];
       _contestsService.createContest(contest, soccerPlayers)
         .then((Contest contestCreated) {
-          _router.go('enter_contest', { "contestId": contestCreated.contestId, "parent": "create_contest", "contestEntryId": "none" });
+          _router.navigate(['enter_contest', { "contestId": contestCreated.contestId, "parent": "create_contest", "contestEntryId": "none" }]);
         });
     }
   }

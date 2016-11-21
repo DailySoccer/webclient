@@ -1,6 +1,8 @@
 library form_autofill_decorator;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
 import 'dart:async';
 
@@ -22,17 +24,17 @@ import 'dart:async';
  *  - https://gist.github.com/stefanotorresi/1de83e989fd780873af6
   */
 
-@Decorator(selector: '[formAutofillFix]')
+@Directive(selector: '[formAutofillFix]')
 class FormAutofillDecorator {
-  Element formElement;
+  ElementRef formElement;
 
-  FormAutofillDecorator(Element this.formElement){
+  FormAutofillDecorator(this.formElement){
    new Timer(const Duration(seconds:0), () => forceInputActivity());
   }
 
   void forceInputActivity() {
     // Buscar todos los controles 'inputs'
-    List<InputElement> inputs = formElement.querySelectorAll('input') as List<InputElement>;
+    List<InputElement> inputs = formElement.nativeElement.querySelectorAll('input') as List<InputElement>;
     for (var input in inputs) {
       // Indicar al input que ha cambiado (por si acaso = "autocomplete form")
       //print("event Change: ${input.id}");

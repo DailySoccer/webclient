@@ -1,8 +1,10 @@
 library ranking_comp;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
 import 'dart:math';
-import 'package:angular/angular.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/loading_service.dart';
@@ -12,14 +14,13 @@ import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
     selector: 'ranking',
-    templateUrl: 'packages/webclient/components/leaderboards/ranking_comp.html',
-    useShadowDom: false
+    templateUrl: 'ranking_comp.html'
 )
 
 class RankingComp {
  
-  @NgOneWay('ranking-points-data')
-    set pointsList(List<Map> value) {
+  @Input('ranking-points-data')
+  set pointsList(List<Map> value) {
     if (value != null) {
       pointsUserList = value;
       myPointsData = pointsUserList.where((user) => user['id'] == profileService.user.userId).first;
@@ -27,7 +28,7 @@ class RankingComp {
   }
   List<Map> pointsUserList;
   
-  @NgOneWay('ranking-money-data')
+  @Input('ranking-money-data')
   set moneyList(List<Map> value) {
     if (value != null) {
       moneyUserList = value;
@@ -39,10 +40,10 @@ class RankingComp {
   Map myPointsData;
   Map myMoneyData;
   
-  @NgCallback('on-show-ranking-points')
+  @Input('on-show-ranking-points')
   Function showPointsRanking;
   
-  @NgCallback('on-show-ranking-money')
+  @Input('on-show-ranking-money')
   Function showMoneyRanking;
     
   LoadingService loadingService;

@@ -1,7 +1,9 @@
 library fantasy_team_comp;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
-import 'package:angular/angular.dart';
 import 'package:webclient/models/contest_entry.dart';
 import "package:webclient/models/soccer_player.dart";
 import 'dart:async';
@@ -11,9 +13,9 @@ import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/models/instance_soccer_player.dart';
 
 @Component(selector: 'fantasy-team',
-           templateUrl: 'packages/webclient/components/view_contest/fantasy_team_comp.html',
-           useShadowDom: false)
-class FantasyTeamComp implements DetachAware {
+           templateUrl: 'fantasy_team_comp.html'
+)
+class FantasyTeamComp implements OnDestroy {
 
     List<dynamic> slots = null;
 
@@ -21,7 +23,7 @@ class FantasyTeamComp implements DetachAware {
 
     int nameWidth = 105;
   
-    @NgOneWay("contest-entry")
+    @Input("contest-entry")
     set contestEntry(ContestEntry value) {
 
       if (_contestEntry != value) {
@@ -33,33 +35,33 @@ class FantasyTeamComp implements DetachAware {
       _refreshTeam();
     }
 
-    @NgOneWay("watch")
+    @Input("watch")
     set watch(dynamic value) {
       _refreshTeam();
     }
 
-    @NgOneWay("is-opponent")
+    @Input("is-opponent")
     bool isOpponent = false;
 
-    @NgOneWay("show-close-button")
+    @Input("show-close-button")
     bool showCloseButton = false;
 
-    @NgOneWay("show-changes")
+    @Input("show-changes")
     bool showChanges = false;
     
-    @NgOneWay("num-changes")
+    @Input("num-changes")
     int numChanges = 0;
     
-    @NgOneWay("changing-soccer-id")
+    @Input("changing-soccer-id")
     String changingSoccerId = null;
     
-    @NgOneWay("available-salary")
+    @Input("available-salary")
     int availableSalary = 0;
 
-    @NgCallback('on-close')
+    @Input('on-close')
     Function onClose;
 
-    @NgCallback('on-request-change')
+    @Input('on-request-change')
     Function onRequestChange;
     
     int get ordinalChange => (ContestEntry.MAX_CHANGES.toInt() - numChanges) + 1;
@@ -71,7 +73,7 @@ class FantasyTeamComp implements DetachAware {
     String get remainingTime => (_contestEntry != null) ? "${_contestEntry.percentLeft}%" : "-";
     String get printableAvailableSalary => StringUtils.parseSalary(availableSalary);
 
-    bool get isViewContestEntryMode => _routeProvider.route.name.contains("view_contest_entry");
+    bool get isViewContestEntryMode => _routeParams.get("view_contest_entry") != null;
     bool get isLive => _contestEntry != null ? _contestEntry.contest.isLive : false;
     
     String getLocalizedText(key, {substitutions: null}) {
@@ -82,7 +84,7 @@ class FantasyTeamComp implements DetachAware {
       return StringUtils.formatCurrency(amount);
     }
     
-    FantasyTeamComp(this._routeProvider, this._router, this._rootElement);
+    FantasyTeamComp(this._routeParams, this._router, this._rootElement);
 
     void _refreshTeam() {
       if (_contestEntry == null)
@@ -172,7 +174,7 @@ class FantasyTeamComp implements DetachAware {
         SoccerPlayer soccerPlayer = instanceSoccerPlayer.soccerPlayer;
 
         // Para el score refrescamos solo el texto y lanzamos una animacion (fade-in/out por ejemplo)
-        Element scoreElement = _rootElement.querySelector("[data-id='${soccerPlayer.templateSoccerPlayerId}'] .column-score span");
+        Element scoreElement = _rootElement.nativeElement.querySelector("[data-id='${soccerPlayer.templateSoccerPlayerId}'] .column-score span");
         Map slot = slots.firstWhere((slot) => 
             slot['id'] == soccerPlayer.templateSoccerPlayerId
             );
@@ -198,9 +200,9 @@ class FantasyTeamComp implements DetachAware {
     }
 
     void editTeam() {
-      _router.go('enter_contest', { "contestId": _contestEntry.contest.contestId ,
+      _router.navigate(['enter_contest', { "contestId": _contestEntry.contest.contestId ,
                                     "contestEntryId": _contestEntry.contestEntryId,
-                                    "parent": _routeProvider.parameters["parent"]});
+                                    "parent": _routeParams.get("parent")}]);
     }
 
     void onCloseButtonClick() {
@@ -208,8 +210,7 @@ class FantasyTeamComp implements DetachAware {
         onClose();
     }
 
-    @override
-    void detach() {
+    @override void ngOnDestroy() {
       stopTimers();
     }
 
@@ -242,9 +243,9 @@ class FantasyTeamComp implements DetachAware {
     }
 
     List<Timer> _timers = new List<Timer>();
-    Element _rootElement;
+    ElementRef _rootElement;
     ContestEntry _contestEntry;
 
-    RouteProvider _routeProvider;
-    Router _router;
+    final RouteParams _routeParams;
+    final Router _router;
 }

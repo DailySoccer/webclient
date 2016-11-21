@@ -1,18 +1,20 @@
 library simple_prome_viewer_comp;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
-import 'package:angular/angular.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/promos_service.dart';
 
 @Component(
    selector: 'simple-promo-viewer',
-   useShadowDom: false
+   template: ""
 )
-class SimplePromoViewerComp implements DetachAware {
+class SimplePromoViewerComp implements OnDestroy {
 
-  SimplePromoViewerComp(this._router, this._routeProvider, this._scrDet, this._rootElement, this._promosService){
-    var promoId = _routeProvider.route.parameters['promoId'];
+  SimplePromoViewerComp(this._router, this._routeParams, this._scrDet, this._rootElement, this._promosService){
+    var promoId = _routeParams.get('promoId');
     promo = _promosService.getPromo(promoId);
     createHTML();
     _screenWidthChangeDetector = _scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
@@ -28,9 +30,9 @@ class SimplePromoViewerComp implements DetachAware {
         </div>
       </div>
     ''';
-    _rootElement.nodes.clear();
-    _rootElement.appendHtml(theHTML);
-    _rootElement.querySelectorAll(".button-ok").onClick.listen(onButtonClick);
+    _rootElement.nativeElement.nodes.clear();
+    _rootElement.nativeElement.appendHtml(theHTML);
+    _rootElement.nativeElement.querySelectorAll(".button-ok").onClick.listen(onButtonClick);
   }
 
   String getPromoImg(){
@@ -45,23 +47,22 @@ class SimplePromoViewerComp implements DetachAware {
   }
 
   void onButtonClick(event) {
-    _router.go(promo["promoEnterUrl"],{});
+    _router.navigate([promo["promoEnterUrl"],{}]);
   }
 
   void onScreenWidthChange(String screenSize){
     createHTML();
   }
 
-  @override
-  void detach() {
+  @override void ngOnDestroy() {
     _screenWidthChangeDetector.cancel();
   }
 
   Map promo = {};
   var _screenWidthChangeDetector;
-  Element _rootElement;
+  ElementRef _rootElement;
   PromosService _promosService;
   ScreenDetectorService _scrDet;
-  RouteProvider _routeProvider;
+  RouteParams _routeParams;
   Router _router;
 }

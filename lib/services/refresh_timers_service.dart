@@ -1,7 +1,7 @@
 library refresh_timers_service;
 
 import 'dart:async';
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/services/tutorial_service.dart';
 import 'dart:html';

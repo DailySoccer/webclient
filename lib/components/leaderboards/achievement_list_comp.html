@@ -1,2 +1,2 @@
 <div class="achievement-count"> {{earneds}} de {{achievementList.length.toString()}} LOGROS CONSEGUIDOS</div>
-<achievement ng-repeat="achiev in achievementList" owned="achievementEarned(achiev.id)" key="achiev"></achievement>
+<achievement *ngFor="let achiev of achievementList" owned="achievementEarned(achiev.id)" key="achiev"></achievement>

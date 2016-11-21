@@ -1,27 +1,29 @@
 library paginator_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
 import 'dart:math';
 import 'package:webclient/services/screen_detector_service.dart';
 
 @Component(
     selector: 'paginator',
-    useShadowDom: false
+    template: ""
 )
-class PaginatorComp implements DetachAware {
+class PaginatorComp implements OnDestroy {
 
-  @NgCallback('on-page-change')
+  @Input('on-page-change')
   Function onPageChange;
 
-  @NgOneWay('items-per-page')
+  @Input('items-per-page')
   void set itemsPerPageCount(int value) {
     if(value == null) {
       _options["itemsPerPage"] = value;
     }
   }
 
-  @NgOneWay('list-length')
+  @Input('list-length')
   void set listLength(int value) {
     if (value == null) {
       return;
@@ -49,7 +51,7 @@ class PaginatorComp implements DetachAware {
 
   void _createTemplate() {
     // Generamos y añadimos al root la estructura que necesita el paginator.
-    _rootElement.children.add(
+    _rootElement.nativeElement.children.add(
       _paginatorContainer =  new DivElement()
         ..classes.add('paginator-wrapper')
         ..children.add(
@@ -59,7 +61,7 @@ class PaginatorComp implements DetachAware {
     );
   }
 
-  void detach() {
+  @override void ngOnDestroy() {
     _streamListener.cancel();
   }
 
@@ -228,7 +230,7 @@ class PaginatorComp implements DetachAware {
  }
 
   void regenerate(int highlitedPage) {
-    _paginatorContainer = _rootElement.querySelector(".paginator-box");
+    _paginatorContainer = _rootElement.nativeElement.querySelector(".paginator-box");
     if (_totalPages == 0) {
       onPageChange({"currentPage":0, "itemsPerPage":_options["itemsPerPage"]});
       if (_paginatorContainer != null) {
@@ -273,7 +275,7 @@ class PaginatorComp implements DetachAware {
    int _originalPageLinksCount;
    int _listLength;
 
-   Element _rootElement;
+   ElementRef _rootElement;
    Element _paginatorContainer;
 
    ScreenDetectorService _scrDet;

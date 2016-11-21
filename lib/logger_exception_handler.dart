@@ -1,13 +1,15 @@
 library logger_exception_handler;
 
-import 'dart:html';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
 
-import 'package:angular/angular.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/server_error.dart';
 
+// TODO Angular 2
+/*
 //
 // Nuestro handler sera inyectado en Angular. Angular nos llamara entonces cada vez que se produzca una excepcion
 // dentro de su zona.
@@ -82,3 +84,4 @@ class LoggerExceptionHandler extends ExceptionHandler {
     Logger.root.shout("$exc $reason \nORIGINAL STACKTRACE:\n$stackTrace");
   }
 }
+*/

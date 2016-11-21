@@ -1,6 +1,7 @@
 library loading_service;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'dart:async';
 import 'package:webclient/utils/host_server.dart';
@@ -45,7 +46,10 @@ class LoadingService {
       Logger.root.info("DeepLinking, redirection: [Section: ${_universalLinksData['path'].toString()}, Params: ${_universalLinksData['params'].toString()}]");
       GameMetrics.setupFromDeepLinking();
       clearULData();
-      router.go(_universalLinksData['path'].toString(), JSON.decode(_universalLinksData['params']), replace: true);
+      router.navigate([
+        _universalLinksData['path'].toString(),
+        JSON.decode(_universalLinksData['params'])
+      ]);
     }], null);
   }
   

@@ -1,32 +1,32 @@
-<div class="tab-bar-wrapper" ng-if="isShown">
+<div class="tab-bar-wrapper" *ngIf="isShown">
   
-  <div class="tab-bar-item" ng-click="homeTab.goLocation()" ng-class="{'active': homeTab.isActive}">
-    <img ng-src="{{homeTab.iconImage}}">
+  <div class="tab-bar-item" (click)="homeTab.goLocation()" [ngClass]="{'active': homeTab.isActive}">
+    <img src="{{homeTab.iconImage}}">
     <span class="tab-bar-item-name">{{homeTab.name}}</span>
   </div>
  
-  <div class="tab-bar-item" ng-click="myContest.goLocation()" ng-class="{'active': myContest.isActive}">
-    <img ng-src="{{myContest.iconImage}}">
+  <div class="tab-bar-item" (click)="myContest.goLocation()" [ngClass]="{'active': myContest.isActive}">
+    <img src="{{myContest.iconImage}}">
     <span class="tab-bar-item-name">{{myContest.name}}</span>
-    <span class="tab-bar-item-badge" ng-class="{'has-notifications': myContest.notificationsCount > 0}">{{myContest.notificationsCount}}</span>
+    <span class="tab-bar-item-badge" [ngClass]="{'has-notifications': myContest.notificationsCount > 0}">{{myContest.notificationsCount}}</span>
   </div>
   
-  <div class="tab-bar-item" ng-click="contestsTab.goLocation()" ng-class="{'active': contestsTab.isActive}">
-    <img ng-src="{{contestsTab.iconImage}}">
+  <div class="tab-bar-item" (click)="contestsTab.goLocation()" [ngClass]="{'active': contestsTab.isActive}">
+    <img src="{{contestsTab.iconImage}}">
     <span class="tab-bar-item-name">{{contestsTab.name}}</span>
-    <span class="tab-bar-item-badge" ng-class="{'has-notifications': contestsTab.notificationsCount > 0}">{{contestsTab.notificationsCount}}</span>
+    <span class="tab-bar-item-badge" [ngClass]="{'has-notifications': contestsTab.notificationsCount > 0}">{{contestsTab.notificationsCount}}</span>
   </div>
   
-  <div class="tab-bar-item" ng-click="liveContestTab.goLocation()" ng-class="{'active': liveContestTab.isActive}">
-    <img ng-src="{{liveContestTab.iconImage}}">
+  <div class="tab-bar-item" (click)="liveContestTab.goLocation()" [ngClass]="{'active': liveContestTab.isActive}">
+    <img src="{{liveContestTab.iconImage}}">
     <span class="tab-bar-item-name">{{liveContestTab.name}}</span>
-    <span class="tab-bar-item-badge" ng-class="{'has-notifications': liveContestTab.notificationsCount > 0}">{{liveContestTab.notificationsCount}}</span>
+    <span class="tab-bar-item-badge" [ngClass]="{'has-notifications': liveContestTab.notificationsCount > 0}">{{liveContestTab.notificationsCount}}</span>
   </div>
  
-  <div class="tab-bar-item" ng-click="leaderTab.goLocation()" ng-class="{'active': leaderTab.isActive}">
-    <img ng-src="{{leaderTab.iconImage}}">
+  <div class="tab-bar-item" (click)="leaderTab.goLocation()" [ngClass]="{'active': leaderTab.isActive}">
+    <img src="{{leaderTab.iconImage}}">
     <span class="tab-bar-item-name">{{leaderTab.name}}</span>
-    <span class="tab-bar-item-badge" ng-class="{'has-notifications': leaderTab.notificationsCount > 0}">{{leaderTab.notificationsCount}}</span>
+    <span class="tab-bar-item-badge" [ngClass]="{'has-notifications': leaderTab.notificationsCount > 0}">{{leaderTab.notificationsCount}}</span>
   </div>
   
 </div>

@@ -1,8 +1,9 @@
 library limit_to_dot;
 
-import 'package:angular/core/annotation.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
 
-@Formatter(name:'limitToDot')
+@Pipe(name:'limitToDot')
 class LimitToDot implements Function {
 
   String call(String items, int limit) {

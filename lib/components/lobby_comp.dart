@@ -1,7 +1,9 @@
 library lobby_comp;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:async';
-import 'package:angular/angular.dart';
 import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/services/loading_service.dart';
@@ -18,10 +20,9 @@ import 'package:webclient/services/leaderboard_service.dart';
 
 @Component(
   selector: 'lobby',
-  templateUrl: 'packages/webclient/components/lobby_comp.html',
-  useShadowDom: false
+  templateUrl: 'lobby_comp.html'
 )
-class LobbyComp implements DetachAware {
+class LobbyComp implements OnDestroy {
   LoadingService loadingService;
   DateTime selectedDate = null;
   
@@ -42,7 +43,7 @@ class LobbyComp implements DetachAware {
   
   String get skillPoints => _profileService.user!= null ? _profileService.user.trueSkill.toString() : "";
   
-  LobbyComp(RouteProvider routeProvider, this._router, this._appStateService, this._refreshTimersService, this._contestsService, 
+  LobbyComp(this._router, this._appStateService, this._refreshTimersService, this._contestsService,
             GuildService guildService, this.loadingService, this._profileService, TutorialService tutorialService, this._leaderboardService) {
     refreshTopBar();
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR, refreshTopBar);
@@ -205,7 +206,7 @@ class LobbyComp implements DetachAware {
 
   // Handler para el evento de entrar en un concurso
   void onActionClick(Contest contest) {
-    _router.go('enter_contest', { "contestId": contest.contestId, "parent": "lobby", "contestEntryId": "none" });
+    _router.navigate(['enter_contest', { "contestId": contest.contestId, "parent": "lobby", "contestEntryId": "none" }]);
   }
 
   void onSelectedDayChange(DateTime day) {
@@ -220,7 +221,7 @@ class LobbyComp implements DetachAware {
       onActionClick(contest);
   }
 
-  void detach() {
+  @override void ngOnDestroy() {
     _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_CONTEST_LIST);
     _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR);
   }
@@ -230,7 +231,7 @@ class LobbyComp implements DetachAware {
   }
   
   void onCreateContestClick() {
-    _router.go('create_contest', {});
+    _router.navigate(['create_contest', {}]);
   }
 
   Router _router;

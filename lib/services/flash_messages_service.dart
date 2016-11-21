@@ -1,6 +1,6 @@
 library flash_messages_service;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
 
 class FlashMessage {
   String context;

@@ -1,7 +1,8 @@
 library connection_error;
 
 import 'dart:convert' show JSON;
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:http/http.dart' as Http;
 
 class FutureCancelled implements Exception {
 }
@@ -37,8 +38,8 @@ class ServerError {
     String errorString = UNKNOWN_ERROR_JSON;
 
     if (isResponseError) {
-      HttpResponse httpResponse = httpError as HttpResponse;
-      errorString = httpResponse.data;
+      Http.Response httpResponse = httpError as Http.Response;
+      errorString = httpResponse.body;
     }
     else if (isServerNotFoundError) {
       errorString = SERVER_NOT_FOUND_ERROR_JSON;
@@ -59,21 +60,21 @@ class ServerError {
   factory ServerError.fromHttpResponse(var error) {
     String type = UNKNOWN_ERROR;
 
-    if (error is HttpResponse) {
-      HttpResponse httpResponse = error as HttpResponse;
+    if (error is Http.Response) {
+      Http. Response httpResponse = error as Http.Response;
 
-      if (httpResponse.status == 400) {
-        if (httpResponse.data != null && httpResponse.data != "") {
+      if (httpResponse.statusCode == 400) {
+        if (httpResponse.body != null && httpResponse.body != "") {
           type = RESPONSE_ERROR;
         }
       }
-      else if (httpResponse.status == 404) {
+      else if (httpResponse.statusCode == 404) {
         type = SERVER_NOT_FOUND_ERROR;
       }
-      else if (httpResponse.status == 500) {
+      else if (httpResponse.statusCode == 500) {
         type = SERVER_EXCEPTION_ERROR;
       }
-      else if (httpResponse.status == 401) {
+      else if (httpResponse.statusCode == 401) {
         type = UNAUTHORIZED_ERROR;
       }
       else {

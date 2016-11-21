@@ -1,6 +1,7 @@
 library promos_service;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
 import 'package:webclient/services/server_service.dart';
 import 'dart:async';
 import 'package:webclient/services/refresh_timers_service.dart';
@@ -40,7 +41,7 @@ class PromosService {
     if (url.contains("#")) {
       window.location.assign(url);
     } else {
-      _router.go(url, params);
+      _router.navigate([url, params]);
     }
   }
   

@@ -1,14 +1,14 @@
 <ranking  ranking-points-data="pointsUserList" ranking-money-data="moneyUserList"
           on-show-ranking-points="showPointsRanking()" on-show-ranking-money="showMoneyRanking()" 
-          ng-if="!loadingService.isLoading && isMainRankingPlayersActive">
+          *ngIf="!loadingService.isLoading && isMainRankingPlayersActive">
 </ranking>
  
 <leaderboard-table  share-info="sharingInfoTrueSkill" show-header="true" highlight-element="playerPointsInfo" 
                     table-elements="pointsUserList" rows="USERS_TO_SHOW" points-column-label="pointsColumnName" 
-                    hint="playerPointsHint" ng-if="!loadingService.isLoading && isRankingBestPlayersActive">
+                    hint="playerPointsHint" *ngIf="!loadingService.isLoading && isRankingBestPlayersActive">
 </leaderboard-table>
 
 <leaderboard-table  share-info="sharingInfoGold" show-header="true" highlight-element="playerMoneyInfo" 
                     table-elements="moneyUserList" rows="USERS_TO_SHOW" points-column-label="moneyColumnName" 
-                    hint="playerMoneyHint" ng-if="!loadingService.isLoading && isRankingMostRichActive">
+                    hint="playerMoneyHint" *ngIf="!loadingService.isLoading && isRankingMostRichActive">
 </leaderboard-table>

@@ -1,6 +1,8 @@
 library secondary_tab_bar_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:logging/logging.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/utils/host_server.dart';
@@ -15,8 +17,7 @@ import 'dart:math';
 
 @Component(
     selector: 'secondary-tab-bar',
-    templateUrl: 'packages/webclient/components/navigation/secondary_tab_bar_comp.html',
-    useShadowDom: false
+    templateUrl: 'secondary_tab_bar_comp.html'
 )
 class SecondaryTabBarComp {
 

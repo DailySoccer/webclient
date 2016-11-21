@@ -1,7 +1,9 @@
 library contests_list_comp;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
-import 'package:angular/angular.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/services/datetime_service.dart';
@@ -16,10 +18,9 @@ import 'dart:async';
 
 @Component(
     selector: 'contests-list',
-    templateUrl: 'packages/webclient/components/contests_list_comp.html',
-    useShadowDom: false
+    templateUrl: 'contests_list_comp.html'
 )
-class ContestsListComp implements DetachAware {
+class ContestsListComp implements OnDestroy {
 
   static const num SOON_SECONDS = 2 * 60 * 60;
   static const num VERY_SOON_SECONDS = 30 * 60;
@@ -36,7 +37,7 @@ class ContestsListComp implements DetachAware {
   }
   
   /********* BINDINGS */
-  @NgOneWay("contests-list")
+  @Input("contests-list")
   void set contestsList(List<Contest> value) {
     if (value == null || value.isEmpty) {
       contestsListOriginal = new List<Contest>();
@@ -46,38 +47,38 @@ class ContestsListComp implements DetachAware {
     refreshListOrder();
   }
 
-  @NgOneWay("action-button-title")
+  @Input("action-button-title")
   String actionButtonTitle = "VER";
 
   // upcoming, live, history
   static const String UPCOMING_STATE = "upcoming";
   static const String LIVE_STATE = "live";
   static const String HISTORY_STATE = "history";
-  @NgOneWay("display-state")
+  @Input("display-state")
   String state = UPCOMING_STATE;
   
-  @NgOneWay("show-date")
+  @Input("show-date")
   bool showDate = false;
   
-  @NgOneWay("sorting")
+  @Input("sorting")
   void set sortOrder(Map value) {
     _sortOrder = value;
     refreshListOrder();
   }
 
-  @NgOneWay("date-filter")
+  @Input("date-filter")
   void set filterByDate(DateTime value) {
     _dateFilter = value;
     refreshListOrder();
   }
   
-  @NgCallback('on-list-change')
+  @Input('on-list-change')
   Function onListChange;
 
-  @NgCallback("on-row-click")
+  @Input("on-row-click")
   Function onRowClick;
 
-  @NgCallback("on-action-click")
+  @Input("on-action-click")
   Function onActionClick;
 
   String getLocalizedText(key, [Map substitutions]) {
@@ -357,7 +358,7 @@ class ContestsListComp implements DetachAware {
   }
   //Contest _lastContest = null; //while printing, the last contest si saved
   
-  void detach() {
+  @override void ngOnDestroy() {
     _contestsTimer.cancel();
   }
 

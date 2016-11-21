@@ -1,15 +1,17 @@
 library max_text_width;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html' as dom;
-import 'package:angular/angular.dart';
 import 'dart:html';
 import 'package:webclient/utils/html_utils.dart';
 import 'dart:async';
 import 'dart:math';
 
-@Decorator(selector: '[max-text-width]')
+@Directive(selector: '[max-text-width]')
 class MaxTextWidthDirective{
-  final dom.Element element;
+  final ElementRef element;
   int maxWidth = 100;
   int lastWidth = 100;
   bool stable = false;
@@ -17,10 +19,10 @@ class MaxTextWidthDirective{
 
   MaxTextWidthDirective(this.element) {
     TimerTick();
-    lastWidth = element.offsetWidth - 5;
+    lastWidth = element.nativeElement.offsetWidth - 5;
   }
 
-  @NgOneWay('max-text-width')
+  @Input('max-text-width')
   set value(Map val) {
     if (val != null && (val['width'] != maxWidth || val['text'] != originalText))  {
       maxWidth = val['width'];
@@ -30,8 +32,8 @@ class MaxTextWidthDirective{
   
   void TimerTick() {
     new Timer(new Duration(milliseconds: stable? 200: 0), () {
-          int newWidth = max(element.offsetWidth - 15, maxWidth);
-          if (newWidth != lastWidth || element.text == "") {
+          int newWidth = max(element.nativeElement.offsetWidth - 15, maxWidth);
+          if (newWidth != lastWidth || element.nativeElement.text == "") {
             updateWidth(newWidth);
             lastWidth = newWidth;
             stable = false;
@@ -43,7 +45,7 @@ class MaxTextWidthDirective{
   }
   
   void updateWidth(int newWidth) {
-    element.text = originalText;
-    element.text = trimStringToPx(element, newWidth);
+    element.nativeElement.text = originalText;
+    element.nativeElement.text = trimStringToPx(element.nativeElement, newWidth);
   }
 }

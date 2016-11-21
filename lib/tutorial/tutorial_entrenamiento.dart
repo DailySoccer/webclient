@@ -1,12 +1,13 @@
 library tutorial_entrenamiento;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'dart:async';
 import 'dart:convert' show JSON;
 import 'package:webclient/tutorial/tutorial.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/tooltip_service.dart';
-import 'package:angular/angular.dart';
 
 class TutorialEntrenamiento extends Tutorial {
   static String STEP_1 = "1";

@@ -1,10 +1,10 @@
 <div id="contestSortsFilters">
 
   <!-- Resumen y Botón de filtros XS -->
-  <div class="choosed-filters-container" ng-show="scrDet.isXsScreen">
-      <div class="competition-filter-name" ng-bind-html="filterResume"></div>
+  <div class="choosed-filters-container" [hidden]="!scrDet.isXsScreen">
+      <div class="competition-filter-name" [innerHTML]="filterResume"></div>
       <div class="filterToggler">
-        <div id="filtersButtonMobile" type="button" class="filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">{{getLocalizedText("filters")}}</div>
+        <div id="filtersButtonMobile" type="button" class="filters-button" (click)="toggleFilterMenu()" data-toggle="collapse" data-target="#filtersPanel">{{getLocalizedText("filters")}}</div>
       </div>
   </div>
 
@@ -12,17 +12,17 @@
   <div id="contestFastSort">
     <span class="filter-text">{{getLocalizedText("sortby")}}: </span>
     <div class="btn-group" >
-      <div ng-repeat="button in sortingButtons" id="{{button['id']}}" type="button" class="btn sorting-button" ng-class="button['state']" ng-click="sortListByField(button['field-name'])">{{button["name"].toUpperCase()}}</div>
+      <div *ngFor="let button of sortingButtons" id="{{button['id']}}" type="button" class="btn sorting-button" [ngClass]="button['state']" (click)="sortListByField(button['field-name'])">{{button["name"].toUpperCase()}}</div>
     </div>
   </div>
 
   <!-- Filtro por nombre -->
   <div id="contestFastSearch">
-      <input class="searcher" type="text" placeholder="{{getLocalizedText('search')}}" ng-model="filterContestName" ng-keyUp="filterByName()">
+      <input class="searcher" type="text" placeholder="{{getLocalizedText('search')}}" [(ngModel)]="filterContestName" ng-keyUp="filterByName()">
   </div>
 
-  <div class="filterToggler" ng-show="!scrDet.isXsScreen">
-      <div id="filtersButtonDesktop" type="button" class="filters-button" ng-click="toggleFilterMenu()" data-toggle="collapse">{{getLocalizedText("filters")}}</div>
+  <div class="filterToggler" [hidden]="scrDet.isXsScreen">
+      <div id="filtersButtonDesktop" type="button" class="filters-button" (click)="toggleFilterMenu()" data-toggle="collapse">{{getLocalizedText("filters")}}</div>
   </div>
 
 </div>
@@ -38,10 +38,10 @@
         <div class="check-group-wrapper">
 
           <!-- Botones -->
-          <div class="button-check-{{competitionType.flag}}" ng-repeat="competitionType in competitionFilterList">
-            <input id="{{competitionType['id']}}" type="checkbox" ng-disabled="competitionType['disabled']"
-                   ng-click="filterByCompetitionType(competitionType)">
-            <label for="{{competitionType['id']}}">{{competitionType["text"].toUpperCase()}}</label>
+          <div class="button-check-{{competitionType.flag}}" *ngFor="let competitionType of competitionFilterList">
+            <input id="{{competitionType['id']}}" type="checkbox" [disabled]="competitionType['disabled']"
+                   (click)="filterByCompetitionType(competitionType)">
+            <label attr.for="{{competitionType['id']}}">{{competitionType["text"].toUpperCase()}}</label>
           </div>
 
         </div>
@@ -55,10 +55,10 @@
           <div class="check-group-wrapper">
 
             <!-- Botones -->
-            <div class="button-check" ng-repeat="contestType in contestTypeFilterList">
-              <input id="{{contestType['id']}}" type="checkbox" ng-disabled="contestType['disabled']"
-                     ng-click="filterByTournamentType(contestType)">
-              <label for="{{contestType['id']}}">{{contestType["text"].toUpperCase()}}</label>
+            <div class="button-check" *ngFor="let contestType of contestTypeFilterList">
+              <input id="{{contestType['id']}}" type="checkbox" [disabled]="contestType['disabled']"
+                     (click)="filterByTournamentType(contestType)">
+              <label attr.for="{{contestType['id']}}">{{contestType["text"].toUpperCase()}}</label>
 
             </div>
           </div>
@@ -72,10 +72,10 @@
           <div class="check-group-wrapper">
 
             <!-- Botones -->
-            <div class="button-check" ng-repeat="tier in salaryCapFilterList">
-              <input id="{{tier['id']}}" type="checkbox" ng-disabled="tier['disabled']"
-                     ng-click="filterByTier(tier)">
-              <label for="{{tier['id']}}">{{tier["text"].toUpperCase()}}</label>
+            <div class="button-check" *ngFor="let tier of salaryCapFilterList">
+              <input id="{{tier['id']}}" type="checkbox" [disabled]="tier['disabled']"
+                     (click)="filterByTier(tier)">
+              <label attr.for="{{tier['id']}}">{{tier["text"].toUpperCase()}}</label>
             </div>
 
         </div>
@@ -97,10 +97,10 @@
   <div class="filters-panel-row">
 
       <div class="reset-button-wrapper">
-        <button type="button" class="btn-reset" ng-click="resetAllFilters()">{{getLocalizedText("clearfilters")}}</button>
+        <button type="button" class="btn-reset" (click)="resetAllFilters()">{{getLocalizedText("clearfilters")}}</button>
       </div>
       <div class="confirm-button-wrapper">
-        <button type="button" class="btn-confirm" ng-click="toggleFilterMenu()">{{getLocalizedText("buttonaccept")}}</button>
+        <button type="button" class="btn-confirm" (click)="toggleFilterMenu()">{{getLocalizedText("buttonaccept")}}</button>
       </div>
 
   </div>

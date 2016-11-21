@@ -1,12 +1,12 @@
-<form id="editPersonalDataForm" class="edit-form" ng-submit="saveChanges()" role="form" autocomplete="off" ng-show="!loadingService.isLoading">
+<form id="editPersonalDataForm" class="edit-form" (ngSubmit)="saveChanges()" role="form" autocomplete="off" [hidden]="loadingService.isLoading">
   <div class="content">
 
     <!-- Nickname -->
     <div class="content-field">
       <span id="lblPassword" class="text-label">{{getLocalizedText("username")}}</span>      
-      <input id="txtNickName" class="text-input" type="text" maxlength="{{MAX_NICKNAME_LENGTH}}" ng-model="editedNickName" placeholder="{{getLocalizedText('username')}}" class="form-control" tabindex="3" autocapitalize="off">
+      <input id="txtNickName" class="text-input" type="text" attr.maxlength="{{MAX_NICKNAME_LENGTH}}" [(ngModel)]="editedNickName" placeholder="{{getLocalizedText('username')}}" class="form-control" tabindex="3" autocapitalize="off">
       <!-- Error de nickName -->
-      <div id="nickNameErrorContainer" class="content-field-block errorDetected" ng-if="nicknameErrorText != ''">
+      <div id="nickNameErrorContainer" class="content-field-block errorDetected" *ngIf="nicknameErrorText != ''">
         <div id="nickNameErrorLabel" class="err-text">{{nicknameErrorText}}</div>
       </div>
     </div>
@@ -49,7 +49,7 @@
   </div>
 
   <div class="content-field">
-    <button id="btnSubmit" class="action-button-save" ng-disabled="!canSave" type="submit">{{getLocalizedText("buttonsave")}}</button>
+    <button id="btnSubmit" class="action-button-save" [disabled]="!canSave" type="submit">{{getLocalizedText("buttonsave")}}</button>
   </div>
 
 </form>

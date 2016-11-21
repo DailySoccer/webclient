@@ -1,5 +1,7 @@
 library tutorial;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
 import 'dart:collection';
 import 'dart:async';
 import 'dart:convert' show JSON;
@@ -10,7 +12,6 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/services/tooltip_service.dart';
 import 'package:webclient/models/user.dart';
-import 'package:angular/angular.dart';
 import 'package:webclient/services/template_service.dart';
 
 class TutorialStep {

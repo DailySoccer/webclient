@@ -2,7 +2,7 @@ library webclient;
 
 import 'dart:html';
 import 'dart:async';
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
 import 'package:angular/routing/module.dart';
 import 'package:angular/core_dom/module_internal.dart';
 
@@ -45,7 +45,6 @@ import 'package:webclient/utils/ng_bind_html_unsafe.dart';
 import 'package:webclient/utils/max_text_width.dart';
 import 'package:webclient/utils/modal_window.dart';
 
-import 'package:webclient/components/navigation/main_menu_f2p_comp.dart';
 import 'package:webclient/components/navigation/footer_comp.dart';
 import 'package:webclient/components/navigation/top_bar_comp.dart';
 import 'package:webclient/components/navigation/tab_bar_comp.dart';

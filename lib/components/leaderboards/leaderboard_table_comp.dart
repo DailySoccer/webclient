@@ -1,8 +1,10 @@
 library leaderboard_table_comp;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
 import 'dart:math';
-import 'package:angular/angular.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/profile_service.dart';
 //import 'package:webclient/utils/html_utils.dart';
@@ -12,8 +14,7 @@ import 'package:webclient/services/profile_service.dart';
 
 @Component(
     selector: 'leaderboard-table',
-    templateUrl: 'packages/webclient/components/leaderboards/leaderboard_table_comp.html',
-    useShadowDom: false
+    templateUrl: 'leaderboard_table_comp.html'
 )
 
 class LeaderboardTableComp {
@@ -22,7 +23,7 @@ class LeaderboardTableComp {
   //var _streamListener;
 
   Map sharingInfo = null;
-  @NgOneWay("share-info")
+  @Input("share-info")
   void set info(Map allInfo) {
     sharingInfo = allInfo;
   }
@@ -86,34 +87,34 @@ class LeaderboardTableComp {
     }
   }
   
-  @NgOneWay("show-header")
+  @Input("show-header")
   void set showHeader(bool value) {
     isHeaded = value;
   }
   
-  @NgOneWay("table-elements")
+  @Input("table-elements")
   void set tableValues(List<Map> value) {
       tableElements = value;
       calculateShownElements();
   }
   
-  @NgOneWay("highlight-element")
+  @Input("highlight-element")
   void set playerInfo (Map value) {
     highlightedElement = value;
     calculateShownElements();
   }
   
-  @NgOneWay("points-column-label")
+  @Input("points-column-label")
   void set pointsColumnLabel(String value) {
     pointsColumnName = value;
   }
 
-  @NgOneWay("hint")
+  @Input("hint")
   void set hint(String value) {
     playerHint = value;
   }
   
-  @NgOneWay("rows")
+  @Input("rows")
   void set rowsToShow(int value) {
     rows = value;
     calculateShownElements();

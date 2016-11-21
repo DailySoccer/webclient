@@ -1,38 +1,39 @@
 library social_share_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/utils/fblogin.dart';
 
 @Component(
   selector: 'social-share',
-  templateUrl: 'packages/webclient/components/social/social_share_comp.html',
-  useShadowDom: false
+  templateUrl: 'social_share_comp.html'
 )
 class SocialShareComp {
 
   /********* BINDINGS */
-  @NgOneWay("description")
+  @Input("description")
   void set description(String desc) { sharingInfo['description'] = desc; }
   
-  @NgOneWay("caption")
+  @Input("caption")
   void set caption(String text) { sharingInfo['caption'] = text; }
   
-  @NgOneWay("hash-tag")
+  @Input("hash-tag")
   void set hashtag(String text) { sharingInfo['hashtag'] = text; }
   
-  @NgOneWay("url")
+  @Input("url")
   void set url(String uri) { sharingInfo['url'] = uri; }
   
-  @NgOneWay("title")
+  @Input("title")
   void set title(String text) { sharingInfo['title'] = text; }
   
-  @NgCallback("on-share")
+  @Input("on-share")
   void set onShare(func) { sharingInfo['dartCallback'] = func; }
 
-  @NgOneWay("image")
+  @Input("image")
   void set image(String img) { sharingInfo['image'] = img; }
   
-  @NgOneWay("show-like")
+  @Input("show-like")
   bool showLike = true;
 
   /*
@@ -47,7 +48,7 @@ class SocialShareComp {
    */
   
   // Este es por comodidad
-  @NgOneWay("parameters-by-map")
+  @Input("parameters-by-map")
   void set info(Map allInfo) { sharingInfo = allInfo; }
   
   String get wraperId => sharingInfo['selector-prefix'].toString().replaceAll('#', '');

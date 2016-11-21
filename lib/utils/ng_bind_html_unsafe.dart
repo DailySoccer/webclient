@@ -1,10 +1,13 @@
 library ng_bind_html_unsafe;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html' as dom;
-import 'package:angular/angular.dart';
 import 'dart:html';
 
-@Decorator(
+/*
+@Directive(
     selector: '[ng-bind-html-unsafe]',
     map: const {'ng-bind-html-unsafe': '=>value'}    )
 class NgBindHtmlUnsafeDirective{
@@ -21,3 +24,4 @@ class NgBindHtmlUnsafeDirective{
 class _NullTreeSanitizer implements NodeTreeSanitizer {
   void sanitizeTree(Node node) {}
 }
+*/

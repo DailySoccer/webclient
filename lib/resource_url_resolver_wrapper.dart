@@ -1,15 +1,16 @@
 library resource_url_resolver_wrapper;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
-import 'package:angular/angular.dart';
-import 'package:angular/core_dom/type_to_uri_mapper.dart';
-import 'package:di/di.dart';
-import 'package:di/annotations.dart';
+
+// TODO Angular 2
 
 class _NullTreeSanitizer implements NodeTreeSanitizer {
   void sanitizeTree(Node node) {}
 }
-
+/*
 @Injectable()
 class ResourceUrlResolverWrapper implements ResourceUrlResolver {
   static final RegExp cssUrlRegexp = new RegExp(r'''(\burl\((?:[\s]+)?)(['"]?)([\S]*?)(\2(?:[\s]+)?\))''');
@@ -175,4 +176,5 @@ class ResourceUrlResolverWrapper implements ResourceUrlResolver {
     }
   }
 }
+*/
 

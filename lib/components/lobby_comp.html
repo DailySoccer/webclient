@@ -6,9 +6,9 @@
                   on-row-click="onRowClick(contest)"
                   action-button-title="'>'"
                   show-date="true"
-                  ng-show="!isContestListEmpty">
+                  [hidden]="isContestListEmpty">
     </contests-list>
-    <div class="no-contests-wrapper" ng-show="isContestListEmpty">
+    <div class="no-contests-wrapper" [hidden]="!isContestListEmpty">
       <img class="no-contests-icon" src="images/icon-lobby-vacio.png">
       <div class="no-contests-title">Te has apuntado a todos los torneos disponibles.<br>Pronto habrá nuevos torneos disponibles.</div>
       <!--div class="no-contests-subtitle">Puedes crear tu propio torneo retando a tus amigos</div-->

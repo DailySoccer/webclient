@@ -1,11 +1,11 @@
-<div class="leaderboard-table-header" ng-show="isHeaded">
+<div class="leaderboard-table-header" [hidden]="!isHeaded">
     <div class="leaderboard-column-position">{{getLocalizedText("abrevposition")}}</div>
     <div class="leaderboard-column-name">{{getLocalizedText("name")}}</div>
     <span class="leaderboard-column-score">{{pointsColumnName}}</span>
 </div>
 
 <div class="leaderboard-data-wrapper">
-  <div class="leaderboard-table-data" ng-class="{'player-position':isThePlayer(element['id'])}" ng-repeat="element in shownElements">
+  <div class="leaderboard-table-data" [ngClass]="{'player-position':isThePlayer(element['id'])}" *ngFor="let element of shownElements">
       <div class="leaderboard-column-position">{{element['position']}}º</div>    
       <div class="leaderboard-column-name">
         {{element['id'] == profileService.user.userId ? 'TÚ' : element['name']}}

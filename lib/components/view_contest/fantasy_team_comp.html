@@ -1,41 +1,41 @@
 <div id="fantasyTeamRoot" class="fantasy-team-wrapper" >
 
-  <div class="fantasy-team-header" ng-class="{'opponent-team-gradient': isOpponent, 'header-view-contest-entry-mode': isViewContestEntryMode}">
-    <div ng-if="changingSoccerId == null">
+  <div class="fantasy-team-header" [ngClass]="{'opponent-team-gradient': isOpponent, 'header-view-contest-entry-mode': isViewContestEntryMode}">
+    <div *ngIf="changingSoccerId == null">
     
-      <div class="edit-team" ng-if="isViewContestEntryMode">
-        <button class="btn-edit-team" ng-click="editTeam()">{{getLocalizedText("editlineup")}}</button>
+      <div class="edit-team" *ngIf="isViewContestEntryMode">
+        <button class="btn-edit-team" (click)="editTeam()">{{getLocalizedText("editlineup")}}</button>
       </div>
   
-      <div class="ranking-box" ng-if="!isViewContestEntryMode">
+      <div class="ranking-box" *ngIf="!isViewContestEntryMode">
         <span class="title">{{getLocalizedText("pos")}}</span>
         <span class="content">{{userPosition}}</span>
       </div>
       
-      <div class="score-box" ng-if="!isViewContestEntryMode">
+      <div class="score-box" *ngIf="!isViewContestEntryMode">
         <span class="title">{{getLocalizedText("points")}}</span>
         <span class="content">{{userScore}}</span>
       </div>
   
       <div class="user-picture"></div>
-      <div class="user-nickname" max-text-width="{width: nameWidth, text: userNickname}" ng-class="{'nickname-view-contest-entry-mode': isViewContestEntryMode}"></div>
-      <div class="changes-box" ng-if="showChanges">
+      <div class="user-nickname" max-text-width="{width: nameWidth, text: userNickname}" [ngClass]="{'nickname-view-contest-entry-mode': isViewContestEntryMode}"></div>
+      <div class="changes-box" *ngIf="showChanges">
         <span class="title"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span>{{numChanges}}</span>
         <span class="content">{{getLocalizedText("availablechanges")}}</span>
       </div>
       
-      <div class="close-team" ng-click="onCloseButtonClick()" ng-show="showCloseButton">
+      <div class="close-team" (click)="onCloseButtonClick()" [hidden]="!showCloseButton">
         <!--span class="title">{{getLocalizedText("close")}}</span-->
         <span class="glyphicon glyphicon-remove"></span>
       </div>
     
     </div>
     
-    <div ng-if="changingSoccerId != null">
+    <div *ngIf="changingSoccerId != null">
     
-      <div class="total-salary-box" ng-if="!isViewContestEntryMode">
+      <div class="total-salary-box" *ngIf="!isViewContestEntryMode">
         <span class="total-salary-text">{{getLocalizedText("remainsalary")}}:</span>
-        <span class="total-salary-money" ng-class="{'red-numbers': availableSalary < 0 }">{{formatCurrency(printableAvailableSalary)}}</span>
+        <span class="total-salary-money" [ngClass]="{'red-numbers': availableSalary < 0 }">{{formatCurrency(printableAvailableSalary)}}</span>
       </div>
   
       <div class="user-picture"></div>
@@ -44,26 +44,26 @@
     </div>
     
   </div>
-  <div class="total-remaining-matches-time" ng-if="isLive">{{getLocalizedText("remainingtime")}} {{remainingTime}}</div>
+  <div class="total-remaining-matches-time" *ngIf="isLive">{{getLocalizedText("remainingtime")}} {{remainingTime}}</div>
   
   
   <div class="fantasy-team-list">
-    <div class="fantasy-team-slot" ng-repeat="slot in slots" ng-class="{'not-selected': changingSoccerId != null && slot['id'] != changingSoccerId, 'selected': changingSoccerId != null && slot['id'] == changingSoccerId}">
-      <div class="soccer-player-row" data-toggle="collapse" data-target="#statistic_{{owner}}_{{$index}}" data-id="{{slot['id']}}">
+    <div class="fantasy-team-slot" *ngFor="let slot of slots" [ngClass]="{'not-selected': changingSoccerId != null && slot['id'] != changingSoccerId, 'selected': changingSoccerId != null && slot['id'] == changingSoccerId}">
+      <div class="soccer-player-row" attr.data-toggle="collapse" attr.data-target="#statistic_{{owner}}_{{index}}" attr.data-id="{{slot['id']}}">
         <div class="column-fieldpos">{{slot.fieldPos.abrevName}}</div>
         <div class="column-primary-info">
           <span class="soccer-player-name">{{slot.fullName}}</span>
-          <span class="match-event-name" ng-bind-html="slot.matchEventName"></span>
-          <span class="remaining-match-time" ng-if="!isViewContestEntryMode">{{slot.percentOfUsersThatOwn}}% {{getLocalizedText("owned")}}</span>
+          <span class="match-event-name" [innerHTML]="slot.matchEventName"></span>
+          <span class="remaining-match-time" *ngIf="!isViewContestEntryMode">{{slot.percentOfUsersThatOwn}}% {{getLocalizedText("owned")}}</span>
         </div>
-        <div class="column-score" ng-if="!isViewContestEntryMode">
+        <div class="column-score" *ngIf="!isViewContestEntryMode">
           <span>{{slot.score}}</span>
-          <button class="change-btt" ng-if="playerIsChangeable(slot) || playerIsChanging(slot)" ng-disabled="changingSoccerId != null && slot['id'] != changingSoccerId" ng-click="requestChange(slot)"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></button>
+          <button class="change-btt" *ngIf="playerIsChangeable(slot) || playerIsChanging(slot)" [disabled]="changingSoccerId != null && slot['id'] != changingSoccerId" (click)="requestChange(slot)"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></button>
         </div>
-        <div class="column-salary" ng-if="isViewContestEntryMode">${{slot.salary}}</div>
+        <div class="column-salary" *ngIf="isViewContestEntryMode">${{slot.salary}}</div>
       </div>
-      <div id="statistic_{{owner}}_{{$index}}" class="soccer-player-statistics collapse" ng-if="!isViewContestEntryMode" ng-show="changingSoccerId == null">
-        <div class="statistic" ng-repeat="stat in slot.stats">
+      <div id="statistic_{{owner}}_{{$index}}" class="soccer-player-statistics collapse" *ngIf="!isViewContestEntryMode" [hidden]="changingSoccerId == null">
+        <div class="statistic" *ngFor="let stat of slot.stats">
           <div class="stat-times"><span>{{stat['count']}}</span></div>
           <div class="stat-name">{{stat['name']}}</div>
         </div>

@@ -1,15 +1,15 @@
-<div id="contestInfoTabbed" ng-show="contest != null">
+<div id="contestInfoTabbed" [hidden]="contest == null">
   
   <!-- cabecera con precio y premio -->
   <div class="info-header">
     <!-- precio -->
     <div class="prize-section">
-      <div class="prize-count" ng-class="{'prize-coin':getContestCoinIcon(getPrizeToShow(contest)) == 'gold', 'prize-managerpoints':getContestCoinIcon(getPrizeToShow(contest)) == 'manager'}">{{getPrizeToShow(contest)}}</div>
+      <div class="prize-count" [ngClass]="{'prize-coin':getContestCoinIcon(getPrizeToShow(contest)) == 'gold', 'prize-managerpoints':getContestCoinIcon(getPrizeToShow(contest)) == 'manager'}">{{getPrizeToShow(contest)}}</div>
       <div class="prize-description">{{getLocalizedText("prize")}}</div>
     </div>
     <!-- premio -->
-    <div class="price-section" ng-if="!(contest.isLive || contest.isHistory)">
-      <div class="price-count" ng-class="{'entry-fee-coin': getContestCoinIcon(contest.entryFee) == 'gold', 'entry-fee-energy':getContestCoinIcon(contest.entryFee) == 'energy'}">{{contest.entryFee}}</div>
+    <div class="price-section" *ngIf="!(contest.isLive || contest.isHistory)">
+      <div class="price-count" [ngClass]="{'entry-fee-coin': getContestCoinIcon(contest.entryFee) == 'gold', 'entry-fee-energy':getContestCoinIcon(contest.entryFee) == 'energy'}">{{contest.entryFee}}</div>
       <div class="price-description">{{getLocalizedText("entryfee")}}</div>
     </div>
   </div>
@@ -19,10 +19,10 @@
   
   <!--Partidos dentro del concurso-->
   <div class="matches-involved">
-      <div class="match" ng-repeat="match in currentInfoData['matchesInvolved']">
+      <div class="match" *ngFor="let match of currentInfoData['matchesInvolved']">
           <div class="team">{{match.soccerTeamA.name}}</div>
-          <div class="date" ng-if="match.isStarted">{{(match.soccerTeamA.score < 0) ? 0 : match.soccerTeamA.score}} - {{(match.soccerTeamB.score < 0) ? 0 : match.soccerTeamB.score}}</div>
-          <div class="date" ng-if="!match.isStarted">{{formatMatchDate(match.startDate)}}</div>
+          <div class="date" *ngIf="match.isStarted">{{(match.soccerTeamA.score < 0) ? 0 : match.soccerTeamA.score}} - {{(match.soccerTeamB.score < 0) ? 0 : match.soccerTeamB.score}}</div>
+          <div class="date" *ngIf="!match.isStarted">{{formatMatchDate(match.startDate)}}</div>
           <div class="team">{{match.soccerTeamB.name}}</div>
       </div>
   </div>
@@ -35,12 +35,12 @@
       <div class="name">{{getLocalizedText("name")}}</div>
       <div class="level">{{getLocalizedText("level")}}</div>
     </div>    
-    <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
+    <div class="contestant-element" *ngFor="let contestant of currentInfoData['contestants']">
       <div class="name">{{contestant.name}}</div>
       <div class="level">{{contestant.trueSkill}}</div>
     </div>
   </div>  
-  <div ng-if="!loadingService.isLoading && currentInfoData['contestants'].isEmpty" class="default-info-text" ng-bind-html="getLocalizedText('nocontenders')"></div>
+  <div *ngIf="!loadingService.isLoading && currentInfoData['contestants'].isEmpty" class="default-info-text" [innerHTML]="getLocalizedText('nocontenders')"></div>
   
 </div>
 

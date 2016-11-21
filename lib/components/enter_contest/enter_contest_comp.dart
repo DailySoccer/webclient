@@ -1,9 +1,11 @@
 library enter_contest_comp;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
 import 'dart:async';
 import 'dart:convert';
-import 'package:angular/angular.dart';
 import 'package:webclient/services/contests_service.dart';
 import 'package:webclient/services/flash_messages_service.dart';
 import 'package:webclient/services/loading_service.dart';
@@ -34,10 +36,9 @@ import 'package:webclient/utils/host_server.dart';
 
 @Component(
     selector: 'enter-contest',
-    templateUrl: 'packages/webclient/components/enter_contest/enter_contest_comp.html',
-    useShadowDom: false
+    templateUrl: 'enter_contest_comp.html'
 )
-class EnterContestComp implements DetachAware {
+class EnterContestComp implements OnDestroy {
   
   static const String ERROR_RETRY_OP = "ERROR_RETRY_OP";
   static const String ERROR_CONTEST_NOT_ACTIVE = "ERROR_CONTEST_NOT_ACTIVE";
@@ -245,7 +246,7 @@ class EnterContestComp implements DetachAware {
     return StringUtils.formatCurrency(amount);
   }
 
-  EnterContestComp(this._routeProvider, this._router, this._appStateService,
+  EnterContestComp(this._routeParams, this._router, this._appStateService,
                    this._contestsService, this.loadingService, this._profileService, this._catalogService,
                    this._flashMessage, this._rootElement, this._tutorialService) {
     
@@ -292,9 +293,9 @@ class EnterContestComp implements DetachAware {
     };
     resetLineup();
 
-    _parent = _routeProvider.parameters["parent"];
-    contestId = _routeProvider.route.parameters['contestId'];
-    contestEntryId = _routeProvider.route.parameters['contestEntryId'];
+    _parent = _routeParams.get("parent");
+    contestId = _routeParams.get("contestId");
+    contestEntryId = _routeParams.get("contestEntryId");
 
     _tutorialService.triggerEnter("enter_contest", component: this);
 
@@ -455,11 +456,16 @@ class EnterContestComp implements DetachAware {
 
 
   void subscribeToLeaveEvent() {
+    // TODO Angular 2
+    /*
     // Subscripción para controlar la salida
-    _routeHandle = _routeProvider.route.newHandle();
+    _routeHandle = _routeParams.route.newHandle();
     _routeHandle.onPreLeave.listen(allowLeaveThePage);
+    */
   }
 
+  // TODO Angular 2
+  /*
   void allowLeaveThePage(RoutePreLeaveEvent event) {
 
     // Si estoy validando la alineación permitimos salir
@@ -478,6 +484,8 @@ class EnterContestComp implements DetachAware {
       return;
     }
   }
+  */
+
   bool get isLineupFilled => !lineupSlots.any((soccerPlayer) => soccerPlayer == null);
 
   void resetLineup() {
@@ -487,8 +495,9 @@ class EnterContestComp implements DetachAware {
     if (contest != null) GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_CLEAR, metricsScreenName, contest, {"formation": formationId});
   }
 
-  void detach() {
-    _routeHandle.discard();
+  @override void ngOnDestroy() {
+    // TODO Angular 2
+    // _routeHandle.discard();
 
     if (_retryOpTimer != null && _retryOpTimer.isActive) {
       _retryOpTimer.cancel();
@@ -871,9 +880,9 @@ class EnterContestComp implements DetachAware {
       _retryOpTimer = new Timer(const Duration(seconds:3), () => createFantasyTeam());
     } else if (error.responseError.contains(ERROR_USER_ALREADY_INCLUDED)) {
       GameMetrics.contestActionEvent(GameMetrics.ACTION_LINEUP_CONFIRM_ERROR, metricsScreenName, contest, {"errorDescription": "User already Included", "errorDebug": "HANDLED"});
-      _router.go('view_contest_entry', { "contestId": contestId,
-                                         "parent": _routeProvider.parameters["parent"],
-                                         "viewContestEntryMode": "created" });
+      _router.navigate(['view_contest_entry', { "contestId": contestId,
+                                         "parent": _routeParams.get("parent"),
+                                         "viewContestEntryMode": "created" }]);
     }
     else {
       _showMsgError(error);
@@ -912,9 +921,9 @@ class EnterContestComp implements DetachAware {
     GameMetrics.actionEvent(GameMetrics.ACTION_BACK_CONTEST_LIST, metricsScreenName);
     
     if (editingContestEntry) {
-      _router.go('my_contests', {'section': 'upcoming'});
+      _router.navigate(['my_contests', {'section': 'upcoming'}]);
     } else {
-      _router.go('lobby', {});
+      _router.navigate(['lobby', {}]);
     }
   }
   
@@ -922,9 +931,9 @@ class EnterContestComp implements DetachAware {
     GameMetrics.contestActionEvent(GameMetrics.ACTION_CHECK_LINEUP, metricsScreenName, contest);
     
     // Abrimos el contestEntry del Torneo al que se ha inscrito el usuario
-    _router.go('view_contest_entry', {"contestId": signedUpContestId, 
+    _router.navigate(['view_contest_entry', {"contestId": signedUpContestId,
                                       "parent": "my_contests", 
-                                      "viewContestEntryMode": "viewing"});
+                                      "viewContestEntryMode": "viewing"}]);
   }
 
   void cancelContestDetails() {
@@ -1137,7 +1146,7 @@ class EnterContestComp implements DetachAware {
   String get _getKeyForCurrentUserContest => (_profileService.isLoggedIn ? _profileService.user.userId : 'guest') + '#' + contest.optaCompetitionId;
 
   Router _router;
-  RouteProvider _routeProvider;
+  RouteParams _routeParams;
   String _parent;
 
   TutorialService _tutorialService;
@@ -1151,13 +1160,14 @@ class EnterContestComp implements DetachAware {
 
   Timer _retryOpTimer;
 
-  RouteHandle _routeHandle;
+  // TODO Angular 2
+  // RouteHandle _routeHandle;
 
   bool _teamConfirmed = false;
   bool _isRestoringTeam = false;
 
-  Element _rootElement;
-  Element alertMaxplayerInSameTeam;
+  ElementRef _rootElement;
+  ElementRef alertMaxplayerInSameTeam;
   AppStateService _appStateService;
   List<AppSecondaryTabBarTab> _tabList = [];
 }

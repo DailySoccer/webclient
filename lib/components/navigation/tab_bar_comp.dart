@@ -1,6 +1,8 @@
 library tab_bar_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/services/datetime_service.dart';
@@ -20,8 +22,7 @@ import 'package:webclient/utils/js_utils.dart';
 
 @Component(
     selector: 'tab-bar',
-    templateUrl: 'packages/webclient/components/navigation/tab_bar_comp.html',
-    useShadowDom: false
+    templateUrl: 'tab_bar_comp.html'
 )
 class TabBarComp {
 
@@ -131,7 +132,7 @@ class TabBarComp {
     return StringUtils.translate(key, "TabBar", substitutions);
   }
 
-  Element _rootElement;
+  ElementRef _rootElement;
   View _view;
   Router _router;
   
@@ -154,10 +155,13 @@ class TabBarItemComp {
   String destination = "";
   int notificationsCount = 0;
   bool get isActive {
+    // TODO Angular 2
+    /*
     bool b = _router.activePath[0].name == destination;
     parameters.forEach((k,v) => b = b && (_router.activePath[0].parameters[k] == v));
-    
     return b;
+    */
+    return false;
   }
   Map parameters = {};
   
@@ -179,7 +183,7 @@ class TabBarItemComp {
   }
   
   void goLocation() {
-    _router.go(destination, parameters);
+    _router.navigate([destination, parameters]);
   }
 
   Router _router;

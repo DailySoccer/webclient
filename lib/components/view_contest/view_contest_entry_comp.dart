@@ -1,6 +1,8 @@
 library view_contest_entry_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/datetime_service.dart';
@@ -27,8 +29,7 @@ import 'package:logging/logging.dart';
 
 @Component(
    selector: 'view-contest-entry',
-   templateUrl: 'packages/webclient/components/view_contest/view_contest_entry_comp.html',
-   useShadowDom: false
+   templateUrl: 'view_contest_entry_comp.html'
 )
 class ViewContestEntryComp {
   static const String LINEUP_FIELD_CONTEST_ENTRY = "LINEUP_FIELD_CONTEST_ENTRY";
@@ -75,7 +76,7 @@ class ViewContestEntryComp {
     _sectionActive = section;
     switch(_sectionActive) {
       case LINEUP_FIELD_CONTEST_ENTRY:
-        setupContestInfoTopBar(true, () => _router.go('lobby', {}), onContestInfoClick);
+        setupContestInfoTopBar(true, () => _router.navigate(['lobby', {}]), onContestInfoClick);
       break;
       case CONTEST_INFO:
         setupContestInfoTopBar(false, cancelContestDetails);
@@ -108,16 +109,16 @@ class ViewContestEntryComp {
     return StringUtils.formatCurrency(amount);
   }
 
-  ViewContestEntryComp(this._routeProvider, this.scrDet, this._contestsService, this._appStateService,
+  ViewContestEntryComp(this._routeParams, this.scrDet, this._contestsService, this._appStateService,
                        this._profileService, this._router, this.loadingService, TutorialService tutorialService) {
     loadingService.isLoading = true;
     
-    setupContestInfoTopBar(false, () => _router.go('my_contests', {"section": "upcoming"}));
+    setupContestInfoTopBar(false, () => _router.navigate(['my_contests', {"section": "upcoming"}]));
     _appStateService.appSecondaryTabBarState.tabList = [];
     _appStateService.appTabBarState.show = false;
 
-    _viewContestEntryMode = _routeProvider.route.parameters['viewContestEntryMode'];
-    contestId = _routeProvider.route.parameters['contestId'];
+    _viewContestEntryMode = _routeParams.get('viewContestEntryMode');
+    contestId = _routeParams.get('contestId');
 
     tutorialService.triggerEnter("view_contest_entry");
     
@@ -130,7 +131,7 @@ class ViewContestEntryComp {
           JsUtils.runJavascript(null, "createBranchUniversalObject_contest", [_profileService.user.userId, _profileService.user.nickName, contestId, contest.name]);
         }
 
-        setupContestInfoTopBar(true, () => _router.go('my_contests', {"section": "upcoming"}), onContestInfoClick);
+        setupContestInfoTopBar(true, () => _router.navigate(['my_contests', {"section": "upcoming"}]), onContestInfoClick);
         _appStateService.appSecondaryTabBarState.tabList = [];
         _appStateService.appTabBarState.show = false;
         
@@ -153,7 +154,7 @@ class ViewContestEntryComp {
         }
       })
       .catchError((ServerError error) {
-        _router.go("lobby", {});
+        _router.navigate(["lobby", {}]);
       }, test: (error) => error is ServerError);
   }
 
@@ -165,9 +166,9 @@ class ViewContestEntryComp {
   }
 
   void editTeam() {
-    _router.go('enter_contest', { "contestId": mainPlayer.contest.contestId ,
+    _router.navigate(['enter_contest', { "contestId": mainPlayer.contest.contestId ,
                                   "contestEntryId": mainPlayer.contestEntryId,
-                                  "parent": _routeProvider.parameters["parent"]});
+                                  "parent": _routeParams.get("parent")}]);
   }
   
   void setupContestInfoTopBar(bool showInfoButton, Function backFunction, [Function infoFunction]) {
@@ -187,7 +188,7 @@ class ViewContestEntryComp {
   }
 
   void goToParent() {
-    _router.go(_routeProvider.parameters["parent"] , {});
+    _router.navigate([_routeParams.get("parent"), {}]);
   }
   
   /*
@@ -273,7 +274,7 @@ class ViewContestEntryComp {
   }
   
   Router _router;
-  RouteProvider _routeProvider;
+  RouteParams _routeParams;
   Element _shareContent;
 
   ProfileService _profileService;

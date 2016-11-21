@@ -1,6 +1,8 @@
 library contest_info_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/contest_entry.dart';
@@ -18,13 +20,12 @@ import 'package:logging/logging.dart';
 
 @Component(
   selector: 'contest-info',
-  templateUrl: 'packages/webclient/components/contest_info_comp.html',
-  useShadowDom: false
+  templateUrl: 'contest_info_comp.html'
 )
-class ContestInfoComp implements DetachAware {
+class ContestInfoComp {
 
   
-  @NgOneWay("the-contest")
+  @Input("the-contest")
   void set setContest(Contest value) {
     if (value != null) {
       contest = value;
@@ -44,9 +45,10 @@ class ContestInfoComp implements DetachAware {
     return StringUtils.translate(key, "contestinfo");
   }
 
-  ContestInfoComp(RouteProvider routeProvider, this.loadingService, this._router, this._contestsService, this._profileService, this._flashMessage) {
+  ContestInfoComp(RouteParams routeParams, this.loadingService, this._router, this._contestsService, this._profileService, this._flashMessage) {
 
-    isModal = (_router.activePath.length > 0) && (_router.activePath.first.name == 'lobby');
+    // TODO Angular 2
+    isModal = false; //(_router.activePath.length > 0) && (_router.activePath.first.name == 'lobby');
 
     currentInfoData = {
       'description'     : '',
@@ -61,7 +63,7 @@ class ContestInfoComp implements DetachAware {
       'prizes'          : []
     };
 
-    contestId = routeProvider.route.parameters['contestId'];
+    contestId = routeParams.get('contestId');
 
     /*************************/
     //TODO: Borrar lo siguiente si hay que refrescar el concurso
@@ -82,8 +84,6 @@ class ContestInfoComp implements DetachAware {
       }, test: (error) => error is ServerError);
 */
   }
-
-  void detach() {}
 
   void updateContestInfo() {
     // Logger.root.info("ContestInfoComp --> updateContestInfo");
@@ -137,7 +137,7 @@ class ContestInfoComp implements DetachAware {
 
   void enterContest() {
     Logger.root.info("ContestInfoComp --> enterContest");
-    _router.go('enter_contest', { "contestId": contestId, "parent": "lobby", "contestEntryId": "none" });
+    _router.navigate(['enter_contest', { "contestId": contestId, "parent": "lobby", "contestEntryId": "none" }]);
   }
 
   String formatMatchDate(DateTime date) {

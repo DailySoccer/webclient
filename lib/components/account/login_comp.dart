@@ -1,6 +1,8 @@
  library login_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
 import 'package:logging/logging.dart';
 import 'package:webclient/services/profile_service.dart';
@@ -15,10 +17,9 @@ import 'package:webclient/utils/translate_config.dart';
 
 @Component(
     selector: 'login',
-    templateUrl: 'packages/webclient/components/account/login_comp.html',
-    useShadowDom: false
+    templateUrl: 'login_comp.html'
 )
-class LoginComp implements ShadowRootAware {
+class LoginComp implements OnInit {
   static const String PATH_IF_SUCCESS = "home";
   static const String PATH_IF_FAIL = "home";
 
@@ -31,7 +32,7 @@ class LoginComp implements ShadowRootAware {
     return input != null? input.value : "";
   }
 
-  @NgOneWay("is-modal")
+  @Input("is-modal")
   bool isModal = false;
 
   static final String ERROR_WRONG_EMAIL_OR_PASSWORD = "ERROR_WRONG_EMAIL_OR_PASSWORD";
@@ -43,13 +44,13 @@ class LoginComp implements ShadowRootAware {
   }
 
   LoginComp(this._router, this._profileService, this.loadingService, this._rootElement, this._scrDet) {
-    _fbLogin = new FBLogin(_router, _profileService, () => isModal ? ModalComp.close() : _router.go(PATH_IF_SUCCESS, {}));
+    _fbLogin = new FBLogin(_router, _profileService, () => isModal ? ModalComp.close() : _router.navigate([PATH_IF_SUCCESS, {}]));
     //FBLogin.parseXFBML(".fb-login-button");
   }
 
-  @override void onShadowRoot(emulatedRoot) {
-    _loginErrorLabel = _rootElement.querySelector("#loginErrorLabel");
-    _loginErrorSection = _rootElement.querySelector("#loginErrorSection");
+  @override void ngOnInit() {
+    _loginErrorLabel = _rootElement.nativeElement.querySelector("#loginErrorLabel");
+    _loginErrorSection = _rootElement.nativeElement.querySelector("#loginErrorSection");
     _loginErrorSection.style.display = 'none';
     _fbLogin.refreshConnectedState();
     //_scrDet.scrollTo('.panel-heading', offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
@@ -68,7 +69,7 @@ class LoginComp implements ShadowRootAware {
           // _profileService.finishTutorial();
 
           loadingService.isLoading = false;
-          isModal ? ModalComp.close() : _router.go(PATH_IF_SUCCESS, {});
+          isModal ? ModalComp.close() : _router.navigate([PATH_IF_SUCCESS, {}]);
         })
         .catchError((ServerError error) {
           loadingService.isLoading = false;
@@ -110,15 +111,17 @@ class LoginComp implements ShadowRootAware {
         break;
 
       case "CANCEL":
-        isModal ? ModalComp.close() : _router.go(PATH_IF_FAIL, {});
+        isModal ? ModalComp.close() : _router.navigate([PATH_IF_FAIL, {}]);
         break;
 
       case "REMEMBER_PASSWORD":
-        _router.go('remember_password', {});
+        _router.navigate(['remember_password', {}]);
         break;
 
       case "JOIN":
-        isModal ? _router.go("${_router.activePath.first.name}.join", {}) : _router.go('join', {});
+        // TODO Angular 2
+        // isModal ? _router.go("${_router.activePath.first.name}.join", {}) : _router.go('join', {});
+        _router.navigate(['join', {}]);
         break;
 
       default:
@@ -151,9 +154,9 @@ class LoginComp implements ShadowRootAware {
 
   FBLogin _fbLogin;
 
-  Router _router;
-  ProfileService _profileService;
-  Element _rootElement;
+  final Router _router;
+  final ProfileService _profileService;
+  ElementRef _rootElement;
   Element _loginErrorSection;
   Element _loginErrorLabel;
 

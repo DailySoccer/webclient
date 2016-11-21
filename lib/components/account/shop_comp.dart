@@ -1,6 +1,8 @@
 library shop_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/components/modal_comp.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/utils/string_utils.dart';
@@ -25,10 +27,9 @@ import 'package:webclient/utils/host_server.dart';
 
 @Component(
     selector: 'shop-comp',
-    templateUrl: 'packages/webclient/components/account/shop_comp.html',
-    useShadowDom: false
+    templateUrl: 'shop_comp.html'
 )
-class ShopComp implements DetachAware{
+class ShopComp implements OnDestroy {
   static const String ERROR_USER_BALANCE_NEGATIVE = "ERROR_USER_BALANCE_NEGATIVE";
 
   LoadingService loadingService;
@@ -129,7 +130,7 @@ class ShopComp implements DetachAware{
   }
   
   void GoBack() {
-    _router.go("lobby", {});
+    _router.navigate(["lobby", {}]);
   }
 
   void buyGold(String id) {
@@ -212,7 +213,7 @@ class ShopComp implements DetachAware{
           ''';
    }
 
-   void detach() {
+   @override void ngOnDestroy() {
      clearCookies();
   }
    

@@ -1,6 +1,8 @@
 library payment_response_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
 import 'package:webclient/services/payment_service.dart';
 import 'package:webclient/utils/string_utils.dart';
@@ -8,10 +10,9 @@ import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
     selector: 'payment-response',
-    templateUrl: 'packages/webclient/components/account/payment_response_comp.html',
-    useShadowDom: false
+    templateUrl: 'payment_response_comp.html'
 )
-class PaymentResponseComp implements ShadowRootAware {
+class PaymentResponseComp implements OnInit {
 
   String result;
   String titleText;
@@ -21,8 +22,8 @@ class PaymentResponseComp implements ShadowRootAware {
     return StringUtils.translate(key, "paymentresponse");
   }
 
-  PaymentResponseComp(this._routeProvider, this._router, this._paymentService) {
-    result = _routeProvider.route.parameters['result'];
+  PaymentResponseComp(this._routeParams, this._router, this._paymentService) {
+    result = _routeParams.get('result');
     titleText = result == 'success' ? getLocalizedText("resultok") : getLocalizedText("resultnook");
     descriptionText = result == 'success'
         ? getLocalizedText("resultokdesc")
@@ -30,7 +31,7 @@ class PaymentResponseComp implements ShadowRootAware {
     //if (result == 'success') GameMetrics.logEvent(GameMetrics.GOLD_BOUGHT);
   }
 
-  @override void onShadowRoot(emulatedRoot) {
+  @override void ngOnInit() {
     querySelector("#paymentResponse .panel-heading button").onClick.listen(closeModal);
   }
 
@@ -38,7 +39,7 @@ class PaymentResponseComp implements ShadowRootAware {
     querySelector("#modalRoot").click();
   }
 
-  PaymentService _paymentService;
-  RouteProvider _routeProvider;
-  Router _router;
+  final PaymentService _paymentService;
+  final RouteParams _routeParams;
+  final Router _router;
 }

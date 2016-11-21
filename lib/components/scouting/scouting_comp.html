@@ -1,4 +1,4 @@
-<section class="favorites-wrapper" ng-show="isSoccerPlayerListActive" >
+<section class="favorites-wrapper" [hidden]="!isSoccerPlayerListActive" >
 
             <scouting-league team-list="teamListES" 
                              soccer-player-list="allSoccerPlayersES" 
@@ -20,6 +20,6 @@
 </section>
 
 <!-- SOCCER PLAYER STATS -->
-<section class="soccer-player-list-section" ng-if="isSoccerPlayerStatsActive">
+<section class="soccer-player-list-section" *ngIf="isSoccerPlayerStatsActive">
   <soccer-player-stats action-mode="statsMode" instance-soccer-player-id="selectedPlayerId" selectable-player="isCurrentSelectedFavorite" on-action-click="addToFavorites(playerId)"></soccer-player-stats>
 </section>

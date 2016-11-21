@@ -1,17 +1,19 @@
 library teams_filter_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/utils/string_utils.dart';
 
 @Component(
     selector: 'teams-filter',
-    templateUrl: 'packages/webclient/components/scouting/teams_filter_comp.html',
-    useShadowDom: false)
+    templateUrl: 'teams_filter_comp.html'
+)
 class TeamsFilterComp {
   List<dynamic> _teamList = [];
   bool isTeamsPanelOpen = false;
 
-  @NgTwoWay("selected-option")
+  @Input("selected-option")
   String get selectedOption => _selectedOption;
   void   set selectedOption(String val) {
     if (val != _selectedOption) {
@@ -19,7 +21,7 @@ class TeamsFilterComp {
     }
   }
 
-  @NgOneWay("team-list")
+  @Input("team-list")
   void set teamList(List<dynamic> teams) {
     _teamList.clear();
     _teamList.add({"id": _ALL_MATCHES, "name": getLocalizedText("all-teams"), "shortName": ''});
@@ -29,7 +31,7 @@ class TeamsFilterComp {
   }
 
   String idSufix = '';
-  @NgOneWay('id-sufix')
+  @Input('id-sufix')
   void set identifier(String id) {
     idSufix = id;
   }

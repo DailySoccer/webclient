@@ -1,12 +1,13 @@
 library payment_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/services/payment_service.dart';
 
 @Component(
     selector: 'payment',
-    templateUrl: 'packages/webclient/components/account/payment_comp.html',
-    useShadowDom: false
+    templateUrl: 'payment_comp.html'
 )
 class PaymentComp {
 

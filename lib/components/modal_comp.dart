@@ -1,20 +1,21 @@
 library modal_comp;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
-import 'package:angular/angular.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/components/backdrop_comp.dart';
 
 @Component(
   selector: 'modal',
-  templateUrl: 'packages/webclient/components/modal_comp.html',
-  useShadowDom: false
+  templateUrl: 'modal_comp.html'
 )
-class ModalComp implements DetachAware, ShadowRootAware {
+class ModalComp implements OnDestroy, OnInit {
 
   /********* BINDINGS */
-  @NgOneWay("window-size")
+  @Input("window-size")
   void set windowSize(value) {
     if (value == null || value.isEmpty || (value != "lg"  && value != "md" && value != "sm" && value != "90percent") ) {
       return;
@@ -25,13 +26,15 @@ class ModalComp implements DetachAware, ShadowRootAware {
 
   ModalComp(this._router, this._element, this._scrDet, this._view);
 
-  @override void onShadowRoot(emulatedRoot) {
+  @override void ngOnInit() {
 
     // EL fade vamos a hacerlo solo donde hay potencia
     if (_scrDet.isDesktop) {
-      _element.querySelector("#modalRoot").classes.add("fade");
+      _element.nativeElement.querySelector("#modalRoot").classes.add("fade");
     }
 
+    // TODO Angular 2
+    /*
     _view.domRead(() {
       _element.style.display = "block";
 
@@ -39,14 +42,16 @@ class ModalComp implements DetachAware, ShadowRootAware {
       JsUtils.runJavascript('#modalRoot', 'on', {'hidden.bs.modal': onHidden});
       BackdropComp.instance.show(propietary: this);
     });
+    */
   }
 
   void onHidden(dynamic sender) {
-    _router.go(_router.activePath.first.name, {});
+    // TODO Angular 2
+    // _router.navigate([_router.activePath.first.name, {}]);
     BackdropComp.instance.hide(propietary: this);
   }
 
-  void detach() {
+  @override void ngOnDestroy() {
     bool isModalOpen = document.querySelector('body').classes.contains('modal-open');
     if (isModalOpen) {
       document.querySelector('body').classes.remove('modal-open');
@@ -57,7 +62,7 @@ class ModalComp implements DetachAware, ShadowRootAware {
 
   static void open(Router route, String path, Map urlParams, [Function callback = null]) {
     _returnCallback = callback;
-    route.go(path, urlParams);
+    route.navigate([path, urlParams]);
   }
 
   // En params se pasan los parametros con los que llamaremos en el callback
@@ -82,7 +87,7 @@ class ModalComp implements DetachAware, ShadowRootAware {
   
   ScreenDetectorService _scrDet;
   Router _router;
-  Element _element;
+  ElementRef _element;
   View _view;
   static Function _returnCallback;
 }

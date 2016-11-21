@@ -1,6 +1,8 @@
 library lineup_field_selector_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/contest.dart';
@@ -11,8 +13,7 @@ import 'package:webclient/components/enter_contest/soccer_player_listitem.dart';
 
 @Component(
     selector: 'lineup-field-selector',
-    templateUrl: 'packages/webclient/components/enter_contest/lineup_field_selector_comp.html',
-    useShadowDom: false
+    templateUrl: 'lineup_field_selector_comp.html'
 )
 class LineupFieldSelectorComp {
 /*
@@ -32,35 +33,38 @@ class LineupFieldSelectorComp {
   @NgOneWay("manager-level")
   num managerLevel = 0;
 */
-  @NgOneWay("formation-is-modifiable")
+  @Input("formation-is-modifiable")
   bool formationIsModifiable = true;
 
   List<SoccerPlayerListItem> _lineupSlots = [];
-  @NgOneWay("lineup-slots")
+  @Input("lineup-slots")
   void set lineupSlots(List<SoccerPlayerListItem> slots) {
     _lineupSlots = slots;
   }
   List<SoccerPlayerListItem> get lineupSlots => _lineupSlots;
 
-  @NgOneWay("lineup-formation")
+  @Input("lineup-formation")
   List<String> lineupFormation = FieldPos.FORMATIONS[ContestEntry.FORMATION_442];
 
-  @NgCallback("on-lineup-slot-selected")
+  @Input("on-lineup-slot-selected")
   Function onLineupSlotSelected;
 
-  @NgTwoWay("formation-id")
+  // @NgTwoWay("formation-id")
+  @Input("formation-id")
   String get formationId => _formationId;
+
+  @Output("formation-id")
   void set formationId(String value) {
     _formationId = value;
   }
 
-  @NgOneWay("show-salary")
+  @Input("show-salary")
   bool showSalary = true;
   
-  @NgOneWay("is-live")
+  @Input("is-live")
   bool isLive = false;
   
-  @NgOneWay("highlight-changeables")
+  @Input("highlight-changeables")
   bool highlightChangeables = false;
   
   bool showLivePoints(SoccerPlayerListItem item) { 

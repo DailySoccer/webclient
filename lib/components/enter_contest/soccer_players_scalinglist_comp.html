@@ -1,35 +1,35 @@
 <div class="soccer-player-table-header">
   <div class="column-header column-info"   ><i class="material-icons">&#xE164;</i></div>
   <div class="column-header column-tshirt" ></div>
-  <div class="column-header column-primary-info"   ng-click="sortListByField('Name')">{{getLocalizedText('name')}}</div>
-  <div class="column-header column-dfp"    ng-click="sortListByField('DFP')">{{getLocalizedText('dfp')}}</div>
-  <div class="column-header column-salary" ng-click="sortListByField('Salary')">{{getLocalizedText('salary')}}</div>
+  <div class="column-header column-primary-info"   (click)="sortListByField('Name')">{{getLocalizedText('name')}}</div>
+  <div class="column-header column-dfp"    (click)="sortListByField('DFP')">{{getLocalizedText('dfp')}}</div>
+  <div class="column-header column-salary" (click)="sortListByField('Salary')">{{getLocalizedText('salary')}}</div>
   <div class="column-header column-addbtn" ></div>
 </div>
 
 <div class="soccer-player-table-body">
-  <div ng-id="'soccerPlayer' + soccerPlayer.id" ng-repeat="soccerPlayer in currentSoccerPlayerList.elements track by soccerPlayer.id" class="soccer-players-list-slot" ng-class="[POS_CLASS_NAMES[soccerPlayer.fieldPos.abrevName], !soccerPlayerIsAvailable(soccerPlayer) ? 'not-available': '', isAddAction(soccerPlayer) ? 'soccer-player-add':'soccer-player-remove']">
-    <div class="column-data column-info" ng-click="onInfoClick({'soccerPlayerId': soccerPlayer.id})"><i class="material-icons">&#xE88F;</i></div>
-    <div class="column-data column-tshirt" ng-click="onInfoClick({'soccerPlayerId': soccerPlayer.id})">
-      <i class="material-icons" ng-if="isFavorite(soccerPlayer)">&#xE838;</i>
-      <img ng-src="{{getImgPerSoccerTeam(soccerPlayer)}}" class="team-shirt-image">
+  <div attr.id="{{'soccerPlayer' + soccerPlayer.id}}" *ngFor="let soccerPlayer of currentSoccerPlayerList.elements; trackBy : soccerPlayer?.id" class="soccer-players-list-slot" [ngClass]="[POS_CLASS_NAMES[soccerPlayer.fieldPos.abrevName], !soccerPlayerIsAvailable(soccerPlayer) ? 'not-available': '', isAddAction(soccerPlayer) ? 'soccer-player-add':'soccer-player-remove']">
+    <div class="column-data column-info" (click)="onInfoClick({'soccerPlayerId': soccerPlayer.id})"><i class="material-icons">&#xE88F;</i></div>
+    <div class="column-data column-tshirt" (click)="onInfoClick({'soccerPlayerId': soccerPlayer.id})">
+      <i class="material-icons" *ngIf="isFavorite(soccerPlayer)">&#xE838;</i>
+      <img src="{{getImgPerSoccerTeam(soccerPlayer)}}" class="team-shirt-image">
     </div>
-    <div class="column-data column-primary-info" ng-click="onInfoClick({'soccerPlayerId': soccerPlayer.id})">
+    <div class="column-data column-primary-info" (click)="onInfoClick({'soccerPlayerId': soccerPlayer.id})">
       <span class="soccer-player-name">{{soccerPlayer.fullName}}</span>
-      <span class="match-event-name" ng-bind-html-unsafe="soccerPlayer.matchEventNameHTML"></span>
+      <span class="match-event-name" [innerHTML]="soccerPlayer.matchEventNameHTML"></span>
     </div>
     <div class="column-data column-dfp">{{soccerPlayer.printableFantasyPoints}}</div>
     <!--div class="column-data column-played">{{soccerPlayer.playedMatches}}</div-->
     <div class="column-data column-salary">{{parseSalary(soccerPlayer)}}</div>
     <!--div class="column-data column-manager-level"><span class="manager-level-needed">{{soccerPlayer.level}}</span></div-->
     
-    <div class="column-data column-addbtn" ng-class="[isAddAction(soccerPlayer) ? 'add' : 'remove']" 
-         ng-id="'soccerPlayerAction' + soccerPlayer.id" ng-click="onActionClick({'soccerPlayer': soccerPlayer})" ng-if="!isScoutingList">
+    <div class="column-data column-addbtn" [ngClass]="[isAddAction(soccerPlayer) ? 'add' : 'remove']"
+         [attr.id]="'soccerPlayerAction' + soccerPlayer.id" (click)="onActionClick({'soccerPlayer': soccerPlayer})" *ngIf="!isScoutingList">
       <i class="material-icons">{{isAddAction(soccerPlayer) ? '&#xE145;' : '&#xE15B;'}}</i>
     </div>
     
-    <div class="column-data column-addbtn" ng-class="[isAddAction(soccerPlayer) ? 'addFav' : 'removeFav']" 
-         ng-id="'soccerPlayerAction' + soccerPlayer.id" ng-click="onActionClick({'soccerPlayer': soccerPlayer})" ng-if="isScoutingList">
+    <div class="column-data column-addbtn" [ngClass]="[isAddAction(soccerPlayer) ? 'addFav' : 'removeFav']"
+         attr.id="{{'soccerPlayerAction' + soccerPlayer.id}}" (click)="onActionClick({'soccerPlayer': soccerPlayer})" *ngIf="isScoutingList">
       <i class="material-icons">{{isAddAction(soccerPlayer) ? '&#xE83A;' : '&#xE838;'}}</i>
     </div>
   </div>

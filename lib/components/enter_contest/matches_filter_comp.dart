@@ -1,33 +1,35 @@
 library matches_filter_comp;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
-import 'package:angular/angular.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/models/match_event.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 
-
-
 @Component(
     selector: 'matches-filter',
-    templateUrl: 'packages/webclient/components/enter_contest/matches_filter_comp.html',
-    useShadowDom: false)
-class MatchesFilterComp implements ShadowRootAware {
+    templateUrl: 'matches_filter_comp.html'
+)
+class MatchesFilterComp implements OnInit {
 
   ScreenDetectorService srcDet;
   List<Map<String, String>> matchEvents = [];
 
-  @NgTwoWay("selected-option")
+  @Input("selected-option")
   String get selectedOption => _selectedOption;
+
+  @Output("selected-option")
   void   set selectedOption(String val) {
     if (val != _selectedOption) {
       _selectedOption = val;
     }
   }
 
-  @NgOneWay("contest")
+  @Input("contest")
   void set contest(Contest theContest) {
 
     if (theContest == null) {
@@ -41,7 +43,7 @@ class MatchesFilterComp implements ShadowRootAware {
     runAnimation();
   }
 
-  @override onShadowRoot(emulatedRoot) {
+  @override ngOnInit() {
     runAnimation();
   }
 

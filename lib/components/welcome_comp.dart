@@ -1,14 +1,19 @@
 library welcome_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/utils/string_utils.dart';
 
-@Component(selector: 'welcome', useShadowDom: false)
-class WelcomeComp implements DetachAware {
+@Component(
+    selector: 'welcome',
+    template: ""
+)
+class WelcomeComp implements OnDestroy {
   String stage;
   Map stage_params;
 
@@ -16,10 +21,11 @@ class WelcomeComp implements DetachAware {
     return StringUtils.translate(key, "welcome");
   }
 
-  WelcomeComp(this._rootElement, this._router, this._reouteProvider,
+  WelcomeComp(this._rootElement, this._router, this._routerParams,
       this._scrDet, this._profileService) {
-    stage = _reouteProvider.route.parent.name;
-    stage_params = _reouteProvider.route.parameters;
+    // TODO Angular 2
+    stage = "home"; //_routerParams.route.parent.name;
+    stage_params = {}; //_routerParams.route.parameters;
     composeHtml();
     _screenWidthChangeDetector = _scrDet.mediaScreenWidth
         .listen((String msg) => onScreenWidthChange(msg));
@@ -122,14 +128,14 @@ class WelcomeComp implements DetachAware {
   }
 
   void createHTML(String theHTML) {
-    _rootElement.nodes.clear();
-    _rootElement.setInnerHtml(theHTML, treeSanitizer: NULL_TREE_SANITIZER);
-    _rootElement.querySelectorAll("[button-action]").onClick
+    _rootElement.nativeElement.nodes.clear();
+    _rootElement.nativeElement.setInnerHtml(theHTML, treeSanitizer: NULL_TREE_SANITIZER);
+    _rootElement.nativeElement.querySelectorAll("[button-action]").onClick
         .listen(buttonPressed);
   }
 
   void buttonPressed(event) {
-    _router.go(stage, stage_params);
+    _router.navigate([stage, stage_params]);
     if (stage == 'enter_contest') {
       // _profileService.startTutorial();
     }
@@ -139,14 +145,13 @@ class WelcomeComp implements DetachAware {
     composeHtml();
   }
 
-  @override
-  void detach() {
+  @override void ngOnDestroy() {
     _screenWidthChangeDetector.cancel();
   }
 
-  Element _rootElement;
+  ElementRef _rootElement;
   Router _router;
-  RouteProvider _reouteProvider;
+  RouteParams _routerParams;
   ScreenDetectorService _scrDet;
   ProfileService _profileService;
   var _screenWidthChangeDetector;

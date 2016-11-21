@@ -1,15 +1,15 @@
-<div class="soccer-players-filter" ng-class="{'position-filters-enabled': positionFiltersEnabled}">
+<div class="soccer-players-filter" [ngClass]="{'position-filters-enabled': positionFiltersEnabled}">
 
-  <div class="filter-by-position" ng-class="{'position-filters-enabled': positionFiltersEnabled}" ng-if="showFilterByPosition">
-    <span ng-if="showTitle">{{getLocalizedText("players", group: "soccerplayerlist")}}</span>
-    <button class="button-filter-position" ng-click="fieldPosFilter = fieldPos"
-            ng-repeat="fieldPos in posFilterList" ng-bind-html="getTextForFieldPos(fieldPos)" 
-            ng-class="{'active': isActiveFieldPos(fieldPos), 'all': fieldPos == null}"
-            ng-show="positionFiltersEnabled"></button>
-    <button class="button-filter-favorites" ng-click="switchFavorites()" ng-if="showFavorites"
-            ng-class="{'active': onlyFavorites}"></button>
+  <div class="filter-by-position" [ngClass]="{'position-filters-enabled': positionFiltersEnabled}" *ngIf="showFilterByPosition">
+    <span *ngIf="showTitle">{{getLocalizedText("players", group: "soccerplayerlist")}}</span>
+    <button class="button-filter-position" (click)="fieldPosFilter = fieldPos"
+            *ngFor="let fieldPos of posFilterList" [innerHTML]="getTextForFieldPos(fieldPos)"
+            [ngClass]="{'active': isActiveFieldPos(fieldPos), 'all': fieldPos == null}"
+            [hidden]="!positionFiltersEnabled"></button>
+    <button class="button-filter-favorites" (click)="switchFavorites()" *ngIf="showFavorites"
+            [ngClass]="{'active': onlyFavorites}"></button>
   </div>
 
-  <input type="text" class="name-player-input-filter" ng-model="nameFilter" 
+  <input type="text" class="name-player-input-filter" [(ngModel)]="nameFilter"
           placeholder="{{getLocalizedText('search-player', group: 'soccerplayerlist')}}"/>
 </div>

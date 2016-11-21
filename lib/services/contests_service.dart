@@ -1,7 +1,7 @@
 library contests_service;
 
 import 'dart:async';
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
 
 import "package:webclient/services/server_service.dart";
 import "package:webclient/services/profile_service.dart";

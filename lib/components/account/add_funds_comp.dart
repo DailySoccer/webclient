@@ -1,6 +1,7 @@
 library add_funds_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
 import 'dart:html';
 import 'package:webclient/services/payment_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
@@ -10,10 +11,9 @@ import 'package:webclient/utils/game_info.dart';
 
 @Component(
     selector: 'add-funds',
-    templateUrl: 'packages/webclient/components/account/add_funds_comp.html',
-    useShadowDom: false
+    templateUrl: 'add_funds_comp.html'
 )
-class AddFundsComp implements ShadowRootAware, DetachAware {
+class AddFundsComp implements OnInit, OnDestroy {
   int selectedValue = 25;
 
   String getLocalizedText(key) {
@@ -24,11 +24,11 @@ class AddFundsComp implements ShadowRootAware, DetachAware {
     return StringUtils.formatCurrency(amount);
   }
 
-  AddFundsComp(this._routeProvider, this._paymentService, this._router) {
-    contestId = _routeProvider.route.parameters['contestId'];
+  AddFundsComp(RouteParams params, this._paymentService, this._router) {
+    contestId = params.get('contestId');
   }
 
-  @override void onShadowRoot(emulatedRoot) {
+  @override void ngOnInit() {
     querySelector("#firstOffer").onChange.listen(updateSelectedPrize);
     querySelector("#secondOffer").onChange.listen(updateSelectedPrize);
     querySelector("#thirdOffer").onChange.listen(updateSelectedPrize);
@@ -40,7 +40,7 @@ class AddFundsComp implements ShadowRootAware, DetachAware {
     querySelector("#addFundsButton").onClick.listen(addFunds);
   }
 
-  void detach() {
+  @override void ngOnDestroy() {
     GameInfo.remove("add_funds_success");
   }
 
@@ -77,13 +77,12 @@ class AddFundsComp implements ShadowRootAware, DetachAware {
 
     // TODO: HACK HACK HACK
     //_paymentService.expressCheckoutWithPaypal(amount: selectedValue);
-    _router.go('restricted', {});
+    _router.navigate(['restricted', {}]);
 
   }
 
-  PaymentService _paymentService;
-  RouteProvider _routeProvider;
-  Router _router;
+  final PaymentService _paymentService;
+  final Router _router;
 
   String contestId;
 }

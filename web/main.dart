@@ -1,28 +1,35 @@
-import 'package:angular/application_factory.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/platform/browser.dart';
+import 'package:http/browser_client.dart';
+import 'package:webclient/app_component.dart';
 
 import 'dart:html';
-import 'package:webclient/webclient.dart';
+/*
 import 'package:webclient/logger_exception_handler.dart';
 import 'package:webclient/utils/game_metrics.dart';
+*/
 import 'package:webclient/utils/uri_utils.dart';
 import 'package:webclient/utils/translate_config.dart';
 
-
+BrowserClient HttpClientBackendServiceFactory() => new BrowserClient();
 
 void main() {
 
+  bootstrap(AppComponent);
   try {
-    LoggerExceptionHandler.setUpLogger();
+    // LoggerExceptionHandler.setUpLogger();
     TranslateConfig.initialize().then((value) {
         config = value;
         clearQueryStrings();
 
-        applicationFactory().addModule(new WebClientApp()).run();
+        bootstrap(AppComponent, const [
+          const Provider(BrowserClient, useFactory: HttpClientBackendServiceFactory, deps: const [])
+        ]);
       });
 
   }
   catch (exc, stackTrace) {
-    LoggerExceptionHandler.logExceptionToServer(exc, stackTrace);
+    // LoggerExceptionHandler.logExceptionToServer(exc, stackTrace);
   }
 }
 

@@ -1,7 +1,7 @@
 library date_service;
 
 import 'package:intl/intl.dart';
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
 import 'package:webclient/services/server_service.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
 import 'package:webclient/utils/host_server.dart';

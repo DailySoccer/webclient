@@ -1,7 +1,9 @@
 library landing_page_1_slide_comp;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
-import 'package:angular/angular.dart';
 import 'package:webclient/utils/html_utils.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/utils/string_utils.dart';
@@ -11,9 +13,9 @@ import 'package:webclient/services/screen_detector_service.dart';
 
 @Component(
    selector: 'landing-page-1-slide',
-   useShadowDom: false
+   template: ""
 )
-class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
+class LandingPage1SlideComp implements OnInit, OnDestroy {
 
   String content;
   ScreenDetectorService scrDet;
@@ -42,9 +44,9 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
   }
 
   void _createHTML(String theHTML) {
-    _rootElement.nodes.clear();
-    _rootElement.setInnerHtml(theHTML, treeSanitizer: NULL_TREE_SANITIZER);
-    _rootElement.querySelectorAll("[destination]").onClick
+    _rootElement.nativeElement.nodes.clear();
+    _rootElement.nativeElement.setInnerHtml(theHTML, treeSanitizer: NULL_TREE_SANITIZER);
+    _rootElement.nativeElement.querySelectorAll("[destination]").onClick
       .listen(_buttonPressed);
   }
 
@@ -52,7 +54,7 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
     scrDet.scrollTo(selector, offset: 0, duration:  500, smooth: true, ignoreInDesktop: false);
   }
 
-  void onShadowRoot(emulatedRoot) {
+  @override void ngOnInit() {
     // Nos deberia venir con el loading activo, ahora lo quitamos
     _loadingService.isLoading = false;
 
@@ -64,7 +66,7 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
     }
   }
 
-  void detach() {
+  @override void ngOnDestroy() {
     _streamListener.cancel();
   }
 
@@ -79,7 +81,7 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
 
   void _buttonPressed(event) {
     String path = event.currentTarget.attributes["destination"];
-    _router.go(path, {});
+    _router.navigate([path, {}]);
     scrDet.scrollTo('#mainWrapper', offset: 0, duration:  0, smooth: false, ignoreInDesktop: false);
   }
 
@@ -157,5 +159,5 @@ class LandingPage1SlideComp implements ShadowRootAware, DetachAware {
   Router _router;
   ProfileService _profileService;
   LoadingService _loadingService;
-  Element _rootElement;
+  ElementRef _rootElement;
 }

@@ -1,11 +1,8 @@
 library daily_rewards_comp;
 
-import 'package:angular/angular.dart';
-import 'package:webclient/services/screen_detector_service.dart';
-import 'package:webclient/services/promos_service.dart';
-import 'package:webclient/utils/game_metrics.dart';
-import 'dart:html';
-import 'package:webclient/services/refresh_timers_service.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/services/profile_service.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/models/user.dart';
@@ -13,8 +10,7 @@ import 'package:webclient/models/reward.dart';
 
 @Component(
     selector: 'daily-rewards',
-    templateUrl: 'packages/webclient/components/daily_rewards_comp.html',
-    useShadowDom: false
+    templateUrl: 'daily_rewards_comp.html'
 )
 class DailyRewardsComp {
 

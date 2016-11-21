@@ -1,6 +1,8 @@
 library teams_panel_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
 import 'package:webclient/models/match_event.dart';
 import 'package:webclient/utils/js_utils.dart';
@@ -14,10 +16,9 @@ import 'package:webclient/models/template_contest.dart';
 
 @Component(
     selector: 'teams-panel',
-    templateUrl: 'packages/webclient/components/view_contest/teams_panel_comp.html',
-    useShadowDom: false
+    templateUrl: 'teams_panel_comp.html'
 )
-class TeamsPanelComp implements DetachAware {
+class TeamsPanelComp implements OnDestroy {
   List<String> matchesInvolved = [];
   List<MatchEvent> matchEventsSorted = [];
 
@@ -27,13 +28,13 @@ class TeamsPanelComp implements DetachAware {
   bool useAsFilter = false;
   
   String _buttonText = getLocalizedText("showmatches");
-  @NgOneWay("button-text")
+  @Input("button-text")
   void set buttonText(String text) {
     _buttonText = text;
   }
   String get buttonText => _buttonText;
 
-  @NgOneWay("as-filter")
+  @Input("as-filter")
   void set setUseAsFilter(bool asFilter) {
     if (useAsFilter != asFilter) {
       matchFilter = null;
@@ -41,15 +42,15 @@ class TeamsPanelComp implements DetachAware {
     useAsFilter = asFilter;
   }
 
-  @NgTwoWay("selected-option")
+  @Input("selected-option")
   String matchFilter = null;
 
-  @NgOneWay("panel-open")
+  @Input("panel-open")
   void set isPanelOpen(bool b) {
     if (b != null) isTeamsPanelOpen = b;
   }
 
-  @NgOneWay("template-contest")
+  @Input("template-contest")
   void set templateContest(TemplateContest value) {
     if (value != null) {
       _matchEvents = value.matchEvents;
@@ -61,7 +62,7 @@ class TeamsPanelComp implements DetachAware {
     }
   }
   
-  @NgOneWay("contest")
+  @Input("contest")
   Contest get contest => _contest;
   void set contest(Contest value) {
     if (value != null) {
@@ -77,7 +78,7 @@ class TeamsPanelComp implements DetachAware {
 
   // Cuando nos pasan el contestId, ya podemos empezar a mostrar informacion antes de que quien sea (enter_contest, view_contest...)
   // refresque su informacion de concurso (que siempre es mas completa que muchas (o todas) las cosas que necesitamos mostrar aqui)
-  @NgOneWay("contest-id")
+  @Input("contest-id")
   void set contestId(String value) {
     if (value != null) {
       contest = _contestsService.getContestById(value);
@@ -89,7 +90,7 @@ class TeamsPanelComp implements DetachAware {
     return StringUtils.translate(key, "teamspanel");
   }
 
-  TeamsPanelComp(this.scrDet, this._contestsService, this._routeProvider) {
+  TeamsPanelComp(this.scrDet, this._contestsService) {
     _streamListener = scrDet.mediaScreenWidth.listen(onScreenWidthChange);
   }
 
@@ -169,7 +170,7 @@ class TeamsPanelComp implements DetachAware {
     }
   }
 
-  void detach() {
+  @override void ngOnDestroy() {
     _streamListener.cancel();
   }
 
@@ -191,7 +192,6 @@ class TeamsPanelComp implements DetachAware {
   var _streamListener;
   Contest _contest;
   //String _contestId = '';
-  RouteProvider _routeProvider;
   List<MatchEvent> _matchEvents;
   String _contestState;
   

@@ -3,7 +3,7 @@ library catalog_service;
 import 'dart:async';
 import 'dart:math';
 import 'dart:collection';
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
 
 import "package:webclient/services/server_service.dart";
 import 'package:webclient/models/product.dart';

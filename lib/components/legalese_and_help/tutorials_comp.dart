@@ -1,6 +1,8 @@
 library tutorials_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/tutorial/tutorial_iniciacion.dart';
 import 'package:webclient/services/tutorial_service.dart';
@@ -9,8 +11,7 @@ import 'dart:html';
 
 @Component(
     selector: 'tutorials-comp',
-    templateUrl: 'packages/webclient/components/legalese_and_help/tutorials_comp.html',
-    useShadowDom: false
+    templateUrl: 'tutorials_comp.html'
 )
 class TutorialsComp {
   
@@ -24,7 +25,7 @@ class TutorialsComp {
   }
   
   void goToPage(String page) {
-    _router.go(page, {});
+    _router.navigate([page, {}]);
   }
   
   void goToHowToPlay() {

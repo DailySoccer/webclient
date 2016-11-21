@@ -1,22 +1,22 @@
 
 <!-- LIVE CONTESTS -->
-<section class="contest-list-section" id="live-contest-content"  ng-if="tabIsLive">
+<section class="contest-list-section" id="live-contest-content"  *ngIf="tabIsLive">
   <!-- Barra de resumen de actividad -->
   <div class="resume-bar">
     <div class="information-no-contest">{{liveContestsMessage}}</div>
   </div>
 
-  <div ng-switch="hasLiveContests" class="contest-list-wrapper">
+  <div [ngSwitch]="hasLiveContests" class="contest-list-wrapper">
     <!-- lista vacía -->
-    <div class="no-contests-wrapper" ng-switch-when="false">
+    <div class="no-contests-wrapper" [ngSwitchWhen]="false">
         <img class="no-contests-icon" src="images/icon-torneo-vivo-vacio.png">
         <div class="no-contests-title">No estás jugando ningún torneo en este momento</div>
         <div class="no-contests-subtitle">Échale un vistazo a los próximos torneos<br>para ver cuando empiezan</div>
-        <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
+        <button class="btn-go-to-contest" (click)="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
     </div>
     <!-- lista de concursos -->
-    <div class="list-container" ng-switch-when="true">
-      <contests-list id="liveContests" contests-list="contestsService.liveContests" show-date="false" 
+    <div class="list-container" [ngSwitchWhen]="true">
+      <contests-list id="liveContests" contests-list="contestsService.liveContests" show-date="false"
                      sorting="liveSortType" on-action-click='onLiveActionClick(contest)' on-row-click='onLiveActionClick(contest)'>
       </contests-list>
     </div>
@@ -24,21 +24,21 @@
 </section>
 
 <!-- WAITING CONTESTS -->
-<section class="contest-list-section" id="waiting-contest-content" ng-if="tabIsWaiting">
+<section class="contest-list-section" id="waiting-contest-content" *ngIf="tabIsWaiting">
   <div class="resume-bar">
     <div class="information-no-contest">{{waitingContestsMessage}}</div>
   </div>
  
-  <div ng-switch="hasWaitingContests" class="contest-list-wrapper">
+  <div [ngSwitch]="hasWaitingContests" class="contest-list-wrapper">
     <!-- lista vacía -->
-    <div class="no-contests-wrapper" ng-switch-when="false">
+    <div class="no-contests-wrapper" [ngSwitchWhen]="false">
         <img class="no-contests-icon" src="images/icon-torneo-proximo-vacio.png">
         <div class="no-contests-title">NO ESTÁS PARTICIPANDO EN NINGÚN TORNEO</div>
         <div class="no-contests-subtitle">Ve a la lista de torneos, elije uno y empieza a jugar</div>
-        <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
+        <button class="btn-go-to-contest" (click)="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
     </div>
     <!-- lista de concursos -->
-    <div class="list-container" ng-switch-when="true">
+    <div class="list-container" [ngSwitchWhen]="true">
       <contests-list id="waitingContests" contests-list='contestsService.waitingContests' show-date="true"
                      sorting="waitingSortType" on-action-click='onWaitingActionClick(contest)' on-row-click='onWaitingActionClick(contest)'>
       </contests-list>
@@ -47,21 +47,21 @@
 </section>
 
 <!-- HISTORY CONTESTS -->
-<section class="contest-list-section" id="history-contest-content" ng-if="tabIsHistory">
+<section class="contest-list-section" id="history-contest-content" *ngIf="tabIsHistory">
   <div class="resume-bar">
     <div class="information-no-contest">{{historyContestsMessage}}</div>
   </div>
 
-  <div ng-switch="hasHistoryContests" class="contest-list-wrapper">
+  <div [ngSwitch]="hasHistoryContests" class="contest-list-wrapper">
     <!-- lista vacía -->
-    <div class="no-contests-wrapper" ng-switch-when="false">
+    <div class="no-contests-wrapper" [ngSwitchWhen]="false">
         <img class="no-contests-icon" src="images/icon-torneo-historico-vacio.png">
         <div class="no-contests-title">aún no has jugado ningún torneo<br>¿A qué esperas para empezar a ganar?</div>
         <div class="no-contests-subtitle">Ve a la lista de torneos, elije uno y empieza a jugar</div>
-        <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
+        <button class="btn-go-to-contest" (click)="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
     </div>
     <!-- lista de concursos -->
-    <div class="list-container" ng-switch-when="true">
+    <div class="list-container" [ngSwitchWhen]="true">
       <contests-list id="historyContests" contests-list="contestsService.historyContests" show-date="true"
                      sorting="historySortType" on-action-click='onHistoryActionClick(contest)' on-row-click='onHistoryActionClick(contest)'>
       </contests-list>

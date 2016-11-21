@@ -1,6 +1,8 @@
 library withdraw_funds_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/payment_service.dart';
@@ -10,10 +12,9 @@ import 'package:webclient/utils/string_utils.dart';
 
 @Component(
     selector: 'withdraw-funds',
-    templateUrl: 'packages/webclient/components/account/withdraw_funds_comp.html',
-    useShadowDom: false
+    templateUrl: 'withdraw_funds_comp.html'
 )
-class WithdrawFundsComp implements ShadowRootAware {
+class WithdrawFundsComp implements OnInit {
   int selectedValue = 0;
 
   dynamic get userData => _profileManager.user;
@@ -28,7 +29,7 @@ class WithdrawFundsComp implements ShadowRootAware {
 
   WithdrawFundsComp(this._router, this._profileManager, this._paymentService);
 
-  @override void onShadowRoot(emulatedRoot) {
+  @override void ngOnInit() {
     if (userData.balance.amount < 20) {
       (querySelector("#withdrawFundsButton") as ButtonElement).disabled = true;
       (querySelector("#customEurosAmount") as NumberInputElement).valueAsNumber = 0;
@@ -73,7 +74,7 @@ class WithdrawFundsComp implements ShadowRootAware {
     (querySelector("#withdrawFundsButton") as ButtonElement).disabled = true;
     _paymentService.withdrawFunds(selectedValue)
       .then((_) {
-        _router.go("user_profile", {});
+        _router.navigate(["user_profile", {}]);
       });
   }
 

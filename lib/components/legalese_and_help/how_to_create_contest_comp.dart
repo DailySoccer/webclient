@@ -1,14 +1,15 @@
 library how_to_create_contest_comp;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
-import 'package:angular/angular.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 
 @Component(
    selector: 'how-to-create-contest',
-   templateUrl: 'packages/webclient/components/legalese_and_help/how_to_create_contest_comp.html',
-   useShadowDom: false
+   templateUrl: 'how_to_create_contest_comp.html'
 )
 class HowToCreateContestComp {
   
@@ -21,7 +22,7 @@ class HowToCreateContestComp {
   HowToCreateContestComp(this.scrDet, this._router);
   
   void goToPage(String page) {
-    _router.go(page, {});
+    _router.navigate([page, {}]);
   }
   
   Router _router;

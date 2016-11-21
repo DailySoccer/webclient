@@ -1,12 +1,13 @@
 library policy_info_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/utils/string_utils.dart';
 
 @Component(
    selector: 'policy-info',
-   templateUrl: 'packages/webclient/components/legalese_and_help/policy_info_comp.html',
-   useShadowDom: false
+   templateUrl: 'policy_info_comp.html'
 )
 class PolicyInfoComp {
 

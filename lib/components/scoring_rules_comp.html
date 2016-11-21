@@ -1,7 +1,7 @@
 <div id="scoringForAll" class="panel-points">
   <div class="rules-header">{{getLocalizedText("all")}}</div>
   <div class="rules-content">
-    <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in AllPlayers">
+    <div class="punctuation" [ngClass]="getClassesIsNegative(event['points'])" *ngFor="let event of AllPlayers">
       <span class="name">{{event["name"]}}</span>
       <span class="points"><b>{{event["points"]}}</b></span>
     </div>
@@ -11,7 +11,7 @@
 <div id="scoringForGoalKeepers" class="panel-points">
   <div class="rules-header">{{getLocalizedText("goalkeepers")}}</div>
   <div class="rules-content">
-    <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in GoalKeepers">
+    <div class="punctuation" [ngClass]="getClassesIsNegative(event['points'])" *ngFor="let event of GoalKeepers">
       <span class="name">{{event["name"]}} </span>
       <span class="points"><b>{{event["points"]}}</b></span>
     </div>
@@ -21,7 +21,7 @@
 <div id="scoringForDefenders" class="panel-points">
   <div class="rules-header">{{getLocalizedText("defenders")}}</div>
   <div class="rules-content">
-    <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in Defenders ">
+    <div class="punctuation" [ngClass]="getClassesIsNegative(event['points'])" *ngFor="let event of Defenders ">
       <span class="name">{{event["name"]}} </span>
       <span class="points"><b>{{event["points"]}}</b></span>
     </div>
@@ -31,7 +31,7 @@
 <div id="scoringForMidFielders" class="panel-points">
   <div class="rules-header">{{getLocalizedText("middles")}}</div>
   <div class="rules-content">
-    <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in MidFielders">
+    <div class="punctuation" [ngClass]="getClassesIsNegative(event['points'])" *ngFor="let event of MidFielders">
       <span class="name">{{event["name"]}} </span>
       <span class="points"><b>{{event["points"]}}</b></span>
     </div>
@@ -41,7 +41,7 @@
 <div id="scoringForForwards" class="panel-points">
   <div class="rules-header">{{getLocalizedText("forwards")}}</div>
   <div class=rules-content>
-    <div class="punctuation" ng-class="getClassesIsNegative(event['points'])" ng-repeat="event in Forwards">
+    <div class="punctuation" [ngClass]="getClassesIsNegative(event['points'])" *ngFor="let event of Forwards">
       <span class="name">{{event["name"]}} </span>
       <span class="points"><b>{{event["points"]}}</b></span>
     </div>

@@ -1,8 +1,11 @@
 library soccer_players_list_comp;
 
+
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+// import 'package:angular/change_detection/change_detection.dart';
+
 import 'dart:html';
-import 'package:angular/angular.dart';
-import 'package:angular/change_detection/change_detection.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/field_pos.dart';
@@ -16,33 +19,32 @@ import 'dart:async';
 
 @Component(
     selector: 'soccer-players-list',
-    useShadowDom: false,
-    exportExpressions: const ["lineupFilter"]
+    template: ""
 )
-class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware {
+class SoccerPlayersListComp implements OnInit, OnChanges, OnDestroy {
   
   static const String FILTER_POSITION = "FILTER_POSITION";
   static const String FILTER_NAME = "FILTER_NAME";
   static const String FILTER_MATCH = "FILTER_MATCH";
   static const String FILTER_FAVORITES = "FILTER_FAVORITES";
 
-  @NgCallback("on-row-click")
+  @Input("on-row-click")
   Function onRowClick;
 
-  @NgCallback("on-action-click")
+  @Input("on-action-click")
   Function onActionClick;
 
-  @NgOneWay("manager-level")
+  @Input("manager-level")
   num managerLevel;
 
-  @NgOneWay("contest")
+  @Input("contest")
   Contest contest;
 
-  @NgOneWay("field-pos-filter")
+  @Input("field-pos-filter")
   FieldPos get fieldPosFilter => new FieldPos(_filterList[FILTER_POSITION]);
   void     set fieldPosFilter(FieldPos fieldPos) => _setFilter(FILTER_POSITION, fieldPos != null? fieldPos.value : null);
 
-  @NgOneWay("only-favorites")
+  @Input("only-favorites")
   bool     get onlyFavorites {
     if (_filterList[FILTER_FAVORITES] == null) {
       _filterList[FILTER_FAVORITES] = false;
@@ -51,22 +53,22 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
   }
   void     set onlyFavorites(bool only) => _setFilter(FILTER_FAVORITES, only);
 
-  @NgOneWay("favorites-list")
+  @Input("favorites-list")
   List     get favoritesList => _favoritesList == null? [] : _favoritesList;
   void     set favoritesList(List favs) { _favoritesList = favs; }
 
-  @NgOneWay("name-filter")
+  @Input("name-filter")
   String get nameFilter => _filterList[FILTER_NAME];
   void   set nameFilter(String val) => _setFilter(FILTER_NAME, val);
 
-  @NgOneWay("match-filter")
+  @Input("match-filter")
   String get matchFilter => _filterList[FILTER_MATCH];
   void   set matchFilter(String matchId) => _setFilter(FILTER_MATCH, matchId);
 
-  @NgOneWay("hide-lineup-players")
+  @Input("hide-lineup-players")
   bool hideLineupPlayers = false;
   
-  @NgOneWay("additional-gold-price")
+  @Input("additional-gold-price")
   Money additionalGoldPrice = new Money.zeroFrom(Money.CURRENCY_GOLD);
   
   void _setFilter(String key, dynamic valor) {
@@ -79,7 +81,8 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     _isDirty = true;
   }
 
-  @NgOneWayOneTime("soccer-players")
+  // TODO Angular 2
+  @Input("soccer-players")
   void set setSoccerPlayers(List<dynamic> sp) {
     if (sp == _sortedSoccerPlayers) {
       return;
@@ -88,7 +91,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     _refreshSort();
   }
 
-  @NgOneWay("lineup-filter")
+  @Input("lineup-filter")
   void set setLineupFilter(List<dynamic> sp) {
     if (sp == lineupFilter || sp == null) {
       return;
@@ -96,11 +99,13 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
     lineupFilter = sp;
 
+    /*
     if (_lineupFilterWatch != null) {
       _lineupFilterWatch.remove();
       _lineupFilterWatch = null;
     }
     _lineupFilterWatch = _scope.watch("lineupFilter", _onLineupFilterChanged, canChangeModel: false, collection:true);
+    */
 
     // Siempre que reseteen la lista, empezamos ordenados por posicion
     sortListByField('Pos', invert: false);
@@ -114,7 +119,7 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     return StringUtils.translate(key, "soccerplayerlist");
   }
 
-  SoccerPlayersListComp(this._scrDet, this._element, this._turnZone, this._profileService);
+  SoccerPlayersListComp(this._scrDet, this._element, this._profileService);
 
   void _onLineupFilterChanged(changes, _) {
     if (_soccerPlayerListRoot == null) {
@@ -145,23 +150,32 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     }
   }
 
-  @override void onShadowRoot(emulated) {
+  @override void ngOnInit() {
     _createSortHeader();
 
     // El proceso de generacion de slots corre fuera de la zona de angular. Los clicks que se capturan en los slots por lo tanto tb.
     // Es decir, hacer un click en un boton de por si no genera un digest. Sin embargo, el click bublea al body (HtmlBodyClick) y ahi
     // si que se genera un digest.
-    _turnZone.runOutsideAngular(() => _onAnimationFrame(0));
+    // _turnZone.runOutsideAngular(() => _onAnimationFrame(0));
   }
 
+  // TODO Angular 2
+  /*
   @override void set scope(Scope theScope) {
     _scope = theScope;
   }
+  */
 
-  @override void detach() {
+  @override void ngOnChanges(changesRecord) {
+  }
+
+  @override void ngOnDestroy() {
+    // TODO Angular 2
+    /*
     if (_lineupFilterWatch != null) {
       _lineupFilterWatch.remove();
     }
+    */
   }
 
   void _onAnimationFrame(elapsed) {
@@ -192,8 +206,8 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
       </div>
       ''';
 
-    _element.appendHtml(text);
-    _element.querySelectorAll(".filter span").onClick.listen((MouseEvent e) {
+    _element.nativeElement.appendHtml(text);
+    _element.nativeElement.querySelectorAll(".filter span").onClick.listen((MouseEvent e) {
       sortListByField((e.currentTarget as Element).id);
     });
   }
@@ -235,10 +249,10 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
     }
 
     _soccerPlayerListRoot.setInnerHtml(allHtml.toString(), treeSanitizer: NULL_TREE_SANITIZER);
-    _element.append(_soccerPlayerListRoot);
+    _element.nativeElement.append(_soccerPlayerListRoot);
 
-    _element.querySelectorAll(".soccer-player-info").onClick.listen(_onSoccerPlayerInfo);
-    _element.querySelectorAll(".column-action").onClick.listen(_onSoccerPlayerAction);
+    _element.nativeElement.querySelectorAll(".soccer-player-info").onClick.listen(_onSoccerPlayerInfo);
+    _element.nativeElement.querySelectorAll(".column-action").onClick.listen(_onSoccerPlayerAction);
   }
 
   String _getHtmlForSlot(var slot, bool addButton) {
@@ -376,14 +390,14 @@ class SoccerPlayersListComp implements ShadowRootAware, ScopeAware, DetachAware 
 
   String get _normalizedNameFilter => _filterList[FILTER_NAME] == null? null : StringUtils.normalize(_filterList[FILTER_NAME]).toUpperCase();
 
-  VmTurnZone _turnZone;
+  // VmTurnZone _turnZone;
   ScreenDetectorService _scrDet;
-  Element _element;
+  ElementRef _element;
   DivElement _soccerPlayerListRoot;
   bool _shadowRoot = false;
   bool _isDirty = false;
-  Scope _scope;
-  Watch _lineupFilterWatch;
+  // Scope _scope;
+  // Watch _lineupFilterWatch;
   ProfileService _profileService;
 
 

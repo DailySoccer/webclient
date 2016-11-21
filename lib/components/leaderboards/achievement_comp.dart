@@ -1,13 +1,14 @@
 library achievement_comp;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
-import 'package:angular/angular.dart';
 import 'package:webclient/models/achievement.dart';
 
 @Component(
     selector: 'achievement',
-    templateUrl: 'packages/webclient/components/leaderboards/achievement_comp.html',
-    useShadowDom: false
+    templateUrl: 'achievement_comp.html'
 )
 
 class AchievementComp {
@@ -15,14 +16,14 @@ class AchievementComp {
   Achievement achiev;
   bool owned;
   
-  @NgOneWay("key")
+  @Input("key")
   void set Data(value) {
     if (value != null) {
       achiev = value;
     }
   }
   
-  @NgOneWay("owned")
+  @Input("owned")
   void set isOwned(value) {
       owned = value;
   }

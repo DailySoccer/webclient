@@ -1,11 +1,11 @@
-<div id="promosRoot" ng-class="{'hide-promos': !hasPromos()}">
-<div ng-if="!scrDet.isXsScreen">
-  <a class="banner2"  ng-click="gotoPromo(0)">
-  <img ng-src="{{getThumb(0,'imageDesktop')}}" class="promoDesktop" />
+<div id="promosRoot" [ngClass]="{'hide-promos': !hasPromos()}">
+<div *ngIf="!scrDet.isXsScreen">
+  <a class="banner2"  (click)="gotoPromo(0)">
+  <img src="{{getThumb(0,'imageDesktop')}}" class="promoDesktop" />
   </a>
 
-  <a class="banner2" ng-click="gotoPromo(1)">
-  <img ng-src="{{getThumb(1,'imageDesktop')}}" class="promoDesktop" />
+  <a class="banner2" (click)="gotoPromo(1)">
+  <img src="{{getThumb(1,'imageDesktop')}}" class="promoDesktop" />
   </a>
 </div>
 
@@ -13,8 +13,8 @@
   <span class="beta-version-text">VERSIÓN BETA</span>
 </div>-->
 
-<a ng-if="scrDet.isXsScreen" ng-click="gotoPromo(0)">
- <img ng-src="{{getThumb(0,'imageXs')}}" class="promoXs" />
+<a *ngIf="scrDet.isXsScreen" (click)="gotoPromo(0)">
+ <img src="{{getThumb(0,'imageXs')}}" class="promoXs" />
 </a>
 <!--<div class="beta-version-xs" ng-if="scrDet.isXsScreen">
   <span class="beta-version-text">BETA</span>

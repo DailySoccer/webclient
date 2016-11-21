@@ -1,24 +1,24 @@
 <!-- Notificaciones tipo logro -->
 <div class="notification-wrapper">
  
-  <div class="notification-slot"  ng-repeat="notification in notificationList" ng-class="{'uncommon': notification.type == 'ACHIEVEMENT_EARNED'}">
+  <div class="notification-slot" *ngFor="let notification of notificationList" [ngClass]="{'uncommon': notification.type == 'ACHIEVEMENT_EARNED'}">
     <div class="notification-icon-wrapper">
-      <img ng-src="{{getNotificationIcon(notification.type)}}">
+      <img src="{{getNotificationIcon(notification.type)}}">
     </div>  
-    <div class="notification-info-wrapper" ng-click="onAction(notification.id)">
+    <div class="notification-info-wrapper" (click)="onAction(notification.id)">
       <div class="notification-title">{{notification.name}}</div>
-      <div class="notification-description" ng-bind-html-unsafe="notification.description"></div>
+      <div class="notification-description" [innerHTML]="notification.description"></div>
       <div class="notification-actions-wrapper">
-        <div class="notification-main-action" ng-if="notification.link.name != ''" ng-click="goToLink(notification.link.url)">{{notification.link.name}}</div>
-        <div class="notification-dismiss-action" ng-click="closeNotification($event, notification.id)"><i class="material-icons">&#xE872;</i></div>
+        <div class="notification-main-action" *ngIf="notification.link.name != ''" (click)="goToLink(notification.link.url)">{{notification.link.name}}</div>
+        <div class="notification-dismiss-action" (click)="closeNotification($event, notification.id)"><i class="material-icons">&#xE872;</i></div>
       </div>
     </div>
   </div>
   
-  <div class="notification-list-empty" ng-if="notificationList.length == 0">
+  <div class="notification-list-empty" *ngIf="notificationList.length == 0">
     {{getLocalizedText('notification-list-empty')}}
   </div>
   
 </div>
 
-<div class="notification-clear-section" ng-if="notificationList.length > 0" ng-click="cleanNiotifications()"><span>BORRAR TODAS</span><i class="material-icons">&#xE0B8;</i></div>
+<div class="notification-clear-section" *ngIf="notificationList.length > 0" (click)="cleanNiotifications()"><span>BORRAR TODAS</span><i class="material-icons">&#xE0B8;</i></div>

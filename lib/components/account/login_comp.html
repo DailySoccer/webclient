@@ -1,12 +1,12 @@
-<div id="loginRoot" ng-show="!loadingService.isLoading" ng-class="{'air':!isModal}">
-  <div id="loginBox" class="main-box" ng-class="{'air':!isModal}">
+<div id="loginRoot" [hidden]="loadingService.isLoading" [ngClass]="{'air':!isModal}">
+  <div id="loginBox" class="main-box" [ngClass]="{'air':!isModal}">
 
     <div class="panel">
 
       <!-- Header -->
       <div class="panel-heading">
         <div class="panel-title">{{GetLocalizedText('title')}}</div>
-        <button type="button" class="close" ng-click="onAction('CANCEL', $event)">
+        <button type="button" class="close" (click)="onAction('CANCEL', $event)">
           <span class="glyphicon glyphicon-remove"></span>
         </button>
       </div>
@@ -23,12 +23,12 @@
             <div class="fb-login-button" data-size="xlarge" onlogin="jsLoginFB()"
                  data-scope="public_profile,email,user_friends"
                  data-show-faces="true" data-max-rows="1" ng-show="!isFacebookConnected"></div-->
-            <button class="fb-login-button-smartphone" ng-click="makeFacebookLogin()"> <img src="images/FB-f-Logo__white_29.png" class="fb-brand">{{GetLocalizedText('buttonloginfb')}}</button>
+            <button class="fb-login-button-smartphone" (click)="makeFacebookLogin()"> <img src="images/FB-f-Logo__white_29.png" class="fb-brand">{{GetLocalizedText('buttonloginfb')}}</button>
           </div>
         </div>
         <!-- -->
           
-        <form id="loginForm" class="form-horizontal" ng-submit="onAction('SUBMIT')" role="form" formAutofillFix>
+        <form id="loginForm" class="form-horizontal" (ngSubmit)="onAction('SUBMIT')" role="form" formAutofillFix>
           <div class="form-description">{{GetLocalizedText('mailandpassword')}}</div>
 
           <!-- LOGIN FIELDS -->
@@ -49,15 +49,15 @@
 
           <!-- REMEMBER PASS -->
           <div class="user-form-field-righted">
-            <span id="rememberPasswordLink" class="link-aspect small-link-righted" ng-click="onAction('REMEMBER_PASSWORD', $event)">{{GetLocalizedText('forgotpass')}}</span>
+            <span id="rememberPasswordLink" class="link-aspect small-link-righted" (click)="onAction('REMEMBER_PASSWORD', $event)">{{GetLocalizedText('forgotpass')}}</span>
           </div>
 
           <!-- BUTTONS -->
           <div class="user-form-field">
             <div class="new-row">
               <div class="buttons-wrapper">
-                <button type="submit" id="btnSubmit" name="JoinNow" ng-disabled="!enabledSubmit" class="enter-button-half">{{GetLocalizedText('buttonlogin')}}</button>
-                <button id="btnCancelLogin" ng-click="onAction('CANCEL', $event)" class="cancel-button-half">{{GetLocalizedText('buttoncancel')}}</button>
+                <button type="submit" id="btnSubmit" name="JoinNow" [disabled]="!enabledSubmit" class="enter-button-half">{{GetLocalizedText('buttonlogin')}}</button>
+                <button id="btnCancelLogin" (click)="onAction('CANCEL', $event)" class="cancel-button-half">{{GetLocalizedText('buttoncancel')}}</button>
               </div>
             </div>
           </div>
@@ -65,7 +65,7 @@
           <!-- GOTO REGISTER -->
           <div class="user-form-field">
             <div class="new-row">
-              <div class="small-text">{{GetLocalizedText('unregistered')}} <span class="link-aspect" id="gotoRegisterLink" ng-click="onAction('JOIN', $event)"> {{GetLocalizedText('signuphere')}} </span></div>
+              <div class="small-text">{{GetLocalizedText('unregistered')}} <span class="link-aspect" id="gotoRegisterLink" (click)="onAction('JOIN', $event)"> {{GetLocalizedText('signuphere')}} </span></div>
             </div>
           </div>
 

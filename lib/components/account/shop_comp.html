@@ -1,6 +1,6 @@
-<div class="money-slot" ng-repeat="item in goldProducts">
-  <img class="gold-icon" ng-src="{{item.captionImage}}">
-  <img ng-src="{{getLocalizedText('mostpopularimagesource')}}" class="gold-item-popular" ng-if="item.isMostPopular">
+<div class="money-slot" *ngFor="let item of goldProducts">
+  <img class="gold-icon" src="{{item.captionImage}}">
+  <img src="{{getLocalizedText('mostpopularimagesource')}}" class="gold-item-popular" *ngIf="item.isMostPopular">
   <div class="description">
     <div class="name">{{item.description}}</div>
     <div class="coins-count">{{item.quantity}}</div>
@@ -10,7 +10,7 @@
       <span class="free-increment-count">{{item.freeIncrement}}</span>
       <span class="free-increment-desc">{{getLocalizedText('free')}}</span>
     </div-->
-    <div class="buy-button" ng-click="buyGold(item.id)">{{item.price}}</div>
+    <div class="buy-button" (click)="buyGold(item.id)">{{item.price}}</div>
   </div>
 </div>
 

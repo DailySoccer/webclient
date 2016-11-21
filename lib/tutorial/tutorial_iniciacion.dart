@@ -1,12 +1,13 @@
 library tutorial_iniciacion;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'dart:async';
 import 'dart:convert' show JSON;
 import 'package:webclient/tutorial/tutorial.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/tooltip_service.dart';
-import 'package:angular/angular.dart';
 import 'package:webclient/components/enter_contest/enter_contest_comp.dart';
 import 'package:webclient/models/field_pos.dart';
 import 'package:webclient/components/view_contest/view_contest_comp.dart';
@@ -250,7 +251,7 @@ class TutorialIniciacion extends Tutorial {
                       CurrentStepId = STEP_2;
   
                       transitionEvaluate = (transition) => transition == 'lobby';
-                      router.go("lobby", {});
+                      router.navigate(["lobby", {}]);
                     }
                 } catch (_) {
                   print("Skip tutorial...");
@@ -392,7 +393,7 @@ class TutorialIniciacion extends Tutorial {
   
                   if (!isCompleted) {
                     transitionEvaluate = (transition) => transition == 'live_contest';
-                    router.go('live_contest', {"contestId": TrainingContestInstance["_id"], "parent": "my_contests"});
+                    router.navigate(['live_contest', {"contestId": TrainingContestInstance["_id"], "parent": "my_contests"}]);
                   }
                 } catch (_) {
                   print("Skip tutorial...");

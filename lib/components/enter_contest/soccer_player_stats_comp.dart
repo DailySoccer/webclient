@@ -1,8 +1,9 @@
- library soccer_player_stats_comp;
+library soccer_player_stats_comp;
+
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
 
 import 'dart:html';
-
-import 'package:angular/angular.dart';
 import 'package:intl/intl.dart';
 //import 'package:webclient/components/modal_comp.dart';
 import 'package:webclient/models/soccer_player.dart';
@@ -22,10 +23,9 @@ import 'package:webclient/services/loading_service.dart';
 
 @Component(
     selector: 'soccer-player-stats',
-    templateUrl: 'packages/webclient/components/enter_contest/soccer_player_stats_comp.html',
-    useShadowDom: false
+    templateUrl: 'soccer_player_stats_comp.html'
 )
-class SoccerPlayerStatsComp implements DetachAware {
+class SoccerPlayerStatsComp implements OnDestroy {
 
   static const String SELECTION_MODE = "SELECTION_MODE";
   static const String FAVORITE_MODE = "FAVORITE_MODE";
@@ -49,7 +49,7 @@ class SoccerPlayerStatsComp implements DetachAware {
   String currentTab = "season-stats-tab-content";
 
   String _instanceSoccerPlayerId = null;
-  @NgOneWay("instance-soccer-player-id")
+  @Input("instance-soccer-player-id")
   void set instanceSoccerPlayerId(String id) {
     _instanceSoccerPlayerId = id; 
     refreshSoccerPlayerData();
@@ -57,19 +57,19 @@ class SoccerPlayerStatsComp implements DetachAware {
   String get instanceSoccerPlayerId => _instanceSoccerPlayerId;
   
   bool _selectablePlayer = null;
-  @NgOneWay("selectable-player")
+  @Input("selectable-player")
   void set selectablePlayer(bool isSelectable) { _selectablePlayer = isSelectable; }
   bool get selectablePlayer => _selectablePlayer;
   
   String _contestId = null;
-  @NgOneWay("contest-id")
+  @Input("contest-id")
   void set contestId(String id) { _contestId = id; }
   String get contestId => _contestId;
 
-  @NgOneWay('action-mode')
+  @Input('action-mode')
   String statsMode = SELECTION_MODE;  
   
-  @NgCallback('on-action-click') 
+  @Input('on-action-click')
   Function OnActionClick;
   
   bool isGoalkeeper() => currentInfoData['fieldPos'] == StringUtils.translate("gk", "soccerplayerpositions");
@@ -133,9 +133,10 @@ class SoccerPlayerStatsComp implements DetachAware {
   }
   String get imgSoccerTeam => currentInfoData != null ? "images/team-shirts/${currentInfoData['shortTeam']}_XL.png" : "";
 
-  SoccerPlayerStatsComp(this._flashMessage, this.scrDet, this._soccerPlayerService, RouteProvider routeProvider, Router router, this._rootElement, this.loadingService) {
-    contestId = routeProvider.route.parent.parameters.containsKey("contestId") ? routeProvider.route.parent.parameters["contestId"] : null;
-    instanceSoccerPlayerId = routeProvider.route.parent.parameters.containsKey("soccerPlayerId") ? routeProvider.route.parameters["soccerPlayerId"] : null;
+  SoccerPlayerStatsComp(this._flashMessage, this.scrDet, this._soccerPlayerService, RouteParams routeParams, Router router, this._rootElement, this.loadingService) {
+    // TODO Angular 2
+    contestId = routeParams.get("contestId") != null ? routeParams.get("contestId") : null;
+    instanceSoccerPlayerId = routeParams.get("soccerPlayerId") != null ? routeParams.get("soccerPlayerId") : null;
     
     refreshSoccerPlayerData();
   }
@@ -183,7 +184,7 @@ class SoccerPlayerStatsComp implements DetachAware {
     //_streamListener = scrDet.mediaScreenWidth.listen((String msg) => onScreenWidthChange(msg));
   }
 
-  void detach() {
+  @override void ngOnDestroy() {
     //_streamListener.cancel();
   }
 /*
@@ -432,7 +433,7 @@ class SoccerPlayerStatsComp implements DetachAware {
   InstanceSoccerPlayer _instanceSoccerPlayer;
 
   var _streamListener;
-  Element _rootElement;
+  ElementRef _rootElement;
 
   // Common Stats
   Map _totalSums = {};

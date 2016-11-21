@@ -1,6 +1,8 @@
 library user_list_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/services/profile_service.dart';
@@ -8,8 +10,7 @@ import 'package:webclient/utils/string_utils.dart';
 
 @Component(
    selector: 'users-list',
-   templateUrl: 'packages/webclient/components/view_contest/users_list_comp.html',
-   useShadowDom: false
+   templateUrl: 'users_list_comp.html'
 )
 class UsersListComp {
   
@@ -17,21 +18,21 @@ class UsersListComp {
 
   List users = new List();
 
-  @NgOneWay("contest-entries")
+  @Input("contest-entries")
   set contestEntries(List<ContestEntry> value) {
     _contestEntries = value;
     _refresh();
   }
 
-  @NgCallback("on-row-click")
+  @Input("on-row-click")
   Function onRowClick;
 
-  @NgOneWay("watch")
+  @Input("watch")
   set watch(dynamic value) {
     _refresh();
   }
 
-  bool get isViewContestEntryMode => _routeProvider.route.name.contains("view_contest_entry");
+  bool get isViewContestEntryMode => _routeParams.get("view_contest_entry") != null;
   bool isMainPlayer(var user) => _profileService.isLoggedIn && (_profileService.user.userId == user["id"]);
 
   String getPrize(int index) => (_contest != null) ? _contest.getPrize(index) : "";
@@ -40,7 +41,7 @@ class UsersListComp {
     return StringUtils.translate(key, "userlist");
   }
 
-  UsersListComp(this._routeProvider, this._profileService);
+  UsersListComp(this._routeParams, this._profileService);
 
   void _refresh() {
 
@@ -69,6 +70,6 @@ class UsersListComp {
 
   Contest _contest;
   List<ContestEntry> _contestEntries;
-  RouteProvider _routeProvider;
+  RouteParams _routeParams;
   ProfileService _profileService;
 }

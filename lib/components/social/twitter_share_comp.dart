@@ -1,6 +1,8 @@
 library twitter_share_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/utils/fblogin.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/utils/game_metrics.dart';
@@ -8,8 +10,7 @@ import 'dart:html';
 
 @Component(
   selector: 'twitter-share',
-  templateUrl: 'packages/webclient/components/social/twitter_share_comp.html',
-  useShadowDom: false
+  templateUrl: 'twitter_share_comp.html'
 )
 class TwitterShareComp {
   
@@ -47,11 +48,11 @@ class TwitterShareComp {
    *      data-dnt="true">Tweet</a>
    */
   
-  @NgOneWay("show-like")
+  @Input("show-like")
   bool showLike = true;
   
   // Este es por comodidad
-  @NgOneWay("parameters-by-map")
+  @Input("parameters-by-map")
   void set info(Map allInfo) {
     sharingInfo = allInfo;
     //updateButtons();

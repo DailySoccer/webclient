@@ -1,13 +1,13 @@
-<div id="matchesFilterWrapper" ng-switch="srcDet.isXsScreen">
+<div id="matchesFilterWrapper" [ngSwitch]="srcDet.isXsScreen">
 
-  <select id="matchesSelectorFilter" ng-switch-when="true" class="matches-selector-filter" ng-model="optionsSelectorValue" >
-    <option ng-repeat="match in matchEvents" id="option-match-{{match.id}}" value="{{$index + 1}}" ng-value="match.id">{{match.textoSelector}}</option>
+  <select id="matchesSelectorFilter" [ngSwitchWhen]="true" class="matches-selector-filter" [(ngModel)]="optionsSelectorValue" >
+    <option *ngFor="let match of matchEvents" id="option-match-{{match.id}}" value="{{$index + 1}}" [ngValue]="match.id">{{match.textoSelector}}</option>
   </select>
 
-  <div id="matchesFilterButtons" class="matches-filter-buttons" ng-switch-when="false">
-    <div class="button-filter-wrapper" ng-repeat="match in matchEvents" >
-      <button class="btn btn-default button-filter-team" ng-bind-html="match.texto" id="match-{{match.id}}"
-              ng-click="optionsSelectorValue = match.id" ng-class="{'active': optionsSelectorValue == match.id }">
+  <div id="matchesFilterButtons" class="matches-filter-buttons" [ngSwitchWhen]="false">
+    <div class="button-filter-wrapper" *ngFor="let match of matchEvents" >
+      <button class="btn btn-default button-filter-team" [innerHTML]="match.texto" id="match-{{match.id}}"
+              (click)="optionsSelectorValue = match.id" [ngClass]="{'active': optionsSelectorValue == match.id }">
       </button>
     </div>
   </div>

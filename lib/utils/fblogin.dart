@@ -1,10 +1,11 @@
 library fblogin;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'dart:js' as js;
 import 'package:webclient/services/profile_service.dart';
 import 'package:logging/logging.dart';
-import 'package:angular/angular.dart';
 import 'package:webclient/services/server_error.dart';
 import 'dart:async';
 import 'package:webclient/models/user.dart';
@@ -22,7 +23,7 @@ class FBLogin {
     
     // Default action onLogin
     if (_onLogin == null) {
-      _onLogin = () => _router.go("lobby", {});
+      _onLogin = () => _router.navigate(["lobby", {}]);
     }
   }
 

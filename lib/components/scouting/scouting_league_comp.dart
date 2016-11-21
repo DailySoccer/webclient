@@ -1,9 +1,9 @@
 library scouting_league_comp;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
-import 'dart:async';
-import 'dart:convert';
-import 'package:angular/angular.dart';
 import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/models/field_pos.dart';
 import "package:webclient/models/instance_soccer_player.dart";
@@ -13,43 +13,42 @@ import 'package:webclient/components/enter_contest/soccer_player_listitem.dart';
 
 @Component(
     selector: 'scouting-league',
-    templateUrl: 'packages/webclient/components/scouting/scouting_league_comp.html',
-    useShadowDom: false
+    templateUrl: 'scouting_league_comp.html'
 )
-class ScoutingLeagueComp implements DetachAware {
+class ScoutingLeagueComp implements OnDestroy {
 
   LoadingService loadingService;
   List<SoccerPlayerListItem> _allSoccerPlayers;
   List<SoccerPlayerListItem> _favoritesPlayers;
   
-  @NgOneWay('only-favorites')
+  @Input('only-favorites')
   bool onlyFavorites = false;
 
   List<Map<String, String>> _teamList = [];
 
-  @NgOneWay('soccer-player-list')
+  @Input('soccer-player-list')
   void set allSoccerPlayers(List<SoccerPlayerListItem> players) {
     _allSoccerPlayers = players;
   }
   List<SoccerPlayerListItem> get allSoccerPlayers => _allSoccerPlayers;
 
-  @NgTwoWay('favorites-player-list')
+  @Input('favorites-player-list')
   void set favoritesPlayers(List<SoccerPlayerListItem> players) {
     _favoritesPlayers = players;
   }
   List<SoccerPlayerListItem> get favoritesPlayers => _favoritesPlayers;
 
-  @NgOneWay('team-list')
+  @Input('team-list')
   void set teamList(List<Map<String, String>> teams) {
     _teamList = teams;
   }
 
   List<Map<String, String>> get teamList => _teamList;
 
-  @NgCallback('on-action-button')
+  @Input('on-action-button')
   Function onSoccerPlayerAction;
   
-  @NgCallback('on-info-button')
+  @Input('on-info-button')
   Function onInfoPlayerButton;
 
   void onSoccerPlayerActionButton(var soccerPlayer) {
@@ -57,15 +56,15 @@ class ScoutingLeagueComp implements DetachAware {
   }
 
   String idSufix;
-  @NgOneWay('id-sufix')
+  @Input('id-sufix')
   void set identifier(String id) {
     idSufix = id;
   }
 
-  @NgOneWay('filter-pos')
+  @Input('filter-pos')
   FieldPos fieldPosFilter;
 
-  @NgOneWay('name-filter')
+  @Input('name-filter')
   String nameFilter;
   String teamFilter;
 /*
@@ -95,8 +94,9 @@ class ScoutingLeagueComp implements DetachAware {
     querySelectorAll("#enter-contest-wrapper .tab-pane").classes.remove('active');
     querySelector("#${tab}").classes.add("active");
   }
-*/
-  void detach() {
+  */
+
+  @override void ngOnDestroy() {
     /*_routeHandle.discard();
 
     if (_retryOpTimer != null && _retryOpTimer.isActive) {

@@ -1,6 +1,8 @@
 library edit_personal_data_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/services/loading_service.dart';
@@ -12,10 +14,9 @@ import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
     selector: 'edit-personal-data',
-    templateUrl: 'packages/webclient/components/account/edit_personal_data_comp.html',
-    useShadowDom: false
+    templateUrl: 'edit_personal_data_comp.html'
 )
-class EditPersonalDataComp implements ShadowRootAware{
+class EditPersonalDataComp implements OnInit {
 
   int MIN_PASSWORD_LENGTH = 8;
   int MIN_NICKNAME_LENGTH = 4;
@@ -105,7 +106,7 @@ class EditPersonalDataComp implements ShadowRootAware{
   }
   
   void GoBack() {
-    _router.go("user_profile", {});
+    _router.navigate(["user_profile", {}]);
   }
 
   void init() {
@@ -260,17 +261,18 @@ class EditPersonalDataComp implements ShadowRootAware{
     //_router.go('user_profile', {});
   }
 
-  @override void onShadowRoot(emulatedRoot) {
+  @override void ngOnInit() {
     init();
   }
 
-  ProfileService _profileManager;
-  AppStateService _appStateService;
-  Router _router;
+  final ProfileService _profileManager;
+  final AppStateService _appStateService;
+  final Router _router;
+
   bool _acceptNewsletter;
   bool _acceptGameAlerts;
   bool _acceptSoccerPlayerAlerts;
   bool _enabledSubmit = false;
 
-  LoadingService loadingService;
+  final LoadingService loadingService;
 }

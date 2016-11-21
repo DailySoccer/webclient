@@ -1,6 +1,8 @@
 library promos_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/services/promos_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
@@ -9,8 +11,7 @@ import 'package:webclient/services/refresh_timers_service.dart';
 
 @Component(
     selector: 'promos',
-    templateUrl: 'packages/webclient/components/promos_comp.html',
-    useShadowDom: false
+    templateUrl: 'promos_comp.html'
 )
 class PromosComp {
 
@@ -34,7 +35,7 @@ class PromosComp {
       window.location.assign(url);
     }
     else {
-      _router.go(url, params);
+      _router.navigate([url, params]);
     }
   }
 

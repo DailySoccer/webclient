@@ -1,34 +1,35 @@
 library modal_window;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
 import 'dart:html';
 import 'package:webclient/services/app_state_service.dart';
 
 @Component(
     selector: 'modal-window',
-    templateUrl: 'packages/webclient/utils/modal_window.html',
-    useShadowDom: false
+    templateUrl: 'modal_window.html'
 )
 class ModalWindow {
 
-  @NgOneWay("show-header")
+  @Input("show-header")
   bool showHeader = true;
 
-  @NgOneWay("title")
+  @Input("title")
   String title;
-  
-  @NgTwoWay("show-window")
+
+  @Output("show-window")
   void set show(bool b) {
-    if (!b) this._rootElement.classes.add("hidden-window");
-    else this._rootElement.classes.remove("hidden-window");
+    if (!b) _rootElement.nativeElement.classes.add("hidden-window");
+    else _rootElement.nativeElement.classes.remove("hidden-window");
   }
-  bool get show => !this._rootElement.classes.contains("hidden-window");
-  
+  @Input("show-window")
+  bool get show => !_rootElement.nativeElement.classes.contains("hidden-window");
+
   void close() {
     show = false;
   }
   
   ModalWindow(this._rootElement);
   
-  Element _rootElement;
+  ElementRef _rootElement;
 }

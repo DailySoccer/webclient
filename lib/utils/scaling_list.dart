@@ -1,6 +1,5 @@
 library scaling_list;
 
-import 'package:angular/core/annotation.dart';
 import 'dart:html';
 import 'dart:math';
 import 'dart:collection';

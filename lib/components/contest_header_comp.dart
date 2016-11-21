@@ -1,6 +1,8 @@
 library contest_header_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/screen_detector_service.dart';
@@ -17,27 +19,23 @@ import 'package:logging/logging.dart';
 
 @Component(
     selector: 'contest-header',
-    templateUrl: 'packages/webclient/components/contest_header_comp.html',
-    useShadowDom: false
+    templateUrl: 'contest_header_comp.html'
 )
-class ContestHeaderComp implements DetachAware, ShadowRootAware {
+class ContestHeaderComp implements OnInit, OnDestroy {
 
-  @NgOneWay("contest")
+  @Input("contest")
   void set setContest(Contest value) {
     if (value != null) {
       contest = value;
     }
   }
 
-  @NgOneWay("show-info-button")
+  @Input("show-info-button")
   bool showInfoButton = true;
   
-  @NgOneWay("on-info-click")
+  @Input("on-info-click")
   Function onInfoClick = (){};
-  
-  
-  
-  
+
   ScreenDetectorService scrDet;
   bool showFilter = false;
 
@@ -53,16 +51,15 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
 
   Contest contest;
 
-  @NgTwoWay("match-filter")
+  @Input("match-filter") @Output("match-filter")
   String matchFilter = null;
   
-
   // Indica el nivel de información que se quiere mostrar (por defecto, si empty mostrará el estado en el que se encuentre el contest)
-  @NgAttr('view-state')
+  @Input('view-state')
   String viewState;
 
   bool isInsideModal = false;
-  @NgAttr('modal')
+  @Input('modal')
   void set setModal(String value) {
     if (value != null) {
       isInsideModal = value == "true";
@@ -70,7 +67,7 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
   }
 
   bool showMatches = true;
-  @NgAttr('show-matches')
+  @Input('show-matches')
   void set setShowMatches(String value) {
     if (value != null) {
       showMatches = value == "true";
@@ -79,7 +76,7 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
 
   // Cuando nos pasan el contestId, ya podemos empezar a mostrar informacion antes de que quien sea (enter_contest, view_contest...)
   // refresque su informacion de concurso (que siempre es mas completa que muchas (o todas) las cosas que necesitamos mostrar aqui)
-  @NgOneWayOneTime("contest-id")
+  @Input("contest-id")
   void set setContestId(String value) {
     if (value != null) {
       contest = _contestsService.getContestById(value);
@@ -89,7 +86,7 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
     }
   }
 
-  @NgOneWay("show-filter")
+  @Input("show-filter")
   void set setShowFilter(bool filter) {
     showFilter = filter;
   }
@@ -107,7 +104,7 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
   bool get viewLive     => viewState == null  ? ((contest != null) ? contest.isLive : false)    : (viewState == "LIVE");
   bool get viewHistory  => viewState == null  ? ((contest != null) ? contest.isHistory : false) : (viewState == "HISTORY");
 
-  ContestHeaderComp(this._router, this._routeProvider, this._profileService, this.scrDet, this._contestsService, this._rootElement) {
+  ContestHeaderComp(this._router, this._routeParams, this._profileService, this.scrDet, this._contestsService, this._rootElement) {
     _count = new Timer.periodic(new Duration(seconds: 1), (Timer timer) => _refreshCountdownDate());
   }
 
@@ -225,16 +222,16 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
   }
 
   void goToParent() {
-    _router.go(_routeProvider.parameters["parent"], {});
+    _router.navigate([_routeParams.get("parent"), {}]);
   }
 
-  void detach() {
+  @override void ngOnDestroy() {
     _count.cancel();
   }
 
-  void onShadowRoot(emulatedRoot) {
+  @override void ngOnInit() {
     if (isInsideModal) {
-      _rootElement.classes.add('rounded-borders');
+      _rootElement.nativeElement.classes.add('rounded-borders');
     }
   }
   
@@ -274,9 +271,9 @@ class ContestHeaderComp implements DetachAware, ShadowRootAware {
   }
 
   Router _router;
-  RouteProvider _routeProvider;
+  RouteParams _routeParams;
   ContestsService _contestsService;
-  Element _rootElement;
+  ElementRef _rootElement;
   Timer _count;
   ProfileService _profileService;
 }

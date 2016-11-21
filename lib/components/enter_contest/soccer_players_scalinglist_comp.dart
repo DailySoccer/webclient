@@ -1,8 +1,10 @@
 library soccer_players_scalinglist_comp;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+// import 'package:angular/change_detection/change_detection.dart';
+
 import 'dart:html';
-import 'package:angular/angular.dart';
-import 'package:angular/change_detection/change_detection.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/models/field_pos.dart';
@@ -18,9 +20,7 @@ import 'package:webclient/components/enter_contest/soccer_player_listitem.dart';
 
 @Component(
     selector: 'soccer-players-scalinglist',
-    templateUrl: 'packages/webclient/components/enter_contest/soccer_players_scalinglist_comp.html',
-    useShadowDom: false,
-    exportExpressions: const ["lineupFilter"]
+    templateUrl: 'soccer_players_scalinglist_comp.html'
 )
 class SoccerPlayersScalingListComp {
 
@@ -35,26 +35,25 @@ class SoccerPlayersScalingListComp {
   List<SoccerPlayerListItem> soccerPlayerList = null;
   
   ScalingList<SoccerPlayerListItem> currentSoccerPlayerList = new ScalingList<SoccerPlayerListItem>(MIN_PLAYER_SHOWN, (p1, p2) => p1.id == p2.id);
-  
 
-  @NgOneWay("soccer-players")
+  @Input("soccer-players")
   void set setSoccerPlayers(List<SoccerPlayerListItem> sp) {
     _setSort();
     soccerPlayerList = sp;
     _refreshFilters();
   }
   
-  @NgOneWay("manager-level")
+  @Input("manager-level")
   num managerLevel;
 
-  @NgOneWay("contest")
+  @Input("contest")
   Contest contest;
 
-  @NgOneWay("field-pos-filter")
+  @Input("field-pos-filter")
   FieldPos get fieldPosFilter => new FieldPos(_filterList[FILTER_POSITION]);
   void     set fieldPosFilter(FieldPos fieldPos) => _setFilter(FILTER_POSITION, fieldPos != null? fieldPos.value : null);
 
-  @NgOneWay("only-favorites")
+  @Input("only-favorites")
   bool     get onlyFavorites {
     if (_filterList[FILTER_FAVORITES] == null) {
       _filterList[FILTER_FAVORITES] = false;
@@ -63,28 +62,28 @@ class SoccerPlayersScalingListComp {
   }
   void     set onlyFavorites(bool only) => _setFilter(FILTER_FAVORITES, only);
 
-  @NgOneWay("favorites-list")
+  @Input("favorites-list")
   List<SoccerPlayerListItem>     get favoritesList => _favoritesList == null? [] : _favoritesList;
   void     set favoritesList(List<SoccerPlayerListItem>  favs) { _favoritesList = favs; }
 
-  @NgOneWay("name-filter")
+  @Input("name-filter")
   String get nameFilter => _filterList[FILTER_NAME];
   void   set nameFilter(String val) => _setFilter(FILTER_NAME, val);
 
-  @NgOneWay("match-filter")
+  @Input("match-filter")
   String get matchFilter => _filterList[FILTER_MATCH];
   void   set matchFilter(String matchId) => _setFilter(FILTER_MATCH, matchId);
 
-  @NgOneWay("hide-lineup-players")
+  @Input("hide-lineup-players")
   bool hideLineupPlayers = false;
   
-  @NgOneWay("disable-played-players")
+  @Input("disable-played-players")
   bool disablePlayedCharacters = false;
   
-  @NgOneWay("additional-gold-price")
+  @Input("additional-gold-price")
   Money additionalGoldPrice = new Money.zeroFrom(Money.CURRENCY_GOLD);
 
-  @NgOneWay("lineup-filter")
+  @Input("lineup-filter")
   void set setLineupFilter(List<dynamic> sp) {
     if (sp == lineupFilter || sp == null) {
       return;
@@ -102,13 +101,13 @@ class SoccerPlayersScalingListComp {
     sortListByField('Pos', invert: false);
   }
 
-  @NgOneWay("is-scouting-list")
+  @Input("is-scouting-list")
   bool isScoutingList;  
   
-  @NgCallback("on-info-click")
+  @Input("on-info-click")
   Function onInfoClick;
 
-  @NgCallback("on-action-click")
+  @Input("on-action-click")
   Function onActionClick;
 
   dynamic get filterPosVal => _filterList[FILTER_POSITION];

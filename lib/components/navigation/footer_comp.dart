@@ -1,9 +1,11 @@
 library footer_comp;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
 import 'dart:async';
 
-import 'package:angular/angular.dart';
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/utils/html_utils.dart';
@@ -18,15 +20,15 @@ import 'package:webclient/services/deltaDNA_service.dart';
 
 @Component(
    selector: 'footer',
-   useShadowDom: false
+   template: ""
 )
-class FooterComp implements ShadowRootAware {
+class FooterComp implements OnInit {
 
-  FooterComp(this._router, this._deltaDNAService, this._loadingService, this._view, this._rootElement, this._dateTimeService, this._profileService, this._templateService, this._catalogService) {
+  FooterComp(this._router, this._deltaDNAService, this._loadingService, this._rootElement, this._dateTimeService, this._profileService, this._templateService, this._catalogService) {
     //_streamListener = _scrDet.mediaScreenWidth.listen((String scrWidth) => onScreenWidthChange(scrWidth));
   }
 
-  @override void onShadowRoot(emulatedRoot) {
+  @override void ngOnInit() {
     _createHtml();
   }
 
@@ -79,8 +81,8 @@ class FooterComp implements ShadowRootAware {
         </div>
     ''';
     
-    _rootElement.setInnerHtml(html, treeSanitizer: NULL_TREE_SANITIZER);
-    _rootElement.querySelectorAll("[externaldest]").onClick.listen(_onMouseClickExternal);
+    _rootElement.nativeElement.setInnerHtml(html, treeSanitizer: NULL_TREE_SANITIZER);
+    _rootElement.nativeElement.querySelectorAll("[externaldest]").onClick.listen(_onMouseClickExternal);
     _setupTimer();
   }
 
@@ -88,7 +90,7 @@ class FooterComp implements ShadowRootAware {
     if (HostServer.isDev) {
       // No hace falta cancelar, somos un componente global
       new Timer.periodic(new Duration(seconds: 1), (_) {
-        _rootElement.querySelector(".footer-count").text = DateTimeService.formatDateTimeLong(DateTimeService.now);
+        _rootElement.nativeElement.querySelector(".footer-count").text = DateTimeService.formatDateTimeLong(DateTimeService.now);
       });
     }
   }
@@ -105,8 +107,7 @@ class FooterComp implements ShadowRootAware {
     window.open(destination, "_system");
   }
 
-  Element _rootElement;
-  View _view;
+  ElementRef _rootElement;
   Router _router;
 
   DateTimeService _dateTimeService;

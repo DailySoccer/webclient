@@ -1,28 +1,28 @@
-<div class="columns-layout" ng-class="[layoutCssClass, specialLayoutClass]">
-  <div class="left-column" ng-bind-html-unsafe="leftColumnHTML" ng-click="onLeftColumnClick()" ></div>
-  <div class="main-column" ng-if="!currentState.isSearching" ng-bind-html-unsafe="centerColumnHTML" ng-click="onCenterColumnClick()"></div>
-  <div class="main-column search-mode" ng-if="currentState.isSearching">
-    <input id="topBarSearchField" type="text" class="search-field" ng-model="searchValue" placeholder="Buscar" autofocus>
+<div class="columns-layout" [ngClass]="[layoutCssClass, specialLayoutClass]">
+  <div class="left-column" [innerHTML]="leftColumnHTML" (click)="onLeftColumnClick()" ></div>
+  <div class="main-column" *ngIf="!currentState.isSearching" [innerHTML]="centerColumnHTML" (click)="onCenterColumnClick()"></div>
+  <div class="main-column search-mode" *ngIf="currentState.isSearching">
+    <input id="topBarSearchField" type="text" class="search-field" [(ngModel)]="searchValue" placeholder="Buscar" autofocus>
   </div>
-  <div class="right-column" ng-bind-html-unsafe="rightColumnHTML" ng-click="onRightColumnClick()"></div>
+  <div class="right-column" [innerHTML]="rightColumnHTML" (click)="onRightColumnClick()"></div>
 </div>
 
-<modal-window title="'Mensajes de futbolcuatro'" show-window="notificationsActive" ng-class="{'small' : !hasNotification}">
-  <notifications ng-if="notificationsActive"></notifications>
+<modal-window title="'Mensajes de futbolcuatro'" show-window="notificationsActive" [ngClass]="{'small' : !hasNotification}">
+  <notifications *ngIf="notificationsActive"></notifications>
 </modal-window>
 
 <daily-rewards></daily-rewards>
 
 <modal-window show-header="false" show-window="changeNameWindowShow" class="small first-nickname-change">
   <span class="first-nickname-label">Elige tu nombre</span>      
-  <input class="first-nickname-input" type="text" maxlength="{{MAX_NICKNAME_LENGTH}}" ng-model="editedNickName" 
+  <input class="first-nickname-input" type="text" attr.maxlength="{{MAX_NICKNAME_LENGTH}}" [(ngModel)]="editedNickName"
          placeholder="nombre de usuario" class="form-control" autocapitalize="off" autofocus>
   <!-- Error de nickName -->
   <div class="nickname-error-container">
     <div class="nickname-error-text">{{nicknameErrorText}}</div>
   </div>
   <div class="nickname-change-actions-wrapper">
-    <button class="nickname-change-confirm" ng-click="saveChanges()" ng-disabled="editedNickName.length < MIN_NICKNAME_LENGTH">Confirmar</button>
+    <button class="nickname-change-confirm" (click)="saveChanges()" [disabled]="editedNickName.length < MIN_NICKNAME_LENGTH">Confirmar</button>
   </div>
 </modal-window>
 

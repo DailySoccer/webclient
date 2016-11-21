@@ -1,6 +1,8 @@
 library user_profile_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/loading_service.dart';
@@ -23,8 +25,7 @@ import 'package:webclient/models/achievement.dart';
 
 @Component(
     selector: 'user-profile',
-    templateUrl: 'packages/webclient/components/account/user_profile_comp.html',
-    useShadowDom: false
+    templateUrl: 'user_profile_comp.html'
 )
 class UserProfileComp {
 
@@ -146,16 +147,16 @@ class UserProfileComp {
   }
 
   void editPersonalData() {
-    _router.go('edit_profile', {});
+    _router.navigate(['edit_profile', {}]);
   }
   void goBuyGold() {
-    _router.go('shop', {});
+    _router.navigate(['shop', {}]);
   }
   void goLeaderboard() { 
-    _router.go('leaderboard', {'userId': _profileService.user.userId});
+    _router.navigate(['leaderboard', {'userId': _profileService.user.userId}]);
   }
   void goAchievements() {
-    _router.go('achievements', {});
+    _router.navigate(['achievements', {}]);
   }
   Future fbLoginCallback(String accessToken, String id, String name, String email) {
     Completer completer = new Completer();

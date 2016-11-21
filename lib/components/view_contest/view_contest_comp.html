@@ -1,6 +1,6 @@
 
 <!-- USER LINEUP SECTION -->
-<section class="view-contest-section" ng-show="isLineupFieldContestEntryActive">
+<section class="view-contest-section" [hidden]="!isLineupFieldContestEntryActive">
   <user-shortinfo-bar user="mainPlayer"></user-shortinfo-bar>
   
   <lineup-field-selector lineup-slots="lineupSlots"
@@ -12,20 +12,20 @@
                          is-live="true"
                          highlight-changeables="displayChangeablePlayers"></lineup-field-selector>
                          
-  <button ng-if="isLive" ng-disabled="numAvailableChanges <= 0 || substituiblePlayersInLineup() == 0" class="make-change-btn" ng-click="switchDisplayChangeablePlayers()">{{changesButtonText()}} <i class="material-icons">&#xE8D5;</i></button>
+  <button *ngIf="isLive" [disabled]="numAvailableChanges <= 0 || substituiblePlayersInLineup() == 0" class="make-change-btn" (click)="switchDisplayChangeablePlayers()">{{changesButtonText()}} <i class="material-icons">&#xE8D5;</i></button>
   <div class="salary-info-wrapper">
-    <div class="current-salary"><span class="current-salary-label">Presupuesto </span><span class="current-salary-amount" ng-class="{'red-numbers': availableSalary < 0 }">{{formatCurrency(printableCurrentSalary)}}</span></div>
+    <div class="current-salary"><span class="current-salary-label">Presupuesto </span><span class="current-salary-amount" [ngClass]="{'red-numbers': availableSalary < 0 }">{{formatCurrency(printableCurrentSalary)}}</span></div>
     <div class="limit-salary"><span class="limit-salary-label">Límite </span><span class="limit-salary-amount">{{formatCurrency(printableSalaryCap)}}</span></div>
   </div>
 </section>
 
 <!-- CONTEST INFO SECTION -->
-<section class="contest-info-section" ng-show="isContestInfoActive">
-  <contest-info the-contest="contest" ng-if="contest != null"></contest-info>
+<section class="contest-info-section" [hidden]="!isContestInfoActive">
+  <contest-info the-contest="contest" *ngIf="contest != null"></contest-info>
 </section>
 
 <!-- RIVALS SECTION -->
-<section class="rivals-list-section" ng-if="isRivalsListActive">
+<section class="rivals-list-section" *ngIf="isRivalsListActive">
   <div class="rivals-list-table-header">
     <div class="rivals-list-column-position">Pos.</div>
     <div class="rivals-list-column-name">Nombre</div>
@@ -33,7 +33,7 @@
     <div class="rivals-list-column-points">Puntos</div>
   </div>
   <div class="rivals-list-table-body">
-    <div class="rivals-list-table-row" ng-repeat="rival in rivalList" ng-class="{'current-user-row': isMainPlayer(rival)}" ng-click="onUserClick(rival)">
+    <div class="rivals-list-table-row" *ngFor="let rival of rivalList" [ngClass]="{'current-user-row': isMainPlayer(rival)}" (click)="onUserClick(rival)">
       <div class="rivals-list-column-position">{{ $index + 1 }}</div>
       <div class="rivals-list-column-name">{{name(rival)}}</div>
       <div class="rivals-list-column-timeleft">{{percentLeft(rival)}}</div>
@@ -43,7 +43,7 @@
 </section>
 
 <!-- COMPARE LINEUPS SECTION -->
-<section class="view-comparative-section" ng-show="isComparativeActive">
+<section class="view-comparative-section" [hidden]="isComparativeActive">
   <user-shortinfo-bar user="selectedOpponent"></user-shortinfo-bar>
   
   <lineup-field-selector lineup-slots="opponentLineupSlots"
@@ -60,7 +60,7 @@
 </section>
 
 <!-- SOCCER PLAYER LIST -->
-<section class="soccer-player-list-section" ng-if="isSelectingSoccerPlayerActive">
+<section class="soccer-player-list-section" *ngIf="isSelectingSoccerPlayerActive">
   <soccer-players-scalinglist soccer-players="allSoccerPlayers"
                               lineup-filter="lineupSlots"
                               manager-level="playerManagerLevel"
@@ -73,14 +73,14 @@
                               on-info-click="onSoccerPlayerInfoClick(soccerPlayerId)"
                               on-action-click="onSoccerPlayerActionButton(soccerPlayer)"></soccer-players-scalinglist>
   <div class="salary-info-wrapper">
-    <div class="current-salary"><span class="current-salary-label">Presupuesto </span><span class="current-salary-amount" ng-class="{'red-numbers': availableSalary < 0 }">{{formatCurrency(printableSalaryForChange)}}</span></div>
+    <div class="current-salary"><span class="current-salary-label">Presupuesto </span><span class="current-salary-amount" [ngClass]="{'red-numbers': availableSalary < 0 }">{{formatCurrency(printableSalaryForChange)}}</span></div>
     <div class="limit-salary"><span class="limit-salary-label">Límite </span><span class="limit-salary-amount">{{formatCurrency(printableSalaryCap)}}</span></div>
   </div>
 </section>
 
 
 <!-- SOCCER PLAYER STATS -->
-<section class="soccer-player-list-section" ng-show="isSoccerPlayerStatsActive">
+<section class="soccer-player-list-section" [hidden]="isSoccerPlayerStatsActive">
   <soccer-player-stats contest-id="contest.contestId" instance-soccer-player-id="instanceSoccerPlayerDisplayInfo" selectable-player="false"></soccer-player-stats>
 </section>
 
@@ -90,7 +90,7 @@
     <div class="gameplays-label">{{gameplaysPlayer.name}}</div>
     <div class="gameplays-data">{{gameplaysPlayer.livePoints}}</div>
   </div>
-  <div class="soccer-player-gameplays-data" ng-repeat="gameplay in soccerPlayerGameplays">
+  <div class="soccer-player-gameplays-data" *ngFor="let gameplay of soccerPlayerGameplays">
     <div class="gameplays-label">{{gameplay['name']}}</div>
     <div class="gameplays-data">{{gameplay['points']}}</div>
   </div>
@@ -101,19 +101,19 @@
     <p class="change-soccer-player-confirm-question">{{getLocalizedText('change-player-modal')}}</p>
     <div class="change-soccer-player-changing-players">
       <div class="change-soccer-player-changing-labels">
-        <span class='change-soccer-player player-old' ng-if="changingPlayer != null">sale</span>
-        <span class='change-soccer-player player-new' ng-if="newSoccerPlayer != null">entra</span>
+        <span class='change-soccer-player player-old' *ngIf="changingPlayer != null">sale</span>
+        <span class='change-soccer-player player-new' *ngIf="newSoccerPlayer != null">entra</span>
       </div>
       <div class="change-soccer-player-changing-data">
-        <span class='change-soccer-player player-old' ng-if="changingPlayer != null">{{changingPlayer.soccerPlayer.name}}</span>
+        <span class='change-soccer-player player-old' *ngIf="changingPlayer != null">{{changingPlayer.soccerPlayer.name}}</span>
         <i class="material-icons">&#xE8D5;</i>
-        <span class='change-soccer-player player-new' ng-if="newSoccerPlayer != null">{{newSoccerPlayer.soccerPlayer.name}}</span>
+        <span class='change-soccer-player player-new' *ngIf="newSoccerPlayer != null">{{newSoccerPlayer.soccerPlayer.name}}</span>
       </div>
     </div>
   </div>
   <div class="change-soccer-player-actions-wrapper">
-    <button class="change-soccer-player-cancel" ng-click="hideConfirmModal()">Cancelar</button>
-    <button class="change-soccer-player-confirm" ng-click="makeSoccerPlayerSubstitution()">Realizar Sustitución</button>
+    <button class="change-soccer-player-cancel" (click)="hideConfirmModal()">Cancelar</button>
+    <button class="change-soccer-player-confirm" (click)="makeSoccerPlayerSubstitution()">Realizar Sustitución</button>
   </div>
 </modal-window>
 

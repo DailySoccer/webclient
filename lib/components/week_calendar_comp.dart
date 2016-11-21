@@ -1,33 +1,34 @@
 library week_calendar_comp;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
-import 'package:angular/angular.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'dart:math';
 
 @Component(
     selector: 'week-calendar',
-    templateUrl: 'packages/webclient/components/week_calendar_comp.html',
-    useShadowDom: false
+    templateUrl: 'week_calendar_comp.html'
 )
 class WeekCalendar {
 
   List<Map> dayList;
   int get firstEnabledPos => max(dayList.indexOf(dayList.firstWhere((c) => c['enabled'], orElse: () => {})), 0);
 
-  @NgOneWay("disabled")
+  @Input("disabled")
   void set disabled(bool isDisabled) {
     _isDisabled = isDisabled;
   }
   
-  @NgOneWay("selected-date")
+  @Input("selected-date")
   void set currentSelectedDate(DateTime t) {
     if  (t == null) return;
     
     _currentSelected = {"weekday": t.weekday.toString(), "monthday": t.day, "date": t, "enabled": true};
   }
   
-  @NgOneWay("dates")
+  @Input("dates")
   void set dates(List<Map> value) {
     if (value != null && value.isNotEmpty) {
       dayList = value;
@@ -48,7 +49,7 @@ class WeekCalendar {
     dayClick();
   }
 
-  @NgCallback("on-day-selected")
+  @Input("on-day-selected")
   void set onDayClickCallback(Function value) {
     _onDayClick = value;
     dayClick();

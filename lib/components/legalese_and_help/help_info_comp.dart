@@ -1,15 +1,16 @@
 library help_info_comp;
 
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'dart:html';
-import 'package:angular/angular.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/utils/game_metrics.dart';
 
 @Component(
    selector: 'help-info',
-   templateUrl: 'packages/webclient/components/legalese_and_help/help_info_comp.html',
-   useShadowDom: false
+   templateUrl: 'help_info_comp.html'
 )
 class HelpInfoComp {
   ScreenDetectorService scrDet;
@@ -40,7 +41,7 @@ class HelpInfoComp {
   }
 
   void goTo(String path) {
-    _router.go(path, {});
+    _router.navigate([path, {}]);
   }
 
   String getLocalizedText(key) {

@@ -2,7 +2,7 @@ library tutorial_tip_service;
 
 import 'dart:async';
 import 'dart:html';
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
 import 'package:webclient/components/backdrop_comp.dart';
 import 'package:webclient/services/screen_detector_service.dart';
 

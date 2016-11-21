@@ -17,7 +17,7 @@
     </div-->
   </div>
   <div class="profile-data-action">
-    <button class="action-button" ng-click="editPersonalData()">Editar</button>
+    <button class="action-button" (click)="editPersonalData()">Editar</button>
   </div>
 </div>
 
@@ -30,7 +30,7 @@
     </div>
   </div>
   <div class="profile-data-action">
-    <button class="action-button" ng-click="goBuyGold()">Comprar</button>
+    <button class="action-button" (click)="goBuyGold()">Comprar</button>
   </div>
 </div>
 
@@ -39,17 +39,17 @@
   <div class="profile-data-content">
     <div class="profile-data-row single-ranking-info">
       <span class="profile-data-key">Ranking<br>de habilidad</span>
-      <span class="profile-data-value profile-data-ranking-position" ng-show="!loadingService.isLoading">{{rankingPointsPosition}}º</span>
-      <span class="profile-data-value profile-data-ranking-points" ng-show="!loadingService.isLoading">{{rankingPoints}} Ptos.</span>
+      <span class="profile-data-value profile-data-ranking-position" [hidden]="loadingService.isLoading">{{rankingPointsPosition}}º</span>
+      <span class="profile-data-value profile-data-ranking-points" [hidden]="loadingService.isLoading">{{rankingPoints}} Ptos.</span>
     </div>
     <div class="profile-data-row single-ranking-info">
       <span class="profile-data-key">Ranking<br>de ganancias</span>
-      <span class="profile-data-value profile-data-ranking-position" ng-show="!loadingService.isLoading">{{rankingMoneyPosition}}º</span>
-      <span class="profile-data-value profile-data-ranking-points" ng-show="!loadingService.isLoading">{{rankingMoney}} Mon.</span>
+      <span class="profile-data-value profile-data-ranking-position" [hidden]="loadingService.isLoading">{{rankingMoneyPosition}}º</span>
+      <span class="profile-data-value profile-data-ranking-points" [hidden]="loadingService.isLoading">{{rankingMoney}} Mon.</span>
     </div>
   </div>
   <div class="profile-data-action">
-    <button class="action-button" ng-click="goLeaderboard()">Ver rankings</button>
+    <button class="action-button" (click)="goLeaderboard()">Ver rankings</button>
   </div>
 </div>
 
@@ -62,7 +62,7 @@
     </div>
   </div>
   <div class="profile-data-action">
-    <button class="action-button" ng-click="goAchievements()">Ver logros</button>
+    <button class="action-button" Cclick)="goAchievements()">Ver logros</button>
   </div>
 </div>
 

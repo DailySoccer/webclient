@@ -1,6 +1,6 @@
 library facebook_service;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
 import 'package:webclient/models/contest_entry.dart';
 import 'package:webclient/models/contest.dart';
 import 'package:webclient/utils/string_utils.dart';

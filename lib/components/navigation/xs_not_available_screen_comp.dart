@@ -1,13 +1,14 @@
 library xs_not_available_screen_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/utils/host_server.dart';
 
 @Component(
     selector: 'xs-not-available-screen',
-    templateUrl: 'packages/webclient/components/navigation/xs_not_available_screen_comp.html',
-    useShadowDom: false
+    templateUrl: 'xs_not_available_screen_comp.html'
 )
 class XsNotAvailableScreenComp {
 

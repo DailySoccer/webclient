@@ -1,6 +1,8 @@
 library view_contest_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/services/datetime_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/contests_service.dart';
@@ -32,9 +34,9 @@ import 'package:source_span/src/utils.dart';
 
 @Component(
     selector: 'view-contest',
-    templateUrl: 'packages/webclient/components/view_contest/view_contest_comp.html',
-    useShadowDom: false)
-class ViewContestComp implements DetachAware {
+    templateUrl: 'view_contest_comp.html'
+)
+class ViewContestComp implements OnDestroy {
   
   /*
    * VIEW_CONTEST STATES MANAGEMENTS
@@ -190,8 +192,9 @@ class ViewContestComp implements DetachAware {
   List<ContestEntry> _rivalList = [];
   List<ContestEntry> get rivalList => _rivalList;
 
-  bool get isLive => _routeProvider.route.name.contains("live_contest");
-  bool get isHistory => _routeProvider.route.name.contains("history_contest");
+  // TODO Angular 2
+  bool get isLive => _routeParams.get("live_contest") != null;
+  bool get isHistory => _routeParams.get("history_contest") != null;
   
   String get printableSalaryCap => contest != null ? contest.printableSalaryCap : '-';
   int get maxSalary => contest != null ? contest.salaryCap : 0;
@@ -281,19 +284,19 @@ class ViewContestComp implements DetachAware {
     return StringUtils.formatCurrency(amount);
   }
 
-  ViewContestComp(this._turnZone, this._routeProvider, this._router, this._refreshTimersService, this._appStateService,
+  ViewContestComp(this._routeParams, this._router, this._refreshTimersService, this._appStateService,
       this._contestsService, this._profileService, this._flashMessage, this._loadingService/*, this._tutorialService*/) {
     
     _loadingService.isLoading = true;
     
     _setupAppStateService();
     
-    contestId = _routeProvider.route.parameters['contestId'];
+    contestId = _routeParams.get('contestId');
   
     _retrieveContestData();
   }
   
-  void detach() {
+  @override void ngOnDestroy() {
     _finishLiveTimers();
   }
   
@@ -643,7 +646,7 @@ class ViewContestComp implements DetachAware {
    */
   
   void _setupAppStateService() {
-    _setupContestInfoTopBar(false, () => _router.go('my_contests', {"section": "live"}));
+    _setupContestInfoTopBar(false, () => _router.navigate(['my_contests', {"section": "live"}]));
 
     tabList = [
       new AppSecondaryTabBarTab("Alineación",                                        
@@ -686,11 +689,11 @@ class ViewContestComp implements DetachAware {
    * END STATE MANAGING METHODS
    */
 
-  VmTurnZone _turnZone;
+  //VmTurnZone _turnZone;
   Router _router;
   Timer _retryOpTimer;
   FlashMessagesService _flashMessage;
-  RouteProvider _routeProvider;
+  RouteParams _routeParams;
   ProfileService _profileService;
   RefreshTimersService _refreshTimersService;
   ContestsService _contestsService;

@@ -10,7 +10,7 @@
     <span class="header-balance">{{getLocalizedText("balance")}}</span>
   </div>
 
-  <div class="transaction-row" ng-repeat="transaction in currentPageList">
+  <div class="transaction-row" *ngFor="let transaction of currentPageList">
     <div class="field-date">{{transaction.formattedDate}}</div>
     <div class="field-id">{{transaction.transactionID}}</div>
     <div class="field-concept">{{transaction.transactionDescription}}</div>

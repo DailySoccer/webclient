@@ -1,6 +1,8 @@
 library gold_shop_comp;
 
-import 'package:angular/angular.dart';
+import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
+
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/components/modal_comp.dart';
 import 'package:webclient/services/flash_messages_service.dart';
@@ -11,8 +13,7 @@ import 'package:webclient/utils/game_info.dart';
 
 @Component(
     selector: 'gold-shop-comp',
-    templateUrl: 'packages/webclient/components/account/gold_shop_comp.html',
-    useShadowDom: false
+    templateUrl: 'gold_shop_comp.html'
 )
 class GoldShopComp {
 

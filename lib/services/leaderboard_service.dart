@@ -8,6 +8,8 @@ import "package:webclient/services/server_service.dart";
 import "package:webclient/models/user.dart";
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
+import 'package:webclient/models/user_ranking.dart';
+import 'package:logging/logging.dart';
 
 @Injectable()
 class LeaderboardService {
@@ -51,10 +53,36 @@ class LeaderboardService {
       'name': "LEYENDA"
   };
   
-  List<User> users;
-  int myPosition;
+  List<UserRanking> users;
+  int mySkillPosition;
   Map currentTrueSkillData;
+  
+  List<UserRanking> get goldRanking {
+    if (_goldRanking == null) {
+      _goldRanking = new List<UserRanking>(users.length);
+      for (int i=0; i<users.length; i++) {
+        UserRanking user = users[i];
+        _goldRanking[ user.goldRank - 1] = user;
+      }
+      // _goldRanking.sort( (UserRanking u1, UserRanking u2) => u1.goldRank.compareTo(u2.goldRank) );
+    }
+    return _goldRanking;
+  }
+  List<UserRanking> _goldRanking;
 
+  List<UserRanking> get skillRanking {
+    if (_skillRanking == null) {
+      _skillRanking = new List<UserRanking>(users.length);
+      for (int i=0; i<users.length; i++) {
+        UserRanking user = users[i];
+        _skillRanking[ user.skillRank - 1] = user;
+      }
+      // _skillRanking.sort( (UserRanking u1, UserRanking u2) => u1.skillRank.compareTo(u2.skillRank) );
+    }
+    return _skillRanking;
+  }
+  List<UserRanking> _skillRanking;
+  
   void calculateMyTrueSkillData() {
     if (!_profileService.isLoggedIn) {
       currentTrueSkillData = trueSkillDataList.first;
@@ -76,7 +104,7 @@ class LeaderboardService {
     }, orElse: () => trueSkillDataList[0]);
     
     if (users != null) {
-      if (currentTrueSkillData['id'] == trueSkillDataList.last['id'] && myPosition <= 10) {
+      if (currentTrueSkillData['id'] == trueSkillDataList.last['id'] && mySkillPosition <= 10) {
         currentTrueSkillData = topTrueSkillData;
       }
     }
@@ -98,7 +126,9 @@ class LeaderboardService {
     //uppdateMyLeaderBoradData = new Timer(new Duration(seconds: SECONDS_TO_REFRESH_RANKING_POSITION), calculateMyTrueSkillData);    
   }
 
-  Future<List<User>> getUsers() {
+  UserRanking getUser (String userId) => users.firstWhere( (user) => user.userId == userId, orElse: () => null);
+  
+  Future<List<UserRanking>> getUsers() {
     var completer = new Completer();
 
     // Tenemos la leaderboard cargada?
@@ -106,7 +136,7 @@ class LeaderboardService {
 
     if (updated && _profileService.isLoggedIn) {
       // La tenemos correctamente actualizada? (puntos iguales a los del propio perfil de usuario)
-      User userInLeaderboard = users.firstWhere( (user) => user.userId == _profileService.user.userId, orElse: () => null);
+      UserRanking userInLeaderboard = getUser(_profileService.user.userId);
       if (userInLeaderboard != null && userInLeaderboard.trueSkill != _profileService.user.trueSkill) {
         updated = false;
       }
@@ -120,12 +150,16 @@ class LeaderboardService {
       // Solicitamos al server la leaderboard
       _server.getLeaderboard()
         .then((jsonMapRoot) {
-            users = jsonMapRoot.containsKey("users") ? jsonMapRoot["users"].map((jsonObject) => new User.fromJsonObject(jsonObject)).toList() : [];
+            users = jsonMapRoot.containsKey("users") ? jsonMapRoot["users"].map((jsonObject) => new UserRanking.fromJsonObject(jsonObject)).toList() : [];
             for (int i = 0; i<users.length; i++) {
               if (users[i].userId == _profileService.user.userId) {
-                myPosition = i + 1;
+                mySkillPosition = users[i].skillRank;
+                break;
               }
             }            
+            
+            _goldRanking = _skillRanking = null;
+            
             completer.complete(users);
           });
     }

@@ -20,6 +20,7 @@ import 'package:webclient/utils/fblogin.dart';
 import 'package:webclient/utils/host_server.dart';
 import 'package:webclient/services/app_state_service.dart';
 import 'package:webclient/models/achievement.dart';
+import 'package:webclient/models/user_ranking.dart';
 
 @Component(
     selector: 'user-profile',
@@ -40,8 +41,8 @@ class UserProfileComp {
 
   User get userData => _profileService.user;
 
-  Map playerSkillInfo = {'position':'_', 'id':'', 'name': '', 'points': ' '};
-  Map playerMoneyInfo = {'position':'_', 'id':'', 'name': '', 'points': '\$ '};
+  Map playerSkillInfo = {'position':'', 'id':'', 'name': '', 'points': ''};
+  Map playerMoneyInfo = {'position':'', 'id':'', 'name': '', 'points': ''};
 
   List<Achievement> achievementList = Achievement.AVAILABLES.map( (achievementMap) => new Achievement.fromJsonObject(achievementMap)).toList();
   
@@ -66,44 +67,37 @@ class UserProfileComp {
     loadingService.isLoading = true;
     _fbLogin = new FBLogin(_router, _profileService, fbLoginCallback);
     leaderboardService.getUsers()
-      .then((List<User> users) {
+      .then((List<UserRanking> users) {
   
-        List<User> pointsUserListTmp = new List<User>.from(users);
-        List<User> moneyUserListTmp = new List<User>.from(users);
-        List<Map> pointsUserList;
-        List<Map> moneyUserList;
-  
-        pointsUserListTmp.sort( (User u1, User u2) => u2.trueSkill.compareTo(u1.trueSkill) );
-        moneyUserListTmp.sort( (User u1, User u2) => u2.earnedMoney.compareTo(u1.earnedMoney) );
-  
-        int i = 1;
-        pointsUserList = pointsUserListTmp.map((User u) => {
-          'position': i++,
-          'id': u.userId,
-          'name': u.nickName,
-          'points': StringUtils.parseTrueSkill(u.trueSkill)
-          }).toList();
-  
-        i = 1;
-        moneyUserList = moneyUserListTmp.map((User u) => {
-          'position': i++,
-          'id': u.userId,
-          'name': u.nickName,
-          'points': u.earnedMoney
-          }).toList();
-  
-        playerSkillInfo = pointsUserList.firstWhere( (Map u1) => userData.userId == u1['id'], orElse:  () => {
-          'position': pointsUserList.length,
-          'id': "<unknown>",
-          'name': "<unknown>",
-          'points': 0
-        });
-        playerMoneyInfo = moneyUserList.firstWhere( (Map u1) => userData.userId == u1['id'], orElse:  () => {
-          'position': moneyUserList.length,
-          'id': "<unknown>",
-          'name': "<unknown>",
-          'points': 0
-        });
+        UserRanking userRanking = leaderboardService.getUser(userData.userId);
+        
+        playerSkillInfo = (userRanking != null) 
+            ? {
+              'position': userRanking.skillRank,
+              'id': userRanking.userId,
+              'name': userRanking.nickName,
+              'points': StringUtils.parseTrueSkill(userRanking.trueSkill)
+            }
+            : {
+              'position': users.length,
+              'id': "<unknown>",
+              'name': "<unknown>",
+              'points': 0
+            };
+            
+        playerMoneyInfo = (userRanking != null)
+            ? {
+              'position': userRanking.goldRank,
+              'id': userRanking.userId,
+              'name': userRanking.nickName,
+              'points': userRanking.earnedMoney
+            }
+            : {
+              'position': users.length,
+              'id': "<unknown>",
+              'name': "<unknown>",
+              'points': 0
+            };        
         
         // Topbar y bottombar        
         _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("PERFIL");

@@ -11,6 +11,8 @@ import 'package:webclient/services/facebook_service.dart';
 import 'package:webclient/utils/game_metrics.dart';
 import 'package:webclient/services/app_state_service.dart';
 import 'package:webclient/services/refresh_timers_service.dart';
+import 'package:webclient/models/user_ranking.dart';
+import 'package:logging/logging.dart';
 
 
 @Component(
@@ -38,19 +40,19 @@ class LeaderboardComp implements ShadowRootAware, DetachAware{
   bool isThePlayer(id) => id == userId/*get del singleton*/;
   bool get isLoggedPlayer => _profileService.user != null && userId == _profileService.user.userId;
   bool get showShare => isLoggedPlayer;
-  User userShown = null;
+  UserRanking userShown = null;
 
   String get pointsColumnName => getLocalizedText("trueskill");
   String get moneyColumnName => getLocalizedText("gold");
 
-  String get trueskillTabTitle    => getLocalizedText("trueskill_tab",    substitutions: {"PLAYER_POSITION": playerPointsInfo['position']});
-  String get goldTabTitle         => getLocalizedText("gold_tab",         substitutions: {"PLAYER_POSITION": playerMoneyInfo['position']});
+  String get trueskillTabTitle    => getLocalizedText("trueskill_tab",    substitutions: {"PLAYER_POSITION": playerPointsInfo.skillRank});
+  String get goldTabTitle         => getLocalizedText("gold_tab",         substitutions: {"PLAYER_POSITION": playerMoneyInfo.goldRank});
 
-  List<Map> pointsUserList;
-  List<Map> moneyUserList;
+  List<UserRanking> pointsUserList;
+  List<UserRanking> moneyUserList;
 
-  Map playerPointsInfo = {'position':'_', 'id':'', 'name': '', 'points': ' '};
-  Map playerMoneyInfo = {'position':'_', 'id':'', 'name': '', 'points': '\$ '};
+  UserRanking playerPointsInfo = new UserRanking();
+  UserRanking playerMoneyInfo = new UserRanking();
 
   Map _sharingInfoGold = null;
   Map get sharingInfoGold {
@@ -143,34 +145,40 @@ class LeaderboardComp implements ShadowRootAware, DetachAware{
   }
   */
   
+  Function _goldRankingInterface() {
+    Map interface = {
+      "id" : (UserRanking userRanking) => userRanking.userId,
+      "name" : (UserRanking userRanking) => userRanking.nickName,
+      "position" : (UserRanking userRanking) => userRanking.goldRank,
+      "points" : (UserRanking userRanking) => userRanking.earnedMoney
+    };
+    return ({UserRanking userRanking, String name}) => interface.containsKey(name) ? interface[name](userRanking) : "-";
+  }
+  Function get goldRankingInterface => _goldRankingInterface();
+
+  Function _skillRankingInterface() {
+    Map interface = {
+      "id" : (UserRanking userRanking) => userRanking.userId,
+      "name" : (UserRanking userRanking) => userRanking.nickName,
+      "position" : (UserRanking userRanking) => userRanking.skillRank,
+      "points" : (UserRanking userRanking) => userRanking.trueSkill
+    };
+    return ({UserRanking userRanking, String name}) => interface.containsKey(name) ? interface[name](userRanking) : "-";
+  }
+  Function get skillRankingInterface => _skillRankingInterface();
+  
   void refreshList() {
     _leaderboardService.getUsers()
-          .then((List<User> users) {
-            List<User> pointsUserListTmp = new List<User>.from(users);
-            List<User> moneyUserListTmp = new List<User>.from(users);
+          .then((List<UserRanking> users) {
+            pointsUserList = _leaderboardService.skillRanking;
+            moneyUserList = _leaderboardService.goldRanking;
 
-            pointsUserListTmp.sort( (User u1, User u2) => u2.trueSkill.compareTo(u1.trueSkill) );
-            moneyUserListTmp.sort( (User u1, User u2) => u2.earnedMoney.compareTo(u1.earnedMoney) );
-
-            int i = 1;
-            pointsUserList = pointsUserListTmp.map((User u) => {
-                  'position': i++,
-                  'id': u.userId,
-                  'name': u.nickName,
-                  'points': StringUtils.parseTrueSkill(u.trueSkill)
-                  }).toList();
-
-            i = 1;
-            moneyUserList = moneyUserListTmp.map((User u) => {
-                'position': i++,
-                'id': u.userId,
-                'name': u.nickName,
-                'points': u.earnedMoney
-              }).toList();
-
-            playerPointsInfo = pointsUserList.firstWhere( (u) => isThePlayer(u['id']), orElse: () => pointsUserList.first);
-            playerMoneyInfo = moneyUserList.firstWhere( (u) => isThePlayer(u['id']), orElse: () => moneyUserList.first);
-            userShown = isLoggedPlayer? _profileService.user : users.firstWhere( (u) => isThePlayer(u.userId), orElse: () => users.first);
+            UserRanking userRanking = _leaderboardService.getUser(userId);
+            
+            playerPointsInfo = (userRanking != null) ? userRanking : pointsUserList.first;
+            playerMoneyInfo = (userRanking != null) ? userRanking : moneyUserList.first;
+            
+            userShown = (userRanking != null) ? userRanking : users.first;
 
             loadingService.isLoading = false;
           });

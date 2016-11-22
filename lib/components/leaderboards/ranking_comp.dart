@@ -9,6 +9,7 @@ import 'package:webclient/services/loading_service.dart';
 import 'package:webclient/services/leaderboard_service.dart';
 import 'package:webclient/models/user.dart';
 import 'package:webclient/utils/game_metrics.dart';
+import 'package:webclient/models/user_ranking.dart';
 
 @Component(
     selector: 'ranking',
@@ -19,25 +20,25 @@ import 'package:webclient/utils/game_metrics.dart';
 class RankingComp {
  
   @NgOneWay('ranking-points-data')
-    set pointsList(List<Map> value) {
+    set pointsList(List<UserRanking> value) {
     if (value != null) {
       pointsUserList = value;
-      myPointsData = pointsUserList.where((user) => user['id'] == profileService.user.userId).first;
+      myPointsData = pointsUserList.where((user) => user.userId == profileService.user.userId).first;
     }
   }
-  List<Map> pointsUserList;
+  List<UserRanking> pointsUserList;
   
   @NgOneWay('ranking-money-data')
-  set moneyList(List<Map> value) {
+  set moneyList(List<UserRanking> value) {
     if (value != null) {
       moneyUserList = value;
-      myMoneyData = moneyUserList.where((user) => user['id'] == profileService.user.userId).first;
+      myMoneyData = moneyUserList.where((user) => user.userId == profileService.user.userId).first;
     }
   }
-  List<Map> moneyUserList;
+  List<UserRanking> moneyUserList;
   
-  Map myPointsData;
-  Map myMoneyData;
+  UserRanking myPointsData;
+  UserRanking myMoneyData;
   
   @NgCallback('on-show-ranking-points')
   Function showPointsRanking;
@@ -53,7 +54,7 @@ class RankingComp {
   
   RankingComp (this.loadingService, LeaderboardService leaderboardService, this.profileService) {
     if (myPointsData != null)
-      myPointsData = pointsUserList.where((user) => user['id'] == profileService.user.userId).first;
+      myPointsData = pointsUserList.where((user) => user.userId == profileService.user.userId).first;
     
     GameMetrics.screenVisitEvent(GameMetrics.SCREEN_RANKING);
      // myMoneyData = moneyUserList.where((user) => user['id'] == profileService.user.userId).first;

@@ -3,12 +3,12 @@
           ng-if="!loadingService.isLoading && isMainRankingPlayersActive">
 </ranking>
  
-<leaderboard-table  share-info="sharingInfoTrueSkill" show-header="true" highlight-element="playerPointsInfo" 
+<leaderboard-table  share-info="sharingInfoTrueSkill" show-header="true" ranking-type="'TRUESKILL'" highlight-element="playerPointsInfo" 
                     table-elements="pointsUserList" rows="USERS_TO_SHOW" points-column-label="pointsColumnName" 
                     hint="playerPointsHint" ng-if="!loadingService.isLoading && isRankingBestPlayersActive">
 </leaderboard-table>
 
-<leaderboard-table  share-info="sharingInfoGold" show-header="true" highlight-element="playerMoneyInfo" 
+<leaderboard-table  share-info="sharingInfoGold" show-header="true" ranking-type="'GOLD'" highlight-element="playerMoneyInfo" 
                     table-elements="moneyUserList" rows="USERS_TO_SHOW" points-column-label="moneyColumnName" 
                     hint="playerMoneyHint" ng-if="!loadingService.isLoading && isRankingMostRichActive">
 </leaderboard-table>

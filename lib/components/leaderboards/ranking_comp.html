@@ -4,11 +4,11 @@
     <span>RANKING<br>DE HABILIDAD</span>
   </div>
   <div class="user-data user-points-data">
-    <div class="user-position">{{myPointsData['position']}}º</div>
+    <div class="user-position">{{myPointsData.skillRank}}º</div>
     <div class="user-name">{{profileService.user.nickName}}</div>
-    <div class="user-points">{{myPointsData['points']}}</div>
+    <div class="user-points">{{myPointsData.trueSkill}}</div>
   </div>
-  <leaderboard-table minimized show-header="false" table-elements="pointsUserList" rows="3"></leaderboard-table>
+  <leaderboard-table minimized show-header="false" table-elements="pointsUserList" ranking-type="'TRUESKILL'" rows="3"></leaderboard-table>
   <button class="ranking-button" ng-click="showFullPointsRanking()"> VER COMPLETO</button>
 </div>
 
@@ -18,11 +18,11 @@
     <span>RANKING<br>DE GANANCIAS</span>
   </div>
   <div class="user-data user-money-data">
-    <div class="user-position">{{myMoneyData['position']}}º</div>
+    <div class="user-position">{{myMoneyData.goldRank}}º</div>
     <div class="user-name">{{profileService.user.nickName}}</div>
-    <div class="user-points">{{myMoneyData['points']}}</div>
+    <div class="user-points">{{myMoneyData.earnedMoney}}</div>
   </div>
-  <leaderboard-table minimized show-header="false" table-elements="moneyUserList" rows="3"></leaderboard-table>
+  <leaderboard-table minimized show-header="false" table-elements="moneyUserList" ranking-type="'GOLD'" rows="3"></leaderboard-table>
   <button class="ranking-button" ng-click="showFullMoneyRanking()"> VER COMPLETO</button>
 </div>
 

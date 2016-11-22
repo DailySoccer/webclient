@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:angular/angular.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/services/profile_service.dart';
+import 'package:webclient/models/user_ranking.dart';
 //import 'package:webclient/utils/html_utils.dart';
 //import 'package:webclient/services/screen_detector_service.dart';
 //import 'package:webclient/services/screen_detector_service.dart';
@@ -27,6 +28,13 @@ class LeaderboardTableComp {
     sharingInfo = allInfo;
   }
   
+  String type;
+  @NgOneWay("ranking-type")
+  void set rankingType(String value) {
+    type = value;
+  }
+  
+  
   bool isHeaded = true;
   String pointsColumnName = "Points";
   
@@ -36,9 +44,9 @@ class LeaderboardTableComp {
   //String get playerName => getLocalizedText("the-player");
   
   int rows = 0;
-  List<Map> tableElements = null;
+  List<UserRanking> tableElements = null;
   List<Map> shownElements = null;
-  Map highlightedElement = null;
+  UserRanking highlightedElement = null;
 
   String getLocalizedText(key, [group = "leaderboard"]) {
     return StringUtils.translate(key, group);
@@ -71,18 +79,35 @@ class LeaderboardTableComp {
   
   void calculateShownElements() {
     if (highlightedElement == null) {
-      if (tableElements != null)
-       shownElements = tableElements.take(rows).toList();
+      if (tableElements != null) {
+       // shownElements = tableElements.take(rows).toList();
+        shownElements = tableElements.take(rows).map( (UserRanking userRanking) =>
+          {
+            'position': type == "GOLD" ? userRanking.goldRank : userRanking.skillRank,
+            'id': userRanking.userId,
+            'name': userRanking.nickName,
+            'points': type == "GOLD" ? userRanking.earnedMoney : userRanking.trueSkill
+          }
+        ).toList();
+      }
     }
-    else if (rows != 0 && tableElements != null && highlightedElement['id'] != '') {
-      int pos = highlightedElement['id'] != ''? highlightedElement['position'] : 0;
+    else if (rows != 0 && tableElements != null && highlightedElement.userId != '') {
+      int pos = type == "GOLD" ? highlightedElement.goldRank : highlightedElement.skillRank;
       //primera posicion calculada a partir del elemento iluminado
       int firstPosition = max(pos - ((rows-1) / 2).floor(), 1) - 1;
       //ultima posicion calculada a partir de la primera
       int lastPosition = min(firstPosition + rows, tableElements.length);
       //corrección de la primera posicion cuando esta cerca de las últimas posiciones
       firstPosition = max(min(firstPosition, lastPosition - rows), 0);
-      shownElements = tableElements.sublist(firstPosition, lastPosition);
+      // shownElements = tableElements.sublist(firstPosition, lastPosition);
+      shownElements = tableElements.sublist(firstPosition, lastPosition).map( (UserRanking userRanking) =>
+        {
+          'position': type == "GOLD" ? userRanking.goldRank : userRanking.skillRank,
+          'id': userRanking.userId,
+          'name': userRanking.nickName,
+          'points': type == "GOLD" ? userRanking.earnedMoney : userRanking.trueSkill
+        }
+      ).toList();
     }
   }
   
@@ -92,13 +117,13 @@ class LeaderboardTableComp {
   }
   
   @NgOneWay("table-elements")
-  void set tableValues(List<Map> value) {
+  void set tableValues(List<UserRanking> value) {
       tableElements = value;
       calculateShownElements();
   }
   
   @NgOneWay("highlight-element")
-  void set playerInfo (Map value) {
+  void set playerInfo (UserRanking value) {
     highlightedElement = value;
     calculateShownElements();
   }
@@ -120,5 +145,4 @@ class LeaderboardTableComp {
   }
   
   ProfileService profileService;
-  
 }

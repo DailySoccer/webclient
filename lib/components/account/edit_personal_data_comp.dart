@@ -192,7 +192,7 @@ class EditPersonalDataComp implements ShadowRootAware{
   }
   
   bool validateNickname() {
-    bool valid = editedNickName != "" && editedNickName.length > MIN_NICKNAME_LENGTH;
+    bool valid = editedNickName != "" && editedNickName.length >= MIN_NICKNAME_LENGTH;
     nicknameErrorText = "";
     
     if (!valid) {

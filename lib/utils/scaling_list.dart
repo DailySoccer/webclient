@@ -23,16 +23,21 @@ class ScalingList<T> {
   List<T> get elements => _currentList;
   bool get isFullList => _insertList.length == 0;
   
-  ScalingList(this.initialAmount, [bool eqComparer(T a, T b)]) {
+  // TODO Cambiar los parámetros opcionales por "named"
+  ScalingList(this.initialAmount, [bool eqComparer(T a, T b), bool sorting]) {
     _insertList = new Queue<T>();
     _fullList = [];
     _currentList = [];
     if(eqComparer != null) _equalsComparer = eqComparer;
+    if(sorting != null) _sorting = sorting;
   }
 
   void _processList() {
     _insertList.clear();
-    _fullList.sort(sortComparer);
+    
+    if (_sorting) {
+      _fullList.sort(sortComparer);
+    }
     
     if(_currentList.isEmpty) {
       // Si _currentList esta vacía _insertList tiene lo mismo que full list.
@@ -65,7 +70,10 @@ class ScalingList<T> {
         _currentList.add(_insertList.removeFirst());
       }
     }
-    _currentList.sort(sortComparer);
+    
+    if (_sorting) {
+      _currentList.sort(sortComparer);
+    }
   }
   
   void _startScalingList([_]) {
@@ -80,8 +88,11 @@ class ScalingList<T> {
 
   void _scaleList([_]) {
     if (_insertList.length > 0 && _continueScaling) {
-      _currentList..add(_insertList.removeFirst())
-                  ..sort(sortComparer);
+      _currentList.add(_insertList.removeFirst());
+      
+      if (_sorting) {
+        _currentList.sort(sortComparer);
+      }
       
       window.animationFrame.then(_scaleList);
       // Logger.root.info("_scaleList: ${_currentList.length} - ${new DateTime.now()}");
@@ -99,7 +110,10 @@ class ScalingList<T> {
   }
   void redraw() {
     if (_currentList != null) {
-      _currentList.sort(sortComparer);
+      // TODO Habrá que buscar un método alternativo de "redraw" cuando la lista no se quiera ordenar
+      if (_sorting) {
+        _currentList.sort(sortComparer);
+      }
     }
   }
   
@@ -110,5 +124,6 @@ class ScalingList<T> {
   
   Function _equalsComparer = (T t1,T t2) => t1 == t2;
   Function _sortComparer =  (T t1,T t2) => 0;
+  bool _sorting = true;
 }
 

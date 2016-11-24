@@ -20,12 +20,12 @@
 </section>
 
 <!-- CONTEST INFO SECTION -->
-<section class="contest-info-section" ng-if="isContestInfoActive">
+<section class="contest-info-section" ng-if="isContestInfoInitialized" ng-show="isContestInfoActive">
   <contest-info the-contest="contest" ng-if="contest != null"></contest-info>
 </section>
 
 <!-- RIVALS SECTION -->
-<section class="rivals-list-section" ng-if="isRivalsListActive">
+<section class="rivals-list-section" ng-if="isRivalsListInitialized" ng-show="isRivalsListActive">
   <div class="rivals-list-table-header">
     <div class="rivals-list-column-position">Pos.</div>
     <div class="rivals-list-column-name">Nombre</div>
@@ -33,7 +33,7 @@
     <div class="rivals-list-column-points">Puntos</div>
   </div>
   <div class="rivals-list-table-body">
-    <div class="rivals-list-table-row" ng-repeat="rival in rivalList" ng-class="{'current-user-row': isMainPlayer(rival)}" ng-click="onUserClick(rival)">
+    <div class="rivals-list-table-row" ng-repeat="rival in currentRivalList.elements" ng-class="{'current-user-row': isMainPlayer(rival)}" ng-click="onUserClick(rival)">
       <div class="rivals-list-column-position">{{ $index + 1 }}</div>
       <div class="rivals-list-column-name">{{name(rival)}}</div>
       <div class="rivals-list-column-timeleft">{{percentLeft(rival)}}</div>
@@ -43,7 +43,7 @@
 </section>
 
 <!-- COMPARE LINEUPS SECTION -->
-<section class="view-comparative-section" ng-show="isComparativeActive">
+<section class="view-comparative-section" ng-if="isComparativeInitialized" ng-show="isComparativeActive">
   <user-shortinfo-bar user="selectedOpponent"></user-shortinfo-bar>
   
   <lineup-field-selector lineup-slots="opponentLineupSlots"
@@ -60,7 +60,7 @@
 </section>
 
 <!-- SOCCER PLAYER LIST -->
-<section class="soccer-player-list-section" ng-if="isSelectingSoccerPlayerActive">
+<section class="soccer-player-list-section" ng-if="isSelectingSoccerPlayerInitialized" ng-show="isSelectingSoccerPlayerActive">
   <soccer-players-scalinglist soccer-players="allSoccerPlayers"
                               lineup-filter="lineupSlots"
                               manager-level="playerManagerLevel"
@@ -80,7 +80,7 @@
 
 
 <!-- SOCCER PLAYER STATS -->
-<section class="soccer-player-list-section" ng-show="isSoccerPlayerStatsActive">
+<section class="soccer-player-list-section" ng-if="isSoccerPlayerStatsInitialized" ng-show="isSoccerPlayerStatsActive">
   <soccer-player-stats contest-id="contest.contestId" instance-soccer-player-id="instanceSoccerPlayerDisplayInfo" selectable-player="false"></soccer-player-stats>
 </section>
 

@@ -29,6 +29,7 @@ import 'package:webclient/services/app_state_service.dart';
 import 'package:webclient/components/enter_contest/soccer_player_listitem.dart';
 import 'package:webclient/models/user.dart';
 import 'package:source_span/src/utils.dart';
+import 'package:webclient/utils/scaling_list.dart';
 
 @Component(
     selector: 'view-contest',
@@ -46,6 +47,8 @@ class ViewContestComp implements DetachAware {
   static const String COMPARATIVE = "COMPARATIVE";
   static const String SOCCER_PLAYER_LIST = "SOCCER_PLAYER_LIST";
   static const String SOCCER_PLAYER_STATS = "SOCCER_PLAYER_STATS";
+
+  static const int MIN_RIVAL_SHOWN = 10;
   
   String get metricsScreenName => _contestsService.lastContest.isLive? GameMetrics.SCREEN_LIVE_CONTEST : GameMetrics.SCREEN_HISTORY_CONTEST;
   
@@ -58,15 +61,21 @@ class ViewContestComp implements DetachAware {
     _sectionActive = section;
     switch(_sectionActive) {
       case SOCCER_PLAYER_LIST:
+        isSelectingSoccerPlayerInitialized = true;
+        
         _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Elige un ${fieldPosFilter.fullName}");
         _appStateService.appTopBarState.activeState.onLeftColumn = _closePlayerChanges;
         _appStateService.appSecondaryTabBarState.tabList = [];
       break;
       case SOCCER_PLAYER_STATS:
+        isSoccerPlayerStatsInitialized = true;
+        
         _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Estadísticas");
         _appStateService.appTopBarState.activeState.onLeftColumn = _cancelPlayerDetails;
       break;
       case CONTEST_INFO:
+        isContestInfoInitialized = true;
+        
         GameMetrics.contestScreenVisitEvent(GameMetrics.SCREEN_CONTEST_INFO, contest);
         _setupContestInfoTopBar(false, _cancelContestDetails);
         _appStateService.appSecondaryTabBarState.tabList = [];
@@ -77,6 +86,18 @@ class ViewContestComp implements DetachAware {
       break;
       case COMPARATIVE:
       case RIVALS_LIST:
+        
+        if (isComparativeActive) {
+          isComparativeInitialized = true;
+        }
+        
+        if (isRivalsListActive) {
+          isRivalsListInitialized = true;
+          
+          currentRivalList.elements = _rivalList;
+          currentRivalList.initialAmount = MIN_RIVAL_SHOWN;
+        }
+        
         GameMetrics.contestScreenVisitEvent(section == RIVALS_LIST? GameMetrics.SCREEN_RIVAL_LIST : GameMetrics.SCREEN_RIVAL_LINEUP, contest, {"availableChanges": numAvailableChanges});
         _setupContestInfoTopBar(true, /* () => _router.go('lobby', {})*/AppTopBarState.GOBACK, _onContestInfoClick);
         _appStateService.appSecondaryTabBarState.tabList = tabList;
@@ -96,6 +117,12 @@ class ViewContestComp implements DetachAware {
   bool get isComparativeActive => sectionActive == COMPARATIVE;
   bool get isSelectingSoccerPlayerActive => sectionActive == SOCCER_PLAYER_LIST;
   bool get isSoccerPlayerStatsActive => sectionActive == SOCCER_PLAYER_STATS;
+  
+  bool isContestInfoInitialized = false;
+  bool isRivalsListInitialized = false;
+  bool isComparativeInitialized = false;
+  bool isSelectingSoccerPlayerInitialized = false;
+  bool isSoccerPlayerStatsInitialized = false;
 
   List<AppSecondaryTabBarTab> tabList;
   /*
@@ -116,6 +143,11 @@ class ViewContestComp implements DetachAware {
     // The list is created every call. In order to stabilize the list,
     // it is generated only when mainPlayer change
     _rivalList = player.contest.contestEntriesOrderByPoints;
+
+    if (isRivalsListActive) {
+      currentRivalList.elements = _rivalList;
+      currentRivalList.initialAmount = MIN_RIVAL_SHOWN;
+    }
 
     _updateSoccerPlayerStates(_mainPlayer);
     lineupCost = 0;
@@ -189,7 +221,8 @@ class ViewContestComp implements DetachAware {
   
   List<ContestEntry> _rivalList = [];
   List<ContestEntry> get rivalList => _rivalList;
-
+  ScalingList<ContestEntry> currentRivalList = new ScalingList(MIN_RIVAL_SHOWN, (ContestEntry c1, ContestEntry c2) => c1.contestEntryId == c2.contestEntryId, false);
+  
   bool get isLive => _routeProvider.route.name.contains("live_contest");
   bool get isHistory => _routeProvider.route.name.contains("history_contest");
   

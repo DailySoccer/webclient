@@ -110,6 +110,8 @@ class EnterContestComp implements DetachAware {
         }
       break;
       case SELECTING_SOCCER_PLAYER:
+        isSelectingSoccerPlayerInitialized = true;
+        
         nameFilter = "";
         _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSectionWithSearch("Elige un ${fieldPosFilter.fullName}", (String val){ nameFilter = val.length > 1? val : ""; });
         _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerSelection;
@@ -129,10 +131,14 @@ class EnterContestComp implements DetachAware {
         _appStateService.appSecondaryTabBarState.tabList = [];
       break;*/
       case SOCCER_PLAYER_STATS:
+        isSoccerPlayerStatsInitialized = true;
+        
         _appStateService.appTopBarState.activeState = new AppTopBarStateConfig.subSection("Estadísticas");
         _appStateService.appTopBarState.activeState.onLeftColumn = cancelPlayerDetails;
       break;
       case CONTEST_INFO:
+        isContestInfoInitialized = true;
+        
         GameMetrics.contestScreenVisitEvent(GameMetrics.SCREEN_CONTEST_INFO, contest);
         setupContestInfoTopBar(false, cancelContestDetails);
       break;
@@ -149,6 +155,10 @@ class EnterContestComp implements DetachAware {
   bool get isSoccerPlayerStatsActive => sectionActive == SOCCER_PLAYER_STATS;
   bool get isContestInfoActive => sectionActive == CONTEST_INFO;
   bool isLineupFinished = false;
+  
+  bool isContestInfoInitialized = false;
+  bool isSoccerPlayerStatsInitialized = false;
+  bool isSelectingSoccerPlayerInitialized = false;
   
   // Torneo en el que el usuario realmente ha sido inscrito (puede ser igual o diferente al contestId)
   String signedUpContestId;

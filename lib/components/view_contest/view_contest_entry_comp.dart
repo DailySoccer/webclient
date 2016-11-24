@@ -69,6 +69,8 @@ class ViewContestEntryComp {
 
   bool get isLineupFieldContestEntryActive => sectionActive == LINEUP_FIELD_CONTEST_ENTRY;
   bool get isContestInfoActive => sectionActive == CONTEST_INFO;
+  
+  bool isContestInfoInitialized = false;
 
   String _sectionActive = LINEUP_FIELD_CONTEST_ENTRY;
   void set sectionActive(String section) { 
@@ -78,6 +80,7 @@ class ViewContestEntryComp {
         setupContestInfoTopBar(true, () => _router.go('lobby', {}), onContestInfoClick);
       break;
       case CONTEST_INFO:
+        isContestInfoInitialized = true;
         setupContestInfoTopBar(false, cancelContestDetails);
       break;
     }

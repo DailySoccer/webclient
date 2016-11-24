@@ -15,6 +15,7 @@ import 'package:webclient/services/server_error.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:logging/logging.dart';
+import 'package:webclient/utils/scaling_list.dart';
 
 @Component(
   selector: 'contest-info',
@@ -39,6 +40,9 @@ class ContestInfoComp implements DetachAware {
   Contest contest = null;
   String contestId;
   LoadingService loadingService;
+  
+  List contestants = [];
+  ScalingList<Map> currentUserList = new ScalingList<Map>(3, (p1, p2) => p1["name"] == p2["name"], false);
 
   String getLocalizedText(key) {
     return StringUtils.translate(key, "contestinfo");
@@ -62,6 +66,9 @@ class ContestInfoComp implements DetachAware {
     };
 
     contestId = routeProvider.route.parameters['contestId'];
+
+    // TODO No hace falta proporcionarle un sortComparer si no se quiere ordenar
+    // currentUserList.sortComparer = (Map u1, Map u2) => u1["trueSkill"].compareTo(u2["trueSkill"]);
 
     /*************************/
     //TODO: Borrar lo siguiente si hay que refrescar el concurso
@@ -91,7 +98,7 @@ class ContestInfoComp implements DetachAware {
     //loadingService.isLoading = false;
 
     //contest = _contestsService.lastContest;
-    List contestants = [];
+    contestants = [];
 
     for (ContestEntry contestEntry in contest.contestEntries) {
       contestants.add({
@@ -99,6 +106,8 @@ class ContestInfoComp implements DetachAware {
         'trueSkill'  : StringUtils.parseTrueSkill(contestEntry.user.trueSkill)
       });
     }
+    
+    currentUserList.elements = contestants;
 
     // Logger.root.info("ContestInfoComp --> updateContestInfo 1");
     
@@ -107,7 +116,7 @@ class ContestInfoComp implements DetachAware {
     currentInfoData["entry"]          = contest.entryFee.toString();
     currentInfoData["prize"]          = contest.prizePool.toString();
     currentInfoData["startDateTime"]  = DateTimeService.formatDateTimeLong(contest.startDate).toUpperCase();
-    currentInfoData["contestants"]    = contestants;
+    currentInfoData["contestants"]    = currentUserList.elements;
     currentInfoData["prizeType"]      = getThePrizeTypeName(contest.prizeTypeName, contest.prizeType);
     currentInfoData["prizes"]         = contest.prize.getValues();
     currentInfoData["matchesInvolved"]= contest.matchEvents;

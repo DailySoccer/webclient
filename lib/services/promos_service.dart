@@ -14,7 +14,8 @@ class PromosService {
   List<Map> get promos => _promos;
   
   PromosService(this._router, this._server, this._refreshTimersService) {
-    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_UPDATE_PROMOS, refreshPromos);
+    //TODO No hay promos en esta versión
+    // _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_UPDATE_PROMOS, refreshPromos);
   }
 
   Future<Map> refreshPromos() {

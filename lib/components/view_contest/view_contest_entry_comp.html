@@ -19,7 +19,7 @@
   </div>
 </section>
 
-<section class="contest-info-section" ng-show="isContestInfoActive">
+<section class="contest-info-section" ng-if="isContestInfoActive">
   <contest-info the-contest="contest" ng-if="contest != null"></contest-info>
 </section>
   <!--contest-header id="contestHeader" contest="contest" contest-id="contestId"></contest-header-->

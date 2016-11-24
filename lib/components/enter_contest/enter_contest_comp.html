@@ -42,7 +42,7 @@
 </section>
 
 <!-- SOCCER PLAYER STATS -->
-<section class="soccer-player-list-section" ng-show="isSoccerPlayerStatsActive">
+<section class="soccer-player-list-section" ng-if="isSoccerPlayerStatsActive">
   <soccer-player-stats instance-soccer-player-id="instanceSoccerPlayerDisplayInfo"
                        contest-id="contest.contestId"
                        selectable-player="isCurrentSelectedAdded"
@@ -51,8 +51,8 @@
 </section>
 
 <!-- CONTEST INFO -->
-<section class="contest-info-section" ng-show="isContestInfoActive">
-  <contest-info the-contest="contest" ng-if="contest != null"></contest-info>
+<section class="contest-info-section" ng-if="isContestInfoActive">
+  <contest-info the-contest="contest" ng-if="(contest != null)"></contest-info>
 </section>
 
 <!-- LINEUP FINISHED -->

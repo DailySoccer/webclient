@@ -46,7 +46,25 @@ class SoccerPlayerStatsComp implements DetachAware {
   Map currentInfoData;
   bool get hasPlayedMatches => currentInfoData == null? false : currentInfoData['matchesCount'] != null && currentInfoData['matchesCount'] != 0;
   
-  String currentTab = "season-stats-tab-content";
+  String _currentTab = "season-stats-tab-content";
+  String get currentTab => _currentTab;
+  void set currentTab(value) {
+    _currentTab = value;
+    
+    if (isSeasonStatsActive) {
+      isSeasonStatsInitialized = true;
+    }
+
+    if (isMatchByMatchStatsActive) {
+      isMatchByMatchStatsInitialized = true;
+    }
+  }
+  
+  bool get isSeasonStatsActive => currentTab == 'season-stats-tab-content';
+  bool get isMatchByMatchStatsActive => currentTab == 'match-by-match-stats-tab-content';
+  
+  bool isSeasonStatsInitialized = true;
+  bool isMatchByMatchStatsInitialized = false;
 
   String _instanceSoccerPlayerId = null;
   @NgOneWay("instance-soccer-player-id")
@@ -333,7 +351,9 @@ class SoccerPlayerStatsComp implements DetachAware {
 
     // Si ha jugado partidos
     if (currentInfoData['matchesCount'] > 0) {
-      soccerPlayer.stats.reversed.forEach((stat) {
+      soccerPlayer.stats.sort( (s1, s2) => s2.startDate.compareTo(s1.startDate) );
+      
+      soccerPlayer.stats.forEach((stat) {
         // Sumatorio de minutos
         _totalMinutes       += stat.playedMinutes;
 

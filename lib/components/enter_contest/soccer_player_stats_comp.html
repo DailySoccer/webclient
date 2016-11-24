@@ -44,7 +44,7 @@
     <tab ng-click="tabChange('match-by-match-stats-tab-content')">{{getLocalizedText("matchbymatch")}}</tab-->
   </div>
   <!-- START BY-SEASON-STATS -->
-  <div class="soccer-player-stats-tab-pane" id="season-stats-tab-content" ng-class="{'active': currentTab =='season-stats-tab-content'}">
+  <div class="soccer-player-stats-tab-pane" id="season-stats-tab-content" ng-class="{'active': isSeasonStatsActive}" ng-if="isSeasonStatsInitialized">
     <!--div class="next-match" ng-bind-html="currentInfoData['nextMatchEvent']"></div>
     <div class="season-header" ng-bind-html="getLocalizedText('seasonstats')"></div-->
     <!-- MEDIAS -->
@@ -62,7 +62,7 @@
   <!-- END BY-SEASON-STATS -->
   
   <!-- START BY-MATCH-STATS-->
-  <div class="soccer-player-stats-tab-pane" id="match-by-match-stats-tab-content" ng-class="{'active': currentTab =='match-by-match-stats-tab-content'}">
+  <div class="soccer-player-stats-tab-pane" id="match-by-match-stats-tab-content" ng-class="{'active': isMatchByMatchStatsActive}" ng-if="isMatchByMatchStatsInitialized">
     <div class="noMatchesPlayed" ng-if="!hasPlayedMatches">
         <span>{{getLocalizedText("noseasonstats")}}</span>
     </div>

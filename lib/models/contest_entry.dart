@@ -49,17 +49,36 @@ class ContestEntry {
     return CHANGES_PRICE[pricesIndex];
   }
 
-  int get currentLivePoints => instanceSoccerPlayers != null ? instanceSoccerPlayers.fold(0, (prev, instanceSoccerPlayer) => prev + instanceSoccerPlayer.soccerPlayer.currentLivePoints ) : 0;
-
-  int get percentLeft {
-    if (instanceSoccerPlayers.isEmpty) {
-      return 100;
+  void updateLiveInfo() {
+    // Permitimos que se recalculen los valores obtenidos durante el "live"
+    _currentLivePoints = -1;
+    _percentLeft = -1;
+  }
+  
+  int _currentLivePoints = -1;
+  void set currentLivePoints(int value) { _currentLivePoints = value; }
+  int get currentLivePoints {
+    if (_currentLivePoints == -1) {
+      _currentLivePoints = instanceSoccerPlayers != null ? instanceSoccerPlayers.fold(0, (prev, instanceSoccerPlayer) => prev + instanceSoccerPlayer.soccerPlayer.currentLivePoints ) : 0;
     }
-    final int TOTAL = instanceSoccerPlayers.length * 90;
-    int time = timeLeft;
-    int percent = (time * 100) ~/ TOTAL;
-    return (percent > 0) ? percent
-                         : (time > 0) ? 1 : 0;
+    return _currentLivePoints;
+  }
+
+  int _percentLeft = -1;
+  int get percentLeft {
+    if (_percentLeft == -1) {
+      if (instanceSoccerPlayers.isEmpty) {
+        _percentLeft = 100;
+      }
+      else {
+        final int TOTAL = instanceSoccerPlayers.length * 90;
+        int time = timeLeft;
+        int percent = (time * 100) ~/ TOTAL;
+        _percentLeft = (percent > 0) ? percent
+                             : (time > 0) ? 1 : 0;
+      }
+    }
+    return _percentLeft;
   }
 
   int get timeLeft {
@@ -92,7 +111,7 @@ class ContestEntry {
       jsonMap["substitutions"].forEach((substitution) => soccerPlayersChanged.add("${substitution['source']} => ${substitution['target']}"));
     }
 
-    position = (jsonMap.containsKey("position")) ? jsonMap["position"] : 0;
+    position = (jsonMap.containsKey("position")) ? jsonMap["position"] : -1;
     prize = (jsonMap.containsKey("prize")) ? new Money.fromJsonObject(jsonMap["prize"]) : new Money.zero();
     fantasyPoints = (jsonMap.containsKey("fantasyPoints")) ? jsonMap["fantasyPoints"] : 0;
 

@@ -119,10 +119,13 @@ class Contest {
         ((numEntries < minEntries) ? "(${StringUtils.translate("minimum-contenders", "contest", {'NUMERO': minEntries.toString()})})" : "");
   }
 
+  List<ContestEntry> _contestEntriesOrderByPoints;
   List<ContestEntry> get contestEntriesOrderByPoints {
-    List<ContestEntry> entries = new List<ContestEntry>.from(contestEntries);
-    entries.sort((entry1, entry2) => entry2.currentLivePoints.compareTo(entry1.currentLivePoints));
-    return entries;
+    if (_contestEntriesOrderByPoints == null) {
+      _contestEntriesOrderByPoints = new List<ContestEntry>.from(contestEntries);
+      _contestEntriesOrderByPoints.sort((entry1, entry2) => entry2.currentLivePoints.compareTo(entry1.currentLivePoints));
+    }
+    return _contestEntriesOrderByPoints;
   }
 
   String get competitionType => Competition.competitionType(optaCompetitionId);
@@ -196,27 +199,32 @@ class Contest {
   }
 
   Money getPrizeForUser(String userId) {
-    ContestEntry entry = getContestEntryWithUser(userId);
-    // En el Histórico, el premio lo cogemos de la propia ContestEntry
-    if (isHistory) {
-      return entry.prize;
+    if (!_cache.containsKey("${userId}-prize")) {
+      ContestEntry entry = getContestEntryWithUser(userId);
+      // En el Histórico, el premio lo cogemos de la propia ContestEntry
+      // En Live, el premio lo calculamos de la table de premios
+      _cache["${userId}-prize"] = (isHistory) ? entry.prize : prize.getValue(getUserPosition(entry) - 1);
     }
-    // En Live, el premio lo calculamos de la table de premios
-    return prize.getValue(getUserPosition(entry) - 1);
+    return _cache["${userId}-prize"];
   }
 
   int getUserPosition(ContestEntry contestEntry) {
     List<ContestEntry> contestsEntries = contestEntriesOrderByPoints;
     for (int i=0; i<contestsEntries.length; i++) {
-      if (contestsEntries[i].contestEntryId == contestEntry.contestEntryId)
-        return i+1;
+      if (contestsEntries[i].contestEntryId == contestEntry.contestEntryId) {
+        contestEntry.position = i;
+        return contestEntry.position + 1;
+      }
     }
     return -1;
   }
 
   int getPercentOfUsersThatOwn(SoccerPlayer soccerPlayer) {
-    int numOwners = contestEntries.fold(0, (prev, contestEntry) => contestEntry.contains(soccerPlayer) ? (prev + 1) : prev );
-    return (numOwners * 100 / contestEntries.length).truncate();
+    if (!_cache.containsKey("${soccerPlayer.templateSoccerPlayerId}-percent")) {
+      int numOwners = contestEntries.fold(0, (prev, contestEntry) => contestEntry.contains(soccerPlayer) ? (prev + 1) : prev );
+      _cache["${soccerPlayer.templateSoccerPlayerId}-percent"] = (numOwners * 100 / contestEntries.length).truncate();
+    }
+    return _cache["${soccerPlayer.templateSoccerPlayerId}-percent"];
   }
 
   InstanceSoccerPlayer getInstanceSoccerPlayer(String instanceSoccerPlayerId) {
@@ -321,6 +329,8 @@ class Contest {
     if (jsonMapRoot.containsKey("soccer_players")) {
       jsonMapRoot["soccer_players"].map((jsonObject) => new SoccerPlayer.fromJsonObject(jsonObject, TemplateService.Instance.references, _contestReferences)).toList();
     }
+    
+    _cache = {};
   }
   
   /*
@@ -393,6 +403,12 @@ class Contest {
     return this;
   }
 
+  void updateLiveInfo() {
+    _cache = {};
+    _contestEntriesOrderByPoints = null;
+    contestEntries.forEach( (ContestEntry contestEntry) => contestEntry.updateLiveInfo() );
+  }
+  
   int compareNameTo(Contest contest){
     int comp = StringUtils.normalize(name).compareTo(StringUtils.normalize(contest.name));
     return comp != 0 ? comp : contestId.compareTo(contest.contestId);
@@ -486,7 +502,8 @@ class Contest {
   }
 
   
-  
+  Map _cache = {};
+
   String _name;
   String _namePattern;
   Prize _prize;

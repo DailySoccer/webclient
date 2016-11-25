@@ -49,6 +49,7 @@ class ViewContestComp implements DetachAware {
   static const String SOCCER_PLAYER_STATS = "SOCCER_PLAYER_STATS";
 
   static const int MIN_RIVAL_SHOWN = 10;
+  static const num MAX_RIVAL_LIST_DYNAMIC = 100;
   
   String get metricsScreenName => _contestsService.lastContest.isLive? GameMetrics.SCREEN_LIVE_CONTEST : GameMetrics.SCREEN_HISTORY_CONTEST;
   
@@ -94,7 +95,8 @@ class ViewContestComp implements DetachAware {
         if (isRivalsListActive) {
           isRivalsListInitialized = true;
           
-          currentRivalList.elements = _rivalList;
+          currentRivalList.elements.clear();
+          currentRivalList.elements = createRivalList(_rivalList);
           currentRivalList.initialAmount = MIN_RIVAL_SHOWN;
         }
         
@@ -103,8 +105,23 @@ class ViewContestComp implements DetachAware {
         _appStateService.appSecondaryTabBarState.tabList = tabList;
       break;
     }
+    
+    if (_sectionActive != RIVALS_LIST) {
+      currentRivalList.stopScaling();
+    }
   }
   String get sectionActive => _sectionActive;
+  
+  // Crearemos un mapa de rivales a partir de una lista de ContestEntries
+  // No usamos las propias ContestEntries debido a que si se actualizan, actualizarán actualmente el contenido de las listas
+  // y ésto produce problemas de rendimiento con los torneos de más de 1000 usuarios...
+  List<Map> createRivalList(List rivalList) =>
+    rivalList.map( (ContestEntry entry) => {
+      "id" : entry.contestEntryId,
+      "name" : entry.user.nickName,
+      "points" : entry.currentLivePoints,
+      "percentLeft" : entry.percentLeft
+    } ).toList();
   
   bool displayChangeablePlayers = false;
   bool isGameplaysModalOn = false;
@@ -140,15 +157,19 @@ class ViewContestComp implements DetachAware {
   ContestEntry get mainPlayer => _mainPlayer;
   void set mainPlayer(player) {
     _mainPlayer = player;
+    
     // The list is created every call. In order to stabilize the list,
     // it is generated only when mainPlayer change
     _rivalList = player.contest.contestEntriesOrderByPoints;
+    // _rivalList = _rivalList.take(MAX_RIVAL_LIST_DYNAMIC).toList();
 
-    if (isRivalsListActive) {
-      currentRivalList.elements = _rivalList;
+    if (isRivalsListActive && _rivalList.length <= MAX_RIVAL_LIST_DYNAMIC) {
+      isRivalsListInitialized = true;
+      
+      currentRivalList.elements = createRivalList(_rivalList);
       currentRivalList.initialAmount = MIN_RIVAL_SHOWN;
     }
-
+    
     _updateSoccerPlayerStates(_mainPlayer);
     lineupCost = 0;
     lineupSlots = new List<SoccerPlayerListItem>();
@@ -220,8 +241,7 @@ class ViewContestComp implements DetachAware {
   DateTime updatedDate;
   
   List<ContestEntry> _rivalList = [];
-  List<ContestEntry> get rivalList => _rivalList;
-  ScalingList<ContestEntry> currentRivalList = new ScalingList(MIN_RIVAL_SHOWN, (ContestEntry c1, ContestEntry c2) => c1.contestEntryId == c2.contestEntryId, false);
+  ScalingList<Map> currentRivalList = new ScalingList(MIN_RIVAL_SHOWN, (Map c1, Map c2) => c1["id"] == c2["id"]);
   
   bool get isLive => _routeProvider.route.name.contains("live_contest");
   bool get isHistory => _routeProvider.route.name.contains("history_contest");
@@ -294,11 +314,11 @@ class ViewContestComp implements DetachAware {
   /*
    * HTML POURPOSES
    */
-  bool isMainPlayer(ContestEntry entry) { return entry.user.userId == mainPlayer.user.userId; }
+  bool isMainPlayer(String contestEntryId) { return contestEntryId == mainPlayer.contestEntryId; }
 
-  String name(ContestEntry entry) => entry.user.nickName;
-  String points(ContestEntry entry) => StringUtils.parseFantasyPoints(entry.currentLivePoints);
-  String percentLeft(ContestEntry entry) => "${entry.percentLeft}%";
+  String name(Map entry) => entry["name"];
+  String points(Map entry) => StringUtils.parseFantasyPoints(entry["points"]);
+  String percentLeft(Map entry) => "${entry["percentLeft"]}%";
 
   //String getPrize(int index) => (contest != null) ? contest.getPrize(index) : "-";
   
@@ -323,6 +343,10 @@ class ViewContestComp implements DetachAware {
     
     contestId = _routeProvider.route.parameters['contestId'];
   
+    currentRivalList.sortComparer = (Map e1, Map e2) { 
+      return e2["points"].compareTo(e1["points"]); 
+    };
+    
     _retrieveContestData();
   }
   
@@ -334,11 +358,11 @@ class ViewContestComp implements DetachAware {
    * CALLBACKS
    */
   // click on a rival at rivals list
-  void onUserClick(ContestEntry contestEntry, {preventViewOpponent: false}) {
-    if (isMainPlayer(contestEntry)) {
+  void onUserClick(String contestEntryId, {preventViewOpponent: false}) {
+    if (isMainPlayer(contestEntryId)) {
       sectionActive = LINEUP_FIELD_CONTEST_ENTRY;
     } else {
-      selectedOpponent = contestEntry;
+      selectedOpponent = contest.getContestEntry(contestEntryId);
       
       if(!preventViewOpponent) {
         sectionActive = COMPARATIVE;
@@ -479,7 +503,7 @@ class ViewContestComp implements DetachAware {
             if(contestEntries.length == 2) {
               selectedOpponent = contestEntries.firstWhere((contestEntry) => contestEntry.contestEntryId != mainPlayer.contestEntryId, orElse: () => null);
               if (selectedOpponent != null) {
-                onUserClick(selectedOpponent, preventViewOpponent: true);
+                onUserClick(selectedOpponent.contestEntryId, preventViewOpponent: true);
               }
             }
            
@@ -509,12 +533,7 @@ class ViewContestComp implements DetachAware {
     // Actualizamos únicamente la lista de live contestEntries
     _contestsService.refreshLiveContestEntries(_contestsService.lastContest.contestId)
         .then((_) {
-          contest = _contestsService.lastContest;
-          // Actualizamos el contestEntry del usuario seleccionado
-          if (selectedOpponent != null) {
-            //selectedOpponent = contestEntries.firstWhere((contestEntry) => contestEntry.contestEntryId == selectedOpponent.contestEntryId, orElse: () => null);
-            selectedOpponent = contest.getContestEntryWithUser(selectedOpponent.user.userId);
-          }
+          _updateRetrievedData();
         })
         .catchError((ServerError error) {
           _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
@@ -524,12 +543,19 @@ class ViewContestComp implements DetachAware {
   void _updateRetrievedData() {
     updatedDate = DateTimeService.now;
     contest = _contestsService.lastContest;
+    contest.updateLiveInfo();
     
     // Actualizar al usuario principal (al que destacamos)
     if (_profileService.isLoggedIn && contest.containsContestEntryWithUser(_profileService.user.userId)) {
       mainPlayer = contest.getContestEntryWithUser(_profileService.user.userId);
     } else {
       mainPlayer = contest.contestEntriesOrderByPoints.first;
+    }
+    
+    // Actualizamos el contestEntry del usuario seleccionado
+    if (selectedOpponent != null) {
+      //selectedOpponent = contestEntries.firstWhere((contestEntry) => contestEntry.contestEntryId == selectedOpponent.contestEntryId, orElse: () => null);
+      selectedOpponent = contest.getContestEntryWithUser(selectedOpponent.user.userId);
     }
   }
   

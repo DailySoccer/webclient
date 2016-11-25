@@ -27,7 +27,6 @@ class ScalingList<T> {
   // TODO Cambiar los parámetros opcionales por "named"
   ScalingList(this.initialAmount, [bool eqComparer(T a, T b), bool sorting]) {
     _insertList = new Queue<T>();
-    _referenceList = new Queue<T>();
     _fullList = [];
     _currentList = [];
     if(eqComparer != null) _equalsComparer = eqComparer;
@@ -50,8 +49,10 @@ class ScalingList<T> {
 
       // Actualizar las referencias (dado que la información de los mismos puede haber cambiado)
       // Añadimos todas las que no estén actualmente
-      _referenceList.addAll(_fullList.where((t1) => !_referenceList.any((t2) => _equalsComparer(t1, t2))));
-      window.animationFrame.then(_runUpdateReferences);
+      for (int i=0; i<_currentList.length; i++) {
+        var el = _currentList[i];
+        _currentList[i] = _fullList.firstWhere((el2) => _equalsComparer(el, el2), orElse: () => el);
+      }
       
       // y añadimos a la insert list los elementos que no están y la posicion en la que hay que insertarlos.
       _insertList.addAll(_fullList.where((t1) => !_currentList.any((t2) => _equalsComparer(t1, t2))));
@@ -93,28 +94,6 @@ class ScalingList<T> {
   void _runScaleList([_]) { if (_numScaleList <= 0) { ++_numScaleList; _scaleList(); } }
   void _endScaleList() { --_numScaleList; }
 
-  int _numUpdateReferences = 0;
-  void _runUpdateReferences([_]) { if (_numUpdateReferences <= 0) { ++_numUpdateReferences; _updateReferences(); } }
-  void _endUpdateReferences() { --_numUpdateReferences; }
- 
-  void _updateReferences([_]) {
-    if (_referenceList.isNotEmpty) {
-      var el = _referenceList.removeFirst();
-      
-      for (int i=0; i<_currentList.length && i<10; i++) {
-        if (_equalsComparer(el, _currentList[i])) {
-          _currentList[i] = el;
-          break;
-        }
-      }
-      
-      window.animationFrame.then(_updateReferences);
-    }
-    else {
-      _endUpdateReferences();
-    }
-  }
-  
   void _scaleList([_]) {
     if (_insertList.isNotEmpty && _continueScaling) {
       _currentList.add(_insertList.removeFirst());
@@ -153,7 +132,6 @@ class ScalingList<T> {
   
   List<T> _fullList;
   Queue<T> _insertList;
-  Queue<T> _referenceList;
   List<T> _currentList;
   bool _continueScaling;
   

@@ -25,7 +25,7 @@
 </section>
 
 <!-- RIVALS SECTION -->
-<section class="rivals-list-section" ng-if="isRivalsListInitialized" ng-show="isRivalsListActive">
+<section class="rivals-list-section" ng-if="isRivalsListActive">
   <div class="rivals-list-table-header">
     <div class="rivals-list-column-position">Pos.</div>
     <div class="rivals-list-column-name">Nombre</div>
@@ -33,7 +33,7 @@
     <div class="rivals-list-column-points">Puntos</div>
   </div>
   <div class="rivals-list-table-body">
-    <div class="rivals-list-table-row" ng-repeat="rival in currentRivalList.elements" ng-class="{'current-user-row': isMainPlayer(rival)}" ng-click="onUserClick(rival)">
+    <div class="rivals-list-table-row" ng-repeat="rival in currentRivalList.elements" ng-class="{'current-user-row': isMainPlayer(rival['id'])}" ng-click="onUserClick(rival['id'])">
       <div class="rivals-list-column-position">{{ $index + 1 }}</div>
       <div class="rivals-list-column-name">{{name(rival)}}</div>
       <div class="rivals-list-column-timeleft">{{percentLeft(rival)}}</div>

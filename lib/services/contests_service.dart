@@ -306,6 +306,7 @@ class ContestsService {
           jsonData["content"].forEach((jsonMap) {
             lastContest.matchEvents.firstWhere((matchEvent) => matchEvent.templateMatchEventId == (jsonMap.containsKey("templateMatchEventId") ? jsonMap["templateMatchEventId"] : jsonMap["_id"]))
                 .. updateLiveInfo(jsonMap);
+            lastContest.updateLiveInfo();
           });
       });
   }
@@ -315,6 +316,7 @@ class ContestsService {
       .then((List jsonMaps) {
           Map jsonData = jsonMaps[1];
           lastContest.updateContestEntriesFromJsonObject(jsonData);
+          lastContest.updateLiveInfo();
       });
   }
   

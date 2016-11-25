@@ -49,7 +49,8 @@ class ViewContestComp implements DetachAware {
   static const String SOCCER_PLAYER_STATS = "SOCCER_PLAYER_STATS";
 
   static const int MIN_RIVAL_SHOWN = 10;
-  static const num MAX_RIVAL_LIST_DYNAMIC = 100;
+  static const num MAX_RIVAL_SIZE_DYNAMIC = 100;
+  bool get usingDynamicRanking => _rivalList.length <= MAX_RIVAL_SIZE_DYNAMIC;
   
   String get metricsScreenName => _contestsService.lastContest.isLive? GameMetrics.SCREEN_LIVE_CONTEST : GameMetrics.SCREEN_HISTORY_CONTEST;
   
@@ -95,7 +96,9 @@ class ViewContestComp implements DetachAware {
         if (isRivalsListActive) {
           isRivalsListInitialized = true;
           
-          currentRivalList.elements.clear();
+          if (!usingDynamicRanking) {
+            currentRivalList.elements.clear();
+          }
           currentRivalList.elements = createRivalList(_rivalList);
           currentRivalList.initialAmount = MIN_RIVAL_SHOWN;
         }
@@ -107,6 +110,11 @@ class ViewContestComp implements DetachAware {
     }
     
     if (_sectionActive != RIVALS_LIST) {
+      // Las listas no dinámicas tienes que ser reinicializadas para que vuelvan a mostrar los puntos de los usuarios actualizados
+      if (!usingDynamicRanking) {
+        isRivalsListInitialized = false;
+      }
+      
       currentRivalList.stopScaling();
     }
   }
@@ -161,9 +169,9 @@ class ViewContestComp implements DetachAware {
     // The list is created every call. In order to stabilize the list,
     // it is generated only when mainPlayer change
     _rivalList = player.contest.contestEntriesOrderByPoints;
-    // _rivalList = _rivalList.take(MAX_RIVAL_LIST_DYNAMIC).toList();
+    // _rivalList = _rivalList.take(MAX_RIVAL_SIZE_DYNAMIC).toList();
 
-    if (isRivalsListActive && _rivalList.length <= MAX_RIVAL_LIST_DYNAMIC) {
+    if (isRivalsListActive && usingDynamicRanking) {
       isRivalsListInitialized = true;
       
       currentRivalList.elements = createRivalList(_rivalList);

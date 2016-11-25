@@ -4,7 +4,7 @@ import 'package:angular/core/annotation.dart';
 import 'dart:html';
 import 'dart:math';
 import 'dart:collection';
-import 'package:logging/logging.dart';
+import 'package:collection/collection.dart';
 // import 'package:logging/logging.dart';
 
 class ScalingList<T> {
@@ -99,7 +99,8 @@ class ScalingList<T> {
       _currentList.add(_insertList.removeFirst());
       
       if (_sorting) {
-        _currentList.sort(sortComparer);
+        // Ordena una lista a partir de la posición indicada (lo anterior ya está ordenado)
+        insertionSort(_currentList, compare: sortComparer, start: _currentList.length - 1);
       }
       
       window.animationFrame.then(_scaleList);

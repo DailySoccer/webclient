@@ -30,6 +30,10 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
   bool get tabIsLive => _tabSelected == TAB_LIVE;
   bool get tabIsWaiting => _tabSelected == TAB_WAITING;
   bool get tabIsHistory => _tabSelected == TAB_HISTORY;
+  
+  bool waitingContestsInitialized = false;
+  bool liveContestsInitialized = false;
+  bool historyContestsInitialized = false;
 
   ContestsService contestsService;
   LoadingService loadingService;
@@ -83,12 +87,9 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
     _appStateService.appTabBarState.show = true;
     _appStateService.appSecondaryTabBarState.tabList = [];
 
-    _tabSelected = TAB_LIVE;
-
     tutorialService.triggerEnter("my-contests");
 
     _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_TOPBAR, _refreshTopBar);
-    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
   }
   
   void _refreshTopBar() {
@@ -102,6 +103,8 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
       contestsService.refreshMyLiveContests().then((_) {
             loadingService.isLoading = false;
             _numLiveContests = contestsService.liveContests.length;
+            
+            liveContestsInitialized = true;
           })
           .catchError((ServerError error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW), test: (error) => error is ServerError);
     }
@@ -112,10 +115,15 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
                           contestsService.refreshMyHistoryContests();
       Future.wait([refresher, selected])
         .then((List jsonMaps) {
-              loadingService.isLoading = false;
-              _numLiveContests = jsonMaps[0];
-            })
-            .catchError((ServerError error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW), test: (error) => error is ServerError);
+            loadingService.isLoading = false;
+            _numLiveContests = jsonMaps[0];
+            
+            if (tabIsWaiting)
+              waitingContestsInitialized = true;
+            if (tabIsHistory)
+              historyContestsInitialized = true;
+          })
+          .catchError((ServerError error) => _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW), test: (error) => error is ServerError);
     }
   }
 
@@ -188,7 +196,9 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
                                 (_tabSelected == TAB_LIVE && !contestsService.hasLiveContests) ||
                                 (_tabSelected == TAB_HISTORY && !contestsService.hasHistoryContests);*/
     _refreshTopBar();
-    _refreshMyContests();
+    
+    // TODO Hacemos el refresh en onShadowRoot
+    // _refreshMyContests();
   }
 
   @override
@@ -208,6 +218,8 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
         GameMetrics.screenVisitEvent(GameMetrics.SCREEN_HISTORY_LIST);
       break;
     }
+    
+    _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
   }
 
   Element _rootElement;

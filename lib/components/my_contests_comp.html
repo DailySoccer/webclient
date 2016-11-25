@@ -6,7 +6,7 @@
     <div class="information-no-contest">{{liveContestsMessage}}</div>
   </div>
 
-  <div ng-switch="hasLiveContests" class="contest-list-wrapper">
+  <div ng-switch="hasLiveContests" class="contest-list-wrapper" ng-if="liveContestsInitialized">
     <!-- lista vacía -->
     <div class="no-contests-wrapper" ng-switch-when="false">
         <img class="no-contests-icon" src="images/icon-torneo-vivo-vacio.png">
@@ -29,7 +29,7 @@
     <div class="information-no-contest">{{waitingContestsMessage}}</div>
   </div>
  
-  <div ng-switch="hasWaitingContests" class="contest-list-wrapper">
+  <div ng-switch="hasWaitingContests" class="contest-list-wrapper" ng-if="waitingContestsInitialized">
     <!-- lista vacía -->
     <div class="no-contests-wrapper" ng-switch-when="false">
         <img class="no-contests-icon" src="images/icon-torneo-proximo-vacio.png">
@@ -52,7 +52,7 @@
     <div class="information-no-contest">{{historyContestsMessage}}</div>
   </div>
 
-  <div ng-switch="hasHistoryContests" class="contest-list-wrapper">
+  <div ng-switch="hasHistoryContests" class="contest-list-wrapper" ng-if="historyContestsInitialized">
     <!-- lista vacía -->
     <div class="no-contests-wrapper" ng-switch-when="false">
         <img class="no-contests-icon" src="images/icon-torneo-historico-vacio.png">

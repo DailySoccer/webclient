@@ -9,17 +9,28 @@ import 'package:webclient/models/template_soccer_player.dart';
 import 'package:webclient/services/template_references.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/services/datetime_service.dart';
+import 'package:webclient/models/template_contest.dart';
+import 'package:webclient/services/contests_service.dart';
 
 
 @Injectable()
 class TemplateService {
 
   static num SECONDS_TO_REFRESH = 60 * 60 * 8; // 8 horas
-  // static num SECONDS_TO_REFRESH = 60; // 1 minuto
+  static num SECONDS_TO_CHECK_TEMPLATE_CONTESTS = 60 * 30; // 30 minutos
   static TemplateService get Instance => _instance; 
   
-  TemplateService(this._server) {
+  TemplateService(this._server, ContestsService _contestService) {
     _instance = this;
+    
+   new Timer.periodic(new Duration(seconds: SECONDS_TO_CHECK_TEMPLATE_CONTESTS), (Timer t) {
+     _contestService.countActiveTemplateContests()
+        .then((num count) {
+          if (_templateContests.length != count) {
+            _templateContestsChanged = true;
+          }
+        }); 
+    });    
   }
 
   TemplateReferences get references => _templateReferences;
@@ -34,6 +45,10 @@ class TemplateService {
   
   TemplateSoccerTeam getTemplateSoccerTeam(String templateSoccerTeamId) {
     return _templateReferences.getTemplateSoccerTeamById(templateSoccerTeamId);
+  }
+  
+  TemplateContest getTemplateContest(String templateContestId) {
+    return _templateContests.firstWhere( (template) => template.templateContestId == templateContestId, orElse: () => null);
   }
 
   Future refreshTemplateSoccerPlayers() {
@@ -70,10 +85,38 @@ class TemplateService {
 
     return _completer.future;
   }
+  
+  Future refreshTemplateContests() {
+    if (_templateContestsCompleter == null || _templateContestsChanged) {
+      _templateContestsChanged = false;
+      
+      Logger.root.info("RefreshTemplateContests: ${DateTimeService.now}");
+      
+      _templateContestsCompleter = new Completer();
+  
+      _server.getActiveTemplateContests()
+          .then((Map jsonData) {
+            _templateContests = TemplateContest.loadTemplateContestsFromJsonObject(jsonData);
+            _templateContestsCompleter.complete();
+          })
+          .catchError((error) {
+            forceRefresh();
+            
+            Logger.root.severe("WTF 7774: refreshTemplateContests Error: ${error}");
+            _templateContestsCompleter.complete();
+          });
+    }
+
+    return _templateContestsCompleter.future;    
+  }
 
   DateTime _dateTimeRefreshed = null;
   TemplateReferences _templateReferences = new TemplateReferences();
   Completer _completer;
+  
+  bool _templateContestsChanged = false;
+  Completer _templateContestsCompleter;
+  List<TemplateContest> _templateContests = new List<TemplateContest>();
   
   ServerService _server;
   

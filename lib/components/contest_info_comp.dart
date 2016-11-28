@@ -29,10 +29,6 @@ class ContestInfoComp implements DetachAware {
   void set setContest(Contest value) {
     if (value != null) {
       contest = value;
-      /*************************/
-      //TODO: Borrar lo siguiente si hay que refrescar el concurso
-      updateContestInfo();
-      /*************************/
     }
   }
   bool isModal = false;
@@ -70,34 +66,23 @@ class ContestInfoComp implements DetachAware {
     // TODO No hace falta proporcionarle un sortComparer si no se quiere ordenar
     // currentUserList.sortComparer = (Map u1, Map u2) => u1["trueSkill"].compareTo(u2["trueSkill"]);
 
-    /*************************/
-    //TODO: Borrar lo siguiente si hay que refrescar el concurso
-    //loadingService.isLoading = true;
-//    updateContestInfo();
-    /*************************/
-
-    //TODO: Repasar esto. A lo mejor hay que forzar el refresco de las contest entries de este concurso. cuando se refresque el concurso.
-/*
     loadingService.isLoading = true;
 
     _contestsService.refreshContestInfo(contestId)
       .then((_) {
         updateContestInfo();
+        
+        loadingService.isLoading = false;
       })
       .catchError((ServerError error) {
         _flashMessage.error("$error", context: FlashMessagesService.CONTEXT_VIEW);
       }, test: (error) => error is ServerError);
-*/
   }
 
   void detach() {}
 
   void updateContestInfo() {
-    // Logger.root.info("ContestInfoComp --> updateContestInfo");
-
-    //loadingService.isLoading = false;
-
-    //contest = _contestsService.lastContest;
+    contest = _contestsService.lastContest;
     contestants = [];
 
     for (ContestEntry contestEntry in contest.contestEntries) {
@@ -109,8 +94,6 @@ class ContestInfoComp implements DetachAware {
     
     currentUserList.elements = contestants;
 
-    // Logger.root.info("ContestInfoComp --> updateContestInfo 1");
-    
     currentInfoData["name"]           = contest.name;
     currentInfoData["description"]    = contest.description;
     currentInfoData["entry"]          = contest.entryFee.toString();

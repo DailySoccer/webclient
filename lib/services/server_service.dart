@@ -56,6 +56,7 @@ abstract class ServerService {
 
   // Template Contests
   Future<Map> getActiveTemplateContests();
+  Future<Map> countActiveTemplateContests();
   Future<Map> createContest(Contest contest, List<String> soccerPlayers);
 
   // Active Contests
@@ -269,7 +270,7 @@ class DailySoccerServer implements ServerService {
   }
 
   Future<Map> getMyActiveContests() {
-    return _innerServerCall("${HostServer.url}/get_my_active_contests");
+    return _innerServerCall("${HostServer.url}/v2/get_my_active_contests");
   }
 
   Future<Map> getMyLiveContests() {
@@ -281,7 +282,7 @@ class DailySoccerServer implements ServerService {
   }
 
   Future<Map> getMyActiveContest(String contestId) {
-    return _innerServerCall("${HostServer.url}/get_my_active_contest/$contestId");
+    return _innerServerCall("${HostServer.url}/v2/get_my_active_contest/$contestId");
   }
 
   Future<Map> getMyLiveContest(String contestId) {
@@ -293,7 +294,7 @@ class DailySoccerServer implements ServerService {
   }
 
   Future<Map> getMyContestEntry(String contestId) {
-    return _innerServerCall("${HostServer.url}/get_my_contest_entry/$contestId");
+    return _innerServerCall("${HostServer.url}/v2/get_my_contest_entry/$contestId");
   }
 
   Future<Map> countMyLiveContests() {
@@ -306,6 +307,10 @@ class DailySoccerServer implements ServerService {
 
   Future<Map> getActiveTemplateContests() {
     return _innerServerCall("${HostServer.url}/get_active_templatecontests");
+  }
+  
+  Future<Map> countActiveTemplateContests() {
+    return _innerServerCall("${HostServer.url}/count_active_templatecontests");
   }
 
   Future<Map> createContest(Contest contest, List<String> soccerPlayers) {
@@ -324,11 +329,11 @@ class DailySoccerServer implements ServerService {
   }
 
   Future<Map> getActiveContests() {
-    return _innerServerCall("${HostServer.url}/get_active_contests");
+    return _innerServerCall("${HostServer.url}/v2/get_active_contests");
   }
 
   Future<Map> getActiveContest(String contestId) {
-    return _innerServerCall("${HostServer.url}/get_active_contest/$contestId");
+    return _innerServerCall("${HostServer.url}/v2/get_active_contest/$contestId");
   }
 
   Future<Map> addContestEntry(String contestId, String formation, List<String> soccerPlayers) {
@@ -350,7 +355,7 @@ class DailySoccerServer implements ServerService {
   }
 
   Future<Map> getContestInfo(String contestId) {
-    return _innerServerCall("${HostServer.url}/get_contest_info/$contestId");
+    return _innerServerCall("${HostServer.url}/v2/get_contest_info/$contestId");
   }
 
   Future<Map> generateLineup(String contestId, String formation) {

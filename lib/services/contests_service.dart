@@ -71,17 +71,25 @@ class ContestsService {
   }
 
   Future getActiveTemplateContests() {
-    return Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), _server.getActiveTemplateContests()])
+    return Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), TemplateService.Instance.refreshTemplateContests()])
       .then((List jsonMaps) {
         Map jsonData = jsonMaps[1];
         return TemplateContest.loadTemplateContestsFromJsonObject(jsonData);
       });
   }
 
-  Future refreshActiveContests() {
-    return Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), _server.getActiveContests()])
+  Future countActiveTemplateContests() {
+    return Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), TemplateService.Instance.refreshTemplateContests(), _server.countActiveTemplateContests()])
       .then((List jsonMaps) {
-        Map jsonData = jsonMaps[1];
+        Map jsonData = jsonMaps[2];
+        return jsonData.containsKey("count") ? jsonData["count"] : 0;
+      });
+  }
+
+  Future refreshActiveContests() {
+    return Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), TemplateService.Instance.refreshTemplateContests(), _server.getActiveContests()])
+      .then((List jsonMaps) {
+        Map jsonData = jsonMaps[2];
         _initActiveContests(Contest.loadContestsFromJsonObject(jsonData));
         
         // Actualización del UserProfile
@@ -91,9 +99,9 @@ class ContestsService {
   }
 
   Future refreshActiveContest(String contestId) {
-    return Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), _server.getActiveContest(contestId)])
+    return Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), TemplateService.Instance.refreshTemplateContests(), _server.getActiveContest(contestId)])
       .then((List jsonMaps) {
-        Map jsonData = jsonMaps[1];
+        Map jsonData = jsonMaps[2];
         registerContest(Contest.loadContestsFromJsonObject(jsonData).first);
       });
   }
@@ -123,9 +131,9 @@ class ContestsService {
   }
 
   Future refreshContestInfo(String contestId) {
-    return Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), _server.getContestInfo(contestId)])
+    return Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), TemplateService.Instance.refreshTemplateContests(), _server.getContestInfo(contestId)])
       .then((List jsonMaps) {
-        Map jsonData = jsonMaps[1];
+        Map jsonData = jsonMaps[2];
         registerContest(Contest.loadContestsFromJsonObject(jsonData).first);
         _prizesService.loadFromJsonObject(jsonData);
       });
@@ -207,9 +215,9 @@ class ContestsService {
   }
 
   Future refreshMyActiveContests() {
-    return Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), _server.getMyActiveContests()])
+    return Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), TemplateService.Instance.refreshTemplateContests(), _server.getMyActiveContests()])
         .then((List jsonMaps) {
-          Map jsonData = jsonMaps[1];
+          Map jsonData = jsonMaps[2];
           waitingContests = Contest.loadContestsFromJsonObject(jsonData)
             .. forEach((contest) => registerContest(contest));
           _prizesService.loadFromJsonObject(jsonData);
@@ -226,9 +234,9 @@ class ContestsService {
   }
 
   Future refreshMyLiveContests() {
-    return Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), _server.getMyLiveContests()])
+    return Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), TemplateService.Instance.refreshTemplateContests(), _server.getMyLiveContests()])
         .then((List jsonMaps) {
-          Map jsonData = jsonMaps[1];
+          Map jsonData = jsonMaps[2];
           liveContests = Contest.loadContestsFromJsonObject(jsonData)
             .. forEach((contest) => registerContest(contest));
           _prizesService.loadFromJsonObject(jsonData);
@@ -264,25 +272,25 @@ class ContestsService {
   }
 
   Future refreshMyActiveContest(String contestId) {
-    return Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), _server.getMyActiveContest(contestId)])
+    return Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), TemplateService.Instance.refreshTemplateContests(), _server.getMyActiveContest(contestId)])
         .then((List jsonMaps) {
-          Map jsonData = jsonMaps[1];
+          Map jsonData = jsonMaps[2];
           registerContest(Contest.loadContestsFromJsonObject(jsonData).first);
         });
   }
 
   Future refreshMyContestEntry(String contestId) {
-    return Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), _server.getMyContestEntry(contestId)])
+    return Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), TemplateService.Instance.refreshTemplateContests(), _server.getMyContestEntry(contestId)])
         .then((List jsonMaps) {
-          Map jsonData = jsonMaps[1];
+          Map jsonData = jsonMaps[2];
           registerContest(Contest.loadContestsFromJsonObject(jsonData).first);
         });
   }
 
   Future refreshMyLiveContest(String contestId) {
-    return Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), _server.getMyLiveContest(contestId)])
+    return Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), TemplateService.Instance.refreshTemplateContests(), _server.getMyLiveContest(contestId)])
         .then((List jsonMaps) {
-          Map jsonData = jsonMaps[1];
+          Map jsonData = jsonMaps[2];
           registerContest(Contest.loadContestsFromJsonObject(jsonData).first);
           _prizesService.loadFromJsonObject(jsonData);
         });

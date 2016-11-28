@@ -61,6 +61,9 @@ class TemplateContest {
 
   DateTime startDate;
 
+  Map jsonMapContest;
+  static Map jsonMapRoot;
+  
   Map<String, String> competitionTypeValues = {
     COMPETITION_LEAGUE_ES_ID:   "LEAGUE_ES"
     ,COMPETITION_LEAGUE_UK_ID:  "LEAGUE_UK"
@@ -128,6 +131,8 @@ class TemplateContest {
   static List<TemplateContest> loadTemplateContestsFromJsonObject(Map jsonMapRoot) {
     var templateContests = new List<TemplateContest>();
 
+    TemplateContest.jsonMapRoot = jsonMapRoot;
+    
     TemplateReferences templateReferences = TemplateService.Instance.references;
     ContestReferences contestReferences = new ContestReferences();
 
@@ -201,6 +206,8 @@ class TemplateContest {
   TemplateContest _initFromJsonObject(Map jsonMap, ContestReferences references) {
     assert(templateContestId.isNotEmpty);
 
+    this.jsonMapContest = jsonMap;
+    
     state = jsonMap.containsKey("state") ? jsonMap["state"] : "ACTIVE";
     _namePattern = jsonMap["name"];
     maxEntries = jsonMap["maxEntries"];

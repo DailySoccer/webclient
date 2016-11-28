@@ -17,6 +17,8 @@ import 'package:webclient/services/template_references.dart';
 import 'package:webclient/services/template_service.dart';
 import 'package:webclient/models/template_soccer_team.dart';
 import 'package:webclient/models/template_soccer_player.dart';
+import 'package:webclient/models/template_contest.dart';
+import 'package:logging/logging.dart';
 
 class Contest {
 
@@ -244,7 +246,7 @@ class Contest {
    * Carga o un Contest o una LISTA de Contests a partir de JsonObjects
    */
   static List<Contest> loadContestsFromJsonObject(Map jsonMapRoot) {
-    var contests = new List<Contest>();
+    List<Contest> contests = new List<Contest>();
 
     TemplateReferences templateReferences = TemplateService.Instance.references;
     ContestReferences contestReferences = new ContestReferences();
@@ -262,6 +264,9 @@ class Contest {
           contests.addAll( jsonMapRoot["contests_$view"].map((jsonObject) => new Contest.fromJsonObject(jsonObject, templateReferences, contestReferences)).toList() );
       }
     }
+    
+    // Quitamos los contests que por algún motivo no hayan podido ser inicializados (por ejemplo, por no haber recibido aún su templateContest)
+    contests.removeWhere( (contest) => contest == null );
 
     //TODO: El tutorial necesita especificar Equipos "especiales"
     if (jsonMapRoot.containsKey("soccer_teams")) {
@@ -295,7 +300,7 @@ class Contest {
         return matchEvent;
       }).toList();
     }
-    else {
+    else if (jsonMapRoot.containsKey("match_events_0")) {
       // Aceptamos múltiples listas de partidos (con mayor o menor información)
       for (int view=0; view<10 && jsonMapRoot.containsKey("match_events_$view"); view++) {
         jsonMapRoot["match_events_$view"].map((jsonMap) {
@@ -308,6 +313,18 @@ class Contest {
           return matchEvent;
         }).toList();
       }
+    }
+    else if (TemplateContest.jsonMapRoot.containsKey("match_events")) {
+      // Los partidos los obtendremos del templateContest
+      TemplateContest.jsonMapRoot["match_events"].map((jsonMap) {
+        MatchEvent matchEvent = new MatchEvent.fromJsonObject(jsonMap, contestReferences);
+        
+        // Asociar los soccerTeams
+        new SoccerTeam.fromId(matchEvent.soccerTeamA.templateSoccerTeamId, templateReferences, contestReferences);
+        new SoccerTeam.fromId(matchEvent.soccerTeamB.templateSoccerTeamId, templateReferences, contestReferences);
+        
+        return matchEvent;
+      }).toList();
     }
 
     return contests;
@@ -340,8 +357,43 @@ class Contest {
     assert(contestId.isNotEmpty);
 
     templateContestId = jsonMap["templateContestId"];
-
     state = jsonMap.containsKey("state") ? jsonMap["state"] : "ACTIVE";
+    authorId = jsonMap.containsKey("authorId") ? jsonMap["authorId"] : "";
+
+    TemplateContest templateContest = TemplateService.Instance.getTemplateContest(templateContestId);
+    if (templateContest == null) {
+      Logger.root.info("TemplateContest $templateContestId : null");
+      return null;
+    }
+    
+    _loadFromTemplateContest(templateContest.jsonMapContest, templateReferences, contestReferences);
+    
+    // <FINAL> : Necesita acceso a los instanceSoccerPlayers
+    contestEntries = jsonMap.containsKey("contestEntries") ? jsonMap["contestEntries"].map((jsonMap) => new ContestEntry.initFromJsonObject(jsonMap, contestReferences, this) ).toList() : [];
+    
+    // FIX: ContestEntries: Puede que tengan alineaciones inválidas (por copiar una alineación en un torneo)
+    // contestEntries.removeWhere( (contestEntry) => contestEntry.instanceSoccerPlayers.any( (instance) => instance == null) );
+    
+    numEntries = jsonMap.containsKey("freeSlots") 
+        ? ((maxEntries <= 0) ? -jsonMap["freeSlots"] + 1 : maxEntries - jsonMap["freeSlots"])
+        : contestEntries.length;
+    
+    String prizeCurrency = entryFee.isEnergy ? Money.CURRENCY_MANAGER : Money.CURRENCY_GOLD;
+    
+    if (_prizePool == null || _prizePool.amount.toInt() == 0) {
+      _prizePool = new Money.from(prizeCurrency, (numEntries < minEntries ? minEntries : numEntries) * entryFee.amount * prizeMultiplier);
+    }
+    
+    _prizeMin = new Money.from(prizeCurrency, minEntries * entryFee.amount * prizeMultiplier);   
+    
+    // Registramos las referencias usadas para inicializar el torneo
+    _contestReferences = contestReferences;
+    
+    // print("Contest: id($contestId) name($name) currentUserIds($currentUserIds) templateContestId($templateContestId)");
+    return this;
+  }
+  
+  void _loadFromTemplateContest(Map jsonMap, TemplateReferences templateReferences, ContestReferences contestReferences) {
     _namePattern = jsonMap["name"];
     minEntries = jsonMap.containsKey("minEntries") ? jsonMap["minEntries"] : 2;
     maxEntries = jsonMap["maxEntries"];
@@ -350,9 +402,8 @@ class Contest {
     prizeType = jsonMap["prizeType"];
     prizeMultiplier = jsonMap.containsKey("prizeMultiplier") ? jsonMap["prizeMultiplier"] : 0.9;
     simulation = jsonMap.containsKey("simulation") ? jsonMap["simulation"] : false;
-    authorId = jsonMap.containsKey("authorId") ? jsonMap["authorId"] : "";
     specialImage = jsonMap.containsKey("specialImage") ? jsonMap["specialImage"] : null;
-
+    
     minManagerLevel = jsonMap.containsKey("minManagerLevel") && jsonMap["minManagerLevel"] != null ? jsonMap["minManagerLevel"] : 0;
     maxManagerLevel = jsonMap.containsKey("maxManagerLevel") && jsonMap["maxManagerLevel"] != null ? jsonMap["maxManagerLevel"] : User.MAX_MANAGER_LEVEL;
     minTrueSkill = jsonMap.containsKey("minTrueSkill") && jsonMap["minTrueSkill"] != null ? jsonMap["minTrueSkill"] : -1;
@@ -374,33 +425,12 @@ class Contest {
       });
     }
     
-    // <FINAL> : Necesita acceso a los instanceSoccerPlayers
-    contestEntries = jsonMap.containsKey("contestEntries") ? jsonMap["contestEntries"].map((jsonMap) => new ContestEntry.initFromJsonObject(jsonMap, contestReferences, this) ).toList() : [];
-    
-    // FIX: ContestEntries: Puede que tengan alineaciones inválidas (por copiar una alineación en un torneo)
-    // contestEntries.removeWhere( (contestEntry) => contestEntry.instanceSoccerPlayers.any( (instance) => instance == null) );
-    
-    numEntries = jsonMap.containsKey("numEntries") ? jsonMap["numEntries"] : contestEntries.length;
-
-    String prizeCurrency = entryFee.isEnergy ? Money.CURRENCY_MANAGER : Money.CURRENCY_GOLD;
-
     if (jsonMap.containsKey("prizePool") && jsonMap["prizePool"] != null) {
       _prizePool = new Money.fromJsonObject(jsonMap["prizePool"]);
-    }
-    if (_prizePool == null || _prizePool.amount.toInt() == 0) {
-      _prizePool = new Money.from(prizeCurrency, (numEntries < minEntries ? minEntries : numEntries) * entryFee.amount * prizeMultiplier);
     }
 
     // TODO: Premios como "enteros"
     // _prizePool.amount = _prizePool.toInt();
-
-    _prizeMin = new Money.from(prizeCurrency, minEntries * entryFee.amount * prizeMultiplier);
-
-    // Registramos las referencias usadas para inicializar el torneo
-    _contestReferences = contestReferences;
-    
-    // print("Contest: id($contestId) name($name) currentUserIds($currentUserIds) templateContestId($templateContestId)");
-    return this;
   }
 
   void updateLiveInfo() {

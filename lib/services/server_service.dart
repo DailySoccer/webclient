@@ -278,7 +278,7 @@ class DailySoccerServer implements ServerService {
   }
 
   Future<Map> getMyHistoryContests() {
-    return _innerServerCall("${HostServer.url}/get_my_history_contests");
+    return _innerServerCall("${HostServer.url}/v2/get_my_history_contests");
   }
 
   Future<Map> getMyActiveContest(String contestId) {
@@ -306,7 +306,7 @@ class DailySoccerServer implements ServerService {
   }
 
   Future<Map> getActiveTemplateContests() {
-    return _innerServerCall("${HostServer.url}/get_active_templatecontests");
+    return _innerServerCall("${HostServer.url}/get_active_templatecontests", retryTimes: -1, cancelIfChangeContext: false);
   }
   
   Future<Map> countActiveTemplateContests() {

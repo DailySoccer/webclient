@@ -360,13 +360,28 @@ class Contest {
     state = jsonMap.containsKey("state") ? jsonMap["state"] : "ACTIVE";
     authorId = jsonMap.containsKey("authorId") ? jsonMap["authorId"] : "";
 
+    Map jsonFromData = null;
+    
     TemplateContest templateContest = TemplateService.Instance.getTemplateContest(templateContestId);
-    if (templateContest == null) {
-      Logger.root.info("TemplateContest $templateContestId : null");
+    if (templateContest != null) {
+      jsonFromData = templateContest.jsonMapContest;
+    }
+    else {
+      if (jsonMap.containsKey("contestEntries") && jsonMap["contestEntries"] != null && jsonMap["contestEntries"][0].containsKey("position")) {
+        Logger.root.info("Contest $templateContestId loading...");
+        jsonFromData = jsonMap;
+      }
+      else {
+        Logger.root.info("TemplateContest $templateContestId : null");
+        jsonFromData = null;
+      }
+    }
+    
+    if (jsonFromData == null) {
       return null;
     }
     
-    _loadFromTemplateContest(templateContest.jsonMapContest, templateReferences, contestReferences);
+    _loadFromTemplateContest(jsonFromData, templateReferences, contestReferences);
     
     // <FINAL> : Necesita acceso a los instanceSoccerPlayers
     contestEntries = jsonMap.containsKey("contestEntries") ? jsonMap["contestEntries"].map((jsonMap) => new ContestEntry.initFromJsonObject(jsonMap, contestReferences, this) ).toList() : [];

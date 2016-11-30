@@ -52,9 +52,6 @@ class DeprecatedVersionScreenComp {
       if (_show) {
         GameMetrics.screenVisitEvent(GameMetrics.SCREEN_DEPRECATED_VERSION);
       }
-      /*else {
-        GameMetrics.screenVisitEvent("CLOSE_MINOR_UPDATE_SCREEN");//GameMetrics.SCREEN_DEPRECATED_VERSION);
-      }*/
     }
   }
   

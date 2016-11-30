@@ -18,10 +18,9 @@ class DeprecatedVersionScreenComp {
   static const String OUTDATED_VERSION    = "outdated_version";
   static const String DEPRECATED_VERSION  = "deprecated_version";
   String updateType = "";
+
+  bool OutdatedVersionDelayed = false;
   
-  String installedVersion;
-  String availableVersion;
-    
   DeprecatedVersionScreenComp() {
     _instance = this;
     updateType = OUTDATED_VERSION;
@@ -31,8 +30,9 @@ class DeprecatedVersionScreenComp {
     return StringUtils.translate(key, "deprecatedVersion", substitutions);
   }
   
-  void closeMe() {
+  void delayVersion() {
     _show = false;
+    OutdatedVersionDelayed = true;
   }
   
   void goShop() {
@@ -46,15 +46,15 @@ class DeprecatedVersionScreenComp {
   
   void showUpdate(bool aValue, String uType) {
     updateType = uType;
-    if (_show != aValue) {
+    if (_show != aValue  && !OutdatedVersionDelayed) {
       _show = aValue;
       
       if (_show) {
         GameMetrics.screenVisitEvent(GameMetrics.SCREEN_DEPRECATED_VERSION);
       }
-      else {
+      /*else {
         GameMetrics.screenVisitEvent("CLOSE_MINOR_UPDATE_SCREEN");//GameMetrics.SCREEN_DEPRECATED_VERSION);
-      }
+      }*/
     }
   }
   

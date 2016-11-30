@@ -669,6 +669,11 @@ class DailySoccerServer implements ServerService {
   void _checkServerVersion(var httpResponse) {
     
     String serverVersion = HostServer.isAndroidPlatform ? httpResponse.headers("release-version-android") : httpResponse.headers("release-version-ios");
+    /***** Debug pourposes only ******/
+    //_currentVersion = "1.0.0";
+    //serverVersion = "1.0.1";
+    /***** Debug pourposes only ******/
+    
     
     if (serverVersion != null && (serverVersion!="devel")) {
       if (_currentVersion == null || _currentVersion.isEmpty) {
@@ -680,9 +685,21 @@ class DailySoccerServer implements ServerService {
         Logger.root.info("INCOHERENT VERSION ==> VERSIONES ::::::  CURRENT: $_currentVersion |||| SERVER: $serverVersion");
         
         String marketAppId = HostServer.isAndroidPlatform ? httpResponse.headers("market-app-id-android") : httpResponse.headers("market-app-id-ios");
+        
+        /***** Debug pourposes only ******/
+        //marketAppId = "wefsd";
+        /***** Debug pourposes only ******/
+
         if (marketAppId != null && marketAppId.isNotEmpty) {
-          Logger.root.info("DEPRECATED VERSION ==> VERSIONES ::::::  CURRENT: $_currentVersion |||| SERVER: $serverVersion");
-          DeprecatedVersionScreenComp.Instance.show = true;
+          
+          if (isDeprecatedVersion(_currentVersion, serverVersion)){
+            Logger.root.info("DEPRECATED VERSION ==> VERSIONES ::::::  CURRENT: $_currentVersion |||| SERVER: $serverVersion");
+            DeprecatedVersionScreenComp.Instance.showUpdate( true, DeprecatedVersionScreenComp.DEPRECATED_VERSION);
+            //DeprecatedVersionScreenComp.Instance.marketAppId = marketAppId;
+          }else {
+            Logger.root.info("OUTDATED VERSION ==> VERSIONES ::::::  CURRENT: $_currentVersion |||| SERVER: $serverVersion");
+            DeprecatedVersionScreenComp.Instance.showUpdate( true, DeprecatedVersionScreenComp.OUTDATED_VERSION);            
+          }
           DeprecatedVersionScreenComp.Instance.marketAppId = marketAppId;
         }
       }
@@ -694,12 +711,13 @@ class DailySoccerServer implements ServerService {
   bool changedVersion(String oriVersion, String dstVersion) {
     if (oriVersion == dstVersion) return false;
     return versionToInt(oriVersion) < versionToInt(dstVersion);
-    /*
+  }
+  
+  bool isDeprecatedVersion(String oriVersion, String dstVersion) {
     List ori = oriVersion.split(".");
     List dst = dstVersion.split(".");
     
     return !( (ori.length >= 2) && (dst.length >= 2) && (ori[0] == dst[0]) && (ori[1] == dst[1]) );
-    */
   }
   
   int versionToInt(String version) {

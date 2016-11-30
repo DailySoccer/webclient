@@ -1,8 +1,23 @@
-<div class="deprecated-version-screen-wrapper" ng-if="show">
+<div class="outdated-version-screen-wrapper" ng-if="show && updateType == 'outdated_version'">
+  <div class="outdated-version-screen">
+      <button class="button-blue" ng-click="goShop()"> 
+        <i class="material-icons">system_update_alt</i>
+        <span>Actualizar</span>
+      </button>    
+      <p >Nueva versión disponible</p>        
+      <button class="button-gray" ng-click="closeMe()">
+        <i class="material-icons">update</i>
+        <span>Más tarde</span>
+      </button>
+  </div>
+</div>
+<div class="deprecated-version-screen-wrapper" ng-if="show && updateType == 'deprecated_version'">
   <div class="deprecated-version-screen">
     <img src="images/logoE11.png"></img>
     <h1>{{getLocalizedText("title")}}</h1>
     <!--p>{{getLocalizedText("body")}}</p-->
-    <button ng-click="goShop()">{{getLocalizedText("button")}}</button>
+    <button ng-click="goShop()">{{getLocalizedText("button")}}</button> 
   </div>
-</div>
+</div> 
+
+

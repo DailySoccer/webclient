@@ -13,14 +13,26 @@ import 'package:webclient/utils/host_server.dart';
 )
 class DeprecatedVersionScreenComp {
 
-  static DeprecatedVersionScreenComp get Instance => _instance; 
+  static DeprecatedVersionScreenComp get Instance => _instance;
   
+  static const String OUTDATED_VERSION    = "outdated_version";
+  static const String DEPRECATED_VERSION  = "deprecated_version";
+  String updateType = "";
+  
+  String installedVersion;
+  String availableVersion;
+    
   DeprecatedVersionScreenComp() {
     _instance = this;
+    updateType = OUTDATED_VERSION;
   }
 
   String getLocalizedText(key, [Map substitutions]) {
     return StringUtils.translate(key, "deprecatedVersion", substitutions);
+  }
+  
+  void closeMe() {
+    _show = false;
   }
   
   void goShop() {
@@ -32,17 +44,37 @@ class DeprecatedVersionScreenComp {
   
   bool _show = false;
   
-  void set show(bool aValue) {
+  void showUpdate(bool aValue, String uType) {
+    updateType = uType;
     if (_show != aValue) {
       _show = aValue;
       
       if (_show) {
         GameMetrics.screenVisitEvent(GameMetrics.SCREEN_DEPRECATED_VERSION);
       }
+      else {
+        GameMetrics.screenVisitEvent("CLOSE_MINOR_UPDATE_SCREEN");//GameMetrics.SCREEN_DEPRECATED_VERSION);
+      }
     }
   }
   
-  bool get show => _show;
+  bool get show => _show; 
+  
+  /*
+  void show(bool aValue, String type) {
+    if (_show != aValue) {
+        _show = aValue;
+        
+        if (_show) {
+          GameMetrics.screenVisitEvent(GameMetrics.SCREEN_DEPRECATED_VERSION);
+        }
+      }
+  }
+  */
+  
+  
+  
+  
   
   String marketAppId; //id1091515990
   

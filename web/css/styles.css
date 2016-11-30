@@ -22697,7 +22697,7 @@ home .next-contest-label {
   font-family: 'Fjalla One', sans-serif;
   font-weight: 500;
   flex: 0 0 auto;
-  height: auto;
+  height: 24px;
 }
 home .home-next-contest-hour {
   display: inline-block;
@@ -25760,6 +25760,136 @@ fieldset[disabled] .friend-element-wrapper .challenge-friend {
     color: #ffffff;
     text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   }
+}
+.outdated-version-screen-wrapper {
+  display: block;
+  position: fixed;
+  top: 0px;
+  left: 0;
+  right: 0;
+  z-index: 1199;
+  background-color: #181818;
+  color: #ffffff;
+  border-bottom: 1px solid #cacdcf;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.3), 0 10px 10px rgba(0, 0, 0, 0.28);
+  -moz-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.3), 0 10px 10px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.3), 0 10px 10px rgba(0, 0, 0, 0.28);
+}
+.outdated-version-screen-wrapper .outdated-version-screen {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  padding-top: 0px;
+  justify-content: space-around;
+  align-items: center;
+}
+.outdated-version-screen-wrapper p {
+  flex: 1;
+  font-size: 10pt;
+  color: #cacdcf;
+  text-transform: inherit;
+  text-align: inherit;
+  text-shadow: 1px 1px 1px rgba(202, 205, 207, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  text-align: center;
+  margin: 0;
+  padding: 5px;
+}
+.outdated-version-screen-wrapper button {
+  flex: 0 0 auto;
+  background-image: -webkit-linear-gradient(top, #0d75a6 0%, #0c4c6a 100%);
+  background-image: linear-gradient(to bottom, #0d75a6 0%, #0c4c6a 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0d75a6', endColorstr='#ff0c4c6a', GradientType=0);
+  font-size: 10pt;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
+  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.29);
+  padding: 10px;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  border: 0;
+  outline-offset: 0px;
+  outline: none;
+  line-height: 16pt;
+  padding: 5px;
+  margin: 5px;
+  width: auto;
+  background-color: transparent;
+  background-image: none;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+.outdated-version-screen-wrapper button:hover,
+.outdated-version-screen-wrapper button:active,
+.outdated-version-screen-wrapper button:focus {
+  border: 0;
+  outline-offset: 0px;
+  outline: none;
+}
+.outdated-version-screen-wrapper button:disabled {
+  color: #757993;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.outdated-version-screen-wrapper .button-blue {
+  font-size: 8pt;
+  color: #59add5;
+  text-transform: none;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+}
+.outdated-version-screen-wrapper .button-gray {
+  font-size: 8pt;
+  color: #757993;
+  text-transform: none;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
 }
 .deprecated-version-screen-wrapper {
   display: block;

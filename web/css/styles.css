@@ -12278,7 +12278,7 @@ view-contest {
   display: flex;
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
-  flex: 1;
+  flex: 0 0 200;
 }
 .change-soccer-player-confirm-content {
   display: -webkit-box;
@@ -12288,7 +12288,7 @@ view-contest {
   display: flex;
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
-  flex: 1;
+  flex: 0 0 auto;
   color: #757993;
   text-align: center;
   padding-bottom: 30px;

@@ -36,9 +36,14 @@ class DeprecatedVersionScreenComp {
   }
   
   void goShop() {
+    //sdfgsdfgsdfg
+    //TODO: Meter enlaces de Macías
+    //https://play.google.com/store/apps/details?id=com.epiceleven.futbolcuatro&referrer=utm_source%3Dappupdate
+    //https://itunes.apple.com/app/apple-store/id1091515990?pt=117969002&ct=appupdate&mt=8
+    
     GameMetrics.actionEvent(GameMetrics.ACTION_DEPRECATED_VERSION_GO_SHOP, GameMetrics.SCREEN_DEPRECATED_VERSION);
     
-    String linkToStore = HostServer.isAndroidPlatform ? "market://details?id=$marketAppId" : "itms-apps://itunes.apple.com/app/$marketAppId";
+    String linkToStore = HostServer.isAndroidPlatform ? "market://details?id=${marketAppId}&referrer=utm_source%3Dappupdate" : "itms-apps://itunes.apple.com/app/${marketAppId}?pt=117969002&ct=appupdate&mt=8";
     window.open(linkToStore, "_system");
   }
   

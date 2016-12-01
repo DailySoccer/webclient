@@ -33,11 +33,10 @@ class DeprecatedVersionScreenComp {
   void delayVersion() {
     _show = false;
     OutdatedVersionDelayed = true;
-  }
+  } 
   
   void goShop() {
-    //sdfgsdfgsdfg
-    //TODO: Meter enlaces de Macías
+    //TODO: Meter enlaces de Macías 
     //https://play.google.com/store/apps/details?id=com.epiceleven.futbolcuatro&referrer=utm_source%3Dappupdate
     //https://itunes.apple.com/app/apple-store/id1091515990?pt=117969002&ct=appupdate&mt=8
     

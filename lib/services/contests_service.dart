@@ -34,6 +34,8 @@ class ContestsService {
 
   // El ultimo concurso que hemos cargado a traves de refreshContest
   Contest lastContest;
+  // El contestInfo lo diferenciaremos de un contest "normal" (al contener datos diferentes)
+  Contest lastContestInfo;
 
   Contest getContestById(String id) => _contests.containsKey(id) ? _contests[id] : null;
 
@@ -134,7 +136,9 @@ class ContestsService {
     return Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), TemplateService.Instance.refreshTemplateContests(), _server.getContestInfo(contestId)])
       .then((List jsonMaps) {
         Map jsonData = jsonMaps[2];
-        registerContest(Contest.loadContestsFromJsonObject(jsonData).first);
+        // Lo registramos en otro campo independiente
+        lastContestInfo = Contest.loadContestsFromJsonObject(jsonData).first;
+        // registerContest(Contest.loadContestsFromJsonObject(jsonData).first);
         _prizesService.loadFromJsonObject(jsonData);
       });
   }
@@ -314,8 +318,8 @@ class ContestsService {
           jsonData["content"].forEach((jsonMap) {
             lastContest.matchEvents.firstWhere((matchEvent) => matchEvent.templateMatchEventId == (jsonMap.containsKey("templateMatchEventId") ? jsonMap["templateMatchEventId"] : jsonMap["_id"]))
                 .. updateLiveInfo(jsonMap);
-            lastContest.updateLiveInfo();
           });
+          lastContest.updateLiveInfo();
       });
   }
 

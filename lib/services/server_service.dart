@@ -286,7 +286,7 @@ class DailySoccerServer implements ServerService {
   }
 
   Future<Map> getMyLiveContest(String contestId) {
-    return _innerServerCall("${HostServer.url}/get_my_live_contest/$contestId");
+    return _innerServerCall("${HostServer.url}/v2/get_my_live_contest/$contestId");
   }
 
   Future<Map> getMyHistoryContest(String contestId) {

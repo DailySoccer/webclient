@@ -253,12 +253,8 @@ class ContestsListComp implements DetachAware {
   String printableMyPosition(Contest contest) {
     ContestEntry mainContestEntry = contest.getContestEntryWithUser(_profileService.user.userId);
 
-    // En los contest Históricos tendremos la posición registrada en el propio ContestEntry
-    if (contest.isHistory) {
-      return (mainContestEntry.position >= 0) ? "${mainContestEntry.position + 1}" : "-";
-    }
-
-    return "${contest.getUserPosition(mainContestEntry)}";
+    // Tanto en los contests En Vivo como los Históricos tendremos la posición registrada en el propio ContestEntry
+    return (mainContestEntry.position >= 0) ? "${mainContestEntry.position + 1}" : "-";
   }
 
   String getPrizeToShow(Contest contest) {

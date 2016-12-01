@@ -51,14 +51,15 @@ class ContestEntry {
 
   void updateLiveInfo() {
     // Permitimos que se recalculen los valores obtenidos durante el "live"
-    _currentLivePoints = -1;
+    _currentLivePoints = INVALIDATE_CURRENT_LIVE_POINTS;
     _percentLeft = -1;
   }
   
-  int _currentLivePoints = -1;
+  static final int INVALIDATE_CURRENT_LIVE_POINTS = -100000;
+  int _currentLivePoints = INVALIDATE_CURRENT_LIVE_POINTS;
   void set currentLivePoints(int value) { _currentLivePoints = value; }
   int get currentLivePoints {
-    if (_currentLivePoints == -1) {
+    if (_currentLivePoints == INVALIDATE_CURRENT_LIVE_POINTS) {
       _currentLivePoints = instanceSoccerPlayers != null ? instanceSoccerPlayers.fold(0, (prev, instanceSoccerPlayer) => prev + instanceSoccerPlayer.soccerPlayer.currentLivePoints ) : 0;
     }
     return _currentLivePoints;
@@ -95,6 +96,11 @@ class ContestEntry {
   ContestEntry.initFromJsonObject(Map jsonMap, ContestReferences references, Contest theContest) {
     contestEntryId = jsonMap["_id"];
     user = references.getUserById(jsonMap["userId"]);
+    
+    // Podemos recibir el nickName del usuario incrustado en el propio contestEntry
+    if (jsonMap.containsKey("nickName")) {
+      user.nickName = jsonMap["nickName"];
+    }
 
     formation = (jsonMap.containsKey("formation")) ? jsonMap["formation"] : FORMATION_442;
 
@@ -114,6 +120,9 @@ class ContestEntry {
     position = (jsonMap.containsKey("position")) ? jsonMap["position"] : -1;
     prize = (jsonMap.containsKey("prize")) ? new Money.fromJsonObject(jsonMap["prize"]) : new Money.zero();
     fantasyPoints = (jsonMap.containsKey("fantasyPoints")) ? jsonMap["fantasyPoints"] : 0;
+    
+    // Inicializamos los livePoints a los fantasyPoints
+    _currentLivePoints = (jsonMap.containsKey("fantasyPoints")) ? fantasyPoints : INVALIDATE_CURRENT_LIVE_POINTS;
 
     contest = theContest;
 

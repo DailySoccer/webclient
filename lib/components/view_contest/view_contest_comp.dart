@@ -551,7 +551,6 @@ class ViewContestComp implements DetachAware {
   void _updateRetrievedData() {
     updatedDate = DateTimeService.now;
     contest = _contestsService.lastContest;
-    contest.updateLiveInfo();
     
     // Actualizar al usuario principal (al que destacamos)
     if (_profileService.isLoggedIn && contest.containsContestEntryWithUser(_profileService.user.userId)) {
@@ -570,8 +569,8 @@ class ViewContestComp implements DetachAware {
   void _setupLiveTimers() {
     // Únicamente actualizamos los contests que estén en "live"
     if (_contestsService.lastContest.isLive) {
-      _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE, _retrieveLiveData);
-      _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE_CONTEST_ENTRIES, _retrieveLiveContestEntriesData);
+      _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE, _retrieveLiveData, notFirstCall : true);
+      _refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_LIVE_CONTEST_ENTRIES, _retrieveLiveContestEntriesData, notFirstCall : true);
       GameMetrics.contestScreenVisitEvent(GameMetrics.SCREEN_LIVE_CONTEST, contest, {'availableChanges' : numAvailableChanges});
     } else if (_contestsService.lastContest.isHistory) {
       GameMetrics.contestScreenVisitEvent(GameMetrics.SCREEN_HISTORY_CONTEST, contest);

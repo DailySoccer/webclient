@@ -125,7 +125,11 @@ class Contest {
   List<ContestEntry> get contestEntriesOrderByPoints {
     if (_contestEntriesOrderByPoints == null) {
       _contestEntriesOrderByPoints = new List<ContestEntry>.from(contestEntries);
-      _contestEntriesOrderByPoints.sort((entry1, entry2) => entry2.currentLivePoints.compareTo(entry1.currentLivePoints));
+      _contestEntriesOrderByPoints.sort((entry1, entry2) {
+        int compare = entry2.currentLivePoints.compareTo(entry1.currentLivePoints);
+        // Si tienen los mismos livePoints, los diferenciaremos por el contestEntryId
+        return (compare != 0) ? compare : entry2.contestEntryId.compareTo(entry1.contestEntryId);
+      });
     }
     return _contestEntriesOrderByPoints;
   }
@@ -205,7 +209,7 @@ class Contest {
       ContestEntry entry = getContestEntryWithUser(userId);
       // En el Histórico, el premio lo cogemos de la propia ContestEntry
       // En Live, el premio lo calculamos de la table de premios
-      _cache["${userId}-prize"] = (isHistory) ? entry.prize : prize.getValue(getUserPosition(entry) - 1);
+      _cache["${userId}-prize"] = (isHistory) ? entry.prize : prize.getValue(entry.position);
     }
     return _cache["${userId}-prize"];
   }
@@ -367,7 +371,7 @@ class Contest {
       jsonFromData = templateContest.jsonMapContest;
     }
     else {
-      if (jsonMap.containsKey("contestEntries") && jsonMap["contestEntries"] != null && jsonMap["contestEntries"][0].containsKey("position")) {
+      if (jsonMap.containsKey("contestEntries") && jsonMap["contestEntries"] != null) {
         Logger.root.info("Contest $templateContestId loading...");
         jsonFromData = jsonMap;
       }

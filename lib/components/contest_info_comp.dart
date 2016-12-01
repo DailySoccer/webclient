@@ -82,7 +82,7 @@ class ContestInfoComp implements DetachAware {
   void detach() {}
 
   void updateContestInfo() {
-    contest = _contestsService.lastContest;
+    contest = _contestsService.lastContestInfo;
     contestants = [];
 
     for (ContestEntry contestEntry in contest.contestEntries) {

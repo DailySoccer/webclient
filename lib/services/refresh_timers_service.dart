@@ -42,7 +42,7 @@ class RefreshTimersService {
     JsUtils.setJavascriptFunction('dartOnApplicationResume', () => _focus = true);
   }
 
-  Timer addRefreshTimer(String name, Function updateFunction, [String timerName] ) {
+  Timer addRefreshTimer(String name, Function updateFunction, {String timerName, bool notFirstCall} ) {
     if (_timers.containsKey(name) && _timers[name].isActive) {
         Logger.root.warning("Timer: $name cancelled");
         _timers[name].cancel();
@@ -59,7 +59,9 @@ class RefreshTimersService {
     //_timers[name] = timer;
 
     // Realizamos la primera llamada a la función solicitada
-    updateFunction();
+    if (notFirstCall == null || !notFirstCall) {
+      updateFunction();
+    }
 
     if (TutorialService.isActivated) {
       TutorialService.Instance.registerContentUpdater(name, updateFunction);

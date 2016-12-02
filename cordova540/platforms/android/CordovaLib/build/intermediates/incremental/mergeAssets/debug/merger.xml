@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/gregorioiniestaovejero/webclient/cordova540/platforms/android/CordovaLib/assets"/></dataSet><dataSet config="debug"><source path="/Users/gregorioiniestaovejero/webclient/cordova540/platforms/android/CordovaLib/src/debug/assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/Users/revelo/Documents/Projects/dailysoccer/webclient/cordova540/platforms/android/CordovaLib/assets"/></dataSet><dataSet config="debug"><source path="/Users/revelo/Documents/Projects/dailysoccer/webclient/cordova540/platforms/android/CordovaLib/src/debug/assets"/></dataSet></merger>

@@ -63,7 +63,7 @@ class Contest {
 
   int minEntries;
   int maxEntries;
-  bool get isFull => contestEntries.length == maxEntries;
+  bool get isFull => (maxEntries > 0) && (numEntries == maxEntries);
 
   int salaryCap;
 

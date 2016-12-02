@@ -4,7 +4,7 @@
     <!-- Nickname -->
     <div class="content-field">
       <span id="lblPassword" class="text-label">{{getLocalizedText("username")}}</span>      
-      <input id="txtNickName" class="text-input" type="text" maxlength="{{MAX_NICKNAME_LENGTH}}" ng-model="editedNickName" placeholder="{{getLocalizedText('username')}}" class="form-control" tabindex="3" autocapitalize="off">
+      <input id="txtNickName" class="text-input name" type="text" maxlength="{{MAX_NICKNAME_LENGTH}}" ng-model="editedNickName" placeholder="{{getLocalizedText('username')}}" class="form-control" tabindex="3" autocapitalize="off">
       <!-- Error de nickName -->
       <div id="nickNameErrorContainer" class="content-field-block errorDetected" ng-if="nicknameErrorText != ''">
         <div id="nickNameErrorLabel" class="err-text">{{nicknameErrorText}}</div>

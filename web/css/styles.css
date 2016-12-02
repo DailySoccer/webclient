@@ -6188,6 +6188,7 @@ OLD FONTS
 .lobby-topbar-center.nickname .inner-nickname {
   white-space: nowrap;
   overflow: hidden;
+  text-transform: none;
 }
 .lobby-topbar-right {
   font-size: 12pt;
@@ -7863,7 +7864,7 @@ user-shortinfo-bar {
 .user-shortinfo-data {
   font-size: 14pt;
   color: #59add5;
-  text-transform: uppercase;
+  text-transform: none;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
   -webkit-user-select: none;
@@ -8622,7 +8623,7 @@ contest-info .contestant-list .contestant-element {
   flex-flow: row nowrap;
   font-size: 10pt;
   color: #757993;
-  text-transform: uppercase;
+  text-transform: inherit;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
   -webkit-user-select: none;
@@ -8804,6 +8805,9 @@ scoring-rules #scoringForForwards .rules-content {
 .text-input {
   margin: 5px 0;
   color: #000000;
+}
+.name {
+  text-transform: none;
 }
 .save-changes-content {
   display: -webkit-box;
@@ -12196,7 +12200,7 @@ view-contest {
 .rivals-list-column-points {
   font-size: 12pt;
   color: #757993;
-  text-transform: uppercase;
+  text-transform: none;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
   -webkit-user-select: none;
@@ -14375,6 +14379,7 @@ top-bar {
   flex: 0 0 auto;
   font-size: 10pt;
   color: #ffffff;
+  text-transform: uppercase;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.004);
   background-color: transparent;
   border: none;
@@ -14384,7 +14389,7 @@ top-bar {
   outline: none;
   font-size: 11pt;
   color: #cacdcf;
-  text-transform: uppercase;
+  text-transform: none;
   text-align: left;
   text-shadow: 1px 1px 1px rgba(202, 205, 207, 0.004);
   -webkit-user-select: none;
@@ -18722,6 +18727,7 @@ leaderboard .leaderboard-column-name {
   white-space: nowrap;
   overflow: hidden;
   text-align: left;
+  text-transform: none;
 }
 leaderboard .leaderboard-column-score {
   flex: 0 0 75px;
@@ -18844,6 +18850,7 @@ ranking .user-name {
   flex: 1;
   text-align: left;
   overflow: hidden;
+  text-transform: none;
 }
 ranking .user-position {
   flex: 0 0 80px;
@@ -21124,6 +21131,9 @@ user-profile {
 .profile-data-value .coin-icon {
   vertical-align: bottom;
   margin-left: 15px;
+}
+.name {
+  text-transform: none;
 }
 .personal-data .profile-data-value {
   margin-right: 15px;

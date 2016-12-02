@@ -50,6 +50,22 @@ class DeprecatedVersionScreenComp {
   
   void showUpdate(bool aValue, String uType) {
     updateType = uType;
+    switch(uType){
+      case OUTDATED_VERSION:
+        if (_show != aValue  && !OutdatedVersionDelayed) {
+          _show = aValue;
+        }
+        break;
+      case DEPRECATED_VERSION:
+        if (_show != aValue) {
+              _show = aValue;              
+              if (_show) {
+                GameMetrics.screenVisitEvent(GameMetrics.SCREEN_DEPRECATED_VERSION);
+              }
+            }
+        break;
+    }
+    
     if (_show != aValue  && !OutdatedVersionDelayed) {
       _show = aValue;
       

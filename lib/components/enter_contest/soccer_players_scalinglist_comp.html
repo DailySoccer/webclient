@@ -9,28 +9,39 @@
 
 <div class="soccer-player-table-body">
   <div ng-id="'soccerPlayer' + soccerPlayer.id" ng-repeat="soccerPlayer in currentSoccerPlayerList.elements track by soccerPlayer.id" class="soccer-players-list-slot" ng-class="[POS_CLASS_NAMES[soccerPlayer.fieldPos.abrevName], !soccerPlayerIsAvailable(soccerPlayer) ? 'not-available': '', isAddAction(soccerPlayer) ? 'soccer-player-add':'soccer-player-remove']">
+    
+    <!-- boton ver Stadísticas -->
     <div class="column-data column-info" ng-click="onInfoClick({'soccerPlayerId': soccerPlayer.id})"><i class="material-icons">&#xE88F;</i></div>
+    
+    <!-- Camiseta -->
     <div class="column-data column-tshirt" ng-click="onInfoClick({'soccerPlayerId': soccerPlayer.id})">
       <i class="material-icons" ng-if="isFavorite(soccerPlayer)">&#xE838;</i>
       <img ng-src="{{getImgPerSoccerTeam(soccerPlayer)}}" class="team-shirt-image">
     </div>
-    <div class="column-data column-primary-info" ng-click="onInfoClick({'soccerPlayerId': soccerPlayer.id})">
+    
+    <!-- Nombre jugador -->
+    <div class="column-data column-primary-info" ng-click="onActionClick({'soccerPlayer': soccerPlayer})">
       <span class="soccer-player-name">{{soccerPlayer.fullName}}</span>
       <span class="match-event-name" ng-bind-html-unsafe="soccerPlayer.matchEventNameHTML"></span>
     </div>
-    <div class="column-data column-dfp">{{soccerPlayer.printableFantasyPoints}}</div>
-    <!--div class="column-data column-played">{{soccerPlayer.playedMatches}}</div-->
-    <div class="column-data column-salary">{{parseSalary(soccerPlayer)}}</div>
-    <!--div class="column-data column-manager-level"><span class="manager-level-needed">{{soccerPlayer.level}}</span></div-->
     
+    <!-- Puntos -->
+    <div class="column-data column-dfp" ng-click="onActionClick({'soccerPlayer': soccerPlayer})">{{soccerPlayer.printableFantasyPoints}}</div>
+    
+    <!-- Salario -->
+    <div class="column-data column-salary" ng-click="onActionClick({'soccerPlayer': soccerPlayer})">{{parseSalary(soccerPlayer)}}</div>
+    
+    <!-- boton añadir a alineación -->
     <div class="column-data column-addbtn" ng-class="[isAddAction(soccerPlayer) ? 'add' : 'remove']" 
          ng-id="'soccerPlayerAction' + soccerPlayer.id" ng-click="onActionClick({'soccerPlayer': soccerPlayer})" ng-if="!isScoutingList">
       <i class="material-icons">{{isAddAction(soccerPlayer) ? '&#xE145;' : '&#xE15B;'}}</i>
     </div>
     
+    <!-- boton añadir a favoritos -->
     <div class="column-data column-addbtn" ng-class="[isAddAction(soccerPlayer) ? 'addFav' : 'removeFav']" 
          ng-id="'soccerPlayerAction' + soccerPlayer.id" ng-click="onActionClick({'soccerPlayer': soccerPlayer})" ng-if="isScoutingList">
       <i class="material-icons">{{isAddAction(soccerPlayer) ? '&#xE83A;' : '&#xE838;'}}</i>
     </div>
+    
   </div>
 </div>

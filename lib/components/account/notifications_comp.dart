@@ -174,15 +174,16 @@ class NotificationsComp {
     String pos = "";
     String prize = "";
     String ret = "";
-    ContestEntry  ce;
+    ContestEntry  contestEntry;
     if (notification.topic == "CONTEST_FINISHED") {
       item['description'] = "Cargando...";
-      _contestsService.refreshMyHistoryContest(notification.info["contestId"])
-        .then((_) {
-          _contest = _contestsService.lastContest;
-          ce = _contest.getContestEntryWithUser(_profileService.user.userId);
-          pos = (ce.position +1).toString();
-          prize = ce.prize.toString();
+      _contestsService.getMyHistoryContestEntry(notification.info["contestId"])
+        .then((Contest contest) {
+          item['name'] = notification.name.replaceFirst("TORNEO", contest.name);
+          
+          contestEntry = contest.getContestEntryWithUser(_profileService.user.userId);
+          pos = (contestEntry.position +1).toString();
+          prize = contestEntry.prize.toString();
           ret = notification.description.replaceAll("@POSITION", pos);
           item['description'] = ret.replaceAll("@PRIZE", prize);
         })
@@ -302,7 +303,6 @@ class NotificationsComp {
   Map emptyShareInfo = {};
   Map<String, Map> sharingInfoCache = {};
   ProfileService _profileService;
-  Contest _contest;
   int _userPositionInContest;
   ContestsService _contestsService;
   AppStateService _appStateService;

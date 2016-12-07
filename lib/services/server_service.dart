@@ -50,6 +50,7 @@ abstract class ServerService {
   Future<Map> getMyActiveContest(String contestId);
   Future<Map> getMyLiveContest(String contestId);
   Future<Map> getMyHistoryContest(String contestId);
+  Future<Map> getMyHistoryContestEntry(String contestId);
   Future<Map> getMyContestEntry(String contestId);
   Future<Map> countMyLiveContests();
   Future<Map> countMyContests();
@@ -293,6 +294,10 @@ class DailySoccerServer implements ServerService {
     return _innerServerCall("${HostServer.url}/get_my_history_contest/$contestId");
   }
 
+  Future<Map> getMyHistoryContestEntry(String contestId) {
+    return _innerServerCall("${HostServer.url}/get_my_history_contest_entry/$contestId");
+  }
+  
   Future<Map> getMyContestEntry(String contestId) {
     return _innerServerCall("${HostServer.url}/v2/get_my_contest_entry/$contestId");
   }

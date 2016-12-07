@@ -372,7 +372,7 @@ class Contest {
     }
     else {
       if (jsonMap.containsKey("contestEntries") && jsonMap["contestEntries"] != null) {
-        Logger.root.info("Contest $templateContestId loading...");
+        // Logger.root.info("Contest $templateContestId loading...");
         jsonFromData = jsonMap;
       }
       else {

@@ -309,6 +309,13 @@ class ContestsService {
         });
   }
 
+  Future getMyHistoryContestEntry(String contestId) {
+    return _server.getMyHistoryContestEntry(contestId)
+        .then((Map jsonMap) {
+          return Contest.loadContestsFromJsonObject(jsonMap).first;
+        });
+  }
+ 
   Future refreshLiveMatchEvents({String templateContestId: null, String contestId: null}) {
     return Future.wait([TemplateService.Instance.refreshTemplateSoccerPlayers(), (templateContestId != null
         ? _server.getLiveMatchEventsFromTemplateContest(templateContestId)

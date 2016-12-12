@@ -21,6 +21,7 @@
       "dateshort"                       : "dd/MM",
       "timeshort"                       : "HH:mm",
       "datetimeshort"                   : "E, HH:mm",
+      "datetimeshortdaynum"             : "E dd, HH:mm",
       "datetimelong"                    : "E, dd/MM/yy HH:mm",
       "datetimedayhour"                 : "dd/MM/yy HH:mm",
       "timestamp"                       : "yyyy-MM-dd HH:mm:ss.000"

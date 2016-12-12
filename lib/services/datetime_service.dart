@@ -86,6 +86,10 @@ class DateTimeService {
   static String formatDateTimeShort(DateTime date) {
     return "${new DateFormat(StringUtils.getDatePattern("datetimeshort"), StringUtils.getLocale()).format(date)}h";
   }
+  
+  static String formatDateTimeShortDayNum(DateTime date) {
+    return "${new DateFormat(StringUtils.getDatePattern("datetimeshortdaynum"), StringUtils.getLocale()).format(date)}h";
+  }
 
   static String formatDateTimeLong(DateTime date) {
     return "${new DateFormat(StringUtils.getDatePattern("datetimelong"), StringUtils.getLocale()).format(date)}h";

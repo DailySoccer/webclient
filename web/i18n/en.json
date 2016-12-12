@@ -17,12 +17,14 @@
     }
     ,"date"                             :
     {
-      "datewithdayofthemonth"           : "MMM d EEE",
-      "dateshort"                       : "MM/dd",
+      "datewithdayofthemonth"           : "EEE, d MMM",
+      "dateshort"                       : "dd/MM",
       "timeshort"                       : "HH:mm",
       "datetimeshort"                   : "E, HH:mm",
-      "datetimelong"                    : "E, MM/dd/yy HH:mm",
-      "datetimedayhour"                 : "MM/dd/yy HH:mm"
+      "datetimeshortdaynum"             : "E dd, HH:mm",
+      "datetimelong"                    : "E, dd/MM/yy HH:mm",
+      "datetimedayhour"                 : "dd/MM/yy HH:mm",
+      "timestamp"                       : "yyyy-MM-dd HH:mm:ss.000"
     }
     ,"weekcalendar"                     :
     {

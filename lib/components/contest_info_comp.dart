@@ -133,7 +133,7 @@ class ContestInfoComp implements DetachAware {
   }
 
   String formatMatchDate(DateTime date) {
-    return DateTimeService.formatDateTimeShort(date);
+    return DateTimeService.formatDateTimeShortDayNum(date);
   }
 
   void tabChange(String tab) {

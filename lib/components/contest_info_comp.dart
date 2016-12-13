@@ -16,6 +16,7 @@ import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/utils/string_utils.dart';
 import 'package:logging/logging.dart';
 import 'package:webclient/utils/scaling_list.dart';
+import 'package:webclient/models/match_event.dart';
 
 @Component(
   selector: 'contest-info',
@@ -44,6 +45,8 @@ class ContestInfoComp implements DetachAware {
     return StringUtils.translate(key, "contestinfo");
   }
 
+  String get userName => _profileService.user.nickName;
+  
   ContestInfoComp(RouteProvider routeProvider, this.loadingService, this._router, this._contestsService, this._profileService, this._flashMessage) {
 
     isModal = (_router.activePath.length > 0) && (_router.activePath.first.name == 'lobby');
@@ -170,6 +173,23 @@ class ContestInfoComp implements DetachAware {
     return mainContestEntry.prize;
   }
  
+  String getMatchEvent(MatchEvent match) {
+    String cadena ="";
+    
+    if (!match.isFinished) {
+      if (match.period == 'FIRST_HALF')
+        cadena += '1ª Parte';
+      else
+        cadena += '2ª Parte';
+      cadena += " min " + match.minutesPlayed.toString() + "'<br>";
+    }
+    
+    cadena += ( (match.soccerTeamA.score < 0) ? "0" : match.soccerTeamA.score.toString() ) + ' - ' +  ( (match.soccerTeamB.score < 0) ? '0' : match.soccerTeamB.score.toString());
+ 
+    return cadena;
+    //{{!match.isFinished ? (match.period == 'FIRST_HALF' ? '1ª Parte' : '2ª Parte') + match.minutesPlayed + "'": ''}} {{(match.soccerTeamA.score < 0) ? 0 : match.soccerTeamA.score}} - {{(match.soccerTeamB.score < 0) ? 0 : match.soccerTeamB.score}}
+  }
+  
   Router _router;
 
   ContestsService _contestsService;

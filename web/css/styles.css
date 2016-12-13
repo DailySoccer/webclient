@@ -8642,6 +8642,20 @@ contest-info .contestant-list .level {
   flex: 0 0 50px;
   text-align: center;
 }
+contest-info .contestant-list .highlight {
+  font-size: 10pt;
+  color: #59add5;
+  text-transform: inherit;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(89, 173, 213, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
+  font-weight: 700;
+}
 scoring-rules {
   margin-right: auto;
   margin-left: auto;

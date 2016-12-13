@@ -21,7 +21,7 @@
   <div class="matches-involved">
       <div class="match" ng-repeat="match in currentInfoData['matchesInvolved']">
           <div class="team">{{match.soccerTeamA.name}}</div>
-          <div class="date" ng-if="match.isStarted">{{(match.soccerTeamA.score < 0) ? 0 : match.soccerTeamA.score}} - {{(match.soccerTeamB.score < 0) ? 0 : match.soccerTeamB.score}}</div>
+          <div class="date" ng-if="match.isStarted" ng-bind-html-unsafe="getMatchEvent(match)"></div>
           <div class="date" ng-if="!match.isStarted">{{formatMatchDate(match.startDate)}}</div>
           <div class="team">{{match.soccerTeamB.name}}</div>
       </div>
@@ -35,7 +35,7 @@
       <div class="name">{{getLocalizedText("name")}}</div>
       <div class="level">{{getLocalizedText("level")}}</div>
     </div>    
-    <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']">
+    <div class="contestant-element"ng-repeat="contestant in currentInfoData['contestants']" ng-class="{'highlight': contestant.name == userName}">
       <div class="name">{{contestant.name}}</div>
       <div class="level">{{contestant.trueSkill}}</div>
     </div>

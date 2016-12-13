@@ -1,0 +1,47 @@
+.flash-messages-container {
+  .flex-container-col();
+  .flex-elem-fixed();
+  .elevation(3);
+  position: relative;
+}
+
+.flash-messages-clear {
+  .flat-button(@white);
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 5px 15px 15px 15px;
+  height: 40px;
+  .material-icons {
+    line-height: 20px;
+  }
+}
+
+.flash-message-alert {
+  .flex-elem-fixed();
+  .bodyfont_light(10pt, @white, left, uppercase);
+  background-color: @black;
+  padding: 5px 45px 5px 15px;
+  border-left: 3px solid @grey-bluish;
+  border-bottom: 3px solid @black;
+  border-top: 3px solid @black;
+  
+  &.error {
+    background-color: @red-dark;
+    border-left-color: @red;
+    border-bottom-color: @red-dark;
+    border-top-color: @red-dark;
+  }
+  &.warning {
+    background-color: @orange-dark;
+    border-left-color: @orange-light;
+    border-bottom-color: @orange-dark;
+    border-top-color: @orange-dark;
+  }
+  &.info {
+    background-color: @blue-dark;
+    border-left-color: @blueLight;
+    border-bottom-color: @blue-dark;
+    border-top-color: @blue-dark;
+  }
+}

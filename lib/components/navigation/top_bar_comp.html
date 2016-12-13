@@ -7,6 +7,13 @@
   <div class="right-column" ng-bind-html-unsafe="rightColumnHTML" ng-click="onRightColumnClick()"></div>
 </div>
 
+<div class="flash-messages-container" ng-if="hasFlashMessages">
+  <button class="flash-messages-clear" ng-click="clearFlashMessages()"><i class="material-icons">&#xE14C;</i></button>
+  <div class="flash-message-alert" ng-repeat="msg in flashMessageList" ng-class="[msg.type]">
+    {{msg.text}}
+  </div>
+</div>
+
 <modal-window title="'Mensajes de futbolcuatro'" show-window="notificationsActive" ng-class="{'small' : !hasNotification}">
   <notifications ng-if="notificationsActive"></notifications>
 </modal-window>

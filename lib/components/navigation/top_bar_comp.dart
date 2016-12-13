@@ -16,6 +16,7 @@ import 'package:logging/logging.dart';
 import 'package:webclient/services/server_error.dart';
 import 'package:webclient/utils/js_utils.dart';
 import 'package:webclient/models/user.dart';
+import 'dart:math';
 
 @Component(
     selector: 'top-bar',
@@ -24,6 +25,8 @@ import 'package:webclient/models/user.dart';
 )
 class TopBarComp {
 
+  int MAX_FLASH_MSG_SHOWN = 5;
+  
   AppTopBarStateConfig _lastState;
   AppTopBarStateConfig get currentState {
     if (_lastState == _appStateService.appTopBarState.activeState) 
@@ -61,6 +64,9 @@ class TopBarComp {
                                   s == AppTopBarState.SEARCH_BUTTON && !currentState.isSearching? "<i class='material-icons'>&#xE8B6;</i>" :
                                   s == AppTopBarState.SEARCH_BUTTON && currentState.isSearching? "" :
                                   s;
+
+  List<FlashMessage> get flashMessageList => _appStateService.flashMessageList.sublist(0, min(MAX_FLASH_MSG_SHOWN, _appStateService.flashMessageList.length));
+  bool get hasFlashMessages => _appStateService.flashMessageList.isNotEmpty;
   
   TopBarComp(this._router, this._loadingService, this._view, this._rootElement, 
                 this._dateTimeService, this._profileService, this._templateService, 
@@ -96,6 +102,10 @@ class TopBarComp {
     _profileService.triggerEventualAction(ProfileService.FIRST_RUN_CHANGE_NAME, () {
       changeNameWindowShow = true;
     });
+  }
+  
+  void clearFlashMessages() {
+    _appStateService.flashMessageList.removeRange(0, flashMessageList.length);
   }
   
   String _editedNickName = "";

@@ -26,17 +26,24 @@ class AppStateService {
   AppTabBarState get appTabBarState => _appTabBarState;
   AppTopBarState get appTopBarState => _appTopBarState;
   AppSecondaryTabBarState get appSecondaryTabBarState => _appSecondaryTabBarState;
+  List<FlashMessage> get flashMessageList => _flashMessageList;
   
   AppStateService() {
     _instance = this;
     _appTabBarState = new AppTabBarState();
     _appTopBarState = new AppTopBarState();
     _appSecondaryTabBarState = new AppSecondaryTabBarState();
+
+    _flashMessageList.add(new FlashMessage.error("Esto es un erroraco"));
+    _flashMessageList.add(new FlashMessage.error("Esto es un erroraco tan largo que no cabe en una sola linea, es probable que los errores sean largos y feos"));
+    _flashMessageList.add(new FlashMessage.warning("Esto es un warring"));
+    _flashMessageList.add(new FlashMessage.info("Esto es un info"));
   }
   
   AppTabBarState _appTabBarState;
   AppTopBarState _appTopBarState;
   AppSecondaryTabBarState _appSecondaryTabBarState;
+  List<FlashMessage> _flashMessageList = [];
 
   bool notificationsActive = false;
   
@@ -253,4 +260,18 @@ class AppTabBarState {
   int contestNotifications = 0;
   int liveContestsNotifications = 0;
   int scoutingNotifications = 0;
+}
+
+class FlashMessage {
+  static const String ERROR = "error";
+  static const String WARNING = "warning";
+  static const String INFO = "info";
+  
+  String type;
+  String text;
+
+  FlashMessage(this.type, this.text);
+  FlashMessage.error(this.text) { this.type = ERROR; }
+  FlashMessage.warning(this.text) { this.type = WARNING; }
+  FlashMessage.info(this.text) { this.type = INFO; }
 }

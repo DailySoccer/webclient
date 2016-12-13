@@ -34,10 +34,10 @@ class AppStateService {
     _appTopBarState = new AppTopBarState();
     _appSecondaryTabBarState = new AppSecondaryTabBarState();
 
-    _flashMessageList.add(new FlashMessage.error("Esto es un erroraco"));
+    /*_flashMessageList.add(new FlashMessage.error("Esto es un erroraco"));
     _flashMessageList.add(new FlashMessage.error("Esto es un erroraco tan largo que no cabe en una sola linea, es probable que los errores sean largos y feos"));
     _flashMessageList.add(new FlashMessage.warning("Esto es un warring"));
-    _flashMessageList.add(new FlashMessage.info("Esto es un info"));
+    _flashMessageList.add(new FlashMessage.info("Esto es un info"));*/
   }
   
   AppTabBarState _appTabBarState;

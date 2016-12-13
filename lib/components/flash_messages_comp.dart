@@ -17,7 +17,6 @@ class FlashMessageComp implements ShadowRootAware, ScopeAware {
 
   FlashMessagesService flashMessageService;
 
-
   FlashMessageComp(this.flashMessageService, ServerService serverService, this._rootElement) {
     serverService.subscribe("GlobalConnection", onSuccess: onServerSuccess, onError: onServerError);
   }

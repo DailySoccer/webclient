@@ -9,6 +9,7 @@ import 'package:webclient/services/template_service.dart';
 import 'package:webclient/services/catalog_service.dart';
 import 'package:webclient/services/profile_service.dart';
 import 'package:webclient/services/app_state_service.dart';
+import 'package:webclient/services/flash_messages_service.dart';
 import 'dart:html';
 import 'package:webclient/services/screen_detector_service.dart';
 import 'dart:async';
@@ -64,9 +65,10 @@ class TopBarComp {
                                   s == AppTopBarState.SEARCH_BUTTON && !currentState.isSearching? "<i class='material-icons'>&#xE8B6;</i>" :
                                   s == AppTopBarState.SEARCH_BUTTON && currentState.isSearching? "" :
                                   s;
-
-  List<FlashMessage> get flashMessageList => _appStateService.flashMessageList.sublist(0, min(MAX_FLASH_MSG_SHOWN, _appStateService.flashMessageList.length));
-  bool get hasFlashMessages => _appStateService.flashMessageList.isNotEmpty;
+  
+  List<FlashMessage> _EMPTY_LIST = const []; 
+  List<FlashMessage> get flashMessageList => FlashMessagesService.instance != null && FlashMessagesService.instance.flashMessages != null? FlashMessagesService.instance.flashMessages : _EMPTY_LIST;
+  bool get hasFlashMessages => flashMessageList.isNotEmpty;
   
   TopBarComp(this._router, this._loadingService, this._view, this._rootElement, 
                 this._dateTimeService, this._profileService, this._templateService, 
@@ -105,7 +107,7 @@ class TopBarComp {
   }
   
   void clearFlashMessages() {
-    _appStateService.flashMessageList.removeRange(0, flashMessageList.length);
+    flashMessageList.clear();
   }
   
   String _editedNickName = "";

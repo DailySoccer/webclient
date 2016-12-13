@@ -9,7 +9,7 @@
 
 <div class="flash-messages-container" ng-if="hasFlashMessages">
   <button class="flash-messages-clear" ng-click="clearFlashMessages()"><i class="material-icons">&#xE14C;</i></button>
-  <div class="flash-message-alert" ng-repeat="msg in flashMessageList" ng-class="[msg.type]">
+  <div class="flash-message-alert" ng-repeat="msg in flashMessageList | limitTo: MAX_FLASH_MSG_SHOWN" ng-class="[msg.type]">
     {{msg.text}}
   </div>
 </div>

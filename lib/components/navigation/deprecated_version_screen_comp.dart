@@ -17,6 +17,7 @@ class DeprecatedVersionScreenComp {
   
   static const String OUTDATED_VERSION    = "outdated_version";
   static const String DEPRECATED_VERSION  = "deprecated_version";
+  static const String UNDER_MAINTENANCE  = "under_maintenance";
   String updateType = "";
 
   bool OutdatedVersionDelayed = false;
@@ -55,15 +56,20 @@ class DeprecatedVersionScreenComp {
         if (_show != aValue  && !OutdatedVersionDelayed) {
           _show = aValue;
         }
-        break;
+      break;
       case DEPRECATED_VERSION:
         if (_show != aValue) {
-              _show = aValue;              
-              if (_show) {
-                GameMetrics.screenVisitEvent(GameMetrics.SCREEN_DEPRECATED_VERSION);
-              }
-            }
-        break;
+          _show = aValue;              
+          if (_show) {
+            GameMetrics.screenVisitEvent(GameMetrics.SCREEN_DEPRECATED_VERSION);
+          }
+        }
+      break;
+      case UNDER_MAINTENANCE:
+        if (_show != aValue) {
+          _show = aValue;
+        }
+      break;
     }
     
     if (_show != aValue  && !OutdatedVersionDelayed) {

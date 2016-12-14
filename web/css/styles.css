@@ -6690,11 +6690,17 @@ input {
 }
 .flash-message-alert.warning {
   background-color: #da8810;
-  border-left-color: #f7ad03;
+  border-left-color: #f8c132;
   border-bottom-color: #da8810;
   border-top-color: #da8810;
 }
 .flash-message-alert.info {
+  background-color: #0c4c6a;
+  border-left-color: #59add5;
+  border-bottom-color: #0c4c6a;
+  border-top-color: #0c4c6a;
+}
+.flash-message-alert.success {
   background-color: #0c4c6a;
   border-left-color: #59add5;
   border-bottom-color: #0c4c6a;

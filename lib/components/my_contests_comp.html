@@ -33,7 +33,7 @@
     <div class="no-contests-wrapper" ng-switch-when="false">
         <img class="no-contests-icon" src="images/icon-torneo-proximo-vacio.png">
         <div class="no-contests-title" ng-if="numLiveContests > 0">No tienes ningún toreno pendiente de comenzar</div>
-        <div class="no-contests-title" ng-if="numLiveContests == 0">No estas participando en ningun torneo</div>
+        <div class="no-contests-title" ng-if="numLiveContests == 0">No estás participando en ningún torneo</div>
         <div class="no-contests-subtitle" ng-if="numLiveContests > 0">Comprueba tus torneos en vivo</div>
         <div class="no-contests-subtitle" ng-if="numLiveContests == 0">Ve a la lista de torneos, elije uno y empieza a jugar</div>
         <button class="btn-go-to-contest" ng-click="emptyUpcomingAction()">{{getLocalizedText("tocontest")}}</button>

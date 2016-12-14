@@ -1,4 +1,3 @@
-
 <!-- LIVE CONTESTS -->
 <section class="contest-list-section" id="live-contest-content"  ng-if="tabIsLive">
   <!-- Barra de resumen de actividad -->
@@ -33,9 +32,11 @@
     <!-- lista vacía -->
     <div class="no-contests-wrapper" ng-switch-when="false">
         <img class="no-contests-icon" src="images/icon-torneo-proximo-vacio.png">
-        <div class="no-contests-title">NO ESTÁS PARTICIPANDO EN NINGÚN TORNEO</div>
-        <div class="no-contests-subtitle">Ve a la lista de torneos, elije uno y empieza a jugar</div>
-        <button class="btn-go-to-contest" ng-click="gotoLobby()">{{getLocalizedText("tocontest")}}</button>
+        <div class="no-contests-title" ng-if="numLiveContests > 0">No tienes ningún toreno pendiente de comenzar</div>
+        <div class="no-contests-title" ng-if="numLiveContests == 0">No estas participando en ningun torneo</div>
+        <div class="no-contests-subtitle" ng-if="numLiveContests > 0">Comprueba tus torneos en vivo</div>
+        <div class="no-contests-subtitle" ng-if="numLiveContests == 0">Ve a la lista de torneos, elije uno y empieza a jugar</div>
+        <button class="btn-go-to-contest" ng-click="emptyUpcomingAction()">{{getLocalizedText("tocontest")}}</button>
     </div>
     <!-- lista de concursos -->
     <div class="list-container" ng-switch-when="true">

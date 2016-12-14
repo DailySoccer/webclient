@@ -142,6 +142,14 @@ class MyContestsComp implements DetachAware, ShadowRootAware {
   void gotoLobby() {
     _router.go("lobby", {});
   }
+  
+  void emptyUpcomingAction() {
+    if (numLiveContests == 0) {
+      _router.go("lobby", {});
+    } else {
+      _router.go("my_contests", {'section': TAB_LIVE});
+    }
+  }
 
   void detach() {
     _refreshTimersService.cancelTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS);

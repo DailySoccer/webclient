@@ -331,6 +331,13 @@ class Contest {
       }).toList();
     }
 
+    // TODO: Fix temporal para volver a asociar los equipos a los partidos "correctos" (cuando recibimos partidos de distintas jornadas)
+    // Si únicamente hemos cargado un torneo
+    if (contests.length == 1) {
+      // Asociamos los equipos con los partidos del torneo
+      contests.first.matchEvents.forEach( (matchEvent) => matchEvent.updateLinkFromTeams() );
+    }
+    
     return contests;
   }
 

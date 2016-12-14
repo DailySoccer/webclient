@@ -81,6 +81,12 @@ class MatchEvent {
   bool containsTeam(SoccerTeam team) {
     return team.templateSoccerTeamId == soccerTeamA.templateSoccerTeamId || team.templateSoccerTeamId == soccerTeamB.templateSoccerTeamId;
   }
+  
+  void updateLinkFromTeams() {
+    // Relacionamos los equipos con el partido
+    soccerTeamA.matchEvent = this;
+    soccerTeamB.matchEvent = this;
+  }
 
   void _updateFantasyPoints(Map<String, Map> soccerFantasyPoints) {
     [soccerTeamA, soccerTeamB].forEach((team) => team.soccerPlayers.forEach((soccerPlayer) {

@@ -20,6 +20,8 @@ class DeprecatedVersionScreenComp {
   static const String UNDER_MAINTENANCE  = "under_maintenance";
   String updateType = "";
 
+  bool get underMaintenance => _show && (updateType == UNDER_MAINTENANCE);
+  
   bool OutdatedVersionDelayed = false;
   
   DeprecatedVersionScreenComp() {

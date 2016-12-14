@@ -132,6 +132,7 @@ abstract class ServerService {
 class DailySoccerServer implements ServerService {
   static final String ON_SUCCESS = "onSuccess";
   static final String ON_ERROR   = "onError";
+  static final String MAINTENANCE = "maintenance";
 
   static void startContext(String path) {
     _context++;
@@ -584,6 +585,8 @@ class DailySoccerServer implements ServerService {
 
           if (!_allFuturesCancelled && (callContext == _context || !cancelIfChangeContext)) {
             _checkServerVersion(httpResponse);
+            _checkMaintenance(httpResponse, ok: true);
+            
             _notify(ON_SUCCESS, {ServerService.URL: url});
             _processSuccess(url, httpResponse, completer);
           }
@@ -594,6 +597,7 @@ class DailySoccerServer implements ServerService {
         .catchError((error) {
 
           _checkServerVersion(error);
+          _checkMaintenance(error, ok: false);
 
           ServerError serverError = new ServerError.fromHttpResponse(error);
 
@@ -710,6 +714,20 @@ class DailySoccerServer implements ServerService {
       }
       
       HostServer.CURRENT_VERSION = serverVersion;
+    }
+  }
+  
+  void _checkMaintenance(var response, {bool ok : false}) {
+    if (response is HttpResponse) {
+      HttpResponse httpResponse = response as HttpResponse;
+    
+        // bool ok = (httpResponse.status == 200);
+        if (!ok && httpResponse.data.contains(MAINTENANCE)) {
+          DeprecatedVersionScreenComp.Instance.showUpdate( true, DeprecatedVersionScreenComp.UNDER_MAINTENANCE );
+        }
+        else if (ok && DeprecatedVersionScreenComp.Instance.underMaintenance) {
+          DeprecatedVersionScreenComp.Instance.showUpdate( false, DeprecatedVersionScreenComp.UNDER_MAINTENANCE );
+      }
     }
   }
 

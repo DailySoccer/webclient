@@ -569,7 +569,7 @@ class DailySoccerServer implements ServerService {
 
   void _callLoop(int callContext, String url, Map queryString, Map postData, var headers, Completer completer, int retryTimes, bool cancelIfChangeContext) {
     // Evitamos las reentradas "antiguas" (de otros contextos)
-    if (callContext != _context) {
+    if (callContext != _context && cancelIfChangeContext) {
       Logger.root.info("Ignorando callLoop($url): context($callContext) != context($_context)");
       return;
     }

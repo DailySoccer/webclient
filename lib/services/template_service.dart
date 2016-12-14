@@ -35,8 +35,6 @@ class TemplateService {
 
   TemplateReferences get references => _templateReferences;
   
-  void forceRefresh() => _dateTimeRefreshed = null;
-  
   bool get timedOut => _dateTimeRefreshed == null || (DateTimeService.now.difference(_dateTimeRefreshed).inSeconds > SECONDS_TO_REFRESH);
   
   TemplateSoccerPlayer getTemplateSoccerPlayer(String templateSoccerPlayerId) {
@@ -76,7 +74,8 @@ class TemplateService {
             _completer.complete();
           })
           .catchError((error) {
-            forceRefresh();
+            // forceRefresh();
+            _dateTimeRefreshed = null;
             
             Logger.root.severe("WTF 7773: refreshTemplateSoccerPlayers Error: ${error}");
             _completer.complete();
@@ -100,7 +99,8 @@ class TemplateService {
             _templateContestsCompleter.complete();
           })
           .catchError((error) {
-            forceRefresh();
+            // forceRefresh();
+            _templateContestsChanged = true;
             
             Logger.root.severe("WTF 7774: refreshTemplateContests Error: ${error}");
             _templateContestsCompleter.complete();

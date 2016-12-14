@@ -81,12 +81,15 @@ class HomeComp implements DetachAware {
   Map currentPromo = null;
 
   String infoBarText = "";
+  bool availableNextContest = false;
   
   Contest get nextContest => contestsService.getAvailableNextContest();
   
   void _calculateInfoBarText() {
     //Contest nextContest = contestsService.getAvailableNextContest();
-    infoBarText = nextContest == null? 'Todos los torneos están llenos' : 'PRóXIMO TORNEO <span class="home-next-contest-hour"> ${_calculateTimeToNextTournament()}</span>';
+    if (availableNextContest) {
+      infoBarText = nextContest == null? 'Todos los torneos están llenos' : 'PRóXIMO TORNEO <span class="home-next-contest-hour"> ${_calculateTimeToNextTournament()}</span>';
+    }
   }
 
   String _calculateTimeToNextTournament() {
@@ -114,7 +117,8 @@ class HomeComp implements DetachAware {
 
     //countAchievementsEarned(); 
     
-    contestsService.refreshActiveContests();
+    contestsService.refreshActiveContests()
+      .then((_) => availableNextContest = true);
     
     _nextTournamentInfoTimer = new Timer.periodic(new Duration(seconds: 1), (Timer t) => _calculateInfoBarText());
     

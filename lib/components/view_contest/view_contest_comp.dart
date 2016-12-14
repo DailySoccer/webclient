@@ -626,7 +626,7 @@ class ViewContestComp implements DetachAware {
   }
 
   void _refreshAllSoccerPlayerList() {
-    allSoccerPlayers.clear();
+    allSoccerPlayers = [];
     
     _allInstanceSoccerPlayers.forEach((instanceSoccerPlayer) {
         if (instanceSoccerPlayer.soccerPlayer.name == null) {
@@ -653,7 +653,7 @@ class ViewContestComp implements DetachAware {
   }
 
   void _updateFavorites() {
-    favoritesPlayers.clear();
+    favoritesPlayers = [];
     if (_profileService.isLoggedIn) {
       favoritesPlayers.addAll(_profileService.user.favorites.map((playerId) =>
           allSoccerPlayers.firstWhere( (player) => player.id == playerId, orElse: () => null)
@@ -795,7 +795,7 @@ class ViewContestComp implements DetachAware {
 
   void _updateLineupSlots() {
     if (!isLineupFieldContestEntryActive) { return; }
-    lineupSlots.clear();
+    lineupSlots = [];
     
     mainPlayer.instanceSoccerPlayers.forEach( (i) {
       

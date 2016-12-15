@@ -15,6 +15,10 @@
     width: 48px;
     height: 48px;
     left: -6px;
+    transition: left .3s linear;
+    -moz-transition: left .3s linear;
+    -webkit-transition: left .3s linear;
+    -o-transition: left .3s linear;
   }
   .team-shirt-glow {
     position: absolute;
@@ -22,7 +26,12 @@
     left: -12px;
     width: 60px;
     height: 60px;
-    display: none;
+    display: block;
+    opacity: 0;
+    transition: left .3s linear, opacity .2s linear .1s;
+    -moz-transition: left .3s linear, opacity .2s linear .1s;
+    -webkit-transition: left .3s linear, opacity .2s linear .1s;
+    -o-transition: left .3s linear, opacity .2s linear .1s;
   }
   
   .iconButtonSelect {
@@ -48,7 +57,7 @@
     display: block;
     width: @slot-width + 12px;
     margin-left: -6px;
-    text-shadow: 1px 1px 6px rgba(34, 34, 34,1);
+    text-shadow: 1px 1px 6px rgba(34, 34, 34, 1);
     text-transform: uppercase;
     margin-top: 3px;
     line-height: 1.1;
@@ -112,6 +121,22 @@ lineup-field-selector {
     transition: opacity .3s ease;
   }
 }
+.lineup-selector-wrapper.is-live .not-played {
+  .team-shirt-image {
+    left: 0px;
+  }
+  .team-shirt-glow {
+    left: -6px;
+  }
+}
+.lineup-selector-wrapper.is-live.changing-mode .not-played {
+  .team-shirt-image {
+    left: -6px;
+  }
+  .team-shirt-glow {
+    left: -12px;
+  }
+}
 
 .lineup-selector-wrapper.changing-mode {
   background-color: rgba(0,0,0, 0.5);
@@ -121,7 +146,7 @@ lineup-field-selector {
       opacity: 1;
       box-shadow: 0 0 10px -5px @white;
       .team-shirt-glow {
-        display: block;
+        opacity: 1;
       }
     }
   }

@@ -7,7 +7,7 @@
     <label for="lineup-formation-dropdown" class="lineup-formation-dropdown-caret"><i class="material-icons">&#xE5C5;</i></label>
   </div>
   
-  <div class="lineup-selector-wrapper" ng-class="{'changing-mode': highlightChangeables}">
+  <div class="lineup-selector-wrapper" ng-class="{'changing-mode': highlightChangeables, 'is-live': isLive}">
     <div class="lineup-selector-slot" ng-repeat="slot in lineupSlots" ng-click="onLineupSlotSelected({'slotIndex': $index})" ng-class="getSlotClassColor($index)">
       <div ng-if="slot == null">
         <img ng-src="{{getImgPerSlotPosition($index)}}" class="team-shirt-image">

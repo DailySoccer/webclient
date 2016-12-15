@@ -33,9 +33,6 @@ class TabBarComp {
   static const String HOME = "HOME";
   
   int numLiveContests = 0;
-  int numVirtualHistoryContests = 0;
-  int numRealHistoryContests = 0;
-  int numUpcomingContests = 0;
   
   Map<String, TabBarItemComp> tabs = {};
 
@@ -110,15 +107,9 @@ class TabBarComp {
   }
   
   void _refreshMyContests() {
-    // Parallel processing using the Future API
-    Future.wait([ TemplateService.Instance.refreshTemplateSoccerPlayers(), 
-                  _contestsService.countMyContests()])
-      .then((List jsonMaps) {
-        Map jsonData = jsonMaps[1];
-        numVirtualHistoryContests = jsonData.containsKey("numVirtualHistory") ? jsonData["numVirtualHistory"] : 0;
-        numRealHistoryContests    = jsonData.containsKey("numRealHistory") ? jsonData["numRealHistory"] : 0;
-        numLiveContests           = jsonData.containsKey("numLive") ? jsonData["numLive"] : 0;
-        numUpcomingContests       = jsonData.containsKey("numWaiting") ? jsonData["numWaiting"] : 0;
+    _contestsService.countMyLiveContests()
+      .then((num count) {
+        numLiveContests = count;
         
         _appStateService.appTabBarState.liveContestsNotifications = numLiveContests;
       })

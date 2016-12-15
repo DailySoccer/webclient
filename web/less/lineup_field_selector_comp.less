@@ -14,11 +14,12 @@
     position: relative;
     width: 48px;
     height: 48px;
+    left: -6px;
   }
   .team-shirt-glow {
     position: absolute;
     top: -6px;
-    left: -6px;
+    left: -12px;
     width: 60px;
     height: 60px;
     display: none;
@@ -32,7 +33,7 @@
     display: block;
     position: absolute;
     top: 8px;
-    left: 30px;
+    left: 20px;
     padding: 6px;
     i {
       width: 24px;
@@ -40,16 +41,21 @@
     }
   }
   .soccer-player-name {
-    .mainfont_light(10pt, @white);
+    .mainfont_light(9pt, @white);
     
     position: relative;
     text-align: center;
     display: block;
-    width: @slot-width * 3;
-    margin-left: -(@slot-width);
+    width: @slot-width + 12px;
+    margin-left: -6px;
     text-shadow: 1px 1px 6px rgba(34, 34, 34,1);
     text-transform: uppercase;
     margin-top: 3px;
+    line-height: 1.1;
+  }
+  &.posPOR .soccer-player-name {
+    width: @slot-width * 3;
+    margin-left: -(@slot-width);
   }
   .column-salary, .column-dfp {
     #gradient.vertical(@grey-gradient-light, @grey-gradient-dark);
@@ -59,7 +65,7 @@
     display: block;
     position: absolute;
     top: 8px;
-    left: 30px;
+    left: 20px;
     
     div {
       background-color: @black;
@@ -88,7 +94,7 @@ lineup-field-selector {
 	.flex-container-col();
   
 	position: relative;
-  background-color: @white;
+  background-color: @soft-black;
 	background-image: url("@{images}/football-field.jpg");
   background-size: 100% 100%;
 }

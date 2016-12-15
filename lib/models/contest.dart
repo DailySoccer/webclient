@@ -401,7 +401,7 @@ class Contest {
     // contestEntries.removeWhere( (contestEntry) => contestEntry.instanceSoccerPlayers.any( (instance) => instance == null) );
     
     numEntries = jsonMap.containsKey("freeSlots") 
-        ? ((maxEntries <= 0) ? -jsonMap["freeSlots"] + 1 : maxEntries - jsonMap["freeSlots"])
+        ? ((maxEntries <= 0) ? -(jsonMap["freeSlots"] + 1) : maxEntries - jsonMap["freeSlots"])
         : contestEntries.length;
     
     String prizeCurrency = entryFee.isEnergy ? Money.CURRENCY_MANAGER : Money.CURRENCY_GOLD;

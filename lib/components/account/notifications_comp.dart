@@ -222,9 +222,15 @@ class NotificationsComp {
       e.stopPropagation();
 
     _profileService.removeNotification(notificationId).then((_) {
-    notificationList.removeWhere((notification) => notification['id'] == notificationId);
-    refreshNotifications();
-    }); 
+      notificationList.removeWhere((notification) => notification['id'] == notificationId);
+      // refreshNotifications();
+    });
+    
+    if (e != null) {
+      //Refresh Sharing Info Cache
+      sharingInfoCache = {};
+      notificationList.forEach( sharingInfo );
+    }
   }
 
   void goToLink(String link) {
@@ -293,8 +299,7 @@ class NotificationsComp {
     return "images/notifications/" + ret;
   }
   
-  void cleanNiotifications () {
-    print ("Borrando todas las notificaciones");    
+  void cleanNotifications () {
     notificationList.forEach((notif)  => closeNotification(null, notif['id']));
     refreshNotifications();
     AppStateService.Instance.notificationsActive = false;

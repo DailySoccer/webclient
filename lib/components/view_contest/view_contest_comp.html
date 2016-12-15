@@ -87,7 +87,10 @@
 
 <modal-window class="soccer-player-gameplays small" show-header="true" title="'Puntos de jugador'" show-window="isGameplaysModalOn">
   <div class="soccer-player-gameplays-name">
-    <div class="gameplays-label">{{gameplaysPlayer.name}}</div>
+    <div class="gameplays-label">
+      <div class="gameplays-soccer-name">{{gameplaysPlayer.name}}</div>
+      <div class="gameplays-soccer-team">{{gameplaysPlayer.soccerTeam.name}}</div>
+    </div>
     <div class="gameplays-data">{{gameplaysPlayer.livePoints}}</div>
   </div>
   <div class="soccer-player-gameplays-data" ng-repeat="gameplay in soccerPlayerGameplays">

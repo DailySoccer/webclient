@@ -6910,11 +6910,12 @@ contest-header .prize-managerpoints::after {
   position: relative;
   width: 48px;
   height: 48px;
+  left: -6px;
 }
 .lineup-selector-slot .team-shirt-glow {
   position: absolute;
   top: -6px;
-  left: -6px;
+  left: -12px;
   width: 60px;
   height: 60px;
   display: none;
@@ -6954,7 +6955,7 @@ contest-header .prize-managerpoints::after {
   display: block;
   position: absolute;
   top: 8px;
-  left: 30px;
+  left: 20px;
   padding: 6px;
 }
 .lineup-selector-slot .iconButtonSelect:hover,
@@ -6974,7 +6975,7 @@ contest-header .prize-managerpoints::after {
   height: 24px;
 }
 .lineup-selector-slot .soccer-player-name {
-  font-size: 10pt;
+  font-size: 9pt;
   color: #ffffff;
   text-transform: inherit;
   text-align: inherit;
@@ -6988,11 +6989,16 @@ contest-header .prize-managerpoints::after {
   position: relative;
   text-align: center;
   display: block;
-  width: 144px;
-  margin-left: -48px;
+  width: 60px;
+  margin-left: -6px;
   text-shadow: 1px 1px 6px #222222;
   text-transform: uppercase;
   margin-top: 3px;
+  line-height: 1.1;
+}
+.lineup-selector-slot.posPOR .soccer-player-name {
+  width: 144px;
+  margin-left: -48px;
 }
 .lineup-selector-slot .column-salary,
 .lineup-selector-slot .column-dfp {
@@ -7018,7 +7024,7 @@ contest-header .prize-managerpoints::after {
   display: block;
   position: absolute;
   top: 8px;
-  left: 30px;
+  left: 20px;
 }
 .lineup-selector-slot .column-salary div,
 .lineup-selector-slot .column-dfp div {
@@ -7041,43 +7047,43 @@ contest-header .prize-managerpoints::after {
   top: 82%;
 }
 .lineup-352 .lineup-selector-slot:nth-child(2) {
-  left: 20%;
+  left: 15%;
   top: 70%;
 }
 .lineup-352 .lineup-selector-slot:nth-child(3) {
   left: 50%;
-  top: 62%;
+  top: 60%;
 }
 .lineup-352 .lineup-selector-slot:nth-child(4) {
-  left: 80%;
+  left: 85%;
   top: 70%;
 }
 .lineup-352 .lineup-selector-slot:nth-child(5) {
-  left: 15%;
-  top: 31%;
+  left: 12%;
+  top: 29%;
 }
 .lineup-352 .lineup-selector-slot:nth-child(6) {
-  left: 35%;
+  left: 30%;
   top: 45%;
 }
 .lineup-352 .lineup-selector-slot:nth-child(7) {
   left: 50%;
-  top: 26%;
+  top: 24%;
 }
 .lineup-352 .lineup-selector-slot:nth-child(8) {
-  left: 65%;
+  left: 70%;
   top: 45%;
 }
 .lineup-352 .lineup-selector-slot:nth-child(9) {
-  left: 85%;
-  top: 31%;
+  left: 88%;
+  top: 29%;
 }
 .lineup-352 .lineup-selector-slot:nth-child(10) {
-  left: 35%;
+  left: 30%;
   top: 8%;
 }
 .lineup-352 .lineup-selector-slot:nth-child(11) {
-  left: 65%;
+  left: 70%;
   top: 8%;
 }
 .lineup-343 .lineup-selector-slot:nth-child(1) {
@@ -7090,38 +7096,38 @@ contest-header .prize-managerpoints::after {
 }
 .lineup-343 .lineup-selector-slot:nth-child(3) {
   left: 50%;
-  top: 62%;
+  top: 60%;
 }
 .lineup-343 .lineup-selector-slot:nth-child(4) {
   left: 80%;
   top: 70%;
 }
 .lineup-343 .lineup-selector-slot:nth-child(5) {
-  left: 15%;
+  left: 12%;
   top: 31%;
 }
 .lineup-343 .lineup-selector-slot:nth-child(6) {
   left: 35%;
-  top: 45%;
+  top: 38%;
 }
 .lineup-343 .lineup-selector-slot:nth-child(7) {
   left: 65%;
-  top: 45%;
+  top: 38%;
 }
 .lineup-343 .lineup-selector-slot:nth-child(8) {
-  left: 85%;
+  left: 88%;
   top: 31%;
 }
 .lineup-343 .lineup-selector-slot:nth-child(9) {
-  left: 25%;
+  left: 20%;
   top: 8%;
 }
 .lineup-343 .lineup-selector-slot:nth-child(10) {
   left: 50%;
-  top: 20%;
+  top: 15%;
 }
 .lineup-343 .lineup-selector-slot:nth-child(11) {
-  left: 75%;
+  left: 80%;
   top: 8%;
 }
 .lineup-433 .lineup-selector-slot:nth-child(1) {
@@ -7217,44 +7223,44 @@ contest-header .prize-managerpoints::after {
   top: 82%;
 }
 .lineup-451 .lineup-selector-slot:nth-child(2) {
-  left: 15%;
+  left: 13%;
   top: 70%;
 }
 .lineup-451 .lineup-selector-slot:nth-child(3) {
   left: 35%;
-  top: 60%;
+  top: 57%;
 }
 .lineup-451 .lineup-selector-slot:nth-child(4) {
   left: 65%;
-  top: 60%;
+  top: 57%;
 }
 .lineup-451 .lineup-selector-slot:nth-child(5) {
-  left: 85%;
+  left: 87%;
   top: 70%;
 }
 .lineup-451 .lineup-selector-slot:nth-child(6) {
-  left: 15%;
+  left: 12%;
   top: 39%;
 }
 .lineup-451 .lineup-selector-slot:nth-child(7) {
-  left: 25%;
+  left: 29%;
   top: 17%;
 }
 .lineup-451 .lineup-selector-slot:nth-child(8) {
   left: 50%;
-  top: 43%;
+  top: 37%;
 }
 .lineup-451 .lineup-selector-slot:nth-child(9) {
-  left: 75%;
+  left: 71%;
   top: 17%;
 }
 .lineup-451 .lineup-selector-slot:nth-child(10) {
-  left: 85%;
+  left: 88%;
   top: 39%;
 }
 .lineup-451 .lineup-selector-slot:nth-child(11) {
   left: 50%;
-  top: 8%;
+  top: 5%;
 }
 lineup-field-selector {
   display: -webkit-box;
@@ -7265,7 +7271,7 @@ lineup-field-selector {
   -webkit-flex-flow: column nowrap;
   flex-flow: column nowrap;
   position: relative;
-  background-color: #ffffff;
+  background-color: #181818;
   background-image: url("../images/football-field.jpg");
   background-size: 100% 100%;
 }
@@ -12596,7 +12602,31 @@ view-contest {
 }
 .gameplays-label {
   flex: 1;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
   padding: 8px 8px 8px 24px;
+}
+.gameplays-soccer-name {
+  flex: 1;
+}
+.gameplays-soccer-team {
+  flex: 1;
+  font-size: 9pt;
+  color: #757993;
+  text-transform: uppercase;
+  text-align: left;
+  text-shadow: 1px 1px 1px rgba(117, 121, 147, 0.004);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: 500;
 }
 .gameplays-data {
   flex: 0 0 54px;

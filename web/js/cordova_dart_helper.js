@@ -190,9 +190,9 @@ document.addEventListener('deviceready', function () {
   fbIsInit = true;
   
   epicStore.ready();
-
+  /*
   console.log(" # DEVICE READY EVENT - UniversalLinks");
-  /*universalLinks.subscribe('e11Event', function(ev) {
+  universalLinks.subscribe('e11Event', function(ev) {
     alert("E11Event");
     universalLinksData = ev;
     universalLinksData.isEmpty = false;

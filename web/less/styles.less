@@ -1,4 +1,4 @@
-@import "../bootstrap-3.1.1/less/bootstrap.less";
+//@import "../bootstrap-3.1.1/less/bootstrap.less";
 //@import "../bootstrap-3.1.1/less/navbar.less";
 
 @import "common.less";
@@ -18,77 +18,93 @@
 @import "daily_rewards.less";
 
 
-// @import "contest_header_f2p_comp.less";
-@import "teams_panel_comp.less";
 @import "contest_info_comp.less";
-@import "scoring_rules_comp.less";
 @import "edit_personal_data_comp.less";
-@import "add_funds_comp.less";
-@import "transaction_history_comp.less";
 @import "shop_comp.less";
-@import "shop_gold_comp.less";
-@import "shop_energy_comp.less";
 @import "shop_trainer_points_comp.less";
-@import "fantasy_team_comp.less";
 @import "footer_comp.less";
-@import "landing_page_obsolete_browser_comp.less";
 @import "view_contest_comp.less";
 @import "lobby_comp.less";
-@import "main_menu_f2p_comp.less";
 @import "tab_bar_comp.less";
 @import "secondary_tab_bar_comp.less";
 @import "top_bar_comp.less";
 @import "my_contest_comp.less";
-@import "paginator_comp.less";
-@import "promos_comp.less";
 @import "social_share_comp.less";
 @import "soccer_player_stats_comp.less";
 @import "enter_contest_comp.less";
-@import "soccer_players_list_comp.less";
 @import "soccer_players_scalinglist_comp.less";
-@import "soccer_players_filter_comp.less";
-@import "matches_filter_comp.less";
-@import "lineup_selector_comp.less";
+
 @import "leaderboard_comp.less";
 @import "ranking_comp.less";
-@import "user_forms_components.less";
-@import "users_list_comp.less";
 @import "user_profile_comp.less";
 @import "view_contest_entry_comp.less";
-@import "static_pages_components.less";
-@import "maintenance.less";
-@import "simple_promo_f2p.less";
-@import "week_calendar_comp.less";
-@import "tutorial_comp.less";
 @import "backdrop_comp.less";
 @import "home_comp.less";
-@import "tutorial_list_comp.less";
 @import "create_contest_comp.less";
-@import "help_info_comp.less";
 @import "achievement_list_comp.less";
 @import "achievement_comp.less";
 @import "notifications_comp.less";
-@import "scouting_comp.less";
-@import "teams_filter_comp.less";
-@import "friends_bar_comp.less";
-@import "xs_not_available_screen_comp.less";
 @import "deprecated_version_screen_comp.less";
 
-//@import "lobby_calendar_comp.less";
-//@import "contest_header_comp.less";
-//@import "withdraw_funds_comp.less";
-//@import "landing_page_1_slide_comp.less";
-//@import "beta_info_comp.less";
-//@import "restricted_comp.less";
+/**
+WARNING
+**/
+// Comprobar si se hecha algo de menos
+// 12 de diciembre de 2016
+// @import "user_forms_components.less";
 
-//@import "contest_filters_comp.less";
-//@import "main_menu_slide_comp.less";
-//@import "simple_promo_viewer_comp.less";
+/**
+END WARNING
+**/
+
+/*
+ * LEGACY
+ */
+// @import "xs_not_available_screen_comp.less";
+// @import "friends_bar_comp.less";
+// @import "teams_filter_comp.less";
+// @import "scouting_comp.less";
+// @import "help_info_comp.less";
+// @import "tutorial_list_comp.less";
+// @import "tutorial_comp.less";
+// @import "week_calendar_comp.less";
+// @import "maintenance.less";
+// @import "static_pages_components.less";
+// @import "users_list_comp.less";
+// @import "lineup_selector_comp.less";
+// @import "matches_filter_comp.less";
+// @import "soccer_players_filter_comp.less";
+// @import "soccer_players_list_comp.less";
+// @import "simple_promo_f2p.less";
+// @import "promos_comp.less";
+// @import "paginator_comp.less";
+// @import "main_menu_f2p_comp.less";
+// @import "landing_page_obsolete_browser_comp.less";
+// @import "fantasy_team_comp.less";
+// @import "shop_gold_comp.less";
+// @import "shop_energy_comp.less";
+// @import "transaction_history_comp.less";
+// @import "add_funds_comp.less";
+// @import "scoring_rules_comp.less";
+// @import "contest_header_f2p_comp.less";
+// @import "teams_panel_comp.less";
+
+
+// @import "lobby_calendar_comp.less";
+// @import "contest_header_comp.less";
+// @import "withdraw_funds_comp.less";
+// @import "landing_page_1_slide_comp.less";
+// @import "beta_info_comp.less";
+// @import "restricted_comp.less";
+
+// @import "contest_filters_comp.less";
+// @import "main_menu_slide_comp.less";
+// @import "simple_promo_viewer_comp.less";
 
 // Otros css del proyecto, para incluirlos todos en nuestro .css principal	
 @import "../flags/flag-icon.less";
-@import (inline) "../nouislider/jquery.nouislider.css";
-@import "../bootstrap-switch/less/bootstrap3/bootstrap-switch.less";
+// @import (inline) "../nouislider/jquery.nouislider.css";
+// @import "../bootstrap-switch/less/bootstrap3/bootstrap-switch.less";
 
 @beta: false;
 
@@ -100,7 +116,7 @@
 
 
 // En pantallas > 1200 nos limitamos a > 992px
-@container-lg: @container-md;
+//@container-lg: @container-md;
 
 // El modal viene en boostrap como overflow-y: scroll (siempre se ve barra). Preferimos
 // que solo se vea si realmente se necesita.
@@ -109,21 +125,23 @@
 .global-landing-page .wrapper-content-container  {
 	width: 100%;
 	height: 100%;
-	@media (max-width: @screen-xs-max) {
+	/*
+  @media (max-width: @screen-xs-max) {
 		min-height: 580px; 
 	}
+  */
 	min-height: 800px; 
 	& > .main-content-container {
 		width: 100%;
 		height: 100%;
 	}
 }
-
+/*
 .global-logged-in .wrapper-content-container {
 //	max-width: 970px;
 }
-
-
+*/
+/*
 .btn {
 	border-width: 0;
   .transition(All, 0.08s, ease-out);
@@ -227,6 +245,8 @@
 		}
 	}	
 }
+*/
+
 /*
 .button-fb {
 	.btn();
@@ -254,7 +274,9 @@
 	margin: 0;
 	padding: 0;
 }
-.default-section-header{
+
+/*
+.default-section-header {
 	.make-row(0);
 	.exo_light(20pt, @blueDark);
 	padding: 30px 15px 30px 15px;
@@ -266,10 +288,12 @@
 		.exo_light(16pt, @blueDark);
 	}
 }
-.default-section-header.dark{
+.default-section-header.dark {
 	background-color: @blueDark;
 	color: @white;
 }
+
+*/
 /*
 .default-header-text {
 	.make-row(0);
@@ -283,6 +307,7 @@
 	}
 }
 */
+/*
 .default-info-text {
 	.exo_light(20pt, @blueMed);
 	text-align: center;
@@ -300,11 +325,13 @@
 		height: 5px;
 	}
 }
+*/
 
 .center-text {
 	text-align: center;
 }
 /// Clases comunes entre la lista de concursos y la cabecera del concurso
+/*
 .contest-big-bold-text {
 	.exo_bold(14pt, @blueDark);
 	@media (max-width: @screen-xs-max) {
@@ -329,6 +356,7 @@
 		.opensans_normal(10pt, @greyDark);
 	}
 }
+*/
 /*
 // Clase que añade el icono de la monede de los premios.
 .prize-icon-big {
@@ -338,13 +366,14 @@
 	}
 }
 */
+/*
 .iconPrize {
 	.size(32px, 26px);
 	position: absolute;
 	left: -38px;
 	top: 3px;
 }
-
+*/
 @default: 0;
 .make-border(@width, @style, @color, @radius: @default) {
 	border-width: @width;
@@ -445,7 +474,7 @@
 	left: @posX;
 	top:  @posY;
 }
-
+/*
 .globalMessage {
 	.alert-danger();
 	
@@ -467,20 +496,22 @@
 	z-index:99999;
 	.slide-in-from-bottom-animation();
 }
- 
+*/
+/*
 .epicGlobalMessage {
 	.globalMessage();
 	border-color: @white;
 	background-color: @blueDark;
 	color: @white;
 }
+*/
 
 .make-shadow(@offsetH, @offsetV, @radius, @spread, @color:@greyUltraDark, @opacity) {
 	-webkit-box-shadow: @offsetH @offsetV @radius @spread rgba(red(@color), green(@color), blue(@color), @opacity);
 	-moz-box-shadow: 	@offsetH @offsetV @radius @spread rgba(red(@color), green(@color), blue(@color), @opacity);
 	box-shadow: 		@offsetH @offsetV @radius @spread rgba(red(@color), green(@color), blue(@color), @opacity);
 }
-
+/*
 .modal-properties-default {
 	background-color: @greyDark;
 	color: @white;
@@ -516,9 +547,51 @@
 		}
 	}
 }
-
+*/
 .clickable {
 	cursor: pointer;
+}
+
+// User select
+// For selecting text on the page
+.user-select(@select) {
+  -webkit-user-select: @select;
+     -moz-user-select: @select;
+      -ms-user-select: @select; // IE10+
+          user-select: @select;
+}
+// User select
+// For selecting text on the page
+.user-select-important(@select) {
+  -webkit-user-select: @select !important;
+     -moz-user-select: @select !important;
+      -ms-user-select: @select !important; // IE10+
+          user-select: @select !important;
+}
+
+#gradient {
+
+  // Horizontal gradient, from left to right
+  //
+  // Creates two color stops, start and end, by specifying a color and position for each color stop.
+  // Color stops are not available in IE9 and below.
+  .horizontal(@start-color: #555; @end-color: #333; @start-percent: 0%; @end-percent: 100%) {
+    background-image: -webkit-linear-gradient(left, color-stop(@start-color @start-percent), color-stop(@end-color @end-percent)); // Safari 5.1-6, Chrome 10+
+    background-image:  linear-gradient(to right, @start-color @start-percent, @end-color @end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+    background-repeat: repeat-x;
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)",argb(@start-color),argb(@end-color))); // IE9 and down
+  }
+
+  // Vertical gradient, from top to bottom
+  //
+  // Creates two color stops, start and end, by specifying a color and position for each color stop.
+  // Color stops are not available in IE9 and below.
+  .vertical(@start-color: #555; @end-color: #333; @start-percent: 0%; @end-percent: 100%) {
+    background-image: -webkit-linear-gradient(top, @start-color @start-percent, @end-color @end-percent);  // Safari 5.1-6, Chrome 10+
+    background-image: linear-gradient(to bottom, @start-color @start-percent, @end-color @end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+    background-repeat: repeat-x;
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@start-color),argb(@end-color))); // IE9 and down
+  }
 }
 
 .make-tile(@columns, @rows, @row-height:100) {

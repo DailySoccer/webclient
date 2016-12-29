@@ -295,10 +295,10 @@ class SoccerPlayerStatsComp implements DetachAware {
     seasonResumeStats.clear();
     seasonsList.clear();
     seasonTableHeaders = [
-      getCodeData("date"),
-      getCodeData("opponent"),
-      getCodeData("dailyfantasypoints"),
-      getCodeData("minutes")
+      getCodeData("date").substring(0,3),
+      getCodeData("opponent").substring(0,3),
+      getCodeData("dfp"),
+      getCodeData("minutes").substring(0,3)
     ];
 
     if(isGoalkeeper()) {
@@ -306,16 +306,16 @@ class SoccerPlayerStatsComp implements DetachAware {
         _totalSums[key] = 0;
       });
       seasonTableHeaders.addAll([
-        getCodeData("descgoalsconceded"),
-        getCodeData("descsaves"),
-        getCodeData("descclearances"),
-        getCodeData("descpenaltiessaved"),
-        getCodeData("descpasses"),
-        getCodeData("descrecovers"),
-        getCodeData("posessionlost"),
-        getCodeData("descfoulscommited"),
-        getCodeData("descyellowcards"),
-        getCodeData("descredcards")
+        getCodeData("abrevgoalsconceded"),
+        getCodeData("abrevsaves"),
+        getCodeData("abrevclearances"),
+        getCodeData("abrevpenaltiessaved"),
+        getCodeData("abrevpasses"),
+        getCodeData("abrevrecovers"),
+        getCodeData("abrevposslost"),
+        getCodeData("abrevfoulscommited"),
+        getCodeData("abrevyellowcards"),
+        getCodeData("abrevredcards")
       ]);
     }
     else {
@@ -323,17 +323,17 @@ class SoccerPlayerStatsComp implements DetachAware {
         _totalSums[key] = 0;
       });
       seasonTableHeaders.addAll([
-        getCodeData("descgoals"),
-        getCodeData("descshots"),
-        getCodeData("descpasses"),
-        getCodeData("descchancescreated"),
-        getCodeData("desctakeons"),
-        getCodeData("descrecovers"),
-        getCodeData("posessionlost"),
-        getCodeData("descfoulscommited"),
-        getCodeData("descfoulsconceded"),
-        getCodeData("descyellowcards"),
-        getCodeData("descredcards")
+        getCodeData("abrevgoals"),
+        getCodeData("abrevshots"),
+        getCodeData("abrevpasses"),
+        getCodeData("abrevchancescreated"),
+        getCodeData("abrevtakeons"),
+        getCodeData("abrevrecovers"),
+        getCodeData("abrevposslost"),
+        getCodeData("abrevfoulscommited"),
+        getCodeData("abrevfoulsconceded"),
+        getCodeData("abrevyellowcards"),
+        getCodeData("abrevredcards")
       ]);
     }
   }

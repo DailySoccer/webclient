@@ -5,7 +5,7 @@ import 'package:webclient/utils/translate_config.dart';
 class StringUtils {
 
   static NumberFormat decimalFormat = new NumberFormat("0.#", "es_ES");
-  static NumberFormat twoDecimalsFormat = new NumberFormat("###,###,###.00", "es_ES");
+  static NumberFormat twoDecimalsFormat = new NumberFormat("###,###,##0.00", "es_ES");
   static NumberFormat thousandsFormat = new NumberFormat.decimalPattern("es_ES");
 
 

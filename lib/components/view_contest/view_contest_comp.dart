@@ -93,7 +93,8 @@ class ViewContestComp implements DetachAware {
           isComparativeInitialized = true;
         }
         
-        if (isRivalsListActive) {
+        // Si está cargando no inicializamos la lista de Rivales, dado que la recibiremos cuando termine de cargar
+        if (isRivalsListActive && !_loadingService.isLoading) {
           isRivalsListInitialized = true;
           
           if (!usingDynamicRanking) {
@@ -103,7 +104,10 @@ class ViewContestComp implements DetachAware {
           currentRivalList.initialAmount = MIN_RIVAL_SHOWN;
         }
         
-        GameMetrics.contestScreenVisitEvent(section == RIVALS_LIST? GameMetrics.SCREEN_RIVAL_LIST : GameMetrics.SCREEN_RIVAL_LINEUP, contest, {"availableChanges": numAvailableChanges});
+        // TODO: Si está cargando los datos la información sobre el "contest" no está completa (y lanza una excepción)
+        if (!_loadingService.isLoading) {
+          GameMetrics.contestScreenVisitEvent(section == RIVALS_LIST? GameMetrics.SCREEN_RIVAL_LIST : GameMetrics.SCREEN_RIVAL_LINEUP, contest, {"availableChanges": numAvailableChanges});
+        }
         _setupContestInfoTopBar(true, /* () => _router.go('lobby', {})*/AppTopBarState.GOBACK, _onContestInfoClick);
         _appStateService.appSecondaryTabBarState.tabList = tabList;
       break;
@@ -171,7 +175,7 @@ class ViewContestComp implements DetachAware {
     _rivalList = player.contest.contestEntriesOrderByPoints;
     // _rivalList = _rivalList.take(MAX_RIVAL_SIZE_DYNAMIC).toList();
 
-    if (isRivalsListActive && usingDynamicRanking) {
+    if (isRivalsListActive && (!isRivalsListInitialized || usingDynamicRanking)) {
       isRivalsListInitialized = true;
       
       currentRivalList.elements = createRivalList(_rivalList);

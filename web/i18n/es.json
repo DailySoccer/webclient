@@ -967,7 +967,7 @@
       "CONTEST_FINISHED_BTN"            : "Ver resultado",
 
       "DUEL_FINISHED"                   : "DUELO TERMINADO",
-      "DUEL_FINISHED_DESCRIPTION"       : "Duelo '@NAME' terminado, consulta tus resultados.",
+      "DUEL_FINISHED_DESCRIPTION"       : "<div>'@NAME' terminado.</div><div>Has terminado en <span class='enlighted'>@POSITIONª Posición</span></div><div>Premio <span class='enlighted'>@PRIZE monedas</span></div>",
       "DUEL_FINISHED_BTN"               : "Ver resultado",
 
       "CONTEST_CANCELLED"               : "TORNEO CANCELADO",

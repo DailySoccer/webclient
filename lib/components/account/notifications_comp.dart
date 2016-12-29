@@ -175,7 +175,7 @@ class NotificationsComp {
     String prize = "";
     String ret = "";
     ContestEntry  contestEntry;
-    if (notification.topic == "CONTEST_FINISHED") {
+    if (notification.topic == UserNotification.CONTEST_FINISHED || notification.topic == UserNotification.DUEL_FINISHED) {
       item['description'] = "Cargando...";
       _contestsService.getMyHistoryContestEntry(notification.info["contestId"])
         .then((Contest contest) {

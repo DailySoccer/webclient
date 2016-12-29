@@ -59,10 +59,21 @@ class LeaderboardService {
   
   List<UserRanking> get goldRanking {
     if (_goldRanking == null) {
-      _goldRanking = new List<UserRanking>(users.length);
+      // No recibimos la lista de usuarios completa
+      Map<int, UserRanking> ranking = new Map<int, UserRanking>();
       for (int i=0; i<users.length; i++) {
         UserRanking user = users[i];
-        _goldRanking[ user.goldRank - 1] = user;
+        ranking[user.goldRank - 1] = user;
+      }
+      
+      // Garantizamos que tenemos las keys ordenadas
+      List <int> keys = ranking.keys.toList();
+      keys.sort( (int i1, int i2) => i1.compareTo(i2));
+      
+      // Convertimos el map a una lista ordenada
+      _goldRanking = new List<UserRanking>(users.length);
+      for (int i=0; i<keys.length; i++) {
+        _goldRanking[i] = ranking[ keys[i] ];
       }
       // _goldRanking.sort( (UserRanking u1, UserRanking u2) => u1.goldRank.compareTo(u2.goldRank) );
     }
@@ -72,10 +83,21 @@ class LeaderboardService {
 
   List<UserRanking> get skillRanking {
     if (_skillRanking == null) {
-      _skillRanking = new List<UserRanking>(users.length);
+      // No recibimos la lista de usuarios completa
+      Map<int, UserRanking> ranking = new Map<int, UserRanking>();
       for (int i=0; i<users.length; i++) {
         UserRanking user = users[i];
-        _skillRanking[ user.skillRank - 1] = user;
+        ranking[user.skillRank - 1] = user;
+      }
+      
+      // Garantizamos que tenemos las keys ordenadas
+      List <int> keys = ranking.keys.toList();
+      keys.sort( (int i1, int i2) => i1.compareTo(i2));
+      
+      // Convertimos el map a una lista ordenada
+      _skillRanking = new List<UserRanking>(users.length);
+      for (int i=0; i<keys.length; i++) {
+        _skillRanking[i] = ranking[ keys[i] ];
       }
       // _skillRanking.sort( (UserRanking u1, UserRanking u2) => u1.skillRank.compareTo(u2.skillRank) );
     }

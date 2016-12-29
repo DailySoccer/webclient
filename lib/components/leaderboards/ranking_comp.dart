@@ -22,7 +22,7 @@ class RankingComp {
   @NgOneWay('ranking-points-data')
     set pointsList(List<UserRanking> value) {
     if (value != null) {
-      pointsUserList = value;
+      pointsUserList = value.where((UserRanking user) => user != null).toList();
       myPointsData = pointsUserList.where((user) => user.userId == profileService.user.userId).first;
     }
   }
@@ -31,7 +31,7 @@ class RankingComp {
   @NgOneWay('ranking-money-data')
   set moneyList(List<UserRanking> value) {
     if (value != null) {
-      moneyUserList = value;
+      moneyUserList = value.where((UserRanking user) => user != null).toList();
       myMoneyData = moneyUserList.where((user) => user.userId == profileService.user.userId).first;
     }
   }
@@ -54,7 +54,7 @@ class RankingComp {
   
   RankingComp (this.loadingService, LeaderboardService leaderboardService, this.profileService) {
     if (myPointsData != null)
-      myPointsData = pointsUserList.where((user) => user.userId == profileService.user.userId).first;
+      myPointsData = pointsUserList.where((user) => user != null && user.userId == profileService.user.userId).first;
     
     GameMetrics.screenVisitEvent(GameMetrics.SCREEN_RANKING);
      // myMoneyData = moneyUserList.where((user) => user['id'] == profileService.user.userId).first;

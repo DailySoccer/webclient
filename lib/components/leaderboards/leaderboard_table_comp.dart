@@ -92,7 +92,8 @@ class LeaderboardTableComp {
       }
     }
     else if (rows != 0 && tableElements != null && highlightedElement.userId != '') {
-      int pos = type == "GOLD" ? highlightedElement.goldRank : highlightedElement.skillRank;
+      // Necesitamos buscar la posición del elemento highlight en la tabla
+      int pos = tableElements.map((user) => user.userId).toList().indexOf(highlightedElement.userId) + 1;
       //primera posicion calculada a partir del elemento iluminado
       int firstPosition = max(pos - ((rows-1) / 2).floor(), 1) - 1;
       //ultima posicion calculada a partir de la primera

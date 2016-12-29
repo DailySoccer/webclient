@@ -427,7 +427,7 @@ class DailySoccerServer implements ServerService {
   }
 
   Future<Map> getLeaderboard() {
-    return _innerServerCall("${HostServer.url}/v2/get_leaderboard", retryTimes: -1);
+    return _innerServerCall("${HostServer.url}/v3/get_leaderboard", retryTimes: -1);
   }
 
   Future<Map> getTransactionHistory() {

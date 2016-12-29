@@ -61,12 +61,12 @@ class RankingComp {
   }
   
   void showFullPointsRanking() {
-    print("Cambiando al ranking completo de puntos");
+    //print("Cambiando al ranking completo de puntos");
     showPointsRanking();
   }
   
   void showFullMoneyRanking() {
-    print("Cambiando al ranking completo de dinerito");
+    //print("Cambiando al ranking completo de dinerito");
     showMoneyRanking();
   }
 }

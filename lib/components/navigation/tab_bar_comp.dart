@@ -102,7 +102,7 @@ class TabBarComp {
     });
     
 
-    this._refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_MY_CONTESTS, _refreshMyContests);
+    this._refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_TABBAR, _refreshMyContests);
     this._refreshTimersService.addRefreshTimer(RefreshTimersService.SECONDS_TO_REFRESH_RANKING_POSITION, _leaderboardService.calculateMyTrueSkillData);
   }
   

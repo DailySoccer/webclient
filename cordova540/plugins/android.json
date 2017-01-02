@@ -45,6 +45,11 @@
             "BRANCH_KEY": "key_live_ehqnB1VXWVlhkAEct1bn9ebnzFmjc7ZC",
             "URI_SCHEME": "futbolcuatro",
             "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
+        },
+        "cordova-plugin-facebook4": {
+            "APP_ID": "1684730951797091",
+            "APP_NAME": "Fútbol Cuatro",
+            "PACKAGE_NAME": "com.epiceleven.futbolcuatro"
         }
     },
     "dependent_plugins": {

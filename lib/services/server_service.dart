@@ -676,7 +676,7 @@ class DailySoccerServer implements ServerService {
   // Cuando se produce una actualizacion del servidor, forzamos una recarga de la pagina en el cliente para asegurarnos
   // de que siempre tenemos la ultima version
   void _checkServerVersion(var httpResponse) {
-    
+      
     String serverVersion = HostServer.isAndroidPlatform ? httpResponse.headers("release-version-android") : httpResponse.headers("release-version-ios");
     /***** Debug pourposes only ******/
     //_currentVersion = "1.0.0";

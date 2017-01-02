@@ -13,12 +13,12 @@ import 'package:webclient/utils/string_utils.dart';
 import 'package:webclient/utils/game_metrics.dart';
 
 class FBLogin {
-
+  
   FBLogin(Router router, ProfileService _profileService, [Function onLogin]) {
     _router = router;
     _profileManager = _profileService;
     _onLogin = onLogin;
-    js.context['jsLoginFB'] = loginFB;
+    //js.context['jsLoginFB'] = loginFB;
     
     // Default action onLogin
     if (_onLogin == null) {
@@ -28,7 +28,6 @@ class FBLogin {
 
   void loginFB() {
     //GameMetrics.logEvent(GameMetrics.LOGIN_ATTEMPTED, {"action via": "facebook"});
-    
     jsApiCall("loginStatus", [onGetLoginStatus]);
   }
 

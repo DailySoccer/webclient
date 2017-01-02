@@ -24,70 +24,49 @@ var facebookApiWrapper = {
   */
   
 	waitForFacebook: function (callback) {
-	  
-        //callback();
+    //callback();
 	},
   login: function(callback) {
-    //console.log(" - FB REQUEST => Login");
-    /*facebookConnectPlugin.login(["public_profile", "email", "user_friends"],
+    console.log(" - FB REQUEST => Login");
+    facebookConnectPlugin.login(["public_profile", "email", "user_friends"],
         function (info) {
-          //console.log(" - FB REQUEST => Login r:" + info);
+          console.log(" - FB REQUEST => Login r:" + info);
           callback(info);
         },
         function (error) {
           console.warn(error)
         }
-      );*/
+      );
   },
 
   loginStatus: function (callback) {
-    //console.log(" - FB REQUEST => LoginStatus");
-    /*facebookConnectPlugin.getLoginStatus(
+    console.log(" - FB REQUEST => LoginStatus");
+    facebookConnectPlugin.getLoginStatus(
         function (info ) {
-          //console.log(" - FB REQUEST => LoginStatus r:" + info);
+          console.log(" - FB REQUEST => LoginStatus r:" + info);
           callback(info);
         },
         function (error) {
           console.log(error)
         }
-      );*/
+      );
   },
 	permissions: function (callback) {
-		//console.log(" - FB REQUEST => Permissions");
-		/*facebookConnectPlugin.api('/me/permissions',
-				["public_profile", "email", "user_friends"],
+		console.log(" - FB REQUEST => Permissions");
+		facebookConnectPlugin.api('/me/permissions', ["public_profile", "email", "user_friends"],
 				function (response) {
 					if (response && !response.error) {
 						response['error'] = false;
 					}
-					//console.log(" - FB REQUEST => Permissions r:" + response);
+					console.log(" - FB REQUEST => Permissions r:" + response);
 					callback(response);
 				},
 				function (error) {
 					console.log(error)
 				}
-			);*/
+			);
 	},
 	profileInfo: function(callback) {
-		/*facebookConnectPlugin.api('/me?fields=picture,id,name,email', ["public_profile", "email", "user_friends"],
-      function(response) {
-         if (response && !response.error) {
-           response['error'] = false;
-
-           facebookConnectPlugin.getAccessToken(function(token) {
-                  response['accessToken'] = token;
-                  callback(response);
-               }, function(err) {
-                  response = err;
-                  callback(response);
-               });
-         } else {
-           callback(response);
-         }
-       },
-      function (error) { console.log(error) });*/
-	},
-  profilePhoto: function(callback) {/*
 		facebookConnectPlugin.api('/me?fields=picture,id,name,email', ["public_profile", "email", "user_friends"],
       function(response) {
          if (response && !response.error) {
@@ -104,14 +83,33 @@ var facebookApiWrapper = {
            callback(response);
          }
        },
-      function (error) { console.log(error) });*/
+      function (error) { console.log(error) });
+	},
+  profilePhoto: function(callback) {
+		facebookConnectPlugin.api('/me?fields=picture,id,name,email', ["public_profile", "email", "user_friends"],
+      function(response) {
+         if (response && !response.error) {
+           response['error'] = false;
+
+           facebookConnectPlugin.getAccessToken(function(token) {
+                  response['accessToken'] = token;
+                  callback(response);
+               }, function(err) {
+                  response = err;
+                  callback(response);
+               });
+         } else {
+           callback(response);
+         }
+       },
+      function (error) { console.log(error) });
   },
-  friends: function (facebookId, callback) {/*
-    //console.log(" - FB REQUEST => ProfileFriends");
+  friends: function (facebookId, callback) {
+    console.log(" - FB REQUEST => ProfileFriends");
     facebookConnectPlugin.api('/me/friends?fields=picture,id', ["public_profile", "email", "user_friends"],
         function(response) {
-          //console.log(" - FRIENDS RESPONSE:");
-          //console.log(response);
+          console.log(" - FRIENDS RESPONSE:");
+          console.log(response);
           if (response && !response.error) {
             var friendsInfo = [];
             for(var i = 0; i < response.data.length; i++) {
@@ -128,9 +126,9 @@ var facebookApiWrapper = {
             callback({ error: response.error });
           }
          },
-        function (error) { console.log(error) });*/
+        function (error) { console.log(error) });
   },
-  share: function (params) {/*
+  share: function (params) {
     dartCallback = params.dartCallback || function() {};
     facebookConnectPlugin.showDialog(
         {
@@ -144,7 +142,7 @@ var facebookApiWrapper = {
             title: params.title
         },
         function (response) { dartCallback(); },
-        function (response) { serverLoggerInfo(JSON.stringify(response)) });*/
+        function (response) { serverLoggerInfo(JSON.stringify(response)) });
   }
 
 };

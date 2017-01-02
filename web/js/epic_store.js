@@ -18,7 +18,7 @@ var epicStore = {
 	  });
 	
 	  store.ready(function() {
-	    store.validator = getDomain()+"/store/validator";
+	    store.validator = getDomain() + "/store/validator";
 	    store.refresh();
 	    paymentServiceReady();
 	    console.log("# STORE READY ");
